@@ -1,0 +1,48 @@
+anytv_dashboard_homepage:
+    path:  /{culture}
+    defaults: { _controller: AnytvDashboardBundle:Default:index, culture: en, _locale: en, _format: html }
+    requirements:
+        culture:  %anytv.cultures%
+    
+offers:
+    path:      /admin/offers/{page}
+    defaults:  { _controller: AnytvDashboardBundle:Offer:index, page: 1 }
+    requirements:
+        page:  \d+
+        
+traffic_referrals:
+    path:      /admin/traffic_referrals/{page}
+    defaults:  { _controller: AnytvDashboardBundle:TrafficReferral:index, page: 1 }
+    requirements:
+        page:  \d+
+        
+news:
+    path:      /admin/news/{page}
+    defaults:  { _controller: AnytvDashboardBundle:News:index, page: 1 }
+    requirements:
+        page:  \d+
+        
+contact:
+    path:     /contact
+    defaults: { _controller: AnytvDashboardBundle:Main:contact }
+    methods:  [GET]
+
+contact_process:
+    path:     /contact
+    defaults: { _controller: AnytvDashboardBundle:Main:contactProcess }
+    methods:  [POST]
+        
+article_show:
+  path:     /articles/{culture}/{year}/{title}.{_format}
+  defaults: { _controller: AnytvDashboardBundle:Article:show, _format: html, _locale: en }
+  requirements:
+      culture:  %anytv.cultures%
+      _locale:  %anytv.locales%
+      _format:  %anytv.formats%
+      year:     \d+
+      
+secure:
+    path:     /secure
+    defaults: { _controller: AnytvDashboardBundle:Main:secure }
+    schemes:  [https]
+      

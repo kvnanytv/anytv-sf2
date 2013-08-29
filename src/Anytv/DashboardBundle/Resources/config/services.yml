@@ -1,0 +1,7 @@
+parameters:
+#    anytv_dashboard.example.class: Anytv\DashboardBundle\Example
+
+services:
+#    anytv_dashboard.example:
+#        class: %anytv_dashboard.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

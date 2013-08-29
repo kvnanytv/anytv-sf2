@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Any.TV{% endblock %}</title>
+        {% block favicon %}
+          <link rel="icon" type="image/x-icon" href="{{ asset('faviconanytv.ico') }}" />
+        {% endblock %}
+        {% block stylesheets %}
+          <link href="{{ asset('bundles/anytvdashboard/css/structure.css') }}" rel="stylesheet" type="text/css" media="all" />
+          <link href="{{ asset('bundles/anytvdashboard/css/body.css') }}" rel="stylesheet" type="text/css" media="all" />
+          <link href="{{ asset('bundles/anytvdashboard/css/main.css') }}" rel="stylesheet" />
+        {% endblock %}
+    </head>
+    <body>
+        <div id="content">
+            <div class="header clear-fix">
+                <div class="header-logo">
+                  {% block header %}
+                  <a href="{{ path('anytv_main_homepage') }}" title="Any.TV">
+                    <img src="{{ asset('bundles/anytvmain/images/logo.png') }}" alt="Any.TV" />
+                  </a>
+                  {% endblock %}
+                </div>
+
+                <div class="search">
+                  <div id="main_menu">
+                   <ul>
+                     <li><a href="{{ path('anytv_main_homepage') }}" title="Any.TV">Any.TV</a></li>
+                     <li><a href="{{ path('anytv_dashboard_homepage') }}" title="Any.TV Dashboard">Dashboard</a></li>
+                     <li><a href="{{ path('anytv_community_homepage') }}" title="Any.TV Community">Community</a></li>
+                   </ul>
+                 </div>    
+                </div>
+            </div>
+
+            <div class="sf-reset">
+            {% block submenu %}
+            {% endblock %}
+                    
+            {% block body %}
+              {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="flash-message">
+                  <em>Notice</em>: {{ flashMessage }}
+                </div>
+              {% endfor %}
+
+             <div class="block">
+               {% block content %}
+                 
+               {% endblock %}
+             </div>
+
+             {% if code is defined %}
+               <h2>Code behind this page</h2>
+               <div class="block">
+                 <div class="symfony-content">{{ code|raw }}</div>
+               </div>
+             {% endif %}
+           {% endblock %}
+            </div>
+            {% if app.debug %}
+              <p>Request method: {{ app.request.method }}</p>
+              <p>Application Environment: {{ app.environment }}</p>
+            {% endif %}
+        </div>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

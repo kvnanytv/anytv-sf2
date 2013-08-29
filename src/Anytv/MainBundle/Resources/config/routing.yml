@@ -1,0 +1,3 @@
+anytv_main_homepage:
+    pattern:  /
+    defaults: { _controller: AnytvMainBundle:Default:index }

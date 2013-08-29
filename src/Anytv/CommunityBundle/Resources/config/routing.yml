@@ -1,0 +1,3 @@
+anytv_community_homepage:
+    pattern:  /
+    defaults: { _controller: AnytvCommunityBundle:Default:index }

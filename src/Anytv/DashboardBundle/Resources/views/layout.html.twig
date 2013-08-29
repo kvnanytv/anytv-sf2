@@ -1,0 +1,29 @@
+{% extends '::base.html.twig' %}
+
+{% block title 'Any.TV Dashboard' %}
+        
+{% block favicon %}
+  <link rel="icon" type="image/x-icon" href="{{ asset('favicondash.ico') }}" />
+{% endblock %}
+  
+{% block header %}
+<a href="{{ path('anytv_dashboard_homepage') }}" title="Any.TV Dashboard">
+  <img src="{{ asset('bundles/anytvdashboard/images/logo.png') }}" alt="Any.TV Dashboard" />
+</a>
+{% endblock %}
+  
+{% block submenu %}
+<div id="sub_menu">
+  <ul>
+    <li><a href="{{ path('offers') }}" title="Offers">Offers</a></li>
+    <li><a href="{{ path('traffic_referrals') }}" title="Offers">Traffic Referrals</a></li>
+    <li><a href="{{ path('news') }}" title="Offers">News</a></li>
+  </ul>
+</div>    
+{% endblock %}
+ 
+     
+    
+        
+
+    
