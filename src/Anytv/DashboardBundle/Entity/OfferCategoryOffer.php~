@@ -1,0 +1,94 @@
+<?php
+
+namespace Anytv\DashboardBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * OfferCategoryOffer
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Anytv\DashboardBundle\Entity\OfferCategoryOfferRepository")
+ */
+class OfferCategoryOffer
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="offer_category_id", type="integer")
+     */
+    private $offerCategoryId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="offer_id", type="integer")
+     */
+    private $offerId;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set offerCategoryId
+     *
+     * @param integer $offerCategoryId
+     * @return OfferCategoryOffer
+     */
+    public function setOfferCategoryId($offerCategoryId)
+    {
+        $this->offerCategoryId = $offerCategoryId;
+    
+        return $this;
+    }
+
+    /**
+     * Get offerCategoryId
+     *
+     * @return integer 
+     */
+    public function getOfferCategoryId()
+    {
+        return $this->offerCategoryId;
+    }
+
+    /**
+     * Set offerId
+     *
+     * @param integer $offerId
+     * @return OfferCategoryOffer
+     */
+    public function setOfferId($offerId)
+    {
+        $this->offerId = $offerId;
+    
+        return $this;
+    }
+
+    /**
+     * Get offerId
+     *
+     * @return integer 
+     */
+    public function getOfferId()
+    {
+        return $this->offerId;
+    }
+}

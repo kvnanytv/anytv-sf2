@@ -1,0 +1,55 @@
+{% extends 'AnytvDashboardBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - Home{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    
+  {% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="flash-notice">
+        {{ flashMessage }}
+    </div>
+  {% endfor %}
+
+   {# this is a comment #}
+   {# 
+     comment 
+     is 
+     here 
+   #}
+
+  {% for i in 1..10 %}
+    <div class="{{ cycle(['odd', 'even'], i) }}">
+      {{ i }}.
+      {# including a tempale #}
+      {{ include('AnytvDashboardBundle:Article:articleDetails.html.twig', { 'article': article }) }}
+    </div>
+  {% endfor %}
+
+  {# including a controller #}
+  {{ render(controller('AnytvDashboardBundle:Article:recentArticles', {'max': 3})) }}
+
+  {# including a controller asynchronously using hinclude.js #}
+  {{ render_hinclude(controller('...')) }}
+  {{ render_hinclude(url('...')) }}
+  {# default template #}
+  {{ render_hinclude(controller('...'),  {'default': 'AnytvDashboardBundle:Default:content.html.twig'}) }}
+  {{ render_hinclude(controller('...'), {'default': 'Loading...'}) }}
+
+  <ul>
+    {% for user in users if user.active %}
+        <li>{{ user.username }}</li>
+    {% else %}
+        <li>No users found</li>
+    {% endfor %}
+  </ul>
+
+  <a href="{{ path('blog_show', {'slug': 'my-blog-post-relative-url'}) }}">
+    Read this blog post.
+  </a>
+  <a href="{{ url('blog_show', {'slug': 'my-blog-post-absolute-url'}) }}">
+    Read this blog post.
+  </a>
+
+{% endblock %}

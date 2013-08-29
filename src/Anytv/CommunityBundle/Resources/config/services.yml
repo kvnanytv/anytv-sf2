@@ -1,0 +1,7 @@
+parameters:
+#    anytv_community.example.class: Anytv\CommunityBundle\Example
+
+services:
+#    anytv_community.example:
+#        class: %anytv_community.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
