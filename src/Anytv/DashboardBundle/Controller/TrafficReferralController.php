@@ -11,12 +11,15 @@ class TrafficReferralController extends Controller
     {
         $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:TrafficReferral');
         
-        $order_by = 'url';
-        $order = 'ASC';
+        $items_per_page = 30;
+        $order_by = 'clicks';
+        $order = 'DESC';
         
-        $traffic_referrals = $repository->findAllTrafficReferrals($order_by, $order);
+        $traffic_referrals = $repository->findAllTrafficReferrals($page, $items_per_page, $order_by, $order);
+        $total_traffic_referrals = $repository->countAllTrafficReferrals();
+        $total_pages = ceil($total_traffic_referrals / $items_per_page);
         
-        return $this->render('AnytvDashboardBundle:TrafficReferral:index.html.twig', array('title'=>'Traffic Referrals', 'traffic_referrals'=>$traffic_referrals));
+        return $this->render('AnytvDashboardBundle:TrafficReferral:index.html.twig', array('title'=>'Traffic Referrals', 'traffic_referrals'=>$traffic_referrals, 'total_traffic_referrals'=>$total_traffic_referrals, 'page'=>$page, 'total_pages'=>$total_pages));
     }
     
     public function showAction($id)

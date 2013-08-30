@@ -32,7 +32,11 @@
       {% if (total_pages > 1) %}
         <ul>
         {% for i in 1..total_pages %}
-          <li>{{ i }}</li>
+          {% if(page == i) %}
+            <li>{{ i }}</li>
+          {% else %}
+            <li><a href="{{ path('offers', {'page':i}) }}" title="{{ i }}">{{ i }}</a></li>
+          {% endif %}
         {% endfor %}
         </ul>
       {% endif %}

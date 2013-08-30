@@ -884,4 +884,8 @@ class Offer
     loadClassMetadata
      
      */
+
+    
+
+    
 }

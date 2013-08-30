@@ -20,7 +20,7 @@ class OfferController extends Controller
         $total_offers = $repository->countAllOffers($status);
         $total_pages = ceil($total_offers / $items_per_page);
        
-        return $this->render('AnytvDashboardBundle:Offer:index.html.twig', array('title'=>'Offers', 'offers'=>$offers, 'total_offers'=>$total_offers, 'total_pages'=>$total_pages));
+        return $this->render('AnytvDashboardBundle:Offer:index.html.twig', array('title'=>'Offers', 'offers'=>$offers, 'total_offers'=>$total_offers, 'page'=>$page, 'total_pages'=>$total_pages));
     }
     
     public function showAction($id)

@@ -12,12 +12,25 @@ use Doctrine\ORM\EntityRepository;
  */
 class TrafficReferralRepository extends EntityRepository
 {
-    public function findAllTrafficReferrals($order_by, $order)
+    public function findAllTrafficReferrals($page, $items_per_page, $order_by, $order)
     {
+        $first_result = ($items_per_page * ($page-1));
+        
         $query = $this->createQueryBuilder('tr')
+          ->setFirstResult($first_result)
+          ->setMaxResults($items_per_page)
           ->orderBy('tr.'.$order_by, $order)
           ->getQuery();
         
         return $query->getResult();
+    }
+    
+    public function countAllTrafficReferrals()
+    {    
+        $query = $this->createQueryBuilder('tr')
+          ->select('count(tr.id)')
+          ->getQuery();
+        
+        return $query->getSingleScalarResult();
     }
 }
