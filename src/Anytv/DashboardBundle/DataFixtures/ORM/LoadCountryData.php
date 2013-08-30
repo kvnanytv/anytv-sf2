@@ -14,6 +14,8 @@ class LoadCountryData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+        //return;
+        
         $base = 'https://api.hasoffers.com/Api?';
  
         $params = array(

@@ -16,12 +16,6 @@ traffic_referrals:
     requirements:
         page:  \d+
         
-news:
-    path:      /admin/news/{page}
-    defaults:  { _controller: AnytvDashboardBundle:News:index, page: 1 }
-    requirements:
-        page:  \d+
-        
 contact:
     path:     /contact
     defaults: { _controller: AnytvDashboardBundle:Main:contact }

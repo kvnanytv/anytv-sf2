@@ -1,3 +1,9 @@
 anytv_main_homepage:
     pattern:  /
     defaults: { _controller: AnytvMainBundle:Default:index }
+    
+news:
+    path:      /admin/news/{page}
+    defaults:  { _controller: AnytvMainBundle:News:index, page: 1 }
+    requirements:
+        page:  \d+
