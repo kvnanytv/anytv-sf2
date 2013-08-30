@@ -3,6 +3,7 @@
 namespace Anytv\DashboardBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Anytv\DashboardBundle\Entity\Offer;
 
 /**
  * TrafficReferral
@@ -28,7 +29,7 @@ class TrafficReferral
      * @ORM\Column(name="affiliate_id", type="integer")
      */
     private $affiliateId;
-
+    
     /**
      * @var integer
      *
@@ -70,6 +71,13 @@ class TrafficReferral
      * @ORM\Column(name="dislikes", type="integer")
      */
     private $dislikes;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="count", type="integer")
+     */
+    private $count;
 
     /**
      * @var \DateTime
@@ -117,29 +125,6 @@ class TrafficReferral
     public function getAffiliateId()
     {
         return $this->affiliateId;
-    }
-
-    /**
-     * Set offerId
-     *
-     * @param integer $offerId
-     * @return TrafficReferral
-     */
-    public function setOfferId($offerId)
-    {
-        $this->offerId = $offerId;
-    
-        return $this;
-    }
-
-    /**
-     * Get offerId
-     *
-     * @return integer 
-     */
-    public function getOfferId()
-    {
-        return $this->offerId;
     }
 
     /**
@@ -317,5 +302,51 @@ class TrafficReferral
     public function setUpdatedAtValue()
     {
       $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * Set offerId
+     *
+     * @param integer $offerId
+     * @return TrafficReferral
+     */
+    public function setOfferId($offerId)
+    {
+        $this->offerId = $offerId;
+    
+        return $this;
+    }
+
+    /**
+     * Get offerId
+     *
+     * @return integer 
+     */
+    public function getOfferId()
+    {
+        return $this->offerId;
+    }
+
+    /**
+     * Set count
+     *
+     * @param integer $count
+     * @return TrafficReferral
+     */
+    public function setCount($count)
+    {
+        $this->count = $count;
+    
+        return $this;
+    }
+
+    /**
+     * Get count
+     *
+     * @return integer 
+     */
+    public function getCount()
+    {
+        return $this->count;
     }
 }

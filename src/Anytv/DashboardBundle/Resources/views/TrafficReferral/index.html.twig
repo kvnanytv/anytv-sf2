@@ -17,6 +17,7 @@
          <th>Affiliate</th>
          <th>Offer</th>
          <th>URL</th>
+         <th>Count</th>
          <th>Clicks</th>
          <th>Conversions</th>
        </tr>
@@ -24,14 +25,25 @@
          <tr>
            <td>{{ traffic_referral.affiliateId }}</td>
            <td>{{ traffic_referral.offerId }}</td>
-           <td><a href="{{ traffic_referral.url }}" target="_blank">{{ traffic_referral.url }}</a></td>
+           <td><a href="{{ traffic_referral.url }}" target="_blank" title="{{ traffic_referral.url }}">{{ traffic_referral.url|slice(0, 60) }}</a></td>
+           <td>{{ traffic_referral.count }}</td>
            <td>{{ traffic_referral.clicks }}</td>
            <td>{{ traffic_referral.conversions }}</td>
          </tr>
        {% endfor %} 
       </table>
        
-       
+      {% if (total_pages > 1) %}
+        <ul>
+        {% for i in 1..total_pages %}
+          {% if(page == i) %}
+            <li>{{ i }}</li>
+          {% else %}
+            <li><a href="{{ path('traffic_referrals', {'page':i}) }}" title="{{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        </ul>
+      {% endif %}
         
     </div>
 
