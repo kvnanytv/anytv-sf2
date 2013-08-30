@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Anytv\DashboardBundle\Entity\NewsRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class News
 {
@@ -31,7 +32,7 @@ class News
     /**
      * @var string
      *
-     * @ORM\Column(name="excerpt", type="text")
+     * @ORM\Column(name="excerpt", type="text", nullable=true)
      */
     private $excerpt;
 
@@ -52,28 +53,28 @@ class News
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updated_at", type="datetime")
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updatedAt;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="view_count", type="integer")
+     * @ORM\Column(name="view_count", type="integer", nullable=true)
      */
     private $viewCount;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="comment_count", type="integer")
+     * @ORM\Column(name="comment_count", type="integer", nullable=true)
      */
     private $commentCount;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="author_id", type="integer")
+     * @ORM\Column(name="author_id", type="integer", nullable=true)
      */
     private $authorId;
    
@@ -270,5 +271,21 @@ class News
     public function getAuthorId()
     {
         return $this->authorId;
+    }
+    
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+      $this->createdAt = new \DateTime();
+    }
+    
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAtValue()
+    {
+      $this->updatedAt = new \DateTime();
     }
 }

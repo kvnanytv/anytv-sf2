@@ -14,6 +14,8 @@ class LoadTrafficReferralData extends AbstractFixture implements OrderedFixtureI
      */
     public function load(ObjectManager $manager)
     {
+        //return;
+        
         $base = 'https://api.hasoffers.com/Api?';
  
         $params = array(

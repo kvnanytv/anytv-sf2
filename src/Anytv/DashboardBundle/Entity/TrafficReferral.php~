@@ -326,4 +326,27 @@ class TrafficReferral
     {
         return $this->offerId;
     }
+
+    /**
+     * Set count
+     *
+     * @param integer $count
+     * @return TrafficReferral
+     */
+    public function setCount($count)
+    {
+        $this->count = $count;
+    
+        return $this;
+    }
+
+    /**
+     * Get count
+     *
+     * @return integer 
+     */
+    public function getCount()
+    {
+        return $this->count;
+    }
 }
