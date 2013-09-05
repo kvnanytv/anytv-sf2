@@ -10,21 +10,41 @@
     <h1 class="title">{{ title|upper }}</h1>
     
     <p>&nbsp;</p>
+    <div>
+      {{ form_start(form, {'action': path('news'), 'method': 'POST'}) }}
+         {{ form_errors(form) }}
+         {{ form_errors(form.keyword) }}
+         {{ form_widget(form.keyword, {'attr': {'class': 'news_keyword_field'}}) }}
+         {{ form_widget(form.search, {'attr': {'class': 'news_search_button'}}) }}
+       {{ form_end(form) }}
+    </div>
 
     <div class="symfony-blocks-welcome">
       <table border="1" cellspacing="15" cellpadding="15">
         <tr>
          <th>ID</th>
-         <th>Title</th>
+         <th><a href="{{ path('news') }}" title="Title">Title</a></th>
          <th>Excerpt</th>
          <th>Body</th>
+         <th>Category</th>
+         <th>Views</th>
+         <th>Comments</th>
+         <th>Thumbnail</th>
        </tr>
        {% for news_item in news %}
          <tr>
            <td>{{ news_item.id }}</td>
-           <td>{{ news_item.title }}</td>
-           <td>{{ news_item.excerpt }}</td>
-           <td>{{ news_item.body }}</td>
+           <td><a href="{{ path('news_edit', { 'id' : news_item.id }) }}" title="Edit">{{ news_item.title }}</a></td>
+           <td>{{ news_item.excerpt | slice(0, 50) }}</td>
+           <td>{{ news_item.body | slice(0, 200) }}</td>
+           <td>{{ news_item.category }}</td>
+           <td>{{ news_item.viewCount }}</td>
+           <td>{{ news_item.commentCount }}</td>
+           {% if(news_item.thumbnail) %}
+             <td><img src="{{ asset(news_item.getWebPath()) }}" alt="News thumbnail" style="width:100px" /></td>
+           {%  else %}
+             <td>&nbsp;</td>
+           {% endif %}
          </tr>
        {% endfor %} 
       </table>
@@ -34,7 +54,8 @@
     </div>
 
     <div class="symfony-blocks-help">
-        
+       
+        <a href="{{ path('news_add') }}" title="Add news">Add</a>
        
     </div>
 {% endblock %}

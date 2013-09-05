@@ -96,3 +96,11 @@ ul#demo-list a {
     white-space: pre;
     font-family: monospace;
 }
+
+.sf-reset th a {
+    color: #fff;
+}
+
+.sf-reset th a:hover {
+    color: #fff;
+}

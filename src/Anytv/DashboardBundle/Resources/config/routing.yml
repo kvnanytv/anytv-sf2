@@ -4,6 +4,10 @@ anytv_dashboard_homepage:
     requirements:
         culture:  %anytv.cultures%
     
+offers_reset:
+    path:      /admin/offers/reset
+    defaults:  { _controller: AnytvDashboardBundle:Offer:reset }
+        
 offers:
     path:      /admin/offers/{page}
     defaults:  { _controller: AnytvDashboardBundle:Offer:index, page: 1 }

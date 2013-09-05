@@ -1,7 +1,22 @@
-parameters:
+#parameters:
 #    anytv_dashboard.example.class: Anytv\DashboardBundle\Example
 
-services:
+#services:
 #    anytv_dashboard.example:
 #        class: %anytv_dashboard.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+
+parameters:
+    hasoffers.class:      Anytv\DashboardBundle\Hasoffers\HasoffersAPI
+    hasoffers.api_url: https://api.hasoffers.com/Api?
+    hasoffers.api_format: json
+    hasoffers.api_service: HasOffers
+    hasoffers.api_version: 2
+    hasoffers.api_network_id: mmotm
+    hasoffers.api_network_token: NETjE4MoLg7NarETCDruHecVmgLHbN
+    
+
+services:
+    hasoffers:
+        class:        "%hasoffers.class%"
+        arguments:    ["%hasoffers.api_url%", "%hasoffers.api_format%", "%hasoffers.api_service%", "%hasoffers.api_version%", "%hasoffers.api_network_id%", "%hasoffers.api_network_token%"]
