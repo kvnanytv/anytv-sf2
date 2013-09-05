@@ -1,9 +1,31 @@
 anytv_main_homepage:
-    pattern:  /
-    defaults: { _controller: AnytvMainBundle:Default:index }
-    
+    path:  /{culture}
+    defaults: { _controller: AnytvMainBundle:Default:index, culture: en, _locale: en, _format: html }
+    requirements:
+        culture:  %anytv.cultures%
+        
 news:
     path:      /admin/news/{page}
     defaults:  { _controller: AnytvMainBundle:News:index, page: 1 }
     requirements:
         page:  \d+
+       
+news_add:
+    path:      /admin/news/add
+    defaults:  { _controller: AnytvMainBundle:News:add }
+    
+news_edit:
+    path:      /admin/news/edit/{id}
+    defaults:  { _controller: AnytvMainBundle:News:edit }
+    requirements:
+        id:  \d+
+    
+news_category:
+    path:      /admin/news/categories/{page}
+    defaults:  { _controller: AnytvMainBundle:NewsCategory:index, page: 1 }
+    requirements:
+        page:  \d+
+        
+news_category_add:
+    path:      /admin/news/categories/add
+    defaults:  { _controller: AnytvMainBundle:NewsCategory:add }

@@ -1,0 +1,55 @@
+{% extends 'AnytvMainBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title}}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+    {{ parent() }}
+    <h1 class="title">{{ title|upper }}</h1>
+    
+    <p>&nbsp;</p>
+
+    <div class="symfony-blocks-welcome">
+        
+       {% if(false) %}
+       {{ form.vars.value.title }}
+       <br />
+       {{ form.title.vars.id }}
+       <br />
+       {{ form.title.vars.name }}
+       <br />
+       {{ form.title.vars.full_name }}
+       <br />
+       
+       <br />
+       {% endif %}
+       
+       {{ form_start(form, {'action': path('news_add'), 'method': 'POST'}) }}
+          <div>
+           {{ form_errors(form) }}
+         </div>
+         <div>
+          {{ form_label(form.title, 'The title') }}
+          {{ form_errors(form.title) }}
+          {{ form_widget(form.title, {'attr': {'class': 'news_title_field'}}) }}
+         </div>
+         {{ form_row(form.excerpt) }}
+         {{ form_row(form.body) }}
+         {{ form_row(form.category) }}
+         <div>
+          {{ form_label(form.check, 'Please check...') }}
+          {{ form_errors(form.check) }}
+          {{ form_widget(form.check, {'attr': {'class': 'news_check_field'}}) }}
+         </div>
+       {{ form_end(form) }}
+       
+        
+    </div>
+
+    <div class="symfony-blocks-help">
+        
+       
+    </div>
+{% endblock %}

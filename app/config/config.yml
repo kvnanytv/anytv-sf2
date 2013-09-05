@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: "@AnytvDashboardBundle/Resources/config/services.yml" }
 
 framework:
     #esi:             ~
@@ -26,6 +27,9 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    form:
+        resources:
+            - 'AnytvMainBundle:Form:fields.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -70,4 +74,6 @@ swiftmailer:
 parameters:
     anytv.formats: html|rss|json
     anytv.cultures: en|fr|de 
-    anytv.locales: en|fr|de  
+    anytv.locales: en|fr|de
+    
+    

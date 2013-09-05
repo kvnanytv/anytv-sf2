@@ -12,13 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class NewsRepository extends EntityRepository
 {
-    public function findAllNews($page, $items_per_page, $order_by, $order)
+    public function findAllNews($page, $items_per_page, $order_by, $order, $keyword)
     {
         $first_result = ($items_per_page * ($page-1));
                 
-        $query = $this->createQueryBuilder('n')
-          //->where('n.status = :status')
-          //->setParameter('status', $status)
+        $query = $this->getEntityManager()->createQueryBuilder()
+          ->select(array('n', 'nc'))
+          ->from('Anytv\MainBundle\Entity\News', 'n')
+          ->leftJoin('n.category', 'nc')
+          ->where("n.title LIKE :keyword OR n.excerpt LIKE :keyword OR n.body LIKE :keyword OR nc.name LIKE :keyword")
+          ->setParameter('keyword', "%$keyword%")
           ->setFirstResult($first_result)
           ->setMaxResults($items_per_page)
           ->orderBy('n.'.$order_by, $order)
