@@ -1,0 +1,86 @@
+/*
+layout Styles
+*/
+
+/********************** General *******************/
+ 
+
+/********************** Header *******************/
+
+
+.main-nav  {
+	padding-top: 5px;
+	height: 70px;
+	margin-bottom: 0;
+	border-radius: 0;
+	margin: 0;
+}
+
+.navbar-default {
+	background: #ffffff;
+	border: 0;
+	/*border-bottom: 1px solid #ccc;*/
+}
+
+.navbar-inner {
+	max-height: 40px;
+}
+
+#menu {
+	height: 100%;
+}
+
+.navbar .brand {
+	float: left;
+	padding: 15px 0 0 30px;
+}
+
+.nav li {
+	display: inline;
+}
+
+.subnav {
+	height: 20px;
+	border-radius: 0;
+	border-bottom: none;
+	margin-bottom: 0;
+	
+	background-image: linear-gradient(bottom, rgb(15,78,137) 9%, rgb(49,129,199) 78%);
+	background-image: -o-linear-gradient(bottom, rgb(15,78,137) 9%, rgb(49,129,199) 78%);
+	background-image: -moz-linear-gradient(bottom, rgb(15,78,137) 9%, rgb(49,129,199) 78%);
+	background-image: -webkit-linear-gradient(bottom, rgb(15,78,137) 9%, rgb(49,129,199) 78%);
+	background-image: -ms-linear-gradient(bottom, rgb(15,78,137) 9%, rgb(49,129,199) 78%);
+
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.09, rgb(15,78,137)),
+		color-stop(0.78, rgb(49,129,199))cv
+	);
+
+
+    -webkit-box-shadow: 0 2px 5px #1d1d1d;		
+
+}
+
+#subnav-links ul > li > a {
+	font-size: 12px;
+	font-weight: bold;
+	color: #fff;
+}
+
+/* #subnav-links .navbar-nav > li > a {
+	padding-top: 5px;
+  	padding-bottom: 5px;
+  	line-height: 20px;
+} */
+
+
+#test {
+	position: relative;
+}
+
+
+
+
