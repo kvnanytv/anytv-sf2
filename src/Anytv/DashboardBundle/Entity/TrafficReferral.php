@@ -78,6 +78,13 @@ class TrafficReferral
      * @ORM\Column(name="count", type="integer")
      */
     private $count;
+    
+    /**
+     * @var \Date
+     *
+     * @ORM\Column(name="stat_date", type="date")
+     */
+    private $statDate;
 
     /**
      * @var \DateTime
@@ -348,5 +355,38 @@ class TrafficReferral
     public function getCount()
     {
         return $this->count;
+    }
+
+    /**
+     * Set statDate
+     *
+     * @param \DateTime $statDate
+     * @return TrafficReferral
+     */
+    public function setStatDate($statDate)
+    {
+        $this->statDate = $statDate;
+    
+        return $this;
+    }
+
+    /**
+     * Get statDate
+     *
+     * @return \DateTime 
+     */
+    public function getStatDate()
+    {
+        return $this->statDate;
+    }
+    
+    /**
+     * Echo statDate
+     *
+     * @return \DateTime string 
+     */
+    public function getStatDateAsString()
+    {
+        return date_format($this->statDate, 'Y-m-d');
     }
 }

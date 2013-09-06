@@ -10,6 +10,14 @@
     <h1 class="title">{{ title|upper }}</h1>
     
     <p>&nbsp;</p>
+    <div>
+      {{ form_start(form, {'action': path('traffic_referrals'), 'method': 'POST'}) }}
+         {{ form_errors(form) }}
+         {{ form_errors(form.stat_date) }}
+         {{ form_widget(form.stat_date, {'attr': {'class': 'stat_date_field'}}) }}
+         {{ form_widget(form.search, {'attr': {'class': 'stat_date_button'}}) }}
+       {{ form_end(form) }}
+    </div>
 
     <div class="symfony-blocks-welcome">
       <table border="1" cellspacing="15" cellpadding="15">
@@ -20,6 +28,7 @@
          <th>Count</th>
          <th>Clicks</th>
          <th>Conversions</th>
+         <th>Stat Date</th>
        </tr>
        {% for traffic_referral in traffic_referrals %}
          <tr>
@@ -29,6 +38,7 @@
            <td>{{ traffic_referral.count }}</td>
            <td>{{ traffic_referral.clicks }}</td>
            <td>{{ traffic_referral.conversions }}</td>
+           <td>{{ traffic_referral.getStatDateAsString() }}</td>
          </tr>
        {% endfor %} 
       </table>

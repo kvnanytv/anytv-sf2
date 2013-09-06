@@ -5,38 +5,46 @@ namespace Anytv\DashboardBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class TrafficReferralController extends Controller
+class AffiliateUserController extends Controller
 {
     public function indexAction(Request $request, $page)
     {
-        $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:TrafficReferral');
+        $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:AffiliateUser');
         $session = $this->get('session');
         
-        $form = $this->createFormBuilder(array('stat_date'=>$session->get('stat_date')))
-        ->add('stat_date')
+        $form = $this->createFormBuilder(array('affiliate_user_keyword'=>$session->get('affiliate_user_keyword')))
+        ->add('affiliate_user_keyword')
         ->add('search', 'submit')
         ->getForm();
         
         $form->handleRequest($request);
 
-        $stat_date = null;
+        $affiliate_user_keyword = null;
        
         if($form->isValid()) 
         {
           $data = $form->getData();
-          $stat_date = $data['stat_date']; 
-          $session->set('stat_date', $stat_date);
+          $affiliate_user_keyword = $data['affiliate_user_keyword']; 
+          $session->set('affiliate_user_keyword', $affiliate_user_keyword);
         }
         
         $items_per_page = 30;
-        $order_by = 'clicks';
+        $order_by = 'affiliateUserId';
         $order = 'DESC';
         
-        $traffic_referrals = $repository->findAllTrafficReferrals($page, $items_per_page, $order_by, $order);
-        $total_traffic_referrals = $repository->countAllTrafficReferrals();
-        $total_pages = ceil($total_traffic_referrals / $items_per_page);
+        $affiliate_users = $repository->findAllAffiliateUsers($page, $items_per_page, $order_by, $order, $session->get('affiliate_user_keyword'));
+        $total_affiliate_users = $repository->countAllAffiliateUsers($session->get('affiliate_user_keyword'));
+        $total_pages = ceil($total_affiliate_users / $items_per_page);
         
-        return $this->render('AnytvDashboardBundle:TrafficReferral:index.html.twig', array('title'=>'Traffic Referrals', 'traffic_referrals'=>$traffic_referrals, 'total_traffic_referrals'=>$total_traffic_referrals, 'page'=>$page, 'total_pages'=>$total_pages, 'form'=>$form->createView()));
+        return $this->render('AnytvDashboardBundle:AffiliateUser:index.html.twig', array('title'=>'Affiliate Users', 'affiliate_users'=>$affiliate_users, 'total_affiliate_users'=>$total_affiliate_users, 'page'=>$page, 'total_pages'=>$total_pages, 'form'=>$form->createView()));
+    }
+    
+    public function resetAction()
+    {
+        $session = $this->get('session');
+        $session->set('affiliate_user_keyword', null);
+        
+        return $this->redirect($this->generateUrl('affiliate_users'));
     }
     
     public function showAction($id)

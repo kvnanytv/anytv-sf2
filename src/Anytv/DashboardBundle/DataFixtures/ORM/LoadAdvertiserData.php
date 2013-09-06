@@ -48,7 +48,12 @@ class LoadAdvertiserData extends AbstractFixture implements OrderedFixtureInterf
           $advertiser->setAddress2($advertiser_object->address2);
           $advertiser->setCity($advertiser_object->city);
           $advertiser->setRegion($advertiser_object->region);
-          $advertiser->setCountry($advertiser_object->country);
+          
+          if($this->hasReference('country_'.$advertiser_object->country))
+          {
+            $advertiser->setCountry($this->getReference('country_'.$advertiser_object->country)); 
+          } 
+          
           $advertiser->setOther($advertiser_object->other);
           $advertiser->setZipcode($advertiser_object->zipcode);
           $advertiser->setPhone($advertiser_object->phone);

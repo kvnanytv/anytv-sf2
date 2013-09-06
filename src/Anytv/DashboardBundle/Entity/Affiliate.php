@@ -3,17 +3,15 @@
 namespace Anytv\DashboardBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Advertiser
+ * Affiliate
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Anytv\DashboardBundle\Entity\AdvertiserRepository")
+ * @ORM\Entity(repositoryClass="Anytv\DashboardBundle\Entity\AffiliateRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Advertiser
+class Affiliate
 {
     /**
      * @var integer
@@ -23,13 +21,13 @@ class Advertiser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
+    
     /**
      * @var integer
      *
-     * @ORM\Column(name="advertiser_id", type="integer")
+     * @ORM\Column(name="affiliate_id", type="integer")
      */
-    private $advertiserId;
+    private $affiliateId;
 
     /**
      * @var string
@@ -65,9 +63,9 @@ class Advertiser
      * @ORM\Column(name="region", type="string", length=255, nullable=true)
      */
     private $region;
-
+    
     /**
-     * @ORM\ManyToOne(targetEntity="Country", inversedBy="advertisers")
+     * @ORM\ManyToOne(targetEntity="Country", inversedBy="affiliates")
      * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      */
     private $country;
@@ -103,13 +101,6 @@ class Advertiser
     /**
      * @var string
      *
-     * @ORM\Column(name="website", type="string", length=255, nullable=true)
-     */
-    private $website;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="signup_ip", type="string", length=255, nullable=true)
      */
     private $signupIp;
@@ -118,10 +109,6 @@ class Advertiser
      * @var string
      *
      * @ORM\Column(name="status", type="string", length=255, nullable=true)
-     * @Assert\Choice(
-     *     choices = { "active", "pending", "deleted", "blocked", "rejected" },
-     *     message = "Choose a valid status."
-     * )
      */
     private $status;
 
@@ -142,33 +129,52 @@ class Advertiser
     /**
      * @var string
      *
-     * @ORM\Column(name="ref_id", type="string", length=255, nullable=true)
+     * @ORM\Column(name="payment_method", type="string", length=255, nullable=true)
      */
-    private $refId;
+    private $paymentMethod;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="payment_terms", type="string", length=255, nullable=true)
+     */
+    private $paymentTerms;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="w9_filed", type="boolean", nullable=true)
+     */
+    private $w9Filed;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="referral_id", type="integer", nullable=true)
+     */
+    private $referralId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="affiliate_tier_id", type="integer", nullable=true)
+     */
+    private $affiliateTierId;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_at", type="datetime")
+     * @ORM\Column(name="date_added", type="datetime")
      */
-    private $created_at;
-    
+    private $dateAdded;
+
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     * @ORM\Column(name="modified", type="datetime", nullable=true)
      */
-    private $updated_at;
-    
-    /**
-     * @ORM\OneToMany(targetEntity="Offer", mappedBy="advertiser")
-     */
-    private $offers;
-    
-    public function __construct()
-    {
-        $this->offers = new ArrayCollection();
-    }
+    private $modified;
+
 
     /**
      * Get id
@@ -181,33 +187,10 @@ class Advertiser
     }
 
     /**
-     * Set advertiserId
-     *
-     * @param integer $advertiserId
-     * @return Advertiser
-     */
-    public function setAdvertiserId($advertiserId)
-    {
-        $this->advertiserId = $advertiserId;
-    
-        return $this;
-    }
-
-    /**
-     * Get advertiserId
-     *
-     * @return integer 
-     */
-    public function getAdvertiserId()
-    {
-        return $this->advertiserId;
-    }
-
-    /**
      * Set company
      *
      * @param string $company
-     * @return Advertiser
+     * @return Affiliate
      */
     public function setCompany($company)
     {
@@ -230,7 +213,7 @@ class Advertiser
      * Set address1
      *
      * @param string $address1
-     * @return Advertiser
+     * @return Affiliate
      */
     public function setAddress1($address1)
     {
@@ -253,7 +236,7 @@ class Advertiser
      * Set address2
      *
      * @param string $address2
-     * @return Advertiser
+     * @return Affiliate
      */
     public function setAddress2($address2)
     {
@@ -271,12 +254,58 @@ class Advertiser
     {
         return $this->address2;
     }
+    
+    /**
+     * Get full address
+     *
+     * @return string 
+     */
+    public function getFullAddress()
+    {
+        $full_address = '';
+        
+        if($this->address1)
+        {
+          $full_address .= $this->address1;    
+        }
+        
+        if($this->address2)
+        {
+          $full_address .= $full_address ? ' '.$this->address2 : $this->address2;    
+        }
+        
+        if($this->city)
+        {
+          $full_address .= $full_address ? ' '.$this->city.',' : $this->city.',';    
+        }
+        
+        if($this->region)
+        {
+          $full_address .= $full_address ? ' '.$this->region : $this->region;    
+        }
+        
+        if($this->country)
+        {
+          $full_address .= $full_address ? ' '.$this->country : $this->country;    
+        }
+        elseif($this->other)
+        {
+          $full_address .= $full_address ? ' '.$this->other : $this->other;    
+        }
+        
+        if($this->zipcode)
+        {
+          $full_address .= $full_address ? ' '.$this->zipcode : $this->zipcode;    
+        }
+       
+        return $full_address;
+    }
 
     /**
      * Set city
      *
      * @param string $city
-     * @return Advertiser
+     * @return Affiliate
      */
     public function setCity($city)
     {
@@ -299,7 +328,7 @@ class Advertiser
      * Set region
      *
      * @param string $region
-     * @return Advertiser
+     * @return Affiliate
      */
     public function setRegion($region)
     {
@@ -322,7 +351,7 @@ class Advertiser
      * Set other
      *
      * @param string $other
-     * @return Advertiser
+     * @return Affiliate
      */
     public function setOther($other)
     {
@@ -345,7 +374,7 @@ class Advertiser
      * Set zipcode
      *
      * @param string $zipcode
-     * @return Advertiser
+     * @return Affiliate
      */
     public function setZipcode($zipcode)
     {
@@ -368,7 +397,7 @@ class Advertiser
      * Set phone
      *
      * @param string $phone
-     * @return Advertiser
+     * @return Affiliate
      */
     public function setPhone($phone)
     {
@@ -391,7 +420,7 @@ class Advertiser
      * Set fax
      *
      * @param string $fax
-     * @return Advertiser
+     * @return Affiliate
      */
     public function setFax($fax)
     {
@@ -411,33 +440,10 @@ class Advertiser
     }
 
     /**
-     * Set website
-     *
-     * @param string $website
-     * @return Advertiser
-     */
-    public function setWebsite($website)
-    {
-        $this->website = $website;
-    
-        return $this;
-    }
-
-    /**
-     * Get website
-     *
-     * @return string 
-     */
-    public function getWebsite()
-    {
-        return $this->website;
-    }
-
-    /**
      * Set signupIp
      *
      * @param string $signupIp
-     * @return Advertiser
+     * @return Affiliate
      */
     public function setSignupIp($signupIp)
     {
@@ -460,7 +466,7 @@ class Advertiser
      * Set status
      *
      * @param string $status
-     * @return Advertiser
+     * @return Affiliate
      */
     public function setStatus($status)
     {
@@ -483,7 +489,7 @@ class Advertiser
      * Set wantsAlerts
      *
      * @param boolean $wantsAlerts
-     * @return Advertiser
+     * @return Affiliate
      */
     public function setWantsAlerts($wantsAlerts)
     {
@@ -506,7 +512,7 @@ class Advertiser
      * Set accountManagerId
      *
      * @param integer $accountManagerId
-     * @return Advertiser
+     * @return Affiliate
      */
     public function setAccountManagerId($accountManagerId)
     {
@@ -526,134 +532,223 @@ class Advertiser
     }
 
     /**
-     * Set refId
+     * Set paymentMethod
      *
-     * @param string $refId
-     * @return Advertiser
+     * @param string $paymentMethod
+     * @return Affiliate
      */
-    public function setRefId($refId)
+    public function setPaymentMethod($paymentMethod)
     {
-        $this->refId = $refId;
+        $this->paymentMethod = $paymentMethod;
     
         return $this;
     }
 
     /**
-     * Get refId
+     * Get paymentMethod
      *
      * @return string 
      */
-    public function getRefId()
+    public function getPaymentMethod()
     {
-        return $this->refId;
+        return $this->paymentMethod;
     }
 
     /**
-     * Set created_at
+     * Set paymentTerms
      *
-     * @param \DateTime $createdAt
-     * @return Advertiser
+     * @param string $paymentTerms
+     * @return Affiliate
      */
-    public function setCreatedAt($createdAt)
+    public function setPaymentTerms($paymentTerms)
     {
-        $this->created_at = $createdAt;
+        $this->paymentTerms = $paymentTerms;
     
         return $this;
     }
 
     /**
-     * Get created_at
+     * Get paymentTerms
      *
-     * @return \DateTime 
+     * @return string 
      */
-    public function getCreatedAt()
+    public function getPaymentTerms()
     {
-        return $this->created_at;
+        return $this->paymentTerms;
     }
 
     /**
-     * Set updated_at
+     * Set w9Filed
      *
-     * @param \DateTime $updatedAt
-     * @return Advertiser
+     * @param boolean $w9Filed
+     * @return Affiliate
      */
-    public function setUpdatedAt($updatedAt)
+    public function setW9Filed($w9Filed)
     {
-        $this->updated_at = $updatedAt;
+        $this->w9Filed = $w9Filed;
     
         return $this;
     }
 
     /**
-     * Get updated_at
+     * Get w9Filed
+     *
+     * @return boolean 
+     */
+    public function getW9Filed()
+    {
+        return $this->w9Filed;
+    }
+
+    /**
+     * Set referralId
+     *
+     * @param integer $referralId
+     * @return Affiliate
+     */
+    public function setReferralId($referralId)
+    {
+        $this->referralId = $referralId;
+    
+        return $this;
+    }
+
+    /**
+     * Get referralId
+     *
+     * @return integer 
+     */
+    public function getReferralId()
+    {
+        return $this->referralId;
+    }
+
+    /**
+     * Set affiliateTierId
+     *
+     * @param integer $affiliateTierId
+     * @return Affiliate
+     */
+    public function setAffiliateTierId($affiliateTierId)
+    {
+        $this->affiliateTierId = $affiliateTierId;
+    
+        return $this;
+    }
+
+    /**
+     * Get affiliateTierId
+     *
+     * @return integer 
+     */
+    public function getAffiliateTierId()
+    {
+        return $this->affiliateTierId;
+    }
+
+    /**
+     * Set dateAdded
+     *
+     * @param \DateTime $dateAdded
+     * @return Affiliate
+     */
+    public function setDateAdded($dateAdded)
+    {
+        $this->dateAdded = $dateAdded;
+    
+        return $this;
+    }
+
+    /**
+     * Get dateAdded
      *
      * @return \DateTime 
      */
-    public function getUpdatedAt()
+    public function getDateAdded()
     {
-        return $this->updated_at;
+        return $this->dateAdded;
+    }
+
+    /**
+     * Set modified
+     *
+     * @param \DateTime $modified
+     * @return Affiliate
+     */
+    public function setModified($modified)
+    {
+        $this->modified = $modified;
+    
+        return $this;
+    }
+
+    /**
+     * Get modified
+     *
+     * @return \DateTime 
+     */
+    public function getModified()
+    {
+        return $this->modified;
+    }
+
+    /**
+     * Set affiliateId
+     *
+     * @param integer $affiliateId
+     * @return Affiliate
+     */
+    public function setAffiliateId($affiliateId)
+    {
+        $this->affiliateId = $affiliateId;
+    
+        return $this;
+    }
+
+    /**
+     * Get affiliateId
+     *
+     * @return integer 
+     */
+    public function getAffiliateId()
+    {
+        return $this->affiliateId;
     }
     
     /**
      * @ORM\PrePersist
      */
-    public function setCreatedAtValue()
+    public function setDatedAddedValue()
     {
-      if(!$this->created_at)
+      if(!$this->dateAdded)
       {
-        $this->created_at = new \DateTime();
+        $this->dateAdded = new \DateTime();
       }
     }
     
     /**
      * @ORM\PreUpdate
      */
-    public function setUpdatedAtValue()
+    public function setModifiedValue()
     {
-      if(!$this->updated_at)
-      {
-        $this->updated_at = new \DateTime();
-      }
+      $this->modified = new \DateTime();
     }
-
-    /**
-     * Add offers
-     *
-     * @param \Anytv\DashboardBundle\Entity\Offer $offers
-     * @return Advertiser
-     */
-    public function addOffer(\Anytv\DashboardBundle\Entity\Offer $offers)
-    {
-        $this->offers[] = $offers;
     
-        return $this;
-    }
-
-    /**
-     * Remove offers
+     /**
+     * Echo dateAdded string
      *
-     * @param \Anytv\DashboardBundle\Entity\Offer $offers
+     * @return \DateTime string 
      */
-    public function removeOffer(\Anytv\DashboardBundle\Entity\Offer $offers)
+    public function getDateAddedAsString()
     {
-        $this->offers->removeElement($offers);
-    }
-
-    /**
-     * Get offers
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getOffers()
-    {
-        return $this->offers;
+        return date_format($this->dateAdded, 'Y-m-d');
     }
 
     /**
      * Set country
      *
      * @param \Anytv\DashboardBundle\Entity\Country $country
-     * @return Advertiser
+     * @return Affiliate
      */
     public function setCountry(\Anytv\DashboardBundle\Entity\Country $country = null)
     {
@@ -670,5 +765,10 @@ class Advertiser
     public function getCountry()
     {
         return $this->country;
+    }
+    
+    public function __toString() 
+    {
+      return $this->getCompany(); 
     }
 }

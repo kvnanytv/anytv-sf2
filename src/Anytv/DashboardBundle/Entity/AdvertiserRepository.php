@@ -12,4 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class AdvertiserRepository extends EntityRepository
 {
+    public function findAllAdvertisers()
+    {     
+        $query = $this->getEntityManager()->createQueryBuilder()
+          ->select(array('a', 'c'))
+          ->from('Anytv\DashboardBundle\Entity\Advertiser', 'a')
+          ->leftJoin('a.country', 'c')
+          ->getQuery();
+        
+        return $query->getResult();
+    }
 }

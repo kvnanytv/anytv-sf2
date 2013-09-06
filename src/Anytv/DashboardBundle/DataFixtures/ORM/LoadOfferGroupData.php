@@ -14,7 +14,7 @@ class LoadOfferGroupData extends AbstractFixture implements OrderedFixtureInterf
      */
     public function load(ObjectManager $manager)
     {
-        //return;
+        return;
         
         $offerGroup = new OfferGroup();
         $offerGroup->setName('Divine Souls Group');

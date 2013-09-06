@@ -46,13 +46,12 @@ class Offer
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
     private $description;
-
+    
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="advertiser_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Advertiser", inversedBy="offers")
+     * @ORM\JoinColumn(name="advertiser_id", referencedColumnName="id")
      */
-    private $advertiserId;
+    private $advertiser;
 
     /**
      * @var string
@@ -286,29 +285,6 @@ class Offer
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set advertiserId
-     *
-     * @param integer $advertiserId
-     * @return Offer
-     */
-    public function setAdvertiserId($advertiserId)
-    {
-        $this->advertiserId = $advertiserId;
-    
-        return $this;
-    }
-
-    /**
-     * Get advertiserId
-     *
-     * @return integer 
-     */
-    public function getAdvertiserId()
-    {
-        return $this->advertiserId;
     }
 
     /**
@@ -888,4 +864,27 @@ class Offer
     
 
     
+
+    /**
+     * Set advertiser
+     *
+     * @param \Anytv\DashboardBundle\Entity\Advertiser $advertiser
+     * @return Offer
+     */
+    public function setAdvertiser(\Anytv\DashboardBundle\Entity\Advertiser $advertiser = null)
+    {
+        $this->advertiser = $advertiser;
+    
+        return $this;
+    }
+
+    /**
+     * Get advertiser
+     *
+     * @return \Anytv\DashboardBundle\Entity\Advertiser 
+     */
+    public function getAdvertiser()
+    {
+        return $this->advertiser;
+    }
 }

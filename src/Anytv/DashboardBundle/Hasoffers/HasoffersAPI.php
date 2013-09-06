@@ -46,4 +46,19 @@ class HasoffersAPI
         
         return $offers_data;
     }
+    
+    public function getTrafficReferrals($date)
+    {
+        $params = array(
+	  'Format' => $this->api_format
+	  ,'Target' => 'Offer'
+	  ,'Method' => 'findAll'
+	  ,'Service' => $this->api_service
+	  ,'Version' => $this->api_version
+	  ,'NetworkId' => $this->api_network_id
+	  ,'NetworkToken' => $this->api_network_token
+          ,'contain'=>array('OfferCategory', 'Country')
+	  ,'limit' => 50000
+        );
+    }
 }

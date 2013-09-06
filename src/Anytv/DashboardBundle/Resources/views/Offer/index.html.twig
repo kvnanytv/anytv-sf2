@@ -28,13 +28,19 @@
          <th>ID</th>
          <th>Offer</th>
          <th>Status</th>
+         <th>Advertiser</th>
          <th>Preview</th>
        </tr>
        {% for offer in offers %}
          <tr>
            <td>{{ offer.offerId }}</td>
-           <td>{{ offer.name }}</td>
+           <td><a href="{{ path('offer_edit', { 'id' : offer.id }) }}" title="Edit">{{ offer.name }}</a></td>
            <td>{{ offer.status }}</td>
+           {% if(offer.advertiser) %}
+             <td><a href="{{ path('advertiser_edit', { 'id' : offer.advertiser.id }) }}" title="Edit">{{ offer.advertiser }}</a></td>
+           {% else %}
+             <td>&nbsp;</td>
+           {% endif %}
            <td><a href="{{ offer.previewUrl }}" target="_blank">preview</a></td>
          </tr>
        {% endfor %} 
