@@ -15,8 +15,8 @@ class NewsController extends Controller
        $repository = $this->getDoctrine()->getRepository('AnytvMainBundle:News');
        $session = $this->get('session');
        
-       $form = $this->createFormBuilder()
-        ->add('keyword')
+       $form = $this->createFormBuilder(array('news_keyword'=>$session->get('news_keyword')))
+        ->add('news_keyword')
         ->add('search', 'submit')
         ->getForm();
 
@@ -27,19 +27,27 @@ class NewsController extends Controller
        if($form->isValid()) 
        {
          $data = $form->getData();
-         $keyword = $data['keyword'];
-         $session->set('keyword', $keyword);
+         $keyword = $data['news_keyword'];
+         $session->set('news_keyword', $keyword);
        }
         
        $items_per_page = 10;
        $order_by = 'id';
        $order = 'DESC';
         
-       $news = $repository->findAllNews($page, $items_per_page, $order_by, $order, $session->get('keyword'));
-       $total_news = $repository->countAllNews();
+       $news = $repository->findAllNews($page, $items_per_page, $order_by, $order, $session->get('news_keyword'));
+       $total_news = $repository->countAllNews($session->get('news_keyword'));
        $total_pages = ceil($total_news / $items_per_page);
        
        return $this->render('AnytvMainBundle:News:index.html.twig', array('title'=>'News', 'news'=>$news, 'total_news'=>$total_news, 'page'=>$page, 'total_pages'=>$total_pages, 'form'=>$form->createView()));
+    }
+    
+    public function resetAction()
+    {
+        $session = $this->get('session');
+        $session->set('news_keyword', null);
+        
+        return $this->redirect($this->generateUrl('news'));
     }
     
     public function addAction(Request $request)

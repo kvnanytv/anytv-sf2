@@ -56,9 +56,21 @@ class Country
      */
     protected $offers;
     
+    /**
+     * @ORM\OneToMany(targetEntity="Affiliate", mappedBy="country")
+     */
+    private $affiliates;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Advertiser", mappedBy="country")
+     */
+    private $advertisers;
+    
     public function __construct()
     {
         $this->offers = new ArrayCollection();
+        $this->affiliates = new ArrayCollection();
+        $this->advertisers = new ArrayCollection();
     }
 
 
@@ -214,5 +226,76 @@ class Country
       {
         $this->updated_at = new \DateTime();
       }
+    }
+
+    /**
+     * Add affiliates
+     *
+     * @param \Anytv\DashboardBundle\Entity\Affiliate $affiliates
+     * @return Country
+     */
+    public function addAffiliate(\Anytv\DashboardBundle\Entity\Affiliate $affiliates)
+    {
+        $this->affiliates[] = $affiliates;
+    
+        return $this;
+    }
+
+    /**
+     * Remove affiliates
+     *
+     * @param \Anytv\DashboardBundle\Entity\Affiliate $affiliates
+     */
+    public function removeAffiliate(\Anytv\DashboardBundle\Entity\Affiliate $affiliates)
+    {
+        $this->affiliates->removeElement($affiliates);
+    }
+
+    /**
+     * Get affiliates
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAffiliates()
+    {
+        return $this->affiliates;
+    }
+    
+    public function __toString() 
+    {
+      return $this->getName();    
+    }
+
+    /**
+     * Add advertisers
+     *
+     * @param \Anytv\DashboardBundle\Entity\Advertiser $advertisers
+     * @return Country
+     */
+    public function addAdvertiser(\Anytv\DashboardBundle\Entity\Advertiser $advertisers)
+    {
+        $this->advertisers[] = $advertisers;
+    
+        return $this;
+    }
+
+    /**
+     * Remove advertisers
+     *
+     * @param \Anytv\DashboardBundle\Entity\Advertiser $advertisers
+     */
+    public function removeAdvertiser(\Anytv\DashboardBundle\Entity\Advertiser $advertisers)
+    {
+        $this->advertisers->removeElement($advertisers);
+    }
+
+    /**
+     * Get advertisers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAdvertisers()
+    {
+        return $this->advertisers;
     }
 }

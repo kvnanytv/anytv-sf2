@@ -14,7 +14,7 @@ class LoadTrafficReferralData extends AbstractFixture implements OrderedFixtureI
      */
     public function load(ObjectManager $manager)
     {
-        //return;
+        return;
         
         $base = 'https://api.hasoffers.com/Api?';
  
@@ -55,6 +55,7 @@ class LoadTrafficReferralData extends AbstractFixture implements OrderedFixtureI
           $traffic_referral->setLikes(0);
           $traffic_referral->setDislikes(0);
           $traffic_referral->setCount($traffic_referral_stat_object->count);
+          $traffic_referral->setStatDate(new \DateTime($traffic_referral_stat_object->date));
 
           $manager->persist($traffic_referral);
         }

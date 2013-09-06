@@ -50,7 +50,12 @@ class LoadOfferData extends AbstractFixture implements OrderedFixtureInterface
           $offer->setOfferId($offer_object->id);
           $offer->setName($offer_object->name);
           $offer->setDescription($offer_object->description);
-          $offer->setAdvertiserId($offer_object->advertiser_id);
+          
+          if($this->hasReference('advertiser_'.$offer_object->advertiser_id))
+          {
+            $offer->setAdvertiser($this->getReference('advertiser_'.$offer_object->advertiser_id)); 
+          } 
+          
           $offer->setOfferUrl($offer_object->offer_url);
           $offer->setPreviewUrl($offer_object->preview_url);
           $offer->setProtocol($offer_object->protocol);

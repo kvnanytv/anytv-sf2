@@ -1,0 +1,65 @@
+{% extends 'AnytvDashboardBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title}}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+    {{ parent() }}
+    <h1 class="title">{{ title|upper }}</h1>
+    
+    <p>&nbsp;</p>
+    <div>
+      {% if(app.session.get('affiliate_keyword')) %}
+        <a href="{{ path('affiliates_reset') }}">reset</a>
+      {% endif %}
+      {{ form_start(form, {'action': path('affiliates'), 'method': 'POST'}) }}
+         {{ form_errors(form) }}
+         {{ form_errors(form.affiliate_keyword) }}
+         {{ form_widget(form.affiliate_keyword, {'attr': {'class': 'affiliate_keyword_field'}}) }}
+         {{ form_widget(form.search, {'attr': {'class': 'affiliate_keyword_button'}}) }}
+       {{ form_end(form) }}
+    </div>
+
+    <div class="symfony-blocks-welcome">
+      <table border="1" cellspacing="15" cellpadding="15">
+        <tr>
+         <th>Id</th>
+         <th>Affiliate Id</th>
+         <th>Company</th>
+         <th>Region</th>
+         <th>Country</th>
+         <th>Date Added</th>
+       </tr>
+       {% for affiliate in affiliates %}
+         <tr>
+           <td>{{ affiliate.id }}</td>
+           <td>{{ affiliate.affiliateId }}</td>
+           <td><a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="Edit">{{ affiliate.company }}</a></td>
+           <td>{{ affiliate.region }}</td>
+           <td>{{ affiliate.getCountry().getCode() }}</td>
+           <td>{{ affiliate.getDateAddedAsString() }}</td>
+         </tr>
+       {% endfor %} 
+      </table>
+       
+      {% if (total_pages > 1) %}
+        <ul>
+        {% for i in 1..total_pages %}
+          {% if(page == i) %}
+            <li>{{ i }}</li>
+          {% else %}
+            <li><a href="{{ path('affiliates', {'page':i}) }}" title="{{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        </ul>
+      {% endif %}
+        
+    </div>
+
+    <div class="symfony-blocks-help">
+        
+       
+    </div>
+{% endblock %}

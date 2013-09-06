@@ -1,0 +1,52 @@
+{% extends 'AnytvDashboardBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title}}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+    {{ parent() }}
+    <h1 class="title">{{ title|upper }}</h1>
+    
+    <p>&nbsp;</p>
+
+    <div class="symfony-blocks-welcome">
+      <table border="1" cellspacing="15" cellpadding="15">
+        <tr>
+         <th>Id</th>
+         <th>Advertiser Id</th>
+         <th>Company</th>
+         <th>Address</th>
+         <th>City</th>
+         <th>Region</th>
+         <th>Country</th>
+         <th>Status</th>
+         <th>Date Added</th>
+         <th>Modified</th>
+       </tr>
+       {% for advertiser in advertisers %}
+         <tr>
+           <td>{{ advertiser.id }}</td>
+           <td>{{ advertiser.advertiserId }}</td>
+           <td><a href="{{ path('advertiser_edit', { 'id' : advertiser.id }) }}" title="Edit">{{ advertiser.company }}</a></td>
+           <td>{{ advertiser.address1 }}{{ advertiser.address2 }}</td>
+           <td>{{ advertiser.city }}</td>
+           <td>{{ advertiser.region }}</td>
+           <td>{{ advertiser.getCountry() }}</td>
+           <td>{{ advertiser.status }}</td>
+           <td>{{ advertiser.getDateAddedAsString }}</td>
+           <td>{{ advertiser.getDateModifiedAsString() }}</td>
+         </tr>
+       {% endfor %} 
+      </table>
+       
+     
+        
+    </div>
+
+    <div class="symfony-blocks-help">
+        
+       
+    </div>
+{% endblock %}

@@ -4,6 +4,10 @@ anytv_main_homepage:
     requirements:
         culture:  %anytv.cultures%
         
+news_reset:
+    path:      /admin/news/reset
+    defaults:  { _controller: AnytvMainBundle:News:reset }
+        
 news:
     path:      /admin/news/{page}
     defaults:  { _controller: AnytvMainBundle:News:index, page: 1 }

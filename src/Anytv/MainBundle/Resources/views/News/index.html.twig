@@ -11,10 +11,13 @@
     
     <p>&nbsp;</p>
     <div>
+      {% if(app.session.get('news_keyword')) %}
+        <a href="{{ path('news_reset') }}">reset</a>
+      {% endif %}
       {{ form_start(form, {'action': path('news'), 'method': 'POST'}) }}
          {{ form_errors(form) }}
-         {{ form_errors(form.keyword) }}
-         {{ form_widget(form.keyword, {'attr': {'class': 'news_keyword_field'}}) }}
+         {{ form_errors(form.news_keyword) }}
+         {{ form_widget(form.news_keyword, {'attr': {'class': 'news_keyword_field'}}) }}
          {{ form_widget(form.search, {'attr': {'class': 'news_search_button'}}) }}
        {{ form_end(form) }}
     </div>
@@ -49,7 +52,17 @@
        {% endfor %} 
       </table>
        
-       
+      {% if (total_pages > 1) %}
+        <ul>
+        {% for i in 1..total_pages %}
+          {% if(page == i) %}
+            <li>{{ i }}</li>
+          {% else %}
+            <li><a href="{{ path('news', {'page':i}) }}" title="{{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        </ul>
+      {% endif %}
         
     </div>
 

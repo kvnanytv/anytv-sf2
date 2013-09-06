@@ -4,6 +4,16 @@ anytv_dashboard_homepage:
     requirements:
         culture:  %anytv.cultures%
     
+advertisers:
+    path:      /admin/advertisers
+    defaults:  { _controller: AnytvDashboardBundle:Advertiser:index }
+    
+advertiser_edit:
+    path:      /admin/advertisers/edit/{id}
+    defaults:  { _controller: AnytvDashboardBundle:Advertiser:edit }
+    requirements:
+        id:  \d+
+    
 offers_reset:
     path:      /admin/offers/reset
     defaults:  { _controller: AnytvDashboardBundle:Offer:reset }
@@ -13,10 +23,48 @@ offers:
     defaults:  { _controller: AnytvDashboardBundle:Offer:index, page: 1 }
     requirements:
         page:  \d+
+       
+offer_edit:
+    path:      /admin/offers/edit/{id}
+    defaults:  { _controller: AnytvDashboardBundle:Offer:edit }
+    requirements:
+        page:  \d+
         
 traffic_referrals:
     path:      /admin/traffic_referrals/{page}
     defaults:  { _controller: AnytvDashboardBundle:TrafficReferral:index, page: 1 }
+    requirements:
+        page:  \d+
+        
+affiliates_reset:
+    path:      /admin/affiliates/reset
+    defaults:  { _controller: AnytvDashboardBundle:Affiliate:reset }
+        
+affiliates:
+    path:      /admin/affiliates/{page}
+    defaults:  { _controller: AnytvDashboardBundle:Affiliate:index, page: 1 }
+    requirements:
+        page:  \d+
+        
+affiliate_view:
+    path:      /admin/affiliates/view/{id}
+    defaults:  { _controller: AnytvDashboardBundle:Affiliate:view }
+    requirements:
+        id:  \d+
+        
+affiliate_edit:
+    path:      /admin/affiliates/edit/{id}
+    defaults:  { _controller: AnytvDashboardBundle:Affiliate:edit }
+    requirements:
+        id:  \d+
+        
+affiliate_users_reset:
+    path:      /admin/affiliate_users/reset
+    defaults:  { _controller: AnytvDashboardBundle:AffiliateUser:reset }
+        
+affiliate_users:
+    path:      /admin/affiliate_users/{page}
+    defaults:  { _controller: AnytvDashboardBundle:AffiliateUser:index, page: 1 }
     requirements:
         page:  \d+
         
