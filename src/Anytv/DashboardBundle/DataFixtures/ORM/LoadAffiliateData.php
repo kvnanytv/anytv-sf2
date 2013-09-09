@@ -24,7 +24,7 @@ class LoadAffiliateData extends AbstractFixture implements OrderedFixtureInterfa
 	  ,'Target' => 'Affiliate'
 	  ,'Method' => 'findAll'
           ,'contain' => array('AffiliateUser')
-          ,'sort' => array('id' => 'DESC')
+          ,'sort' => array('id' => 'ASC')
 	  ,'Service' => 'HasOffers'
 	  ,'Version' => 2
 	  ,'NetworkId' => 'mmotm'
@@ -75,13 +75,12 @@ class LoadAffiliateData extends AbstractFixture implements OrderedFixtureInterfa
           
           $manager->persist($affiliate);
           
-          $this->addReference('affiliate_'.$affiliate_object->id, $affiliate);
+          //$this->addReference('affiliate_'.$affiliate_object->id, $affiliate);
           
           foreach($affiliate_users_object as $affiliate_user_object)
           {
             $affiliate_user = new AffiliateUser(); 
             $affiliate_user->setAffiliateUserId($affiliate_user_object->id);
-            $affiliate_user->setAffiliateId($affiliate_user_object->affiliate_id);
             $affiliate_user->setEmail($affiliate_user_object->email);
             $affiliate_user->setTitle($affiliate_user_object->title);
             $affiliate_user->setFirstName($affiliate_user_object->first_name);
@@ -97,7 +96,9 @@ class LoadAffiliateData extends AbstractFixture implements OrderedFixtureInterfa
             $affiliate_user->setLastLogin(new \DateTime($affiliate_user_object->last_login));
             $affiliate_user->setPermissions($affiliate_user_object->permissions);
             $affiliate_user->setWantsAlerts($affiliate_user_object->wants_alerts);
-            
+          
+            $affiliate_user->setAffiliate($affiliate); 
+             
             $manager->persist($affiliate_user);
           }
         }
@@ -110,6 +111,6 @@ class LoadAffiliateData extends AbstractFixture implements OrderedFixtureInterfa
      */
     public function getOrder()
     {
-        return 30; // the order in which fixtures will be loaded
+        return 29; // the order in which fixtures will be loaded
     }
 }

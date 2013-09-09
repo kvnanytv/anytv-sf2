@@ -671,4 +671,29 @@ class Advertiser
     {
         return $this->country;
     }
+    
+    /**
+     * Echo dateAdded string
+     *
+     * @return \DateTime string 
+     */
+    public function getDateAddedAsString()
+    {
+        return date_format($this->created_at, 'Y-m-d');
+    }
+    
+     /**
+     * Echo modified string
+     *
+     * @return \DateTime string 
+     */
+    public function getDateModifiedAsString()
+    {
+        return date_format($this->updated_at, 'Y-m-d');
+    }
+    
+    public function __toString() 
+    {
+      return $this->getCompany();    
+    }
 }

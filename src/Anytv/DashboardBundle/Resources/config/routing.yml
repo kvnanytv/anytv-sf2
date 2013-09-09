@@ -46,6 +46,18 @@ affiliates:
     requirements:
         page:  \d+
         
+affiliate_user_view:
+    path:      /admin/affiliates/user/view/{id}
+    defaults:  { _controller: AnytvDashboardBundle:AffiliateUser:view }
+    requirements:
+        id:  \d+
+        
+affiliate_user_edit:
+    path:      /admin/affiliates/user/edit/{id}
+    defaults:  { _controller: AnytvDashboardBundle:AffiliateUser:edit }
+    requirements:
+        id:  \d+
+        
 affiliate_view:
     path:      /admin/affiliates/view/{id}
     defaults:  { _controller: AnytvDashboardBundle:Affiliate:view }

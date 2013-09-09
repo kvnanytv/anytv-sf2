@@ -7,14 +7,35 @@
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
     {{ parent() }}
-    <h1 class="title">{{ title }}</h1>
-    <p>Dashboard.TM ID: {{ affiliate.affiliateId }}</p>
+    <em><a href="{{ path('affiliate_edit', { 'id' : affiliate.id }) }}" title="Edit">edit</a></em>
+    
+    <h1 class="title">{{ title }}<p>dashboard.tm ID: {{ affiliate.affiliateId }} - ({{ affiliate.status }})</p></h1>
+    
+    {% if(affiliate.thumbnail) %}
+      <img src="{{ asset(affiliate.getWebPath()) }}" alt="{{ affiliate.company }}" style="width:100px" />
+    {% endif %}
     
     <div class="symfony-blocks-welcome">
-       
-       {{ affiliate.getFullAddress() }}
-       
+      <ul>
+        <li style="display:block">Address: {{ affiliate.getFullAddress() }}</li>
+        <li style="display:block">Phone: {{ affiliate.phone }}</li>
+        <li style="display:block">Fax: {{ affiliate.fax }}</li>
         
+      </ul>
+            
+      {% if(affiliate_users) %}
+        <h2>Users:</h2>
+        <ul>
+          {% for affiliate_user in affiliate_users %}
+            <li style="display:block">
+              <a href="{{ path('affiliate_user_view', { 'id' : affiliate_user.id }) }}" title="View">{{ affiliate_user.getFullName() }}</a>
+              {% if(affiliate_user.thumbnail) %}
+                <img src="{{ asset(affiliate_user.getWebPath()) }}" alt="{{ affiliate_user.getFullName() }}" style="width:100px" />
+              {% endif %}
+            </li> 
+          {% endfor %}
+        </ul>
+      {% endif %}
     </div>
 
     <div class="symfony-blocks-help">

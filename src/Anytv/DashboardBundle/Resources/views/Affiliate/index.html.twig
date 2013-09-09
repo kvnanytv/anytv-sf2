@@ -31,6 +31,7 @@
          <th>Region</th>
          <th>Country</th>
          <th>Date Added</th>
+         <th>Thumbnail</th>
        </tr>
        {% for affiliate in affiliates %}
          <tr>
@@ -38,8 +39,17 @@
            <td>{{ affiliate.affiliateId }}</td>
            <td><a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="Edit">{{ affiliate.company }}</a></td>
            <td>{{ affiliate.region }}</td>
-           <td>{{ affiliate.getCountry().getCode() }}</td>
+           {% if(affiliate.country) %}
+             <td>{{ affiliate.getCountry().getCode() }}</td>
+           {% else %}
+             <td>&nbsp;</td>
+           {% endif %}
            <td>{{ affiliate.getDateAddedAsString() }}</td>
+           {% if(affiliate.thumbnail) %}
+             <td><img src="{{ asset(affiliate.getWebPath()) }}" alt="{{ affiliate.company }}" style="width:100px" /></td>
+           {%  else %}
+             <td>&nbsp;</td>
+           {% endif %}
          </tr>
        {% endfor %} 
       </table>

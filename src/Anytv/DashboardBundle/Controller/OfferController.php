@@ -5,6 +5,9 @@ namespace Anytv\DashboardBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+use Anytv\DashboardBundle\Entity\Offer;
+use Anytv\DashboardBundle\Form\Type\OfferType;
+
 class OfferController extends Controller
 {
     public function indexAction(Request $request, $page)
@@ -49,6 +52,37 @@ class OfferController extends Controller
         $session->set('keyword', null);
         
         return $this->redirect($this->generateUrl('offers'));
+    }
+    
+    public function editAction(Request $request, $id)
+    {
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
+      
+      $offer = $repository->find($id);
+
+      if (!$offer) {
+        throw $this->createNotFoundException(
+            'No offer found for id '.$id
+        );
+      }
+
+      $form = $this->createForm(new OfferType(), $offer);
+
+      $form->handleRequest($request);
+
+      if ($form->isValid()) {
+        
+        $offer = $form->getData();
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $em->persist($offer);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('offers'));
+      }
+
+      return $this->render('AnytvDashboardBundle:Offer:edit.html.twig', array('title'=>'Edit Offer', 'form'=>$form->createView(), 'offer'=>$offer));
     }
     
     public function showAction($id)

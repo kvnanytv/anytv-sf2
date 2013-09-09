@@ -75,10 +75,10 @@ class AffiliateController extends Controller
         $em->persist($affiliate);
         $em->flush();
 
-        return $this->redirect($this->generateUrl('affiliates'));
+        return $this->redirect($this->generateUrl('affiliate_view', array('id'=>$affiliate->getId())));
       }
 
-      return $this->render('AnytvDashboardBundle:Affiliate:edit.html.twig', array('title'=>'Edit Affiliate', 'form'=>$form->createView(), 'affiliate'=>$affiliate));
+      return $this->render('AnytvDashboardBundle:Affiliate:edit.html.twig', array('title'=>'Edit '.$affiliate, 'form'=>$form->createView(), 'affiliate'=>$affiliate));
     }
     
     public function viewAction($id)
@@ -92,8 +92,10 @@ class AffiliateController extends Controller
             'No affiliate found for id '.$id
         );
       }
+      
+      $affiliate_users = $affiliate->getAffiliateUsers();
 
-      return $this->render('AnytvDashboardBundle:Affiliate:view.html.twig', array('title'=>$affiliate, 'affiliate'=>$affiliate));
+      return $this->render('AnytvDashboardBundle:Affiliate:view.html.twig', array('title'=>$affiliate, 'affiliate'=>$affiliate, 'affiliate_users'=>$affiliate_users));
     }
     
     
