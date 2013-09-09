@@ -3,12 +3,16 @@
 namespace Anytv\DashboardBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Anytv\DashboardBundle\Entity\Affiliate;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * AffiliateUser
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Anytv\DashboardBundle\Entity\AffiliateUserRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class AffiliateUser
 {
@@ -20,6 +24,12 @@ class AffiliateUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Affiliate", inversedBy="affiliateUsers")
+     * @ORM\JoinColumn(name="affiliate_id", referencedColumnName="id")
+     */
+    private $affiliate;
 
     /**
      * @var integer
@@ -27,13 +37,6 @@ class AffiliateUser
      * @ORM\Column(name="affiliate_user_id", type="integer")
      */
     private $affiliateUserId;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="affiliate_id", type="integer", nullable=true)
-     */
-    private $affiliateId;
 
     /**
      * @var string
@@ -153,6 +156,139 @@ class AffiliateUser
      * @ORM\Column(name="last_login", type="datetime", nullable=true)
      */
     private $lastLogin;
+    
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="thumbnail", type="string", length=255, nullable=true)
+     */
+    private $thumbnail;
+
+    public function getAbsolutePath()
+    {
+        return null === $this->thumbnail
+            ? null
+            : $this->getUploadRootDir().'/'.$this->thumbnail;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->thumbnail
+            ? null
+            : $this->getUploadDir().'/'.$this->thumbnail;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // the absolute directory path where uploaded
+        // images should be saved
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'uploads/affiliate_users/thumbnails';
+    }
+    
+    /**
+     * @Assert\File(maxSize="6000000")
+     */
+    private $file;
+    
+    private $temp;
+
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+        
+        if (isset($this->thumbnail)) {
+            $this->temp = $this->thumbnail;
+            $this->thumbnail = null;
+        } else {
+            $this->thumbnail = 'initial';
+        }
+    }
+    
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->getFile()) {
+            $filename = sha1(uniqid(mt_rand(), true));
+            $this->thumbnail = $filename.'.'.$this->getFile()->guessExtension();
+        }
+    }
+    
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if (null === $this->getFile()) {
+            return;
+        }
+
+        $this->getFile()->move($this->getUploadRootDir(), $this->thumbnail);
+
+        if (isset($this->temp)) {
+            unlink($this->getUploadRootDir().'/'.$this->temp);
+            $this->temp = null;
+        }
+        $this->file = null;
+    }
+    
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePath()) {
+            unlink($file);
+        }
+    }
+
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+    
+     /**
+     * Set thumbnail
+     *
+     * @param string $thumbnail
+     * @return News
+     */
+    public function setThumbnail($thumbnail)
+    {
+        $this->thumbnail = $thumbnail;
+    
+        return $this;
+    }
+
+    /**
+     * Get thumbnail
+     *
+     * @return string 
+     */
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
+    }
 
 
     /**
@@ -163,52 +299,6 @@ class AffiliateUser
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set affiliateUserId
-     *
-     * @param integer $affiliateUserId
-     * @return AffiliateUser
-     */
-    public function setAffiliateUserId($affiliateUserId)
-    {
-        $this->affiliateUserId = $affiliateUserId;
-    
-        return $this;
-    }
-
-    /**
-     * Get affiliateUserId
-     *
-     * @return integer 
-     */
-    public function getAffiliateUserId()
-    {
-        return $this->affiliateUserId;
-    }
-
-    /**
-     * Set affiliateId
-     *
-     * @param integer $affiliateId
-     * @return AffiliateUser
-     */
-    public function setAffiliateId($affiliateId)
-    {
-        $this->affiliateId = $affiliateId;
-    
-        return $this;
-    }
-
-    /**
-     * Get affiliateId
-     *
-     * @return integer 
-     */
-    public function getAffiliateId()
-    {
-        return $this->affiliateId;
     }
 
     /**
@@ -600,5 +690,71 @@ class AffiliateUser
     public function getSalt()
     {
         return $this->salt;
+    }
+
+    /**
+     * Set affiliateUserId
+     *
+     * @param integer $affiliateUserId
+     * @return AffiliateUser
+     */
+    public function setAffiliateUserId($affiliateUserId)
+    {
+        $this->affiliateUserId = $affiliateUserId;
+    
+        return $this;
+    }
+
+    /**
+     * Get affiliateUserId
+     *
+     * @return integer 
+     */
+    public function getAffiliateUserId()
+    {
+        return $this->affiliateUserId;
+    }
+
+    /**
+     * Set affiliate
+     *
+     * @param \Anytv\DashboardBundle\Entity\Affiliate $affiliate
+     * @return AffiliateUser
+     */
+    public function setAffiliate(\Anytv\DashboardBundle\Entity\Affiliate $affiliate = null)
+    {
+        $this->affiliate = $affiliate;
+    
+        return $this;
+    }
+
+    /**
+     * Get affiliate
+     *
+     * @return \Anytv\DashboardBundle\Entity\Affiliate 
+     */
+    public function getAffiliate()
+    {
+        return $this->affiliate;
+    }
+    
+    public function getFullName()
+    {
+        return $this->title . ' '. $this->firstName .' '.$this->lastName;
+    }
+    
+    public function __toString() 
+    {
+      return $this->getFullName();
+    }
+    
+     /**
+     * Echo dateJoined string
+     *
+     * @return \DateTime string 
+     */
+    public function getDateJoinedAsString()
+    {
+        return date_format($this->joinDate, 'Y-m-d');
     }
 }
