@@ -20,15 +20,36 @@
                   <a href="{{ path('anytv_main_homepage') }}" title="Any.TV">
                     <img src="{{ asset('bundles/anytvmain/images/logo.png') }}" alt="Any.TV" />
                   </a>
+                  {% trans %}Believe in you{% endtrans %}
                   {% endblock %}
                 </div>
 
                 <div class="search">
+                  <div id="trans_menu">
+                   {% block transmenu %}
+                   <ul>
+                     <li>
+                       <a href="{{ path('anytv_main_homepage', { _locale: 'en' }) }}" title="Any.TV English">
+                         <img src="{{ asset('bundles/anytvmain/images/en.png') }}" alt="Any.TV English" />
+                       </a>
+                     </li>
+                     <li>
+                       <a href="{{ path('anytv_main_homepage', { _locale: 'nl' }) }}" title="Any.TV Dutch">
+                         <img src="{{ asset('bundles/anytvmain/images/nl.png') }}" alt="Any.TV Dutch" />
+                       </a>
+                     </li>
+                     <li>
+                       <a href="{{ path('anytv_main_homepage', { _locale: 'zh' }) }}" title="Any.TV Chinese">
+                         <img src="{{ asset('bundles/anytvmain/images/zh.png') }}" alt="Any.TV Chinese" />
+                       </a>
+                     </li>
+                   </ul>
+                   {% endblock %}
+                 </div>   
                   <div id="main_menu">
                    <ul>
                      <li><a href="{{ path('anytv_main_homepage') }}" title="Any.TV">Any.TV</a></li>
                      <li><a href="{{ path('anytv_dashboard_homepage') }}" title="Any.TV Dashboard">Dashboard</a></li>
-                     <li><a href="{{ path('anytv_community_homepage') }}" title="Any.TV Community">Community</a></li>
                    </ul>
                  </div>    
                 </div>

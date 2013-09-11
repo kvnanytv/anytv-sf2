@@ -5,7 +5,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: %locale% }
+    translator:      { fallback: %locale% }
     secret:          %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -73,7 +73,7 @@ swiftmailer:
 # Any TV Custom settings and values
 parameters:
     anytv.formats: html|rss|json
-    anytv.cultures: en|fr|de 
-    anytv.locales: en|fr|de
+    anytv.cultures: en|fr|de|zh|nl 
+    anytv.locales: en|fr|de|zh|nl
     
     

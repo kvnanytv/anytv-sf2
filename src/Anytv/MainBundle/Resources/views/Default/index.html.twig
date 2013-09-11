@@ -1,6 +1,6 @@
 {% extends 'AnytvMainBundle::layout.html.twig' %}
 
-{% block title %}{{ parent() }} - Home{% endblock %}
+{% block title %}{{ parent() }} - {% trans %}Home{% endtrans %}{% endblock %}
      
 {% block content_header '' %}
 
@@ -9,7 +9,7 @@
     {{ parent() }}
     <h1 class="title">{{ title|upper }}</h1>
     
-    
+    {{ translated }}
 
     
     <p>&nbsp;</p>

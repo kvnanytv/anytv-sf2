@@ -9,6 +9,8 @@
     {{ parent() }}
     <h1 class="title">{{ title|upper }}</h1>
     
+    {{ translated }}
+    
     <p>&nbsp;</p>
     <div>
       {% if(app.session.get('news_keyword')) %}
@@ -26,13 +28,13 @@
       <table border="1" cellspacing="15" cellpadding="15">
         <tr>
          <th>ID</th>
-         <th><a href="{{ path('news') }}" title="Title">Title</a></th>
-         <th>Excerpt</th>
-         <th>Body</th>
-         <th>Category</th>
-         <th>Views</th>
-         <th>Comments</th>
-         <th>Thumbnail</th>
+         <th><{% trans %}Title{% endtrans %}</th>
+         <th>{% trans %}Excerpt{% endtrans %}</th>
+         <th>{% trans %}Body{% endtrans %}</th>
+         <th>{% trans %}Category{% endtrans %}</th>
+         <th>{% trans %}Views{% endtrans %}</th>
+         <th>{% trans %}Comments{% endtrans %}</th>
+         <th>{% trans %}Thumbnail{% endtrans %}</th>
        </tr>
        {% for news_item in news %}
          <tr>
@@ -68,7 +70,7 @@
 
     <div class="symfony-blocks-help">
        
-        <a href="{{ path('news_add') }}" title="Add news">Add</a>
+        <a href="{{ path('news_add') }}" title="{% trans %}Add{% endtrans %}">{% trans %}Add{% endtrans %}</a>
        
     </div>
 {% endblock %}

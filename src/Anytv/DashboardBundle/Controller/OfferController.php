@@ -17,6 +17,7 @@ class OfferController extends Controller
           
         $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
         $session = $this->get('session');
+        $translator = $this->get('translator');
         
         $form = $this->createFormBuilder(array('keyword'=>$session->get('keyword')))
         ->add('keyword')
@@ -43,7 +44,7 @@ class OfferController extends Controller
         $total_offers = $repository->countAllOffers($status, $session->get('keyword'));
         $total_pages = ceil($total_offers / $items_per_page);
        
-        return $this->render('AnytvDashboardBundle:Offer:index.html.twig', array('title'=>'Offers', 'offers'=>$offers, 'total_offers'=>$total_offers, 'page'=>$page, 'total_pages'=>$total_pages, 'form'=>$form->createView()));
+        return $this->render('AnytvDashboardBundle:Offer:index.html.twig', array('title'=>$translator->trans('Offers'), 'offers'=>$offers, 'total_offers'=>$total_offers, 'page'=>$page, 'total_pages'=>$total_pages, 'form'=>$form->createView()));
     }
     
     public function resetAction()

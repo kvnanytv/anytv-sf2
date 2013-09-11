@@ -15,8 +15,8 @@
       <table border="1" cellspacing="15" cellpadding="15">
         <tr>
          <th>ID</th>
-         <th>Name</th>
-         <th>Description</th>
+         <th>{% trans %}Name{% endtrans %}</th>
+         <th>{% trans %}Description{% endtrans %}</th>
        </tr>
        {% for news_category_item in news_categories %}
          <tr>
@@ -33,7 +33,7 @@
 
     <div class="symfony-blocks-help">
        
-        <a href="{{ path('news_category_add') }}" title="Add a news category">Add</a>
+        <a href="{{ path('news_category_add') }}" title="{% trans %}Add{% endtrans %}">{% trans %}Add{% endtrans %}</a>
        
     </div>
 {% endblock %}

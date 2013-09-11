@@ -15,7 +15,7 @@ class OfferType extends AbstractType
             ->add('advertiser')
             ->add('offerUrl')
             ->add('previewUrl')
-            ->add('status')
+            ->add('status', 'choice', array('choices' => array('active' => 'active', 'paused' => 'paused', 'pending' => 'pending', 'expired' => 'expired', 'deleted' => 'deleted')))
             ->add('expirationDate')
             ->add('is_private')
             ->add('require_approval')

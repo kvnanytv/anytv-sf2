@@ -15,15 +15,15 @@
       <table border="1" cellspacing="15" cellpadding="15">
         <tr>
          <th>Id</th>
-         <th>Advertiser Id</th>
-         <th>Company</th>
-         <th>Address</th>
-         <th>City</th>
-         <th>Region</th>
-         <th>Country</th>
-         <th>Status</th>
-         <th>Date Added</th>
-         <th>Modified</th>
+         <th>{% trans %}Advertiser{% endtrans %} Id</th>
+         <th>{% trans %}Company{% endtrans %}</th>
+         <th>{% trans %}Address{% endtrans %}</th>
+         <th>{% trans %}City{% endtrans %}</th>
+         <th>{% trans %}Region{% endtrans %}</th>
+         <th>{% trans %}Country{% endtrans %}</th>
+         <th>{% trans %}Status{% endtrans %}</th>
+         <th>{% trans %}Date Added{% endtrans %}</th>
+         <th>{% trans %}Date Modified{% endtrans %}</th>
        </tr>
        {% for advertiser in advertisers %}
          <tr>

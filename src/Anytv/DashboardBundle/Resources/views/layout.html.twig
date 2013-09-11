@@ -12,13 +12,33 @@
 </a>
 {% endblock %}
   
+{% block transmenu %}
+<ul>
+  <li>
+    <a href="{{ path('anytv_dashboard_homepage', { _locale: 'en' }) }}" title="Any.TV Dashboard English">
+      <img src="{{ asset('bundles/anytvmain/images/en.png') }}" alt="Any.TV Dashboard English" />
+    </a>
+  </li>
+  <li>
+    <a href="{{ path('anytv_dashboard_homepage', { _locale: 'nl' }) }}" title="Any.TV Dashboard Dutch">
+      <img src="{{ asset('bundles/anytvmain/images/nl.png') }}" alt="Any.TV Dashboard Dutch" />
+    </a>
+  </li>
+  <li>
+    <a href="{{ path('anytv_dashboard_homepage', { _locale: 'zh' }) }}" title="Any.TV Dashboard Chinese">
+      <img src="{{ asset('bundles/anytvmain/images/zh.png') }}" alt="Any.TV Dashboard Chinese" />
+    </a>
+  </li>
+</ul>
+{% endblock %}
+  
 {% block submenu %}
 <div id="sub_menu">
   <ul>
-    <li><a href="{{ path('advertisers') }}" title="Advertisers">Advertisers</a></li>
-    <li><a href="{{ path('offers') }}" title="Offers">Offers</a></li>
-    <li><a href="{{ path('affiliates') }}" title="Affiliates">Affiliates</a></li>
-    <li><a href="{{ path('traffic_referrals') }}" title="Traffic Referrals">Traffic Referrals</a></li>
+    <li><a href="{{ path('advertisers') }}" title="{% trans %}Advertisers{% endtrans %}">{% trans %}Advertisers{% endtrans %}</a></li>
+    <li><a href="{{ path('offers') }}" title="{% trans %}Offers{% endtrans %}">{% trans %}Offers{% endtrans %}</a></li>
+    <li><a href="{{ path('affiliates') }}" title="{% trans %}Affiliates{% endtrans %}">{% trans %}Affiliates{% endtrans %}</a></li>
+    <li><a href="{{ path('traffic_referrals') }}" title="{% trans %}Traffic Referrals{% endtrans %}">{% trans %}Traffic Referrals{% endtrans %}</a></li>
   </ul>
 </div>    
 {% endblock %}

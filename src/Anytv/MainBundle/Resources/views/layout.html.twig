@@ -5,8 +5,8 @@
 {% block submenu %}
 <div id="sub_menu">
   <ul>
-    <li><a href="{{ path('news') }}" title="News">News</a></li>
-    <li><a href="{{ path('news_category') }}" title="News Categories">News Categories</a></li>
+    <li><a href="{{ path('news') }}" title="{% trans %}News{% endtrans %}">{% trans %}News{% endtrans %}</a></li>
+    <li><a href="{{ path('news_category') }}" title="{% trans %}News Categories{% endtrans %}">{% trans %}News Categories{% endtrans %}</a></li>
   </ul>
 </div>    
 {% endblock %}
