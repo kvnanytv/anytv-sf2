@@ -95,11 +95,7 @@ body {
 
 /********************** Section 1: Banner *******************/
 
-.banner {
-	background-attachment:scroll;
-  	/*background-image:url('../img/banner_image.jpg');*/
-  	background-size: 100%;
-  	background-repeat:no-repeat no-repeat;
+.banner { 	
   	height: 730px;
 }
 
@@ -163,7 +159,7 @@ body {
 	margin: 0 auto;
 	height: 40px;
 
-	/*background: white url(img/magnifying-glass.png) left no-repeat;*/ 
+	background: white url(img/magnifying-glass.png) right no-repeat;
 
 }
 
