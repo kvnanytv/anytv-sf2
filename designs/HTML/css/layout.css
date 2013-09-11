@@ -7,7 +7,7 @@ layout Styles
 .cl {
 	clear: both;
 	height: 20px;
-	margin: 0; /*comment*/
+	margin: 0; 
 }
 
 body {
