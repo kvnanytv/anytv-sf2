@@ -18,6 +18,7 @@
 
 	<!-- Bootstrap -->
     <link href="css/bootstrap/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap/bootstrap-min .css" rel="stylesheet">
     <link href="css/bootstrap/carousel.css" rel="stylesheet">
 
     <!-- Foundation -->
@@ -38,37 +39,38 @@
 					<a href="#">
 						<img src="img/anytv-home_logo.png">
 					</a>
-				</div>
+				</div>  
 				<div id="menu">
 					<ul class="nav navbar-nav pull-right">
 						<li>
-							<a href="#">anyTV</a>
+							<a class="lnk-blue" href="#">anyTV</a>
 						</li>
 						<li>
-							<a href="#">dashboard</a>
+							<a class="lnk-red" href="#">dashboard</a>
 						</li>
 						<li>
-							<a href="#">community</a>
+							<a class="lnk-yellow" href="#">community</a>
 						</li>																		
 					</ul>
 				</div>
 			</div>
 		</div>
 	</header>
+
 	<!-- Sub nav -->
 	<header class="navbar navbar-inverse navbar-default subnav">
 		<div class="container">
-			<div class="navbar-collapse collapse">
+			<div class="navbar-collapse collapse">              
 				<div id="subnav-links">
 					<ul class="nav navbar-nav">
 						<li>
 							<a href="#">What is AnyTV?</a>
 						</li>
 						<li>
-							<a href="#">Branding Kit</a>
+							<a href="#">Games List</a>
 						</li>
 						<li>
-							<a href="#">Games List</a>
+							<a href="#">Branding Kit</a>
 						</li>
 						<li>
 							<a href="#">Livestream Handbook</a>
@@ -132,9 +134,102 @@
       <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
     </div> -->
 
-    <div id="main">
-    	<section><div><img src="img/banner_image.jpg"></div></section>
-    	<section><div></div></section>
+    <div id="content">
+    	<section class="banner">
+        <div class="container">
+      		<div class="uptop">
+      			<h3>A new kind of YouTube Network</h3>
+      			<p>No need to unpartner from your YouTube Network</p>
+      			<img src="img/mac-monitor.png">
+            <div class="yt-video">
+              <iframe src="//www.youtube.com/embed/UCqJAZuvUS0?list=PLyI74zGGymu8k7eVhGPcVSh3nKljHfiVX" frameborder="0" allowfullscreen></iframe>
+            </div>      			
+
+      		</div>
+        </div>       
+    	</section>
+
+    	<section id="games-lists">
+        <div class="container">
+          <div class="games-list-wrap">
+        		<h3>anyTV Games List</h3>
+            <div class="row">
+                <input type="text" class="form-control" placeholder="Search ...">
+            </div>
+            <div>
+                            <!-- Carousel
+              ================================================== -->
+              <div id="myCarousel" class="carousel slide">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                  <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="item active">
+                    <img src="data:image/png;base64," data-src="holder.js/100%x500/auto/#777:#7a7a7a/text:First slide" alt="First slide">
+                    <div class="container">
+                      <div class="carousel-caption">
+                        <h1>Example headline.</h1>
+                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                        <p><a class="btn btn-large btn-primary" href="#">Sign up today</a></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <img src="data:image/png;base64," data-src="holder.js/100%x500/auto/#777:#7a7a7a/text:Second slide" alt="Second slide">
+                    <div class="container">
+                      <div class="carousel-caption">
+                        <h1>Another example headline.</h1>
+                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                        <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <img src="data:image/png;base64," data-src="holder.js/100%x500/auto/#777:#7a7a7a/text:Third slide" alt="Third slide">
+                    <div class="container">
+                      <div class="carousel-caption">
+                        <h1>One more for good measure.</h1>
+                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                        <p><a class="btn btn-large btn-primary" href="#">Browse gallery</a></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+              </div><!-- /.carousel -->
+            </div>      		
+          </div>
+        </div>
+    	</section>
+
+      <section id="networks">
+        <div class="container">
+          <div class="row 3col-bg">
+            <div class="col-lg-4 brdr-test">
+              <h3>Test</h3>
+              <p></p>
+            </div>
+            <div class="col-lg-4 brdr-test">
+              <h3>Test</h3>
+            </div>
+            <div class="col-lg-4 brdr-test">
+              <h3>Test</h3>
+            </div>                        
+          </div>
+        </div>
+      </section>
+
+      <section id="section4">
+        <div></div>
+      </section>      
+    	
+      <section id="about-anytv">
+        <div></div>
+      </section>
     </div>
 
 
