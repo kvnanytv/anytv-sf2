@@ -14,6 +14,7 @@ class AffiliateController extends Controller
     {
         $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Affiliate');
         $session = $this->get('session');
+        $translator = $this->get('translator');
         
         $form = $this->createFormBuilder(array('affiliate_keyword'=>$session->get('affiliate_keyword')))
         ->add('affiliate_keyword')
@@ -39,7 +40,7 @@ class AffiliateController extends Controller
         $total_affiliates = $repository->countAllAffiliates($session->get('affiliate_keyword'));
         $total_pages = ceil($total_affiliates / $items_per_page);
         
-        return $this->render('AnytvDashboardBundle:Affiliate:index.html.twig', array('title'=>'Affiliates', 'affiliates'=>$affiliates, 'total_affiliates'=>$total_affiliates, 'page'=>$page, 'total_pages'=>$total_pages, 'form'=>$form->createView()));
+        return $this->render('AnytvDashboardBundle:Affiliate:index.html.twig', array('title'=>$translator->trans('Affiliates'), 'affiliates'=>$affiliates, 'total_affiliates'=>$total_affiliates, 'page'=>$page, 'total_pages'=>$total_pages, 'form'=>$form->createView()));
     }
     
     public function resetAction()

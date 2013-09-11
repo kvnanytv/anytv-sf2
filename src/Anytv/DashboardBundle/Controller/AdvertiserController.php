@@ -13,10 +13,11 @@ class AdvertiserController extends Controller
     public function indexAction(Request $request)
     {
         $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Advertiser');
+        $translator = $this->get('translator');
         
         $advertisers = $repository->findAllAdvertisers();
         
-        return $this->render('AnytvDashboardBundle:Advertiser:index.html.twig', array('title'=>'Advertisers', 'advertisers'=>$advertisers));
+        return $this->render('AnytvDashboardBundle:Advertiser:index.html.twig', array('title'=>$translator->trans('Advertisers'), 'advertisers'=>$advertisers));
     }
     
     public function resetAction()
@@ -30,6 +31,7 @@ class AdvertiserController extends Controller
     public function editAction(Request $request, $id)
     {
       $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Advertiser');
+      $translator = $this->get('translator');
       
       $advertiser = $repository->find($id);
 
@@ -55,7 +57,7 @@ class AdvertiserController extends Controller
         return $this->redirect($this->generateUrl('advertisers'));
       }
 
-      return $this->render('AnytvDashboardBundle:Advertiser:edit.html.twig', array('title'=>'Edit Advertiser', 'form'=>$form->createView(), 'advertiser'=>$advertiser));
+      return $this->render('AnytvDashboardBundle:Advertiser:edit.html.twig', array('title'=>$translator->trans('Edit Advertiser'), 'form'=>$form->createView(), 'advertiser'=>$advertiser));
     }
     
     public function showAction($id)

@@ -11,6 +11,7 @@ class TrafficReferralController extends Controller
     {
         $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:TrafficReferral');
         $session = $this->get('session');
+        $translator = $this->get('translator');
         
         $form = $this->createFormBuilder(array('stat_date'=>$session->get('stat_date')))
         ->add('stat_date')
@@ -36,7 +37,7 @@ class TrafficReferralController extends Controller
         $total_traffic_referrals = $repository->countAllTrafficReferrals();
         $total_pages = ceil($total_traffic_referrals / $items_per_page);
         
-        return $this->render('AnytvDashboardBundle:TrafficReferral:index.html.twig', array('title'=>'Traffic Referrals', 'traffic_referrals'=>$traffic_referrals, 'total_traffic_referrals'=>$total_traffic_referrals, 'page'=>$page, 'total_pages'=>$total_pages, 'form'=>$form->createView()));
+        return $this->render('AnytvDashboardBundle:TrafficReferral:index.html.twig', array('title'=>$translator->trans('Traffic Referrals'), 'traffic_referrals'=>$traffic_referrals, 'total_traffic_referrals'=>$total_traffic_referrals, 'page'=>$page, 'total_pages'=>$total_pages, 'form'=>$form->createView()));
     }
     
     public function showAction($id)

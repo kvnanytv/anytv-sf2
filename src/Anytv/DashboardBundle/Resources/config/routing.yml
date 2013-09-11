@@ -1,83 +1,101 @@
 anytv_dashboard_homepage:
-    path:  /{culture}
-    defaults: { _controller: AnytvDashboardBundle:Default:index, culture: en, _locale: en, _format: html }
+    path:  /{_locale}
+    defaults: { _controller: AnytvDashboardBundle:Default:index, _locale: en }
     requirements:
-        culture:  %anytv.cultures%
+        _locale:  %anytv.locales%
     
 advertisers:
-    path:      /admin/advertisers
-    defaults:  { _controller: AnytvDashboardBundle:Advertiser:index }
+    path:      /{_locale}/admin/advertisers
+    defaults:  { _controller: AnytvDashboardBundle:Advertiser:index, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
     
 advertiser_edit:
-    path:      /admin/advertisers/edit/{id}
-    defaults:  { _controller: AnytvDashboardBundle:Advertiser:edit }
+    path:      /{_locale}/admin/advertisers/edit/{id}
+    defaults:  { _controller: AnytvDashboardBundle:Advertiser:edit, _locale: en }
     requirements:
+        _locale:  %anytv.locales%
         id:  \d+
     
 offers_reset:
-    path:      /admin/offers/reset
-    defaults:  { _controller: AnytvDashboardBundle:Offer:reset }
+    path:      /{_locale}/admin/offers/reset
+    defaults:  { _controller: AnytvDashboardBundle:Offer:reset, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
         
 offers:
-    path:      /admin/offers/{page}
-    defaults:  { _controller: AnytvDashboardBundle:Offer:index, page: 1 }
+    path:      /{_locale}/admin/offers/{page}
+    defaults:  { _controller: AnytvDashboardBundle:Offer:index, _locale: en, page: 1 }
     requirements:
+        _locale:  %anytv.locales%
         page:  \d+
        
 offer_edit:
-    path:      /admin/offers/edit/{id}
-    defaults:  { _controller: AnytvDashboardBundle:Offer:edit }
+    path:      /{_locale}/admin/offers/edit/{id}
+    defaults:  { _controller: AnytvDashboardBundle:Offer:edit, _locale: en }
     requirements:
+        _locale:  %anytv.locales%
         page:  \d+
         
 traffic_referrals:
-    path:      /admin/traffic_referrals/{page}
-    defaults:  { _controller: AnytvDashboardBundle:TrafficReferral:index, page: 1 }
+    path:      /{_locale}/admin/traffic_referrals/{page}
+    defaults:  { _controller: AnytvDashboardBundle:TrafficReferral:index, _locale: en, page: 1 }
     requirements:
+        _locale:  %anytv.locales%
         page:  \d+
         
 affiliates_reset:
-    path:      /admin/affiliates/reset
-    defaults:  { _controller: AnytvDashboardBundle:Affiliate:reset }
+    path:      /{_locale}/admin/affiliates/reset
+    defaults:  { _controller: AnytvDashboardBundle:Affiliate:reset, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
         
 affiliates:
-    path:      /admin/affiliates/{page}
-    defaults:  { _controller: AnytvDashboardBundle:Affiliate:index, page: 1 }
+    path:      /{_locale}/admin/affiliates/{page}
+    defaults:  { _controller: AnytvDashboardBundle:Affiliate:index, _locale: en, page: 1 }
     requirements:
+        _locale:  %anytv.locales%
         page:  \d+
         
 affiliate_user_view:
-    path:      /admin/affiliates/user/view/{id}
-    defaults:  { _controller: AnytvDashboardBundle:AffiliateUser:view }
+    path:      /{_locale}/admin/affiliates/user/view/{id}
+    defaults:  { _controller: AnytvDashboardBundle:AffiliateUser:view, _locale: en }
     requirements:
+        _locale:  %anytv.locales%
         id:  \d+
         
 affiliate_user_edit:
-    path:      /admin/affiliates/user/edit/{id}
-    defaults:  { _controller: AnytvDashboardBundle:AffiliateUser:edit }
+    path:      /{_locale}/admin/affiliates/user/edit/{id}
+    defaults:  { _controller: AnytvDashboardBundle:AffiliateUser:edit, _locale: en }
     requirements:
+        _locale:  %anytv.locales%
         id:  \d+
         
 affiliate_view:
-    path:      /admin/affiliates/view/{id}
-    defaults:  { _controller: AnytvDashboardBundle:Affiliate:view }
+    path:      /{_locale}/admin/affiliates/view/{id}
+    defaults:  { _controller: AnytvDashboardBundle:Affiliate:view, _locale: en }
     requirements:
+        _locale:  %anytv.locales%
         id:  \d+
         
 affiliate_edit:
-    path:      /admin/affiliates/edit/{id}
-    defaults:  { _controller: AnytvDashboardBundle:Affiliate:edit }
+    path:      /{_locale}/admin/affiliates/edit/{id}
+    defaults:  { _controller: AnytvDashboardBundle:Affiliate:edit, _locale: en }
     requirements:
+        _locale:  %anytv.locales%
         id:  \d+
         
 affiliate_users_reset:
-    path:      /admin/affiliate_users/reset
-    defaults:  { _controller: AnytvDashboardBundle:AffiliateUser:reset }
+    path:      /{_locale}/admin/affiliate_users/reset
+    defaults:  { _controller: AnytvDashboardBundle:AffiliateUser:reset, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
         
 affiliate_users:
-    path:      /admin/affiliate_users/{page}
-    defaults:  { _controller: AnytvDashboardBundle:AffiliateUser:index, page: 1 }
+    path:      /{_locale}/admin/affiliate_users/{page}
+    defaults:  { _controller: AnytvDashboardBundle:AffiliateUser:index, _locale: en, page: 1 }
     requirements:
+        _locale:  %anytv.locales%
         page:  \d+
         
 contact:

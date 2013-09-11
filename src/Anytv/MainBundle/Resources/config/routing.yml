@@ -1,35 +1,44 @@
 anytv_main_homepage:
-    path:  /{culture}
-    defaults: { _controller: AnytvMainBundle:Default:index, culture: en, _locale: en, _format: html }
+    path:  /{_locale}
+    defaults: { _controller: AnytvMainBundle:Default:index, _locale: en }
     requirements:
-        culture:  %anytv.cultures%
+        _locale:  %anytv.locales%
         
 news_reset:
-    path:      /admin/news/reset
-    defaults:  { _controller: AnytvMainBundle:News:reset }
+    path:      /{_locale}/admin/news/reset
+    defaults:  { _controller: AnytvMainBundle:News:reset, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
         
 news:
-    path:      /admin/news/{page}
-    defaults:  { _controller: AnytvMainBundle:News:index, page: 1 }
+    path:      /{_locale}/admin/news/{page}
+    defaults:  { _controller: AnytvMainBundle:News:index, _locale: en, page: 1 }
     requirements:
+        _locale:  %anytv.locales%
         page:  \d+
        
 news_add:
-    path:      /admin/news/add
-    defaults:  { _controller: AnytvMainBundle:News:add }
+    path:      /{_locale}/admin/news/add
+    defaults:  { _controller: AnytvMainBundle:News:add, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
     
 news_edit:
-    path:      /admin/news/edit/{id}
-    defaults:  { _controller: AnytvMainBundle:News:edit }
+    path:      /{_locale}/admin/news/edit/{id}
+    defaults:  { _controller: AnytvMainBundle:News:edit, _locale: en }
     requirements:
+        _locale:  %anytv.locales%
         id:  \d+
     
 news_category:
-    path:      /admin/news/categories/{page}
-    defaults:  { _controller: AnytvMainBundle:NewsCategory:index, page: 1 }
+    path:      /{_locale}/admin/news/categories/{page}
+    defaults:  { _controller: AnytvMainBundle:NewsCategory:index, _locale: en, page: 1 }
     requirements:
+        _locale:  %anytv.locales%
         page:  \d+
         
 news_category_add:
-    path:      /admin/news/categories/add
-    defaults:  { _controller: AnytvMainBundle:NewsCategory:add }
+    path:      /{_locale}/admin/news/categories/add
+    defaults:  { _controller: AnytvMainBundle:NewsCategory:add, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%

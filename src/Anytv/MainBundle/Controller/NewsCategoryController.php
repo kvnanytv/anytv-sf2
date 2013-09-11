@@ -13,6 +13,7 @@ class NewsCategoryController extends Controller
     public function indexAction($page)
     {
        $repository = $this->getDoctrine()->getRepository('AnytvMainBundle:NewsCategory');
+       $translator = $this->get('translator');
         
        $items_per_page = 10;
        $order_by = 'id';
@@ -22,11 +23,13 @@ class NewsCategoryController extends Controller
        $total_news_categories = $repository->countAllNewsCategories();
        $total_pages = ceil($total_news_categories / $items_per_page);
        
-       return $this->render('AnytvMainBundle:NewsCategory:index.html.twig', array('title'=>'News Categories', 'news_categories'=>$news_categories, 'total_news_categories'=>$total_news_categories, 'page'=>$page, 'total_pages'=>$total_pages));
+       return $this->render('AnytvMainBundle:NewsCategory:index.html.twig', array('title'=>$translator->trans('News Categories'), 'news_categories'=>$news_categories, 'total_news_categories'=>$total_news_categories, 'page'=>$page, 'total_pages'=>$total_pages));
     }
     
     public function addAction(Request $request)
     {
+      $translator = $this->get('translator');
+      
       $news_category = new NewsCategory();
 
       $form = $this->createForm(new NewsCategoryType(), $news_category);
@@ -44,7 +47,7 @@ class NewsCategoryController extends Controller
         return $this->redirect($this->generateUrl('news_category'));
       }
       
-      return $this->render('AnytvMainBundle:NewsCategory:add.html.twig', array('title'=>'Add a news category', 'form'=>$form->createView()));
+      return $this->render('AnytvMainBundle:NewsCategory:add.html.twig', array('title'=>$translator->trans('Add a news category'), 'form'=>$form->createView()));
     }
     
     
