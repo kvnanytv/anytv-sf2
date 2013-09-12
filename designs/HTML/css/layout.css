@@ -3,19 +3,19 @@ layout Styles
 */
 
 /********************** General *******************/
- 
-.cl {
-	clear: both;
-	height: 20px;
-	margin: 0; /*com*/
-}
 
 body {
-	background-image: url(../img/clouds-1.jpg);
+	background-image: url(../img/clouds.jpg);
 	background-attachment: fixed;
 	background-size: 100%;
 	background-position: bottom;
 }
+ 
+.cl {
+	clear: both;
+	float: none;
+}
+
 /********************** Header *******************/
 
 
@@ -73,10 +73,8 @@ body {
 		left top,
 		color-stop(0.09, rgb(15,78,137)),
 		color-stop(0.78, rgb(49,129,199))cv
-	);
-
-
-    -webkit-box-shadow: 0 2px 5px #1d1d1d;	*/	
+	);*/	
+    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);	
 
 }
 
@@ -120,6 +118,7 @@ body {
 .yt-video {
 	position: relative;
 	top: -441px;
+	max-width: 100%;
 	width: 560px;
 	height: 315px;
 	margin: 0 auto;	
@@ -137,11 +136,37 @@ body {
 	color: #fff;
 	font-weight: bold;
 	background-color: #d03431;		
-	padding: 20px 40px;
-	
-	
+	padding: 20px 40px;	
 }
 
+.btn-custom {
+	background-color: #8d1ba5;
+	/*background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cb1515", endColorstr="#cb1515");
+	background-image: -khtml-gradient(linear, left top, left bottom, from(#cb1515), to(#cb1515));
+	background-image: -moz-linear-gradient(top, #cb1515, #cb1515);
+	background-image: -ms-linear-gradient(top, #cb1515, #cb1515);
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cb1515), color-stop(100%, #cb1515));
+	background-image: -webkit-linear-gradient(top, #cb1515, #cb1515);
+	background-image: -o-linear-gradient(top, #cb1515, #cb1515);
+	background-image: linear-gradient(#cb1515, #cb1515); */
+	border-color: #8d1ba5;
+	color: #fff !important;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.00);
+	-webkit-font-smoothing: antialiased;
+	border-radius: 0;
+	
+	position: relative;
+	top: -290px;
+	padding: 20px 50px;	
+
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.btn-custom:hover {
+	background-color: #5c166b;
+}
 /********************** Section 2: Games Lists *******************/
 
 #games-lists {
@@ -162,6 +187,49 @@ body {
 	background: white url(img/magnifying-glass.png) right no-repeat;
 
 }
+
+.gameslist-tbl-wrap {
+	margin-top: 20px;
+	width: 960px;
+	margin: 20px auto;
+}
+
+	#gl-tbl  {
+		width: 100%;
+		text-align: left;
+	}
+
+
+	#gl-tbl thead, #gl-tbl tbody, #gl-tbl tfoot, #gl-tbl th, #gl-tbl td {
+		
+	}
+
+	#gl-tbl thead > tr > th {
+		padding: 10px 20px;
+		border: 0;
+		font-size: 18px;
+		color: #fff;
+	}
+
+	#gl-tbl tbody > tr > td {
+		padding: 20px;
+	}
+
+	#f-col {
+		background: #d71815;
+	}
+
+	#s-col {
+		background: #a31412;
+	}
+
+	#th-col {
+		background: #7a0f0d
+	}
+
+	#frt-col {
+		background: #540807;
+	}
 
 
 
@@ -198,5 +266,16 @@ body {
 #about-anytv {
 	height: 380px;
 	background-color: #c057d1;
+}
+
+
+/********************** Footer *******************/
+
+footer {
+	margin-bottom: -40px;
+	height: 150px;
+	padding: 20px;
+	background-color: #282a2b;
+	bottom: 0;
 }
 

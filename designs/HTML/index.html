@@ -12,25 +12,25 @@
 	<title>AnyTV | A new kind of YouTube Channel</title>
 
 	<link rel="stylesheet" href="css/foundation.css">
-  
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
 
-  	<script src="js/vendor/custom.modernizr.js"></script>
+
+
 
 	<!-- Bootstrap -->
     <link href="css/bootstrap/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap/bootstrap-min .css" rel="stylesheet">
     <link href="css/bootstrap/carousel.css" rel="stylesheet">
+  <!-- Fin: Bootstrap -->
 
-    <!-- Foundation -->
-    <link href="css/foundation/foundation.css" rel="stylesheet">
-
-
-    <link href="css/layout.css" rel="stylesheet">
-    <link href="css/normalize.css" rel="stylesheet">   
+    <link href="css/layout.css" rel="stylesheet">    
+    <link href="css/normalize.css" rel="stylesheet"> 
+    <link href="css/carouFred.css" rel="stylesheet">     
 
 </head>
 
 <body>
+<!-- Begin: Header -->
 	<!-- Main nav -->
 	<header class="navbar navbar-inverse navbar-default main-nav">
 		<div class="navbar-inner">
@@ -48,11 +48,15 @@
 						<li>
 							<a class="lnk-red" href="#">dashboard</a>
 						</li>
-						<li>
-							<a class="lnk-yellow" href="#">community</a>
-						</li>																		
+            <li>
+              <a class="lnk-red" href="#">mmo</a>
+            </li>
+            <li>
+              <button type="button" class="btn btn-default navbar-btn">Sign in</button>
+            </li>                   												
 					</ul>
 				</div>
+
 			</div>
 		</div>
 	</header>
@@ -63,7 +67,7 @@
 			<div class="navbar-collapse collapse">              
 				<div id="subnav-links">
 					<ul class="nav navbar-nav">
-						<li>
+						<li>         
 							<a href="#">What is AnyTV?</a>
 						</li>
 						<li>
@@ -83,68 +87,29 @@
 						</li>
 						<li>
 							<a href="#">Staff</a>
-						</li>								
+						</li>
+            <li>
+              <a href="#">FAQs</a>
+            </li>                 								
 					</ul>
 				</div>
 			</div>
 		</div>
 	</header>
+<!-- End: Header -->
 
-    <!-- Carousel
-    <div id="myCarousel" class="carousel slide">
-      
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="item active">
-          <img style="max-width: 100%; height: auto;" src="img/banner_image.jpg" data-src="holder.js/100%x500/auto/#777:#7a7a7a/text:First slide" alt="First slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-large btn-primary" href="#">Sign up today</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="data:image/png;base64," data-src="holder.js/100%x500/auto/#777:#7a7a7a/text:Second slide" alt="Second slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Another example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="data:image/png;base64," data-src="holder.js/100%x500/auto/#777:#7a7a7a/text:Third slide" alt="Third slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>One more for good measure.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-large btn-primary" href="#">Browse gallery</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-    </div> -->
-
+<!-- Begin: Content -->
     <div id="content">
     	<section class="banner">
         <div class="container">
       		<div class="uptop">
       			<h3>A new kind of YouTube Network</h3>
       			<p>No need to unpartner from your YouTube Network</p>
-      			<img src="img/mac-monitor.png">
+      			<img src="img/mac-monitor.png">             
             <div class="yt-video">
-              <iframe src="//www.youtube.com/embed/UCqJAZuvUS0?list=PLyI74zGGymu8k7eVhGPcVSh3nKljHfiVX" frameborder="0" allowfullscreen></iframe>
+              <iframe src="http://www.youtube.com/embed/UCqJAZuvUS0?list=PLyI74zGGymu8k7eVhGPcVSh3nKljHfiVX" frameborder="0" allowfullscreen></iframe>
             </div>      			
-
+            <p><a class="btn btn-primary btn-lg btn-custom">Join Us!</a></p> 
       		</div>
         </div>       
     	</section>
@@ -155,52 +120,58 @@
         		<h3>anyTV Games List</h3>
             <div class="row">
                 <input type="text" class="form-control" placeholder="Search ...">
-            </div>
-            <div>
-                            <!-- Carousel
-              ================================================== -->
-              <div id="myCarousel" class="carousel slide">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                  <li data-target="#myCarousel" data-slide-to="1"></li>
-                  <li data-target="#myCarousel" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                  <div class="item active">
-                    <img src="data:image/png;base64," data-src="holder.js/100%x500/auto/#777:#7a7a7a/text:First slide" alt="First slide">
-                    <div class="container">
-                      <div class="carousel-caption">
-                        <h1>Example headline.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class="btn btn-large btn-primary" href="#">Sign up today</a></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <img src="data:image/png;base64," data-src="holder.js/100%x500/auto/#777:#7a7a7a/text:Second slide" alt="Second slide">
-                    <div class="container">
-                      <div class="carousel-caption">
-                        <h1>Another example headline.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class="btn btn-large btn-primary" href="#">Learn more</a></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <img src="data:image/png;base64," data-src="holder.js/100%x500/auto/#777:#7a7a7a/text:Third slide" alt="Third slide">
-                    <div class="container">
-                      <div class="carousel-caption">
-                        <h1>One more for good measure.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class="btn btn-large btn-primary" href="#">Browse gallery</a></p>
-                      </div>
-                    </div>
-                  </div>
+                <div class="gameslist-tbl-wrap">
+         
+
+                  <table id="gl-tbl" class="table table-striped">               
+                    
+                      <thead>
+                        <tr>
+                          <th scope="col" id="f-col">Game</th>
+                          <th scope="col" id="s-col">Payout</th>
+                          <th scope="col" id="th-col">Countries</th>
+                          <th scope="col" id="frt-col">Status</th>
+                        </tr>
+                      </thead>                    
+                    
+                      <tfoot>
+                            <tr>
+                              <td>...</td>
+                              <td>...</td>
+                              <td>...</td>
+                              <td>...</td>                                  
+                            </tr>
+                      </tfoot>                    
+                 
+                      <tbody>
+                        <tr>
+                          <td>Age of Conan</td>
+                          <td>$.60</td>
+                          <td>Canada, United Kingdom ...</td>
+                          <td>Active</td>
+                        </tr>
+
+                        <tr>
+                          <td>Age of Conan</td>
+                          <td>$.60</td>
+                          <td>Canada, United Kingdom ...</td>
+                          <td>Active</td>
+                        </tr>
+
+                        <tr>
+                          <td>Age of Conan</td>
+                          <td>$.60</td>
+                          <td>Canada, United Kingdom ...</td>
+                          <td>Active</td>
+                        </tr>                                                  
+                      </tbody> 
+
+                  </table>
+
+
                 </div>
-                <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-                <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-              </div><!-- /.carousel -->
+            </div>
+ 
             </div>      		
           </div>
         </div>
@@ -231,8 +202,23 @@
         <div></div>
       </section>
     </div>
+<!-- End: Content-->    
 
+<!-- Begin: Footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="ft-links">&nbsp;</div>
+          <div class="row cright-links"></div>
+        </div>
+      </div>
+    </footer>
+<!-- End: Footer -->  
 
+<!-- Scripts --> 
+  <script src="js/vendor/custom.modernizr.js"></script>
+  <script src="js/bespoke/bespoke.js"></script>
+  <script src="js/bespoke/demo.js"></script>
 </body>
 
 </html>
