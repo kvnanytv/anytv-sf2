@@ -7,7 +7,7 @@ layout Styles
 body {
 	background-image: url(../img/clouds.jpg);
 	background-attachment: fixed;
-	background-size: 100%;
+	background-size: auto;
 	background-position: bottom;
 }
  
@@ -18,44 +18,42 @@ body {
 
 /********************** Header *******************/
 
-
-.main-nav  {
-	padding-top: 5px;
-	height: 70px;
-	margin-bottom: 0;
-	border-radius: 0;
-	margin: 0;
+.main-nav {
+	background: #fff;
 }
 
-.navbar-default {
-	background: #ffffff;
-	border: 0;
-	/*border-bottom: 1px solid #ccc;*/
+.navbar {
+	border-radius: 0 !important;
+	margin: 0 !important;
+	background: transparent !important;
+	border: none !important;
 }
 
-.navbar-inner {
-	max-height: 40px;
+.nav li a.lnk-blue {
+	text-decoration: none;
+	color: #2c7dc6 !important;
+	font-weight: bold;
 }
 
-#menu {
-	height: 100%;
+.nav li a.lnk-yellow {
+	text-decoration: none;
+	color: #eaa13f !important;
+	font-weight: bold;
 }
 
-.lnk-blue {
-	color: #2c7dc6;	
+.nav li a.lnk-red {
+	text-decoration: none;
+	color: #dc2127 !important;
+	font-weight: bold;
 }
 
-.navbar .brand {
-	float: left;
-	padding: 15px 0 0 30px;
+.dropdown a {
+	font-size: 12px;
+	text-decoration: none !important;
 }
 
-.nav li {
-	display: inline;
-}
-
-.subnav {
-	height: 20px;
+.sub-nav {
+	height: 40px;
 	border-radius: 0;
 	border-bottom: none;
 	margin-bottom:-5px;
@@ -74,14 +72,24 @@ body {
 		color-stop(0.09, rgb(15,78,137)),
 		color-stop(0.78, rgb(49,129,199))cv
 	);*/	
-    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);	
+    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    -ms
 
 }
 
-#subnav-links ul > li > a {
+.sub-nav .nav-pills > li a {
 	font-size: 12px;
 	font-weight: bold;
-	color: #fff;
+	color: #a6c9e9 !important;
+	text-decoration: none;
+}
+
+.sub-nav .nav-pills > li a:hover {
+	border-radius: 0 !important;
+	background: none;
+	color: #fff !important;
 }
 
 /* #subnav-links .navbar-nav > li > a {
@@ -109,6 +117,7 @@ body {
 
 .uptop img {
 	margin-top: 20px;
+	max-width: 100%;
 }
 
 #lang-picker {
@@ -140,7 +149,7 @@ body {
 }
 
 .btn-custom {
-	background-color: #8d1ba5;
+	background-color: /*#8d1ba5*/ transparent;
 	/*background-repeat: repeat-x;
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cb1515", endColorstr="#cb1515");
 	background-image: -khtml-gradient(linear, left top, left bottom, from(#cb1515), to(#cb1515));
@@ -150,7 +159,7 @@ body {
 	background-image: -webkit-linear-gradient(top, #cb1515, #cb1515);
 	background-image: -o-linear-gradient(top, #cb1515, #cb1515);
 	background-image: linear-gradient(#cb1515, #cb1515); */
-	border-color: #8d1ba5;
+	border: 5px solid #fff;
 	color: #fff !important;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.00);
 	-webkit-font-smoothing: antialiased;
@@ -165,12 +174,13 @@ body {
 }
 
 .btn-custom:hover {
-	background-color: #5c166b;
+	background-color: /*#5c166b*/ transparent;
+	border: 5px solid #fff;
 }
 /********************** Section 2: Games Lists *******************/
 
 #games-lists {
-	height: 460px;
+	/*height: 460px;*/
 	background-color: #fff;
 }
 
@@ -187,6 +197,12 @@ body {
 	background: white url(img/magnifying-glass.png) right no-repeat;
 
 }
+
+#in-pl::-webkit-input-placeholder { font-style: italic; }
+#in-pl::-moz-placeholder { font-style: italic; } /* firefox 19+ */
+#in-pl:-ms-input-placeholder { font-style:italic; } /* ie */
+input:-moz-placeholder { font-style:; }
+
 
 .gameslist-tbl-wrap {
 	margin-top: 20px;
@@ -215,6 +231,14 @@ body {
 		padding: 20px;
 	}
 
+	#gl-tbl tbody > tr:hover td {
+		background: #e8e8e8;
+	}
+
+	#gl-tbl tfoot {
+		text-align: center;		
+	}
+
 	#f-col {
 		background: #d71815;
 	}
@@ -238,9 +262,8 @@ body {
 /********************** Section 3: Networks *******************/
 
 #networks {
-	height: 380px;
-	background-color: #267ac5;
-	padding-top: 20px;
+	/*height: 380px;*/
+	background-color: #267ac5;	
 	margin: 0;
 }
 
@@ -248,6 +271,12 @@ body {
 	border: 1px solid white;
 	height: 100%;
 	background-color: #fff;
+	border: 20px solid #267ac5;
+	padding: 0 20px 20px 20px;
+}
+
+.brdr-test p {
+	color: #000;
 }
 
 

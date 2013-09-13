@@ -11,95 +11,100 @@
 
 	<title>AnyTV | A new kind of YouTube Channel</title>
 
-	<link rel="stylesheet" href="css/foundation.css">
   <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href="css/layout.css" rel="stylesheet">    
+  <link href="css/normalize.css" rel="stylesheet"> 
+  <link href="css/carouFred.css" rel="stylesheet">   
 
+   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5shiv.js"></script>
+      <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
 
-
+   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png"/>
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png"/>
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png"/>
+  <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png"/>
+  <link rel="shortcut icon" href="assets/ico/favicon.png"/>
 
 	<!-- Bootstrap -->
     <link href="css/bootstrap/bootstrap.css" rel="stylesheet">
-    <link href="css/bootstrap/bootstrap-min .css" rel="stylesheet">
-    <link href="css/bootstrap/carousel.css" rel="stylesheet">
+    <link href="css/bootstrap/bootstrap-min.css" rel="stylesheet">
   <!-- Fin: Bootstrap -->
 
-    <link href="css/layout.css" rel="stylesheet">    
-    <link href="css/normalize.css" rel="stylesheet"> 
-    <link href="css/carouFred.css" rel="stylesheet">     
+    
 
 </head>
 
 <body>
 <!-- Begin: Header -->
 	<!-- Main nav -->
-	<header class="navbar navbar-inverse navbar-default main-nav">
-		<div class="navbar-inner">
-			<div class="container">
-				<div class="brand">
-					<a href="#">
-						<img src="img/anytv-home_logo.png">
-					</a>
-				</div>  
-				<div id="menu">
-					<ul class="nav navbar-nav pull-right">
-						<li>
-							<a class="lnk-blue" href="#">anyTV</a>
-						</li>
-						<li>
-							<a class="lnk-red" href="#">dashboard</a>
-						</li>
-            <li>
-              <a class="lnk-red" href="#">mmo</a>
-            </li>
-            <li>
-              <button type="button" class="btn btn-default navbar-btn">Sign in</button>
-            </li>                   												
-					</ul>
-				</div>
+	<header class="main-nav">
+    
+      <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#"><img src="img/anytv-home_logo.png"></a>
+          </div>
 
-			</div>
-		</div>
+
+          <div class="collapse navbar-collapse navbar-ex1-collapse">        
+            <ul class="nav navbar-nav navbar-left">          
+              <li><a class="lnk-blue" href="#">any.TV</a></li>
+              <li><a class="lnk-yellow" href="#">dashboard</a></li>
+              <li><a class="lnk-red" href="#">mmo</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">LANGUAGE&nbsp;<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">English (US)</a></li>
+                  <li><a href="#">Chinese</a></li>
+                  <li><a href="#">Filipino</a></li>
+                  <li><a href="#">Dutch</a></li>
+                </ul>
+              </li>              
+            </ul>
+          </div>  
+      </div>        
+      </nav>
+ 
+
 	</header>
 
 	<!-- Sub nav -->
-	<header class="navbar navbar-inverse navbar-default subnav">
+	<header class="sub-nav">
 		<div class="container">
-			<div class="navbar-collapse collapse">              
-				<div id="subnav-links">
-					<ul class="nav navbar-nav">
-						<li>         
-							<a href="#">What is AnyTV?</a>
-						</li>
-						<li>
-							<a href="#">Games List</a>
-						</li>
-						<li>
-							<a href="#">Branding Kit</a>
-						</li>
-						<li>
-							<a href="#">Livestream Handbook</a>
-						</li>											
-						<li>
-							<a href="#">Recruiters Handbook</a>
-						</li>												
-						<li>
-							<a href="#">Join Twitch Team!</a>
-						</li>
-						<li>
-							<a href="#">Staff</a>
-						</li>
-            <li>
-              <a href="#">FAQs</a>
-            </li>                 								
-					</ul>
-				</div>
-			</div>
+      <div class="collapse navbar-collapse navbar-ex1-collapse">        
+        <ul class="nav nav-pills">
+          <li><a href="#">What is any.TV?</a></li>
+          <li><a href="#">Branding Kit</a></li>
+          <li><a href="#">Games List</a></li>
+          <li><a href="#">Livestream Handbook</a></li>
+          <li><a href="#">Recruiters Handbook</a></li>
+          <li><a href="#">Join our Twitch Team!</a></li>
+          <li><a href="#">Staff</a></li>        
+          <li><a href="#">FAQs</a></li>
+          <li class="dropdown">
+            <a href="#"></a>
+          </li>
+        </ul>
+      </div>
 		</div>
 	</header>
 <!-- End: Header -->
 
 <!-- Begin: Content -->
     <div id="content">
+
     	<section class="banner">
         <div class="container">
       		<div class="uptop">
@@ -119,11 +124,11 @@
           <div class="games-list-wrap">
         		<h3>anyTV Games List</h3>
             <div class="row">
-                <input type="text" class="form-control" placeholder="Search ...">
+                <input id="in-pl" type="text" class="form-control" placeholder="Search Games...">
                 <div class="gameslist-tbl-wrap">
          
 
-                  <table id="gl-tbl" class="table table-striped">               
+                  <table id="gl-tbl" class="table table-striped">        
                     
                       <thead>
                         <tr>
@@ -136,34 +141,50 @@
                     
                       <tfoot>
                             <tr>
-                              <td>...</td>
-                              <td>...</td>
-                              <td>...</td>
-                              <td>...</td>                                  
+                              <!-- <td colspan="4">&#60; &#62;</td> -->
+                              <td colspan="4">
+                                <ul class="pagination">
+                                  <li><a href="#">&laquo;</a></li>
+                                  <li><a href="#">1</a></li>
+                                  <li><a href="#">2</a></li>
+                                  <li><a href="#">3</a></li>
+                                  <li><a href="#">4</a></li>
+                                  <li><a href="#">5</a></li>
+                                  <li><a href="#">&raquo;</a></li>
+                                </ul>
+                              </td>                                               
                             </tr>
                       </tfoot>                    
                  
                       <tbody>
                         <tr>
                           <td>Age of Conan</td>
-                          <td>$.60</td>
+                          <td>$0.60</td>
                           <td>Canada, United Kingdom ...</td>
                           <td>Active</td>
                         </tr>
 
                         <tr>
                           <td>Age of Conan</td>
-                          <td>$.60</td>
+                          <td>$0.60</td>
                           <td>Canada, United Kingdom ...</td>
                           <td>Active</td>
                         </tr>
 
                         <tr>
                           <td>Age of Conan</td>
-                          <td>$.60</td>
+                          <td>$0.60</td>
                           <td>Canada, United Kingdom ...</td>
                           <td>Active</td>
-                        </tr>                                                  
+                        </tr>
+
+                        <tr>
+                          <td>Age of Conan</td>
+                          <td>$0.60</td>
+                          <td>Canada, United Kingdom ...</td>
+                          <td>Active</td>
+                        </tr>  
+
                       </tbody> 
 
                   </table>
@@ -179,23 +200,31 @@
 
       <section id="networks">
         <div class="container">
-          <div class="row 3col-bg">
-            <div class="col-lg-4 brdr-test">
-              <h3>Test</h3>
-              <p></p>
+          <div class="container-fluid">
+            <div class="row-fluid 3col-bg">
+              <div class="col-lg-4 brdr-test">
+                <h3>George is Back!</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <a href="#">Learn More</a>
+              </div>
+              <div class="col-lg-4 brdr-test">
+                <h3>any.TV Music</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <a href="#">Learn More</a>
+              </div>
+              <div class="col-lg-4 brdr-test">
+                <h3>any.TV Games</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <a href="#">Learn More</a>              
+              </div>                        
             </div>
-            <div class="col-lg-4 brdr-test">
-              <h3>Test</h3>
-            </div>
-            <div class="col-lg-4 brdr-test">
-              <h3>Test</h3>
-            </div>                        
           </div>
         </div>
       </section>
 
       <section id="section4">
-        <div></div>
+        <div class="container">               
+        </div>
       </section>      
     	
       <section id="about-anytv">
@@ -207,18 +236,37 @@
 <!-- Begin: Footer -->
     <footer>
       <div class="container">
-        <div class="row">
-          <div class="ft-links">&nbsp;</div>
-          <div class="row cright-links"></div>
+        <div class="container-fluid">
+          <div class="row-fluid">
+            <div class="ft-links">
+                <div class="col-lg-2">
+                  <ul>
+                    <li><a href="#">Link 1</a></li>
+                    <li><a href="#">Link 1</a></li>
+                    <li><a href="#">Link 1</a></li>                  
+                  </ul>
+                </div>
+                <div class="col-lg-2">
+                  <ul>
+                    <li><a href="#">Link 1</a></li>
+                    <li><a href="#">Link 1</a></li>
+                    <li><a href="#">Link 1</a></li>                  
+                  </ul>                
+                </div>
+                <div class="col-lg-2"></div>
+              </div>
+            </div>
+            <div class="row cright-links"></div>
         </div>
       </div>
     </footer>
 <!-- End: Footer -->  
 
 <!-- Scripts --> 
+  <script src="assets/js/jquery.js"></script>   
   <script src="js/vendor/custom.modernizr.js"></script>
-  <script src="js/bespoke/bespoke.js"></script>
-  <script src="js/bespoke/demo.js"></script>
+  <script src="js/bootstrap/bootstrap.min.js"></script>   
+
 </body>
 
 </html>
