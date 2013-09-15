@@ -7,7 +7,7 @@ layout Styles
 body {
 	background-image: url(../img/clouds.jpg);
 	background-attachment: fixed;
-	background-size: auto;
+	background-size: cover;
 	background-position: bottom;
 }
  
@@ -27,6 +27,26 @@ body {
 	margin: 0 !important;
 	background: transparent !important;
 	border: none !important;
+}
+
+.dropdown-toggle {
+	background-color: #fff !important;
+	/*border: 1px solid #d2d2d2;*/
+	height: auto !important;
+	padding: 10px !important;
+	margin-top: 5px;
+}
+
+.dd-height {
+	border-radius: 0 !important;
+}
+
+.dd-height li a {
+	padding: 10px !important;
+}
+
+.dd-height li a > img {
+	padding-right: 10px;
 }
 
 .nav li a.lnk-blue {
@@ -84,6 +104,7 @@ body {
 	font-weight: bold;
 	color: #a6c9e9 !important;
 	text-decoration: none;
+	text-shadow: 0px -1px 0px rgba(13, 63, 135, 1);	
 }
 
 .sub-nav .nav-pills > li a:hover {
@@ -272,7 +293,7 @@ input:-moz-placeholder { font-style:; }
 	height: 100%;
 	background-color: #fff;
 	border: 20px solid #267ac5;
-	padding: 0 20px 20px 20px;
+	padding: 0 20px 0 20px;
 }
 
 .brdr-test p {
