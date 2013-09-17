@@ -14,7 +14,7 @@ class LoadOfferCategoryData extends AbstractFixture implements OrderedFixtureInt
      */
     public function load(ObjectManager $manager)
     {
-        return;
+        //return;
         
         $base = 'https://api.hasoffers.com/Api?';
  

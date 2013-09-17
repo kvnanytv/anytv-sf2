@@ -10,12 +10,12 @@
     <h1 class="title">{{ title|upper }}</h1>
     
     <p>&nbsp;</p>
-    <div>
+    <div style="margin-bottom: 20px">
       {{ form_start(form, {'action': path('traffic_referrals'), 'method': 'POST'}) }}
          {{ form_errors(form) }}
-         {{ form_errors(form.stat_date) }}
-         {{ form_widget(form.stat_date, {'attr': {'class': 'stat_date_field'}}) }}
-         {{ form_widget(form.search, {'attr': {'class': 'stat_date_button'}}) }}
+         {{ form_errors(form.traffic_referral_date) }}
+         {{ form_widget(form.traffic_referral_date, {'attr': {'class': 'traffic_referral_date_field'}}) }}
+         {{ form_widget(form.run_report) }}
        {{ form_end(form) }}
     </div>
 

@@ -5,60 +5,61 @@ namespace Anytv\DashboardBundle\Hasoffers;
 class HasoffersAPI
 {
     private $api_url;
-    private $api_format;
-    private $api_service;
-    private $api_version;
-    private $api_network_id;
-    private $api_network_token;
+    private $api_params;
 
     public function __construct($api_url, $api_format, $api_service, $api_version, $api_network_id, $api_network_token)
     {
         $this->api_url = $api_url;
-        $this->api_format = $api_format;
-        $this->api_service = $api_service;
-        $this->api_version = $api_version;
-        $this->api_network_id = $api_network_id;
-        $this->api_network_token = $api_network_token;
+        
+        $this->api_params = array(
+	  'Format' => $api_format
+	  ,'Service' => $api_service
+	  ,'Version' => $api_version
+	  ,'NetworkId' => $api_network_id
+	  ,'NetworkToken' => $api_network_token
+        );
     }
 
     public function getOffers()
     {
-        $params = array(
-	  'Format' => $this->api_format
-	  ,'Target' => 'Offer'
-	  ,'Method' => 'findAll'
-	  ,'Service' => $this->api_service
-	  ,'Version' => $this->api_version
-	  ,'NetworkId' => $this->api_network_id
-	  ,'NetworkToken' => $this->api_network_token
-          ,'contain'=>array('OfferCategory', 'Country')
-	  ,'limit' => 50000
-        );
+        $this->api_params['Target'] = 'Offer';
+        $this->api_params['Method'] = 'findAll';
+        $this->api_params['contain'] = array('OfferCategory', 'Country');
+        $this->api_params['limit'] = 1000000;
         
-        $url = $this->api_url . http_build_query( $params );
+        $url = $this->api_url . http_build_query( $this->api_params );
  
         $result = file_get_contents( $url );
         
-        $offers_result = (array) json_decode( $result );
-        $offers_response = (array) $offers_result['response'];
-        $offers_data = (array) $offers_response['data'];
-        $offers_data = (array) $offers_data['data'];
+        $result = (array) json_decode( $result );
+        $response = (array) $result['response'];
+        $data = (array) $response['data'];
+        $data = (array) $data['data'];
         
-        return $offers_data;
+        return $data;
     }
     
     public function getTrafficReferrals($date)
     {
-        $params = array(
-	  'Format' => $this->api_format
-	  ,'Target' => 'Offer'
-	  ,'Method' => 'findAll'
-	  ,'Service' => $this->api_service
-	  ,'Version' => $this->api_version
-	  ,'NetworkId' => $this->api_network_id
-	  ,'NetworkToken' => $this->api_network_token
-          ,'contain'=>array('OfferCategory', 'Country')
-	  ,'limit' => 50000
-        );
+        $this->api_params['Target'] = 'Report';
+        $this->api_params['Method'] = 'getReferrals';
+        $this->api_params['fields'] = array('Stat.url', 'Stat.affiliate_id', 'Stat.offer_id', 'Stat.clicks', 'Stat.conversions', 'Stat.count', 'Stat.date');
+        $this->api_params['groups'] = array('Stat.url', 'Stat.affiliate_id', 'Stat.offer_id');
+        $this->api_params['filters'] = array('Stat.date' => array('conditional' => 'EQUAL_TO', 'values' => $date));
+        $this->api_params['sort'] = array('Stat.clicks' => 'DESC');
+        $this->api_params['limit'] = 1000000;
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = (array) json_decode( $result );
+        $response = (array) $result['response'];
+        $data = (array) $response['data'];
+        $data = (array) $data['data'];
+        
+        return $data;
+        
+        
     }
 }

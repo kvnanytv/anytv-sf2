@@ -1,0 +1,46 @@
+{% extends 'AnytvDashboardBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title}}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+    {{ parent() }}
+    <em><a href="{{ path('advertiser_edit', { 'id' : advertiser.id }) }}" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em>
+    
+    <h1 class="title">{{ title }}<p>dashboard.tm ID: {{ advertiser.advertiserId }} - ({{ advertiser_status }})</p></h1>
+    
+    <div class="symfony-blocks-welcome">
+      <ul>
+        <li style="display:block">{% trans %}Company{% endtrans %}: {{ advertiser.company }}</li>
+        <li style="display:block">{% trans %}Address{% endtrans %}: {{ advertiser.address1 }}{{ advertiser.address2 }}</li>
+        <li style="display:block">{% trans %}City{% endtrans %}: {{ advertiser.city }}</li>
+        <li style="display:block">{% trans %}Region{% endtrans %}: {{ advertiser.region }}</li>
+        <li style="display:block">{% trans %}Country{% endtrans %}: {% if(advertiser.country) %}<a href="{{ path('country_view', { 'id' : advertiser.country.id }) }}" title="{% trans %}View{% endtrans %}">{{ advertiser.country }}</a>{% else %}&nbsp;{% endif %}</li>
+      </ul>
+            
+      
+      {% if(offers|length) %}
+        <h2>{% trans %}Offers{% endtrans %}:</h2>
+        <ul>
+          {% for offer in offers %}
+            <li style="display:block">
+              <a href="{{ path('offer_view', { 'id' : offer.id }) }}" title="{% trans %}View{% endtrans %}">{{ offer.name }}</a>
+            </li> 
+          {% endfor %}
+        </ul>
+      {% endif %}
+      
+        
+      
+        
+   
+        
+    </div>
+
+    <div class="symfony-blocks-help">
+        
+       
+    </div>
+{% endblock %}

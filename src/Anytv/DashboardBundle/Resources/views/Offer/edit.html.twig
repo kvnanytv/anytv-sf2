@@ -7,7 +7,9 @@
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
     {{ parent() }}
-    <h1 class="title">{{ title|upper }}</h1>
+    <em><a href="{{ path('offer_view', { 'id' : offer.id }) }}" title="{% trans %}View{% endtrans %}">{% trans %}view{% endtrans %}</a></em>
+    
+    <h1 class="title">{{ title }} - {{ offer }}</h1>
     
     <p>&nbsp;</p>
 
@@ -24,10 +26,10 @@
          {{ form_row(form.previewUrl) }}
          {{ form_row(form.status) }}
          {{ form_row(form.expirationDate) }}
-         {{ form_row(form.is_private) }}
-         {{ form_row(form.require_approval) }}
-         {{ form_row(form.require_terms_and_conditions) }}
-         {{ form_row(form.terms_and_conditions) }}
+         {% if(offer.thumbnail) %}
+           <img src="{{ asset(offer.getWebPath()) }}" alt="{{ offer.name() }}" style="width:100px" />
+         {% endif %}
+         {{ form_row(form.file) }}
        {{ form_end(form) }}
        
         

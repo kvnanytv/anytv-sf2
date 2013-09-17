@@ -12,32 +12,123 @@ use Doctrine\ORM\EntityRepository;
  */
 class AffiliateRepository extends EntityRepository
 {
-    public function findAllAffiliates($page, $items_per_page, $order_by, $order, $keyword)
+    public function findAllAffiliates($page, $items_per_page, $order_by, $order, $keyword, $country_id, $status)
     {
         $first_result = ($items_per_page * ($page-1));
         
-        $query = $this->getEntityManager()->createQueryBuilder()
+        if($keyword && $country_id)
+        {
+          $query = $this->getEntityManager()->createQueryBuilder()
           ->select(array('a', 'c'))
           ->from('Anytv\DashboardBundle\Entity\Affiliate', 'a')
           ->leftJoin('a.country', 'c')
-          ->where("a.company LIKE :keyword")
-          ->setParameter('keyword', "%$keyword%")
+          ->where("a.company LIKE :keyword AND a.status = :status AND c.id = :country_id")
+          ->setParameters(array('keyword' => "%$keyword%", 'country_id' => $country_id, 'status' => $status))
+          ->setFirstResult($first_result)
+          ->setMaxResults($items_per_page)
+          ->orderBy('a.'.$order_by, $order)
+          ->getQuery();     
+        }
+        elseif($keyword)
+        {
+          $query = $this->getEntityManager()->createQueryBuilder()
+          ->select(array('a', 'c'))
+          ->from('Anytv\DashboardBundle\Entity\Affiliate', 'a')
+          ->leftJoin('a.country', 'c')
+          ->where("a.company LIKE :keyword AND a.status = :status")
+          ->setParameters(array('keyword' => "%$keyword%", 'status' => $status))
+          ->setFirstResult($first_result)
+          ->setMaxResults($items_per_page)
+          ->orderBy('a.'.$order_by, $order)
+          ->getQuery();      
+        }
+        elseif($country_id)
+        {
+          $query = $this->getEntityManager()->createQueryBuilder()
+          ->select(array('a', 'c'))
+          ->from('Anytv\DashboardBundle\Entity\Affiliate', 'a')
+          ->leftJoin('a.country', 'c')
+          ->where("a.status = :status AND c.id = :country_id")
+          ->setParameters(array('country_id' => $country_id, 'status' => $status))
+          ->setFirstResult($first_result)
+          ->setMaxResults($items_per_page)
+          ->orderBy('a.'.$order_by, $order)
+          ->getQuery();    
+        }
+        else
+        {
+          $query = $this->getEntityManager()->createQueryBuilder()
+          ->select(array('a', 'c'))
+          ->from('Anytv\DashboardBundle\Entity\Affiliate', 'a')
+          ->leftJoin('a.country', 'c')
+          ->where("a.status = :status")
+          ->setParameters(array('status' => $status))
           ->setFirstResult($first_result)
           ->setMaxResults($items_per_page)
           ->orderBy('a.'.$order_by, $order)
           ->getQuery();
-        
+        }
+          
         return $query->getResult();
     }
     
-    public function countAllAffiliates($keyword)
+    public function countAllAffiliates($keyword, $country_id, $status)
     {    
-        $query = $this->createQueryBuilder('a')
+        if($keyword && $country_id)
+        {
+          $query = $this->getEntityManager()->createQueryBuilder()
           ->select('count(a.id)')
-          ->where("a.company LIKE :keyword")
-          ->setParameter('keyword', "%$keyword%")
+          ->from('Anytv\DashboardBundle\Entity\Affiliate', 'a')
+          ->leftJoin('a.country', 'c')
+          ->where("a.company LIKE :keyword AND a.status = :status AND c.id = :country_id")
+          ->setParameters(array('keyword' => "%$keyword%", 'country_id' => $country_id, 'status' => $status))
+          ->getQuery();   
+        }
+        elseif($keyword)
+        {
+          $query = $this->getEntityManager()->createQueryBuilder()
+          ->select('count(a.id)')
+          ->from('Anytv\DashboardBundle\Entity\Affiliate', 'a')
+          ->leftJoin('a.country', 'c')
+          ->where("a.company LIKE :keyword AND a.status = :status")
+          ->setParameters(array('keyword' => "%$keyword%", 'status' => $status))
           ->getQuery();
+        }
+        elseif($country_id)
+        {
+          $query = $this->getEntityManager()->createQueryBuilder()
+          ->select('count(a.id)')
+          ->from('Anytv\DashboardBundle\Entity\Affiliate', 'a')
+          ->leftJoin('a.country', 'c')
+          ->where("a.status = :status AND c.id = :country_id")
+          ->setParameters(array('country_id' => $country_id, 'status' => $status))
+          ->getQuery();     
+        }
+        else
+        {
+          $query = $this->getEntityManager()->createQueryBuilder()
+          ->select('count(a.id)')
+          ->from('Anytv\DashboardBundle\Entity\Affiliate', 'a')
+          ->leftJoin('a.country', 'c')
+          ->where("a.status = :status")
+          ->setParameters(array('status' => $status))
+          ->getQuery();  
+        }
         
         return $query->getSingleScalarResult();
+    }
+    
+    public function findAllAffiliatesByCountry($country_id, $status)
+    {
+      $query = $this->getEntityManager()->createQueryBuilder()
+          ->select(array('a', 'c'))
+          ->from('Anytv\DashboardBundle\Entity\Affiliate', 'a')
+          ->leftJoin('a.country', 'c')
+          ->where("a.status = :status AND c.id = :country_id")
+          ->setParameters(array('country_id' => $country_id, 'status' => $status))
+          ->orderBy('a.company', 'ASC')
+          ->getQuery();   
+      
+      return $query->getResult();
     }
 }

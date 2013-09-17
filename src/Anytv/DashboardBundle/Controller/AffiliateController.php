@@ -13,31 +13,47 @@ class AffiliateController extends Controller
     public function indexAction(Request $request, $page)
     {
         $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Affiliate');
+        $country_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Country');
         $session = $this->get('session');
         $translator = $this->get('translator');
         
-        $form = $this->createFormBuilder(array('affiliate_keyword'=>$session->get('affiliate_keyword')))
-        ->add('affiliate_keyword')
+        $countries_choices = array();
+        $countries = $country_repository->findAll();
+        foreach($countries as $country)
+        {
+          $countries_choices[$country->getId()] = $country->getName();  
+        }
+        
+        $form = $this->createFormBuilder(array('affiliate_keyword'=>$session->get('affiliate_keyword'), 'affiliate_country'=>$session->get('affiliate_country'), 'affiliate_status'=>$session->get('affiliate_status', 'active')))
+        ->add('affiliate_keyword', 'text', array('required'=>false))
+        ->add('affiliate_country', 'choice', array('required' => false, 'choices' => $countries_choices, 'empty_value' => ''))
+        ->add('affiliate_status', 'choice', array('required' => true, 'choices' => array('active'=>'active', 'pending'=>'pending', 'deleted'=>'deleted', 'blocked'=>'blocked', 'rejected'=>'rejected')))
         ->add('search', 'submit')
         ->getForm();
         
         $form->handleRequest($request);
 
         $affiliate_keyword = null;
-       
+        $affiliate_country = null;
+        $affiliate_status = 'active';
+        
         if($form->isValid()) 
         {
           $data = $form->getData();
           $affiliate_keyword = $data['affiliate_keyword']; 
           $session->set('affiliate_keyword', $affiliate_keyword);
+          $affiliate_country = $data['affiliate_country']; 
+          $session->set('affiliate_country', $affiliate_country);
+          $affiliate_status = $data['affiliate_status']; 
+          $session->set('affiliate_status', $affiliate_status);
         }
         
         $items_per_page = 30;
-        $order_by = 'affiliateId';
-        $order = 'DESC';
+        $order_by = 'company';
+        $order = 'ASC';
         
-        $affiliates = $repository->findAllAffiliates($page, $items_per_page, $order_by, $order, $session->get('affiliate_keyword'));
-        $total_affiliates = $repository->countAllAffiliates($session->get('affiliate_keyword'));
+        $affiliates = $repository->findAllAffiliates($page, $items_per_page, $order_by, $order, $session->get('affiliate_keyword'), $session->get('affiliate_country'), $session->get('affiliate_status'));
+        $total_affiliates = $repository->countAllAffiliates($session->get('affiliate_keyword'), $session->get('affiliate_country'), $session->get('affiliate_status'));
         $total_pages = ceil($total_affiliates / $items_per_page);
         
         return $this->render('AnytvDashboardBundle:Affiliate:index.html.twig', array('title'=>$translator->trans('Affiliates'), 'affiliates'=>$affiliates, 'total_affiliates'=>$total_affiliates, 'page'=>$page, 'total_pages'=>$total_pages, 'form'=>$form->createView()));
@@ -47,6 +63,8 @@ class AffiliateController extends Controller
     {
         $session = $this->get('session');
         $session->set('affiliate_keyword', null);
+        $session->set('affiliate_country', null);
+        $session->set('affiliate_status', 'active');
         
         return $this->redirect($this->generateUrl('affiliates'));
     }
@@ -85,6 +103,7 @@ class AffiliateController extends Controller
     public function viewAction($id)
     {
       $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Affiliate');
+      $translator = $this->get('translator');
       
       $affiliate = $repository->find($id);
 
@@ -96,7 +115,7 @@ class AffiliateController extends Controller
       
       $affiliate_users = $affiliate->getAffiliateUsers();
 
-      return $this->render('AnytvDashboardBundle:Affiliate:view.html.twig', array('title'=>$affiliate, 'affiliate'=>$affiliate, 'affiliate_users'=>$affiliate_users));
+      return $this->render('AnytvDashboardBundle:Affiliate:view.html.twig', array('title'=>$affiliate, 'affiliate'=>$affiliate, 'affiliate_status'=>$translator->trans($affiliate->getStatus()), 'affiliate_users'=>$affiliate_users));
     }
     
     

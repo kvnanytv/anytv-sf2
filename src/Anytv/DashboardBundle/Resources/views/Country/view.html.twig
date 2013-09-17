@@ -1,0 +1,102 @@
+{% extends 'AnytvDashboardBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title}}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+    {{ parent() }}
+    
+    <h1 class="title">{{ title }}</h1>
+    
+    <div class="symfony-blocks-welcome">
+      <ul>
+        <li style="display:block">{% trans %}Name{% endtrans %}: {{ country.name }}</li>
+        <li style="display:block">{% trans %}Code{% endtrans %}: {{ country.code }}</li>
+      </ul>
+            
+      {% if(advertisers|length) %}
+        <h2>{% trans %}Advertisers{% endtrans %}:</h2>
+        <ul>
+          {% for advertiser in advertisers %}
+            <li style="display:block">
+              <a href="{{ path('advertiser_view', { 'id' : advertiser.id }) }}" title="{% trans %}Edit{% endtrans %}">{{ advertiser.company }}</a>
+            </li> 
+          {% endfor %}
+        </ul>
+      {% endif %}
+        
+      {% if(active_affiliates|length) %}
+        <h2>{% trans %}Active Affiliates{% endtrans %}:</h2>
+        <ul>
+          {% for affiliate in active_affiliates %}
+            <li style="display:block">
+              <a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="{% trans %}View{% endtrans %}">{{ affiliate.company }}</a>
+            </li> 
+          {% endfor %}
+        </ul>
+      {% endif %}
+        
+      {% if(pending_affiliates|length) %}
+        <h2>{% trans %}Pending Affiliates{% endtrans %}:</h2>
+        <ul>
+          {% for affiliate in pending_affiliates %}
+            <li style="display:block">
+              <a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="{% trans %}View{% endtrans %}">{{ affiliate.company }}</a>
+            </li> 
+          {% endfor %}
+        </ul>
+      {% endif %}
+        
+      {% if(deleted_affiliates|length) %}
+        <h2>{% trans %}Deleted Affiliates{% endtrans %}:</h2>
+        <ul>
+          {% for affiliate in deleted_affiliates %}
+            <li style="display:block">
+              <a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="{% trans %}View{% endtrans %}">{{ affiliate.company }}</a>
+            </li> 
+          {% endfor %}
+        </ul>
+      {% endif %}
+        
+      {% if(blocked_affiliates|length) %}
+        <h2>{% trans %}Blocked Affiliates{% endtrans %}:</h2>
+        <ul>
+          {% for affiliate in blocked_affiliates %}
+            <li style="display:block">
+              <a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="{% trans %}View{% endtrans %}">{{ affiliate.company }}</a>
+            </li> 
+          {% endfor %}
+        </ul>
+      {% endif %}
+        
+      {% if(rejected_affiliates|length) %}
+        <h2>{% trans %}Rejected Affiliates{% endtrans %}:</h2>
+        <ul>
+          {% for affiliate in rejected_affiliates %}
+            <li style="display:block">
+              <a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="{% trans %}View{% endtrans %}">{{ affiliate.company }}</a>
+            </li> 
+          {% endfor %}
+        </ul>
+      {% endif %}
+        
+      {% if(offers|length) %}
+        <h2>{% trans %}Offers{% endtrans %}:</h2>
+        <ul>
+          {% for offer in offers %}
+            <li style="display:block">
+              <a href="{{ path('offer_view', { 'id' : offer.id }) }}" title="{% trans %}View{% endtrans %}">{{ offer.name }}</a>
+            </li> 
+          {% endfor %}
+        </ul>
+      {% endif %}
+        
+    </div>
+
+    <div class="symfony-blocks-help">
+        
+       
+    </div>
+{% endblock %}

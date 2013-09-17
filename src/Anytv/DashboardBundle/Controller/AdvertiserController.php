@@ -17,15 +17,12 @@ class AdvertiserController extends Controller
         
         $advertisers = $repository->findAllAdvertisers();
         
-        return $this->render('AnytvDashboardBundle:Advertiser:index.html.twig', array('title'=>$translator->trans('Advertisers'), 'advertisers'=>$advertisers));
-    }
-    
-    public function resetAction()
-    {
-        $session = $this->get('session');
-        $session->set('advertiser_keyword', null);
+        foreach($advertisers as $advertiser)
+        {
+          $advertiser->setStatus($translator->trans($advertiser->getStatus()));
+        }
         
-        return $this->redirect($this->generateUrl('advertisers'));
+        return $this->render('AnytvDashboardBundle:Advertiser:index.html.twig', array('title'=>$translator->trans('Advertisers'), 'advertisers'=>$advertisers));
     }
     
     public function editAction(Request $request, $id)
@@ -60,52 +57,21 @@ class AdvertiserController extends Controller
       return $this->render('AnytvDashboardBundle:Advertiser:edit.html.twig', array('title'=>$translator->trans('Edit Advertiser'), 'form'=>$form->createView(), 'advertiser'=>$advertiser));
     }
     
-    public function showAction($id)
+    public function viewAction($id)
     {
-      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Advertiser');
+      $translator = $this->get('translator');
       
-      $offer = $repository->find($id);
+      $advertiser = $repository->find($id);
 
-      if (!$offer) {
+      if (!$advertiser) {
         throw $this->createNotFoundException(
-            'No offer found for id '.$id
+            'No advertiser found for id '.$id
         );
       }
-
-      // ... do something, like pass the $offer object into a template
-    }
-    
-    public function updateAction($id)
-    {
-      $em = $this->getDoctrine()->getManager();
-      $offer = $em->getRepository('AnytvDashboardBundle:Offer')->find($id);
-
-      if (!$offer) {
-        throw $this->createNotFoundException(
-            'No offer found for id '.$id
-        );
-      }
-
-      $offer->setName('New offer name!');
-      $em->flush();
-
-      return $this->redirect($this->generateUrl('offers'));
-    }
-    
-    public function deleteAction($id)
-    {
-      $em = $this->getDoctrine()->getManager();
-      $offer = $em->getRepository('AnytvDashboardBundle:Offer')->find($id);
-
-      if (!$offer) {
-        throw $this->createNotFoundException(
-            'No offer found for id '.$id
-        );
-      }
-
-      $em->remove($offer);
-      $em->flush();
-
-      return $this->redirect($this->generateUrl('offers'));
-    }
+      
+      $offers = $advertiser->getOffers();
+      
+      return $this->render('AnytvDashboardBundle:Advertiser:view.html.twig', array('title'=>$advertiser, 'advertiser'=>$advertiser, 'advertiser_status'=>$translator->trans($advertiser->getStatus()), 'offers'=>$offers));
+    }   
 }

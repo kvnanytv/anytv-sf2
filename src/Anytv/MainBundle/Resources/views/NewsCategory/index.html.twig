@@ -21,7 +21,7 @@
        {% for news_category_item in news_categories %}
          <tr>
            <td>{{ news_category_item.id }}</td>
-           <td>{{ news_category_item.name }}</td>
+           <td><a href="{{ path('news_category_edit', { 'id' : news_category_item.id }) }}" title="{% trans %}Edit{% endtrans %}">{{ news_category_item.name }}</a></td>
            <td>{{ news_category_item.description }}</td>
          </tr>
        {% endfor %} 

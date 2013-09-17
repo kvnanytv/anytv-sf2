@@ -40,11 +40,7 @@ class NewsController extends Controller
        $total_news = $repository->countAllNews($session->get('news_keyword'));
        $total_pages = ceil($total_news / $items_per_page);
        
-       
-       $name = 'Dennis';
-       $translated = $translator->trans('Hi %name%', array('%name%' => $name));
-       
-       return $this->render('AnytvMainBundle:News:index.html.twig', array('title'=>$translator->trans('News'), 'news'=>$news, 'total_news'=>$total_news, 'page'=>$page, 'total_pages'=>$total_pages, 'form'=>$form->createView(), 'translated'=>$translated));
+       return $this->render('AnytvMainBundle:News:index.html.twig', array('title'=>$translator->trans('News'), 'news'=>$news, 'total_news'=>$total_news, 'page'=>$page, 'total_pages'=>$total_pages, 'form'=>$form->createView()));
     }
     
     public function resetAction()

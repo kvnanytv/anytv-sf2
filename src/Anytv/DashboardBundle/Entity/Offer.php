@@ -5,6 +5,7 @@ namespace Anytv\DashboardBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Offer
@@ -172,9 +173,9 @@ class Offer
     private $require_terms_and_conditions;
     
     /**
-     * @var string
+     * @var text
      *
-     * @ORM\Column(name="terms_and_conditions", type="string", length=255, nullable=true)
+     * @ORM\Column(name="terms_and_conditions", type="text", nullable=true)
      */
     private $terms_and_conditions;
     
@@ -206,6 +207,139 @@ class Offer
     {
         $this->offerCategories = new ArrayCollection();
         $this->countries = new ArrayCollection();
+    }
+    
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="thumbnail", type="string", length=255, nullable=true)
+     */
+    private $thumbnail;
+
+    public function getAbsolutePath()
+    {
+        return null === $this->thumbnail
+            ? null
+            : $this->getUploadRootDir().'/'.$this->thumbnail;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->thumbnail
+            ? null
+            : $this->getUploadDir().'/'.$this->thumbnail;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // the absolute directory path where uploaded
+        // images should be saved
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'uploads/offers/thumbnails';
+    }
+    
+    /**
+     * @Assert\File(maxSize="6000000")
+     */
+    private $file;
+    
+    private $temp;
+
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+        
+        if (isset($this->thumbnail)) {
+            $this->temp = $this->thumbnail;
+            $this->thumbnail = null;
+        } else {
+            $this->thumbnail = 'initial';
+        }
+    }
+    
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->getFile()) {
+            $filename = sha1(uniqid(mt_rand(), true));
+            $this->thumbnail = $filename.'.'.$this->getFile()->guessExtension();
+        }
+    }
+    
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if (null === $this->getFile()) {
+            return;
+        }
+
+        $this->getFile()->move($this->getUploadRootDir(), $this->thumbnail);
+
+        if (isset($this->temp)) {
+            unlink($this->getUploadRootDir().'/'.$this->temp);
+            $this->temp = null;
+        }
+        $this->file = null;
+    }
+    
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePath()) {
+            unlink($file);
+        }
+    }
+
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+    
+     /**
+     * Set thumbnail
+     *
+     * @param string $thumbnail
+     * @return News
+     */
+    public function setThumbnail($thumbnail)
+    {
+        $this->thumbnail = $thumbnail;
+    
+        return $this;
+    }
+
+    /**
+     * Get thumbnail
+     *
+     * @return string 
+     */
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
     }
     
     /**
@@ -400,6 +534,16 @@ class Offer
     public function getExpirationDate()
     {
         return $this->expirationDate;
+    }
+    
+    /**
+     * Echo expirationDate string
+     *
+     * @return \DateTime string 
+     */
+    public function getExpirationDateAsString()
+    {
+        return date_format($this->expirationDate, 'Y-m-d');
     }
 
     /**
@@ -886,5 +1030,10 @@ class Offer
     public function getAdvertiser()
     {
         return $this->advertiser;
+    }
+    
+    public function __toString() 
+    {
+      return $this->getName();    
     }
 }

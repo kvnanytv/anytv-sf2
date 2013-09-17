@@ -7,9 +7,9 @@
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
     {{ parent() }}
-    <em><a href="{{ path('affiliate_edit', { 'id' : affiliate.id }) }}" title="Edit">edit</a></em>
+    <em><a href="{{ path('affiliate_edit', { 'id' : affiliate.id }) }}" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em>
     
-    <h1 class="title">{{ title }}<p>dashboard.tm ID: {{ affiliate.affiliateId }} - ({{ affiliate.status }})</p></h1>
+    <h1 class="title">{{ title }}<p>dashboard.tm ID: {{ affiliate.affiliateId }} - ({{ affiliate_status }})</p></h1>
     
     {% if(affiliate.thumbnail) %}
       <img src="{{ asset(affiliate.getWebPath()) }}" alt="{{ affiliate.company }}" style="width:100px" />
@@ -17,9 +17,13 @@
     
     <div class="symfony-blocks-welcome">
       <ul>
-        <li style="display:block">Address: {{ affiliate.getFullAddress() }}</li>
-        <li style="display:block">Phone: {{ affiliate.phone }}</li>
-        <li style="display:block">Fax: {{ affiliate.fax }}</li>
+        <li style="display:block">{% trans %}Address{% endtrans %}: {{ affiliate.getFullAddress() }}</li>
+        <li style="display:block">{% trans %}Country{% endtrans %}: {% if(affiliate.country) %}<a href="{{ path('country_view', { 'id' : affiliate.country.id }) }}" title="{% trans %}View{% endtrans %}">{{ affiliate.country.name }}</a>{% else %}&nbsp;{% endif %}</li>
+        {% if(affiliate.other) %}
+          <li style="display:block">{% trans %}Other{% endtrans %}: {{ affiliate.other }}</li>
+        {% endif %}
+        <li style="display:block">{% trans %}Phone{% endtrans %}: {{ affiliate.phone }}</li>
+        <li style="display:block">{% trans %}Fax{% endtrans %}: {{ affiliate.fax }}</li>
         
       </ul>
             
@@ -28,7 +32,11 @@
         <ul>
           {% for affiliate_user in affiliate_users %}
             <li style="display:block">
-              <a href="{{ path('affiliate_user_view', { 'id' : affiliate_user.id }) }}" title="View">{{ affiliate_user.getFullName() }}</a>
+              {% if(affiliate_user.getFullName()) %}
+                <a href="{{ path('affiliate_user_view', { 'id' : affiliate_user.id }) }}" title="View">{{ affiliate_user.getFullName() }}</a>
+              {% else %}
+                <a href="{{ path('affiliate_user_view', { 'id' : affiliate_user.id }) }}" title="View">{{ affiliate_user.email }}</a>
+              {% endif %}
               {% if(affiliate_user.thumbnail) %}
                 <img src="{{ asset(affiliate_user.getWebPath()) }}" alt="{{ affiliate_user.getFullName() }}" style="width:100px" />
               {% endif %}

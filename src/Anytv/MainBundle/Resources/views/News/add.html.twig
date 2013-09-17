@@ -7,7 +7,7 @@
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
     {{ parent() }}
-    <h1 class="title">{{ title|upper }}</h1>
+    <h1 class="title">{{ title }}</h1>
     
     <p>&nbsp;</p>
 
@@ -31,7 +31,7 @@
            {{ form_errors(form) }}
          </div>
          <div>
-          {{ form_label(form.title, 'The title') }}
+          {{ form_label(form.title) }}
           {{ form_errors(form.title) }}
           {{ form_widget(form.title, {'attr': {'class': 'news_title_field'}}) }}
          </div>
