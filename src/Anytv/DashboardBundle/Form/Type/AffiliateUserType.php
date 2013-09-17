@@ -14,10 +14,10 @@ class AffiliateUserType extends AbstractType
             ->add('firstName')
             ->add('lastName')
             ->add('email')
+            ->add('status', 'choice', array('choices' => array('active' => 'active', 'blocked' => 'blocked', 'deleted' => 'deleted')))
             ->add('phone')
             ->add('cellPhone')
             ->add('file')
-            ->add('wantsAlerts')
             ->add('save', 'submit');
     }
 

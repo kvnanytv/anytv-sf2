@@ -42,3 +42,10 @@ news_category_add:
     defaults:  { _controller: AnytvMainBundle:NewsCategory:add, _locale: en }
     requirements:
         _locale:  %anytv.locales%
+        
+news_category_edit:
+    path:      /{_locale}/admin/news/categories/edit/{id}
+    defaults:  { _controller: AnytvMainBundle:NewsCategory:edit, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        id:  \d+

@@ -77,6 +77,10 @@ class AffiliateUser
      * @var string
      *
      * @ORM\Column(name="status", type="string", length=255)
+     * @Assert\Choice(
+     *     choices = { "active", "blocked", "deleted" },
+     *     message = "Choose a valid status."
+     * )
      */
     private $status;
 
@@ -740,7 +744,24 @@ class AffiliateUser
     
     public function getFullName()
     {
-        return $this->title . ' '. $this->firstName .' '.$this->lastName;
+        $full_name = '';
+        
+        if($this->title)
+        {
+          $full_name .= $this->title.' ';
+        }
+        
+        if($this->firstName)
+        {
+          $full_name .= $this->firstName.' ';
+        }
+        
+        if($this->lastName)
+        {
+          $full_name .= $this->lastName;
+        }
+        
+        return $full_name ? $full_name : $this->getAffiliate()->getCompany();
     }
     
     public function __toString() 

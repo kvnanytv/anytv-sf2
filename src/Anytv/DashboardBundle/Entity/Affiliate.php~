@@ -111,7 +111,11 @@ class Affiliate
     /**
      * @var string
      *
-     * @ORM\Column(name="status", type="string", length=255, nullable=true)
+     * @ORM\Column(name="status", type="string", length=255)
+     * @Assert\Choice(
+     *     choices = { "active", "pending", "deleted", "blocked", "rejected" },
+     *     message = "Choose a valid status."
+     * )
      */
     private $status;
 

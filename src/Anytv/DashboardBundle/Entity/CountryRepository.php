@@ -12,4 +12,29 @@ use Doctrine\ORM\EntityRepository;
  */
 class CountryRepository extends EntityRepository
 {
+    public function findAllCountries($page, $items_per_page, $order_by, $order, $keyword)
+    {
+        $first_result = ($items_per_page * ($page-1));
+                
+        $query = $this->createQueryBuilder('c')
+          ->where("c.name LIKE :keyword OR c.code LIKE :keyword")
+          ->setParameter('keyword', "%$keyword%")
+          ->setFirstResult($first_result)
+          ->setMaxResults($items_per_page)
+          ->orderBy('c.'.$order_by, $order)
+          ->getQuery();
+        
+        return $query->getResult();
+    }
+    
+    public function countAllCountries($keyword)
+    {    
+        $query = $this->createQueryBuilder('c')
+          ->select('count(c.id)')
+          ->where("c.name LIKE :keyword OR c.code LIKE :keyword")
+          ->setParameter('keyword', "%$keyword%")
+          ->getQuery();
+        
+        return $query->getSingleScalarResult();
+    }
 }

@@ -9,6 +9,13 @@ advertisers:
     defaults:  { _controller: AnytvDashboardBundle:Advertiser:index, _locale: en }
     requirements:
         _locale:  %anytv.locales%
+        
+advertiser_view:
+    path:      /{_locale}/admin/advertisers/view/{id}
+    defaults:  { _controller: AnytvDashboardBundle:Advertiser:view, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        id:  \d+
     
 advertiser_edit:
     path:      /{_locale}/admin/advertisers/edit/{id}
@@ -26,6 +33,13 @@ offers_reset:
 offers:
     path:      /{_locale}/admin/offers/{page}
     defaults:  { _controller: AnytvDashboardBundle:Offer:index, _locale: en, page: 1 }
+    requirements:
+        _locale:  %anytv.locales%
+        page:  \d+
+        
+offer_view:
+    path:      /{_locale}/admin/offers/view/{id}
+    defaults:  { _controller: AnytvDashboardBundle:Offer:view, _locale: en }
     requirements:
         _locale:  %anytv.locales%
         page:  \d+
@@ -97,6 +111,26 @@ affiliate_users:
     requirements:
         _locale:  %anytv.locales%
         page:  \d+
+        
+countries_reset:
+    path:      /{_locale}/admin/countries/reset
+    defaults:  { _controller: AnytvDashboardBundle:Country:reset, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
+countries:
+    path:      /{_locale}/admin/countries/{page}
+    defaults:  { _controller: AnytvDashboardBundle:Country:index, _locale: en, page: 1 }
+    requirements:
+        _locale:  %anytv.locales%
+        page:  \d+
+        
+country_view:
+    path:      /{_locale}/admin/countries/view/{id}
+    defaults:  { _controller: AnytvDashboardBundle:Country:view, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        id:  \d+
         
 contact:
     path:     /contact

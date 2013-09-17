@@ -12,13 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class OfferRepository extends EntityRepository
 {
-    public function findAllOffers($page, $items_per_page, $status, $order_by, $order, $keyword)
+    public function findAllOffers($page, $items_per_page, $status, $order_by, $order, $keyword, $status)
     {
         $first_result = ($items_per_page * ($page-1));
                 
         $query = $this->createQueryBuilder('o')
-          ->where("o.name LIKE :keyword OR o.status LIKE :keyword")
-          ->setParameter('keyword', "%$keyword%")
+          ->where("o.status = :status AND o.name LIKE :keyword")
+          ->setParameters(array('keyword'=>"%$keyword%", 'status'=>$status))
           ->setFirstResult($first_result)
           ->setMaxResults($items_per_page)
           ->orderBy('o.'.$order_by, $order)
@@ -27,12 +27,12 @@ class OfferRepository extends EntityRepository
         return $query->getResult();
     }
     
-    public function countAllOffers($status, $keyword)
+    public function countAllOffers($status, $keyword, $status)
     {    
         $query = $this->createQueryBuilder('o')
           ->select('count(o.id)')
-          ->where("o.name LIKE :keyword OR o.status LIKE :keyword")
-          ->setParameter('keyword', "%$keyword%")
+          ->where("o.status = :status AND o.name LIKE :keyword")
+          ->setParameters(array('keyword'=>"%$keyword%", 'status'=>$status))
           ->getQuery();
         
         return $query->getSingleScalarResult();

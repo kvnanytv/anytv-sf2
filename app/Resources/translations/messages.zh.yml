@@ -1,8 +1,11 @@
 'Hi %name%': 你好 %name%
 'Home': 首頁
 'News': 最新消息
+'Add News': 新增 最新消息
 'Category': 分類
 'News Categories': 最新消息 分類
+'Add News Category': 新增 最新消息 分類
+'Edit News Category': 編輯 最新消息 分類
 'search': 搜尋
 'Believe in you': 相信自已
 'Title': 職稱
@@ -14,6 +17,8 @@
 'Edit Advertiser': 編輯 廣告商
 'Offer': 供應
 'Offers': 供應
+'Edit Offer': 編輯 供應
+'Affiliate': 合作公司
 'Affiliates': 合作公司
 'Traffic Referrals': 介紹出去後的流量
 'Company': 公司
@@ -23,18 +28,42 @@
 'City': 城市
 'Region': 行政區
 'Country': 國家
+'Countries': 國家
+'Affiliate country': 國家
 'Status': 感情狀態
 'Date Added': 新增日期
 'Date Modified': 修改日期
+'Date Joined': 註冊日期
 'Other': 其它
 'Zipcode': 郵遞區號
 'Phone': 電話號碼
 'Fax': 傳真
-'Website': Website
+'Website': 網站
 'active': 使用中
-'paused':
+'paused': 暫停
 'pending': 回覆中
 'expired':
 'deleted': 刪除的
 'blocked': 封鎖
 'rejected': 拒絕
+'Email': 郵件信箱
+'Mobile': 手機
+'edit': 編輯
+'Edit': 編輯
+'First name': 名字
+'Last name': 姓
+'File': 檔案
+'Cell phone': 手機
+'Browse': 搜尋
+'view': 觀看次數
+'View': 觀看次數
+'preview': 預覽
+'Preview': 預覽
+'Description': 簡要
+'Excerpt': 節選片段
+'Body': 內文
+'Views': 觀看次數
+'Comments': 評論
+'Thumbnail': 縮圖
+'Add': 新增
+'All': All

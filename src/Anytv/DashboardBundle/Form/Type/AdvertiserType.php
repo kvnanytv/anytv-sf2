@@ -21,7 +21,7 @@ class AdvertiserType extends AbstractType
             ->add('phone')
             ->add('fax')
             ->add('website')
-            ->add('status')
+            ->add('status', 'choice', array('choices' => array('active' => 'active', 'pending' => 'pending', 'deleted' => 'deleted', 'blocked' => 'blocked', 'rejected' => 'rejected')))
             ->add('save', 'submit');
     }
 

@@ -7,7 +7,7 @@
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
     {{ parent() }}
-    <em><a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="View">view</a></em>
+    <em><a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="{% trans %}View{% endtrans %}">{% trans %}view{% endtrans %}</a></em>
     
     <p>&nbsp;</p>
 

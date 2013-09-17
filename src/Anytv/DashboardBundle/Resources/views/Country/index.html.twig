@@ -1,0 +1,59 @@
+{% extends 'AnytvDashboardBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title}}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+    {{ parent() }}
+    <h1 class="title">{{ title|upper }}</h1>
+    
+    <p>&nbsp;</p>
+    <div>
+      {% if(app.session.get('country_keyword')) %}
+        <a href="{{ path('countries_reset') }}">reset</a>
+      {% endif %}
+      {{ form_start(form, {'action': path('countries'), 'method': 'POST'}) }}
+         {{ form_errors(form) }}
+         {{ form_errors(form.country_keyword) }}
+         {{ form_widget(form.country_keyword, {'attr': {'class': 'country_keyword_field'}}) }}
+         {{ form_widget(form.search, {'attr': {'class': 'country_search_button'}}) }}
+       {{ form_end(form) }}
+    </div>
+
+    <div class="symfony-blocks-welcome">
+      <table border="1" cellspacing="15" cellpadding="15">
+        <tr>
+         <th>ID</th>
+         <th>{% trans %}Name{% endtrans %}</th>
+         <th>{% trans %}Code{% endtrans %}</th>
+       </tr>
+       {% for country in countries %}
+         <tr>
+           <td>{{ country.id }}</td>
+           <td><a href="{{ path('country_view', { 'id' : country.id }) }}" title="{% trans %}View{% endtrans %}">{{ country.name }}</a></td>
+           <td>{{ country.code }}</td>
+         </tr>
+       {% endfor %} 
+      </table>
+       
+      {% if (total_pages > 1) %}
+        <ul>
+        {% for i in 1..total_pages %}
+          {% if(page == i) %}
+            <li>{{ i }}</li>
+          {% else %}
+            <li><a href="{{ path('countries', {'page':i}) }}" title="{{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        </ul>
+      {% endif %}
+        
+    </div>
+
+    <div class="symfony-blocks-help">
+        
+       
+    </div>
+{% endblock %}

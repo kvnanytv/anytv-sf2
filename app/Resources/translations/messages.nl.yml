@@ -1,8 +1,11 @@
 'Hi %name%': Hallo %name%
 'Home': Home
 'News': Nieuws
+'Add News': Toevoegen Nieuws
 'Category': Categorie
 'News Categories': Nieuws Categorie
+'Add News Category': Toevoegen Nieuws Categorie
+'Edit News Category': Uitgeven Nieuws Categorie
 'search': Zoek
 'Believe in you': Geloof in jezelf
 'Title': Titel
@@ -14,6 +17,8 @@
 'Edit Advertiser': Uitgeven Adverteerder
 'Offer': Aanbiedingen
 'Offers': Aanbiedingen
+'Edit Offer': Uitgeven Aanbiedingen
+'Affiliate': Lid
 'Affiliates': Lid
 'Traffic Referrals': Traffic Referrals
 'Company': Bedrijf
@@ -23,18 +28,42 @@
 'City': Stad
 'Region': Regio
 'Country': Land
+'Countries': Land
+'Affiliate country': Land
 'Status': Status
 'Date Added': Datum toegevoegd
 'Date Modified': Laatst gewijzigd
+'Date Joined': Aanmeld datum
 'Other': Anders
 'Zipcode': Postcode
 'Phone': Telefoon
 'Fax': Fax
 'Website': Website
 'active': actief
-'paused':
+'paused': 'paused'
 'pending': op wacht
 'expired':
 'deleted': verwijderd
 'blocked': geblokkeerd
 'rejected': afgewezen
+'Email': E-mail adres
+'Mobile': Mobiel
+'edit': edit
+'Edit': Edit
+'First name': Voornaam
+'Last name': Achternaam
+'File': File
+'Cell phone': Mobiel
+'Browse': Surf
+'view': view
+'View': View
+'preview': voorblik
+'Preview': Voorblik
+'Description': Description
+'Excerpt': Excerpt
+'Body': Body
+'Views': Views
+'Comments': Comments
+'Thumbnail': Thumbnail
+'Add': Toevoegen
+'All': All

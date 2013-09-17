@@ -29,11 +29,15 @@
          <tr>
            <td>{{ advertiser.id }}</td>
            <td>{{ advertiser.advertiserId }}</td>
-           <td><a href="{{ path('advertiser_edit', { 'id' : advertiser.id }) }}" title="Edit">{{ advertiser.company }}</a></td>
+           <td><a href="{{ path('advertiser_view', { 'id' : advertiser.id }) }}" title="Edit">{{ advertiser.company }}</a></td>
            <td>{{ advertiser.address1 }}{{ advertiser.address2 }}</td>
            <td>{{ advertiser.city }}</td>
            <td>{{ advertiser.region }}</td>
-           <td>{{ advertiser.getCountry() }}</td>
+           {% if(advertiser.country) %}
+             <td><a href="{{ path('country_view', { 'id' : advertiser.country.id }) }}" title="{% trans %}View{% endtrans %}">{{ advertiser.country }}</a></td>
+           {% else %}
+             <td>&nbsp;</td>
+           {% endif %}
            <td>{{ advertiser.status }}</td>
            <td>{{ advertiser.getDateAddedAsString }}</td>
            <td>{{ advertiser.getDateModifiedAsString() }}</td>

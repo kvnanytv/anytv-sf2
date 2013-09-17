@@ -17,10 +17,7 @@ class OfferType extends AbstractType
             ->add('previewUrl')
             ->add('status', 'choice', array('choices' => array('active' => 'active', 'paused' => 'paused', 'pending' => 'pending', 'expired' => 'expired', 'deleted' => 'deleted')))
             ->add('expirationDate')
-            ->add('is_private')
-            ->add('require_approval')
-            ->add('require_terms_and_conditions')
-            ->add('terms_and_conditions')
+            ->add('file')
             ->add('save', 'submit');
     }
 

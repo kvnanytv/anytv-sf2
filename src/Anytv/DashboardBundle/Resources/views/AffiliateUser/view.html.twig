@@ -7,9 +7,9 @@
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
     {{ parent() }}
-    <em><a href="{{ path('affiliate_user_edit', { 'id' : affiliate_user.id }) }}" title="Edit">edit</a></em>
+    <em><a href="{{ path('affiliate_user_edit', { 'id' : affiliate_user.id }) }}" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em>
     
-    <h1 class="title">{{ title }}<p>dashboard.tm user ID: {{ affiliate_user.affiliateUserId }} - ({{ affiliate_user.status }})</p></h1>
+    <h1 class="title">{{ title }}<p>dashboard.tm user ID: {{ affiliate_user.affiliateUserId }} - ({{ affiliate_status }})</p></h1>
     
     {% if(affiliate_user.thumbnail) %}
       <img src="{{ asset(affiliate_user.getWebPath()) }}" alt="{{ affiliate_user.getFullName() }}" style="width:100px" />
@@ -17,12 +17,12 @@
     
     <div class="symfony-blocks-welcome">
       <ul>
-        <li style="display:block">Name: {{ affiliate_user.getFullName() }}</li>
-        <li style="display:block">Email: {{ affiliate_user.email }}</li>
-        <li style="display:block">Affiliate: <a href="{{ path('affiliate_view', { 'id' : affiliate.getId() }) }}" title="{{ affiliate.company }}">{{ affiliate.company }}</a></li>
-        <li style="display:block">Phone: {{ affiliate_user.phone }}</li>
-        <li style="display:block">Mobile: {{ affiliate_user.cellPhone }}</li>
-        <li style="display:block">Date joined: {{ affiliate_user.getDateJoinedAsString() }}</li>
+        <li style="display:block">{% trans %}Name{% endtrans %}: {{ affiliate_user.getFullName() }}</li>
+        <li style="display:block">{% trans %}Email{% endtrans %}: {{ affiliate_user.email }}</li>
+        <li style="display:block">{% trans %}Affiliate{% endtrans %}: <a href="{{ path('affiliate_view', { 'id' : affiliate.getId() }) }}" title="{{ affiliate.company }}">{{ affiliate.company }}</a></li>
+        <li style="display:block">{% trans %}Phone{% endtrans %}: {{ affiliate_user.phone }}</li>
+        <li style="display:block">{% trans %}Mobile{% endtrans %}: {{ affiliate_user.cellPhone }}</li>
+        <li style="display:block">{% trans %}Date Joined{% endtrans %}: {{ affiliate_user.getDateJoinedAsString() }}</li>
       </ul>
             
     </div>

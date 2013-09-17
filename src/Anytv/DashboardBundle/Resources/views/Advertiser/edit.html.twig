@@ -7,7 +7,9 @@
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
     {{ parent() }}
-    <h1 class="title">{{ title|upper }}</h1>
+    <em><a href="{{ path('advertiser_view', { 'id' : advertiser.id }) }}" title="{% trans %}View{% endtrans %}">{% trans %}view{% endtrans %}</a></em>
+    
+    <h1 class="title">{{ title }} - {{ advertiser }}</h1>
     
     <p>&nbsp;</p>
 

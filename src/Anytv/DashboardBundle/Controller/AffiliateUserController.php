@@ -13,6 +13,7 @@ class AffiliateUserController extends Controller
    public function viewAction($id)
     {
       $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:AffiliateUser');
+      $translator = $this->get('translator');
       
       $affiliate_user = $repository->find($id);
 
@@ -24,7 +25,7 @@ class AffiliateUserController extends Controller
       
       $affiliate = $affiliate_user->getAffiliate();
 
-      return $this->render('AnytvDashboardBundle:AffiliateUser:view.html.twig', array('title'=>$affiliate_user, 'affiliate_user'=>$affiliate_user, 'affiliate'=>$affiliate));
+      return $this->render('AnytvDashboardBundle:AffiliateUser:view.html.twig', array('title'=>$affiliate_user, 'affiliate_user'=>$affiliate_user, 'affiliate'=>$affiliate, 'affiliate_status'=>$translator->trans($affiliate_user->getStatus())));
     }   
     
     public function editAction(Request $request, $id)

@@ -7,6 +7,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Anytv\DashboardBundle\Entity\Offer;
 use Anytv\DashboardBundle\Entity\OfferCategoryOffer;
+use Anytv\DashboardBundle\Entity\Country;
 
 class LoadOfferData extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -82,12 +83,24 @@ class LoadOfferData extends AbstractFixture implements OrderedFixtureInterface
             }
           }
           
-          foreach($country_array as $country_object)
+          if($country_array)
           {
-            if($this->hasReference('country_'.$country_object->code))
+            foreach($country_array as $country_object)
             {
-              $offer->addCountrie($this->getReference('country_'.$country_object->code)); 
-            } 
+              if($this->hasReference('country_'.$country_object->code))
+              {
+                $offer->addCountrie($this->getReference('country_'.$country_object->code)); 
+              } 
+            }
+          }
+          else
+          {
+            $country_repository = $manager->getRepository('AnytvDashboardBundle:Country');
+            $countries = $country_repository->findAll();
+            foreach($countries as $country)
+            {
+              $offer->addCountrie($country);     
+            }
           }
           
           $manager->persist($offer);

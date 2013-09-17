@@ -1,0 +1,63 @@
+{% extends 'AnytvDashboardBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title}}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+    {{ parent() }}
+    <em><a href="{{ path('offer_edit', { 'id' : offer.id }) }}" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em>
+    
+    <h1 class="title">{{ title }}<p>dashboard.tm ID: {{ offer.offerId }} - ({{ offer_status }})</p></h1>
+    
+    {% if(offer.thumbnail) %}
+      <img src="{{ asset(offer.getWebPath()) }}" alt="{{ offer.name() }}" style="width:100px" />
+    {% endif %}
+    
+    <div class="symfony-blocks-welcome">
+      <ul>
+        <li style="display:block">{% trans %}Name{% endtrans %}: {{ offer.name }}</li>
+        <li style="display:block">{% trans %}Description{% endtrans %}: {{ offer.description }}</li>
+        <li style="display:block">{% trans %}Advertiser{% endtrans %}: {% if(offer.advertiser) %}<a href="{{ path('advertiser_view', { 'id' : offer.advertiser.id }) }}" title="{% trans %}Edit{% endtrans %}">{{ offer.advertiser.company }}</a>{% else %}&nbsp;{% endif %}</li>
+        <li style="display:block">{% trans %}Offer URL{% endtrans %}: {{ offer.offerUrl }}</li>
+        <li style="display:block">{% trans %}Preview URL{% endtrans %}: <a href="{{ offer.previewUrl }}" target="_blank">{{ offer.previewUrl }}</a></li>
+        <li style="display:block">{% trans %}Expiration date{% endtrans %}: {{ offer.getExpirationDateAsString() }}</li>
+      </ul>
+            
+      {% if(offer_categories|length) %}
+        <h2>{% trans %}Categories{% endtrans %}:</h2>
+        <ul>
+          {% for offer_category in offer_categories %}
+            <li style="display:block">
+              {{ offer_category.name }}
+            </li> 
+          {% endfor %}
+        </ul>
+      {% endif %}
+        
+      <h2>{% trans %}Countries{% endtrans %}:</h2>
+      {% if(countries|length) %}
+        <em>({{ countries|length }} / {{ countries_total }})</em>
+        <ul>
+          {% for country in countries %}
+            <li style="display:block">
+              <a href="{{ path('country_view', { 'id' : country.id }) }}" title="{% trans %}View{% endtrans %}">{{ country.name }} {{ country.code }}</a>
+            </li> 
+          {% endfor %}
+        </ul>
+      {% else %}
+        <ul>
+          <li>{% trans %}Error{% endtrans %}</li>
+        </ul>
+      {% endif %}
+        
+      
+        
+    </div>
+
+    <div class="symfony-blocks-help">
+        
+       
+    </div>
+{% endblock %}
