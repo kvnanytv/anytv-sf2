@@ -12,3 +12,5 @@ parameters:
     mailer_password: null
     locale: en
     secret: h7jHG8jef9Tjgh79Uj894j
+    hasoffers.api_network_id: mmotm
+    hasoffers.api_network_token: NETjE4MoLg7NarETCDruHecVmgLHbN
