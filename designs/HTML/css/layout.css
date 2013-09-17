@@ -5,7 +5,7 @@ layout Styles
 /********************** General *******************/
 
 body {
-	background-image: url(../img/clouds.jpg);
+	background-image: url(../img/clouds-1.jpg);
 	background-attachment: fixed;
 	background-size: cover;
 	background-position: bottom;
@@ -18,6 +18,10 @@ body {
 
 /********************** Header *******************/
 
+header {
+	width:100%;
+}
+
 .main-nav {
 	background: #fff;
 }
@@ -27,6 +31,10 @@ body {
 	margin: 0 !important;
 	background: transparent !important;
 	border: none !important;
+}
+
+.atv-sites {
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 }
 
 .dropdown-toggle {
@@ -100,7 +108,8 @@ body {
 }
 
 .sub-nav .nav-pills > li a {
-	font-size: 12px;
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	font-size: 13px;
 	font-weight: bold;
 	color: #a6c9e9 !important;
 	text-decoration: none;
@@ -113,6 +122,8 @@ body {
 	color: #fff !important;
 }
 
+
+
 /* #subnav-links .navbar-nav > li > a {
 	padding-top: 5px;
   	padding-bottom: 5px;
@@ -123,7 +134,7 @@ body {
 /********************** Section 1: Banner *******************/
 
 .banner { 	
-  	height: 730px;
+  	height: 450px;
 }
 
 .uptop {
@@ -134,6 +145,18 @@ body {
 .uptop h3,p {
 	margin: 0;
 	color: #fff;
+	font-family: 'Droid Sans', Arial, Helvetica, sans-serif;
+}
+
+.uptop h3 {
+	font-size: 48px;
+	font-weight: 700;
+	text-align: left;
+}
+
+.uptop p {
+	font-size: 18px;
+	text-align: left;
 }
 
 .uptop img {
@@ -161,47 +184,25 @@ body {
     height: 100%;
 }
 
+.vid-yt {
+	position: relative;
+	top: -50px;
+}
 
 .btn-join {
 	color: #fff;
-	font-weight: bold;
-	background-color: #d03431;		
-	padding: 20px 40px;	
+	font-family: 'Droid Sans', Arial, Helvetica, sans-serif !important;
+	font-weight: 700 !important;
+	font-size: 24px !important;
+	background-color: #d03431 !important;		
+	padding: 20px 100px !important;	
+	border: none !important;
 }
 
-.btn-custom {
-	background-color: /*#8d1ba5*/ transparent;
-	/*background-repeat: repeat-x;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cb1515", endColorstr="#cb1515");
-	background-image: -khtml-gradient(linear, left top, left bottom, from(#cb1515), to(#cb1515));
-	background-image: -moz-linear-gradient(top, #cb1515, #cb1515);
-	background-image: -ms-linear-gradient(top, #cb1515, #cb1515);
-	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cb1515), color-stop(100%, #cb1515));
-	background-image: -webkit-linear-gradient(top, #cb1515, #cb1515);
-	background-image: -o-linear-gradient(top, #cb1515, #cb1515);
-	background-image: linear-gradient(#cb1515, #cb1515); */
-	border: 5px solid #fff;
-	color: #fff !important;
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.00);
-	-webkit-font-smoothing: antialiased;
-	border-radius: 0;
-	
-	position: relative;
-	top: -290px;
-	padding: 20px 50px;	
 
-	font-size: 24px;
-	font-weight: bold;
-}
-
-.btn-custom:hover {
-	background-color: /*#5c166b*/ transparent;
-	border: 5px solid #fff;
-}
 /********************** Section 2: Games Lists *******************/
 
-#games-lists {
-	/*height: 460px;*/
+#games-lists {	
 	background-color: #fff;
 }
 
@@ -219,10 +220,16 @@ body {
 
 }
 
+
 #in-pl::-webkit-input-placeholder { font-style: italic; }
 #in-pl::-moz-placeholder { font-style: italic; } /* firefox 19+ */
 #in-pl:-ms-input-placeholder { font-style:italic; } /* ie */
 input:-moz-placeholder { font-style:; }
+
+
+.games-list-wrap {
+	text-align: left;
+}
 
 
 .gameslist-tbl-wrap {
@@ -232,8 +239,9 @@ input:-moz-placeholder { font-style:; }
 }
 
 	#gl-tbl  {
-		width: 100%;
-		text-align: left;
+		max-width: 100%;
+		margin-left: 30px;
+		
 	}
 
 
@@ -277,7 +285,9 @@ input:-moz-placeholder { font-style:; }
 	}
 
 
-
+.zclip-wrap {
+	position: relative;
+}
 
 
 /********************** Section 3: Networks *******************/

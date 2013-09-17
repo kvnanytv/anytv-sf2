@@ -11,10 +11,10 @@
 
 	<title>AnyTV | A new kind of YouTube Channel</title>
 
-  <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
   <link href="css/layout.css" rel="stylesheet">    
   <link href="css/normalize.css" rel="stylesheet"> 
   <link href="css/carouFred.css" rel="stylesheet">   
+  <link href="css/nav.css" rel="stylesheet">
 
    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -22,26 +22,26 @@
       <script src="assets/js/respond.min.js"></script>
     <![endif]-->
 
-   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png"/>
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png"/>
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png"/>
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png"/>
   <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png"/>
   <link rel="shortcut icon" href="assets/ico/favicon.png"/>
 
+  <!-- Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'> 
+
 	<!-- Bootstrap -->
     <link href="css/bootstrap/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap/bootstrap-min.css" rel="stylesheet">
-  <!-- Fin: Bootstrap -->
-
-    
-
+  <!-- Fin: Bootstrap -->  
 </head>
 
 <body>
-<!-- Begin: Header -->
-	<!-- Main nav -->
-	<header class="main-nav">
-    
+
+<header>
+  <div class="main-nav">    
       <nav class="navbar navbar-default" role="navigation">
       <div class="container">
           <div class="navbar-header">
@@ -55,7 +55,7 @@
           </div>
 
 
-          <div style="padding-top: 5px;" class="collapse navbar-collapse navbar-ex1-collapse">        
+          <div style="padding-top: 5px;" class="collapse navbar-collapse navbar-ex1-collapse atv-sites">        
             <ul style="padding-left: 10px;" class="nav navbar-nav navbar-left">          
               <li><a class="lnk-blue" href="#">any.TV</a></li>
               <li><a class="lnk-yellow" href="#">dashboard</a></li>
@@ -77,55 +77,60 @@
       </nav>
  
 
-	</header>
+  </div>
 
-	<!-- Sub nav -->
-	<header class="sub-nav">
-		<div class="container">
-      <div class="collapse navbar-collapse navbar-ex1-collapse">        
-        <ul class="nav nav-pills">
-          <li><a href="#">What is any.TV?</a></li>
-          <li><a href="#">Branding Kit</a></li>
-          <li><a href="#">Games List</a></li>
-          <li><a href="#">Livestream Handbook</a></li>
-          <li><a href="#">Recruiters Handbook</a></li>
-          <li><a href="#">Join our Twitch Team!</a></li>
-          <li><a href="#">Staff</a></li>        
-          <li><a href="#">FAQs</a></li>
-          <li class="dropdown">
-            <a href="#"></a>
-          </li>
-        </ul>
-      </div>
-		</div>
-	</header>
-<!-- End: Header -->
+  <div class="sub-nav">
+    <div class="container">              
+      <nav class="subnav-cllps">
+          <ul>
+            <li><a href="#">What is any.TV?</a></li>
+            <li><a href="#">Branding Kit</a></li>
+            <li><a href="#">Games List</a></li>
+            <li><a href="#">Livestream Handbook</a></li>
+            <li><a href="#">Recruiters Handbook</a></li>
+            <li><a href="#">Join our Twitch Team!</a></li>
+            <li><a href="#">Staff</a></li>        
+            <li><a href="#">FAQs</a></li>
+          </ul>
+      </nav>
+    </div>
+  </div>
+</header>
 
-<!-- Begin: Content -->
     <div id="content">
 
     	<section class="banner">
         <div class="container">
-      		<div class="uptop">
-      			<h3>A new kind of YouTube Network</h3>
-      			<p>No need to unpartner from your YouTube Network</p>
-      			<img src="img/mac-monitor.png">             
-            <div class="yt-video">
-              <iframe src="http://www.youtube.com/embed/UCqJAZuvUS0?list=PLyI74zGGymu8k7eVhGPcVSh3nKljHfiVX" frameborder="0" allowfullscreen></iframe>
-            </div>      			
-            <p><a class="btn btn-primary btn-lg btn-custom">Join Us!</a></p> 
-      		</div>
+          <div class="container-fluid">
+            <div class="row-fluid">
+          		<div class="uptop">
+                <div class="col-lg-5">
+            			<h3>A new kind of YouTube Network</h3>
+            			<p>No need to unpartner from your YouTube Network</p>
+                  <p><a class="btn btn-primary btn-lg btn-join">Join Us!</a></p>                   
+                </div>
+                <div class="col-lg-7">
+                <div class="vid-yt">
+            			<img src="img/mac-monitor.png">            
+                  <div class="yt-video">
+                    <iframe src="http://www.youtube.com/embed/UCqJAZuvUS0?list=PLyI74zGGymu8k7eVhGPcVSh3nKljHfiVX" frameborder="0" allowfullscreen></iframe>
+                  </div>
+                </div>
+                </div>
+                <div class="cl"></div>
+          		</div>
+            </div>
+          </div>          
         </div>       
     	</section>
 
     	<section id="games-lists">
         <div class="container">
           <div class="games-list-wrap">
-        		<h3>anyTV Games List</h3>
+        		<h3>any.TV Games List</h3>
             <div class="row">
                 <input id="in-pl" type="text" class="form-control" placeholder="Search Games...">
                 <div class="gameslist-tbl-wrap">
-         
 
                   <table id="gl-tbl" class="table table-striped">        
                     
@@ -135,25 +140,10 @@
                           <th scope="col" id="s-col">Payout</th>
                           <th scope="col" id="th-col">Countries</th>
                           <th scope="col" id="frt-col">Status</th>
+                          <th>&nbsp;</th>                          
                         </tr>
                       </thead>                    
-                    
-                      <tfoot>
-                            <tr>
-                              <!-- <td colspan="4">&#60; &#62;</td> -->
-                              <td colspan="4">
-                                <ul class="pagination">
-                                  <li><a href="#">&laquo;</a></li>
-                                  <li><a href="#">1</a></li>
-                                  <li><a href="#">2</a></li>
-                                  <li><a href="#">3</a></li>
-                                  <li><a href="#">4</a></li>
-                                  <li><a href="#">5</a></li>
-                                  <li><a href="#">&raquo;</a></li>
-                                </ul>
-                              </td>                                               
-                            </tr>
-                      </tfoot>                    
+                                    
                  
                       <tbody>
                         <tr>
@@ -182,13 +172,27 @@
                           <td>$0.60</td>
                           <td>Canada, United Kingdom ...</td>
                           <td>Active</td>
-                        </tr>  
+                        </tr>
 
                       </tbody> 
 
+                      <tfoot>
+                            <tr>
+                              <!-- <td colspan="4">&#60; &#62;</td> -->
+                              <td colspan="4">
+                                <ul class="pagination">
+                                  <li><a href="#">&laquo;</a></li>
+                                  <li><a href="#">1</a></li>
+                                  <li><a href="#">2</a></li>
+                                  <li><a href="#">3</a></li>
+                                  <li><a href="#">4</a></li>
+                                  <li><a href="#">5</a></li>
+                                  <li><a href="#">&raquo;</a></li>
+                                </ul>
+                              </td>                                               
+                            </tr>
+                      </tfoot>    
                   </table>
-
-
                 </div>
             </div>
  
@@ -233,9 +237,8 @@
         <div></div>
       </section>
     </div>
-<!-- End: Content-->    
 
-<!-- Begin: Footer -->
+
     <footer>
       <div class="container">
         <div class="container-fluid">
@@ -262,13 +265,11 @@
         </div>
       </div>
     </footer>
-<!-- End: Footer -->  
-
-<!-- Scripts --> 
-  <script src="assets/js/jquery.js"></script>   
-  <script src="js/vendor/custom.modernizr.js"></script>
-  <script src="js/bootstrap/bootstrap.min.js"></script>   
+  
 
 </body>
-
+<script src="assets/js/jquery.js"></script>  
+<script src="js/zclip/jquery.zclip.js"></script>   
+<script src="js/vendor/custom.modernizr.js"></script>
+<script src="js/bootstrap/bootstrap.min.js"></script>
 </html>
