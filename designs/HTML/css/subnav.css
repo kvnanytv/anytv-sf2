@@ -14,10 +14,12 @@
 	padding-right: 20px;
 	list-style: none;
 	display: inline-block;
+	border-left: 1px solid #LIGHTERCOLOR;
+    border-right: 1px solid #DARKERCOLOR;
 }
 
 .subnav-cllps a {
-	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	font-family: 'Droid Sans', Arial, Helvetica, sans-serif;
 	font-size: 13px;
 	font-weight: bold;
 	color: #a6c9e9 !important;
@@ -29,6 +31,7 @@
 	border-radius: 0 !important;
 	background: none;
 	color: #fff !important;
+	text-decoration: none;
 }
 
 .subnav-cllps .current a {
@@ -50,7 +53,6 @@
 @media screen and (max-width: 600px) {
 	.subnav-cllps {
 		position: relative;
-		height: 50px;
 	}	
 	.subnav-cllps ul {
 		width: 180px;
@@ -74,10 +76,12 @@
 		display: block;
 		padding: 5px 5px 5px 32px;
 		text-align: left;
+		color: #000;
+		text-shadow: none;
 	}
 	.subnav-cllps .current a {
 		background: none;
-		color: #666;
+		color: #666 !important;
 	}
 
 	/* on nav hover */

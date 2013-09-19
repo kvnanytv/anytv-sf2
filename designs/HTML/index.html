@@ -11,10 +11,9 @@
 
 	<title>AnyTV | A new kind of YouTube Channel</title>
 
-  <link href="css/layout.css" rel="stylesheet">    
-  <link href="css/normalize.css" rel="stylesheet"> 
-  <link href="css/carouFred.css" rel="stylesheet">   
-  <link href="css/nav.css" rel="stylesheet">
+  <!--[if IE 7]>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome-ie7.min.css">
+  <![endif]-->
 
    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -22,6 +21,15 @@
       <script src="assets/js/respond.min.js"></script>
     <![endif]-->
 
+  <link href="css/layout.css" rel="stylesheet">    
+  <link href="css/normalize.css" rel="stylesheet"> 
+  <link href="css/subnav.css" rel="stylesheet">
+
+
+  <!-- Font Awesome -->
+  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- Favicon -->
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png"/>
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png"/>
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png"/>
@@ -35,7 +43,11 @@
 	<!-- Bootstrap -->
     <link href="css/bootstrap/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap/bootstrap-min.css" rel="stylesheet">
-  <!-- Fin: Bootstrap -->  
+
+  <!-- Zurb Tables -->
+    <link type="text/css" media="screen" rel="stylesheet" href="responsive-tables.css" />
+
+
 </head>
 
 <body>
@@ -49,21 +61,33 @@
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>                
               </button>
               <a class="navbar-brand" href="#"><img src="img/anytv-home_logo.png"></a>
           </div>
 
 
           <div style="padding-top: 5px;" class="collapse navbar-collapse navbar-ex1-collapse atv-sites">        
-            <ul style="padding-left: 10px;" class="nav navbar-nav navbar-left">          
+            <ul id="top-menus" style="padding-left: 10px;" class="nav navbar-nav navbar-left">          
               <li><a class="lnk-blue" href="#">any.TV</a></li>
               <li><a class="lnk-yellow" href="#">dashboard</a></li>
               <li><a class="lnk-red" href="#">mmo</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown">
+            <li>
+              <div class="input-group search-box">
+              <input type="text" class="form-control">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button"><i class="icon-search"></i></button>
+              </span>
+            </div>
+            </li>
+            <li>
+            <button type="button" class="btn btn-default navbar-btn log-btn mrgn-left">Sign in</button>
+            </li>
+              <li class="dropdown mrgn-left">
+
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="img/flags/us.png">&nbsp;<b class="caret"></b></a>
                 <ul class="dropdown-menu dd-height">
                   <li><a href="#"><img src="img/flags/us.png">English (US)</a></li>
@@ -73,11 +97,12 @@
               </li>              
             </ul>
           </div>  
-      </div>        
-      </nav>
- 
-
+      </div>
+      <!-- /container -->        
+      </nav> 
+      <!-- /nav -->
   </div>
+  <!-- /main-nav -->
 
   <div class="sub-nav">
     <div class="container">              
@@ -96,6 +121,7 @@
     </div>
   </div>
 </header>
+<!-- /header -->
 
     <div id="content">
 
@@ -107,29 +133,28 @@
                 <div class="col-lg-5">
             			<h3>A new kind of YouTube Network</h3>
             			<p>No need to unpartner from your YouTube Network</p>
-                  <p><a class="btn btn-primary btn-lg btn-join">Join Us!</a></p>                   
+                  <p><a class="btn btn-primary btn-lg btn-join">Join Us!</a></p>
+                  <p><a href="#" class="btn btn-primary btn-lg btn-lrn">Learn more</a></p> 
                 </div>
                 <div class="col-lg-7">
                 <div class="vid-yt">
             			<img src="img/mac-monitor.png">            
                   <div class="yt-video">
-                    <iframe src="http://www.youtube.com/embed/UCqJAZuvUS0?list=PLyI74zGGymu8k7eVhGPcVSh3nKljHfiVX" frameborder="0" allowfullscreen></iframe>
+                    <iframe src="http://www.youtube.com/embed/UCqJAZuvUS0?list=PLyI74zGGymu8k7eVhGPcVSh3nKljHfiVX&wmode=transparent" frameborder="0" allowfullscreen></iframe>
                   </div>
                 </div>
                 </div>
-                <div class="cl"></div>
           		</div>
             </div>
           </div>          
         </div>       
     	</section>
-
     	<section id="games-lists">
         <div class="container">
           <div class="games-list-wrap">
-        		<h3>any.TV Games List</h3>
-            <div class="row">
-                <input id="in-pl" type="text" class="form-control" placeholder="Search Games...">
+        		<h3>any.TV <strong>Games List</strong></h3>
+            <div class="row">                    
+                <input id="in-pl" type="search" class="form-control" role="search" placeholder="Search Games...">
                 <div class="gameslist-tbl-wrap">
 
                   <table id="gl-tbl" class="table table-striped">        
@@ -205,19 +230,18 @@
         <div class="container">
           <div class="container-fluid">
             <div class="row-fluid 3col-bg">
-              <div class="col-lg-4 brdr-test">
+              <div id="net-col1" class="col-lg-4 brdr-test">
                 <h3>George is Back!</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <a href="#">Learn More</a>
-                <p><img align="right" style="margin: 0;" src="img/anytv-blue-emblem.png"></p>
+                <a href="#">Learn More</a>                
               </div>
-              <div class="col-lg-4 brdr-test">
+              <div id="net-col2" class="col-lg-4 brdr-test">
                 <h3>any.TV Music</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 <a href="#">Learn More</a>
-                <p><img align="right" style="margin: 0;" src="img/anytv-music-emblem.png"></p>
+                
               </div>
-              <div class="col-lg-4 brdr-test">
+              <div id="net-col3" class="col-lg-4 brdr-test">
                 <h3>any.TV Games</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 <a href="#">Learn More</a>
@@ -237,39 +261,45 @@
         <div></div>
       </section>
     </div>
+    <!-- /content -->
 
 
-    <footer>
-      <div class="container">
-        <div class="container-fluid">
-          <div class="row-fluid">
-            <div class="ft-links">
-                <div class="col-lg-2">
-                  <ul>
-                    <li><a href="#">Link 1</a></li>
-                    <li><a href="#">Link 1</a></li>
-                    <li><a href="#">Link 1</a></li>                  
-                  </ul>
-                </div>
-                <div class="col-lg-2">
-                  <ul>
-                    <li><a href="#">Link 1</a></li>
-                    <li><a href="#">Link 1</a></li>
-                    <li><a href="#">Link 1</a></li>                  
-                  </ul>                
-                </div>
-                <div class="col-lg-2"></div>
-              </div>
+<footer>
+  <div class="container">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="ft-links">
+            <div class="col-lg-2">
+              <ul>
+                <li><a href="#">Link 1</a></li>
+                <li><a href="#">Link 1</a></li>
+                <li><a href="#">Link 1</a></li>                  
+              </ul>
             </div>
-            <div class="row cright-links"></div>
+            <div class="col-lg-2">
+              <ul>
+                <li><a href="#">Link 1</a></li>
+                <li><a href="#">Link 1</a></li>
+                <li><a href="#">Link 1</a></li>                  
+              </ul>                
+            </div>
+            <div class="col-lg-2"></div>
+          </div>
         </div>
-      </div>
-    </footer>
+        <div class="row cright-links"></div>
+    </div>
+  </div>
+</footer>
+<!-- /footer -->
   
 
 </body>
+
 <script src="assets/js/jquery.js"></script>  
 <script src="js/zclip/jquery.zclip.js"></script>   
 <script src="js/vendor/custom.modernizr.js"></script>
 <script src="js/bootstrap/bootstrap.min.js"></script>
+
+
+
 </html>
