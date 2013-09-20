@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class OfferRepository extends EntityRepository
 {
-    public function findAllOffers($page, $items_per_page, $status, $order_by, $order, $keyword, $status)
+    public function findAllOffers($page, $items_per_page, $order_by, $order, $keyword, $status)
     {
         $first_result = ($items_per_page * ($page-1));
                 
@@ -27,7 +27,7 @@ class OfferRepository extends EntityRepository
         return $query->getResult();
     }
     
-    public function countAllOffers($status, $keyword, $status)
+    public function countAllOffers($keyword, $status)
     {    
         $query = $this->createQueryBuilder('o')
           ->select('count(o.id)')

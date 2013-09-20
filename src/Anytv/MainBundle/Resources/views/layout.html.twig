@@ -3,12 +3,21 @@
 {% block title 'Any.TV' %}
 
 {% block submenu %}
+{% if is_granted('ROLE_ADMIN') %}
 <div id="sub_menu">
   <ul>
     <li><a href="{{ path('news') }}" title="{% trans %}News{% endtrans %}">{% trans %}News{% endtrans %}</a></li>
     <li><a href="{{ path('news_category') }}" title="{% trans %}News Categories{% endtrans %}">{% trans %}News Categories{% endtrans %}</a></li>
   </ul>
-</div>    
+</div>  
+{% else %}
+<div id="sub_menu">
+  <ul>
+    <li>&nbsp;</li>
+    <li>&nbsp;</li>
+  </ul>
+</div>  
+{% endif %}
 {% endblock %}
 
 

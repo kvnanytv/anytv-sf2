@@ -1,0 +1,45 @@
+{% extends 'AnytvDashboardBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title}}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+    {{ parent() }}
+    <em><a href="{{ path('profile_view') }}" title="{% trans %}View{% endtrans %}">{% trans %}view{% endtrans %}</a></em>
+    
+    <p>&nbsp;</p>
+
+    <div class="symfony-blocks-welcome">
+       
+       {{ form_start(form, {'action': path('profile_company_edit', { 'id' : affiliate.id }), 'method': 'POST'}) }}
+          
+         {{ form_errors(form) }}
+        
+         {{ form_row(form.company) }}
+         {{ form_row(form.address1) }}
+         {{ form_row(form.address2) }}
+         {{ form_row(form.city) }}
+         {{ form_row(form.region) }}
+         {{ form_row(form.country) }}
+         {{ form_row(form.other) }}
+         {{ form_row(form.zipcode) }}
+         {% if(affiliate.thumbnail) %}
+           <img src="{{ asset(affiliate.getWebPath()) }}" alt="{{ affiliate.company }}" style="width:100px" />
+         {% endif %}
+         {{ form_row(form.file) }}
+         {{ form_row(form.phone) }}
+         {{ form_row(form.fax) }}
+         
+       
+       {{ form_end(form) }}
+       
+        
+    </div>
+
+    <div class="symfony-blocks-help">
+        
+       
+    </div>
+{% endblock %}

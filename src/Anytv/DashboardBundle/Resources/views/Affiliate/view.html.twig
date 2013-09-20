@@ -37,9 +37,22 @@
               {% else %}
                 <a href="{{ path('affiliate_user_view', { 'id' : affiliate_user.id }) }}" title="View">{{ affiliate_user.email }}</a>
               {% endif %}
+              ({{ affiliate_user.email }})
               {% if(affiliate_user.thumbnail) %}
                 <img src="{{ asset(affiliate_user.getWebPath()) }}" alt="{{ affiliate_user.getFullName() }}" style="width:100px" />
               {% endif %}
+              - {{ affiliate_user.status }} - is creator = {{ affiliate_user.isCreator }}
+            </li> 
+          {% endfor %}
+        </ul>
+      {% endif %}
+      {% if(traffic_referrals|length) %}
+        <h2>Traffic Referrals: ({{ traffic_referrals|length }})</h2>
+        <ul>
+          {% for traffic_referral in traffic_referrals %}
+            <li style="display:block">
+              <a href="{{ path('offer_view', { 'id' : traffic_referral.offer.id }) }}" title="{{ traffic_referral.offer }}">{{ traffic_referral.offer }}</a> - 
+              <a href="{{ traffic_referral.url }}" target="_blank" title="{{ traffic_referral.url }}">{{ traffic_referral.url|slice(0, 60) }}</a>
             </li> 
           {% endfor %}
         </ul>

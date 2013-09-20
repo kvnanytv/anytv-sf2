@@ -192,11 +192,21 @@ class Offer
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updated_at;
+     
+    /**
+     * @ORM\ManyToMany(targetEntity="OfferGroup", inversedBy="offers")
+     */
+    protected $offerGroups;
     
     /**
      * @ORM\ManyToMany(targetEntity="OfferCategory", inversedBy="offers")
      */
     protected $offerCategories;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="TrafficReferral", mappedBy="offer")
+     */
+    private $trafficReferrals;
     
     /**
      * @ORM\ManyToMany(targetEntity="Country", inversedBy="offers")
@@ -207,6 +217,8 @@ class Offer
     {
         $this->offerCategories = new ArrayCollection();
         $this->countries = new ArrayCollection();
+        $this->trafficReferrals = new ArrayCollection();
+        $this->offerGroups = new ArrayCollection();
     }
     
     /**
@@ -1035,5 +1047,71 @@ class Offer
     public function __toString() 
     {
       return $this->getName();    
+    }
+
+    /**
+     * Add trafficReferrals
+     *
+     * @param \Anytv\DashboardBundle\Entity\TrafficReferral $trafficReferrals
+     * @return Offer
+     */
+    public function addTrafficReferral(\Anytv\DashboardBundle\Entity\TrafficReferral $trafficReferrals)
+    {
+        $this->trafficReferrals[] = $trafficReferrals;
+    
+        return $this;
+    }
+
+    /**
+     * Remove trafficReferrals
+     *
+     * @param \Anytv\DashboardBundle\Entity\TrafficReferral $trafficReferrals
+     */
+    public function removeTrafficReferral(\Anytv\DashboardBundle\Entity\TrafficReferral $trafficReferrals)
+    {
+        $this->trafficReferrals->removeElement($trafficReferrals);
+    }
+
+    /**
+     * Get trafficReferrals
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTrafficReferrals()
+    {
+        return $this->trafficReferrals;
+    }
+
+    /**
+     * Add offerGroups
+     *
+     * @param \Anytv\DashboardBundle\Entity\OfferGroup $offerGroups
+     * @return Offer
+     */
+    public function addOfferGroup(\Anytv\DashboardBundle\Entity\OfferGroup $offerGroups)
+    {
+        $this->offerGroups[] = $offerGroups;
+    
+        return $this;
+    }
+
+    /**
+     * Remove offerGroups
+     *
+     * @param \Anytv\DashboardBundle\Entity\OfferGroup $offerGroups
+     */
+    public function removeOfferGroup(\Anytv\DashboardBundle\Entity\OfferGroup $offerGroups)
+    {
+        $this->offerGroups->removeElement($offerGroups);
+    }
+
+    /**
+     * Get offerGroups
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOfferGroups()
+    {
+        return $this->offerGroups;
     }
 }

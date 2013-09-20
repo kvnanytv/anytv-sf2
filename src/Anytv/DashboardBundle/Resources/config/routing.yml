@@ -3,6 +3,24 @@ anytv_dashboard_homepage:
     defaults: { _controller: AnytvDashboardBundle:Default:index, _locale: en }
     requirements:
         _locale:  %anytv.locales%
+        
+profile_view:
+    path:      /{_locale}/profile/view
+    defaults:  { _controller: AnytvDashboardBundle:Profile:view, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
+profile_edit:
+    path:      /{_locale}/profile/edit
+    defaults:  { _controller: AnytvDashboardBundle:Profile:edit, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
+profile_company_edit:
+    path:      /{_locale}/profile/company/edit
+    defaults:  { _controller: AnytvDashboardBundle:Profile:companyEdit, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
     
 advertisers:
     path:      /{_locale}/admin/advertisers
@@ -23,6 +41,26 @@ advertiser_edit:
     requirements:
         _locale:  %anytv.locales%
         id:  \d+
+        
+offer_groups_reset:
+    path:      /{_locale}/admin/offer_groups/reset
+    defaults:  { _controller: AnytvDashboardBundle:OfferGroup:reset, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
+offer_groups:
+    path:      /{_locale}/admin/offer_groups/{page}
+    defaults:  { _controller: AnytvDashboardBundle:OfferGroup:index, _locale: en, page: 1 }
+    requirements:
+        _locale:  %anytv.locales%
+        page:  \d+
+        
+offer_group_view:
+    path:      /{_locale}/admin/offer_groups/view/{id}
+    defaults:  { _controller: AnytvDashboardBundle:OfferGroup:view, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        page:  \d+
     
 offers_reset:
     path:      /{_locale}/admin/offers/reset

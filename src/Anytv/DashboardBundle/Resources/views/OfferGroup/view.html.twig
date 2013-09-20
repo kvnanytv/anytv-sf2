@@ -1,0 +1,35 @@
+{% extends 'AnytvDashboardBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title}}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+    {{ parent() }}
+    
+
+    <h1 class="title">{{ title }}<p>dashboard.tm ID: {{ offer_group.offerGroupId }} - ({{ offer_group_status }})</p></h1>
+    
+    <div class="symfony-blocks-welcome">
+      
+            
+      {% if(offers|length) %}
+        <h2>{% trans %}Offers{% endtrans %}:</h2>
+        <ul>
+          {% for offer in offers %}
+            <li style="display:block">
+              <a href="{{ path('offer_view', { 'id' : offer.id }) }}" title="{{ offer }}">{{ offer }}</a> ({{ offer.status }})
+            </li> 
+          {% endfor %}
+        </ul>
+      {% endif %}
+      
+        
+    </div>
+
+    <div class="symfony-blocks-help">
+        
+       
+    </div>
+{% endblock %}

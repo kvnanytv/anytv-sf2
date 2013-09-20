@@ -160,6 +160,12 @@ class Affiliate
      * @ORM\Column(name="referral_id", type="integer", nullable=true)
      */
     private $referralId;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Affiliate", inversedBy="referredAffiliates")
+     * @ORM\JoinColumn(name="referrer_id", referencedColumnName="id")
+     */
+    private $referrer;
 
     /**
      * @var integer
@@ -187,9 +193,21 @@ class Affiliate
      */
     private $affiliateUsers;
     
+    /**
+     * @ORM\OneToMany(targetEntity="TrafficReferral", mappedBy="affiliate")
+     */
+    private $trafficReferrals;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Affiliate", mappedBy="referrer")
+     */
+    private $referredAffiliates;
+    
     public function __construct()
     {
         $this->affiliateUsers = new ArrayCollection();
+        $this->trafficReferrals = new ArrayCollection();
+        $this->referredAffiliates = new ArrayCollection();
     }
     
     /**
@@ -952,5 +970,94 @@ class Affiliate
     public function getAffiliateUsers()
     {
         return $this->affiliateUsers;
+    }
+
+    /**
+     * Add trafficReferrals
+     *
+     * @param \Anytv\DashboardBundle\Entity\TrafficReferral $trafficReferrals
+     * @return Affiliate
+     */
+    public function addTrafficReferral(\Anytv\DashboardBundle\Entity\TrafficReferral $trafficReferrals)
+    {
+        $this->trafficReferrals[] = $trafficReferrals;
+    
+        return $this;
+    }
+
+    /**
+     * Remove trafficReferrals
+     *
+     * @param \Anytv\DashboardBundle\Entity\TrafficReferral $trafficReferrals
+     */
+    public function removeTrafficReferral(\Anytv\DashboardBundle\Entity\TrafficReferral $trafficReferrals)
+    {
+        $this->trafficReferrals->removeElement($trafficReferrals);
+    }
+
+    /**
+     * Get trafficReferrals
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTrafficReferrals()
+    {
+        return $this->trafficReferrals;
+    }
+
+    /**
+     * Set referrer
+     *
+     * @param \Anytv\DashboardBundle\Entity\Affiliate $referrer
+     * @return Affiliate
+     */
+    public function setReferrer(\Anytv\DashboardBundle\Entity\Affiliate $referrer = null)
+    {
+        $this->referrer = $referrer;
+    
+        return $this;
+    }
+
+    /**
+     * Get referrer
+     *
+     * @return \Anytv\DashboardBundle\Entity\Affiliate 
+     */
+    public function getReferrer()
+    {
+        return $this->referrer;
+    }
+
+    /**
+     * Add referredAffiliates
+     *
+     * @param \Anytv\DashboardBundle\Entity\Affiliate $referredAffiliates
+     * @return Affiliate
+     */
+    public function addReferredAffiliate(\Anytv\DashboardBundle\Entity\Affiliate $referredAffiliates)
+    {
+        $this->referredAffiliates[] = $referredAffiliates;
+    
+        return $this;
+    }
+
+    /**
+     * Remove referredAffiliates
+     *
+     * @param \Anytv\DashboardBundle\Entity\Affiliate $referredAffiliates
+     */
+    public function removeReferredAffiliate(\Anytv\DashboardBundle\Entity\Affiliate $referredAffiliates)
+    {
+        $this->referredAffiliates->removeElement($referredAffiliates);
+    }
+
+    /**
+     * Get referredAffiliates
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReferredAffiliates()
+    {
+        return $this->referredAffiliates;
     }
 }

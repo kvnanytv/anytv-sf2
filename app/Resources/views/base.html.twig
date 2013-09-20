@@ -25,6 +25,11 @@
                 </div>
 
                 <div class="search">
+                  {% if(app.user) %}
+                    <p>You're logged-in as: {% if is_granted('ROLE_ADMIN') %}{{ app.user.username }}{% else %}{{ app.user }}{% endif %} - <a href="{{ path('logout') }}" title="Logout">Logout</a></p>
+                  {% else %}
+                    <p><a href="{{ path('login') }}" title="Login">Login</a></p>
+                  {% endif %}
                   <div id="trans_menu">
                    {% block transmenu %}
                    <ul>

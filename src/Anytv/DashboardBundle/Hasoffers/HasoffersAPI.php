@@ -19,12 +19,28 @@ class HasoffersAPI
 	  ,'NetworkToken' => $api_network_token
         );
     }
+    
+    public function getOfferGroups()
+    {
+        $this->api_params['Target'] = 'Application';
+        $this->api_params['Method'] = 'findAllOfferGroups';
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = (array) json_decode( $result );
+        $response = (array) $result['response'];
+        $data = (array) $response['data'];
+        
+        return $data;
+    }
 
     public function getOffers()
     {
         $this->api_params['Target'] = 'Offer';
         $this->api_params['Method'] = 'findAll';
-        $this->api_params['contain'] = array('OfferCategory', 'Country');
+        $this->api_params['contain'] = array('OfferCategory', 'Country', 'OfferGroup');
         $this->api_params['limit'] = 1000000;
         
         $url = $this->api_url . http_build_query( $this->api_params );
@@ -59,7 +75,24 @@ class HasoffersAPI
         $data = (array) $data['data'];
         
         return $data;
+    }
+    
+    public function getAffiliates()
+    {
+        $this->api_params['Target'] = 'Affiliate';
+        $this->api_params['Method'] = 'findAll';
+        $this->api_params['contain'] = array('AffiliateUser');
+        $this->api_params['limit'] = 1000000;
         
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
         
+        $result = (array) json_decode( $result );
+        $response = (array) $result['response'];
+        $data = (array) $response['data'];
+        $data = (array) $data['data'];
+        
+        return $data;
     }
 }

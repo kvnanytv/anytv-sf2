@@ -6,30 +6,33 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class AffiliateUserType extends AbstractType
+class CompanyType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title')
-            ->add('firstName')
-            ->add('lastName')
-            ->add('email')
-            ->add('status', 'choice', array('choices' => array('active' => 'active', 'blocked' => 'blocked', 'deleted' => 'deleted')))
+        $builder->add('company')
+            ->add('address1')
+            ->add('address2')
+            ->add('city')
+            ->add('region')
+            ->add('country')
+            ->add('other')
+            ->add('zipcode')
+            ->add('file')
             ->add('phone')
-            ->add('cellPhone')
-            //->add('file')
+            ->add('fax')
             ->add('save', 'submit');
     }
 
     public function getName()
     {
-        return 'affiliateUser';
+        return 'company';
     }
     
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
       $resolver->setDefaults(array(
-        'data_class' => 'Anytv\DashboardBundle\Entity\AffiliateUser',
+        'data_class' => 'Anytv\DashboardBundle\Entity\Affiliate',
       ));
     }
 }

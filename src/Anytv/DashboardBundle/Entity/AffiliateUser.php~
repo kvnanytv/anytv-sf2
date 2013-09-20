@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Anytv\DashboardBundle\Entity\Affiliate;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * AffiliateUser
@@ -14,7 +15,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  * @ORM\Entity(repositoryClass="Anytv\DashboardBundle\Entity\AffiliateUserRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class AffiliateUser
+class AffiliateUser implements UserInterface, \Serializable
 {
     /**
      * @var integer
@@ -41,7 +42,7 @@ class AffiliateUser
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=100)
      */
     private $email;
 
@@ -62,14 +63,21 @@ class AffiliateUser
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=255, nullable=true)
+     * @ORM\Column(name="password", type="string", length=100, nullable=true)
      */
     private $password;
     
     /**
      * @var string
      *
-     * @ORM\Column(name="salt", type="string", length=255, nullable=true)
+     * @ORM\Column(name="password_decoded", type="string", length=100, nullable=true)
+     */
+    private $password_decoded;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="salt", type="string", length=32)
      */
     private $salt;
 
@@ -104,20 +112,6 @@ class AffiliateUser
      * @ORM\Column(name="cell_phone", type="string", length=255, nullable=true)
      */
     private $cellPhone;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="permissions", type="string", length=255, nullable=true)
-     */
-    private $permissions;
-
-    /**
-     * @var array
-     *
-     * @ORM\Column(name="access", type="array", nullable=true)
-     */
-    private $access;
 
     /**
      * @var boolean
@@ -293,7 +287,19 @@ class AffiliateUser
     {
         return $this->thumbnail;
     }
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
 
+    public function __construct()
+    {
+        $this->isActive = true;
+        $this->salt = md5(uniqid(null, true));
+    }
 
     /**
      * Get id
@@ -487,52 +493,6 @@ class AffiliateUser
     public function getCellPhone()
     {
         return $this->cellPhone;
-    }
-
-    /**
-     * Set permissions
-     *
-     * @param string $permissions
-     * @return AffiliateUser
-     */
-    public function setPermissions($permissions)
-    {
-        $this->permissions = $permissions;
-    
-        return $this;
-    }
-
-    /**
-     * Get permissions
-     *
-     * @return string 
-     */
-    public function getPermissions()
-    {
-        return $this->permissions;
-    }
-
-    /**
-     * Set access
-     *
-     * @param array $access
-     * @return AffiliateUser
-     */
-    public function setAccess($access)
-    {
-        $this->access = $access;
-    
-        return $this;
-    }
-
-    /**
-     * Get access
-     *
-     * @return array 
-     */
-    public function getAccess()
-    {
-        return $this->access;
     }
 
     /**
@@ -777,5 +737,94 @@ class AffiliateUser
     public function getDateJoinedAsString()
     {
         return date_format($this->joinDate, 'Y-m-d');
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getUsername()
+    {
+        return $this->email;
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
+    }
+
+    /**
+     * @see \Serializable::serialize()
+     */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+        ));
+    }
+
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+        ) = unserialize($serialized);
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     * @return AffiliateUser
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean 
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * Set password_decoded
+     *
+     * @param string $passwordDecoded
+     * @return AffiliateUser
+     */
+    public function setPasswordDecoded($passwordDecoded)
+    {
+        $this->password_decoded = $passwordDecoded;
+    
+        return $this;
+    }
+
+    /**
+     * Get password_decoded
+     *
+     * @return string 
+     */
+    public function getPasswordDecoded()
+    {
+        return $this->password_decoded;
     }
 }
