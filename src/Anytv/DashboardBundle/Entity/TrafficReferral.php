@@ -24,18 +24,16 @@ class TrafficReferral
     private $id;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="affiliate_id", type="integer")
+     * @ORM\ManyToOne(targetEntity="Affiliate", inversedBy="trafficReferrals")
+     * @ORM\JoinColumn(name="affiliate_id", referencedColumnName="id")
      */
-    private $affiliateId;
+    private $affiliate;
     
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="offer_id", type="integer")
+     /**
+     * @ORM\ManyToOne(targetEntity="Offer", inversedBy="trafficReferrals")
+     * @ORM\JoinColumn(name="offer_id", referencedColumnName="id")
      */
-    private $offerId;
+    private $offer;
 
     /**
      * @var string
@@ -109,29 +107,6 @@ class TrafficReferral
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set affiliateId
-     *
-     * @param integer $affiliateId
-     * @return TrafficReferral
-     */
-    public function setAffiliateId($affiliateId)
-    {
-        $this->affiliateId = $affiliateId;
-    
-        return $this;
-    }
-
-    /**
-     * Get affiliateId
-     *
-     * @return integer 
-     */
-    public function getAffiliateId()
-    {
-        return $this->affiliateId;
     }
 
     /**
@@ -312,29 +287,6 @@ class TrafficReferral
     }
 
     /**
-     * Set offerId
-     *
-     * @param integer $offerId
-     * @return TrafficReferral
-     */
-    public function setOfferId($offerId)
-    {
-        $this->offerId = $offerId;
-    
-        return $this;
-    }
-
-    /**
-     * Get offerId
-     *
-     * @return integer 
-     */
-    public function getOfferId()
-    {
-        return $this->offerId;
-    }
-
-    /**
      * Set count
      *
      * @param integer $count
@@ -388,5 +340,51 @@ class TrafficReferral
     public function getStatDateAsString()
     {
         return date_format($this->statDate, 'Y-m-d');
+    }
+
+    /**
+     * Set affiliate
+     *
+     * @param \Anytv\DashboardBundle\Entity\Affiliate $affiliate
+     * @return TrafficReferral
+     */
+    public function setAffiliate(\Anytv\DashboardBundle\Entity\Affiliate $affiliate = null)
+    {
+        $this->affiliate = $affiliate;
+    
+        return $this;
+    }
+
+    /**
+     * Get affiliate
+     *
+     * @return \Anytv\DashboardBundle\Entity\Affiliate 
+     */
+    public function getAffiliate()
+    {
+        return $this->affiliate;
+    }
+
+    /**
+     * Set offer
+     *
+     * @param \Anytv\DashboardBundle\Entity\Offer $offer
+     * @return TrafficReferral
+     */
+    public function setOffer(\Anytv\DashboardBundle\Entity\Offer $offer = null)
+    {
+        $this->offer = $offer;
+    
+        return $this;
+    }
+
+    /**
+     * Get offer
+     *
+     * @return \Anytv\DashboardBundle\Entity\Offer 
+     */
+    public function getOffer()
+    {
+        return $this->offer;
     }
 }

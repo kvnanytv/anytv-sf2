@@ -12,4 +12,29 @@ use Doctrine\ORM\EntityRepository;
  */
 class OfferGroupRepository extends EntityRepository
 {
+    public function findAllOfferGroups($page, $items_per_page, $order_by, $order, $keyword, $status)
+    {
+        $first_result = ($items_per_page * ($page-1));
+        
+        $query = $this->createQueryBuilder('og')
+          ->where("og.status = :status AND og.name LIKE :keyword")
+          ->setParameters(array('keyword'=>"%$keyword%", 'status'=>$status))
+          ->setFirstResult($first_result)
+          ->setMaxResults($items_per_page)
+          ->orderBy('og.'.$order_by, $order)
+          ->getQuery();
+        
+        return $query->getResult();
+    }
+    
+    public function countAllOfferGroups($keyword, $status)
+    {    
+        $query = $this->createQueryBuilder('og')
+          ->select('count(og.id)')
+          ->where("og.status = :status AND og.name LIKE :keyword")
+          ->setParameters(array('keyword'=>"%$keyword%", 'status'=>$status))
+          ->getQuery();
+        
+        return $query->getSingleScalarResult();
+    }
 }

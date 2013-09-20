@@ -9,4 +9,18 @@ anytv_main:
 anytv_dashboard:
     resource: "@AnytvDashboardBundle/Resources/config/routing.yml"
     prefix:   /dashboard
+    
+login:
+    path:  /{_locale}/login
+    defaults: { _controller: AnytvMainBundle:Security:login, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
+login_check:
+    path:  /{_locale}/login_check
+    requirements:
+        _locale:  %anytv.locales%
+    
+logout:
+    path:   /logout
 

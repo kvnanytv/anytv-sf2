@@ -16,7 +16,11 @@ class TrafficReferralRepository extends EntityRepository
     {
         $first_result = ($items_per_page * ($page-1));
         
-        $query = $this->createQueryBuilder('tr')
+        $query = $this->getEntityManager()->createQueryBuilder()
+          ->select(array('tr', 'a', 'o'))
+          ->from('Anytv\DashboardBundle\Entity\TrafficReferral', 'tr')
+          ->leftJoin('tr.affiliate', 'a')
+          ->leftJoin('tr.offer', 'o')
           ->where("tr.statDate = :stat_date")
           ->setParameter('stat_date', $stat_date)
           ->setFirstResult($first_result)
@@ -36,5 +40,21 @@ class TrafficReferralRepository extends EntityRepository
           ->getQuery();
         
         return $query->getSingleScalarResult();
+    }
+    
+    public function findTrafficReferralsByAffiliate($affiliate)
+    {
+        $query = $this->getEntityManager()->createQueryBuilder()
+          ->select(array('tr', 'a', 'o'))
+          ->from('Anytv\DashboardBundle\Entity\TrafficReferral', 'tr')
+          ->leftJoin('tr.affiliate', 'a')
+          ->leftJoin('tr.offer', 'o')
+          ->where("tr.affiliate = :affiliate")
+          ->setParameter('affiliate', $affiliate)
+          ->addGroupBy("tr.url")
+          ->orderBy('tr.offer', 'ASC')
+          ->getQuery();
+        
+        return $query->getResult();
     }
 }

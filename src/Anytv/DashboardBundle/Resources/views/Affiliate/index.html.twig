@@ -24,7 +24,8 @@
          {{ form_label(form.affiliate_status) }}
          {{ form_errors(form.affiliate_status) }}
          {{ form_widget(form.affiliate_status, {'attr': {'class': 'affiliate_status_field'}}) }}
-         {{ form_widget(form.search, {'attr': {'class': 'affiliate_keyword_button'}}) }}
+         {{ form_widget(form.affiliate_search) }}
+         {{ form_widget(form.affiliate_update) }}
        {{ form_end(form) }}
     </div>
 

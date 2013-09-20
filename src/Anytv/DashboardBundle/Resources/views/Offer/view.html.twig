@@ -25,6 +25,17 @@
         <li style="display:block">{% trans %}Expiration date{% endtrans %}: {{ offer.getExpirationDateAsString() }}</li>
       </ul>
             
+      {% if(offer_groups|length) %}
+        <h2>{% trans %}Offer Groups{% endtrans %}:</h2>
+        <ul>
+          {% for offer_group in offer_groups %}
+            <li style="display:block">
+              <a href="{{ path('offer_group_view', { 'id' : offer_group.id }) }}" title="{{ offer_group }}">{{ offer_group }}</a>
+            </li> 
+          {% endfor %}
+        </ul>
+      {% endif %}
+            
       {% if(offer_categories|length) %}
         <h2>{% trans %}Categories{% endtrans %}:</h2>
         <ul>

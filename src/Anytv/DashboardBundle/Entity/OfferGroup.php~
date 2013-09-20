@@ -3,6 +3,7 @@
 namespace Anytv\DashboardBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * OfferGroup
@@ -21,6 +22,13 @@ class OfferGroup
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+     /**
+     * @var integer
+     *
+     * @ORM\Column(name="offer_group_id", type="integer")
+     */
+    private $offerGroupId;
 
     /**
      * @var string
@@ -56,6 +64,16 @@ class OfferGroup
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updated_at;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="Offer", mappedBy="offerGroups")
+     */
+    private $offers;
+    
+    public function __construct()
+    {
+        $this->offers = new ArrayCollection();
+    }
 
 
     /**
@@ -200,5 +218,66 @@ class OfferGroup
       {
         $this->updated_at = new \DateTime();
       }
+    }
+
+    /**
+     * Set offerGroupId
+     *
+     * @param integer $offerGroupId
+     * @return OfferGroup
+     */
+    public function setOfferGroupId($offerGroupId)
+    {
+        $this->offerGroupId = $offerGroupId;
+    
+        return $this;
+    }
+
+    /**
+     * Get offerGroupId
+     *
+     * @return integer 
+     */
+    public function getOfferGroupId()
+    {
+        return $this->offerGroupId;
+    }
+    
+    public function __toString() 
+    {
+      return $this->getName();    
+    }
+
+    /**
+     * Add offers
+     *
+     * @param \Anytv\DashboardBundle\Entity\Offer $offers
+     * @return OfferGroup
+     */
+    public function addOffer(\Anytv\DashboardBundle\Entity\Offer $offers)
+    {
+        $this->offers[] = $offers;
+    
+        return $this;
+    }
+
+    /**
+     * Remove offers
+     *
+     * @param \Anytv\DashboardBundle\Entity\Offer $offers
+     */
+    public function removeOffer(\Anytv\DashboardBundle\Entity\Offer $offers)
+    {
+        $this->offers->removeElement($offers);
+    }
+
+    /**
+     * Get offers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOffers()
+    {
+        return $this->offers;
     }
 }

@@ -17,7 +17,7 @@
       </ul>
             
       {% if(advertisers|length) %}
-        <h2>{% trans %}Advertisers{% endtrans %}:</h2>
+        <h2>{% trans %}Advertisers{% endtrans %}: ({{ advertisers|length }})</h2>
         <ul>
           {% for advertiser in advertisers %}
             <li style="display:block">
@@ -28,7 +28,7 @@
       {% endif %}
         
       {% if(active_affiliates|length) %}
-        <h2>{% trans %}Active Affiliates{% endtrans %}:</h2>
+        <h2>{% trans %}Active Affiliates{% endtrans %}: ({{ active_affiliates|length }})</h2>
         <ul>
           {% for affiliate in active_affiliates %}
             <li style="display:block">
@@ -39,7 +39,7 @@
       {% endif %}
         
       {% if(pending_affiliates|length) %}
-        <h2>{% trans %}Pending Affiliates{% endtrans %}:</h2>
+        <h2>{% trans %}Pending Affiliates{% endtrans %}: ({{ pending_affiliates|length }})</h2>
         <ul>
           {% for affiliate in pending_affiliates %}
             <li style="display:block">
@@ -50,7 +50,7 @@
       {% endif %}
         
       {% if(deleted_affiliates|length) %}
-        <h2>{% trans %}Deleted Affiliates{% endtrans %}:</h2>
+        <h2>{% trans %}Deleted Affiliates{% endtrans %}: ({{ deleted_affiliates|length }})</h2>
         <ul>
           {% for affiliate in deleted_affiliates %}
             <li style="display:block">
@@ -61,7 +61,7 @@
       {% endif %}
         
       {% if(blocked_affiliates|length) %}
-        <h2>{% trans %}Blocked Affiliates{% endtrans %}:</h2>
+        <h2>{% trans %}Blocked Affiliates{% endtrans %}: ({{ blocked_affiliates|length }})</h2>
         <ul>
           {% for affiliate in blocked_affiliates %}
             <li style="display:block">
@@ -72,7 +72,7 @@
       {% endif %}
         
       {% if(rejected_affiliates|length) %}
-        <h2>{% trans %}Rejected Affiliates{% endtrans %}:</h2>
+        <h2>{% trans %}Rejected Affiliates{% endtrans %}: ({{ rejected_affiliates|length }})</h2>
         <ul>
           {% for affiliate in rejected_affiliates %}
             <li style="display:block">
@@ -83,7 +83,7 @@
       {% endif %}
         
       {% if(offers|length) %}
-        <h2>{% trans %}Offers{% endtrans %}:</h2>
+        <h2>{% trans %}Offers{% endtrans %}: ({{ offers|length }})</h2>
         <ul>
           {% for offer in offers %}
             <li style="display:block">

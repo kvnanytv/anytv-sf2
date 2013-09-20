@@ -32,8 +32,20 @@
        </tr>
        {% for traffic_referral in traffic_referrals %}
          <tr>
-           <td>{{ traffic_referral.affiliateId }}</td>
-           <td>{{ traffic_referral.offerId }}</td>
+           <td>
+           {% if(traffic_referral.affiliate) %}
+             <a href="{{ path('affiliate_view', { 'id' : traffic_referral.affiliate.id }) }}" title="{{ traffic_referral.affiliate }}">{{ traffic_referral.affiliate }}</a>
+           {% else %}
+             &nbsp;
+           {% endif %}
+           </td>
+           <td>
+           {% if(traffic_referral.offer) %}
+             <a href="{{ path('offer_view', { 'id' : traffic_referral.offer.id }) }}" title="{{ traffic_referral.offer }}">{{ traffic_referral.offer }}</a>
+           {% else %}
+             &nbsp;
+           {% endif %}
+           </td>
            <td><a href="{{ traffic_referral.url }}" target="_blank" title="{{ traffic_referral.url }}">{{ traffic_referral.url|slice(0, 60) }}</a></td>
            <td>{{ traffic_referral.count }}</td>
            <td>{{ traffic_referral.clicks }}</td>

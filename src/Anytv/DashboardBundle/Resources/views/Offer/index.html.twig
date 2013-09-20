@@ -21,7 +21,8 @@
          {{ form_label(form.offer_status) }}
          {{ form_errors(form.offer_status) }}
          {{ form_widget(form.offer_status, {'attr': {'class': 'offer_status_field'}}) }}
-         {{ form_widget(form.search, {'attr': {'class': 'offer_search_button'}}) }}
+         {{ form_widget(form.offer_search) }}
+         {{ form_widget(form.offer_update) }}
        {{ form_end(form) }}
     </div>
 
@@ -37,9 +38,9 @@
        {% for offer in offers %}
          <tr>
            <td>{{ offer.offerId }}</td>
-           <td><a href="{{ path('offer_view', { 'id' : offer.id }) }}" title="{% trans %}Edit{% endtrans %}">{{ offer.name }}</a></td>
+           <td><a href="{{ path('offer_view', { 'id' : offer.id }) }}" title="{% trans %}View{% endtrans %}">{{ offer.name }}</a></td>
            {% if(offer.advertiser) %}
-             <td><a href="{{ path('advertiser_view', { 'id' : offer.advertiser.id }) }}" title="{% trans %}Edit{% endtrans %}">{{ offer.advertiser }}</a></td>
+             <td><a href="{{ path('advertiser_view', { 'id' : offer.advertiser.id }) }}" title="{% trans %}View{% endtrans %}">{{ offer.advertiser }}</a></td>
            {% else %}
              <td>&nbsp;</td>
            {% endif %}

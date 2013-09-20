@@ -5,6 +5,8 @@ namespace Anytv\DashboardBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Anytv\DashboardBundle\Entity\TrafficReferral;
+use Anytv\DashboardBundle\Entity\Affiliate;
+use Anytv\DashboardBundle\Entity\Offer;
 
 class TrafficReferralController extends Controller
 {
@@ -30,22 +32,62 @@ class TrafficReferralController extends Controller
         $hasoffers = $this->get('hasoffers');
         $traffic_referrals_data = $hasoffers->getTrafficReferrals($traffic_referral_date);
         
+        $traffic_referral_repository = $manager->getRepository('AnytvDashboardBundle:TrafficReferral');
+        $affiliate_repository = $manager->getRepository('AnytvDashboardBundle:Affiliate');
+        $offer_repository = $manager->getRepository('AnytvDashboardBundle:Offer');
+        
         foreach($traffic_referrals_data as $traffic_referral_data)
         {
           $traffic_referral_stat_object = $traffic_referral_data->Stat;
           
-          $traffic_referral = new TrafficReferral();
-          $traffic_referral->setAffiliateId($traffic_referral_stat_object->affiliate_id);
-          $traffic_referral->setOfferId($traffic_referral_stat_object->offer_id);
-          $traffic_referral->setUrl($traffic_referral_stat_object->url);
-          $traffic_referral->setClicks($traffic_referral_stat_object->clicks);
-          $traffic_referral->setConversions($traffic_referral_stat_object->conversions);
-          $traffic_referral->setLikes(0);
-          $traffic_referral->setDislikes(0);
-          $traffic_referral->setCount($traffic_referral_stat_object->count);
-          $traffic_referral->setStatDate(new \DateTime($traffic_referral_stat_object->date));
+          $affiliate = null;
+          if($traffic_referral_stat_object->affiliate_id)
+          {
+            $affiliate = $affiliate_repository->findOneByAffiliateId($traffic_referral_stat_object->affiliate_id);        
+          }
+          
+          $offer = null;
+          if($traffic_referral_stat_object->offer_id)
+          {
+            $offer = $offer_repository->findOneByOfferId($traffic_referral_stat_object->offer_id);    
+          }
+          
+          $traffic_referral = null;
+          if($affiliate && $offer)
+          {
+            $traffic_referral = $traffic_referral_repository->findOneBy(array('affiliate'=>$affiliate, 'offer'=>$offer, 'url'=>$traffic_referral_stat_object->url, 'statDate'=>new \DateTime($traffic_referral_stat_object->date)));
+          }
+          
+          if($traffic_referral)
+          {
+            $traffic_referral->setCount($traffic_referral_stat_object->count);
+            $traffic_referral->setClicks($traffic_referral_stat_object->clicks);
+            $traffic_referral->setConversions($traffic_referral_stat_object->conversions);
+          }
+          else
+          {
+            $traffic_referral = new TrafficReferral();
+          
+            if($affiliate)
+            {
+              $traffic_referral->setAffiliate($affiliate);      
+            }
+          
+            if($offer)
+            {
+              $traffic_referral->setOffer($offer);      
+            }
+          
+            $traffic_referral->setUrl($traffic_referral_stat_object->url);
+            $traffic_referral->setClicks($traffic_referral_stat_object->clicks);
+            $traffic_referral->setConversions($traffic_referral_stat_object->conversions);
+            $traffic_referral->setLikes(0);
+            $traffic_referral->setDislikes(0);
+            $traffic_referral->setCount($traffic_referral_stat_object->count);
+            $traffic_referral->setStatDate(new \DateTime($traffic_referral_stat_object->date));
 
-          $manager->persist($traffic_referral);
+            $manager->persist($traffic_referral);    
+          }
         }
 
         $manager->flush();

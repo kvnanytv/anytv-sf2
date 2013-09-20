@@ -33,15 +33,24 @@
 {% endblock %}
   
 {% block submenu %}
+{% if is_granted('ROLE_ADMIN') %}
 <div id="sub_menu">
   <ul>
     <li><a href="{{ path('advertisers') }}" title="{% trans %}Advertisers{% endtrans %}">{% trans %}Advertisers{% endtrans %}</a></li>
+    <li><a href="{{ path('offer_groups') }}" title="{% trans %}Offer Groups{% endtrans %}">{% trans %}Offer Groups{% endtrans %}</a></li>
     <li><a href="{{ path('offers') }}" title="{% trans %}Offers{% endtrans %}">{% trans %}Offers{% endtrans %}</a></li>
     <li><a href="{{ path('affiliates') }}" title="{% trans %}Affiliates{% endtrans %}">{% trans %}Affiliates{% endtrans %}</a></li>
     <li><a href="{{ path('traffic_referrals') }}" title="{% trans %}Traffic Referrals{% endtrans %}">{% trans %}Traffic Referrals{% endtrans %}</a></li>
     <li><a href="{{ path('countries') }}" title="{% trans %}Countries{% endtrans %}">{% trans %}Countries{% endtrans %}</a></li>
   </ul>
-</div>    
+</div> 
+{% else %}
+<div id="sub_menu">
+  <ul>
+    <li><a href="{{ path('profile_view') }}" title="{% trans %}My Profile{% endtrans %}">{% trans %}My Profile{% endtrans %}</a></li>
+  </ul>
+</div> 
+{% endif %}
 {% endblock %}
  
      
