@@ -45,7 +45,7 @@
     <link href="css/bootstrap/bootstrap-min.css" rel="stylesheet">
 
   <!-- Zurb Tables -->
-    <link type="text/css" media="screen" rel="stylesheet" href="responsive-tables.css" />
+    <link type="text/css" media="screen" rel="stylesheet" href="zurb/responsive-tables.css" />
 
 
 </head>
@@ -68,7 +68,7 @@
 
 
           <div style="padding-top: 5px;" class="collapse navbar-collapse navbar-ex1-collapse atv-sites">        
-            <ul id="top-menus" style="padding-left: 10px;" class="nav navbar-nav navbar-left">          
+            <ul style="padding-left: 10px;" class="nav navbar-nav navbar-left">          
               <li><a class="lnk-blue" href="#">any.TV</a></li>
               <li><a class="lnk-yellow" href="#">dashboard</a></li>
               <li><a class="lnk-red" href="#">mmo</a></li>
@@ -133,8 +133,7 @@
                 <div class="col-lg-5">
             			<h3>A new kind of YouTube Network</h3>
             			<p>No need to unpartner from your YouTube Network</p>
-                  <p><a class="btn btn-primary btn-lg btn-join">Join Us!</a></p>
-                  <p><a href="#" class="btn btn-primary btn-lg btn-lrn">Learn more</a></p> 
+                  <p><a class="btn btn-primary btn-lg btn-join">Join Us!</a></p>                   
                 </div>
                 <div class="col-lg-7">
                 <div class="vid-yt">
@@ -157,67 +156,87 @@
                 <input id="in-pl" type="search" class="form-control" role="search" placeholder="Search Games...">
                 <div class="gameslist-tbl-wrap">
 
-                  <table id="gl-tbl" class="table table-striped">        
-                    
-                      <thead>
-                        <tr>
-                          <th scope="col" id="f-col">Game</th>
-                          <th scope="col" id="s-col">Payout</th>
-                          <th scope="col" id="th-col">Countries</th>
-                          <th scope="col" id="frt-col">Status</th>
-                          <th>&nbsp;</th>                          
-                        </tr>
-                      </thead>                    
-                                    
-                 
-                      <tbody>
-                        <tr>
-                          <td>Age of Conan</td>
-                          <td>$0.60</td>
-                          <td>Canada, United Kingdom ...</td>
-                          <td>Active</td>
-                        </tr>
-
-                        <tr>
-                          <td>Age of Conan</td>
-                          <td>$0.60</td>
-                          <td>Canada, United Kingdom ...</td>
-                          <td>Active</td>
-                        </tr>
-
-                        <tr>
-                          <td>Age of Conan</td>
-                          <td>$0.60</td>
-                          <td>Canada, United Kingdom ...</td>
-                          <td>Active</td>
-                        </tr>
-
-                        <tr>
-                          <td>Age of Conan</td>
-                          <td>$0.60</td>
-                          <td>Canada, United Kingdom ...</td>
-                          <td>Active</td>
-                        </tr>
-
-                      </tbody> 
-
-                      <tfoot>
-                            <tr>
-                              <!-- <td colspan="4">&#60; &#62;</td> -->
-                              <td colspan="4">
-                                <ul class="pagination">
-                                  <li><a href="#">&laquo;</a></li>
-                                  <li><a href="#">1</a></li>
-                                  <li><a href="#">2</a></li>
-                                  <li><a href="#">3</a></li>
-                                  <li><a href="#">4</a></li>
-                                  <li><a href="#">5</a></li>
-                                  <li><a href="#">&raquo;</a></li>
-                                </ul>
-                              </td>                                               
-                            </tr>
-                      </tfoot>    
-                  </table>
+ <table class="responsive">
+  				<tbody>
+  				  <tr>
+      				<th>Perk</th>
+      				<th>Description</th>
+      				<th>ID</th>
+      				<th>Skill Req</th>
+      				<th>Perk Req</th>
+    				</tr>
+    				<tr>
+      				<td>Steel Smithing</td>
+      				<td>Can create Steel armor and weapons at forges, and improve them twice as much.</td>
+      				<td>000cb40d</td>
+      				<td></td>
+      				<td></td>
+    				</tr>
+    				<tr>
+      				<td>Arcane Blacksmith</td>
+      				<td>You can improve magical weapons and armor.</td>
+      				<td><span style="font-size: x-small" class="idref">0005218e</span></td>
+      				<td>60 Smithing</td>
+      				<td>Steel Smithing</td>
+    				</tr>
+    				<tr>
+      				<td>Dwarven Smithing</td>
+      				<td>Can create Dwarven armor and weapons at forges, and improve them twice as much.</td>
+      				<td>000cb40e</td>
+      				<td>30 Smithing</td>
+      				<td>Steel Smithing</td>
+    				</tr>
+    				<tr>
+      				<td>Orcish Smithing</td>
+      				<td>Can create Orcish armor and weapons at forges, and improve them twice as much.</td>
+      				<td>000cb410</td>
+      				<td>50 Smithing</td>
+      				<td>Dwarven Smithing</td>
+    				</tr>
+    				<tr>
+      				<td>Ebony Smithing</td>
+      				<td>Can create Ebony armor and weapons at forges</a>, and improve them twice as much.</td>
+      				<td>000cb412</td>
+      				<td>80 Smithing</td>
+      				<td>Orcish Smithing</td>
+    				</tr>
+    				<tr>
+      				<td>Daedric Smithing</td>
+      				<td>Can create Daedric armor and weapons at forges, and improve them twice as much.</td>
+      				<td>000cb413</span></td>
+      				<td>90 Smithing</td>
+      				<td>Ebony Smithing</td>
+    				</tr>
+    				<tr>
+      				<td>Elven Smithing</td>
+      				<td>Can create Elven armor and weapons at forges, and improve them twice as much.</td>
+      				<td>000cb40f</td>
+      				<td>30 Smithing</td>
+      				<td>Steel Smithing</td>
+    				</tr>
+    				<tr>
+      				<td>Advanced Armors</td>
+      				<td>Can create Scaled and Plate armor at forges, and improve them twice as much.
+      				<td>000cb414</td>
+      				<td>50 Smithing</td>
+      				<td>Elven Smithing</td>
+    				</tr>
+    				<tr>
+      				<td>Glass Smithing</td>
+      				<td>Can create Glass armor and weapons at forges, and improve them twice as much.</td>
+      				<td>000cb411</td>
+      				<td>70 Smithing</td>
+      				<td>Advanced Armors</td>
+    				</tr>
+    				<tr>
+      				<td>Dragon Armor</td>
+      				<td>Can create Dragon armor at forges, and improve them twice as much.</td>
+      				<td>00052190</td>
+      				<td>100 Smithing</td>
+      				<td>Daedric Smithing or Glass Smithing</td>
+    				</tr>
+				  </tbody>
+				</table>
                 </div>
             </div>
  
@@ -299,7 +318,7 @@
 <script src="js/zclip/jquery.zclip.js"></script>   
 <script src="js/vendor/custom.modernizr.js"></script>
 <script src="js/bootstrap/bootstrap.min.js"></script>
-
+<script type="text/javascript" src="zurb/responsive-tables.js"></script>
 
 
 </html>

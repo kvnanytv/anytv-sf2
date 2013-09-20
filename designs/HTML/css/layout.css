@@ -3,101 +3,155 @@ layout Styles
 */
 
 /********************** General *******************/
- 
-.cl {
-	clear: both;
-	height: 20px;
-	margin: 0; /*com*/
-}
 
 body {
 	background-image: url(../img/clouds-1.jpg);
 	background-attachment: fixed;
-	background-size: 100%;
-	background-position: bottom;
+	background-size: cover;
+	background-position: bottom;	
 }
+ 
+.cl {
+	clear: both;
+	float: none;
+}
+
 /********************** Header *******************/
 
-
-.main-nav  {
-	padding-top: 5px;
-	height: 70px;
-	margin-bottom: 0;
-	border-radius: 0;
-	margin: 0;
+header {
+	width:100%;
+	z-index: 99;
 }
 
-.navbar-default {
-	background: #ffffff;
-	border: 0;
-	/*border-bottom: 1px solid #ccc;*/
+#top-menus li {
+	border-left: 1px solid #;
 }
 
-.navbar-inner {
-	max-height: 40px;
+.main-nav {
+	background: #fff;
 }
 
-#menu {
-	height: 100%;
+.navbar {
+	border-radius: 0 !important;
+	margin: 0 !important;
+	background: transparent !important;
+	border: none !important;
 }
 
-.lnk-blue {
-	color: #2c7dc6;	
+.atv-sites {
+	font-family: 'Droid Sans', Arial, Helvetica, sans-serif;
 }
 
-.navbar .brand {
-	float: left;
-	padding: 15px 0 0 30px;
+.dropdown-toggle {
+	background-color: #fff !important;
+	/*border: 1px solid #d2d2d2;*/
+	height: auto !important;
+	padding: 10px !important;
+	margin-top: 5px;
 }
 
-.nav li {
-	display: inline;
+.dd-height {
+	border-radius: 0 !important;
 }
 
-.subnav {
-	height: 20px;
+.dd-height li a {
+	padding: 10px !important;
+}
+
+.dd-height li a > img {
+	padding-right: 10px;
+}
+
+.nav li a.lnk-blue {
+	text-decoration: none;
+	color: #2c7dc6 !important;
+	font-weight: bold;
+}
+
+.nav li a.lnk-yellow {
+	text-decoration: none;
+	color: #ff9500 !important;
+	font-weight: bold;
+}
+
+.nav li a.lnk-red {
+	text-decoration: none;
+	color: #dc2127 !important;
+	font-weight: bold;
+}
+
+.dropdown a {
+	font-size: 12px;
+	text-decoration: none !important;
+}
+
+.sub-nav {
+	height: 40px;
 	border-radius: 0;
 	border-bottom: none;
 	margin-bottom:-5px;
 	background-color: #005fb4;
-
-	/*background-image: linear-gradient(bottom, rgb(15,78,137) 9%, rgb(49,129,199) 78%);
-	background-image: -o-linear-gradient(bottom, rgb(15,78,137) 9%, rgb(49,129,199) 78%);
-	background-image: -moz-linear-gradient(bottom, rgb(15,78,137) 9%, rgb(49,129,199) 78%);
-	background-image: -webkit-linear-gradient(bottom, rgb(15,78,137) 9%, rgb(49,129,199) 78%);
-	background-image: -ms-linear-gradient(bottom, rgb(15,78,137) 9%, rgb(49,129,199) 78%);
-
-	background-image: -webkit-gradient(
-		linear,
-		left bottom,
-		left top,
-		color-stop(0.09, rgb(15,78,137)),
-		color-stop(0.78, rgb(49,129,199))cv
-	);
-
-
-    -webkit-box-shadow: 0 2px 5px #1d1d1d;	*/	
+    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    -ms
 
 }
 
-#subnav-links ul > li > a {
-	font-size: 12px;
-	font-weight: bold;
-	color: #fff;
+.search-box {
+	width: 300px;
+	margin: 10px 10px 0 0;
 }
 
-/* #subnav-links .navbar-nav > li > a {
-	padding-top: 5px;
-  	padding-bottom: 5px;
-  	line-height: 20px;
-} */
+.log-btn {
+	font-size: 14px !important;
+	font-weight: bold !important;
+	margin-top: 10px !important;s	
+	background-color: #eaa13f !important;
 
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffc933;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffc933;
+	box-shadow:inset 0px 1px 0px 0px #ffc933;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffb700), color-stop(1, #ff9500) );
+	background:-moz-linear-gradient( center top, #ffb700 5%, #ff9500 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffb700', endColorstr='#ff9500');
+	background-image:  -ms-linear-gradient(top, #ffb700 5%, #ff9500 100%);	
+	background-color:#ffb700;
+	-webkit-border-top-left-radius:6px;
+	-moz-border-radius-topleft:6px;
+	border-top-left-radius:6px;
+	-webkit-border-top-right-radius:6px;
+	-moz-border-radius-topright:6px;
+	border-top-right-radius:6px;
+	-webkit-border-bottom-right-radius:6px;
+	-moz-border-radius-bottomright:6px;
+	border-bottom-right-radius:6px;
+	-webkit-border-bottom-left-radius:6px;
+	-moz-border-radius-bottomleft:6px;
+	border-bottom-left-radius:6px;
+	text-indent:0;
+	border:1px solid #876614 !important;
+	display:inline-block;
+	color:#000000 !important;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+	line-height:50px;
+	width:100px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #ffcc00;
+}
 
+.mrgn-left {
+	margin-left: 20px !important;
+}
 /********************** Section 1: Banner *******************/
 
-.banner { 	
-  	height: 730px;
-}
+.banner {
+	height: 450px; 	
+ }
 
 .uptop {
 	text-align: center;
@@ -107,10 +161,23 @@ body {
 .uptop h3,p {
 	margin: 0;
 	color: #fff;
+	font-family: 'Droid Sans', Arial, Helvetica, sans-serif;
+}
+
+.uptop h3 {
+	font-size: 48px;
+	font-weight: 700;
+	text-align: left;
+}
+
+.uptop p {
+	font-size: 18px;
+	text-align: left;
 }
 
 .uptop img {
 	margin-top: 20px;
+	max-width: 100%;
 }
 
 #lang-picker {
@@ -120,38 +187,67 @@ body {
 .yt-video {
 	position: relative;
 	top: -441px;
+	max-width: 100%;
 	width: 560px;
 	height: 315px;
+	max-height: 100%;
 	margin: 0 auto;	
+
 }
 
 .yt-video iframe,
 .yt-video object,
 .yt-video embed {    
     width: 100%;
-    height: 100%;
+    height: 100%
 }
 
+.vid-yt {
+	position: absolute;
+	top: -50px;
+}
 
 .btn-join {
 	color: #fff;
-	font-weight: bold;
-	background-color: #d03431;		
-	padding: 20px 40px;
-	
-	
+	font-family: 'Droid Sans', Arial, Helvetica, sans-serif !important;
+	font-weight: 700 !important;
+	font-size: 24px !important;
+	background-color: #d03431 !important;		
+	padding: 20px 100px !important;	
+	border: none !important;
+	margin-top: 20px !important;
 }
+
+.btn-lrn {
+	color: #fff;
+	font-family: 'Droid Sans', Arial, Helvetica, sans-serif !important;
+	font-size: 16px !important;
+	font-weight: 700 !important;
+	background: transparent !important;
+	border: 1px solid #fff !important;
+	border-radius: 0 !important;
+}
+
 
 /********************** Section 2: Games Lists *******************/
 
-#games-lists {
-	height: 460px;
+#games-lists {	
 	background-color: #fff;
 }
 
 .games-list-wrap {
 	text-align: center;
 	padding-top: 10px;
+}
+
+.games-list-wrap h3 {
+	text-align: center;
+	font-family: 'Droid Sans', Arial, Helvetica, sans-serif;
+	color: #2c7dc6;
+}
+
+.games-list-wrap h3 > strong {
+	color: #e51915;
 }
 
 .games-list-wrap input {
@@ -164,22 +260,100 @@ body {
 }
 
 
+#in-pl::-webkit-input-placeholder { font-style: italic; }
+#in-pl::-moz-placeholder { font-style: italic; } /* firefox 19+ */
+#in-pl:-ms-input-placeholder { font-style:italic; } /* ie */
+input:-moz-placeholder { font-style:; }
 
+.games-list-wrap {
+	text-align: left;
+}
+
+
+.gameslist-tbl-wrap {
+	margin-top: 20px;
+	width: 960px;
+	margin: 20px auto;
+}
+
+	#gl-tbl  {
+		max-width: 100%;
+		margin-left: 30px;
+		
+	}
+
+
+	#gl-tbl thead, #gl-tbl tbody, #gl-tbl tfoot, #gl-tbl th, #gl-tbl td {
+		
+	}
+
+	#gl-tbl thead > tr > th {
+		padding: 10px 20px;
+		border: 0;
+		font-size: 18px;
+		color: #fff;
+	}
+
+	#gl-tbl tbody > tr > td {
+		padding: 20px;
+	}
+
+	#gl-tbl tbody > tr:hover td {
+		background: #e8e8e8;
+	}
+
+	#gl-tbl tfoot {
+		text-align: center;		
+	}
+
+	#f-col {
+		background: #d71815;
+	}
+
+	#s-col {
+		background: #a31412;
+	}
+
+	#th-col {
+		background: #7a0f0d
+	}
+
+	#frt-col {
+		background: #540807;
+	}
+
+
+.zclip-wrap {
+	position: relative;
+}
 
 
 /********************** Section 3: Networks *******************/
 
 #networks {
-	height: 380px;
-	background-color: #267ac5;
-	padding-top: 20px;
+	background-color: #267ac5;	
 	margin: 0;
+}
+
+#net-col1 {
+	height: 350px;
+	background: #fff url(img/anytv-blue-emblem.png) no-repeat right bottom;
+}
+
+#net-col2 {
+	height: 350px;
 }
 
 .brdr-test {
 	border: 1px solid white;
 	height: 100%;
 	background-color: #fff;
+	border: 20px solid #267ac5;
+	padding: 0 20px 0 20px;
+}
+
+.brdr-test p {
+	color: #000;
 }
 
 
@@ -198,5 +372,16 @@ body {
 #about-anytv {
 	height: 380px;
 	background-color: #c057d1;
+}
+
+
+/********************** Footer *******************/
+
+footer {
+	margin-bottom: -40px;
+	height: 150px;
+	padding: 20px;
+	background-color: #282a2b;
+	bottom: 0;
 }
 
