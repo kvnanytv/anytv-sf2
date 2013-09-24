@@ -1,324 +1,41 @@
-<!DOCTYPE HTML>
-
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="../../assets/ico/favicon.png">
-
-	<title>AnyTV | A new kind of YouTube Channel</title>
-
-  <!--[if IE 7]>
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome-ie7.min.css">
-  <![endif]-->
-
-   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="assets/js/html5shiv.js"></script>
-      <script src="assets/js/respond.min.js"></script>
-    <![endif]-->
-
-  <link href="css/layout.css" rel="stylesheet">    
-  <link href="css/normalize.css" rel="stylesheet"> 
-  <link href="css/subnav.css" rel="stylesheet">
-
-
-  <!-- Font Awesome -->
-  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
-
-  <!-- Favicon -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png"/>
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png"/>
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png"/>
-  <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png"/>
-  <link rel="shortcut icon" href="assets/ico/favicon.png"/>
-
-  <!-- Fonts -->
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'> 
-
-	<!-- Bootstrap -->
-    <link href="css/bootstrap/bootstrap.css" rel="stylesheet">
-    <link href="css/bootstrap/bootstrap-min.css" rel="stylesheet">
-
-  <!-- Zurb Tables -->
-    <link type="text/css" media="screen" rel="stylesheet" href="zurb/responsive-tables.css" />
-
-
+  <style type="text/css">
+    * {
+      margin: 0;
+    }
+    html, body {
+      height: 100%;
+    }
+    .page-wrap {
+      min-height: 100%;
+      /* equal to footer height */
+      margin-bottom: -142px; 
+    }
+    .page-wrap:after {
+      content: "";
+      display: block;
+    }
+    .site-footer, .page-wrap:after {
+      /* .push must be the same height as footer */
+      height: 142px; 
+    }
+    .site-footer {
+      background: orange;
+    }  
+  </style>
 </head>
-
 <body>
-
-<header>
-  <div class="main-nav">    
-      <nav class="navbar navbar-default" role="navigation">
-      <div class="container">
-          <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>                
-              </button>
-              <a class="navbar-brand" href="#"><img src="img/anytv-home_logo.png"></a>
-          </div>
-
-
-          <div style="padding-top: 5px;" class="collapse navbar-collapse navbar-ex1-collapse atv-sites">        
-            <ul style="padding-left: 10px;" class="nav navbar-nav navbar-left">          
-              <li><a class="lnk-blue" href="#">any.TV</a></li>
-              <li><a class="lnk-yellow" href="#">dashboard</a></li>
-              <li><a class="lnk-red" href="#">mmo</a></li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-            <li>
-              <div class="input-group search-box">
-              <input type="text" class="form-control">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button"><i class="icon-search"></i></button>
-              </span>
-            </div>
-            </li>
-            <li>
-            <button type="button" class="btn btn-default navbar-btn log-btn mrgn-left">Sign in</button>
-            </li>
-              <li class="dropdown mrgn-left">
-
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="img/flags/us.png">&nbsp;<b class="caret"></b></a>
-                <ul class="dropdown-menu dd-height">
-                  <li><a href="#"><img src="img/flags/us.png">English (US)</a></li>
-                  <li><a href="#"><img src="img/flags/cn.png">Chinese</a></li>
-                  <li><a href="#"><img src="img/flags/nl.png">Dutch</a></li>
-                </ul>
-              </li>              
-            </ul>
-          </div>  
-      </div>
-      <!-- /container -->        
-      </nav> 
-      <!-- /nav -->
-  </div>
-  <!-- /main-nav -->
-
-  <div class="sub-nav">
-    <div class="container">              
-      <nav class="subnav-cllps">
-          <ul>
-            <li><a href="#">What is any.TV?</a></li>
-            <li><a href="#">Branding Kit</a></li>
-            <li><a href="#">Games List</a></li>
-            <li><a href="#">Livestream Handbook</a></li>
-            <li><a href="#">Recruiters Handbook</a></li>
-            <li><a href="#">Join our Twitch Team!</a></li>
-            <li><a href="#">Staff</a></li>        
-            <li><a href="#">FAQs</a></li>
-          </ul>
-      </nav>
-    </div>
-  </div>
-</header>
-<!-- /header -->
-
-    <div id="content">
-
-    	<section class="banner">
-        <div class="container">
-          <div class="container-fluid">
-            <div class="row-fluid">
-          		<div class="uptop">
-                <div class="col-lg-5">
-            			<h3>A new kind of YouTube Network</h3>
-            			<p>No need to unpartner from your YouTube Network</p>
-                  <p><a class="btn btn-primary btn-lg btn-join">Join Us!</a></p>                   
-                </div>
-                <div class="col-lg-7">
-                <div class="vid-yt">
-            			<img src="img/mac-monitor.png">            
-                  <div class="yt-video">
-                    <iframe src="http://www.youtube.com/embed/UCqJAZuvUS0?list=PLyI74zGGymu8k7eVhGPcVSh3nKljHfiVX&wmode=transparent" frameborder="0" allowfullscreen></iframe>
-                  </div>
-                </div>
-                </div>
-          		</div>
-            </div>
-          </div>          
-        </div>       
-    	</section>
-    	<section id="games-lists">
-        <div class="container">
-          <div class="games-list-wrap">
-        		<h3>any.TV <strong>Games List</strong></h3>
-            <div class="row">                    
-                <input id="in-pl" type="search" class="form-control" role="search" placeholder="Search Games...">
-                <div class="gameslist-tbl-wrap">
-
- <table class="responsive">
-  				<tbody>
-  				  <tr>
-      				<th>Perk</th>
-      				<th>Description</th>
-      				<th>ID</th>
-      				<th>Skill Req</th>
-      				<th>Perk Req</th>
-    				</tr>
-    				<tr>
-      				<td>Steel Smithing</td>
-      				<td>Can create Steel armor and weapons at forges, and improve them twice as much.</td>
-      				<td>000cb40d</td>
-      				<td></td>
-      				<td></td>
-    				</tr>
-    				<tr>
-      				<td>Arcane Blacksmith</td>
-      				<td>You can improve magical weapons and armor.</td>
-      				<td><span style="font-size: x-small" class="idref">0005218e</span></td>
-      				<td>60 Smithing</td>
-      				<td>Steel Smithing</td>
-    				</tr>
-    				<tr>
-      				<td>Dwarven Smithing</td>
-      				<td>Can create Dwarven armor and weapons at forges, and improve them twice as much.</td>
-      				<td>000cb40e</td>
-      				<td>30 Smithing</td>
-      				<td>Steel Smithing</td>
-    				</tr>
-    				<tr>
-      				<td>Orcish Smithing</td>
-      				<td>Can create Orcish armor and weapons at forges, and improve them twice as much.</td>
-      				<td>000cb410</td>
-      				<td>50 Smithing</td>
-      				<td>Dwarven Smithing</td>
-    				</tr>
-    				<tr>
-      				<td>Ebony Smithing</td>
-      				<td>Can create Ebony armor and weapons at forges</a>, and improve them twice as much.</td>
-      				<td>000cb412</td>
-      				<td>80 Smithing</td>
-      				<td>Orcish Smithing</td>
-    				</tr>
-    				<tr>
-      				<td>Daedric Smithing</td>
-      				<td>Can create Daedric armor and weapons at forges, and improve them twice as much.</td>
-      				<td>000cb413</span></td>
-      				<td>90 Smithing</td>
-      				<td>Ebony Smithing</td>
-    				</tr>
-    				<tr>
-      				<td>Elven Smithing</td>
-      				<td>Can create Elven armor and weapons at forges, and improve them twice as much.</td>
-      				<td>000cb40f</td>
-      				<td>30 Smithing</td>
-      				<td>Steel Smithing</td>
-    				</tr>
-    				<tr>
-      				<td>Advanced Armors</td>
-      				<td>Can create Scaled and Plate armor at forges, and improve them twice as much.
-      				<td>000cb414</td>
-      				<td>50 Smithing</td>
-      				<td>Elven Smithing</td>
-    				</tr>
-    				<tr>
-      				<td>Glass Smithing</td>
-      				<td>Can create Glass armor and weapons at forges, and improve them twice as much.</td>
-      				<td>000cb411</td>
-      				<td>70 Smithing</td>
-      				<td>Advanced Armors</td>
-    				</tr>
-    				<tr>
-      				<td>Dragon Armor</td>
-      				<td>Can create Dragon armor at forges, and improve them twice as much.</td>
-      				<td>00052190</td>
-      				<td>100 Smithing</td>
-      				<td>Daedric Smithing or Glass Smithing</td>
-    				</tr>
-				  </tbody>
-				</table>
-                </div>
-            </div>
- 
-            </div>      		
-          </div>
-        </div>
-    	</section>
-
-      <section id="networks">
-        <div class="container">
-          <div class="container-fluid">
-            <div class="row-fluid 3col-bg">
-              <div id="net-col1" class="col-lg-4 brdr-test">
-                <h3>George is Back!</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <a href="#">Learn More</a>                
-              </div>
-              <div id="net-col2" class="col-lg-4 brdr-test">
-                <h3>any.TV Music</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <a href="#">Learn More</a>
-                
-              </div>
-              <div id="net-col3" class="col-lg-4 brdr-test">
-                <h3>any.TV Games</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <a href="#">Learn More</a>
-                <p><img align="right" style="margin: 0;" src="img/anytv-blue-emblem.png"></p>              
-              </div>                        
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="section4">
-        <div class="container">               
-        </div>
-      </section>      
-    	
-      <section id="about-anytv">
-        <div></div>
-      </section>
-    </div>
-    <!-- /content -->
-
-
-<footer>
-  <div class="container">
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="ft-links">
-            <div class="col-lg-2">
-              <ul>
-                <li><a href="#">Link 1</a></li>
-                <li><a href="#">Link 1</a></li>
-                <li><a href="#">Link 1</a></li>                  
-              </ul>
-            </div>
-            <div class="col-lg-2">
-              <ul>
-                <li><a href="#">Link 1</a></li>
-                <li><a href="#">Link 1</a></li>
-                <li><a href="#">Link 1</a></li>                  
-              </ul>                
-            </div>
-            <div class="col-lg-2"></div>
-          </div>
-        </div>
-        <div class="row cright-links"></div>
-    </div>
-  </div>
-</footer>
-<!-- /footer -->
+  <div class="page-wrap">
   
+  Content!
+      
+</div>
 
+<footer class="site-footer">
+  I'm the Sticky Footer.
+</footer>
 </body>
-
-<script src="assets/js/jquery.js"></script>  
-<script src="js/zclip/jquery.zclip.js"></script>   
-<script src="js/vendor/custom.modernizr.js"></script>
-<script src="js/bootstrap/bootstrap.min.js"></script>
-<script type="text/javascript" src="zurb/responsive-tables.js"></script>
-
 
 </html>

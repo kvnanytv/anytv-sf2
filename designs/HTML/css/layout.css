@@ -5,10 +5,15 @@ layout Styles
 /********************** General *******************/
 
 body {
-	background-image: url(../img/clouds-1.jpg);
+	background-image: url(../img/clouds-2.jpg);
 	background-attachment: fixed;
 	background-size: cover;
-	background-position: bottom;	
+	background-position: bottom;
+}
+
+body.dashbrd-bg {
+	background-image: none;
+	background-color: #f1f1f1;
 }
  
 .cl {
@@ -16,10 +21,41 @@ body {
 	float: none;
 }
 
+.cl-20 {
+	clear: both;
+	float: none;
+	margin-bottom: 20px;
+}
+
+
+
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -50px; 
+}
+.page-wrap:after {
+  content: ".";
+  display: block;
+}
+
+
+.txt-default {
+	color: #000 !important;
+	text-shadow: none !important;
+	text-align: center;
+
+}
+s
 /********************** Header *******************/
 
-header {
-	width:100%;
+#top-navigation {
 	z-index: 99;
 }
 
@@ -36,6 +72,11 @@ header {
 	margin: 0 !important;
 	background: transparent !important;
 	border: none !important;
+}
+
+.bin-txt {
+	margin-top: 20px !important;
+	text-shadow: none;
 }
 
 .atv-sites {
@@ -70,7 +111,7 @@ header {
 
 .nav li a.lnk-yellow {
 	text-decoration: none;
-	color: #ff9500 !important;
+	color: #eaa13f !important;
 	font-weight: bold;
 }
 
@@ -90,18 +131,22 @@ header {
 	border-radius: 0;
 	border-bottom: none;
 	margin-bottom:-5px;
+	padding: 0;
 	background-color: #005fb4;
     -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    -ms
+}
 
+.dashbrd {
+	background-color: #e89f3d !important;
 }
 
 .search-box {
-	width: 300px;
+	width: 200px;
 	margin: 10px 10px 0 0;
 }
+
 
 .log-btn {
 	font-size: 14px !important;
@@ -144,9 +189,28 @@ header {
 	text-shadow:1px 1px 0px #ffcc00;
 }
 
+
 .mrgn-left {
 	margin-left: 20px !important;
 }
+
+/********************** Content *******************/
+
+#content {
+	position: relative;	
+	padding-top: 20px;
+}
+
+.bdy {
+	height: 100%;
+	padding: 0 !important;
+}
+
+.mrgn-no {
+	margin-top: -20px;
+}
+
+
 /********************** Section 1: Banner *******************/
 
 .banner {
@@ -161,6 +225,7 @@ header {
 .uptop h3,p {
 	margin: 0;
 	color: #fff;
+	text-shadow: rgba(0, 0, 0, 0.4) 0 1px 0;
 	font-family: 'Droid Sans', Arial, Helvetica, sans-serif;
 }
 
@@ -203,17 +268,28 @@ header {
 }
 
 .vid-yt {
-	position: absolute;
+	position: relative;
 	top: -50px;
+
+}
+
+.ban-btns {
+	list-style: none;
+	text-align: left;
+	margin: 0 !important;
+}
+
+.ban-btns li{
+	display: inline-block;	
 }
 
 .btn-join {
 	color: #fff;
 	font-family: 'Droid Sans', Arial, Helvetica, sans-serif !important;
 	font-weight: 700 !important;
-	font-size: 24px !important;
+	font-size: 18px !important;
 	background-color: #d03431 !important;		
-	padding: 20px 100px !important;	
+	padding: 20px 50px !important;	
 	border: none !important;
 	margin-top: 20px !important;
 }
@@ -222,11 +298,15 @@ header {
 	color: #fff;
 	font-family: 'Droid Sans', Arial, Helvetica, sans-serif !important;
 	font-size: 16px !important;
-	font-weight: 700 !important;
+	font-weight: 700 !important;	
 	background: transparent !important;
-	border: 1px solid #fff !important;
+	border: 3px solid #fff !important;
 	border-radius: 0 !important;
+	margin: auto 0 !important;
+	margin-left: 20px !important;
+
 }
+
 
 
 /********************** Section 2: Games Lists *******************/
@@ -277,6 +357,7 @@ input:-moz-placeholder { font-style:; }
 }
 
 	#gl-tbl  {
+		z-index: 99;
 		max-width: 100%;
 		margin-left: 30px;
 		
@@ -361,7 +442,7 @@ input:-moz-placeholder { font-style:; }
 
 #section4 {
 	height: 380px;
-	background-color: #fff;
+	background-color: #e6e6e6;
 	padding-top: 20px;
 	margin: 0;
 }
@@ -371,17 +452,111 @@ input:-moz-placeholder { font-style:; }
 
 #about-anytv {
 	height: 380px;
-	background-color: #c057d1;
+	background-color: #fff;
 }
 
 
 /********************** Footer *******************/
 
-footer {
-	margin-bottom: -40px;
-	height: 150px;
-	padding: 20px;
-	background-color: #282a2b;
-	bottom: 0;
+footer, .page-wrap:after {
+	height: 50px; 	
 }
 
+footer {
+
+	background-color: #f1f1f1;
+	border-top: 1px solid #d7d7d7 ;
+	margin: 0 !important;
+}
+
+.cpyrght-txt {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	margin-top: 15px;
+} 
+
+/*.ft-links {
+	float: left;
+	list-style: none;
+	margin-top: 15px;
+
+}
+
+.ft-links li {
+	display: inline;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+} 
+
+.ft-links a {
+	color: #333;
+	font-size: 12px;
+	font-weight: bold;
+	text-shadow:1px 1px 0px #fff;
+}
+
+.ft-links a:hover {
+	color: #333;
+}*/
+
+
+
+/********************** Dashboard *******************/
+
+.ft-game p {
+	margin-top: 10px;
+	color: #272727 !important;
+	text-shadow: none;
+	font-size: 24px !important;
+}
+
+.ft-game img {
+	max-width: 100%;
+	text-align: center;
+}
+
+.txt-cntr p {
+	font-family: Arial, Helvetica, sans-serif !important;
+	text-align: center;
+	color: #272727 !important;
+	font-family: 12px !important;
+	margin-top: 20px;
+	text-shadow: none;
+}
+
+.txt-cntr a {
+}
+
+
+.lgin-panel > .panel-heading {
+	background-color: #287ec1 !important;	
+}
+
+.lgin-panel > .panel-heading h3 {
+	color: #fff;
+}
+
+.lgin-panel > .panel-body {
+	padding: 30px;
+}
+
+.lgin-panel > .panel-body p {
+	color: #000 !important;
+	text-shadow: none !important;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+}
+
+.frgot-lnk {
+	float: right;
+	font-size: 11px;
+}
+
+
+.brdrrad-0 {
+	border-radius: 0 !important;
+}
+
+#stat-txt {
+	text-shadow: none;
+}
