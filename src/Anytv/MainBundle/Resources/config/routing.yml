@@ -4,6 +4,67 @@ anytv_main_homepage:
     requirements:
         _locale:  %anytv.locales%
         
+about:
+    path:      /about/{_locale}
+    defaults:  { _controller: AnytvMainBundle:Default:about, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
+branding_kit:
+    path:      /branding_kit/{_locale}
+    defaults:  { _controller: AnytvMainBundle:Default:brandingKit, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+       
+live_stream_handbook:
+    path:      /live_stream_handbook/{_locale}
+    defaults:  { _controller: AnytvMainBundle:Default:liveStreamHandbook, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
+recruiter_handbook:
+    path:      /recruiter_handbook/{_locale}
+    defaults:  { _controller: AnytvMainBundle:Default:recruiterHandbook, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
+join_our_twitch_team:
+    path:      /join_our_twitch_team/{_locale}
+    defaults:  { _controller: AnytvMainBundle:Default:joinOurTwitchTeam, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
+staff:
+    path:      /staff/{_locale}
+    defaults:  { _controller: AnytvMainBundle:Default:staff, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
+faq:
+    path:      /faq/{_locale}
+    defaults:  { _controller: AnytvMainBundle:Default:faq, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
+faq_category:
+    path:      /faq/category/{_locale}/{id}
+    defaults:  { _controller: AnytvMainBundle:Default:faqCategory, id: null, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
+faq_spreadsheet:
+    path:      /faq-spreadsheet/{_locale}
+    defaults:  { _controller: AnytvMainBundle:Default:faqSpreadsheet, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
+signup:
+    path:      /signup/{id}/{_locale}
+    defaults:  { _controller: AnytvMainBundle:Default:signup, _locale: en, id: 1000 }
+    requirements:
+        _locale:  %anytv.locales%
+        id:  \d+
+        
 news_reset:
     path:      /{_locale}/admin/news/reset
     defaults:  { _controller: AnytvMainBundle:News:reset, _locale: en }

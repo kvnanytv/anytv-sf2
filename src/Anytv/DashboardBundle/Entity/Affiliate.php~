@@ -1004,4 +1004,60 @@ class Affiliate
     {
         return $this->trafficReferrals;
     }
+
+    /**
+     * Set referrer
+     *
+     * @param \Anytv\DashboardBundle\Entity\Affiliate $referrer
+     * @return Affiliate
+     */
+    public function setReferrer(\Anytv\DashboardBundle\Entity\Affiliate $referrer = null)
+    {
+        $this->referrer = $referrer;
+    
+        return $this;
+    }
+
+    /**
+     * Get referrer
+     *
+     * @return \Anytv\DashboardBundle\Entity\Affiliate 
+     */
+    public function getReferrer()
+    {
+        return $this->referrer;
+    }
+
+    /**
+     * Add referredAffiliates
+     *
+     * @param \Anytv\DashboardBundle\Entity\Affiliate $referredAffiliates
+     * @return Affiliate
+     */
+    public function addReferredAffiliate(\Anytv\DashboardBundle\Entity\Affiliate $referredAffiliates)
+    {
+        $this->referredAffiliates[] = $referredAffiliates;
+    
+        return $this;
+    }
+
+    /**
+     * Remove referredAffiliates
+     *
+     * @param \Anytv\DashboardBundle\Entity\Affiliate $referredAffiliates
+     */
+    public function removeReferredAffiliate(\Anytv\DashboardBundle\Entity\Affiliate $referredAffiliates)
+    {
+        $this->referredAffiliates->removeElement($referredAffiliates);
+    }
+
+    /**
+     * Get referredAffiliates
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReferredAffiliates()
+    {
+        return $this->referredAffiliates;
+    }
 }

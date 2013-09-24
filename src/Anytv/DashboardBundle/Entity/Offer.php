@@ -914,15 +914,22 @@ class Offer
         return $this->countries;
     }
     
-    public function getCountriesNames()
+    public function getCountriesNames($count = null)
     {
         $countries = $this->getCountries();
         
         $countriesNames = array();
         
+        $counter = 0;
         foreach($countries as $country)
         {
           $countriesNames[] = $country->getName(); 
+          $counter++;
+          
+          if($count && ($counter==$count))
+          {
+            break;
+          }
         }
         
         return implode(', ', $countriesNames);

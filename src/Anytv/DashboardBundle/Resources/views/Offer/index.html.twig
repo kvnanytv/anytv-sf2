@@ -6,11 +6,17 @@
 
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
-    {{ parent() }}
-    <h1 class="title">{{ title|upper }}</h1>
-    
-    <p>&nbsp;</p>
-    <div style="margin-bottom: 20px">
+
+    <section id="networks">
+        <div class="container">
+          <div class="container-fluid">
+            <div class="row-fluid 3col-bg">
+              <div id="net-col1" class="col-lg-4 brdr-test">
+                <h3>{{ title }}</h3>
+                               
+              </div>
+                    
+              <div style="margin-bottom: 20px">
       {% if(app.session.get('offer_keyword')) %}
         <a href="{{ path('offers_reset') }}">reset</a>
       {% endif %}
@@ -25,9 +31,8 @@
          {{ form_widget(form.offer_update) }}
        {{ form_end(form) }}
     </div>
-
-    <div class="symfony-blocks-welcome">
-      <table border="1" cellspacing="15" cellpadding="15">
+                    
+             <table border="1" cellspacing="15" cellpadding="15">
         <tr>
          <th>ID</th>
          <th>{% trans %}Offer{% endtrans %}</th>
@@ -65,11 +70,22 @@
         {% endfor %}
         </ul>
       {% endif %}
-        
-    </div>
+                    
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <div class="symfony-blocks-help">
+    {{ parent() }}
+    
+    
+    
+    
+
+    
+      
         
-       
-    </div>
+    
+
+    
 {% endblock %}

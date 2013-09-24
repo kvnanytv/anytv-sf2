@@ -13,20 +13,21 @@
 {% endblock %}
   
 {% block transmenu %}
-<ul>
+<a href="{{ path('anytv_dashboard_homepage', { _locale: app.request.get('_locale', 'en') }) }}" class="dropdown-toggle" data-toggle="dropdown"><img src="{{ asset('bundles/anytvmain/images/'~app.request.get('_locale', 'en')~'.png') }}">&nbsp;<b class="caret"></b></a>
+<ul class="dropdown-menu dd-height">
   <li>
-    <a href="{{ path('anytv_dashboard_homepage', { _locale: 'en' }) }}" title="Any.TV Dashboard English">
-      <img src="{{ asset('bundles/anytvmain/images/en.png') }}" alt="Any.TV Dashboard English" />
+    <a href="{{ path('anytv_dashboard_homepage', { _locale: 'en' }) }}" title="English (US)">
+      <img src="{{ asset('bundles/anytvmain/images/en.png') }}" alt="English (US)" />English (US)
     </a>
   </li>
   <li>
-    <a href="{{ path('anytv_dashboard_homepage', { _locale: 'nl' }) }}" title="Any.TV Dashboard Dutch">
-      <img src="{{ asset('bundles/anytvmain/images/nl.png') }}" alt="Any.TV Dashboard Dutch" />
+    <a href="{{ path('anytv_dashboard_homepage', { _locale: 'zh' }) }}" title="Chinese">
+      <img src="{{ asset('bundles/anytvmain/images/zh.png') }}" alt="Chinese" />Chinese
     </a>
   </li>
   <li>
-    <a href="{{ path('anytv_dashboard_homepage', { _locale: 'zh' }) }}" title="Any.TV Dashboard Chinese">
-      <img src="{{ asset('bundles/anytvmain/images/zh.png') }}" alt="Any.TV Dashboard Chinese" />
+    <a href="{{ path('anytv_dashboard_homepage', { _locale: 'nl' }) }}" title="Dutch">
+      <img src="{{ asset('bundles/anytvmain/images/nl.png') }}" alt="Dutch" />Dutch
     </a>
   </li>
 </ul>
@@ -48,6 +49,7 @@
 <div id="sub_menu">
   <ul>
     <li><a href="{{ path('profile_view') }}" title="{% trans %}My Profile{% endtrans %}">{% trans %}My Profile{% endtrans %}</a></li>
+    <li><a href="{{ path('profile_offers') }}" title="{% trans %}Offers{% endtrans %}">{% trans %}Offers{% endtrans %}</a></li>
   </ul>
 </div> 
 {% endif %}

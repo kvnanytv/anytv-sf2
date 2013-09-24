@@ -51,6 +51,7 @@ class TrafficReferralRepository extends EntityRepository
           ->leftJoin('tr.offer', 'o')
           ->where("tr.affiliate = :affiliate")
           ->setParameter('affiliate', $affiliate)
+          ->addGroupBy("tr.offer")
           ->addGroupBy("tr.url")
           ->orderBy('tr.offer', 'ASC')
           ->getQuery();

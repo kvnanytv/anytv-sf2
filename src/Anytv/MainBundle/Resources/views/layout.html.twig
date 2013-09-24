@@ -3,20 +3,22 @@
 {% block title 'Any.TV' %}
 
 {% block submenu %}
-{% if is_granted('ROLE_ADMIN') %}
-<div id="sub_menu">
-  <ul>
-    <li><a href="{{ path('news') }}" title="{% trans %}News{% endtrans %}">{% trans %}News{% endtrans %}</a></li>
-    <li><a href="{{ path('news_category') }}" title="{% trans %}News Categories{% endtrans %}">{% trans %}News Categories{% endtrans %}</a></li>
-  </ul>
-</div>  
+{% if(false and is_granted('ROLE_ADMIN')) %}
+<ul>
+  <li><a href="{{ path('news') }}" title="{% trans %}News{% endtrans %}">{% trans %}News{% endtrans %}</a></li>
+  <li><a href="{{ path('news_category') }}" title="{% trans %}News Categories{% endtrans %}">{% trans %}News Categories{% endtrans %}</a></li>
+</ul>
 {% else %}
-<div id="sub_menu">
-  <ul>
-    <li>&nbsp;</li>
-    <li>&nbsp;</li>
-  </ul>
-</div>  
+<ul>
+  <li><a href="{{ path('about') }}" title="{% trans %}What is any.TV?{% endtrans %}">{% trans %}What is any.TV?{% endtrans %}</a></li>
+  <li><a href="{{ path('branding_kit') }}" title="{% trans %}Branding Kit{% endtrans %}">{% trans %}Branding Kit{% endtrans %}</a></li>
+  <li><a href="http://www.games.tm" target="_blank" title="{% trans %}Games List{% endtrans %}">{% trans %}Games List{% endtrans %}</a></li>
+  <li><a href="{{ path('live_stream_handbook') }}" title="{% trans %}Live Stream Handbook{% endtrans %}">{% trans %}Live Stream Handbook{% endtrans %}</a></li>
+  <li><a href="{{ path('recruiter_handbook') }}" title="{% trans %}Recruiter Handbook{% endtrans %}">{% trans %}Recruiter Handbook{% endtrans %}</a></li>
+  <li><a href="{{ path('join_our_twitch_team') }}" title="{% trans %}Join our Twitch Team!{% endtrans %}">{% trans %}Join our Twitch Team!{% endtrans %}</a></li>
+  <li><a href="{{ path('staff') }}" title="{% trans %}Staff{% endtrans %}">{% trans %}Staff{% endtrans %}</a></li>
+  <li><a href="{{ path('faq') }}" title="{% trans %}FAQ{% endtrans %}">{% trans %}FAQ{% endtrans %}</a></li>
+</ul>
 {% endif %}
 {% endblock %}
 

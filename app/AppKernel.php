@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Anytv\DashboardBundle\AnytvDashboardBundle(),
             new Anytv\MainBundle\AnytvMainBundle(),
             new Anytv\CommunityBundle\AnytvCommunityBundle(),
+            new Avalanche\Bundle\ImagineBundle\AvalancheImagineBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

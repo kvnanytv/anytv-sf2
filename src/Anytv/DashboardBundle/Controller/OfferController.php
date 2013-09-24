@@ -266,4 +266,57 @@ class OfferController extends Controller
 
       return $this->render('AnytvDashboardBundle:Offer:view.html.twig', array('title'=>$offer, 'offer'=>$offer, 'offer_status'=>$translator->trans($offer->getStatus()), 'offer_categories'=>$offer_categories, 'offer_groups'=>$offer_groups, 'countries'=>$countries, 'countries_total'=>$countries_total));
     }
+    
+    public function embedAction($page)
+    {
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
+      
+      $items_per_page = 10;
+      $order_by = 'name';
+      $order = 'ASC';
+        
+      $offers = $repository->findAllOffers($page, $items_per_page, $order_by, $order, null, 'active');
+      $total_offers = $repository->countAllOffers(null, 'active');
+      $total_pages = ceil($total_offers / $items_per_page);
+      
+      return $this->render('AnytvDashboardBundle:Offer:embed.html.twig', array('offers'=>$offers, 'total_offers'=>$total_offers, 'page'=>$page, 'total_pages'=>$total_pages));
+    }
+    
+    public function profileOffersAction(Request $request, $page)
+    {
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
+      $translator = $this->get('translator');
+      
+      $items_per_page = 10;
+      $order_by = 'name';
+      $order = 'ASC';
+        
+      $offers = $repository->findAllOffers($page, $items_per_page, $order_by, $order, null, 'active');
+      $total_offers = $repository->countAllOffers(null, 'active');
+      $total_pages = ceil($total_offers / $items_per_page);
+
+      return $this->render('AnytvDashboardBundle:Offer:profileOffers.html.twig', array('title'=>$translator->trans('Offers'), 'offers'=>$offers, 'total_offers'=>$total_offers, 'page'=>$page, 'total_pages'=>$total_pages));
+    }   
+    
+    public function profileOfferViewAction($id)
+    {
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
+      $country_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Country');
+      $translator = $this->get('translator');
+      
+      $offer = $repository->find($id);
+
+      if (!$offer || ($offer->getStatus() != 'active')) {
+        throw $this->createNotFoundException(
+            'No offer found for id '.$id
+        );
+      }
+      
+      $offer_categories = $offer->getOfferCategories();
+      $offer_groups = $offer->getOfferGroups();
+      $countries = $offer->getCountries();
+      $countries_total = $country_repository->countAllCountries(null);
+
+      return $this->render('AnytvDashboardBundle:Offer:profileOfferView.html.twig', array('title'=>$offer, 'offer'=>$offer, 'offer_categories'=>$offer_categories, 'offer_groups'=>$offer_groups, 'countries'=>$countries, 'countries_total'=>$countries_total));
+    }
 }

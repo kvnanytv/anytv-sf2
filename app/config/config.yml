@@ -15,7 +15,7 @@ framework:
     validation:      { enable_annotations: true }
     templating:
         engines: ['twig']
-        hinclude_default_template: AnytvDashboardBundle::hinclude.html.twig
+        hinclude_default_template: AnytvMainBundle::hinclude.html.twig
         #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trusted_proxies: ~
@@ -75,5 +75,12 @@ parameters:
     anytv.formats: html|rss|json
     anytv.cultures: en|zh|nl 
     anytv.locales: en|zh|nl
+    
+avalanche_imagine:
+    filters:
+        profile_thumbnail:
+            type:    thumbnail
+            options: { size: [75, 75], mode: outbound }
+    
     
     

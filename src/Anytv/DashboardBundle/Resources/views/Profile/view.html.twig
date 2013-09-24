@@ -6,17 +6,20 @@
 
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
-    {{ parent() }}
 
-    <em><a href="{{ path('profile_company_edit') }}" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em>
     
-    <h1 class="title">{{ affiliate }}<p>dashboard.tm ID: {{ affiliate.affiliateId }} - ({{ affiliate_status }})</p></h1>
-    
-    {% if(affiliate.thumbnail) %}
-      <img src="{{ asset(affiliate.getWebPath()) }}" alt="{{ affiliate.company }}" style="width:100px" />
-    {% endif %}
+        <div style="background-color: #ccc">
+          <div class="">
+            <div class="">
+              <div>
+                <em><a href="{{ path('profile_company_edit') }}" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em>
+                <h3>{{ affiliate }}<p>{% trans %}dashboard.tm ID{% endtrans %}: {{ affiliate.affiliateId }} - ({{ affiliate_status }})</p></h3>
+                
+                {% if(affiliate.thumbnail) %}
+                  <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ affiliate.company }}" />
+                {% endif %}
       
-    <ul>
+                 <ul>
         <li style="display:block">{% trans %}Address{% endtrans %}: {{ affiliate.getFullAddress() }}</li>
         <li style="display:block">{% trans %}Country{% endtrans %}: {% if(affiliate.country) %}{{ affiliate.country }}{% else %}&nbsp;{% endif %}</li>
         {% if(affiliate.other) %}
@@ -27,23 +30,49 @@
         
       </ul>
       
-    <em><a href="{{ path('profile_edit') }}" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em>
+      <em><a href="{{ path('profile_edit') }}" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em>
     
-    <h1 class="title">{{ affiliate_user }}<p>dashboard.tm user ID: {{ affiliate_user.affiliateUserId }} - ({{ affiliate_user_status }})</p></h1>
+    <h3>{{ affiliate_user }}<p>{% trans %}dashboard.tm ID{% endtrans %}: {{ affiliate_user.affiliateUserId }} - ({{ affiliate_user_status }})</p></h3>
     
-    <div class="symfony-blocks-welcome">
-      <ul>
+    <ul>
         <li style="display:block">{% trans %}Name{% endtrans %}: {{ affiliate_user.getFullName() }}</li>
         <li style="display:block">{% trans %}Email{% endtrans %}: {{ affiliate_user.email }}</li>
         <li style="display:block">{% trans %}Phone{% endtrans %}: {{ affiliate_user.phone }}</li>
         <li style="display:block">{% trans %}Mobile{% endtrans %}: {{ affiliate_user.cellPhone }}</li>
         <li style="display:block">{% trans %}Date Joined{% endtrans %}: {{ affiliate_user.getDateJoinedAsString() }}</li>
       </ul>
-            
-    </div>
-
-    <div class="symfony-blocks-help">
+      
+                <div>
         
-       
+        
+
+        
+        
     </div>
+               
+              </div>
+                                   
+            </div>
+          </div>
+        </div>
+      
+
+    {{ parent() }}
+
+    
+    
+    
+    
+    
+      
+   
+      
+    
+    
+    
+      
+            
+    
+
+    
 {% endblock %}

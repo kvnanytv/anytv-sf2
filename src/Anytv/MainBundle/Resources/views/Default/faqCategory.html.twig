@@ -1,0 +1,19 @@
+{% if(faq_categories) %}                                
+<ul>
+  <li><a href="javascript:void(0)" onclick="faqCategory('{{ path('faq_category') }}');" title="{% trans %}All{% endtrans %}">{% trans %}All{% endtrans %}</a></li>
+  {% for faq_category in faq_categories %}
+    <li><a href="javascript:void(0)" onclick="faqCategory('{{ path('faq_category', { 'id': faq_category.id }) }}');" title="{{ faq_category }}">{{ faq_category }}</a></li>
+  {% endfor %} 
+</ul>
+{% endif %}
+
+{% if(faqs) %}
+<ul>
+{% for faq in faqs %}
+  <ul>
+    <li><a href="javascript:void(0)" onclick="showFaq(this);" title="{{ faq.question|raw }}">{{ faq.question|raw }}</a></li>
+    <li style="display:none" class="answer">{{ faq.answer|raw }}</li>
+  </ul>
+{% endfor %} 
+</ul>
+{% endif %}

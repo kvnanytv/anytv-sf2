@@ -21,6 +21,20 @@ profile_company_edit:
     defaults:  { _controller: AnytvDashboardBundle:Profile:companyEdit, _locale: en }
     requirements:
         _locale:  %anytv.locales%
+        
+profile_offers:
+    path:      /{_locale}/offers/{page}
+    defaults:  { _controller: AnytvDashboardBundle:Offer:profileOffers, _locale: en, page: 1 }
+    requirements:
+        _locale:  %anytv.locales%
+        page:  \d+
+        
+profile_offer_view:
+    path:      /{_locale}/offers/view/{id}
+    defaults:  { _controller: AnytvDashboardBundle:Offer:profileOfferView, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        page:  \d+
     
 advertisers:
     path:      /{_locale}/admin/advertisers
