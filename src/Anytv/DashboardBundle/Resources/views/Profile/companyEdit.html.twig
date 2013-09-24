@@ -6,14 +6,14 @@
 
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
-    {{ parent() }}
-    <em><a href="{{ path('profile_view') }}" title="{% trans %}View{% endtrans %}">{% trans %}view{% endtrans %}</a></em>
-    
-    <p>&nbsp;</p>
 
-    <div class="symfony-blocks-welcome">
-       
-       {{ form_start(form, {'action': path('profile_company_edit', { 'id' : affiliate.id }), 'method': 'POST'}) }}
+    <div style="background-color: #ccc">
+          <div class="">
+            <div class="">
+              <div>
+                <em><a href="{{ path('profile_view') }}" title="{% trans %}View{% endtrans %}">{% trans %}view{% endtrans %}</a></em>
+                
+                {{ form_start(form, {'action': path('profile_company_edit', { 'id' : affiliate.id }), 'method': 'POST'}) }}
           
          {{ form_errors(form) }}
         
@@ -26,7 +26,7 @@
          {{ form_row(form.other) }}
          {{ form_row(form.zipcode) }}
          {% if(affiliate.thumbnail) %}
-           <img src="{{ asset(affiliate.getWebPath()) }}" alt="{{ affiliate.company }}" style="width:100px" />
+           <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ affiliate.company }}" />
          {% endif %}
          {{ form_row(form.file) }}
          {{ form_row(form.phone) }}
@@ -34,12 +34,28 @@
          
        
        {{ form_end(form) }}
-       
+      
+                <div>
         
-    </div>
+        
 
-    <div class="symfony-blocks-help">
         
-       
+        
     </div>
+               
+              </div>
+                                   
+            </div>
+          </div>
+        </div>
+    
+    {{ parent() }}
+    
+    
+    
+       
+       
+       
+        
+    
 {% endblock %}

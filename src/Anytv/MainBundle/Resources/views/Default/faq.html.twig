@@ -1,0 +1,48 @@
+{% extends 'AnytvMainBundle::layout.html.twig' %}
+
+{% block html %}
+  <html xmlns:hx="http://purl.org/NET/hinclude">
+{% endblock %}
+
+{% block title %}{{ parent() }} - {{ title }}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+    
+    <section id="networks">
+        <div class="container">
+          <div class="container-fluid">
+            <div class="row-fluid 3col-bg">
+              <div id="net-col1" class="col-lg-4 brdr-test">
+                <h3>{{ title }}</h3>
+                               
+              </div>
+                    
+              <div id="faqlist-block">
+               {{ render_hinclude(controller('AnytvMainBundle:Default:faqCategory')) }}
+             </div>
+                    
+              
+            </div>
+          </div>
+        </div>
+      </section>
+    
+    	
+     
+     
+
+      
+
+      {{ parent() }}
+    
+{% endblock %}
+     
+{% block javascripts %}
+  {{ parent() }}
+  <script src="{{ asset('bundles/anytvmain/js/hinclude.js') }}"></script>
+  <script src="{{ asset('bundles/anytvdashboard/js/faq.js') }}"></script>
+{% endblock %}
+

@@ -1,0 +1,111 @@
+/* nav */
+.subnav-cllps {
+	position: relative;
+	margin-top: 10px;
+}
+
+.subnav-cllps ul {
+	margin: 0;
+	padding: 0;
+}
+
+.subnav-cllps li {
+	margin: 0 5px 10px 0;
+	padding-right: 20px;
+	list-style: none;
+	display: inline-block;
+	border-left: 1px solid #LIGHTERCOLOR;
+    border-right: 1px solid #DARKERCOLOR;
+}
+
+.subnav-cllps a {
+	font-family: 'Droid Sans', Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #a6c9e9 !important;
+	text-decoration: none;
+	text-shadow: 0px -1px 0px rgba(13, 63, 135, 1);	
+}
+
+.subnav-cllps a:hover {
+	border-radius: 0 !important;
+	background: none;
+	color: #fff !important;
+	text-decoration: none;
+}
+
+.subnav-cllps .current a {
+	background: #999;
+	color: #fff;
+	border-radius: 5px;
+}
+
+/* right nav */
+.subnav-cllps.right ul {
+	text-align: right;
+}
+
+/* center nav */
+.subnav-cllps.center ul {
+	text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+	.subnav-cllps {
+		position: relative;
+	}	
+	.subnav-cllps ul {
+		width: 180px;
+		padding: 5px 0;
+		position: absolute;
+		top: 0;
+		left: 0;
+		border: solid 1px #aaa;
+		background: #fff url(images/icon-menu.png) no-repeat 10px 11px;
+		border-radius: 5px;
+		box-shadow: 0 1px 2px rgba(0,0,0,.3);
+	}
+	.subnav-cllps li {
+		display: none; /* hide all <li> items */
+		margin: 0;
+	}
+	.subnav-cllps .current {
+		display: block; /* show only current <li> item */
+	}
+	.subnav-cllps a {
+		display: block;
+		padding: 5px 5px 5px 32px;
+		text-align: left;
+		color: #000;
+		text-shadow: none;
+	}
+	.subnav-cllps .current a {
+		background: none;
+		color: #666 !important;
+	}
+
+	/* on nav hover */
+	.subnav-cllps ul:hover {
+		background-image: none;
+	}
+	.subnav-cllps ul:hover li {
+		display: block;
+		margin: 0 0 5px;
+	}
+	.subnav-cllps ul:hover .current {
+		background: url(images/icon-check.png) no-repeat 10px 7px;
+	}
+
+	/* right nav */
+	.subnav-cllps.right ul {
+		left: auto;
+		right: 0;
+	}
+
+	/* center nav */
+	.subnav-cllps.center ul {
+		left: 50%;
+		margin-left: -90px;
+	}
+	
+}

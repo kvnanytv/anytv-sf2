@@ -19,7 +19,7 @@
       <ul>
         <li style="display:block">{% trans %}Name{% endtrans %}: {{ offer.name }}</li>
         <li style="display:block">{% trans %}Description{% endtrans %}: {{ offer.description }}</li>
-        <li style="display:block">{% trans %}Advertiser{% endtrans %}: {% if(offer.advertiser) %}<a href="{{ path('advertiser_view', { 'id' : offer.advertiser.id }) }}" title="{% trans %}Edit{% endtrans %}">{{ offer.advertiser.company }}</a>{% else %}&nbsp;{% endif %}</li>
+        <li style="display:block">{% trans %}Advertiser{% endtrans %}: {% if(offer.advertiser) %}<a href="{{ path('advertiser_view', { 'id' : offer.advertiser.id }) }}" title="{{ offer.advertiser.company }}">{{ offer.advertiser.company }}</a>{% else %}&nbsp;{% endif %}</li>
         <li style="display:block">{% trans %}Offer URL{% endtrans %}: {{ offer.offerUrl }}</li>
         <li style="display:block">{% trans %}Preview URL{% endtrans %}: <a href="{{ offer.previewUrl }}" target="_blank">{{ offer.previewUrl }}</a></li>
         <li style="display:block">{% trans %}Expiration date{% endtrans %}: {{ offer.getExpirationDateAsString() }}</li>

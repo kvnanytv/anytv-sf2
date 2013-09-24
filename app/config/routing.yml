@@ -23,4 +23,15 @@ login_check:
     
 logout:
     path:   /logout
+    
+offers_embed:
+    path:      /{_locale}/embed/offers/{page}
+    defaults:  { _controller: AnytvDashboardBundle:Offer:embed, _locale: en, page: 1 }
+    requirements:
+        _locale:  %anytv.locales%
+        page:  \d+
+        
+_imagine:
+    resource: .
+    type:     imagine
 

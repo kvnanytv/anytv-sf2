@@ -1,95 +1,147 @@
 <!DOCTYPE html>
-<html>
+{% block html %}
+  <html>
+{% endblock %}
     <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Any.TV{% endblock %}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
         {% block favicon %}
-          <link rel="icon" type="image/x-icon" href="{{ asset('faviconanytv.ico') }}" />
+          <link rel="shortcut icon" href="{{ asset('faviconanytv.ico') }}" />
         {% endblock %}
+        <title>{% block title %}Any.TV{% endblock %}</title>
         {% block stylesheets %}
-          <link href="{{ asset('bundles/anytvdashboard/css/structure.css') }}" rel="stylesheet" type="text/css" media="all" />
-          <link href="{{ asset('bundles/anytvdashboard/css/body.css') }}" rel="stylesheet" type="text/css" media="all" />
-          <link href="{{ asset('bundles/anytvdashboard/css/main.css') }}" rel="stylesheet" />
+          <link href="{{ asset('bundles/anytvmain/css/layout.css') }}" rel="stylesheet" />
+          <link href="{{ asset('bundles/anytvmain/css/normalize.css') }}" rel="stylesheet" />
+          <link href="{{ asset('bundles/anytvmain/css/subnav.css') }}" rel="stylesheet" />
+          <link href="{{ asset('bundles/anytvmain/css/font-awesome.min.css') }}" rel="stylesheet" />
+          <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+          <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'> 
+          <link href="{{ asset('bundles/anytvmain/css/bootstrap.css') }}" rel="stylesheet" />
         {% endblock %}
     </head>
     <body>
-        <div id="content">
-            <div class="header clear-fix">
-                <div class="header-logo">
-                  {% block header %}
-                  <a href="{{ path('anytv_main_homepage') }}" title="Any.TV">
-                    <img src="{{ asset('bundles/anytvmain/images/logo.png') }}" alt="Any.TV" />
-                  </a>
-                  {% trans %}Believe in you{% endtrans %}
-                  {% endblock %}
-                </div>
-
-                <div class="search">
-                  {% if(app.user) %}
-                    <p>You're logged-in as: {% if is_granted('ROLE_ADMIN') %}{{ app.user.username }}{% else %}{{ app.user }}{% endif %} - <a href="{{ path('logout') }}" title="Logout">Logout</a></p>
-                  {% else %}
-                    <p><a href="{{ path('login') }}" title="Login">Login</a></p>
-                  {% endif %}
-                  <div id="trans_menu">
-                   {% block transmenu %}
-                   <ul>
-                     <li>
-                       <a href="{{ path('anytv_main_homepage', { _locale: 'en' }) }}" title="Any.TV English">
-                         <img src="{{ asset('bundles/anytvmain/images/en.png') }}" alt="Any.TV English" />
-                       </a>
-                     </li>
-                     <li>
-                       <a href="{{ path('anytv_main_homepage', { _locale: 'nl' }) }}" title="Any.TV Dutch">
-                         <img src="{{ asset('bundles/anytvmain/images/nl.png') }}" alt="Any.TV Dutch" />
-                       </a>
-                     </li>
-                     <li>
-                       <a href="{{ path('anytv_main_homepage', { _locale: 'zh' }) }}" title="Any.TV Chinese">
-                         <img src="{{ asset('bundles/anytvmain/images/zh.png') }}" alt="Any.TV Chinese" />
-                       </a>
-                     </li>
-                   </ul>
-                   {% endblock %}
-                 </div>   
-                  <div id="main_menu">
-                   <ul>
-                     <li><a href="{{ path('anytv_main_homepage') }}" title="Any.TV">Any.TV</a></li>
-                     <li><a href="{{ path('anytv_dashboard_homepage') }}" title="Any.TV Dashboard">Dashboard</a></li>
-                   </ul>
-                 </div>    
-                </div>
-            </div>
-
-            <div class="sf-reset">
-            {% block submenu %}
+      <header>
+        <div class="main-nav">    
+        <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>                
+            </button>
+            {% block header %}
+              <a class="navbar-brand" href="{{ path('anytv_main_homepage') }}"><img src="{{ asset('bundles/anytvmain/images/anytv-home_logo.png') }}"></a>
             {% endblock %}
-                    
-            {% block body %}
-              {% for flashMessage in app.session.flashbag.get('notice') %}
-                <div class="flash-message">
-                  <em>Notice</em>: {{ flashMessage }}
-                </div>
-              {% endfor %}
+          </div>
 
-             <div class="block">
-               {% block content %}
-                 
-               {% endblock %}
-             </div>
+          <div style="padding-top: 5px;" class="collapse navbar-collapse navbar-ex1-collapse atv-sites">        
+            <ul id="top-menus" style="padding-left: 10px;" class="nav navbar-nav navbar-left">          
+              <li><a class="lnk-blue" href="{{ path('anytv_main_homepage') }}">any.TV</a></li>
+              <li><a class="lnk-yellow" href="{{ path('anytv_dashboard_homepage') }}">dashboard</a></li>
+              <li><a class="lnk-red" href="http://www.mmo.tm" target="_blank">mmo</a></li>
+            </ul>
 
-             {% if code is defined %}
-               <h2>Code behind this page</h2>
-               <div class="block">
-                 <div class="symfony-content">{{ code|raw }}</div>
-               </div>
-             {% endif %}
-           {% endblock %}
+            <ul class="nav navbar-nav navbar-right">
+            <li style="display:none">
+              <div class="input-group search-box">
+              <input type="text" class="form-control">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button"><i class="icon-search"></i></button>
+              </span>
             </div>
-            {% if app.debug %}
-              <p>Request method: {{ app.request.method }}</p>
-              <p>Application Environment: {{ app.environment }}</p>
-            {% endif %}
+            </li>
+            <li>
+              {% if(app.user) %}
+                <p style="color:#000">{% trans %}You're logged in as{% endtrans %} {% if is_granted('ROLE_ADMIN') %}{{ app.user.username }}{% else %}{{ app.user }}{% endif %} - <a href="{{ path('logout') }}" title="{% trans %}Logout{% endtrans %}">{% trans %}Logout{% endtrans %}</a></p>
+              {% else %}
+                <p style="display:none"><a href="{{ path('login') }}" title="Login">Login</a></p>
+                <button type="button" class="btn btn-default navbar-btn log-btn mrgn-left">{% trans %}Login{% endtrans %}</button>
+              {% endif %}
+            </li>
+              <li class="dropdown mrgn-left">
+                {% block transmenu %}
+                   <a href="{{ path('anytv_main_homepage', { _locale: app.request.get('_locale', 'en') }) }}" class="dropdown-toggle" data-toggle="dropdown"><img src="{{ asset('bundles/anytvmain/images/'~app.request.get('_locale', 'en')~'.png') }}">&nbsp;<b class="caret"></b></a>
+                   <ul class="dropdown-menu dd-height">
+                     <li>
+                       <a href="{{ path('anytv_main_homepage', { _locale: 'en' }) }}" title="English (US)">
+                         <img src="{{ asset('bundles/anytvmain/images/en.png') }}" alt="English (US)" />English (US)
+                       </a>
+                     </li>
+                     <li>
+                       <a href="{{ path('anytv_main_homepage', { _locale: 'zh' }) }}" title="Chinese">
+                         <img src="{{ asset('bundles/anytvmain/images/zh.png') }}" alt="Chinese" />Chinese
+                       </a>
+                     </li>
+                     <li>
+                       <a href="{{ path('anytv_main_homepage', { _locale: 'nl' }) }}" title="Dutch">
+                         <img src="{{ asset('bundles/anytvmain/images/nl.png') }}" alt="Dutch" />Dutch
+                       </a>
+                     </li>
+                   </ul>
+                 {% endblock %}
+              </li>              
+            </ul>
+          </div>  
+        </div>   
+        </nav> 
         </div>
-        {% block javascripts %}{% endblock %}
+        <div class="sub-nav">
+          <div class="container">              
+          <nav class="subnav-cllps">
+          {% block submenu %}
+          
+          {% endblock %}
+          </nav>
+          </div>
+        </div>
+      </header>
+        
+        <div id="content">
+        {% block content %}
+    	
+        <!--
+        <section id="section4">
+          <div class="container">               
+          </div>
+        </section>      
+    	
+        <section id="about-anytv">
+          <div></div>
+        </section>
+        -->
+        
+        {% endblock %}
+        </div>
+    
+
+
+<footer>
+  <div class="container">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="ft-links">
+            <div class="col-lg-2">
+              
+            </div>
+            <div class="col-lg-2">
+                           
+            </div>
+            <div class="col-lg-2"></div>
+          </div>
+        </div>
+        <div class="row cright-links" style="color:#fff">Copyright 2013 any.TV Limited | All Rights Reserved</div>
+    </div>
+  </div>
+</footer>
+    
+        {% block javascripts %}
+          <script src="{{ asset('bundles/anytvmain/js/jquery.js') }}"></script>  
+          <script src="{{ asset('bundles/anytvmain/js/jquery.zclip.js') }}"></script>  
+          <script src="{{ asset('bundles/anytvmain/js/bootstrap.min.js') }}"></script>  
+        {% endblock %}
     </body>
 </html>

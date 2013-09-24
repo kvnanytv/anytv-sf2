@@ -52,7 +52,8 @@
           {% for traffic_referral in traffic_referrals %}
             <li style="display:block">
               <a href="{{ path('offer_view', { 'id' : traffic_referral.offer.id }) }}" title="{{ traffic_referral.offer }}">{{ traffic_referral.offer }}</a> - 
-              <a href="{{ traffic_referral.url }}" target="_blank" title="{{ traffic_referral.url }}">{{ traffic_referral.url|slice(0, 60) }}</a>
+              <a href="{{ traffic_referral.url }}" target="_blank" title="{{ traffic_referral.url }}">{{ traffic_referral.url|slice(0, 60) }}</a> -
+              {{ traffic_referral.getStatDateAsString() }}
             </li> 
           {% endfor %}
         </ul>
