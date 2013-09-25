@@ -26,8 +26,7 @@
 							</form>
 							<div class="brdr-h"></div>
 							<p align="center">Don't have an account yet?</p>
-							<form action="">
-								<button type="submit" class="btn btn-lg btn-primary btn-block"><strong>CREATE AN ACCOUNT</strong></button></form>  
+								<a class="btn btn-lg btn-primary btn-block" href="#"><strong>CREATE AN ACCOUNT</strong></a>
 							</div>
 					</div>
 					<p class="txt-default">View our <a href="">Privacy Policy</a></p>    

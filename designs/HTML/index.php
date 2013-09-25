@@ -6,7 +6,7 @@
 		<div class="container">
 			<div class="container-fluid">
 				<div class="row-fluid">
-					<div class="uptop">
+					<div class="cta-home">
 						<div class="col-lg-5">
 							<h3>A new kind of YouTube Network</h3>
 							<p>No need to unpartner from your YouTube Network</p>
@@ -37,7 +37,7 @@
 										<th class="th-games">Games</th>
 										<th class="th-pay">Payout</th>
 										<th class="th-cntrs">Countries</th>
-										<th class="th-pl-lnks">Play Now Links</th>
+										<th class="th-plnks">Play Now Links</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -123,7 +123,7 @@
 		<div></div>
 	</section>
 </div>
-</div> 
+
 <!-- /content -->
 
 

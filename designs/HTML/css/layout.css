@@ -225,31 +225,31 @@ html, body {
 	height: 450px; 	
  }
 
-.uptop {
+.cta-home {
 	text-align: center;
 	/*padding: 70px 0 20px 0;*/
 }
 
-.uptop h3,p {
+.cta-home h3,p {
 	margin: 0;
 	color: #fff;
 	text-shadow: rgba(0, 0, 0, 0.4) 0 1px 0;
 	font-family: 'Droid Sans', Arial, Helvetica, sans-serif;
 }
 
-.uptop h3 {
+.cta-home h3 {
 	margin-top: 100px;
 	font-size: 48px;
 	font-weight: 700;
 	text-align: left;
 }
 
-.uptop p {
+.cta-home p {
 	font-size: 18px;
 	text-align: left;
 }
 
-.uptop img {
+.cta-home img {
 	margin-top: 20px;
 	max-width: 100%;
 }
@@ -355,18 +355,30 @@ html, body {
 }
 
 #games-lists .table thead > tr > th {
-	padding: 20px 10px !important;
+	padding: 20px 20px !important;
 	border: 0;
-	font-size: 24px;
+	font-size: 18px;
 	color: #fff;
 }
 
 #games-lists .table tbody> tr > td {
-	padding: 20px 10px !important;
+	padding: 20px 20px !important;
 }
 
 .th-games {
-	backgroun
+	background: #d71815;
+}
+
+.th-pay {
+	background-color: #a31412;
+}
+
+.th-cntrs {
+	background-color: #7a0f0d;
+}
+
+.th-plnks {
+	background-color: #540807;
 }
 
 #in-pl::-webkit-input-placeholder { font-style: italic; }
@@ -454,10 +466,15 @@ footer {
 }
 
 .cpyrght-txt {
+	position: relative;
+	float: left;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 11px;
 	margin-top: 15px;
 } 
+
+.sm-icons {}
+
 
 /*.ft-links {
 	float: left;
