@@ -6,10 +6,15 @@
   <link rel="icon" type="image/x-icon" href="{{ asset('favicondash.ico') }}" />
 {% endblock %}
   
+{% block body %}
+  <body class="dashbrd-bg">
+{% endblock %}
+  
 {% block header %}
-<a href="{{ path('anytv_dashboard_homepage') }}" title="Any.TV Dashboard">
-  <img src="{{ asset('bundles/anytvdashboard/images/logo.png') }}" alt="Any.TV Dashboard" />
-</a>
+  <a href="{{ path('anytv_dashboard_homepage') }}" title="Any.TV Dashboard" class="navbar-brand">
+    <img src="{{ asset('bundles/anytvdashboard/images/anytv-dashboard-logo.png') }}" alt="Any.TV Dashboard" />
+  </a>
+  <p class="navbar-text bin-txt">{% trans %}Part of{% endtrans %} &nbsp;<img src="{{ asset('bundles/anytvdashboard/images/any-tv-family-logo.png') }}" alt="Any.TV" /> &nbsp;{% trans %}family{% endtrans %}.</p>
 {% endblock %}
   
 {% block transmenu %}
@@ -34,9 +39,12 @@
 {% endblock %}
   
 {% block submenu %}
+<div class="sub-nav dashbrd">
+<div class="container">              
+<nav class="subnav-cllps clr-black"> 
 {% if is_granted('ROLE_ADMIN') %}
-<div id="sub_menu">
-  <ul>
+
+  <ul id="nav">
     <li><a href="{{ path('advertisers') }}" title="{% trans %}Advertisers{% endtrans %}">{% trans %}Advertisers{% endtrans %}</a></li>
     <li><a href="{{ path('offer_groups') }}" title="{% trans %}Offer Groups{% endtrans %}">{% trans %}Offer Groups{% endtrans %}</a></li>
     <li><a href="{{ path('offers') }}" title="{% trans %}Offers{% endtrans %}">{% trans %}Offers{% endtrans %}</a></li>
@@ -44,15 +52,18 @@
     <li><a href="{{ path('traffic_referrals') }}" title="{% trans %}Traffic Referrals{% endtrans %}">{% trans %}Traffic Referrals{% endtrans %}</a></li>
     <li><a href="{{ path('countries') }}" title="{% trans %}Countries{% endtrans %}">{% trans %}Countries{% endtrans %}</a></li>
   </ul>
-</div> 
+
 {% else %}
-<div id="sub_menu">
-  <ul>
+
+  <ul id="nav">
     <li><a href="{{ path('profile_view') }}" title="{% trans %}My Profile{% endtrans %}">{% trans %}My Profile{% endtrans %}</a></li>
     <li><a href="{{ path('profile_offers') }}" title="{% trans %}Offers{% endtrans %}">{% trans %}Offers{% endtrans %}</a></li>
   </ul>
-</div> 
+
 {% endif %}
+</nav>
+</div>
+</div>
 {% endblock %}
  
      

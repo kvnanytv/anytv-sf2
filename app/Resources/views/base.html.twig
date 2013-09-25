@@ -21,48 +21,42 @@
           <link href="{{ asset('bundles/anytvmain/css/bootstrap.css') }}" rel="stylesheet" />
         {% endblock %}
     </head>
-    <body>
+    
+    {% block body %}
+      <body>
+    {% endblock %}
+    
+      <div class="page-wrap">
       <header>
         <div class="main-nav">    
-        <nav class="navbar navbar-default" role="navigation">
-        <div class="container">
+      <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
           <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>                
-            </button>
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>                
+              </button>
             {% block header %}
-              <a class="navbar-brand" href="{{ path('anytv_main_homepage') }}"><img src="{{ asset('bundles/anytvmain/images/anytv-home_logo.png') }}"></a>
+              <a class="navbar-brand" href="{{ path('anytv_main_homepage') }}"><img src="{{ asset('bundles/anytvmain/images/anytv-home-logo.png') }}"></a><p class="navbar-text bin-txt">{% trans %}Believe in you{% endtrans %}</p>
             {% endblock %}
           </div>
 
           <div style="padding-top: 5px;" class="collapse navbar-collapse navbar-ex1-collapse atv-sites">        
-            <ul id="top-menus" style="padding-left: 10px;" class="nav navbar-nav navbar-left">          
+            <ul class="nav navbar-nav navbar-right">     
               <li><a class="lnk-blue" href="{{ path('anytv_main_homepage') }}">any.TV</a></li>
               <li><a class="lnk-yellow" href="{{ path('anytv_dashboard_homepage') }}">dashboard</a></li>
               <li><a class="lnk-red" href="http://www.mmo.tm" target="_blank">mmo</a></li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-            <li style="display:none">
-              <div class="input-group search-box">
-              <input type="text" class="form-control">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button"><i class="icon-search"></i></button>
-              </span>
-            </div>
-            </li>
-            <li>
-              {% if(app.user) %}
-                <p style="color:#000">{% trans %}You're logged in as{% endtrans %} {% if is_granted('ROLE_ADMIN') %}{{ app.user.username }}{% else %}{{ app.user }}{% endif %} - <a href="{{ path('logout') }}" title="{% trans %}Logout{% endtrans %}">{% trans %}Logout{% endtrans %}</a></p>
-              {% else %}
-                <p style="display:none"><a href="{{ path('login') }}" title="Login">Login</a></p>
-                <button type="button" class="btn btn-default navbar-btn log-btn mrgn-left">{% trans %}Login{% endtrans %}</button>
-              {% endif %}
-            </li>
+              <li>
+                {% if(app.user) %}
+                  <p style="color:#000">{% trans %}You're logged in as{% endtrans %} {% if is_granted('ROLE_ADMIN') %}{{ app.user.username }}{% else %}{{ app.user }}{% endif %} - <a href="{{ path('logout') }}" title="{% trans %}Logout{% endtrans %}">{% trans %}Logout{% endtrans %}</a></p>
+                {% else %}
+                  <form action="#" target="_blank"><button type="submit" class="btn btn-default navbar-btn log-btn mrgn-left">{% trans %}Login{% endtrans %}</button></form>
+                {% endif %}
+              </li> 
               <li class="dropdown mrgn-left">
+                  
                 {% block transmenu %}
                    <a href="{{ path('anytv_main_homepage', { _locale: app.request.get('_locale', 'en') }) }}" class="dropdown-toggle" data-toggle="dropdown"><img src="{{ asset('bundles/anytvmain/images/'~app.request.get('_locale', 'en')~'.png') }}">&nbsp;<b class="caret"></b></a>
                    <ul class="dropdown-menu dd-height">
@@ -83,21 +77,22 @@
                      </li>
                    </ul>
                  {% endblock %}
-              </li>              
+                  
+                
+              </li>    
             </ul>
+
+            
           </div>  
         </div>   
         </nav> 
         </div>
-        <div class="sub-nav">
-          <div class="container">              
-          <nav class="subnav-cllps">
+        
           {% block submenu %}
           
           {% endblock %}
-          </nav>
-          </div>
-        </div>
+          
+              
       </header>
         
         <div id="content">
@@ -117,23 +112,12 @@
         {% endblock %}
         </div>
     
-
+          </div>
 
 <footer>
   <div class="container">
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="ft-links">
-            <div class="col-lg-2">
-              
-            </div>
-            <div class="col-lg-2">
-                           
-            </div>
-            <div class="col-lg-2"></div>
-          </div>
-        </div>
-        <div class="row cright-links" style="color:#fff">Copyright 2013 any.TV Limited | All Rights Reserved</div>
+    <div class="cpyrght-txt">
+      Copyright 2013 any.TV Limited | All Rights Reserved    
     </div>
   </div>
 </footer>
@@ -142,6 +126,13 @@
           <script src="{{ asset('bundles/anytvmain/js/jquery.js') }}"></script>  
           <script src="{{ asset('bundles/anytvmain/js/jquery.zclip.js') }}"></script>  
           <script src="{{ asset('bundles/anytvmain/js/bootstrap.min.js') }}"></script>  
+          <script src="{{ asset('bundles/anytvmain/js/tinynav.min.js') }}"></script> 
+          <script>
+            $(function () 
+            {
+              $("#nav").tinyNav();
+            });
+          </script>
         {% endblock %}
     </body>
 </html>

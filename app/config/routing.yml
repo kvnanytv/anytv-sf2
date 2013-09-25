@@ -11,13 +11,13 @@ anytv_dashboard:
     prefix:   /dashboard
     
 login:
-    path:  /{_locale}/login
-    defaults: { _controller: AnytvMainBundle:Security:login, _locale: en }
+    path:  /login/{_locale}
+    defaults: { _controller: AnytvDashboardBundle:Security:login, _locale: en }
     requirements:
         _locale:  %anytv.locales%
         
 login_check:
-    path:  /{_locale}/login_check
+    path:  /login_check/{_locale}
     requirements:
         _locale:  %anytv.locales%
     

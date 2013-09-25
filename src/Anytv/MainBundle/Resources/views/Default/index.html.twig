@@ -24,7 +24,7 @@
                   <p><a href="{{ path('about') }}" class="btn btn-primary btn-lg btn-lrn">{% trans %}Learn more{% endtrans %}</a></p> 
                 </div>
                 <div class="col-lg-7">
-                <div class="vid-yt">
+                <div class="vid-yt" style="display:none">
             			<img src="{{ asset('bundles/anytvmain/images/mac-monitor.png') }}">            
                   <div class="yt-video">
                     <iframe src="http://www.youtube.com/embed/UCqJAZuvUS0?list=PLyI74zGGymu8k7eVhGPcVSh3nKljHfiVX&wmode=transparent" frameborder="0" allowfullscreen></iframe>
@@ -62,7 +62,7 @@
                 <p>Why?</p>
                 <p>Because we <b>don’t</b> partner channels.</p>
                 <a href="{{ path('signup') }}">Join any.TV</a>    
-                <p><img align="right" style="margin: 0;" src="{{ asset('bundles/anytvmain/images/anytv-blue-emblem.png') }}"></p> 
+                
               </div>
               <div id="net-col3" class="col-lg-4 brdr-test">
                 <h3>10% Lifetime Bonus!</h3>
@@ -70,11 +70,20 @@
                 <p>any.TV pays you a 10% bonus of everything your referrals make, our way of saying “Thank You” for recommending any.TV to your friends and partners!</p>
                 <p>This is <b>not</b> a pyramid scheme.</p>
                 <a href="http://www.youtube.com/watch?v=Hs1Tq_Mi_Yg&list=PLyI74zGGymu8k7eVhGPcVSh3nKljHfiVX" target="_blank">Learn More</a>
-                <p><img align="right" style="margin: 0;" src="{{ asset('bundles/anytvmain/images/anytv-blue-emblem.png') }}"></p>              
+                         
               </div>                        
             </div>
           </div>
         </div>
+      </section>
+
+      <section id="section4">
+        <div class="container">               
+        </div>
+      </section>      
+    	
+      <section id="about-anytv">
+        <div></div>
       </section>
 
       {{ parent() }}

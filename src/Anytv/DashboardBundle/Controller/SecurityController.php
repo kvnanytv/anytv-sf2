@@ -1,6 +1,6 @@
 <?php
 
-namespace Anytv\MainBundle\Controller;
+namespace Anytv\DashboardBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,6 +23,6 @@ class SecurityController extends Controller
             $session->remove(SecurityContext::AUTHENTICATION_ERROR);
         }
         
-        return $this->render('AnytvMainBundle:Security:login.html.twig', array('title'=>'Any.TV Login', 'last_username' => $session->get(SecurityContext::LAST_USERNAME), 'error' => $error));
+        return $this->render('AnytvDashboardBundle:Security:login.html.twig', array('title'=>'Any.TV Login', 'last_username' => $session->get(SecurityContext::LAST_USERNAME), 'error' => $error));
     }
 }
