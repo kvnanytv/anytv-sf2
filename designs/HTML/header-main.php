@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.png">
 
-	<title>Dashboard.tm | Part of any.tv family.</title>
+  <title>AnyTV | A new kind of YouTube Channel</title>
 
   <!--[if IE 7]>
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome-ie7.min.css">
@@ -24,8 +24,7 @@
   <link href="css/layout.css" rel="stylesheet">    
   <link href="css/normalize.css" rel="stylesheet"> 
   <link href="css/subnav.css" rel="stylesheet">
-  <link href="css/dashboard-accordion.css" rel="stylesheet">
-  
+
   <!-- Font Awesome -->
   <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
@@ -40,7 +39,7 @@
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'> 
 
-	<!-- Bootstrap -->
+  <!-- Bootstrap -->
     <link href="css/bootstrap/bootstrap.css" rel="stylesheet"> 
     <!-- <link href="css/bootstrap/bootstrap-min.css" rel="stylesheet"> -->
 
@@ -49,11 +48,11 @@
 
 </head>
 
-<body class="dashbrd-bg">
-<!-- page wrap -->
+<body>
+
+
 <div class="page-wrap">
-<!-- header -->
-<header id="top-navigation">
+<header>
   <div id="main-nav">    
       <nav class="navbar navbar-default" role="navigation">
       <div class="container">
@@ -64,16 +63,21 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>                
               </button>
-              <a class="navbar-brand" href="dashboard.html"><img src="img/anytv-dashboard-logo.png"></a><p class="navbar-text bin-txt">Part of &nbsp;<img src="img/any-tv-family-logo.png"> &nbsp;family.</p>
+              <a class="navbar-brand" href="index.html"><img src="img/anytv-home-logo.png"></a>
+            <p class="navbar-text">Believe in you.</p>              
           </div>
 
+          <div style="padding-top: 5px;" class="collapse navbar-collapse navbar-ex1-collapse atv-sites">
 
-          <div style="padding-top: 5px;" class="collapse navbar-collapse navbar-ex1-collapse atv-sites">        
-            <ul class="nav navbar-nav navbar-right">
+        
+            <ul class="nav navbar-nav navbar-left">
             <li><a class="lnk-blue" href="index.html">any.TV</a></li>
-            <li><a class="lnk-yellow" href="dashboard.html">dashboard</a></li>
-            <li><a class="lnk-red" href="#">mmo</a></li> 
-            <li></li>
+            <li><a class="lnk-yellow" href="dashboard.php">dashboard</a></li>
+            <li><a class="lnk-red" href="#">mmo</a></li> </ul>
+            <ul class="nav navbar-nav navbar-right">
+            <li>
+            <a href="dashboard.php" class="log-btn mrgn-left">LOG IN</a>
+            </li>            
               <li class="dropdown mrgn-left">
 
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="img/flags/us.png">&nbsp;<b class="caret"></b></a>
@@ -92,78 +96,21 @@
   </div>
   <!-- /main-nav -->
 
-  <div class="sub-nav dashbrd">
+  <div class="sub-nav">
     <div class="container">              
-      <nav class="subnav-cllps db-lnks">
+      <nav class="subnav-cllps clr-black">
           <ul id="nav">
-            <li><a href="#">My Profile</a></li>
-            <li><a href="#">Link 2</a></li>
-            <li><a href="#">Link 3</a></li>
-            <li><a href="#">Link 4</a></li>
-            <li><a href="#">Link 5</a></li>
+            <li><a href="#">What is any.TV?</a></li>
+            <li><a href="#">Branding Kit</a></li>
+            <li><a href="#">Games List</a></li>
+            <li><a href="#">Livestream Handbook</a></li>
+            <li><a href="#">Recruiters Handbook</a></li>
+            <li><a href="#">Join our Twitch Team!</a></li>
+            <li><a href="#">Staff</a></li>        
+            <li><a href="#">FAQs</a></li>
           </ul>
       </nav>
     </div>
   </div>
-</header >
+</header>
 <!-- /header -->
-
-
-<!-- content -->
-<section id="content">
-  <div class="container">
-  <div class="row-fluid">
-    <div class="col-lg-4">
-    <div class="panel panel-default user-panel">
-      <div class="panel-body">
-            <!-- <div id="user-thmb"></div> -->
-             <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  <img src="img/db-img/test-user.jpg">
-                  <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a href="#">My Account</a></li>
-                  <li><a href="#">Settings</a></li>
-                </ul>
-              </div>
-
-      </div>
-    </div>
-
-    <div class="col-lg-8">
-      
-    </div>  
-  </div>
-  </div>
-</section>
-<!-- /content -->
-</div>
-
-<footer>
-  <div class="container">
-    <div class="cpyrght-txt">
-      Copyright 2013 any.TV Limited | All Rights Reserved    
-    </div>
-  </div>
-</footer>
-<!-- /footer -->
-  
-</div>
-</body>
-
-<script src="assets/js/jquery.js"></script>  
-<script src="js/zclip/jquery.zclip.js"></script>   
-<script src="js/bootstrap/bootstrap.min.js"></script>
-<script src="js/tinynav/tinynav.min.js"></script>
-<script type="text/javascript" src="js/mmenu/jquery.mmenu.min.js"></script>
-
-<script>
-  $(function () {
-    $("#nav").tinyNav();
-  });
-</script>
-
-
-
-</html>

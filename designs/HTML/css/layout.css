@@ -50,9 +50,11 @@ html, body {
 	color: #000 !important;
 	text-shadow: none !important;
 	text-align: center;
+	font-size: 13px;
+	margin-top: -10px;
 
 }
-s
+
 /********************** Header *******************/
 
 #top-navigation {
@@ -63,20 +65,21 @@ s
 	border-left: 1px solid #;
 }
 
-.main-nav {
+#main-nav {
 	background: #fff;
 }
 
-.navbar {
+#main-nav .navbar-text {
+	margin: 21px 20px 0 0 !important;
+	font-size: 13px;
+	text-shadow: none;
+}
+
+#main-nav .navbar {
 	border-radius: 0 !important;
 	margin: 0 !important;
 	background: transparent !important;
 	border: none !important;
-}
-
-.bin-txt {
-	margin-top: 20px !important;
-	text-shadow: none;
 }
 
 .atv-sites {
@@ -187,8 +190,13 @@ s
 	text-decoration:none;
 	text-align:center;
 	text-shadow:1px 1px 0px #ffcc00;
+
+	padding:6px 12px !important;
 }
 
+.mrgn-top {
+	margin-top: 20px;
+}
 
 .mrgn-left {
 	margin-left: 20px !important;
@@ -201,9 +209,9 @@ s
 	padding-top: 20px;
 }
 
-.bdy {
-	height: 100%;
-	padding: 0 !important;
+.brdr-h {
+	border-bottom: 1px solid #dddddd;
+	margin: 20px 0;
 }
 
 .mrgn-no {
@@ -219,7 +227,7 @@ s
 
 .uptop {
 	text-align: center;
-	padding: 70px 0 20px 0;
+	/*padding: 70px 0 20px 0;*/
 }
 
 .uptop h3,p {
@@ -230,6 +238,7 @@ s
 }
 
 .uptop h3 {
+	margin-top: 100px;
 	font-size: 48px;
 	font-weight: 700;
 	text-align: left;
@@ -355,54 +364,6 @@ input:-moz-placeholder { font-style:; }
 	width: 960px;
 	margin: 20px auto;
 }
-
-	#gl-tbl  {
-		z-index: 99;
-		max-width: 100%;
-		margin-left: 30px;
-		
-	}
-
-
-	#gl-tbl thead, #gl-tbl tbody, #gl-tbl tfoot, #gl-tbl th, #gl-tbl td {
-		
-	}
-
-	#gl-tbl thead > tr > th {
-		padding: 10px 20px;
-		border: 0;
-		font-size: 18px;
-		color: #fff;
-	}
-
-	#gl-tbl tbody > tr > td {
-		padding: 20px;
-	}
-
-	#gl-tbl tbody > tr:hover td {
-		background: #e8e8e8;
-	}
-
-	#gl-tbl tfoot {
-		text-align: center;		
-	}
-
-	#f-col {
-		background: #d71815;
-	}
-
-	#s-col {
-		background: #a31412;
-	}
-
-	#th-col {
-		background: #7a0f0d
-	}
-
-	#frt-col {
-		background: #540807;
-	}
-
 
 .zclip-wrap {
 	position: relative;
@@ -560,3 +521,5 @@ footer {
 #stat-txt {
 	text-shadow: none;
 }
+
+
