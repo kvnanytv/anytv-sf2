@@ -225,6 +225,38 @@ html, body {
 	height: 450px; 	
  }
 
+@media (min-width: 320px) and (max-width: 479px) {
+	.banner img {
+		display: none;
+	}
+}
+
+@media (min-width: 480px) and (max-width: 639px) {
+	.banner img {
+		display: none;
+	}
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .banner {
+    height: 690px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .banner {
+    height: 720px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .banner {
+    height: 670px;
+  }
+}
+
+
+
 .cta-home {
 	text-align: center;
 	/*padding: 70px 0 20px 0;*/
@@ -242,6 +274,12 @@ html, body {
 	font-size: 48px;
 	font-weight: 700;
 	text-align: left;
+}
+
+@media (min-width: 320px) and (max-width: 1024px) {
+  .cta-home h3 {
+    margin-top: 20px;
+  }
 }
 
 .cta-home p {
@@ -265,8 +303,7 @@ html, body {
 	width: 560px;
 	height: 315px;
 	max-height: 100%;
-	margin: 0 auto;	
-
+	margin: 0 auto;
 }
 
 .yt-video iframe,
@@ -365,6 +402,8 @@ html, body {
 	padding: 20px 20px !important;
 }
 
+
+
 .th-games {
 	background: #d71815;
 }
@@ -411,6 +450,17 @@ input:-moz-placeholder { font-style:; }
 
 #net-col1 {
 	height: 350px;
+}
+
+#net-col1 h3 {
+	font-family: 'Droid Sans', Arial, Helvetica, sans-serif !important;
+	font-weight: 700;
+	text-shadow: none;
+}
+
+#net-col1 p {
+	font-family: Arial, Helvetica, sans-serif !important;
+	text-shadow: none;
 }
 
 #net-col2 {

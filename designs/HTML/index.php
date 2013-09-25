@@ -12,8 +12,9 @@
 							<p>No need to unpartner from your YouTube Network</p>
 							<p><a class="btn btn-primary btn-lg btn-join">Join Us!</a></p>                  
 						</div>
-						<div class="col-lg-7">
-
+						<div class="col-lg-7">							
+							<img src="images/mac-monitor.png">            							
+							
 						</div>
 					</div>
 				</div>
@@ -69,13 +70,13 @@
 										<tr>
 											<td class="al-cntr" colspan="4">
 												<ul class="pagination">
-												  <li class="disabled"><a href="#">&laquo;</a></li>
-												  <li class="active"><span>1 <span class="sr-only">(current)</span></span></li>
-												  <li><a href="">2</a></li>
-												  <li><a href="">3</a></li>
-												  <li><a href="">4</a></li>
-												  <li><a href="">5</a></li>
-												  <li class="disabled"><a href="#">&raquo;</a></li>
+													<li class="disabled"><a href="#">&laquo;</a></li>
+													<li class="active"><span>1 <span class="sr-only">(current)</span></span></li>
+													<li><a href="">2</a></li>
+													<li><a href="">3</a></li>
+													<li><a href="">4</a></li>
+													<li><a href="">5</a></li>
+													<li><a href="#">&raquo;</a></li>
 												</ul>											
 											</td>
 										</tr>
