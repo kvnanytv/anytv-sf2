@@ -25,7 +25,6 @@
   <link href="css/normalize.css" rel="stylesheet"> 
   <link href="css/subnav.css" rel="stylesheet">
 
-
   <!-- Font Awesome -->
   <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
@@ -41,17 +40,18 @@
   <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'> 
 
 	<!-- Bootstrap -->
-    <link href="css/bootstrap/bootstrap.css" rel="stylesheet">
-    <link href="css/bootstrap/bootstrap-min.css" rel="stylesheet">
+    <link href="css/bootstrap/bootstrap.css" rel="stylesheet"> 
+    <!-- <link href="css/bootstrap/bootstrap-min.css" rel="stylesheet"> -->
 
   <!-- Zurb Tables -->
     <link type="text/css" media="screen" rel="stylesheet" href="responsive-tables.css" />
-
 
 </head>
 
 <body>
 
+
+<div class="page-wrap">
 <header>
   <div class="main-nav">    
       <nav class="navbar navbar-default" role="navigation">
@@ -63,29 +63,17 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>                
               </button>
-              <a class="navbar-brand" href="#"><img src="img/anytv-home_logo.png"></a>
+              <a class="navbar-brand" href="index.html"><img src="img/anytv-home-logo.png"></a><p class="navbar-text bin-txt">Believe in you.</p>
           </div>
 
-
           <div style="padding-top: 5px;" class="collapse navbar-collapse navbar-ex1-collapse atv-sites">        
-            <ul id="top-menus" style="padding-left: 10px;" class="nav navbar-nav navbar-left">          
-              <li><a class="lnk-blue" href="#">any.TV</a></li>
-              <li><a class="lnk-yellow" href="#">dashboard</a></li>
-              <li><a class="lnk-red" href="#">mmo</a></li>
-            </ul>
-
             <ul class="nav navbar-nav navbar-right">
+            <li><a class="lnk-blue" href="index.html">any.TV</a></li>
+            <li><a class="lnk-yellow" href="dashboard.html">dashboard</a></li>
+            <li><a class="lnk-red" href="#">mmo</a></li>                      
             <li>
-              <div class="input-group search-box">
-              <input type="text" class="form-control">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button"><i class="icon-search"></i></button>
-              </span>
-            </div>
-            </li>
-            <li>
-            <button type="button" class="btn btn-default navbar-btn log-btn mrgn-left">Sign in</button>
-            </li>
+            <form action="#" target="_blank"><button type="submit" class="btn btn-default navbar-btn log-btn mrgn-left">LOG IN</button></form>
+            </li>            
               <li class="dropdown mrgn-left">
 
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="img/flags/us.png">&nbsp;<b class="caret"></b></a>
@@ -106,8 +94,8 @@
 
   <div class="sub-nav">
     <div class="container">              
-      <nav class="subnav-cllps">
-          <ul>
+      <nav class="subnav-cllps clr-black">
+          <ul id="nav">
             <li><a href="#">What is any.TV?</a></li>
             <li><a href="#">Branding Kit</a></li>
             <li><a href="#">Games List</a></li>
@@ -123,6 +111,7 @@
 </header>
 <!-- /header -->
 
+
     <div id="content">
 
     	<section class="banner">
@@ -133,16 +122,10 @@
                 <div class="col-lg-5">
             			<h3>A new kind of YouTube Network</h3>
             			<p>No need to unpartner from your YouTube Network</p>
-                  <p><a class="btn btn-primary btn-lg btn-join">Join Us!</a></p>
-                  <p><a href="#" class="btn btn-primary btn-lg btn-lrn">Learn more</a></p> 
+                  <p><a class="btn btn-primary btn-lg btn-join">Join Us!</a></p>                  
                 </div>
                 <div class="col-lg-7">
-                <div class="vid-yt">
-            			<img src="img/mac-monitor.png">            
-                  <div class="yt-video">
-                    <iframe src="http://www.youtube.com/embed/UCqJAZuvUS0?list=PLyI74zGGymu8k7eVhGPcVSh3nKljHfiVX&wmode=transparent" frameborder="0" allowfullscreen></iframe>
-                  </div>
-                </div>
+                
                 </div>
           		</div>
             </div>
@@ -223,7 +206,6 @@
  
             </div>      		
           </div>
-        </div>
     	</section>
 
       <section id="networks">
@@ -261,45 +243,31 @@
         <div></div>
       </section>
     </div>
+</div> 
     <!-- /content -->
 
 
 <footer>
   <div class="container">
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="ft-links">
-            <div class="col-lg-2">
-              <ul>
-                <li><a href="#">Link 1</a></li>
-                <li><a href="#">Link 1</a></li>
-                <li><a href="#">Link 1</a></li>                  
-              </ul>
-            </div>
-            <div class="col-lg-2">
-              <ul>
-                <li><a href="#">Link 1</a></li>
-                <li><a href="#">Link 1</a></li>
-                <li><a href="#">Link 1</a></li>                  
-              </ul>                
-            </div>
-            <div class="col-lg-2"></div>
-          </div>
-        </div>
-        <div class="row cright-links"></div>
+    <div class="cpyrght-txt">
+      Copyright 2013 any.TV Limited | All Rights Reserved    
     </div>
   </div>
 </footer>
 <!-- /footer -->
-  
+
 
 </body>
 
 <script src="assets/js/jquery.js"></script>  
 <script src="js/zclip/jquery.zclip.js"></script>   
-<script src="js/vendor/custom.modernizr.js"></script>
 <script src="js/bootstrap/bootstrap.min.js"></script>
-
+<script src="js/tinynav/tinynav.min.js"></script>
+<script>
+  $(function () {
+    $("#nav").tinyNav();
+  });
+</script>
 
 
 </html>
