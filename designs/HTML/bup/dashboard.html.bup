@@ -52,7 +52,7 @@
 
 <div class="page-wrap">
 <header>
-  <div class="main-nav">    
+  <div id="main-nav">    
       <nav class="navbar navbar-default" role="navigation">
       <div class="container">
           <div class="navbar-header">
@@ -71,9 +71,7 @@
             <li><a class="lnk-blue" href="index.html">any.TV</a></li>
             <li><a class="lnk-yellow" href="dashboard.html">dashboard</a></li>
             <li><a class="lnk-red" href="#">mmo</a></li>            
-            <li>
-            <form action="#"><button type="submit" class="btn btn-default navbar-btn log-btn mrgn-left">SIGN UP</button></form>
-            </li>
+            
               <li class="dropdown mrgn-left">
 
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="img/flags/us.png">&nbsp;<b class="caret"></b></a>
@@ -115,14 +113,8 @@
 	<section>
     <div class="container">
 
-      <div class="row-fluid bdy">
-        <div class="col-lg-7 ft-game">
-          <img src="img/game-thmbs/warframe-cvr.jpg">
-          <p><strong>Warframe</strong> Countries: 235 <em>Active</em></p>
-          <p style="font-size: 13px !important; font-family: Arial, Helvetica, sans-serif;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</p>
-        </div>
-          <div class="col-lg-5">
+      <div id="con-body" class="row">
+        <div class="col-lg-5">
             <div class="panel panel-default lgin-panel">
               <div class="panel-heading">
                 <h3 class="panel-title"><strong>Dashboard Log in</strong></h3>
@@ -142,18 +134,29 @@
                   <div class="cl-20"></div><form action="">
                   <button type="submit" class="btn btn-lg btn-primary btn-block"><strong>Log in</strong></button></form>              
                 </form>
+                <div class="brdr-h"></div>
+                <p align="center">Don't have an account yet?</p>
+                <form action="">
+                  <button type="submit" class="btn btn-lg btn-primary btn-block"><strong>CREATE AN ACCOUNT</strong></button></form>  
               </div>
             </div>
             <p class="txt-default">View our <a href="">Privacy Policy</a></p>    
+        </div>
+
+          <div class="col-lg-7 ft-game">
+          <img src="img/game-thmbs/warframe-cvr1.png">
+          <p><strong>Warframe</strong> Countries: 235 <em>Active</em></p>
+          <p style="font-size: 13px !important; font-family: Arial, Helvetica, sans-serif;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</p>            
           </div>
         </div>
-      </div>     
+      </div>
+  </section>    
     </div>       
-	</section>
-</div>
 <!-- /content -->
-</div>
 
+</div>
+<!--  -->
 <footer>
   <div class="container">
     <div class="cpyrght-txt">

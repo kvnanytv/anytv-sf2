@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.png">
 
-	<title>AnyTV | A new kind of YouTube Channel</title>
+  <title>AnyTV | A new kind of YouTube Channel</title>
 
   <!--[if IE 7]>
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome-ie7.min.css">
@@ -39,7 +39,7 @@
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'> 
 
-	<!-- Bootstrap -->
+  <!-- Bootstrap -->
     <link href="css/bootstrap/bootstrap.css" rel="stylesheet"> 
     <!-- <link href="css/bootstrap/bootstrap-min.css" rel="stylesheet"> -->
 
@@ -53,44 +53,58 @@
 
 <div class="page-wrap">
 <header>
-  <div class="main-nav">    
-      <nav class="navbar navbar-default" role="navigation">
+  <nav id="main-nav">
+    <div class="navbar-inner">
       <div class="container">
-          <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>                
-              </button>
-              <a class="navbar-brand" href="index.html"><img src="img/anytv-home-logo.png"></a><p class="navbar-text bin-txt">Believe in you.</p>
-          </div>
-
-          <div style="padding-top: 5px;" class="collapse navbar-collapse navbar-ex1-collapse atv-sites">        
-            <ul class="nav navbar-nav navbar-right">
-            <li><a class="lnk-blue" href="index.html">any.TV</a></li>
-            <li><a class="lnk-yellow" href="dashboard.html">dashboard</a></li>
-            <li><a class="lnk-red" href="#">mmo</a></li>                      
-            <li>
-            <form action="#" target="_blank"><button type="submit" class="btn btn-default navbar-btn log-btn mrgn-left">LOG IN</button></form>
-            </li>            
-              <li class="dropdown mrgn-left">
-
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="img/flags/us.png">&nbsp;<b class="caret"></b></a>
-                <ul class="dropdown-menu dd-height">
-                  <li><a href="#"><img src="img/flags/us.png">English (US)</a></li>
-                  <li><a href="#"><img src="img/flags/cn.png">Chinese</a></li>
-                  <li><a href="#"><img src="img/flags/nl.png">Dutch</a></li>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><img src="img/anytv-home-logo.png"></a>
+        </div>
+          <p class="navbar-text">Believe in you.</p>
+          
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
                 </ul>
-              </li>              
+              </li>
             </ul>
-          </div>  
-      </div>
-      <!-- /container -->        
-      </nav> 
-      <!-- /nav -->
-  </div>
-  <!-- /main-nav -->
+            <form class="navbar-form navbar-left" role="search">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#">Link</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->        
+      </div><!-- /.container  -->
+    </div><!-- /.navbar-inner  -->
+  </nav>
+  <!-- /.main-nav -->
 
   <div class="sub-nav">
     <div class="container">              
@@ -114,99 +128,39 @@
 
     <div id="content">
 
-    	<section class="banner">
+      <section class="banner">
         <div class="container">
           <div class="container-fluid">
             <div class="row-fluid">
-          		<div class="uptop">
+              <div class="uptop">
                 <div class="col-lg-5">
-            			<h3>A new kind of YouTube Network</h3>
-            			<p>No need to unpartner from your YouTube Network</p>
+                  <h3>A new kind of YouTube Network</h3>
+                  <p>No need to unpartner from your YouTube Network</p>
                   <p><a class="btn btn-primary btn-lg btn-join">Join Us!</a></p>                  
                 </div>
                 <div class="col-lg-7">
                 
                 </div>
-          		</div>
+              </div>
             </div>
           </div>          
         </div>       
-    	</section>
-    	<section id="games-lists">
+      </section>
+      <section id="games-lists">
         <div class="container">
           <div class="games-list-wrap">
-        		<h3>any.TV <strong>Games List</strong></h3>
+            <h3>any.TV <strong>Games List</strong></h3>
             <div class="row">                    
                 <input id="in-pl" type="search" class="form-control" role="search" placeholder="Search Games...">
                 <div class="gameslist-tbl-wrap">
 
-                  <table id="gl-tbl" class="table table-striped">        
-                    
-                      <thead>
-                        <tr>
-                          <th scope="col" id="f-col">Game</th>
-                          <th scope="col" id="s-col">Payout</th>
-                          <th scope="col" id="th-col">Countries</th>
-                          <th scope="col" id="frt-col">Status</th>
-                          <th>&nbsp;</th>                          
-                        </tr>
-                      </thead>                    
-                                    
                  
-                      <tbody>
-                        <tr>
-                          <td>Age of Conan</td>
-                          <td>$0.60</td>
-                          <td>Canada, United Kingdom ...</td>
-                          <td>Active</td>
-                        </tr>
-
-                        <tr>
-                          <td>Age of Conan</td>
-                          <td>$0.60</td>
-                          <td>Canada, United Kingdom ...</td>
-                          <td>Active</td>
-                        </tr>
-
-                        <tr>
-                          <td>Age of Conan</td>
-                          <td>$0.60</td>
-                          <td>Canada, United Kingdom ...</td>
-                          <td>Active</td>
-                        </tr>
-
-                        <tr>
-                          <td>Age of Conan</td>
-                          <td>$0.60</td>
-                          <td>Canada, United Kingdom ...</td>
-                          <td>Active</td>
-                        </tr>
-
-                      </tbody> 
-
-                      <tfoot>
-                            <tr>
-                              <!-- <td colspan="4">&#60; &#62;</td> -->
-                              <td colspan="4">
-                                <ul class="pagination">
-                                  <li><a href="#">&laquo;</a></li>
-                                  <li><a href="#">1</a></li>
-                                  <li><a href="#">2</a></li>
-                                  <li><a href="#">3</a></li>
-                                  <li><a href="#">4</a></li>
-                                  <li><a href="#">5</a></li>
-                                  <li><a href="#">&raquo;</a></li>
-                                </ul>
-                              </td>                                               
-                            </tr>
-                      </tfoot>    
-                  </table>
                 </div>
             </div>
  
-            </div>      		
+            </div>          
           </div>
-    	</section>
+      </section>
 
       <section id="networks">
         <div class="container">
@@ -238,7 +192,7 @@
         <div class="container">               
         </div>
       </section>      
-    	
+      
       <section id="about-anytv">
         <div></div>
       </section>
