@@ -31,13 +31,13 @@
 					<div class="col-lg-12">
 						<div id="gl-tbl" class="table-responsive mrgn-top">
 							<!-- Table -->
-							<table class="table table-striped tablesorter">
+							<table class="table table-striped tablesorter">							
 								<thead>
 									<tr>
-										<th>Games</th>
-										<th>Payout</th>
-										<th>Countries</th>
-										<th>Status</th>
+										<th class="th-games">Games</th>
+										<th class="th-pay">Payout</th>
+										<th class="th-cntrs">Countries</th>
+										<th class="th-pl-lnks">Play Now Links</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -45,20 +45,41 @@
 										<td>Age of Conan</td>
 										<td>$0.60</td>
 										<td>Canada, United Kingdom, United States</td>
-										<td>Active</td>
+										<td>link1</td>
 									</tr>
 									<tr>
 										<td>Age of Wulin</td>
 										<td>$0.60</td>
 										<td>United Kingdom, Ireland</td>
-										<td>Active</td>
+										<td>link2</td>
 									</tr>
 									<tr>
 										<td>Age of Wushu</td>
 										<td>$1.50</td>
 										<td>Canada</td>
-										<td>Paused</td>
+										<td>link3</td>
 									</tr>
+									<tr>
+										<td>Age of Wushu</td>
+										<td>$1.50</td>
+										<td>Canada</td>
+										<td>link4</td>
+									</tr>
+									<tfoot>
+										<tr>
+											<td class="al-cntr" colspan="4">
+												<ul class="pagination">
+												  <li class="disabled"><a href="#">&laquo;</a></li>
+												  <li class="active"><span>1 <span class="sr-only">(current)</span></span></li>
+												  <li><a href="">2</a></li>
+												  <li><a href="">3</a></li>
+												  <li><a href="">4</a></li>
+												  <li><a href="">5</a></li>
+												  <li class="disabled"><a href="#">&raquo;</a></li>
+												</ul>											
+											</td>
+										</tr>
+									</tfoot>									
 								</tbody>
 							</table>
 						</div>               

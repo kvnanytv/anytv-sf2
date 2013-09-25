@@ -346,6 +346,28 @@ html, body {
 
 }
 
+.al-cntr {
+	text-align: center;
+}
+
+#games-lists .table {
+	border: none;
+}
+
+#games-lists .table thead > tr > th {
+	padding: 20px 10px !important;
+	border: 0;
+	font-size: 24px;
+	color: #fff;
+}
+
+#games-lists .table tbody> tr > td {
+	padding: 20px 10px !important;
+}
+
+.th-games {
+	backgroun
+}
 
 #in-pl::-webkit-input-placeholder { font-style: italic; }
 #in-pl::-moz-placeholder { font-style: italic; } /* firefox 19+ */
@@ -380,6 +402,10 @@ input:-moz-placeholder { font-style:; }
 }
 
 #net-col2 {
+	height: 350px;
+}
+
+#net-col3 {
 	height: 350px;
 }
 
