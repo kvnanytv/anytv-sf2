@@ -63,7 +63,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>                
               </button>
-              <a class="navbar-brand" href="index.html"><img src="img/anytv-home-logo.png"></a>
+              <a class="navbar-brand" href="index.html"><img src="images/anytv-home-logo.png"></a>
             <p class="navbar-text">Believe in you.</p>              
           </div>
 
@@ -80,11 +80,11 @@
             </li>            
               <li class="dropdown mrgn-left">
 
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="img/flags/us.png">&nbsp;<b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="images/flags/us.png">&nbsp;<b class="caret"></b></a>
                 <ul class="dropdown-menu dd-height">
-                  <li><a href="#"><img src="img/flags/us.png">English (US)</a></li>
-                  <li><a href="#"><img src="img/flags/cn.png">Chinese</a></li>
-                  <li><a href="#"><img src="img/flags/nl.png">Dutch</a></li>
+                  <li><a href="#"><img src="images/flags/us.png">English (US)</a></li>
+                  <li><a href="#"><img src="images/flags/cn.png">Chinese</a></li>
+                  <li><a href="#"><img src="images/flags/nl.png">Dutch</a></li>
                 </ul>
               </li>              
             </ul>

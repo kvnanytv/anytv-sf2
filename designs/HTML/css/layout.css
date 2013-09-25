@@ -5,7 +5,7 @@ layout Styles
 /********************** General *******************/
 
 body {
-	background-image: url(../img/clouds-2.jpg);
+	background-image: url(../images/clouds-2.jpg);
 	background-attachment: fixed;
 	background-size: cover;
 	background-position: bottom;
@@ -344,8 +344,6 @@ html, body {
 	margin: 0 auto;
 	height: 40px;
 
-	background: white url(img/magnifying-glass.png) right no-repeat;
-
 }
 
 
@@ -379,7 +377,6 @@ input:-moz-placeholder { font-style:; }
 
 #net-col1 {
 	height: 350px;
-	background: #fff url(img/anytv-blue-emblem.png) no-repeat right bottom;
 }
 
 #net-col2 {
