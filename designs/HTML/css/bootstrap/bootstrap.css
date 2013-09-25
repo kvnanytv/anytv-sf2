@@ -4221,6 +4221,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   margin-top: 4px;
 }
 
+/* Navbar Toggle */
 @media (min-width: 768px) {
   .navbar-toggle {
     display: none;
