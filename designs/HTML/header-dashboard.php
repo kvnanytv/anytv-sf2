@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.png">
 
-	<title>Dashboard.tm | Part of any.tv family.</title>
+  <title>Dashboard.tm | Part of any.tv family.</title>
 
   <!--[if IE 7]>
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome-ie7.min.css">
@@ -40,7 +40,7 @@
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'> 
 
-	<!-- Bootstrap -->
+  <!-- Bootstrap -->
     <link href="css/bootstrap/bootstrap.css" rel="stylesheet"> 
     <!-- <link href="css/bootstrap/bootstrap-min.css" rel="stylesheet"> -->
 
@@ -70,8 +70,8 @@
 
           <div style="padding-top: 5px;" class="collapse navbar-collapse navbar-ex1-collapse atv-sites">        
             <ul class="nav navbar-nav navbar-right">
-            <li><a class="lnk-blue" href="index.html">any.TV</a></li>
-            <li><a class="lnk-yellow" href="dashboard.html">dashboard</a></li>
+            <li><a class="lnk-blue" href="index.php">any.TV</a></li>
+            <li><a class="lnk-yellow" href="dashboard.php">dashboard</a></li>
             <li><a class="lnk-red" href="#">mmo</a></li> 
             <li></li>
               <li class="dropdown mrgn-left">
@@ -96,7 +96,7 @@
     <div class="container">              
       <nav class="subnav-cllps db-lnks">
           <ul id="nav">
-            <li><a href="#">My Profile</a></li>
+            <li><a href="#">Link 1</a></li>
             <li><a href="#">Link 2</a></li>
             <li><a href="#">Link 3</a></li>
             <li><a href="#">Link 4</a></li>
@@ -107,63 +107,3 @@
   </div>
 </header >
 <!-- /header -->
-
-
-<!-- content -->
-<section id="content">
-  <div class="container">
-  <div class="row-fluid">
-    <div class="col-lg-4">
-    <div class="panel panel-default user-panel">
-      <div class="panel-body">
-            <!-- <div id="user-thmb"></div> -->
-             <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  <img src="img/db-img/test-user.jpg">
-                  <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a href="#">My Account</a></li>
-                  <li><a href="#">Settings</a></li>
-                </ul>
-              </div>
-
-      </div>
-    </div>
-
-    <div class="col-lg-8">
-      
-    </div>  
-  </div>
-  </div>
-</section>
-<!-- /content -->
-</div>
-
-<footer>
-  <div class="container">
-    <div class="cpyrght-txt">
-      Copyright 2013 any.TV Limited | All Rights Reserved    
-    </div>
-  </div>
-</footer>
-<!-- /footer -->
-  
-</div>
-</body>
-
-<script src="assets/js/jquery.js"></script>  
-<script src="js/zclip/jquery.zclip.js"></script>   
-<script src="js/bootstrap/bootstrap.min.js"></script>
-<script src="js/tinynav/tinynav.min.js"></script>
-<script type="text/javascript" src="js/mmenu/jquery.mmenu.min.js"></script>
-
-<script>
-  $(function () {
-    $("#nav").tinyNav();
-  });
-</script>
-
-
-
-</html>
