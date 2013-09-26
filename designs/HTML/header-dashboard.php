@@ -57,30 +57,42 @@
   <div id="main-nav">    
       <nav class="navbar navbar-default" role="navigation">
       <div class="container">
-          <div class="navbar-header">
+          <div class="navbar-header nb-main">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>                
               </button>
-              <a class="navbar-brand" href="dashboard.html"><img src="img/anytv-dashboard-logo.png"></a><p class="navbar-text bin-txt">Part of &nbsp;<img src="img/any-tv-family-logo.png"> &nbsp;family.</p>
+              <a class="navbar-brand" href="dashboard.php"><img src="images/anytv-dashboard-logo.png"></a><p class="navbar-text bin-txt">Part of &nbsp;<img src="images/any-tv-family-logo.png"> &nbsp;family.</p>
           </div>
 
 
           <div style="padding-top: 5px;" class="collapse navbar-collapse navbar-ex1-collapse atv-sites">        
-            <ul class="nav navbar-nav navbar-right">
+
+            <ul class="nav navbar-nav navbar-left">
             <li><a class="lnk-blue" href="index.php">any.TV</a></li>
             <li><a class="lnk-yellow" href="dashboard.php">dashboard</a></li>
-            <li><a class="lnk-red" href="#">mmo</a></li> 
-            <li></li>
+            <li><a class="lnk-red" href="#">mmo</a></li> </ul>
+            <ul class="nav navbar-nav navbar-right">
+            <li>
+            <?php
+             $x = 1;
+            if ($x == 0) {
+              echo "<p class='navbar-text pull-right'>Signed in as <a href='#' class='navbar-link'>Mark Otto</a></p>";
+            }
+            else {
+              echo "<a href='dashboard.php' class='log-btn mrgn-left'>LOG IN</a>";
+            }            
+            ?>
+            </li>            
               <li class="dropdown mrgn-left">
 
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="img/flags/us.png">&nbsp;<b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="images/flags/us.png">&nbsp;<b class="caret"></b></a>
                 <ul class="dropdown-menu dd-height">
-                  <li><a href="#"><img src="img/flags/us.png">English (US)</a></li>
-                  <li><a href="#"><img src="img/flags/cn.png">Chinese</a></li>
-                  <li><a href="#"><img src="img/flags/nl.png">Dutch</a></li>
+                  <li><a href="#"><img src="images/flags/us.png">English (US)</a></li>
+                  <li><a href="#"><img src="images/flags/cn.png">Chinese</a></li>
+                  <li><a href="#"><img src="images/flags/nl.png">Dutch</a></li>
                 </ul>
               </li>              
             </ul>
