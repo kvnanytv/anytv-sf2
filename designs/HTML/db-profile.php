@@ -29,7 +29,12 @@
 							<div class="user-det">
 								
 								<p>Referral link:</p>
-								<input type="text" class= "form-control input-lrg" value="any.tv/s93jr5" disabled>
+						  <div class="input-group">
+						      <span class="input-group-btn">
+						        <button class="btn btn-default" type="button">Copy</button>
+						      </span>
+						      <input type="text" class="form-control" value="any.tv/gj2fr">
+					    </div>
 							</div>
 						</div>
 						<div id="user-menus">
@@ -63,7 +68,7 @@
 
 							<div id="user-content-offers">
 								<div class="input-group input-group-lg">
-									<input type="text" class="form-control" placeholder="Search Offers">
+									<input type="text" class="form-control input-lg" placeholder="Search Offers">
 									<span class="input-group-btn">
 										<button class="btn btn-default" type="button">Go!</button>
 									</span>
@@ -134,8 +139,77 @@
 							</div>				    	
 						</div>
 						<div id="pane2" class="tab-pane">
-							<h4>Pane 2 Content</h4>
-							<p> and so on ...</p>
+							<div id="user-content-offers">
+								<div class="input-group input-group-lg">
+									<input type="text" class="form-control input-lg" placeholder="Search Offers">
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="button">Go!</button>
+									</span>
+								</div>
+								<div class="search-btns">				
+									<div class="btn-group">
+										<div class="btn-group">
+											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Browse by Category <span class="caret"></span></button>
+											<ul class="dropdown-menu">
+												<li><a>Link</a></li>
+											</ul>
+										</div>
+
+										<div class="btn-group">
+											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Browse by Country <span class="caret"></span></button>
+											<ul class="dropdown-menu">
+												<li><a>Link</a></li>
+											</ul>
+										</div>
+									</div>														
+								</div>
+
+							</div>
+							<div class="cl-20"></div>
+							<div class="progress progress-striped active">
+							  <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 50%">							    
+							  </div>
+							</div>							
+							<div class="table-responsive">
+								<div class="offer-tbl-wrap">
+									<table class="table table-striped">							
+										<thead>
+											<tr>
+												<th>Photo</th>
+												<th>Preview</th>
+												<th>Name</th>
+												<th>Payout</th>
+												<th>Play Now Link</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>1516</td>
+												<td>any.tv/4f21</td>
+												<td>10 Countries</td>
+												<td>link1</td>
+												<td></td>
+											</tr>
+
+											<tfoot>
+												<tr>
+													<td class="al-cntr" colspan="6">
+														<ul class="pagination">
+															<li class="disabled"><a href="#">&laquo;</a></li>
+															<li class="active"><span>1 <span class="sr-only">(current)</span></span></li>
+															<li><a href="">2</a></li>
+															<li><a href="">3</a></li>
+															<li><a href="">4</a></li>
+															<li><a href="">5</a></li>
+															<li><a href="#">&raquo;</a></li>
+														</ul>											
+													</td>
+												</tr>
+											</tfoot>									
+										</tbody>
+									</table>
+								</div>
+							</div>
 						</div>
 						<div id="pane3" class="tab-pane">
 							<h4>Pane 3 Content</h4>
