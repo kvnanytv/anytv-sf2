@@ -41,10 +41,7 @@
 
   <!-- Bootstrap -->
     <link href="css/bootstrap/bootstrap.css" rel="stylesheet"> 
-    <!-- <link href="css/bootstrap/bootstrap-min.css" rel="stylesheet"> -->
 
-  <!-- Zurb Tables -->
-    <link type="text/css" media="screen" rel="stylesheet" href="responsive-tables.css" />
 
 </head>
 
@@ -104,7 +101,7 @@
   </div>
   <!-- /main-nav -->
 
-  <div class="sub-nav">
+  <div id="sub-nav">
     <div class="container">              
       <nav class="subnav-cllps clr-black">
           <ul id="nav">

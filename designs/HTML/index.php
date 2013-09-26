@@ -32,7 +32,7 @@
 					<div class="col-lg-12">
 						<div id="gl-tbl" class="table-responsive mrgn-top">
 							<!-- Table -->
-							<table class="table table-striped tablesorter">							
+							<table class="table table-striped">							
 								<thead>
 									<tr>
 										<th class="th-games">Games</th>
