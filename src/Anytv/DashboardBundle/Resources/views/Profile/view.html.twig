@@ -7,17 +7,32 @@
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
 
-    
-        <div style="background-color: #ccc">
-          <div class="">
-            <div class="">
-              <div>
-                <em><a href="{{ path('profile_company_edit') }}" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em>
+
+  <section id="content">
+  <div class="container">
+  <div class="row-fluid">
+    <div class="col-lg-4">
+    <div class="panel panel-default user-panel">
+      <div class="panel-body">
+            <!-- <div id="user-thmb"></div> -->
+             <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                  {% if(affiliate.thumbnail) %}
+                    <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ affiliate.company }}" />
+                  {% endif %}
+                  
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">My Account</a></li>
+                  <li><a href="#">Settings</a></li>
+                </ul>
+              </div>
+            
+            <em><a href="{{ path('profile_company_edit') }}" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em>
                 <h3>{{ affiliate }}<p>{% trans %}dashboard.tm ID{% endtrans %}: {{ affiliate.affiliateId }} - ({{ affiliate_status }})</p></h3>
                 
-                {% if(affiliate.thumbnail) %}
-                  <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ affiliate.company }}" />
-                {% endif %}
+                
       
                  <ul>
         <li style="display:block">{% trans %}Address{% endtrans %}: {{ affiliate.getFullAddress() }}</li>
@@ -41,20 +56,25 @@
         <li style="display:block">{% trans %}Mobile{% endtrans %}: {{ affiliate_user.cellPhone }}</li>
         <li style="display:block">{% trans %}Date Joined{% endtrans %}: {{ affiliate_user.getDateJoinedAsString() }}</li>
       </ul>
-      
-                <div>
-        
-        
 
-        
-        
+      </div>
     </div>
+
+    <div class="col-lg-8">
+      
+    </div>  
+  </div>
+  </div>
+</div>
+</section>
+
+    
+        
+                
+      
+                
                
-              </div>
-                                   
-            </div>
-          </div>
-        </div>
+             
       
 
     {{ parent() }}

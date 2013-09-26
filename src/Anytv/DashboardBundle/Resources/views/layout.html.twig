@@ -1,6 +1,11 @@
 {% extends '::base.html.twig' %}
 
 {% block title 'Any.TV Dashboard' %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link href="{{ asset('bundles/anytvdashboard/css/dashboard-accordion.css') }}" rel="stylesheet" />
+{% endblock %}
         
 {% block favicon %}
   <link rel="icon" type="image/x-icon" href="{{ asset('favicondash.ico') }}" />
@@ -9,12 +14,22 @@
 {% block body %}
   <body class="dashbrd-bg">
 {% endblock %}
+          
+{% block header_tag %}
+  <header id="top-navigation">
+{% endblock %}
   
 {% block header %}
   <a href="{{ path('anytv_dashboard_homepage') }}" title="Any.TV Dashboard" class="navbar-brand">
     <img src="{{ asset('bundles/anytvdashboard/images/anytv-dashboard-logo.png') }}" alt="Any.TV Dashboard" />
   </a>
   <p class="navbar-text bin-txt">{% trans %}Part of{% endtrans %} &nbsp;<img src="{{ asset('bundles/anytvdashboard/images/any-tv-family-logo.png') }}" alt="Any.TV" /> &nbsp;{% trans %}family{% endtrans %}.</p>
+{% endblock %}
+      
+{% block authentication %}
+  {% if(app.user) %}
+    <p style="color:#000">{% trans %}You're logged in as{% endtrans %} {% if is_granted('ROLE_ADMIN') %}{{ app.user.username }}{% else %}{{ app.user }}{% endif %} - <a href="{{ path('logout') }}" title="{% trans %}Logout{% endtrans %}">{% trans %}Logout{% endtrans %}</a></p>
+  {% endif %}
 {% endblock %}
   
 {% block transmenu %}

@@ -6,15 +6,23 @@
 
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
-    {{ parent() }}
-    
-    <h1 class="title">{{ title }}<p>dashboard.tm ID: {{ offer.offerId }}</p></h1>
+
+  <section id="content">
+  <div class="container">
+  <div class="row-fluid">
+    <div class="col-lg-4">
+    <div class="panel panel-default user-panel">
+      <div class="panel-body">
+            
+          <h1 class="title">{{ title }}<p>dashboard.tm ID: {{ offer.offerId }}</p></h1>
+          
+          <h3><p>play now link = </p>{{ play_now_link.click_url }}</h3>
     
     {% if(offer.thumbnail) %}
       <img src="{{ asset(offer.getWebPath()) }}" alt="{{ offer.name() }}" />
     {% endif %}
     
-    <div class="symfony-blocks-welcome">
+    <div class="">
       <ul>
         <li style="display:block">{% trans %}Name{% endtrans %}: {{ offer.name }}</li>
         <li style="display:block">{% trans %}Description{% endtrans %}: {{ offer.description }}</li>
@@ -61,13 +69,25 @@
           <li>{% trans %}Error{% endtrans %}</li>
         </ul>
       {% endif %}
+
+      </div>
+    </div>
+
+    <div class="col-lg-8">
+      
+    </div>  
+  </div>
+  </div>
+</div>
+</section>
+
+    {{ parent() }}
+    
+    
         
       
         
     </div>
 
-    <div class="symfony-blocks-help">
-        
-       
-    </div>
+    
 {% endblock %}

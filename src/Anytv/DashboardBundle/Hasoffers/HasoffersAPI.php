@@ -95,4 +95,23 @@ class HasoffersAPI
         
         return $data;
     }
+    
+    public function getPlayNowLink($offer_id, $affiliate_id)
+    {
+        $this->api_params['Target'] = 'Offer';
+        $this->api_params['Method'] = 'generateTrackingLink';
+        $this->api_params['offer_id'] = $offer_id;
+        $this->api_params['affiliate_id'] = $affiliate_id;
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = (array) json_decode( $result );
+        $response = (array) $result['response'];
+        $data = (array) $response['data'];
+        
+        return $data;
+    }
+    
 }

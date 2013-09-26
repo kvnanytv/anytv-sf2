@@ -27,8 +27,11 @@
     {% endblock %}
     
       <div class="page-wrap">
-      <header>
-        <div class="main-nav">    
+          {% block header_tag %}
+            <header>
+          {% endblock %}
+      
+        <div id="main-nav">    
       <nav class="navbar navbar-default" role="navigation">
       <div class="container">
           <div class="navbar-header">
@@ -39,21 +42,25 @@
                 <span class="icon-bar"></span>                
               </button>
             {% block header %}
-              <a class="navbar-brand" href="{{ path('anytv_main_homepage') }}"><img src="{{ asset('bundles/anytvmain/images/anytv-home-logo.png') }}"></a><p class="navbar-text bin-txt">{% trans %}Believe in you{% endtrans %}</p>
+              <a class="navbar-brand" href="{{ path('anytv_main_homepage') }}"><img src="{{ asset('bundles/anytvmain/images/anytv-home-logo.png') }}"></a><p class="navbar-text">{% trans %}Believe in you{% endtrans %}.</p>
             {% endblock %}
           </div>
 
           <div style="padding-top: 5px;" class="collapse navbar-collapse navbar-ex1-collapse atv-sites">        
-            <ul class="nav navbar-nav navbar-right">     
+            <ul class="nav navbar-nav navbar-left">    
               <li><a class="lnk-blue" href="{{ path('anytv_main_homepage') }}">any.TV</a></li>
               <li><a class="lnk-yellow" href="{{ path('anytv_dashboard_homepage') }}">dashboard</a></li>
               <li><a class="lnk-red" href="http://www.mmo.tm" target="_blank">mmo</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
               <li>
+                {% block authentication %}
                 {% if(app.user) %}
                   <p style="color:#000">{% trans %}You're logged in as{% endtrans %} {% if is_granted('ROLE_ADMIN') %}{{ app.user.username }}{% else %}{{ app.user }}{% endif %} - <a href="{{ path('logout') }}" title="{% trans %}Logout{% endtrans %}">{% trans %}Logout{% endtrans %}</a></p>
                 {% else %}
-                  <form action="#" target="_blank"><button type="submit" class="btn btn-default navbar-btn log-btn mrgn-left">{% trans %}Login{% endtrans %}</button></form>
+                  <a href="{{ path('login') }}" class="log-btn mrgn-left">{% trans %}Login{% endtrans %}</a>
                 {% endif %}
+                {% endblock %}
               </li> 
               <li class="dropdown mrgn-left">
                   
@@ -79,7 +86,8 @@
                  {% endblock %}
                   
                 
-              </li>    
+              </li> 
+              
             </ul>
 
             
@@ -95,7 +103,7 @@
               
       </header>
         
-        <div id="content">
+        
         {% block content %}
     	
         <!--
@@ -110,7 +118,7 @@
         -->
         
         {% endblock %}
-        </div>
+        
     
           </div>
 

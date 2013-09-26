@@ -302,7 +302,26 @@ class OfferController extends Controller
     {
       $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
       $country_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Country');
+      $tracking_link_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:TrackingLink'); // save tracking link to db
       $translator = $this->get('translator');
+      
+      $affiliate_user = $this->getUser();
+      $translator = $this->get('translator');
+      
+   
+      if (!$affiliate_user) {
+        throw $this->createNotFoundException(
+            'No user found'
+        );
+      }
+      
+      $affiliate = $affiliate_user->getAffiliate();
+      
+      if (!$affiliate) {
+        throw $this->createNotFoundException(
+            'No affiliate found'
+        );
+      }
       
       $offer = $repository->find($id);
 
@@ -316,7 +335,10 @@ class OfferController extends Controller
       $offer_groups = $offer->getOfferGroups();
       $countries = $offer->getCountries();
       $countries_total = $country_repository->countAllCountries(null);
+      
+      $hasoffers = $this->get('hasoffers');
+      $play_now_link = $hasoffers->getPlayNowLink($offer->getOfferId(), $affiliate->getAffiliateId());
 
-      return $this->render('AnytvDashboardBundle:Offer:profileOfferView.html.twig', array('title'=>$offer, 'offer'=>$offer, 'offer_categories'=>$offer_categories, 'offer_groups'=>$offer_groups, 'countries'=>$countries, 'countries_total'=>$countries_total));
+      return $this->render('AnytvDashboardBundle:Offer:profileOfferView.html.twig', array('title'=>$offer, 'offer'=>$offer, 'offer_categories'=>$offer_categories, 'offer_groups'=>$offer_groups, 'countries'=>$countries, 'countries_total'=>$countries_total, 'play_now_link'=>$play_now_link));
     }
 }
