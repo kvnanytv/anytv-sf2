@@ -76,7 +76,15 @@
             <li><a class="lnk-red" href="#">mmo</a></li> </ul>
             <ul class="nav navbar-nav navbar-right">
             <li>
-            <a href="dashboard.php" class="log-btn mrgn-left">LOG IN</a>
+            <?php
+             $x = 1;
+            if ($x == 0) {
+              echo "<p class='navbar-text pull-right'>Signed in as <a href='#' class='navbar-link'>Mark Otto</a></p>";
+            }
+            else {
+              echo "<a href='dashboard.php' class='log-btn mrgn-left'>LOG IN</a>";
+            }            
+            ?>
             </li>            
               <li class="dropdown mrgn-left">
 
