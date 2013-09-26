@@ -7,17 +7,15 @@
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
 
-    <section id="networks">
-        <div class="container">
-          <div class="container-fluid">
-            <div class="row-fluid 3col-bg">
-              <div id="net-col1" class="col-lg-4 brdr-test">
-                <h3>{{ title }}</h3>
-                               
-              </div>
-                    
-                    
-             <table border="1" cellspacing="15" cellpadding="15">
+
+<section id="content">
+  <div class="container">
+  <div class="row-fluid">
+    <div class="col-lg-4">
+    <div class="panel panel-default user-panel">
+      <div class="panel-body">
+            
+          <table border="1" cellspacing="15" cellpadding="15">
         <tr>
          <th>ID</th>
          <th>{% trans %}Offer{% endtrans %}</th>
@@ -45,21 +43,34 @@
       </table>
        
       {% if (total_pages > 1) %}
-        <ul>
+        <ul class="pagination">
         {% for i in 1..total_pages %}
           {% if(page == i) %}
-            <li>{{ i }}</li>
+            <li><a href="{{ path('profile_offers', {'page':i}) }}" title="{{ i }}">{{ i }}</a></li>
           {% else %}
             <li><a href="{{ path('profile_offers', {'page':i}) }}" title="{{ i }}">{{ i }}</a></li>
           {% endif %}
         {% endfor %}
         </ul>
       {% endif %}
+
+      </div>
+    </div>
+
+    <div class="col-lg-8">
+      
+    </div>  
+  </div>
+  </div>
+</div>
+</section>
+
+    
                     
-            </div>
-          </div>
-        </div>
-      </section>
+                    
+             
+                    
+            
 
     {{ parent() }}
     
