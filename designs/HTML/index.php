@@ -29,7 +29,12 @@
 					<div class="col-lg-12">                   
 						<input id="in-pl" type="search" class="form-control" role="search" placeholder="Search Games...">
 					</div>
+					<div class="cl-20"></div>
 					<div class="col-lg-12">
+					<div class="progress progress-striped active">
+					  <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 50%">							    
+					  </div>
+					</div>					
 						<div id="gl-tbl" class="table-responsive mrgn-top">
 							<!-- Table -->
 							<table class="table table-striped">							
