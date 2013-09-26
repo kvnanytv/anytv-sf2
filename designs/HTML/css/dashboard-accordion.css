@@ -8,6 +8,7 @@ Accordion Menu
 	padding: 0 !important;
 	margin:0 !important;
 	border-radius: 10px 10px 0 0 !important;
+	height: 100%;
 }
 
 .user-panel .panel-heading {
@@ -102,14 +103,13 @@ Accordion Menu
 	float: right;
 	top: -30px;	       
 	margin: 0 20px 0 0 !important;
-    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);		
-
 }
 
 .user-pic img {
 	border: 3px solid #fff;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);		
 
 }
 
@@ -133,7 +133,7 @@ Accordion Menu
 }
 
 .user-pic a:hover {
-	color: #fff;	
+	text-decoration: underline;
 }
 
 .user-pic
@@ -151,3 +151,22 @@ Accordion Menu
 	font-size: 13px;
 }
 
+#user-menus {
+	background-color: #fff;
+}
+
+#user-menus .nav-pills > li.active > a, .nav-pills > li.active > a:hover {
+	background-color: #ececec;
+	color: #000;
+	font-weight: bold;
+	border-radius: 0 !important;
+}
+
+#user-menus .nav > li > a:hover {
+	border-radius: 0 !important;
+}
+
+#user-menus a.list-group-item.active > .badge, .nav-pills > .active > a > .badge {
+	background-color: #dc2127 !important;
+	color: #fff !important;
+}
