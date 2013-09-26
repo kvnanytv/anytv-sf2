@@ -5,6 +5,9 @@
     <div class="cpyrght-txt">
       Copyright 2013 any.TV Limited | All Rights Reserved    
     </div>
+    <div class="sm-icons">
+    	
+    </div>
   </div>
 </footer>
 <!-- /footer -->
