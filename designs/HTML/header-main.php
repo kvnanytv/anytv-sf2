@@ -1,16 +1,3 @@
-<!DOCTYPE HTML>
-
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="../../assets/ico/favicon.png">
-
-  <title>AnyTV | A new kind of YouTube Channel</title>
-
   <!--[if IE 7]>
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome-ie7.min.css">
   <![endif]-->
@@ -41,10 +28,7 @@
 
   <!-- Bootstrap -->
     <link href="css/bootstrap/bootstrap.css" rel="stylesheet"> 
-    <!-- <link href="css/bootstrap/bootstrap-min.css" rel="stylesheet"> -->
 
-  <!-- Zurb Tables -->
-    <link type="text/css" media="screen" rel="stylesheet" href="responsive-tables.css" />
 
 </head>
 
@@ -76,7 +60,15 @@
             <li><a class="lnk-red" href="#">mmo</a></li> </ul>
             <ul class="nav navbar-nav navbar-right">
             <li>
-            <a href="dashboard.php" class="log-btn mrgn-left">LOG IN</a>
+            <?php
+             $x = 1;
+            if ($x == 0) {
+              echo "<p class='navbar-text pull-right'>Signed in as <a href='#' class='navbar-link'>Mark Otto</a></p>";
+            }
+            else {
+              echo "<a href='dashboard.php' class='log-btn mrgn-left'>LOG IN</a>";
+            }            
+            ?>
             </li>            
               <li class="dropdown mrgn-left">
 
@@ -96,7 +88,7 @@
   </div>
   <!-- /main-nav -->
 
-  <div class="sub-nav">
+  <div id="sub-nav">
     <div class="container">              
       <nav class="subnav-cllps clr-black">
           <ul id="nav">
@@ -107,7 +99,7 @@
             <li><a href="#">Recruiters Handbook</a></li>
             <li><a href="#">Join our Twitch Team!</a></li>
             <li><a href="#">Staff</a></li>        
-            <li><a href="#">FAQs</a></li>
+            <li><a href="faq.php">FAQs</a></li>
           </ul>
       </nav>
     </div>

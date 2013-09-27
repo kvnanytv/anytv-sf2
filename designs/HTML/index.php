@@ -1,3 +1,16 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.png">
+
+  <title>AnyTV | A new kind of YouTube Channel</title>
+
 <?php include 'header-main.php'; ?>
 
 <div id="content">
@@ -29,10 +42,15 @@
 					<div class="col-lg-12">                   
 						<input id="in-pl" type="search" class="form-control" role="search" placeholder="Search Games...">
 					</div>
+					<div class="cl-20"></div>
 					<div class="col-lg-12">
+					<div class="progress progress-striped active">
+					  <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 50%">							    
+					  </div>
+					</div>					
 						<div id="gl-tbl" class="table-responsive mrgn-top">
 							<!-- Table -->
-							<table class="table table-striped tablesorter">							
+							<table class="table table-striped">							
 								<thead>
 									<tr>
 										<th class="th-games">Games</th>
@@ -90,26 +108,18 @@
 		</div>
 	</section>
 
-	<section id="networks">
-		<div class="container">
-			<div class="container-fluid">
-				<div class="row-fluid 3col-bg">
-					<div id="net-col1" class="col-lg-4 brdr-test">
-						<h3>George is Back!</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-						<a href="#">Learn More</a>                
-					</div>
-					<div id="net-col2" class="col-lg-4 brdr-test">
-						<h3>any.TV Music</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-						<a href="#">Learn More</a>
 
-					</div>
-					<div id="net-col3" class="col-lg-4 brdr-test">
-						<h3>any.TV Games</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-						<a href="#">Learn More</a>
-					</div>                        
+	<section id="networks">
+		<div class="container">	
+			<div class="row-fluid"> 
+				<div class="col-lg-4">
+					<div id="net-col1">Test</div>
+				</div>
+				<div class="col-lg-4">
+					<div id="net-col1">Test</div>
+				</div>
+				<div class="col-lg-4">
+					<div id="net-col1">Test</div>
 				</div>
 			</div>
 		</div>
