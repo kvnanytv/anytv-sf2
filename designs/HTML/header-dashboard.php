@@ -24,7 +24,7 @@
   <link href="css/layout.css" rel="stylesheet">    
   <link href="css/normalize.css" rel="stylesheet"> 
   <link href="css/subnav.css" rel="stylesheet">
-  <link href="css/dashboard-accordion.css" rel="stylesheet">
+  <link href="css/dashboard-menu.css" rel="stylesheet">
   
   <!-- Font Awesome -->
   <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -41,11 +41,11 @@
   <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'> 
 
   <!-- Bootstrap -->
-    <link href="css/bootstrap/bootstrap.css" rel="stylesheet"> 
-    <!-- <link href="css/bootstrap/bootstrap-min.css" rel="stylesheet"> -->
+  <link href="css/bootstrap/bootstrap.css" rel="stylesheet"> 
 
-  <!-- Zurb Tables -->
-    <link type="text/css" media="screen" rel="stylesheet" href="responsive-tables.css" />
+  <!-- -->
+
+
 
 </head>
 
@@ -64,7 +64,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>                
               </button>
-              <a class="navbar-brand" href="dashboard.php"><img src="images/anytv-dashboard-logo.png"></a><p class="navbar-text bin-txt">Part of &nbsp;<img src="images/any-tv-family-logo.png"> &nbsp;family.</p>
+              <a class="navbar-brand" href="dashboard.php"><img src="images/anytv-dashboard-logo.png"></a><p id="nvbr-txt" class="navbar-text">Part of &nbsp;<img src="images/any-tv-family-logo.png"> &nbsp;family.</p>
           </div>
 
 
@@ -77,9 +77,9 @@
             <ul class="nav navbar-nav navbar-right">
             <li>
             <?php
-             $x = 1;
+             $x = 0;
             if ($x == 0) {
-              echo "<p class='navbar-text pull-right'>Signed in as <a href='#' class='navbar-link'>Mark Otto</a></p>";
+              echo "<p class='navbar-text pull-right '>Signed in as <a href='#' class='navbar-link'>Mark Otto</a></p>";
             }
             else {
               echo "<a href='dashboard.php' class='log-btn mrgn-left'>LOG IN</a>";
@@ -104,8 +104,8 @@
   </div>
   <!-- /main-nav -->
 
-  <div class="sub-nav dashbrd">
-    <div class="container">              
+  <div id="sub-nav" class="dashbrd">
+    <div class="container">
       <nav class="subnav-cllps db-lnks">
           <ul id="nav">
             <li><a href="#">Link 1</a></li>
@@ -117,5 +117,5 @@
       </nav>
     </div>
   </div>
-</header >
+</header>
 <!-- /header -->
