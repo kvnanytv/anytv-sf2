@@ -1,16 +1,3 @@
-<!DOCTYPE HTML>
-
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="../../assets/ico/favicon.png">
-
-  <title>AnyTV | A new kind of YouTube Channel</title>
-
   <!--[if IE 7]>
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome-ie7.min.css">
   <![endif]-->
@@ -112,7 +99,7 @@
             <li><a href="#">Recruiters Handbook</a></li>
             <li><a href="#">Join our Twitch Team!</a></li>
             <li><a href="#">Staff</a></li>        
-            <li><a href="#">FAQs</a></li>
+            <li><a href="faq.php">FAQs</a></li>
           </ul>
       </nav>
     </div>

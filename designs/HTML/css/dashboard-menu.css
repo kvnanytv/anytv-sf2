@@ -145,6 +145,14 @@ Accordion Menu
 }
 
 
+.search-btns {
+	float: left;
+}
+
+.rfrsh-wrap {
+	float: right;
+}
+
 /************************************** Tabs *****************************************/
 
 .tab-content {

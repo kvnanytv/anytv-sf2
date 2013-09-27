@@ -79,7 +79,7 @@
             <?php
              $x = 0;
             if ($x == 0) {
-              echo "<p class='navbar-text pull-right'>Signed in as <a href='#' class='navbar-link'>Mark Otto</a></p>";
+              echo "<p class='navbar-text pull-right '>Signed in as <a href='#' class='navbar-link'>Mark Otto</a></p>";
             }
             else {
               echo "<a href='dashboard.php' class='log-btn mrgn-left'>LOG IN</a>";

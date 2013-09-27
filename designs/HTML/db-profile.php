@@ -33,7 +33,7 @@
 						      <span class="input-group-btn">
 						        <button class="btn btn-default" type="button">Copy</button>
 						      </span>
-						      <input type="text" class="form-control" value="any.tv/gj2fr">
+						      <input type="text" class="form-control" value="any.tv/gj2fr" disabled>
 					    </div>
 							</div>
 						</div>
@@ -73,6 +73,7 @@
 										<button class="btn btn-default" type="button">Go!</button>
 									</span>
 								</div>
+								<div class="cl-20"></div>
 								<div class="search-btns">				
 									<div class="btn-group">
 										<div class="btn-group">
@@ -90,6 +91,9 @@
 										</div>
 									</div>														
 								</div>
+								<div class="rfrsh-wrap">
+									<a href="" class="btn btn-default btn-lg"><i class="icon-refresh"></i></a>
+								</div>
 
 							</div>
 							<div class="cl-20"></div>
@@ -103,7 +107,7 @@
 										<thead>
 											<tr>
 												<th>Photo</th>
-												<th>Preview</th>
+												<th>Website</th>
 												<th>Name</th>
 												<th>Payout</th>
 												<th>Play Now Link</th>
@@ -111,11 +115,11 @@
 										</thead>
 										<tbody>
 											<tr>
-												<td>1516</td>
-												<td>any.tv/4f21</td>
-												<td>10 Countries</td>
-												<td>link1</td>
 												<td></td>
+												<td>warframe.com</td>
+												<td>Warframe</td>
+												<td>$0.60</td>
+												<td>playnow.tm/gj23kl</td>
 											</tr>
 
 											<tfoot>
@@ -129,7 +133,7 @@
 															<li><a href="">4</a></li>
 															<li><a href="">5</a></li>
 															<li><a href="#">&raquo;</a></li>
-														</ul>											
+														</ul>						
 													</td>
 												</tr>
 											</tfoot>									
@@ -176,7 +180,7 @@
 										<thead>
 											<tr>
 												<th>Photo</th>
-												<th>Preview</th>
+												<th>Website</th>
 												<th>Name</th>
 												<th>Payout</th>
 												<th>Play Now Link</th>
@@ -184,8 +188,8 @@
 										</thead>
 										<tbody>
 											<tr>
-												<td>1516</td>
-												<td>any.tv/4f21</td>
+												<td></td>
+												<td>warframe.com</td>
 												<td>10 Countries</td>
 												<td>link1</td>
 												<td></td>
