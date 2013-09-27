@@ -213,12 +213,28 @@ class Offer
      */
     protected $countries;
     
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="country_count", type="integer")
+     */
+    private $countryCount;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_featured", type="boolean")
+     */
+    private $isFeatured;
+    
     public function __construct()
     {
         $this->offerCategories = new ArrayCollection();
         $this->countries = new ArrayCollection();
+        $this->countryCount = 0;
         $this->trafficReferrals = new ArrayCollection();
         $this->offerGroups = new ArrayCollection();
+        $this->isFeatured = false;
     }
     
     /**
@@ -1120,5 +1136,51 @@ class Offer
     public function getOfferGroups()
     {
         return $this->offerGroups;
+    }
+
+    /**
+     * Set isFeatured
+     *
+     * @param boolean $isFeatured
+     * @return Offer
+     */
+    public function setIsFeatured($isFeatured)
+    {
+        $this->isFeatured = $isFeatured;
+    
+        return $this;
+    }
+
+    /**
+     * Get isFeatured
+     *
+     * @return boolean 
+     */
+    public function getIsFeatured()
+    {
+        return $this->isFeatured;
+    }
+
+    /**
+     * Set countryCount
+     *
+     * @param integer $countryCount
+     * @return Offer
+     */
+    public function setCountryCount($countryCount)
+    {
+        $this->countryCount = $countryCount;
+    
+        return $this;
+    }
+
+    /**
+     * Get countryCount
+     *
+     * @return integer 
+     */
+    public function getCountryCount()
+    {
+        return $this->countryCount;
     }
 }

@@ -56,7 +56,7 @@
               <li>
                 {% block authentication %}
                 {% if(app.user) %}
-                  <p style="color:#000">{% trans %}You're logged in as{% endtrans %} {% if is_granted('ROLE_ADMIN') %}{{ app.user.username }}{% else %}{{ app.user }}{% endif %} - <a href="{{ path('logout') }}" title="{% trans %}Logout{% endtrans %}">{% trans %}Logout{% endtrans %}</a></p>
+                  <p class='navbar-text pull-right'>{% trans %}You're logged in as{% endtrans %} {{ app.user }} | <a href="{{ path('logout') }}" class="navbar-link" title="{% trans %}Logout{% endtrans %}">{% trans %}Logout{% endtrans %}</a></p>
                 {% else %}
                   <a href="{{ path('login') }}" class="log-btn mrgn-left">{% trans %}Login{% endtrans %}</a>
                 {% endif %}

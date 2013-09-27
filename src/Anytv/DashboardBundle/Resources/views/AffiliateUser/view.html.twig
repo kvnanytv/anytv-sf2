@@ -11,10 +11,6 @@
     
     <h1 class="title">{{ title }}<p>dashboard.tm user ID: {{ affiliate_user.affiliateUserId }} - ({{ affiliate_status }})</p></h1>
     
-    {% if(affiliate_user.thumbnail) %}
-      <img src="{{ asset(affiliate_user.getWebPath()) }}" alt="{{ affiliate_user.getFullName() }}" style="width:100px" />
-    {% endif %}
-    
     <div class="symfony-blocks-welcome">
       <ul>
         <li style="display:block">{% trans %}Name{% endtrans %}: {{ affiliate_user.getFullName() }}</li>
@@ -23,6 +19,7 @@
         <li style="display:block">{% trans %}Phone{% endtrans %}: {{ affiliate_user.phone }}</li>
         <li style="display:block">{% trans %}Mobile{% endtrans %}: {{ affiliate_user.cellPhone }}</li>
         <li style="display:block">{% trans %}Date Joined{% endtrans %}: {{ affiliate_user.getDateJoinedAsString() }}</li>
+        <li style="display:block">{% trans %}Admin{% endtrans %}: {{ affiliate_user.isAdmin }}</li>
       </ul>
             
     </div>

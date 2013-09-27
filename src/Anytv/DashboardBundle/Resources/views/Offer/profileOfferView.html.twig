@@ -16,7 +16,9 @@
             
           <h1 class="title">{{ title }}<p>dashboard.tm ID: {{ offer.offerId }}</p></h1>
           
-          <h3><p>play now link = </p>{{ play_now_link.click_url }}</h3>
+          {% if(tracking_link) %}
+            <h3><p>play now link = </p>{{ tracking_link.clickUrl }}</h3>
+          {% endif %}
     
     {% if(offer.thumbnail) %}
       <img src="{{ asset(offer.getWebPath()) }}" alt="{{ offer.name() }}" />

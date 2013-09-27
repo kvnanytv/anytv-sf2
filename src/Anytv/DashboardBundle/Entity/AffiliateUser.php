@@ -63,7 +63,7 @@ class AffiliateUser implements UserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=100, nullable=true)
+     * @ORM\Column(name="password", type="string", length=255, nullable=true)
      */
     private $password;
     
@@ -291,12 +291,20 @@ class AffiliateUser implements UserInterface, \Serializable
     /**
      * @var boolean
      *
+     * @ORM\Column(name="is_admin", type="boolean")
+     */
+    private $isAdmin;
+    
+    /**
+     * @var boolean
+     *
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
 
     public function __construct()
     {
+        $this->isAdmin = false;
         $this->isActive = true;
         $this->salt = md5(uniqid(null, true));
     }
@@ -752,7 +760,14 @@ class AffiliateUser implements UserInterface, \Serializable
      */
     public function getRoles()
     {
-        return array('ROLE_USER');
+        $roles = array('ROLE_USER');
+        
+        if($this->isAdmin)
+        {
+          $roles[] = 'ROLE_ADMIN';   
+        }
+        
+        return $roles;
     }
 
     /**
@@ -826,5 +841,28 @@ class AffiliateUser implements UserInterface, \Serializable
     public function getPasswordDecoded()
     {
         return $this->password_decoded;
+    }
+
+    /**
+     * Set isAdmin
+     *
+     * @param boolean $isAdmin
+     * @return AffiliateUser
+     */
+    public function setIsAdmin($isAdmin)
+    {
+        $this->isAdmin = $isAdmin;
+    
+        return $this;
+    }
+
+    /**
+     * Get isAdmin
+     *
+     * @return boolean 
+     */
+    public function getIsAdmin()
+    {
+        return $this->isAdmin;
     }
 }

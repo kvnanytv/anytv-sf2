@@ -48,8 +48,8 @@
       {% endif %}
         
       <h2>{% trans %}Countries{% endtrans %}:</h2>
-      {% if(countries|length) %}
-        <em>({{ countries|length }} / {{ countries_total }})</em>
+      {% if(offer.countryCount) %}
+        <em>({{ offer.countryCount }} / {{ countries_total }})</em>
         <ul>
           {% for country in countries %}
             <li style="display:block">

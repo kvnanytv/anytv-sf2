@@ -17,7 +17,7 @@ class AffiliateUserType extends AbstractType
             ->add('status', 'choice', array('choices' => array('active' => 'active', 'blocked' => 'blocked', 'deleted' => 'deleted')))
             ->add('phone')
             ->add('cellPhone')
-            //->add('file')
+            ->add('isAdmin', 'choice', array('choices' => array(0 => 'no', 1 => 'yes')))
             ->add('save', 'submit');
     }
 
