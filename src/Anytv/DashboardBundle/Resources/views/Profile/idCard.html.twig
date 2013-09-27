@@ -1,0 +1,38 @@
+{% if(affiliate and affiliate_user) %}
+  <section id="content">
+	<div class="container">
+		<div class="row-fluid">
+			<div class="col-lg-4">
+				<div id="user-db">
+					<div class="panel panel-default user-panel">
+					<div class="panel-heading"></div>
+					<div class="user-pic">	
+                                            {% if(affiliate.thumbnail) %}
+                                              <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ affiliate.company }}" />
+                                              <!-- <p><a href='#'>Change</a></p> -->
+                                            {% else %}
+                                              <img src="{{ asset('bundles/anytvdashboard/images/test-user.jpg') }}">
+                                              <!-- <p><a class="pic-up-btn" href="">Upload</a></p> -->
+                                            {% endif %}
+							
+							
+						</div>				
+						<div class="panel-body">
+							
+							<div class="user-det">
+								<h3><span>{{ affiliate_user }}</span></h3>
+								<p>{% trans %}Refer-a-Friend link{% endtrans %}: {{ url('signup', { 'id': affiliate.affiliateId }) }}</p>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="col-lg-8">
+
+					</div>  
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endif %}

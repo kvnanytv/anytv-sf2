@@ -1,9 +1,5 @@
 {% extends 'AnytvMainBundle::layout.html.twig' %}
 
-{% block html %}
-  <html xmlns:hx="http://purl.org/NET/hinclude">
-{% endblock %}
-
 {% block title %}{{ parent() }} - {% trans %}Home{% endtrans %}{% endblock %}
      
 {% block content_header '' %}
@@ -16,7 +12,7 @@
         <div class="container">
           <div class="container-fluid">
             <div class="row-fluid">
-          		<div class="uptop">
+          		<div class="cta-home">
                 <div class="col-lg-5">
             			<h3>{% trans %}A new kind of YouTube Network{% endtrans %}</h3>
             			<p>{% trans %}Don’t unpartner from your YouTube Network{% endtrans %}</p>
@@ -24,23 +20,25 @@
                   <p><a href="{{ path('about') }}" class="btn btn-primary btn-lg btn-lrn">{% trans %}Learn more{% endtrans %}</a></p> 
                 </div>
                 <div class="col-lg-7">
-                <div class="vid-yt" style="display:none">
+                
             			<img src="{{ asset('bundles/anytvmain/images/mac-monitor.png') }}">            
-                  <div class="yt-video">
-                    <iframe src="http://www.youtube.com/embed/UCqJAZuvUS0?list=PLyI74zGGymu8k7eVhGPcVSh3nKljHfiVX&wmode=transparent" frameborder="0" allowfullscreen></iframe>
-                  </div>
-                </div>
+                  
+                
                 </div>
           		</div>
             </div>
           </div>          
         </div>       
     	</section>
+            
+           
     	
      
      <div id="gameslist-block">
-       {{ render_hinclude(controller('AnytvDashboardBundle:Offer:embed', {'page': 1})) }}
+       {{ render(controller('AnytvDashboardBundle:Offer:embed', {'page': 1})) }}
      </div>
+            
+      
 
       <section id="networks">
         <div class="container">
@@ -78,13 +76,13 @@
       </section>
 
       <section id="section4">
-        <div class="container">               
-        </div>
-      </section>      
-    	
-      <section id="about-anytv">
-        <div></div>
-      </section>
+		<div class="container">               
+		</div>
+	</section>      
+
+	<section id="about-anytv">
+		<div></div>
+	</section>
 
       {{ parent() }}
         </div>
@@ -93,7 +91,6 @@
      
 {% block javascripts %}
   {{ parent() }}
-  <script src="{{ asset('bundles/anytvmain/js/hinclude.js') }}"></script>
   <script src="{{ asset('bundles/anytvdashboard/js/offers.js') }}"></script>
 {% endblock %}
 

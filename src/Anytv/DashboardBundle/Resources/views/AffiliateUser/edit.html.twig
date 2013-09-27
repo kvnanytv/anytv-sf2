@@ -22,10 +22,6 @@
          {{ form_row(form.lastName) }}
          {{ form_row(form.email) }}
          {{ form_row(form.status) }}
-         {% if(affiliate_user.thumbnail) %}
-           <img src="{{ asset(affiliate_user.getWebPath()) }}" alt="{{ affiliate_user.getFullName() }}" style="width:100px" />
-         {% endif %}
-         {{ form_row(form.file) }}
          {% trans %}Affiliate{% endtrans %}: <a href="{{ path('affiliate_view', { 'id' : affiliate.getId() }) }}" title="{{ affiliate.company }}">{{ affiliate.company }}</a>
          {{ form_row(form.phone) }}
          {{ form_row(form.cellPhone) }}

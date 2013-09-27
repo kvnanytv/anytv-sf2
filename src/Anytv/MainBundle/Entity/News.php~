@@ -47,6 +47,12 @@ class News
      */
     private $body;
     
+    public function __construct()
+    {
+        $this->viewCount = 0;
+        $this->commentCount = 0;
+    }
+    
     /**
      * @var string
      * 
@@ -176,14 +182,14 @@ class News
     /**
      * @var integer
      *
-     * @ORM\Column(name="view_count", type="integer", nullable=true)
+     * @ORM\Column(name="view_count", type="integer")
      */
     private $viewCount;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="comment_count", type="integer", nullable=true)
+     * @ORM\Column(name="comment_count", type="integer")
      */
     private $commentCount;
 

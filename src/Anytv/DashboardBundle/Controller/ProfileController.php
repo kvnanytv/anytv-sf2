@@ -89,5 +89,10 @@ class ProfileController extends Controller
 
       return $this->render('AnytvDashboardBundle:Profile:companyEdit.html.twig', array('title'=>'Edit '.$affiliate, 'form'=>$form->createView(), 'affiliate'=>$affiliate));
     }
+    
+    public function idCardAction($affiliate, $affiliate_user)
+    {
+      return $this->render('AnytvDashboardBundle:Profile:idCard.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user));
+    }
       
 }

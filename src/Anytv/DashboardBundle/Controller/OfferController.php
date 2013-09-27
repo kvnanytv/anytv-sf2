@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 use Anytv\DashboardBundle\Entity\Offer;
+use Anytv\DashboardBundle\Entity\TrackingLink;
 use Anytv\DashboardBundle\Form\Type\OfferType;
 
 class OfferController extends Controller
@@ -101,6 +102,7 @@ class OfferController extends Controller
                 }
                 
                 $offer->getCountries()->clear();
+                $offer_count = 0;
                 if($country_array)
                 {
                   foreach($country_array as $country_object)
@@ -108,6 +110,7 @@ class OfferController extends Controller
                     if($country = $country_repository->findOneByCode($country_object->code))
                     {
                       $offer->addCountrie($country); 
+                      $offer_count++;
                     } 
                   }
                 }
@@ -115,9 +118,11 @@ class OfferController extends Controller
                 {
                   foreach($countries as $country)
                   {
-                    $offer->addCountrie($country);     
+                    $offer->addCountrie($country);
+                    $offer_count++;
                   }
                 }
+                $offer->setCountryCount($offer_count);
               }
               else
               {
@@ -165,13 +170,15 @@ class OfferController extends Controller
                   }
                 }
                 
+                $offer_count = 0;
                 if($country_array)
                 {
                   foreach($country_array as $country_object)
                   {
                     if($country = $country_repository->findOneByCode($country_object->code))
                     {
-                      $offer->addCountrie($country); 
+                      $offer->addCountrie($country);
+                      $offer_count++;
                     } 
                   }
                 }
@@ -179,9 +186,11 @@ class OfferController extends Controller
                 {
                   foreach($countries as $country)
                   {
-                    $offer->addCountrie($country);     
+                    $offer->addCountrie($country);  
+                    $offer_count++;
                   }
                 }
+                $offer->setCountryCount($offer_count);
 
                 $manager->persist($offer);   
               }
@@ -270,6 +279,7 @@ class OfferController extends Controller
     public function embedAction($page)
     {
       $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
+      $country_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Country');
       
       $items_per_page = 10;
       $order_by = 'name';
@@ -279,7 +289,7 @@ class OfferController extends Controller
       $total_offers = $repository->countAllOffers(null, 'active');
       $total_pages = ceil($total_offers / $items_per_page);
       
-      return $this->render('AnytvDashboardBundle:Offer:embed.html.twig', array('offers'=>$offers, 'total_offers'=>$total_offers, 'page'=>$page, 'total_pages'=>$total_pages));
+      return $this->render('AnytvDashboardBundle:Offer:embed.html.twig', array('offers'=>$offers, 'total_offers'=>$total_offers, 'page'=>$page, 'total_pages'=>$total_pages, 'country_repository'=>$country_repository));
     }
     
     public function profileOffersAction(Request $request, $page)
@@ -302,7 +312,7 @@ class OfferController extends Controller
     {
       $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
       $country_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Country');
-      $tracking_link_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:TrackingLink'); // save tracking link to db
+      $tracking_link_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:TrackingLink');
       $translator = $this->get('translator');
       
       $affiliate_user = $this->getUser();
@@ -336,9 +346,27 @@ class OfferController extends Controller
       $countries = $offer->getCountries();
       $countries_total = $country_repository->countAllCountries(null);
       
-      $hasoffers = $this->get('hasoffers');
-      $play_now_link = $hasoffers->getPlayNowLink($offer->getOfferId(), $affiliate->getAffiliateId());
+      $tracking_link = $tracking_link_repository->findOneBy(array('affiliateId'=>$affiliate->getAffiliateId(), 'offerId'=>$offer->getOfferId()));
+      
+      if(!$tracking_link)
+      {
+        $hasoffers = $this->get('hasoffers');
+        $tracking_link_hasoffers = $hasoffers->getPlayNowLink($offer->getOfferId(), $affiliate->getAffiliateId());
+        
+        if($tracking_link_hasoffers)
+        {
+          $manager = $this->getDoctrine()->getManager();
+          
+          $tracking_link = new TrackingLink();
+          $tracking_link->setAffiliateId($tracking_link_hasoffers->affiliate_id);
+          $tracking_link->setOfferId($tracking_link_hasoffers->offer_id);
+          $tracking_link->setClickUrl($tracking_link_hasoffers->click_url);
+          
+          $manager->persist($tracking_link);   
+          $manager->flush();
+        }
+      }
 
-      return $this->render('AnytvDashboardBundle:Offer:profileOfferView.html.twig', array('title'=>$offer, 'offer'=>$offer, 'offer_categories'=>$offer_categories, 'offer_groups'=>$offer_groups, 'countries'=>$countries, 'countries_total'=>$countries_total, 'play_now_link'=>$play_now_link));
+      return $this->render('AnytvDashboardBundle:Offer:profileOfferView.html.twig', array('title'=>$offer, 'offer'=>$offer, 'offer_categories'=>$offer_categories, 'offer_groups'=>$offer_groups, 'countries'=>$countries, 'countries_total'=>$countries_total, 'tracking_link'=>$tracking_link));
     }
 }

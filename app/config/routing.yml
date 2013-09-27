@@ -16,6 +16,12 @@ login:
     requirements:
         _locale:  %anytv.locales%
         
+login_hasoffers:
+    path:  /login/hasoffers/{_locale}
+    defaults: { _controller: AnytvDashboardBundle:Security:loginHasoffers, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
 login_check:
     path:  /login_check/{_locale}
     requirements:

@@ -123,9 +123,9 @@ class AffiliateController extends Controller
                     $affiliate_user->setAffiliateUserId($affiliate_user_object->id);
                     $affiliate_user->setEmail($affiliate_user_object->email);
                     
-                    $encoder = $factory->getEncoder($affiliate_user);
-                    $password = $encoder->encodePassword('dashboard', $affiliate_user->getSalt());
-                    $affiliate_user->setPassword($password);
+                    //$encoder = $factory->getEncoder($affiliate_user);
+                    //$password = $encoder->encodePassword('dashboard', $affiliate_user->getSalt());
+                    //$affiliate_user->setPassword($password);
                     
                     $affiliate_user->setTitle($affiliate_user_object->title);
                     $affiliate_user->setFirstName($affiliate_user_object->first_name);
@@ -203,9 +203,9 @@ class AffiliateController extends Controller
                     $affiliate_user->setAffiliateUserId($affiliate_user_object->id);
                     $affiliate_user->setEmail($affiliate_user_object->email);
                     
-                    $encoder = $factory->getEncoder($affiliate_user);
-                    $password = $encoder->encodePassword('dashboard', $affiliate_user->getSalt());
-                    $affiliate_user->setPassword($password);
+                    //$encoder = $factory->getEncoder($affiliate_user);
+                    //$password = $encoder->encodePassword('dashboard', $affiliate_user->getSalt());
+                    //$affiliate_user->setPassword($password);
                     
                     $affiliate_user->setTitle($affiliate_user_object->title);
                     $affiliate_user->setFirstName($affiliate_user_object->first_name);
@@ -236,8 +236,8 @@ class AffiliateController extends Controller
         }
         
         $items_per_page = 30;
-        $order_by = 'company';
-        $order = 'ASC';
+        $order_by = 'dateAdded';
+        $order = 'DESC';
         
         $affiliates = $repository->findAllAffiliates($page, $items_per_page, $order_by, $order, $session->get('affiliate_keyword', null), $session->get('affiliate_country', null), $session->get('affiliate_status', 'active'));
         $total_affiliates = $repository->countAllAffiliates($session->get('affiliate_keyword', null), $session->get('affiliate_country', null), $session->get('affiliate_status', 'active'));

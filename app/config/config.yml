@@ -80,7 +80,7 @@ avalanche_imagine:
     filters:
         profile_thumbnail:
             type:    thumbnail
-            options: { size: [75, 75], mode: outbound }
+            options: { size: [55, 55], mode: outbound }
     
     
     

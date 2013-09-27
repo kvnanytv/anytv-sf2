@@ -10,7 +10,18 @@ class DefaultController extends Controller
     //public function indexAction($_controller, $_format, $_locale, $_route)
     public function indexAction()
     {
-        return $this->render('AnytvDashboardBundle:Default:index.html.twig', array('title'=>'Any.TV Dashboard'));
+        $affiliate_user = $this->getUser();
+        $translator = $this->get('translator');
+      
+        if (!$affiliate_user) {
+          throw $this->createNotFoundException(
+            'No user found'
+          );
+        }
+      
+        $affiliate = $affiliate_user->getAffiliate();
+        
+        return $this->render('AnytvDashboardBundle:Default:index.html.twig', array('title'=>$translator->trans('Any.TV Dashboard'), 'affiliate_user'=>$affiliate_user, 'affiliate'=>$affiliate));
     }
     
     public function justNotesAction(Request $request)

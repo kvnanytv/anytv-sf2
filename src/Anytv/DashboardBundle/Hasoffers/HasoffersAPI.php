@@ -109,9 +109,26 @@ class HasoffersAPI
         
         $result = (array) json_decode( $result );
         $response = (array) $result['response'];
-        $data = (array) $response['data'];
+        $data = $response['data'];
         
         return $data;
     }
     
+    public function authenticateUser($email, $password, $type)
+    {
+        $this->api_params['Target'] = 'Authentication';
+        $this->api_params['Method'] = 'findUserByCredentials';
+        $this->api_params['email'] = $email;
+        $this->api_params['password'] = $password;
+        $this->api_params['type'] = $type;
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = (array) json_decode( $result );
+        $response = (array) $result['response'];
+        
+        return $response;
+    }
 }

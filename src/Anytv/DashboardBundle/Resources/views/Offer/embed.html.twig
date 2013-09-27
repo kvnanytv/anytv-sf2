@@ -3,42 +3,44 @@
   <div class="container">
     <div class="games-list-wrap">
       <h3>any.TV <strong>{% trans %}Games List{% endtrans %}</strong></h3>
-        <div class="row">                    
-          <!-- <input id="in-pl" type="search" class="form-control" role="search" placeholder="Search Games..."> -->
-          <div class="gameslist-tbl-wrap">
-          <table id="gl-tbl" class="table table-striped">        
+        <div class="row">  
+          <div class="col-lg-12">  
+            <input id="in-pl" type="search" class="form-control" role="search" placeholder="Search Games...">
+          </div>
+          <div class="col-lg-12">
+          <div id="gl-tbl" class="table-responsive mrgn-top">
+          <table class="table table-striped tablesorter">	       
                     
           <thead>
             <tr>
-              <th scope="col" id="f-col">{% trans %}Game{% endtrans %}</th>
-              <th scope="col" id="s-col">{% trans %}Payout{% endtrans %}</th>
-              <th scope="col" id="th-col">{% trans %}Countries{% endtrans %}</th>
-              <!-- <th scope="col" id="frt-col">&nbsp;</th> -->                  
+              <th class="th-games">{% trans %}Game{% endtrans %}</th>
+              <th class="th-pay">{% trans %}Payout{% endtrans %}</th>
+              <th class="th-cntrs">{% trans %}Countries{% endtrans %}</th>
+              <th class="th-plnks">{% trans %}Play Now Links{% endtrans %}</th>        
             </tr>
-          </thead>                    
+          </thead> 
                                        
           <tbody>
           {% for offer in offers %}
           <tr>
             <td>{{ offer }}</td>
             <td>${{ offer.defaultPayout }}</td>
-            <td>{{ offer.getCountriesNames(3) }}</td>
-            <!-- <td>&nbsp;</td> -->
+            <td>{{ offer.countryCount }}</td>
+            <td>&nbsp;</td>
           </tr>
           {% endfor %} 
-          </tbody> 
           
           {% if (total_pages > 1) %}
             <tfoot>
-            <tr>               
-            <td colspan="4">
-            <ul class="pagination">
+            <tr>
+	    <td class="al-cntr" colspan="4">
+	    <ul class="pagination">
             {% if(page > 1) %}
               <li><a href="javascript:void(0)" onclick="offerLink('{{ path('offers_embed', {'page':(page-1)}) }}');" title="{{ (page-1) }}">&laquo;</a></li>
             {% endif %}
             {% for i in 1..total_pages if((page-i)|abs < 5) %}
               {% if(page == i) %}
-                <li><a href="javascript:void(0)" onclick="offerLink('{{ path('offers_embed', {'page':i}) }}');" title="{{ i }}">{{ i }}</a></li>
+                <li class="active"><span>{{ i }}<span class="sr-only">(current)</span></span></li>
               {% else %}
                 <li><a href="javascript:void(0)" onclick="offerLink('{{ path('offers_embed', {'page':i}) }}');" title="{{ i }}">{{ i }}</a></li>
               {% endif %}
@@ -52,9 +54,14 @@
             </tr>
             </tfoot>    
           {% endif %}
+          
+          </tbody> 
+          
+          
 
            </table>
-                </div>
+            </div>
+              </div>
             </div>
  
             </div>      		

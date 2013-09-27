@@ -224,9 +224,6 @@ class LoadNewsData extends AbstractFixture implements OrderedFixtureInterface
           {
             $news_item->setCategory($this->getReference('news_category_'.$news_element['category'])); 
           }
-          
-          $news_item->setViewCount(0);
-          $news_item->setCommentCount(0);
 
           $manager->persist($news_item);
         }
