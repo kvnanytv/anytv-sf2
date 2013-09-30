@@ -3,9 +3,9 @@
 {% block title 'Any.TV' %}
 
 {% block submenu %}
-<div class="sub-nav">
+<div id="sub-nav">
 <div class="container">              
-<nav class="subnav-cllps clr-black">          
+<nav class="subnav-cllps clr-black">       
 {% if(false and is_granted('ROLE_ADMIN')) %}
 <ul id="nav">
   <li><a href="{{ path('news') }}" title="{% trans %}News{% endtrans %}">{% trans %}News{% endtrans %}</a></li>

@@ -4,16 +4,22 @@
     <div class="games-list-wrap">
       <h3>any.TV <strong>{% trans %}Games List{% endtrans %}</strong></h3>
         <div class="row">  
-          <div class="col-lg-12">  
-            <input id="in-pl" type="search" class="form-control" role="search" placeholder="Search Games...">
-          </div>
-          <div class="col-lg-12">
+          <div class="col-lg-12">                   
+						<input id="in-pl" type="search" class="form-control" role="search" placeholder="Search Games...">
+					</div>
+					<div class="cl-20"></div>
+					<div class="col-lg-12">
+					<div id="offer_progress-bar" style="display:none" class="progress progress-striped active">
+					  <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">							    
+					  </div>
+					</div>	
+              
           <div id="gl-tbl" class="table-responsive mrgn-top">
           <table class="table table-striped tablesorter">	       
                     
           <thead>
             <tr>
-              <th class="th-games">{% trans %}Game{% endtrans %}</th>
+              <th class="th-games">{% trans %}Games{% endtrans %}</th>
               <th class="th-pay">{% trans %}Payout{% endtrans %}</th>
               <th class="th-cntrs">{% trans %}Countries{% endtrans %}</th>
               <th class="th-plnks">{% trans %}Play Now Links{% endtrans %}</th>        

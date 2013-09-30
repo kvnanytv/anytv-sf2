@@ -4,7 +4,7 @@
 
 {% block stylesheets %}
   {{ parent() }}
-  <link href="{{ asset('bundles/anytvdashboard/css/dashboard-accordion.css') }}" rel="stylesheet" />
+  <link href="{{ asset('bundles/anytvdashboard/css/dashboard-menu.css') }}" rel="stylesheet" />
 {% endblock %}
         
 {% block favicon %}
@@ -23,7 +23,6 @@
   <a href="{{ path('anytv_dashboard_homepage') }}" title="Any.TV Dashboard" class="navbar-brand">
     <img src="{{ asset('bundles/anytvdashboard/images/anytv-dashboard-logo.png') }}" alt="Any.TV Dashboard" />
   </a>
-  <p class="navbar-text bin-txt">{% trans %}Part of{% endtrans %} &nbsp;<img src="{{ asset('bundles/anytvdashboard/images/any-tv-family-logo.png') }}" alt="Any.TV" /> &nbsp;{% trans %}family{% endtrans %}.</p>
 {% endblock %}
       
 {% block authentication %}
@@ -54,9 +53,9 @@
 {% endblock %}
   
 {% block submenu %}
-<div class="sub-nav dashbrd">
-<div class="container">              
-<nav class="subnav-cllps clr-black"> 
+<div id="sub-nav" class="dashbrd">
+<div class="container">
+<nav class="subnav-cllps db-lnks">
 {% if is_granted('ROLE_ADMIN') %}
 
   <ul id="nav">
@@ -81,6 +80,10 @@
 </div>
 {% endblock %}
  
+{% block javascripts %}
+  {{ parent() }}
+  <script src="{{ asset('bundles/anytvdashboard/js/profile_tabs.js') }}"></script>
+{% endblock %}
      
     
         

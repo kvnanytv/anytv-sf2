@@ -7,10 +7,21 @@
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
 
-  {{ render(controller('AnytvDashboardBundle:Profile:idCard', {'affiliate': affiliate, 'affiliate_user': affiliate_user})) }}
-    
+<section id="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        {{ render(controller('AnytvDashboardBundle:Profile:idCard', {'affiliate': affiliate, 'affiliate_user': affiliate_user})) }}
+      <div class="cl-20"></div>
+      </div>
+      <div class="col-lg-9">
+        {{ render(controller('AnytvDashboardBundle:Profile:tabbedComponent', {'affiliate': affiliate, 'affiliate_user': affiliate_user})) }}		
+      </div> 
+    </div>
+  </div>
+</section>
     
 
-      {{ parent() }}
+{{ parent() }}
 
 {% endblock %}

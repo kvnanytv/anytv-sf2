@@ -1,0 +1,62 @@
+<div id="pane1" class="tab-pane active">
+  <div id="user-content-offers">
+    <div class="input-group input-group-lg">
+      <input type="text" class="form-control input-lg" placeholder="Search My Offers">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div>
+    <div class="cl-20"></div>
+    <div class="search-btns">				
+      <div class="btn-group">
+        <div class="btn-group">
+	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Browse by Category <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+	    <li><a>Link</a></li>
+	  </ul>
+        </div>
+	<div class="btn-group">
+	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Browse by Country <span class="caret"></span></button>
+	  <ul class="dropdown-menu">
+	    <li><a>Link</a></li>
+	  </ul>
+	</div>
+      </div>														
+    </div>
+    <div class="rfrsh-wrap">
+      <a href="javascript:void(0)" onclick="showTab('{{ path('profile_my_offers') }}');" class="btn btn-default btn-lg"><i class="icon-refresh"></i></a>
+    </div>
+  </div>
+  <div class="cl-20"></div>
+  <div class="progress progress-striped active" id="profile-tabs-progress-bar" style="display:none">
+    <div class="progress-bar"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+  </div>												
+  <div class="table-responsive" id="profile-tab-results">
+    <div class="offer-tbl-wrap">
+      <table class="table table-striped">							
+        <thead>
+          <tr>
+	    <th>Photo</th>
+	    <th>Name</th>
+            <th>Preview</th>
+            <th>Payout</th>
+	    <th>Play Now Link</th>
+          </tr>
+	</thead>								
+        <tbody>
+	  <tr>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	    <td></td>
+	  </tr>
+	  								
+	</tbody>
+      </table>
+    </div>
+  </div>				    	
+</div>
+		
+						
+					
