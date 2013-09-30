@@ -129,7 +129,7 @@ html, body {
 	text-decoration: none !important;
 }
 
-.sub-nav {
+#sub-nav {
 	height: 40px;
 	border-radius: 0;
 	border-bottom: none;
@@ -141,8 +141,18 @@ html, body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
+#sub-nav .container-fluid {
+	padding: 0 !important;
+}
+
 .dashbrd {
 	background-color: #e89f3d !important;
+	height: 100%;
+}
+
+.dashbrd .row {
+	margin: 0;
+	margin-left: 65px;
 }
 
 .search-box {
@@ -200,6 +210,12 @@ html, body {
 
 .mrgn-left {
 	margin-left: 20px !important;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 1023px) {
+	#nvbr-txt {
+		display: none;
+	}
 }
 
 /********************** Content *******************/
@@ -262,7 +278,7 @@ html, body {
 	/*padding: 70px 0 20px 0;*/
 }
 
-.cta-home h3,p {
+.cta-home h3, .cta-home p {
 	margin: 0;
 	color: #fff;
 	text-shadow: rgba(0, 0, 0, 0.4) 0 1px 0;
@@ -392,7 +408,7 @@ html, body {
 }
 
 #games-lists .table thead > tr > th {
-	padding: 20px 20px !important;
+	padding: 10px 20px !important;
 	border: 0;
 	font-size: 18px;
 	color: #fff;
@@ -400,6 +416,7 @@ html, body {
 
 #games-lists .table tbody> tr > td {
 	padding: 20px 20px !important;
+	font-size: 16px;
 }
 
 
@@ -444,41 +461,48 @@ input:-moz-placeholder { font-style:; }
 /********************** Section 3: Networks *******************/
 
 #networks {
-	background-color: #267ac5;	
+	background-color: #08335b;	
 	margin: 0;
 }
 
 #net-col1 {
-	height: 350px;
+	/*height: 350px;*/
+	background-color: #fff;
+	padding: 20px;
+	margin: 20px 0;
+
+
 }
 
-#net-col1 h3 {
+#net-col1 h3, #net-col2 h3, #net-col3 h3 {
 	font-family: 'Droid Sans', Arial, Helvetica, sans-serif !important;
 	font-weight: 700;
 	text-shadow: none;
 }
 
-#net-col1 p {
+#net-col1 p, #net-col2 p, #net-col3 p {
 	font-family: Arial, Helvetica, sans-serif !important;
 	text-shadow: none;
 }
 
 #net-col2 {
-	height: 350px;
+	/*height: 350px;*/
+	background-color: #fff;
 }
 
 #net-col3 {
-	height: 350px;
+	/*height: 350px;*/
+	background-color: #fff;
 }
 
-.brdr-test {
+/*.brdr-test {
 	border: 1px solid white;
 	height: 100%;
 	background-color: #fff;
-	border: 20px solid #267ac5;
+	border: 20px solid #08335b;
 	padding: 0 20px 0 20px;
 }
-
+*/
 .brdr-test p {
 	color: #000;
 }
@@ -611,5 +635,36 @@ footer {
 #stat-txt {
 	text-shadow: none;
 }
+
+
+/******************************* FAQs **********************************/
+
+.sec-content {
+	background-color: #fff;
+	min-height: 430px;
+	max-height: 100%;
+}
+
+.sec-content .tab-content {
+	padding: 20px 0;	
+}
+
+.sec-content-title {
+	padding: 50px 0;
+}
+
+.sec-content-title h3 {
+	margin: 0 !important;
+	font-family: 'Droid Sans', Arial, Helvetica;
+	font-weight: 700;
+	font-size: 48px;
+	color: #fff;
+}
+
+.sec-content-title p {
+	color: #fff;
+}
+
+
 
 

@@ -1,0 +1,164 @@
+/*
+Accordion Menu
+*/
+#content .container-fluid {
+	padding: 0 50px;
+}
+
+.user-panel {
+	background-color: #fff !important;
+	border: 0 !important;
+	color: #482900;
+	padding: 0 !important;
+	margin:0 !important;
+	height: 100%;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;		
+}
+
+.user-panel .panel-heading {
+	height: 70px;
+	background: url(../images/db-img/panel-cover.png) no-repeat 100% 50%;
+	border: none !important;
+	border-radius: 5px 5px 0 0 !important;
+}
+
+.user-panel .panel-body {
+	padding: 0 15px 15px 15px !important;
+}
+
+.user-panel .panel-body > h3 {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.user-name {
+	float: left;
+}
+
+.user-name h3 {
+	margin: 0 !important ;
+}
+
+.user-pic {
+	position: relative;
+	float: right;
+	top: -40px;	       
+	margin: 0 20px 0 0 !important;
+}
+
+.user-pic img {
+	border: 3px solid #fff;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);		
+
+}
+
+.user-pic p {
+	text-align: center;	
+}
+
+
+
+.user-pic a {
+	color: #fff;
+	font-weight: bold;
+	text-shadow: none;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #e89f3d;
+	padding: 2px 8px 8px 9px;
+	
+	border-top: none;
+	border-radius: 0 0 5px 5px;
+}
+
+.user-pic .pic-up-btn {
+	padding: 2px 9px 8px 12px;	
+}
+
+.user-pic a:hover {
+	color: #fff;
+	text-decoration: underline;
+}
+
+.user-pic
+.user-det {	
+	padding: 10px 10px 10px 0;	
+}
+
+.user-det p {
+	font-size: 13px;
+	color: #9f5b00;
+	text-shadow: none;
+	margin-top: 30px;
+}
+
+.user-det input[type="text"]:disabled {
+	font-size: 18px !important;
+	color: #9f5b00 !important;
+	background-color: white;
+}
+
+#user-menus {
+	background-color: #2c7dc6;
+}
+
+#user-menus a {
+	color: #fff !important;
+}
+
+#user-menus .nav-pills > li.active > a, .nav-pills > li.active > a:hover {
+	background-color: #0c4172;
+	color: #fff;
+	font-weight: bold;
+	border-radius: 0 !important;
+}
+
+#user-menus .nav > li > a:hover {
+	border-radius: 0 !important;
+	color: #fff !important;
+	background-color: #07569d !important;
+}
+
+#user-menus .badge {
+	background-color: #d83636 !important;
+	color: #fff !important;
+}
+
+#user-menus a.list-group-item.active > .badge, .nav-pills > .active > a > .badge {
+	background-color: #dc2127 !important;
+	color: #fff !important;
+}
+
+#user-content {
+	height: 100%;
+	width: 100%;
+}
+
+.offer-tbl-wrap {
+	background-color: #fff;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+
+.search-btns {
+	float: left;
+}
+
+.rfrsh-wrap {
+	float: right;
+}
+
+/************************************** Tabs *****************************************/
+
+.tab-content {
+	padding: 20px;
+	background-color: #fff;
+	border: 1px solid #dddddd;
+	border-top: none;
+	border-radius: 0px 0px 5px 5px;
+}
