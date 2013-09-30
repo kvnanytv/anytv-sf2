@@ -16,7 +16,7 @@
 	<div id="content">
 		<section class="sec-content-title">
 			<div class="container">
-				<h3>FAQs</h3>
+				<h3>Frequently Asked Questions</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 					tempor incididunt ut labore et dolore magna aliqua.</p>
 				</div>			
@@ -32,11 +32,12 @@
 								<li class="active"><a href="#all-pane" data-toggle="tab">All</a></li>
 								<li><a href="#anytv-pane" data-toggle="tab">any.TV</a></li>
 								<li><a href="#db-pane" data-toggle="tab">Dashboard</a></li>
-								<li><a href="#pane4" data-toggle="tab">Marketing</a></li>
-								<li><a href="#pane4" data-toggle="tab">Partnership</a></li>
-								<li><a href="#pane4" data-toggle="tab">Payments</a></li>					  
+								<li><a href="#market-pane" data-toggle="tab">Marketing</a></li>
+								<li><a href="#part-pane" data-toggle="tab">Partnership</a></li>
+								<li><a href="#payment-pane" data-toggle="tab">Payments</a></li>					  
 							</ul>
 							<div class="tab-content">
+							<!-- All PANE -->
 								<div id="all-pane" class="tab-pane active">
 									<div id="sidebar" class="tabbable">
 										<div style="row">
@@ -61,6 +62,8 @@
 										</div>
 									</div>
 								</div> <!-- /#all-pane -->
+
+								<!-- What is Any.TV - PANE -->
 								<div id="anytv-pane" class="tab-pane">
 									<div style="row">
 										<div class="col-lg-3">
@@ -82,6 +85,7 @@
 										</div>
 									</div>
 								</div> <!-- /#anytv-pane -->
+								<!-- Dashboard - PANE -->
 								<div id="db-pane" class="tab-pane">
 									<div style="row">
 										<div class="col-lg-3">
@@ -103,7 +107,8 @@
 										</div>
 									</div>
 								</div>
-								<div id="pane4" class="tab-pane">
+								<!-- Marketing - PANE -->
+								<div id="market-pane" class="tab-pane">
 									<div style="row">
 										<div class="col-lg-3">
 											<ul id="sidenav" class="nav nav-pills nav-stacked">

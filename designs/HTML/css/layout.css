@@ -5,7 +5,7 @@ layout Styles
 /********************** General *******************/
 
 body {
-	background-image: url(../images/clouds-2.jpg);
+	background-image: url(../images/clouds-4.jpg);
 	background-attachment: fixed;
 	background-size: cover;
 	background-position: bottom;
@@ -82,8 +82,9 @@ html, body {
 	border: none !important;
 }
 
-.atv-sites {
-	font-family: 'Droid Sans', Arial, Helvetica, sans-serif;
+.atv-sites li a {
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	font-weight: 700 !important;
 }
 
 .dropdown-toggle {
@@ -109,19 +110,17 @@ html, body {
 .nav li a.lnk-blue {
 	text-decoration: none;
 	color: #2c7dc6 !important;
-	font-weight: bold;
 }
 
 .nav li a.lnk-yellow {
 	text-decoration: none;
 	color: #eaa13f !important;
-	font-weight: bold;
 }
 
 .nav li a.lnk-red {
 	text-decoration: none;
 	color: #dc2127 !important;
-	font-weight: bold;
+
 }
 
 .dropdown a {
@@ -282,7 +281,9 @@ html, body {
 	margin: 0;
 	color: #fff;
 	text-shadow: rgba(0, 0, 0, 0.4) 0 1px 0;
-	font-family: 'Droid Sans', Arial, Helvetica, sans-serif;
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	font-weight: 200;
+
 }
 
 .cta-home h3 {
@@ -345,11 +346,18 @@ html, body {
 	display: inline-block;	
 }
 
+.cta-btns {
+	float: left;
+	text-align: left;
+	width: 100%;
+
+}
+
 .btn-join {
 	color: #fff;
-	font-family: 'Droid Sans', Arial, Helvetica, sans-serif !important;
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
 	font-weight: 700 !important;
-	font-size: 18px !important;
+	font-size: 24px !important;
 	background-color: #d03431 !important;		
 	padding: 20px 50px !important;	
 	border: none !important;
@@ -358,7 +366,7 @@ html, body {
 
 .btn-lrn {
 	color: #fff;
-	font-family: 'Droid Sans', Arial, Helvetica, sans-serif !important;
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
 	font-size: 16px !important;
 	font-weight: 700 !important;	
 	background: transparent !important;
@@ -384,12 +392,15 @@ html, body {
 
 .games-list-wrap h3 {
 	text-align: center;
-	font-family: 'Droid Sans', Arial, Helvetica, sans-serif;
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	font-size: 36px;
+	font-weight: 400;	
 	color: #2c7dc6;
 }
 
 .games-list-wrap h3 > strong {
 	color: #e51915;
+	font-weight: 400;
 }
 
 .games-list-wrap input {
@@ -403,23 +414,42 @@ html, body {
 	text-align: center;
 }
 
-#games-lists .table {
-	border: none;
+#games-lists .table thead {
+
+}
+
+#games-lists .table tbody {
+	border: 1px solid #dddddd;	
 }
 
 #games-lists .table thead > tr > th {
+	border: 1px solid #dddddd;
 	padding: 10px 20px !important;
 	border: 0;
-	font-size: 18px;
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	font-weight: 400;
+	font-size: 20px;
+	color: #333;
+}
+
+#games-lists .table tbody> tr:hover {
+	background-color: #333;
 	color: #fff;
 }
 
 #games-lists .table tbody> tr > td {
-	padding: 20px 20px !important;
-	font-size: 16px;
+	padding: 10px 20px !important;
+	font-size: 13px;
+	vertical-align: middle;
 }
 
+#games-lists .table tbody> tr > td:first-child {
+	font-weight: bold;
+}
 
+.btn-glink {
+
+}
 
 .th-games {
 	background: #d71815;
@@ -442,6 +472,10 @@ html, body {
 #in-pl:-ms-input-placeholder { font-style:italic; } /* ie */
 input:-moz-placeholder { font-style:; }
 
+#in-pl {
+	border-right: 0 !important;
+}
+
 .games-list-wrap {
 	text-align: left;
 }
@@ -461,69 +495,65 @@ input:-moz-placeholder { font-style:; }
 /********************** Section 3: Networks *******************/
 
 #networks {
-	background-color: #08335b;	
+	background-image: url(../images/grow.jpg);
+	background-attachment: fixed;
+	background-size: cover;	
 	margin: 0;
+	
 }
 
-#net-col1 {
+.net-title h3 {
+	text-align: center;
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	color: #fff;
+	font-size: 36px;
+}
+
+#net-col {
 	/*height: 350px;*/
 	background-color: #fff;
 	padding: 20px;
 	margin: 20px 0;
-
-
+	text-align: center;
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	font-weight: 400;	
 }
 
-#net-col1 h3, #net-col2 h3, #net-col3 h3 {
-	font-family: 'Droid Sans', Arial, Helvetica, sans-serif !important;
-	font-weight: 700;
-	text-shadow: none;
+#net-col h4 {
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	font-weight: 400;
+	font-size: 20px;
 }
 
-#net-col1 p, #net-col2 p, #net-col3 p {
-	font-family: Arial, Helvetica, sans-serif !important;
-	text-shadow: none;
-}
-
-#net-col2 {
-	/*height: 350px;*/
-	background-color: #fff;
-}
-
-#net-col3 {
-	/*height: 350px;*/
-	background-color: #fff;
-}
-
-/*.brdr-test {
-	border: 1px solid white;
-	height: 100%;
-	background-color: #fff;
-	border: 20px solid #08335b;
-	padding: 0 20px 0 20px;
-}
-*/
-.brdr-test p {
-	color: #000;
-}
-
-
-/********************** Section 4 *******************/
-
-#section4 {
-	height: 380px;
-	background-color: #e6e6e6;
-	padding-top: 20px;
-	margin: 0;
-}
-
-
-/********************** Section 5: About AnyTV *******************/
+/********************** Section: About AnyTV *******************/
 
 #about-anytv {
 	height: 380px;
 	background-color: #fff;
 }
+
+/********************** Section: Our Partners *******************/
+
+#our-partners {
+	height: 380px;	
+	padding-top: 20px;
+	margin: 0;
+
+	background-image: url(../images/grass.jpg);
+	background-attachment: fixed;
+	background-size: cover;	
+	background-position: bottom;
+
+}
+
+.op-title h3 {
+	text-align: center;
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	color: #fff;
+	font-size: 36px;
+}
+
+
 
 
 /********************** Footer *******************/
@@ -547,42 +577,39 @@ footer {
 	margin-top: 15px;
 } 
 
-.sm-icons {}
-
-
-/*.ft-links {
-	float: left;
-	list-style: none;
+.sm-icons {
+	float: right;
 	margin-top: 15px;
-
 }
 
-.ft-links li {
+.sm-icons ul{
+	list-style: none;
+}
+
+.sm-icons li {
 	display: inline;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 11px;
-} 
-
-.ft-links a {
-	color: #333;
-	font-size: 12px;
-	font-weight: bold;
-	text-shadow:1px 1px 0px #fff;
+	padding-right: 20px;
 }
 
-.ft-links a:hover {
-	color: #333;
-}*/
-
-
+.sm-icons li a {
+	color: #333333;
+}
 
 /********************** Dashboard *******************/
 
 .ft-game p {
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
 	margin-top: 10px;
 	color: #272727 !important;
 	text-shadow: none;
 	font-size: 24px !important;
+}
+
+.ft-game p > em {
+	background-color: green;
+	color: #fff;
+	padding: 5px;
+	font-size: 18px;
 }
 
 .ft-game img {
@@ -591,7 +618,8 @@ footer {
 }
 
 .txt-cntr p {
-	font-family: Arial, Helvetica, sans-serif !important;
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
+	font-weight: 400;
 	text-align: center;
 	color: #272727 !important;
 	font-family: 12px !important;
@@ -618,7 +646,8 @@ footer {
 .lgin-panel > .panel-body p {
 	color: #000 !important;
 	text-shadow: none !important;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-weight: 400;
 	font-size: 13px;
 }
 
@@ -636,18 +665,13 @@ footer {
 	text-shadow: none;
 }
 
+.btn-create {
+	background-color: #dc2127 !important;
+	border: none !important;
+
+}
 
 /******************************* FAQs **********************************/
-
-.sec-content {
-	background-color: #fff;
-	min-height: 430px;
-	max-height: 100%;
-}
-
-.sec-content .tab-content {
-	padding: 20px 0;	
-}
 
 .sec-content-title {
 	padding: 50px 0;
@@ -655,7 +679,7 @@ footer {
 
 .sec-content-title h3 {
 	margin: 0 !important;
-	font-family: 'Droid Sans', Arial, Helvetica;
+	font-family: 'Open Sans', Arial, Helvetica;
 	font-weight: 700;
 	font-size: 48px;
 	color: #fff;
@@ -663,6 +687,27 @@ footer {
 
 .sec-content-title p {
 	color: #fff;
+}
+
+
+.sec-content {
+	background-color: #fff;
+	height: 100%;
+	min-height: 430px;		
+}
+
+@media only screen and (min-height: 960px) {
+	.sec-content {
+		min-height: 650px;
+	}
+}
+
+.sec-content .tab-content {
+	padding: 20px 0;	
+}
+
+.font-lg {
+	font-size: 28px;
 }
 
 
