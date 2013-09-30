@@ -26,7 +26,7 @@
 							</form>
 							<div class="brdr-h"></div>
 							<p align="center">Don't have an account yet?</p>
-								<a class="btn btn-lg btn-primary btn-block" href="#"><strong>CREATE AN ACCOUNT</strong></a>
+								<a class="btn btn-lg btn-primary btn-block btn-create" href="#"><strong>CREATE AN ACCOUNT</strong></a>
 							</div>
 					</div>
 					<p class="txt-default">View our <a href="">Privacy Policy</a></p>    
@@ -43,4 +43,4 @@
 </section>       
 			<!-- /content -->
 
-			<?php include 'footer.php' ?>
+<?php include 'footer.php' ?>
