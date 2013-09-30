@@ -22,7 +22,7 @@
 					<div class="panel panel-default user-panel">
 						<div class="panel-heading"></div>
 						<div class="user-pic">								
-							<img src='images/db-img/test-user.jpg'>
+							<img src="images/db-img/default-photo.png">
 							<p>
 								<?php
 								$userpic = 1;
@@ -111,7 +111,7 @@
 							<div class="cl-20"></div>
 							<div class="progress progress-striped active">
 							  <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 50%">							    
-							  </div>
+							  </div> 
 							</div>							
 							<div class="table-responsive">
 								<div class="offer-tbl-wrap">
@@ -127,11 +127,23 @@
 										</thead>
 										<tbody>
 											<tr>
-												<td></td>
+												<td>											
+													<?php if (true) {?>
+													<img src="images/db-img/photo-thmb.jpg">
+													<?php } else {?>
+													<img src="">
+													<?php } ?>
+												</td>
 												<td>Warframe</td>
 												<td>warframe.com</td>
 												<td>$0.60</td>
-												<td>playnow.tm/gj23kl</td>
+												<td>
+													<?php if (true) {?>
+													<a href="#" class="btn btn-default btn-glink"> Get Link</a>
+													<?php } else {?>
+													<a href="#"></a>
+													<?php } ?>
+												</td>
 											</tr>
 
 											<tfoot>
@@ -200,7 +212,13 @@
 										</thead>
 										<tbody>
 											<tr>
-												<td></td>
+												<td>											
+													<?php if (true) {?>
+													<img src="images/db-img/photo-thmb.jpg">
+													<?php } else {?>
+													<img src="images/db-img/photo-thmb.jpg">
+													<?php } ?>								
+												</td>
 												<td>warframe.com</td>
 												<td>10 Countries</td>
 												<td>link1</td>

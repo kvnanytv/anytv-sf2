@@ -149,6 +149,9 @@ Accordion Menu
 	padding: 10px;
 }
 
+.offer-tbl-wrap .table tbody > tr > td {
+	vertical-align: middle;	
+}
 
 .search-btns {
 	float: left;
