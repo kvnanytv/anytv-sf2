@@ -23,8 +23,8 @@
   <link rel="shortcut icon" href="assets/ico/favicon.png"/>
 
   <!-- Fonts -->
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'> 
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,700,800,600' rel='stylesheet' type='text/css'>    
+
 
   <!-- Bootstrap -->
     <link href="css/bootstrap/bootstrap.css" rel="stylesheet"> 
@@ -92,14 +92,14 @@
     <div class="container">              
       <nav class="subnav-cllps clr-black">
           <ul id="nav">
-            <li><a href="#">What is any.TV?</a></li>
+            <li><a href="page-what.php">What is any.TV?</a></li>
             <li><a href="#">Branding Kit</a></li>
-            <li><a href="#">Games List</a></li>
+            <li><a href="http://www.games.tm">Games List</a></li>
             <li><a href="#">Livestream Handbook</a></li>
             <li><a href="#">Recruiters Handbook</a></li>
             <li><a href="#">Join our Twitch Team!</a></li>
             <li><a href="#">Staff</a></li>        
-            <li><a href="faq.php">FAQs</a></li>
+            <li><a href="page-faq.php">FAQs</a></li>
           </ul>
       </nav>
     </div>

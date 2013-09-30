@@ -23,7 +23,9 @@
 						<div class="col-lg-5">
 							<h3>A new kind of YouTube Network</h3>
 							<p>No need to unpartner from your YouTube Network</p>
-							<p><a class="btn btn-primary btn-lg btn-join">Join Us!</a></p>                  
+							<div class="cta-btns">
+								<a class="btn btn-primary btn-lg btn-join">Join Us!</a>
+							</div>
 						</div>
 						<div class="col-lg-7">							
 							<img src="images/mac-monitor.png">            							
@@ -39,24 +41,26 @@
 			<div class="games-list-wrap">
 				<h3>any.TV <strong>Games List</strong></h3>
 				<div class="row">
-					<div class="col-lg-12">                   
-						<input id="in-pl" type="search" class="form-control" role="search" placeholder="Search Games...">
+					<div class="col-lg-12">
+						<div class="input-group input-group-lg">
+						<input id="in-pl" type="search" class="form-control input-lg" role="search" placeholder="Search Games...">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="button"><i class="icon-search icon-large"></i></button>
+						</span>
+						</div>                   
 					</div>
 					<div class="cl-20"></div>
 					<div class="col-lg-12">
-					<div class="progress progress-striped active">
-					  <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 50%">							    
-					  </div>
-					</div>					
+										
 						<div id="gl-tbl" class="table-responsive mrgn-top">
 							<!-- Table -->
-							<table class="table table-striped">							
+							<table class="table">							
 								<thead>
 									<tr>
-										<th class="th-games">Games</th>
-										<th class="th-pay">Payout</th>
-										<th class="th-cntrs">Countries</th>
-										<th class="th-plnks">Play Now Links</th>
+										<th>Games</th>
+										<th>Payout</th>
+										<th>Countries</th>
+										<th>Play Now Links</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -64,25 +68,49 @@
 										<td>Age of Conan</td>
 										<td>$0.60</td>
 										<td>Canada, United Kingdom, United States</td>
-										<td>link1</td>
+										<td>
+											<?php if (true) {?>
+											<a href="#" class="btn btn-default btn-glink"> Get Link</a>
+											<?php } else {?>
+											<a href="#"></a>
+											<?php } ?>
+										</td>
 									</tr>
 									<tr>
 										<td>Age of Wulin</td>
 										<td>$0.60</td>
 										<td>United Kingdom, Ireland</td>
-										<td>link2</td>
+										<td>
+											<?php if (true) {?>
+											<a href="#" class="btn btn-default"> Get Link</a>
+											<?php } else {?>
+											<a href="#"></a>
+											<?php } ?>											
+										</td>
 									</tr>
 									<tr>
 										<td>Age of Wushu</td>
 										<td>$1.50</td>
 										<td>Canada</td>
-										<td>link3</td>
+										<td>
+											<?php if (true) {?>
+											<a href="#" class="btn btn-default"> Get Link</a>
+											<?php } else {?>
+											<a href="#"></a>
+											<?php } ?>											
+										</td>
 									</tr>
 									<tr>
 										<td>Age of Wushu</td>
 										<td>$1.50</td>
 										<td>Canada</td>
-										<td>link4</td>
+										<td>
+											<?php if (true) {?>
+											<a href="#" class="btn btn-default"> Get Link</a>
+											<?php } else {?>
+											<a href="#"></a>
+											<?php } ?>											
+										</td>
 									</tr>
 									<tfoot>
 										<tr>
@@ -112,27 +140,50 @@
 	<section id="networks">
 		<div class="container">	
 			<div class="row-fluid"> 
-				<div class="col-lg-4">
-					<div id="net-col1">Test</div>
+				<div class="col-lg-12">
+					<div class="net-title">
+						<h3>News</h3>
+					</div>
 				</div>
 				<div class="col-lg-4">
-					<div id="net-col1">Test</div>
+					<div id="net-col">					
+						<h4>George is Back!</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua.</p>
+
+					</div>					
 				</div>
 				<div class="col-lg-4">
-					<div id="net-col1">Test</div>
+					<div id="net-col">
+						<h4>Sega comes to any.TV!</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua.</p>
+					</div>	
+				</div>
+				<div class="col-lg-4">
+					<div id="net-col">
+						<h4>10% Lifetime Bonus</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua.</p>
+					</div>	
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<section id="section4">
-		<div class="container">               
+	<section id="about-anytv">
+		<div></div>
+	</section>	
+
+	<section id="our-partners">
+		<div class="container">
+			<div class="op-title">
+				<h3>Our Partners</h3>
+			</div>
 		</div>
 	</section>      
 
-	<section id="about-anytv">
-		<div></div>
-	</section>
+
 </div>
 
 <!-- /content -->

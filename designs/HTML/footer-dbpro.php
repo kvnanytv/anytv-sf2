@@ -30,4 +30,31 @@
     $("#nav").tinyNav();
   });
 </script>
+<script>
+  $('a#cpy-ref-btn').zclip({
+    path:'js/ZeroClipboard.swf',
+    copy:function(){return $('input#ref-lnk').val();}
+  });
+
+
+
+  $(document).ready(function(){
+    $("a#cpy-ref-btn").zclip({
+      path:'js/zclip/ZeroClipboard.swf',
+      copy:$('#ref-lnk').val(),
+      beforeCopy:function(){
+        $('#ref-lnk').css('background','#2dc575');
+        $('#ref-lnk').css('color','white');
+// $(this).css('color','orange');
+},
+afterCopy:function(){
+  $('#ref-link').css('background','green');
+// $(this).css('color','purple');
+$(this).innerHTML("COPIED");
+$(this).next('.check').show();
+}
+});
+  });
+</script>
+
 </html>

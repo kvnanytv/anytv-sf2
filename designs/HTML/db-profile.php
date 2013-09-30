@@ -1,3 +1,16 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.png">
+
+  <title>Dashboard.tm | Part of any.tv family.</title>
+
 <?php include 'header-dashboard.php'; ?>
 
 <!-- content -->
@@ -29,12 +42,11 @@
 							<div class="user-det">
 								
 								<p>Referral link:</p>
-						  <div class="input-group">
-						      <span class="input-group-btn">
-						        <button class="btn btn-default" type="button">Copy</button>
-						      </span>
-						      <input type="text" class="form-control" value="any.tv/gj2fr" disabled>
-					    </div>
+
+						      	<input id="ref-lnk" type="text" class="form-control" value="http://www.any.tv/dashboard/signup/79745/zh" disabled>								
+						        <a id="cpy-ref-btn" class="btn btn-default">Copy Link</a>
+
+
 							</div>
 						</div>
 						<div id="user-menus">
@@ -107,8 +119,8 @@
 										<thead>
 											<tr>
 												<th>Photo</th>
-												<th>Website</th>
 												<th>Name</th>
+												<th>Preview</th>
 												<th>Payout</th>
 												<th>Play Now Link</th>
 											</tr>
@@ -116,8 +128,8 @@
 										<tbody>
 											<tr>
 												<td></td>
-												<td>warframe.com</td>
 												<td>Warframe</td>
+												<td>warframe.com</td>
 												<td>$0.60</td>
 												<td>playnow.tm/gj23kl</td>
 											</tr>
@@ -232,4 +244,4 @@
 </section>
 <!-- /content -->
 
-<?php include 'footer.php' ?>
+<?php include 'footer-dbpro.php' ?>
