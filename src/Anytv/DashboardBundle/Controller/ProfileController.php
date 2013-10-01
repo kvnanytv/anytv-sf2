@@ -100,7 +100,7 @@ class ProfileController extends Controller
       return $this->render('AnytvDashboardBundle:Profile:tabbedComponent.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user));
     }
      
-    public function myOffersAction($page)
+    public function myOffersAction(Request $request, $page)
     {
       $affiliate_user = $this->getUser();
 
@@ -117,7 +117,7 @@ class ProfileController extends Controller
     
     public function browseOffersAction(Request $request, $page)
     {
-      If(!$request->isXmlHttpRequest())
+      if(!$request->isXmlHttpRequest())
       {
         throw $this->createNotFoundException(
             'Invalid request'
@@ -166,8 +166,15 @@ class ProfileController extends Controller
       return $this->render('AnytvDashboardBundle:Profile:browseOffers.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'offers'=>$offers, 'total_offers'=>$total_offers, 'page'=>$page, 'total_pages'=>$total_pages, 'countries'=>$countries, 'offer_categories'=>$offer_categories, 'offer_keyword'=>$session->get('offer_keyword', null), 'selected_offer_category'=>$session->get('offer_category', null), 'selected_offer_country'=>$session->get('offer_country')));
     }
     
-    public function partnersAction($page)
+    public function partnersAction(Request $request, $page)
     {
+      if(!$request->isXmlHttpRequest())
+      {
+        throw $this->createNotFoundException(
+            'Invalid request'
+        );
+      }
+      
       $affiliate_user = $this->getUser();
 
       if (!$affiliate_user) {

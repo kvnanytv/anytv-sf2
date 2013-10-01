@@ -276,8 +276,8 @@ class OfferController extends Controller
       return $this->render('AnytvDashboardBundle:Offer:view.html.twig', array('title'=>$offer, 'offer'=>$offer, 'offer_status'=>$translator->trans($offer->getStatus()), 'offer_categories'=>$offer_categories, 'offer_groups'=>$offer_groups, 'countries'=>$countries, 'countries_total'=>$countries_total));
     }
     
-    public function embedAction($page)
-    {
+    public function embedAction(Request $request, $page)
+    { 
       $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
       $country_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Country');
       
@@ -290,6 +290,51 @@ class OfferController extends Controller
       $total_pages = ceil($total_offers / $items_per_page);
       
       return $this->render('AnytvDashboardBundle:Offer:embed.html.twig', array('offers'=>$offers, 'total_offers'=>$total_offers, 'page'=>$page, 'total_pages'=>$total_pages, 'country_repository'=>$country_repository));
+    }
+    
+    public function playNowLinkAction(Request $request, $id)
+    { 
+      if(!$request->isXmlHttpRequest())
+      {
+        throw $this->createNotFoundException(
+            'Invalid request'
+        );
+      }
+      
+      $affiliate_user = $this->getUser();
+
+      if (!$affiliate_user) {
+        throw $this->createNotFoundException(
+            'No user found'
+        );
+      }
+      
+      $affiliate = $affiliate_user->getAffiliate();
+      
+      $tracking_link_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:TrackingLink');
+      
+      $tracking_link = $tracking_link_repository->findOneBy(array('affiliateId'=>$affiliate->getAffiliateId(), 'offerId'=>$id));
+      
+      if(!$tracking_link)
+      {
+        $hasoffers = $this->get('hasoffers');
+        $tracking_link_hasoffers = $hasoffers->getPlayNowLink($id, $affiliate->getAffiliateId());
+        
+        if($tracking_link_hasoffers)
+        {
+          $manager = $this->getDoctrine()->getManager();
+          
+          $tracking_link = new TrackingLink();
+          $tracking_link->setAffiliateId($tracking_link_hasoffers->affiliate_id);
+          $tracking_link->setOfferId($tracking_link_hasoffers->offer_id);
+          $tracking_link->setClickUrl($tracking_link_hasoffers->click_url);
+          
+          $manager->persist($tracking_link);   
+          $manager->flush();
+        }
+      }
+      
+      return $this->render('AnytvDashboardBundle:Offer:playNowLink.html.twig', array('tracking_link'=>$tracking_link));
     }
     
     public function profileOffersAction(Request $request, $page)

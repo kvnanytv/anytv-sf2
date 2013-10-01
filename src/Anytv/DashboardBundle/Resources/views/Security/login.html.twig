@@ -77,10 +77,13 @@
             <p class="txt-default">View our <a href="">Privacy Policy</a></p>  
         </div>
           <div class="col-lg-7 ft-game">
-          <img src="{{ asset('bundles/anytvdashboard/images/warframe-cvr1.png') }}" alt="Warframe" />
-          <p><strong>Warframe</strong> Countries: 235 <em>Active</em></p>
-          <p style="font-size: 13px !important; font-family: Arial, Helvetica, sans-serif;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</p>            
+          {% if(featured_offer) %}
+          {% if(featured_offer.thumbnail) %}
+            <img src="{{ asset(featured_offer.getWebPath()) }}" alt="{{ featured_offer }}" />
+          {% endif %}
+          <p><strong>{{ featured_offer }}</strong> {% trans %}Countries{% endtrans %}: {{ featured_offer.countryCount }}</p>
+          <p style="font-size: 13px !important; font-family: Arial, Helvetica, sans-serif;">{{ featured_offer.description }}</p> 
+          {% endif %}
           </div>
         </div>
       </div>
@@ -105,10 +108,6 @@
             </div>
         </div>
           <div class="col-lg-7 ft-game">
-          <img src="{{ asset('bundles/anytvdashboard/images/warframe-cvr1.png') }}" alt="Warframe" />
-          <p><strong>Warframe</strong> Countries: 235 <em>Active</em></p>
-          <p style="font-size: 13px !important; font-family: Arial, Helvetica, sans-serif;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</p>            
           </div>
         </div>
       </div>

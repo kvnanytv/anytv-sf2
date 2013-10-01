@@ -1,19 +1,25 @@
-{% if(faq_categories) %}                                
-<ul>
-  <li><a href="javascript:void(0)" onclick="faqCategory('{{ path('faq_category') }}');" title="{% trans %}All{% endtrans %}">{% trans %}All{% endtrans %}</a></li>
-  {% for faq_category in faq_categories %}
-    <li><a href="javascript:void(0)" onclick="faqCategory('{{ path('faq_category', { 'id': faq_category.id }) }}');" title="{{ faq_category }}">{{ faq_category }}</a></li>
-  {% endfor %} 
-</ul>
+{% if(faqs) %}
+<div id="all-pane" class="tab-pane active">
+  <div id="sidebar" class="tabbable">
+    <div style="row">
+      <div class="col-lg-3">
+        <ul id="sidenav" class="nav nav-pills nav-stacked">
+          {% for faq in faqs %}
+	    <li><a href="javascript:void(0)" onclick="showFaq({{ faq.id }});" title="{{ faq.question|raw }}" data-toggle="tab"><strong>{{ faq.question|raw }}</strong></a></li>
+          {% endfor %}																
+	</ul>
+      </div>
+      <div class="col-lg-9">				
+        <div class="tab-content">
+          {% for faq in faqs %}
+	    <div class="tab-pane active" id="faq_answer_{{ faq.id }}" style="display:none">
+	      {{ faq.answer|raw }}
+	    </div>
+          {% endfor %}	
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endif %}
 
-{% if(faqs) %}
-<ul>
-{% for faq in faqs %}
-  <ul>
-    <li><a href="javascript:void(0)" onclick="showFaq(this);" title="{{ faq.question|raw }}">{{ faq.question|raw }}</a></li>
-    <li style="display:none" class="answer">{{ faq.answer|raw }}</li>
-  </ul>
-{% endfor %} 
-</ul>
-{% endif %}

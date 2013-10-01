@@ -4,9 +4,15 @@
     <div class="games-list-wrap">
       <h3>any.TV <strong>{% trans %}Games List{% endtrans %}</strong></h3>
         <div class="row">  
-          <div class="col-lg-12">                   
-						<input id="in-pl" type="search" class="form-control" role="search" placeholder="Search Games...">
+          <div class="col-lg-12">
+						<div class="input-group input-group-lg" style="display:none">
+						<input id="in-pl" type="search" class="form-control input-lg" role="search" placeholder="Search Games...">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="button"><i class="icon-search icon-large"></i></button>
+						</span>
+						</div>                   
 					</div>
+                
 					<div class="cl-20"></div>
 					<div class="col-lg-12">
 					<div id="offer_progress-bar" style="display:none" class="progress progress-striped active">
@@ -15,14 +21,14 @@
 					</div>	
               
           <div id="gl-tbl" class="table-responsive mrgn-top">
-          <table class="table table-striped tablesorter">	       
+          <table class="table">	       
                     
           <thead>
             <tr>
-              <th class="th-games">{% trans %}Games{% endtrans %}</th>
-              <th class="th-pay">{% trans %}Payout{% endtrans %}</th>
-              <th class="th-cntrs">{% trans %}Countries{% endtrans %}</th>
-              <th class="th-plnks">{% trans %}Play Now Links{% endtrans %}</th>        
+              <th>{% trans %}Games{% endtrans %}</th>
+              <th>{% trans %}Payout{% endtrans %}</th>
+              <th>{% trans %}Countries{% endtrans %}</th>
+              <th>{% trans %}Play Now Links{% endtrans %}</th>        
             </tr>
           </thead> 
                                        
@@ -32,7 +38,13 @@
             <td>{{ offer }}</td>
             <td>${{ offer.defaultPayout }}</td>
             <td>{{ offer.countryCount }}</td>
-            <td>&nbsp;</td>
+            <td id="play_now_link_{{ offer.offerId }}">
+              {% if(app.user) %}
+                <a href="javascript:void(0)" onclick="playNowLink('{{ path('offer_play_now_link', {'id':offer.offerId }) }}', {{ offer.offerId }});" class="btn btn-default btn-glink">{% trans %}Get Link{% endtrans %}</a>
+              {% else %}
+                <a href="{{ path('anytv_dashboard_homepage') }}" class="btn btn-default btn-glink">{% trans %}Get Link{% endtrans %}</a>
+              {% endif %}
+            </td>
           </tr>
           {% endfor %} 
           
@@ -44,7 +56,7 @@
             {% if(page > 1) %}
               <li><a href="javascript:void(0)" onclick="offerLink('{{ path('offers_embed', {'page':(page-1)}) }}');" title="{{ (page-1) }}">&laquo;</a></li>
             {% endif %}
-            {% for i in 1..total_pages if((page-i)|abs < 5) %}
+            {% for i in 1..total_pages if((page-i)|abs < 8) %}
               {% if(page == i) %}
                 <li class="active"><span>{{ i }}<span class="sr-only">(current)</span></span></li>
               {% else %}

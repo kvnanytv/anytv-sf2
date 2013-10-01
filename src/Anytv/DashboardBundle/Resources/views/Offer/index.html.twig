@@ -36,7 +36,6 @@
          <th>{% trans %}Advertiser{% endtrans %}</th>
          <th>{% trans %}Preview{% endtrans %}</th>
          <th>{% trans %}Countries{% endtrans %}</th>
-         <th>{% trans %}Thumbnail{% endtrans %}</th>
        </tr>
        {% for offer in offers %}
          <tr>
@@ -49,11 +48,6 @@
            {% endif %}
            <td><a href="{{ offer.previewUrl }}" target="_blank">{% trans %}preview{% endtrans %}</a></td>
            <td>{{ offer.countryCount }}</td>
-           {% if(offer.thumbnail) %}
-             <td><img src="{{ asset(offer.getWebPath()) }}" alt="{{ offer.name }}" style="width:100px" /></td>
-           {%  else %}
-             <td>&nbsp;</td>
-           {% endif %}
          </tr>
        {% endfor %} 
       </table>
