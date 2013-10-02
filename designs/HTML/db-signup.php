@@ -143,7 +143,13 @@
 
 								</div>							
 
-								<div class="brdr-h"></div>
+								<div class="brdr-h"></div>		
+
+								<div class="term-con">
+							    <input type="checkbox" value="">I agree to the <a href="" target="_blank">Terms and Conditions.</a>
+								</div>
+
+								 
 								<a class="btn btn-lg btn-primary btn-block" href="#"><strong>CREATE ACCOUNT</strong></a>
 							</div>                  
 						</div>
