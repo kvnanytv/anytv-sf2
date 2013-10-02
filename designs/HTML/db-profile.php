@@ -79,6 +79,7 @@
 						<div id="pane1" class="tab-pane active">
 
 							<div id="user-content-offers">
+								<form>
 								<div class="input-group input-group-lg">
 									<input type="text" class="form-control input-lg" placeholder="Search Offers">
 									<span class="input-group-btn">
@@ -106,7 +107,7 @@
 								<div class="rfrsh-wrap">
 									<a href="" class="btn btn-default btn-lg"><i class="icon-refresh"></i></a>
 								</div>
-
+								</form>
 							</div>
 							<div class="cl-20"></div>
 							<div class="progress progress-striped active">
@@ -139,7 +140,7 @@
 												<td>$0.60</td>
 												<td>
 													<?php if (true) {?>
-													<a href="#" class="btn btn-default btn-glink"> Get Link</a>
+													<a data-toggle="modal" href="#myModal" class="btn btn-default">Get Link</a>
 													<?php } else {?>
 													<a href="#"></a>
 													<?php } ?>
@@ -236,7 +237,7 @@
 															<li><a href="">4</a></li>
 															<li><a href="">5</a></li>
 															<li><a href="#">&raquo;</a></li>
-														</ul>											
+														</ul>																									
 													</td>
 												</tr>
 											</tfoot>									
@@ -257,9 +258,37 @@
 			</div> 
 		</div>
 	</div>
-
 </div>
 </section>
 <!-- /content -->
+
+<!-- Pop-up -->
+<div>4</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Game Details</h4>
+        </div>
+        <div class="modal-body">
+        	Expires in
+	        <div id="share-div">
+	        	<p><strong>Share</strong></p>
+				<span class='st_googleplus_large' displayText='Google +'></span>
+				<span class='st_facebook_large' displayText='Facebook'></span>
+				<span class='st_twitter_large' displayText='Tweet'></span>
+				<span class='st_linkedin_large' displayText='LinkedIn'></span>
+				<span class='st_email_large' displayText='Email'></span>
+				<span class='st_sharethis_large' displayText='ShareThis'></span>          
+			</div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 
 <?php include 'footer-dbpro.php' ?>
