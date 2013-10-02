@@ -29,7 +29,7 @@
 								<a class="btn btn-lg btn-primary btn-block btn-create" href="#"><strong>CREATE AN ACCOUNT</strong></a>
 							</div>
 					</div>
-					<p class="txt-default">View our <a href="">Privacy Policy</a></p>    
+					<p class="txt-default">View our <a href="" target="_blank">Privacy Policy</a></p>    
 			</div>
 
 			<div class="col-lg-7 ft-game">
