@@ -47,13 +47,15 @@ html, body {
 
 
 .txt-default {
-	color: #000 !important;
+	color: #333 !important;
 	text-shadow: none !important;
 	text-align: center;
 	font-size: 13px;
 	margin-top: -10px;
 
 }
+
+
 
 /********************** Header *******************/
 
@@ -500,6 +502,7 @@ input:-moz-placeholder { font-style:; }
 	background-size: cover;	
 	background-position: bottom;
 	margin: 0;
+	/*height: 500px;*/
 }
 
 .net-title h3 {
@@ -668,7 +671,7 @@ footer {
 	font-size: 13px;
 }
 
-.frgot-lnk {
+.fld-lnk-sm {
 	float: right;
 	font-size: 11px;
 }
@@ -739,6 +742,24 @@ footer {
 	font-size: 28px;
 }
 
+/**/
 
+.bootstrap-tagsinput { 
+	width: 100%; 
+	min-height: 45px;
+	border-radius: 0 !important;
+	padding: 10px 10px;
+}
 
+.label-info {
+	background-color: #cc181e !important;
+}
+
+.term-con {
+	text-align: center;
+}
+
+.term-con input[type=checkbox] {
+	margin: 0 20px 20px 20px;
+}
 

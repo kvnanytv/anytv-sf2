@@ -28,7 +28,7 @@
 							</div>
 						</div>
 						<div class="col-lg-7">							
-							<img src="images/mac-monitor.png">            							
+							<img src="images/mac-monitor.png" class="img-responsive">            							
 							
 						</div>
 					</div>

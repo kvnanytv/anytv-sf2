@@ -18,7 +18,7 @@
 							<p><strong>Username</strong></p>
 							<input type="text" class="form-control brdrrad-0" autofocus>
 							<div class="cl-20"></div>
-							<p style="float: left"><strong>Password</strong></p><span class="frgot-lnk"><a href="#">Forgot password?</a></span>                  
+							<p style="float: left"><strong>Password</strong></p><span class="fld-lnk-sm"><a href="#">Forgot password?</a></span>                  
 							<input type="password" class="form-control brdrrad-0">              
 							<div class="cl-20"></div>
 							<form action="">
@@ -29,7 +29,7 @@
 								<a class="btn btn-lg btn-primary btn-block btn-create" href="#"><strong>CREATE AN ACCOUNT</strong></a>
 							</div>
 					</div>
-					<p class="txt-default">View our <a href="">Privacy Policy</a></p>    
+					<p class="txt-default">View our <a href="" target="_blank">Privacy Policy</a></p>    
 			</div>
 
 			<div class="col-lg-7 ft-game">

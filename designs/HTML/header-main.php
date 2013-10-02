@@ -27,7 +27,8 @@
 
 
   <!-- Bootstrap -->
-    <link href="css/bootstrap/bootstrap.css" rel="stylesheet"> 
+    <link href="css/bootstrap/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-select.css">
 
 
 </head>
