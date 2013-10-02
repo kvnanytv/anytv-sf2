@@ -74,4 +74,13 @@ class OfferRepository extends EntityRepository
         
         return $query->getSingleScalarResult();
     }
+    
+    public function getMaxOfferId()
+    {    
+        $query = $this->createQueryBuilder('o')
+                      ->select('max(o.offerId)')
+                      ->getQuery();
+        
+        return $query->getSingleScalarResult();
+    }
 }

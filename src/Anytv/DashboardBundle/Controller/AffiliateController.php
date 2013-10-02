@@ -19,6 +19,7 @@ class AffiliateController extends Controller
         $country_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Country');
         $session = $this->get('session');
         $translator = $this->get('translator');
+        $max_affiliate_id = $repository->getMaxAffiliateId();
         
         $countries_choices = array();
         $countries = $country_repository->findAll();
@@ -57,7 +58,7 @@ class AffiliateController extends Controller
             $manager = $this->getDoctrine()->getManager();
           
             $hasoffers = $this->get('hasoffers');
-            $affiliates_data = $hasoffers->getAffiliates();
+            $affiliates_data = $hasoffers->getAffiliates($max_affiliate_id);
             
             foreach($affiliates_data as $affiliate_data)
             {
@@ -243,7 +244,7 @@ class AffiliateController extends Controller
         $total_affiliates = $repository->countAllAffiliates($session->get('affiliate_keyword', null), $session->get('affiliate_country', null), $session->get('affiliate_status', 'active'));
         $total_pages = ceil($total_affiliates / $items_per_page);
         
-        return $this->render('AnytvDashboardBundle:Affiliate:index.html.twig', array('title'=>$translator->trans('Affiliates'), 'affiliates'=>$affiliates, 'total_affiliates'=>$total_affiliates, 'page'=>$page, 'total_pages'=>$total_pages, 'form'=>$form->createView()));
+        return $this->render('AnytvDashboardBundle:Affiliate:index.html.twig', array('title'=>$translator->trans('Affiliates'), 'affiliates'=>$affiliates, 'total_affiliates'=>$total_affiliates, 'page'=>$page, 'total_pages'=>$total_pages, 'form'=>$form->createView(), 'max_affiliate_id'=>$max_affiliate_id));
     }
     
     public function resetAction()

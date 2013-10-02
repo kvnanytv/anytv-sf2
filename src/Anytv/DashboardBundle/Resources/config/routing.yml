@@ -22,13 +22,6 @@ profile_company_edit:
     requirements:
         _locale:  %anytv.locales%
         
-profile_offers:
-    path:      /{_locale}/offers/{page}
-    defaults:  { _controller: AnytvDashboardBundle:Offer:profileOffers, _locale: en, page: 1 }
-    requirements:
-        _locale:  %anytv.locales%
-        page:  \d+
-        
 profile_offer_view:
     path:      /{_locale}/offers/view/{id}
     defaults:  { _controller: AnytvDashboardBundle:Offer:profileOfferView, _locale: en }
@@ -100,6 +93,13 @@ offer_groups:
 offer_group_view:
     path:      /{_locale}/admin/offer_groups/view/{id}
     defaults:  { _controller: AnytvDashboardBundle:OfferGroup:view, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        page:  \d+
+        
+offer_group_edit:
+    path:      /{_locale}/admin/offer_groups/edit/{id}
+    defaults:  { _controller: AnytvDashboardBundle:OfferGroup:edit, _locale: en }
     requirements:
         _locale:  %anytv.locales%
         page:  \d+

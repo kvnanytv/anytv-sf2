@@ -8,9 +8,10 @@ use Symfony\Component\Security\Core\SecurityContext;
 
 class SecurityController extends Controller
 {
-    public function loginAction(Request $request)
+    public function loginAction(Request $request, $user_type)
     {
         $offer_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
+        $offer_group_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:OfferGroup');
         $session = $request->getSession();
 
         // get the login error if there is one
@@ -25,22 +26,26 @@ class SecurityController extends Controller
         }
         
         $featured_offer = $offer_repository->findOneBy(array('isFeatured'=>1));
+        $offer_group = null;
+        if($featured_offer)
+        {
+          $offer_group = $offer_group_repository->findOneOfferGroupByOffer($featured_offer->getId());   
+        }
         
-        return $this->render('AnytvDashboardBundle:Security:login.html.twig', array('username' => $session->get(SecurityContext::LAST_USERNAME), 'password'=>'', 'error' => $error, 'form_action'=>'login_hasoffers', 'featured_offer'=>$featured_offer));
+        return $this->render('AnytvDashboardBundle:Security:login.html.twig', array('username' => $session->get(SecurityContext::LAST_USERNAME), 'password'=>'', 'error' => $error, 'user_type'=>$user_type, 'form_action'=>'login_hasoffers', 'featured_offer'=>$featured_offer, 'offer_group'=>$offer_group));
     }
     
     public function loginHasoffersAction(Request $request)
     {
         $session = $request->getSession();
         $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:AffiliateUser');
-        $offer_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
         
         $username = $request->get('_username');
         $password = $request->get('_password');
+        $user_type = $request->get('user_type');
         
         $hasoffers = $this->get('hasoffers');
-        $db_user_type = 'affiliate_user';
-        $auth_results = $hasoffers->authenticateUser($username, $password, $db_user_type);
+        $auth_results = $hasoffers->authenticateUser($username, $password, $user_type);
         
         $status = $auth_results['status'];
         $httpStatus = $auth_results['httpStatus'];
@@ -48,46 +53,43 @@ class SecurityController extends Controller
         $errors = $auth_results['errors'];
         $errorMessage = $auth_results['errorMessage'];
         
-        $form_action = 'login_hasoffers';
+        $login_passed = false;
         
         if(($status == 1) && ($httpStatus == 200) && !$errors && !$errorMessage)
         {
-           $user_type = $data->user_type;
+           $data_user_type = $data->user_type;
            $user_id = $data->user_id;
            $user_status = $data->user_status;
            $account_status = $data->account_status;
            
-           if(($user_type == $db_user_type) && $user_id && ($user_status == 'active') && ($account_status == 'active'))
+           if(($data_user_type == $user_type) && $user_id && ($user_status == 'active') && ($account_status == 'active'))
            {
-             if($affiliate_user = $repository->findOneByaffiliateUserId($user_id))
+             if(($affiliate_user = $repository->findOneByaffiliateUserId($user_id)) && $affiliate_user->getIsActive())
              {
-               //$affiliate_user_password = $affiliate_user->getPassword();
-               
-               //if(!$affiliate_user_password)
-               //{
-                 $factory = $this->get('security.encoder_factory');
-                 $manager = $this->getDoctrine()->getManager();
+               $factory = $this->get('security.encoder_factory');
+               $manager = $this->getDoctrine()->getManager();
             
-                 $affiliate_user->setPasswordDecoded($password); 
-                 $encoder = $factory->getEncoder($affiliate_user);
-                 $hashed_password = $encoder->encodePassword($password, $affiliate_user->getSalt());
-                 $affiliate_user->setPassword($hashed_password);
+               $affiliate_user->setPasswordDecoded($password); 
+               $encoder = $factory->getEncoder($affiliate_user);
+               $hashed_password = $encoder->encodePassword($password, $affiliate_user->getSalt());
+               $affiliate_user->setPassword($hashed_password);
                  
-                 $affiliate_user->setLastLogin(new \DateTime());
+               $affiliate_user->setLastLogin(new \DateTime());
                  
-                 $manager->flush();
-               //}
+               $manager->flush();
                
-               $form_action = 'login_check';    
+               $login_passed = true;
              }
            }
-           
-           
         }
         
-        $featured_offer = $offer_repository->findOneBy(array('isFeatured'=>1));
+        if(!$login_passed)
+        {
+          $errorMessage = $errorMessage ? $errorMessage : 'User does not exist.';
+          $this->get('session')->getFlashBag()->add('login_error', $errorMessage);
+          return $this->redirect($this->generateUrl('login', array('user_type'=>$user_type)));   
+        }
         
-        
-        return $this->render('AnytvDashboardBundle:Security:login.html.twig', array('username'=>$username, 'password'=>$password, 'error'=>$errorMessage, 'form_action'=>$form_action, 'featured_offer'=>$featured_offer));
+        return $this->render('AnytvDashboardBundle:Security:login.html.twig', array('username'=>$username, 'password'=>$password, 'form_action'=>'login_check'));
     }
 }

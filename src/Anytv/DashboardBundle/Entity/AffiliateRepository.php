@@ -131,4 +131,13 @@ class AffiliateRepository extends EntityRepository
       
       return $query->getResult();
     }
+    
+    public function getMaxAffiliateId()
+    {    
+        $query = $this->createQueryBuilder('a')
+                      ->select('max(a.affiliateId)')
+                      ->getQuery();
+        
+        return $query->getSingleScalarResult();
+    }
 }

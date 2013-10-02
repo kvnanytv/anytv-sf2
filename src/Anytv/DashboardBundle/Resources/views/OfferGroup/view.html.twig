@@ -7,9 +7,13 @@
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
     {{ parent() }}
-    
+    <em><a href="{{ path('offer_group_edit', { 'id' : offer_group.id }) }}" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em>
 
     <h1 class="title">{{ title }}<p>dashboard.tm ID: {{ offer_group.offerGroupId }} - ({{ offer_group_status }})</p></h1>
+    
+    {% if(offer_group.thumbnail) %}
+      <img src="{{ asset(offer_group.getWebPath()) }}" alt="{{ offer_group }}" style="width:100px" />
+    {% endif %}
     
     <div class="symfony-blocks-welcome">
       

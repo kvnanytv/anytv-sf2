@@ -10,15 +10,15 @@ anytv_dashboard:
     resource: "@AnytvDashboardBundle/Resources/config/routing.yml"
     prefix:   /dashboard
     
-login:
-    path:  /login/{_locale}
-    defaults: { _controller: AnytvDashboardBundle:Security:login, _locale: en }
-    requirements:
-        _locale:  %anytv.locales%
-        
 login_hasoffers:
     path:  /login/hasoffers/{_locale}
     defaults: { _controller: AnytvDashboardBundle:Security:loginHasoffers, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+    
+login:
+    path:  /login/{user_type}/{_locale}
+    defaults: { _controller: AnytvDashboardBundle:Security:login, _locale: en, user_type: affiliate_user }
     requirements:
         _locale:  %anytv.locales%
         

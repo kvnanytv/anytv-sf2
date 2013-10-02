@@ -16,6 +16,7 @@ class OfferController extends Controller
         $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
         $session = $this->get('session');
         $translator = $this->get('translator');
+        $max_offer_id = $repository->getMaxOfferId();
         
         $form = $this->createFormBuilder(array('offer_keyword'=>$session->get('offer_keyword'), 'offer_status'=>$session->get('offer_status', 'active')))
          ->add('offer_keyword', 'text', array('required'=>false))
@@ -42,9 +43,9 @@ class OfferController extends Controller
             $offer_group_repository = $manager->getRepository('AnytvDashboardBundle:OfferGroup');
             $country_repository = $manager->getRepository('AnytvDashboardBundle:Country');
             $countries = $country_repository->findAll();
-          
+            
             $hasoffers = $this->get('hasoffers');
-            $offers_data = $hasoffers->getOffers();
+            $offers_data = $hasoffers->getOffers($max_offer_id);
         
             foreach($offers_data as $offer_data)
             {
@@ -209,8 +210,10 @@ class OfferController extends Controller
         $offers = $repository->findAllOffers($page, $items_per_page, $order_by, $order, $session->get('offer_keyword', null), $session->get('offer_status', 'active'));
         $total_offers = $repository->countAllOffers($session->get('offer_keyword', null), $session->get('offer_status', 'active'));
         $total_pages = ceil($total_offers / $items_per_page);
+        
+        
        
-        return $this->render('AnytvDashboardBundle:Offer:index.html.twig', array('title'=>$translator->trans('Offers'), 'offers'=>$offers, 'total_offers'=>$total_offers, 'page'=>$page, 'total_pages'=>$total_pages, 'form'=>$form->createView()));
+        return $this->render('AnytvDashboardBundle:Offer:index.html.twig', array('title'=>$translator->trans('Offers'), 'offers'=>$offers, 'total_offers'=>$total_offers, 'page'=>$page, 'total_pages'=>$total_pages, 'form'=>$form->createView(), 'max_offer_id'=>$max_offer_id));
     }
     
     public function resetAction()
@@ -336,22 +339,6 @@ class OfferController extends Controller
       
       return $this->render('AnytvDashboardBundle:Offer:playNowLink.html.twig', array('tracking_link'=>$tracking_link));
     }
-    
-    public function profileOffersAction(Request $request, $page)
-    {
-      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
-      $translator = $this->get('translator');
-      
-      $items_per_page = 10;
-      $order_by = 'name';
-      $order = 'ASC';
-        
-      $offers = $repository->findAllOffers($page, $items_per_page, $order_by, $order, null, 'active');
-      $total_offers = $repository->countAllOffers(null, 'active');
-      $total_pages = ceil($total_offers / $items_per_page);
-
-      return $this->render('AnytvDashboardBundle:Offer:profileOffers.html.twig', array('title'=>$translator->trans('Offers'), 'offers'=>$offers, 'total_offers'=>$total_offers, 'page'=>$page, 'total_pages'=>$total_pages));
-    }   
     
     public function profileOfferViewAction($id)
     {

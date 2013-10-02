@@ -495,11 +495,11 @@ input:-moz-placeholder { font-style:; }
 /********************** Section 3: Networks *******************/
 
 #networks {
-	background-image: url(../images/grow.jpg);
+	background-image: url(../images/grow-2.jpg);
 	background-attachment: fixed;
 	background-size: cover;	
+	background-position: bottom;
 	margin: 0;
-	
 }
 
 .net-title h3 {
@@ -510,7 +510,7 @@ input:-moz-placeholder { font-style:; }
 }
 
 #net-col {
-	/*height: 350px;*/
+	height: 350px;
 	background-color: #fff;
 	padding: 20px;
 	margin: 20px 0;
@@ -539,10 +539,10 @@ input:-moz-placeholder { font-style:; }
 	padding-top: 20px;
 	margin: 0;
 
-	background-image: url(../images/grass.jpg);
+	background-image: url(../images/grass-1.jpg);
 	background-attachment: fixed;
 	background-size: cover;	
-	background-position: bottom;
+	background-position: top;
 
 }
 
@@ -567,6 +567,23 @@ footer {
 	background-color: #f1f1f1;
 	border-top: 1px solid #d7d7d7 ;
 	margin: 0 !important;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+	.page-wrap {
+		margin-bottom: -90px !important;
+	}
+
+	footer, .page-wrap:after {
+		height: 90px !important;
+	}
+
+	.cpyrght-txt, .sm-icons{
+		float: left;
+		width: 100%;
+		text-align: center !important;
+	}
+
 }
 
 .cpyrght-txt {
@@ -670,6 +687,18 @@ footer {
 	border: none !important;
 
 }
+
+.al-mid {
+	text-align: center;
+}
+
+.al-mid h3 {
+	font-family: 'Open Sans', Arial, Helvetica;	
+	font-weight: 300;
+	font-size: 48px;
+	text-shadow: 0px 1px 0px rgba(255, 255, 255, 1);
+}
+
 
 /******************************* FAQs **********************************/
 
