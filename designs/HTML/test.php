@@ -35,27 +35,28 @@
 										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>								
 										Please fill up the field below.
 									</div>							
-									<p><strong>Email Address</strong></p>
-									<input type="email" class="form-control input-lg brdrrad-0" placeholder="" autofocus>
+									<p><strong>Email Address</strong> *</p>									
+									<input type="email" class="form-control input-lg brdrrad-0" placeholder="" autofocus>									
 									<div class="cl-20"></div>
 
 									<div class="alert alert-danger">
 										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>								
 										Password did not match
 									</div>										
-									<p><strong>Password</strong></p>               
+									<p style="float: left"><strong>Password</strong> *</p><span class="fld-lnk-sm"><label  for ="passwordStrength" class="help-inline" name="passwordStrengthLabel" id="passwordStrengthLabel" ></label></span>               
 									<input id="passwordStrength" type="password" class="form-control input-lg passwordTarget control-group brdrrad-0">	    
+									
 									<div class="cl-20"></div>
 
-									<p><strong>Confirm Password</strong></p>               
+									<p style="float: left"><strong>Confirm Password</strong> *</p>               
 									<input type="password" class="form-control input-lg brdrrad-0">         
 									<div class="cl-20"></div>								
 
-									<p><strong>First name</strong></p>               
+									<p><strong>First name</strong> *</p>               
 									<input type="text" class="form-control input-lg brdrrad-0">             
 									<div class="cl-20"></div>
 
-									<p><strong>Last name</strong></p>               
+									<p><strong>Last name</strong> *</p>               
 									<input type="text" class="form-control input-lg brdrrad-0">         
 									<div class="cl-20"></div>	
 
@@ -63,11 +64,11 @@
 
 								<!-- Account Details -->
 								<div class="well">
-									<p><strong>Company/Name</strong></p>
+									<p><strong>Company Name</strong> *</p>
 									<input type="email" class="form-control input-lg brdrrad-0" autofocus>
 									<div class="cl-20"></div>
 
-									<p><strong>Address 1</strong></p>               
+									<p><strong>Address 1</strong> *</p>               
 									<input type="text" class="form-control input-lg brdrrad-0">         
 									<div class="cl-20"></div>
 
@@ -75,11 +76,11 @@
 									<input type="text" class="form-control input-lg brdrrad-0">         
 									<div class="cl-20"></div>	
 
-									<p><strong>City</strong></p>               
+									<p><strong>City</strong> *</p>               
 									<input type="text" class="form-control input-lg brdrrad-0">         
 									<div class="cl-20"></div>								
 
-									<p><strong>Country</strong></p>
+									<p><strong>Country</strong> *</p>
 										<select class="selectpicker" data-live-search="true" data-width="100%">
 											<option>Potato</option>
 										</select>
@@ -87,12 +88,12 @@
 
 									<div class="row">
 									<div class="col-md-6">
-									<p><strong>Zipcode</strong></p>               
+									<p><strong>Zipcode</strong> *</p>               
 									<input type="text" class="form-control input-lg brdrrad-0">         
 									<div class="cl-20"></div>
 									</div>
 									<div class="col-md-6">
-									<p><strong>Region</strong></p>               
+									<p><strong>Region</strong> *</p>               
 									<input type="text" class="form-control input-lg brdrrad-0">         
 									<div class="cl-20"></div>
 									</div>																																	
@@ -105,6 +106,10 @@
 									<p><strong>Your YouTube Channels</strong></p>
 			            	<input class="form-control" type="text" value="" data-role="tagsinput"/>
 									<div class="cl-20"></div>
+
+									<p><strong>Link to your best video?</strong></p>
+			            	<input class="form-control input-lg brdrrad-0" type="text" />
+									<div class="cl-20"></div>									
 
 									<p><strong>YouTube Network</strong></p>
 			            	<input class="form-control input-lg brdrrad-0" type="text" />
@@ -130,12 +135,6 @@
 										</div>
 									</div>
 									<div class="cl-20"></div>
-
-
-									<p><strong>Link to your best video?</strong></p>
-			            	<input class="form-control input-lg brdrrad-0" type="text" />
-									<div class="cl-20"></div>
-
 
 									<p><strong>Skype Name</strong></p>
 			            	<input class="form-control input-lg brdrrad-0" type="text" />

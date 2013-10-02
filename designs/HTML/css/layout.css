@@ -671,7 +671,7 @@ footer {
 	font-size: 13px;
 }
 
-.frgot-lnk {
+.fld-lnk-sm {
 	float: right;
 	font-size: 11px;
 }
@@ -752,7 +752,7 @@ footer {
 }
 
 .label-info {
-	background-color: #333 !important;
+	background-color: #cc181e !important;
 }
 
 .term-con {
@@ -762,3 +762,4 @@ footer {
 .term-con input[type=checkbox] {
 	margin: 0 20px 20px 20px;
 }
+
