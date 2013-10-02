@@ -57,25 +57,17 @@
 <div id="sub-nav" class="dashbrd">
 <div class="container">
 <nav class="subnav-cllps db-lnks">
-{% if is_granted('ROLE_ADMIN') %}
-
-  <ul id="nav">
-    <li><a href="{{ path('advertisers') }}" title="{% trans %}Advertisers{% endtrans %}">{% trans %}Advertisers{% endtrans %}</a></li>
-    <li><a href="{{ path('offer_groups') }}" title="{% trans %}Offer Groups{% endtrans %}">{% trans %}Offer Groups{% endtrans %}</a></li>
-    <li><a href="{{ path('offers') }}" title="{% trans %}Offers{% endtrans %}">{% trans %}Offers{% endtrans %}</a></li>
-    <li><a href="{{ path('affiliates') }}" title="{% trans %}Affiliates{% endtrans %}">{% trans %}Affiliates{% endtrans %}</a></li>
-    <li><a href="{{ path('traffic_referrals') }}" title="{% trans %}Traffic Referrals{% endtrans %}">{% trans %}Traffic Referrals{% endtrans %}</a></li>
-    <li><a href="{{ path('countries') }}" title="{% trans %}Countries{% endtrans %}">{% trans %}Countries{% endtrans %}</a></li>
-  </ul>
-
-{% else %}
-
   <ul id="nav">
     <li><a href="{{ path('profile_view') }}" title="{% trans %}My Profile{% endtrans %}">{% trans %}My Profile{% endtrans %}</a></li>
-    <li><a href="{{ path('profile_offers') }}" title="{% trans %}Offers{% endtrans %}">{% trans %}Offers{% endtrans %}</a></li>
+    {% if is_granted('ROLE_ADMIN') %}
+      <li><a href="{{ path('advertisers') }}" title="Advertisers">Advertisers</a></li>
+      <li><a href="{{ path('offer_groups') }}" title="Offer Groups">Offer Groups</a></li>
+      <li><a href="{{ path('offers') }}" title="Offers">Offers</a></li>
+      <li><a href="{{ path('affiliates') }}" title="Affiliates">Affiliates</a></li>
+      <li><a href="{{ path('traffic_referrals') }}" title="Traffic Referrals">Traffic Referrals</a></li>
+      <li><a href="{{ path('countries') }}" title="Countries">Countries</a></li>
+    {% endif %} 
   </ul>
-
-{% endif %}
 </nav>
 </div>
 </div>
@@ -84,25 +76,6 @@
 {% block javascripts %}
   {{ parent() }}
   <script src="{{ asset('bundles/anytvdashboard/js/profile_tabs.js') }}"></script>
-  <script>
-    $(document).ready(function(){
-      $("a#cpy-ref-btn").zclip({
-        path:'/bundles/anytvmain/js/zclip/ZeroClipboard.swf',
-        copy:$('#ref-lnk').val(),
-        beforeCopy:function(){
-          $('#ref-lnk').css('background','#2dc575');
-          $('#ref-lnk').css('color','white');
-          // $(this).css('color','orange');
-        },
-        afterCopy:function(){
-          $('#ref-link').css('background','green');
-          // $(this).css('color','purple');
-          $(this).innerHTML("COPIED");
-          $(this).next('.check').show();
-        }
-      });
-    });
-  </script>
 {% endblock %}
      
     

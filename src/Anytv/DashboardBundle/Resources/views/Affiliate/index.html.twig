@@ -7,7 +7,7 @@
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
     {{ parent() }}
-    <h1 class="title">{{ title }}</h1>
+    <h1 class="title">{{ title }}</h1><span>{{ max_affiliate_id }}</span>
     
     <p>&nbsp;</p>
     <div style="margin-bottom: 20px">

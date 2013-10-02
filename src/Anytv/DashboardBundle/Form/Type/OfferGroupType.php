@@ -6,30 +6,25 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class OfferType extends AbstractType
+class OfferGroupType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name')
-            ->add('description')
-            ->add('advertiser')
-            ->add('offerUrl')
-            ->add('previewUrl')
-            ->add('status', 'choice', array('choices' => array('active' => 'active', 'paused' => 'paused', 'pending' => 'pending', 'expired' => 'expired', 'deleted' => 'deleted')))
-            ->add('expirationDate')
-            ->add('isFeatured')
+            ->add('status', 'choice', array('choices' => array('active' => 'active', 'deleted' => 'deleted')))
+            ->add('file')
             ->add('save', 'submit');
     }
 
     public function getName()
     {
-        return 'offer';
+        return 'offer_group';
     }
     
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
       $resolver->setDefaults(array(
-        'data_class' => 'Anytv\DashboardBundle\Entity\Offer',
+        'data_class' => 'Anytv\DashboardBundle\Entity\OfferGroup',
       ));
     }
 }

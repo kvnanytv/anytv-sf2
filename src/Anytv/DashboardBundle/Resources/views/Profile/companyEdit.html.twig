@@ -6,27 +6,28 @@
 
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
-
-
+    
+                
 <section id="content">
   <div class="container">
-  <div class="row-fluid">
-    <div class="col-lg-4">
-    <div class="panel panel-default user-panel">
+    <div class="row">
+      <div class="col-lg-3">
+        {{ render(controller('AnytvDashboardBundle:Profile:idCard', {'affiliate': affiliate, 'affiliate_user': affiliate_user})) }}	
+      <div class="cl-20"></div>
+      </div>
+      <div class="col-lg-9">
+				<div class="tabbable">
+					
+					<div class="tab-content">
+						
+						<div class="panel panel-default user-panel">
       <div class="panel-body">
-            
-             <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  {% if(affiliate.thumbnail) %}
+           
+          
+           {% if(affiliate.thumbnail) %}
            <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ affiliate.company }}" />
          {% endif %}
-                  <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a href="#">My Account</a></li>
-                  <li><a href="#">Settings</a></li>
-                </ul>
-              </div>
+                 
 
           <em><a href="{{ path('profile_view') }}" title="{% trans %}View{% endtrans %}">{% trans %}view{% endtrans %}</a></em>
                 
@@ -49,20 +50,30 @@
          
        
        {{ form_end(form) }}
-           
+             
+                
+                  
+                  
+                  
+                
+                
+             
+            
+            
+
       </div>
     </div>
+                                            
+					</div>
+				</div>				
 
-    <div class="col-lg-8">
-      
-    </div>  
-  </div>
-  </div>
+			</div> 
+		</div>
+	</div>
+
 </div>
 </section>
-    
-                
-      
+
                 
                
               

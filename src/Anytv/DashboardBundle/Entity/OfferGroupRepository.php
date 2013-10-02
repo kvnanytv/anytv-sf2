@@ -37,4 +37,15 @@ class OfferGroupRepository extends EntityRepository
         
         return $query->getSingleScalarResult();
     }
+    
+    public function findOneOfferGroupByOffer($offer_id)
+    {
+        $query = $this->createQueryBuilder('og')
+                 ->join('og.offers', 'o')
+                 ->where("o.id = :offer_id")
+                 ->setParameters(array('offer_id'=>$offer_id))
+                 ->getQuery();
+        
+        return $query->getSingleResult();
+    }
 }

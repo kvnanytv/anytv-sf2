@@ -17,16 +17,11 @@
 	<a id="cpy-ref-btn" class="btn btn-default">Copy Link</a>
       </div>
     </div>
+    
     <div id="user-menus">
       <ul class="nav nav-pills nav-stacked">
-        <li class="active">
-          <a href="#">
-            <span class="badge pull-right">42</span>
-	    Dashboard
-	  </a>
-	</li>
-	<li><a href="{{ path('profile_view') }}">{% trans %}My Profile{% endtrans %}</a></li>
-	<li><a href="{{ path('profile_offers') }}">{% trans %}Offers{% endtrans %}</a></li>						  
+	<li class="active"><a href="{{ path('profile_view') }}">{% trans %}My Profile{% endtrans %}</a></li>
+	<li><a href="{{ path('anytv_dashboard_homepage') }}">{% trans %}Offers{% endtrans %}</a></li>						  
       </ul>
     </div>
   </div> 

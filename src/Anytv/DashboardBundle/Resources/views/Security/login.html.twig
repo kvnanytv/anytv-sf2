@@ -7,41 +7,6 @@
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
     
-{% if(false and app.debug) %}
-  <section id="content">
-    <div class="container">
-      <div id="con-body" class="row">
-        <div class="col-lg-5">
-            <div class="panel panel-default lgin-panel">
-              <div class="panel-heading">
-                <h3 class="panel-title"><strong>{% trans %}Dashboard{% endtrans %} {% trans %}Debug Login{% endtrans %}</strong></h3>
-              </div>
-              <div class="panel-body">
-                {% if (error) %}
-                <div class="alert alert-danger alert-dismissable">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <strong>{{ error }}</strong>
-                </div>
-                {% endif %}
-                <form action="{{ path('login_check') }}" method="post" class="form-signin" id="login_form">
-                    <p><strong>{% trans %}Email{% endtrans %}</strong></p>
-                    <input type="text" id="username" name="_username" value="{{ username }}" class="form-control brdrrad-0" autofocus>
-                    <div class="cl-20"></div>
-                    <p style="float: left"><strong>{% trans %}Password{% endtrans %}</strong></p><span class="frgot-lnk"></span>
-                    <input type="password" id="password" name="_password" class="form-control brdrrad-0">
-                    <div class="cl-20"></div>
-                    <button type="submit" class="btn btn-lg btn-primary btn-block"><strong>{% trans %}Login{% endtrans %}</strong></button>       
-                </form>
-                <div class="brdr-h"></div>
-              </div>
-            </div>
-        </div>
-          
-        </div>
-      </div>
- </section>   
-{% endif %}
-
 {% if(form_action == 'login_hasoffers') %}
   <section id="content">
     <div class="container">
@@ -52,17 +17,18 @@
                 <h3 class="panel-title"><strong>{% trans %}Dashboard{% endtrans %} {% trans %}Login{% endtrans %}</strong></h3>
               </div>
               <div class="panel-body">
-                {% if (error) %}
-                <div class="alert alert-danger alert-dismissable">
+                {% for flashMessage in app.session.flashbag.get('login_error') %}
+                  <div class="alert alert-danger alert-dismissable">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <strong>{{ error }}</strong>
-                </div>
-                {% endif %}
+                    <strong>{{ flashMessage }}</strong>
+                  </div>
+                {% endfor %}
                 <form action="{{ path(form_action) }}" method="post" class="form-signin" id="login_form">
+                    <input type="hidden" name="user_type" value="{{ user_type }}">
                     <p><strong>{% trans %}Email{% endtrans %}</strong></p>
                     <input type="text" id="username" name="_username" value="{{ username }}" class="form-control brdrrad-0" autofocus>
                     <div class="cl-20"></div>
-                    <p style="float: left"><strong>{% trans %}Password{% endtrans %}</strong></p><span class="frgot-lnk"><a href="{{ path('login')}}">{% trans %}Forgot Password?{% endtrans %}</a></span>
+                    <p style="float: left"><strong>{% trans %}Password{% endtrans %}</strong></p><span class="frgot-lnk"><a href="{{ path('login')}}" tabindex="5">{% trans %}Forgot Password?{% endtrans %}</a></span>
                     <input type="password" id="password" name="_password" class="form-control brdrrad-0">
                     <div class="cl-20"></div>
                     <button type="submit" class="btn btn-lg btn-primary btn-block"><strong>{% trans %}Login{% endtrans %}</strong></button>       
@@ -70,7 +36,7 @@
                 <div class="brdr-h"></div>
                 <p align="center">{% trans %}Don't have an account yet?{% endtrans %}</p>
                 <form action="">
-                  <button type="submit" class="btn btn-lg btn-primary btn-block"><strong>CREATE AN ACCOUNT</strong></button>
+                  <button type="submit" class="btn btn-lg btn-primary btn-block"><strong>{% trans %}CREATE AN ACCOUNT{% endtrans %}</strong></button>
                 </form>
               </div>
             </div>
@@ -78,8 +44,8 @@
         </div>
           <div class="col-lg-7 ft-game">
           {% if(featured_offer) %}
-          {% if(featured_offer.thumbnail) %}
-            <img src="{{ asset(featured_offer.getWebPath()) }}" alt="{{ featured_offer }}" />
+          {% if(offer_group and offer_group.thumbnail) %}
+            <img src="{{ asset(offer_group.getWebPath()) | apply_filter('featured_offer') }}" alt="{{ featured_offer }}" />
           {% endif %}
           <p><strong>{{ featured_offer }}</strong> {% trans %}Countries{% endtrans %}: {{ featured_offer.countryCount }}</p>
           <p style="font-size: 13px !important; font-family: Arial, Helvetica, sans-serif;">{{ featured_offer.description }}</p> 

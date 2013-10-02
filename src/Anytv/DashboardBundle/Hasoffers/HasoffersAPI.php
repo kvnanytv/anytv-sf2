@@ -20,6 +20,22 @@ class HasoffersAPI
         );
     }
     
+    public function getAdvertisers()
+    {
+        $this->api_params['Target'] = 'Advertiser';
+        $this->api_params['Method'] = 'findAll';
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = (array) json_decode( $result );
+        $response = (array) $result['response'];
+        $data = (array) $response['data'];
+        
+        return $data;
+    }
+    
     public function getOfferGroups()
     {
         $this->api_params['Target'] = 'Application';
@@ -36,10 +52,14 @@ class HasoffersAPI
         return $data;
     }
 
-    public function getOffers()
+    public function getOffers($max_offer_id)
     {
         $this->api_params['Target'] = 'Offer';
         $this->api_params['Method'] = 'findAll';
+        if($max_offer_id)
+        {
+          $this->api_params['filters'] = array('id' => array('GREATER_THAN' => $max_offer_id));
+        }
         $this->api_params['contain'] = array('OfferCategory', 'Country', 'OfferGroup');
         $this->api_params['limit'] = 1000000;
         
@@ -77,10 +97,14 @@ class HasoffersAPI
         return $data;
     }
     
-    public function getAffiliates()
+    public function getAffiliates($max_affiliate_id)
     {
         $this->api_params['Target'] = 'Affiliate';
         $this->api_params['Method'] = 'findAll';
+        if($max_affiliate_id)
+        {
+          $this->api_params['filters'] = array('id' => array('GREATER_THAN' => $max_affiliate_id));
+        }
         $this->api_params['contain'] = array('AffiliateUser');
         $this->api_params['limit'] = 1000000;
         

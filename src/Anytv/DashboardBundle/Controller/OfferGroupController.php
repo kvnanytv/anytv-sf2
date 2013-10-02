@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 use Anytv\DashboardBundle\Entity\OfferGroup;
+use Anytv\DashboardBundle\Form\Type\OfferGroupType;
 
 class OfferGroupController extends Controller
 {
@@ -108,5 +109,37 @@ class OfferGroupController extends Controller
       $offers = $offer_group->getOffers();
 
       return $this->render('AnytvDashboardBundle:OfferGroup:view.html.twig', array('title'=>$offer_group, 'offer_group'=>$offer_group, 'offer_group_status'=>$translator->trans($offer_group->getStatus()), 'offers'=>$offers));
+    }
+    
+    public function editAction(Request $request, $id)
+    {
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:OfferGroup');
+      $translator = $this->get('translator');
+      
+      $offer_group = $repository->find($id);
+
+      if (!$offer_group) {
+        throw $this->createNotFoundException(
+            'No offer group found for id '.$id
+        );
+      }
+
+      $form = $this->createForm(new OfferGroupType(), $offer_group);
+
+      $form->handleRequest($request);
+
+      if ($form->isValid()) {
+        
+        $offer_group = $form->getData();
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $em->persist($offer_group);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('offer_group_view', array('id'=>$offer_group->getId())));
+      }
+
+      return $this->render('AnytvDashboardBundle:OfferGroup:edit.html.twig', array('title'=>$translator->trans('Edit Offer Group'), 'form'=>$form->createView(), 'offer_group'=>$offer_group));
     }
 }

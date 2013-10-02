@@ -33,6 +33,7 @@
          <th>{% trans %}Name{% endtrans %}</th>
          <th>{% trans %}Status{% endtrans %}</th>
          <th>{% trans %}Offer Count{% endtrans %}</th>
+         <th>{% trans %}Thumbnail{% endtrans %}</th>
        </tr>
        {% for offer_group in offer_groups %}
          <tr>
@@ -40,6 +41,13 @@
            <td><a href="{{ path('offer_group_view', { 'id' : offer_group.id }) }}" title="{{ offer_group }}">{{ offer_group }}</a></td>
            <td>{{ offer_group.status }}</a></td>
            <td>{{ offer_group.offerCount }}</a></td>
+           <td>
+           {% if(offer_group.thumbnail) %}
+             <img src="{{ asset(offer_group.getWebPath()) }}" alt="{{ offer_group }}" style="width:100px" />
+           {% else %}
+             &nbsp;
+           {% endif %}
+           </td>
          </tr>
        {% endfor %} 
       </table>

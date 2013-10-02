@@ -3,7 +3,7 @@
     <form action="{{ path('profile_browse_offers') }}" onsubmit="submitForm(this, '{{ path('profile_browse_offers') }}'); return false;">
     <input type="hidden" name="offer_form_submitted" value="1">
     <div class="input-group input-group-lg">
-      <input type="text" name="offer_keyword" class="form-control input-lg" value="{{ offer_keyword }}" placeholder="Search Offers">
+      <input type="text" name="offer_keyword" class="form-control input-lg" value="{{ offer_keyword }}" placeholder="{% trans %}Search Offers{% endtrans %}">
       <span class="input-group-btn">
         <input class="btn btn-default" type="submit" value="Go!">
       </span>
@@ -12,7 +12,7 @@
     <div class="search-btns">				
       <div class="btn-group">
         <div class="btn-group">
-          <label>Browse by Category</label>
+          <label>{% trans %}Category{% endtrans %}</label>
           <select name="offer_category">
             <option value="">&nbsp;</option>
             {% for offer_category in offer_categories %}
@@ -21,7 +21,7 @@
           </select>
         </div>
 	<div class="btn-group">
-	  <label>Browse by Country</label>
+	  <label>B{% trans %}Country{% endtrans %}</label>
           <select name="offer_country">
             <option value="">&nbsp;</option>
             {% for country in countries %}
@@ -46,23 +46,17 @@
       <table class="table table-striped">							
         <thead>
           <tr>
-	    <th>Photo</th>
-            <th>Name</th>
-	    <th>Preview</th>
-            <th>Payout</th>
-	    <th>Play Now Link</th>
+            <th>{% trans %}Name{% endtrans %}</th>
+	    <th>{% trans %}Preview{% endtrans %}</th>
+            <th>{% trans %}Payout{% endtrans %}</th>
+	    <th>{% trans %}Play Now Link{% endtrans %}</th>
           </tr>
 	</thead>								
         <tbody>
           {% for offer in offers %}
 	  <tr>
-	    <td>
-              
-              <img src="{{ asset('bundles/anytvdashboard/images/default-offer-photo.jpg') }}">
-              
-            </td>
             <td>{{ offer }}</td>
-	    <td><a href="{{ offer.previewUrl }}" target=_blank">preview</a></td>
+	    <td><a href="{{ offer.previewUrl }}" target=_blank">{% trans %}preview{% endtrans %}</a></td>
 	    <td>${{ offer.defaultPayout }}</td>
 	    <td></td>
 	  </tr>
