@@ -65,23 +65,25 @@
               <li class="dropdown mrgn-left">
                   
                 {% block transmenu %}
-                   <a href="{{ path('anytv_main_homepage', { _locale: app.request.get('_locale', 'en') }) }}" class="dropdown-toggle" data-toggle="dropdown"><img src="{{ asset('bundles/anytvmain/images/'~app.request.get('_locale', 'en')~'.png') }}">&nbsp;<b class="caret"></b></a>
+                   <a href="{{ path('anytv_main_homepage', { _locale: app.request.get('_locale', 'en') }) }}" class="dropdown-toggle" data-toggle="dropdown">
+                   {% if(app.request.get('_locale', 'en') == 'zh') %}
+                     chinese
+                   {% else %}
+                     english
+                   {% endif %}
+                   &nbsp;<b class="caret"></b></a>
                    <ul class="dropdown-menu dd-height">
                      <li>
                        <a href="{{ path('anytv_main_homepage', { _locale: 'en' }) }}" title="English (US)">
-                         <img src="{{ asset('bundles/anytvmain/images/en.png') }}" alt="English (US)" />English (US)
+                         English
                        </a>
                      </li>
                      <li>
                        <a href="{{ path('anytv_main_homepage', { _locale: 'zh' }) }}" title="Chinese">
-                         <img src="{{ asset('bundles/anytvmain/images/zh.png') }}" alt="Chinese" />Chinese
+                         Chinese
                        </a>
                      </li>
-                     <li>
-                       <a href="{{ path('anytv_main_homepage', { _locale: 'nl' }) }}" title="Dutch">
-                         <img src="{{ asset('bundles/anytvmain/images/nl.png') }}" alt="Dutch" />Dutch
-                       </a>
-                     </li>
+                     
                    </ul>
                  {% endblock %}
                   
@@ -128,9 +130,13 @@
       {% trans %}Copyright 2013 any.TV Limited | All Rights Reserved{% endtrans %}    
     </div>
     <div class="sm-icons">
-    	
-    </div>
-  </div>
+    	<ul>
+        <li><a href="http://www.youtube.com/anyTVnetwork" target="_blank"><i class="icon-youtube icon-large" title="YouTube Channel"></i></a></li> 
+        <li><a href="https://www.facebook.com/anyTVnetwork" target="_blank"><i class="icon-facebook icon-large" title="Facebook"></i></a></li>
+        <li><a href="https://twitter.com/anyTVnetwork" target="_blank"><i class="icon-twitter icon-large" title="Twitter"></i></a></li>
+     </ul>
+   </div>
+ </div>
 </footer>
               
               

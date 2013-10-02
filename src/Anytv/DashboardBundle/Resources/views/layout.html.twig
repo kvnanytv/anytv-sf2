@@ -32,21 +32,22 @@
 {% endblock %}
   
 {% block transmenu %}
-<a href="{{ path('anytv_dashboard_homepage', { _locale: app.request.get('_locale', 'en') }) }}" class="dropdown-toggle" data-toggle="dropdown"><img src="{{ asset('bundles/anytvmain/images/'~app.request.get('_locale', 'en')~'.png') }}">&nbsp;<b class="caret"></b></a>
+<a href="{{ path('anytv_dashboard_homepage', { _locale: app.request.get('_locale', 'en') }) }}" class="dropdown-toggle" data-toggle="dropdown">
+{% if(app.request.get('_locale', 'en') == 'zh') %}
+  chinese
+{% else %}
+  english
+{% endif %}
+&nbsp;<b class="caret"></b></a>
 <ul class="dropdown-menu dd-height">
   <li>
     <a href="{{ path('anytv_dashboard_homepage', { _locale: 'en' }) }}" title="English (US)">
-      <img src="{{ asset('bundles/anytvmain/images/en.png') }}" alt="English (US)" />English (US)
+      English
     </a>
   </li>
   <li>
     <a href="{{ path('anytv_dashboard_homepage', { _locale: 'zh' }) }}" title="Chinese">
-      <img src="{{ asset('bundles/anytvmain/images/zh.png') }}" alt="Chinese" />Chinese
-    </a>
-  </li>
-  <li>
-    <a href="{{ path('anytv_dashboard_homepage', { _locale: 'nl' }) }}" title="Dutch">
-      <img src="{{ asset('bundles/anytvmain/images/nl.png') }}" alt="Dutch" />Dutch
+      Chinese
     </a>
   </li>
 </ul>
@@ -83,6 +84,25 @@
 {% block javascripts %}
   {{ parent() }}
   <script src="{{ asset('bundles/anytvdashboard/js/profile_tabs.js') }}"></script>
+  <script>
+    $(document).ready(function(){
+      $("a#cpy-ref-btn").zclip({
+        path:'/bundles/anytvmain/js/zclip/ZeroClipboard.swf',
+        copy:$('#ref-lnk').val(),
+        beforeCopy:function(){
+          $('#ref-lnk').css('background','#2dc575');
+          $('#ref-lnk').css('color','white');
+          // $(this).css('color','orange');
+        },
+        afterCopy:function(){
+          $('#ref-link').css('background','green');
+          // $(this).css('color','purple');
+          $(this).innerHTML("COPIED");
+          $(this).next('.check').show();
+        }
+      });
+    });
+  </script>
 {% endblock %}
      
     

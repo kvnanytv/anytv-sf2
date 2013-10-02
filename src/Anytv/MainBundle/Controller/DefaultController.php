@@ -20,47 +20,64 @@ class DefaultController extends Controller
     
     public function aboutAction(Request $request)
     {
-        return $this->render('AnytvMainBundle:Default:about.html.twig', array('title'=>'About'));
+        $translator = $this->get('translator');
+        
+        return $this->render('AnytvMainBundle:Default:about.html.twig', array('title'=>$translator->trans('What is any.TV?')));
     }
     
     public function brandingKitAction(Request $request)
     {
-        return $this->render('AnytvMainBundle:Default:brandingKit.html.twig', array('title'=>'Branding Kit'));
+        $translator = $this->get('translator');
+        
+        return $this->render('AnytvMainBundle:Default:brandingKit.html.twig', array('title'=>$translator->trans('Branding Kit')));
     }
     
     public function liveStreamHandbookAction(Request $request)
     {
-        return $this->render('AnytvMainBundle:Default:liveStreamHandbook.html.twig', array('title'=>'Live Stream Handbook'));
+        $translator = $this->get('translator');
+        
+        return $this->render('AnytvMainBundle:Default:liveStreamHandbook.html.twig', array('title'=>$translator->trans('Live Stream Handbook')));
     }
     
     public function recruiterHandbookAction(Request $request)
     {
-        return $this->render('AnytvMainBundle:Default:recruiterHandbook.html.twig', array('title'=>'Recruiter Handbook'));
+        $translator = $this->get('translator');
+        
+        return $this->render('AnytvMainBundle:Default:recruiterHandbook.html.twig', array('title'=>$translator->trans('Recruiter Handbook')));
     }
     
     public function joinOurTwitchTeamAction(Request $request)
     {
-        return $this->render('AnytvMainBundle:Default:joinOurTwitchTeam.html.twig', array('title'=>'Join Our Twitch Team'));
+        $translator = $this->get('translator');
+        
+        return $this->render('AnytvMainBundle:Default:joinOurTwitchTeam.html.twig', array('title'=>$translator->trans('Join our Twitch Team!')));
     }
     
     public function staffAction(Request $request)
     {
-        return $this->render('AnytvMainBundle:Default:staff.html.twig', array('title'=>'Staff'));
+        $translator = $this->get('translator');
+        
+        return $this->render('AnytvMainBundle:Default:staff.html.twig', array('title'=>$translator->trans('Staff')));
     }
     
     public function faqAction(Request $request)
     {
+        $faq_category_repository = $this->getDoctrine()->getRepository('AnytvMainBundle:FaqCategory');
         $translator = $this->get('translator');
         
-        return $this->render('AnytvMainBundle:Default:faq.html.twig', array('title'=>$translator->trans('FAQ')));
+        $faq_categories = $faq_category_repository->findAll();
+        foreach($faq_categories as $faq_category)
+        {
+          $faq_category->setName($translator->trans($faq_category));
+        }
+        
+        return $this->render('AnytvMainBundle:Default:faq.html.twig', array('title'=>$translator->trans('FAQ'), 'faq_categories'=>$faq_categories));
     }
     
     public function faqCategoryAction($id = null)
     {
         $faq_category_repository = $this->getDoctrine()->getRepository('AnytvMainBundle:FaqCategory');
         $faq_repository = $this->getDoctrine()->getRepository('AnytvMainBundle:Faq');
-        
-        $faq_categories = $faq_category_repository->findAll();
         
         $selected_faq_category = null;
         if($id)
@@ -78,17 +95,21 @@ class DefaultController extends Controller
         }
         
        
-        return $this->render('AnytvMainBundle:Default:faqCategory.html.twig', array('faq_categories'=>$faq_categories, 'selected_faq_category'=>$selected_faq_category, 'faqs'=>$faqs));
+        return $this->render('AnytvMainBundle:Default:faqCategory.html.twig', array('selected_faq_category'=>$selected_faq_category, 'faqs'=>$faqs));
     }
     
     public function faqSpreadsheetAction(Request $request)
     {
-        return $this->render('AnytvMainBundle:Default:faqSpreadsheet.html.twig', array('title'=>'FAQ Spreadsheet'));
+        $translator = $this->get('translator');
+        
+        return $this->render('AnytvMainBundle:Default:faqSpreadsheet.html.twig', array('title'=>$translator->trans('FAQ Spreadsheet')));
     }
     
     public function signupAction(Request $request)
     {
-        return $this->render('AnytvMainBundle:Default:signup.html.twig', array('title'=>'Affiliate Sign Up'));
+        $translator = $this->get('translator');
+        
+        return $this->render('AnytvMainBundle:Default:signup.html.twig', array('title'=>$translator->trans('Affiliate Sign Up')));
     }
     
     

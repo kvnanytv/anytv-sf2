@@ -10,6 +10,7 @@ class SecurityController extends Controller
 {
     public function loginAction(Request $request)
     {
+        $offer_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
         $session = $request->getSession();
 
         // get the login error if there is one
@@ -23,13 +24,16 @@ class SecurityController extends Controller
             $session->remove(SecurityContext::AUTHENTICATION_ERROR);
         }
         
-        return $this->render('AnytvDashboardBundle:Security:login.html.twig', array('username' => $session->get(SecurityContext::LAST_USERNAME), 'password'=>'', 'error' => $error, 'form_action'=>'login_hasoffers'));
+        $featured_offer = $offer_repository->findOneBy(array('isFeatured'=>1));
+        
+        return $this->render('AnytvDashboardBundle:Security:login.html.twig', array('username' => $session->get(SecurityContext::LAST_USERNAME), 'password'=>'', 'error' => $error, 'form_action'=>'login_hasoffers', 'featured_offer'=>$featured_offer));
     }
     
     public function loginHasoffersAction(Request $request)
     {
         $session = $request->getSession();
         $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:AffiliateUser');
+        $offer_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
         
         $username = $request->get('_username');
         $password = $request->get('_password');
@@ -57,10 +61,10 @@ class SecurityController extends Controller
            {
              if($affiliate_user = $repository->findOneByaffiliateUserId($user_id))
              {
-               $affiliate_user_password = $affiliate_user->getPassword();
+               //$affiliate_user_password = $affiliate_user->getPassword();
                
-               if(!$affiliate_user_password)
-               {
+               //if(!$affiliate_user_password)
+               //{
                  $factory = $this->get('security.encoder_factory');
                  $manager = $this->getDoctrine()->getManager();
             
@@ -69,8 +73,10 @@ class SecurityController extends Controller
                  $hashed_password = $encoder->encodePassword($password, $affiliate_user->getSalt());
                  $affiliate_user->setPassword($hashed_password);
                  
+                 $affiliate_user->setLastLogin(new \DateTime());
+                 
                  $manager->flush();
-               }
+               //}
                
                $form_action = 'login_check';    
              }
@@ -79,7 +85,9 @@ class SecurityController extends Controller
            
         }
         
+        $featured_offer = $offer_repository->findOneBy(array('isFeatured'=>1));
         
-        return $this->render('AnytvDashboardBundle:Security:login.html.twig', array('username'=>$username, 'password'=>$password, 'error'=>$errorMessage, 'form_action'=>$form_action));
+        
+        return $this->render('AnytvDashboardBundle:Security:login.html.twig', array('username'=>$username, 'password'=>$password, 'error'=>$errorMessage, 'form_action'=>$form_action, 'featured_offer'=>$featured_offer));
     }
 }

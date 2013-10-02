@@ -7,25 +7,41 @@
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
     
-    <section id="networks">
-        <div class="container">
-          <div class="container-fluid">
-            <div class="row-fluid 3col-bg">
-              <div id="net-col1" class="col-lg-4 brdr-test">
-                <h3>{{ title }}</h3>
-                               
-              </div>
-                                   
-            </div>
-          </div>
-        </div>
-      </section>
-    
-    	
-     
-     
+    <div id="content">
+		<section class="sec-content-title">
+			<div class="container">
+				<h3>{{ title }}</h3>
+				<p>&nbsp;</p>				
+			</div>
+		</section>
 
-      
+		<section class="sec-content">
+			<div class="container">
+			<div class="cl-20"></div>
+				<div class="row">
+					<div class="col-lg-12">
+                                            <p class="font-lg">
+                                              Do you want to contact us directly?
+                                            </p>
+                                            <p class="font-lg">Email <a href="http://www.cloudflare.com/email-protection#7c15121a133c1d120552080a"><span class="__cf_email__" data-cfemail="5e373038311e3f3027702a28">[email&nbsp;protected]</span><script type="text/javascript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l,b=document.getElementsByTagName("script");l=b[b.length-1].previousSibling;a=l.getAttribute('data-cfemail');if(a){s='';r=parseInt(a.substr(0,2),16);for(j=2;a.length-j;j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}s=document.createTextNode(s);l.parentNode.replaceChild(s,l);}}catch(e){}})();
+/* ]]> */
+</script></a></p>
+<h1>Join the any.TV Team!</h1>
+<div class="center-block" style="max-width:640px;max-height:2950px;"><div class="video-shortcode"><iframe width="640" height="2950" src="https://docs.google.com/forms/d/1ocBXz_18LYYzVoG_WKCThC2zBDHFRVGCkAAdwdCKHtk/viewform?embedded=true" marginwidth="0" marginheight="0" frameborder="0"></iframe></div></div>
+<h1>Team</h1>
+<div class="center-block" style="max-width:640px;max-height:1200px;"><div class="video-shortcode"><iframe width="640" height="1200" src="https://docs.google.com/spreadsheet/pub?key=0AhspiopiIBD9dDV0a0U2bS1fbk5ZaWxKSk9Ibmx1cVE&#038;single=true&#038;output=html" marginwidth="0" marginheight="0" frameborder="0"></iframe></div></div>
+</div>
+                                            </p>
+                                        </div>
+					
+                                        
+				</div>
+			</div>
+		</section>
+
+	</div>
 
       {{ parent() }}
     

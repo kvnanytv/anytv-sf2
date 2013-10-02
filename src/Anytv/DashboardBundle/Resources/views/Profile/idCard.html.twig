@@ -6,19 +6,15 @@
       {% if(affiliate.thumbnail) %}
         <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ affiliate.company }}" />
       {% else %}
-        <img src="{{ asset('bundles/anytvdashboard/images/test-user.jpg') }}">
+        <img src="{{ asset('bundles/anytvdashboard/images/default-user-photo.png') }}">
       {% endif %}
-    </div>				
+    </div>
     <div class="panel-body">
       <h3><span>{{ affiliate_user }}</span></h3>
       <div class="user-det">
         <p>{% trans %}Refer-a-Friend link{% endtrans %}:</p>
-        <div class="input-group">
-	  <span class="input-group-btn">
-	    <button class="btn btn-default" type="button">Copy</button>
-	  </span>
-	  <input type="text" class="form-control" value="{{ url('signup', { 'id': affiliate.affiliateId }) }}" disabled>
-	</div>
+        <input id="ref-lnk" type="text" class="form-control" value="{{ url('signup', { 'id': affiliate.affiliateId }) }}" disabled>								
+	<a id="cpy-ref-btn" class="btn btn-default">Copy Link</a>
       </div>
     </div>
     <div id="user-menus">

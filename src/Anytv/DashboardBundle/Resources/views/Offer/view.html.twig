@@ -11,10 +11,6 @@
     
     <h1 class="title">{{ title }}<p>dashboard.tm ID: {{ offer.offerId }} - ({{ offer_status }})</p></h1>
     
-    {% if(offer.thumbnail) %}
-      <img src="{{ asset(offer.getWebPath()) }}" alt="{{ offer.name() }}" style="width:100px" />
-    {% endif %}
-    
     <div class="symfony-blocks-welcome">
       <ul>
         <li style="display:block">{% trans %}Name{% endtrans %}: {{ offer.name }}</li>

@@ -56,7 +56,11 @@
         <tbody>
           {% for offer in offers %}
 	  <tr>
-	    <td></td>
+	    <td>
+              
+              <img src="{{ asset('bundles/anytvdashboard/images/default-offer-photo.jpg') }}">
+              
+            </td>
             <td>{{ offer }}</td>
 	    <td><a href="{{ offer.previewUrl }}" target=_blank">preview</a></td>
 	    <td>${{ offer.defaultPayout }}</td>

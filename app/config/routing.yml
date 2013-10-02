@@ -37,6 +37,13 @@ offers_embed:
         _locale:  %anytv.locales%
         page:  \d+
         
+offer_play_now_link:
+    path:      /{_locale}/embed/offers/play_now_link/{id}
+    defaults:  { _controller: AnytvDashboardBundle:Offer:playNowLink, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        id:  \d+
+        
 _imagine:
     resource: .
     type:     imagine

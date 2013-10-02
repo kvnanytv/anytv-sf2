@@ -26,10 +26,6 @@
          {{ form_row(form.previewUrl) }}
          {{ form_row(form.status) }}
          {{ form_row(form.expirationDate) }}
-         {% if(offer.thumbnail) %}
-           <img src="{{ asset(offer.getWebPath()) }}" alt="{{ offer.name() }}" style="width:100px" />
-         {% endif %}
-         {{ form_row(form.file) }}
        {{ form_end(form) }}
        
         
