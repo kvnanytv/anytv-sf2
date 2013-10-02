@@ -65,7 +65,7 @@
 								<!-- Account Details -->
 								<div class="well">
 									<p><strong>Company Name</strong> *</p>
-									<input type="email" class="form-control input-lg brdrrad-0" autofocus>
+									<input type="email" class="form-control input-lg brdrrad-0" >
 									<div class="cl-20"></div>
 
 									<p><strong>Address 1</strong> *</p>               
