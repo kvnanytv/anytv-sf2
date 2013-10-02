@@ -22,8 +22,31 @@
 <script src="assets/js/jquery.js"></script>  
 <script src="js/zclip/jquery.zclip.js"></script>   
 <script src="js/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap/bootstrap-select.js"></script>  
 <script src="js/tinynav/tinynav.min.js"></script>
 <script src="js/zclip/jquery.zclip.js"></script>
+
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "ur-1bb35f5f-5bbd-f65d-ef10-cd779bd84bd", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+
+<script type="text/javascript" src="js/pword-strength/coffee-script.js"></script>
+<script type="text/coffeescript" src="js/pword-strength/passwordStrength.coffee"></script>
+
+<script type="text/javascript" src="js/bootstrap/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+<script type="text/javascript" src="js/bootstrap/bootstrap-tagsinput/bootstrap-tagsinput-angular.js"></script>
+<script type="text/javascript" src="js/assets/js/angular.min.js"></script>
+
+<script type="text/javascript">
+    $(window).on('load', function () {
+
+        $('.selectpicker').selectpicker({
+            'selectedText': ''
+        });
+
+        // $('.selectpicker').selectpicker('hide');
+    });
+</script>
 
 <script>
   $(function () {
@@ -50,9 +73,7 @@ $(this).next('.check').show();
   });
 </script>
 
-<script type="text/javascript">var switchTo5x=true;</script>
-<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-<script type="text/javascript">stLight.options({publisher: "ur-1bb35f5f-5bbd-f65d-ef10-cd779bd84bd", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+
 
 
 </html>
