@@ -31,13 +31,6 @@
   });
 </script>
 <script>
-  $('a#cpy-ref-btn').zclip({
-    path:'js/ZeroClipboard.swf',
-    copy:function(){return $('input#ref-lnk').val();}
-  });
-
-
-
   $(document).ready(function(){
     $("a#cpy-ref-btn").zclip({
       path:'js/zclip/ZeroClipboard.swf',
@@ -56,5 +49,10 @@ $(this).next('.check').show();
 });
   });
 </script>
+
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "ur-1bb35f5f-5bbd-f65d-ef10-cd779bd84bd", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+
 
 </html>

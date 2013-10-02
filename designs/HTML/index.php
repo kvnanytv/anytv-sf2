@@ -142,15 +142,16 @@
 			<div class="row-fluid"> 
 				<div class="col-lg-12">
 					<div class="net-title">
-						<h3>News</h3>
+						<!-- <h3>News</h3> -->
 					</div>
 				</div>
 				<div class="col-lg-4">
 					<div id="net-col">					
 						<h4>George is Back!</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua.</p>
-
+						<p>As promised.</p>
+						<p>I am the ex-President and founder of TGN, my old company that I sold to BroadbandTV in 2012. It was time for something new.</p>
+						<p>Will you help me build any.TV together?</p>
+						<a href="#" class="btn btn-default">Help George</a>
 					</div>					
 				</div>
 				<div class="col-lg-4">
@@ -163,8 +164,9 @@
 				<div class="col-lg-4">
 					<div id="net-col">
 						<h4>10% Lifetime Bonus</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua.</p>
+						<p>Yes, we mean forever.</p>
+						<p>any.TV pays you a 10% bonus of everything your referrals make, our way of saying “Thank You” for recommending any.TV to your friends and partners!</p><p>This is not a pyramid scheme.</p>
+						<a href="#" class="btn btn-default">Learn more</a>
 					</div>	
 				</div>
 			</div>
