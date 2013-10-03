@@ -9,6 +9,7 @@ use Anytv\DashboardBundle\Entity\Affiliate;
 use Anytv\DashboardBundle\Entity\AffiliateUser;
 use Anytv\DashboardBundle\Form\Type\CompanyType;
 use Anytv\DashboardBundle\Form\Type\ProfileType;
+use Anytv\DashboardBundle\Entity\TrackingLink;
 
 class ProfileController extends Controller
 {
@@ -186,5 +187,65 @@ class ProfileController extends Controller
       $affiliate = $affiliate_user->getAffiliate();
       
       return $this->render('AnytvDashboardBundle:Profile:partners.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'page'=>$page));
+    }
+    
+    public function offerViewAction($id)
+    {
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
+      //$country_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Country');
+      $offer_group_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:OfferGroup');
+      $tracking_link_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:TrackingLink');
+      //$translator = $this->get('translator');
+      
+      $offer = $repository->find($id);
+
+      if (!$offer) {
+        throw $this->createNotFoundException(
+            'No offer found for id '.$id
+        );
+      }
+      
+      $affiliate_user = $this->getUser();
+   
+      if (!$affiliate_user) {
+        throw $this->createNotFoundException(
+            'No user found'
+        );
+      }
+      
+      $affiliate = $affiliate_user->getAffiliate();
+      
+      if (!$affiliate) {
+        throw $this->createNotFoundException(
+            'No affiliate found'
+        );
+      }
+      
+      $tracking_link = $tracking_link_repository->findOneBy(array('affiliateId'=>$affiliate->getAffiliateId(), 'offerId'=>$offer->getOfferId()));
+      
+      if(!$tracking_link)
+      {
+        $hasoffers = $this->get('hasoffers');
+        $tracking_link_hasoffers = $hasoffers->getPlayNowLink($offer->getOfferId(), $affiliate->getAffiliateId());
+        
+        if($tracking_link_hasoffers)
+        {
+          $manager = $this->getDoctrine()->getManager();
+          
+          $tracking_link = new TrackingLink();
+          $tracking_link->setAffiliateId($tracking_link_hasoffers->affiliate_id);
+          $tracking_link->setOfferId($tracking_link_hasoffers->offer_id);
+          $tracking_link->setClickUrl($tracking_link_hasoffers->click_url);
+          
+          $manager->persist($tracking_link);   
+          $manager->flush();
+        }
+      }
+      
+      $offer_categories = $offer->getOfferCategories();
+      $offer_group = $offer_group_repository->findOneOfferGroupByOffer($id);
+      $countries = $offer->getCountries();
+
+      return $this->render('AnytvDashboardBundle:Profile:offerView.html.twig', array('offer'=>$offer, 'offer_categories'=>$offer_categories, 'offer_group'=>$offer_group, 'countries'=>$countries, 'tracking_link'=>$tracking_link));
     }
 }

@@ -75,6 +75,16 @@ class SecurityController extends Controller
                $affiliate_user->setPassword($hashed_password);
                  
                $affiliate_user->setLastLogin(new \DateTime());
+               $affiliate_user->setLoginCount($affiliate_user->getLoginCount() + 1);
+               
+               if($affiliate_user->getLoginIp() && $request->getClientIp() && ($affiliate_user->getLoginIp() != $request->getClientIp()))
+               {
+                 $affiliate_user->setLoginIpChangeCount($affiliate_user->getLoginIpChangeCount() + 1);   
+               }
+                   
+               $affiliate_user->setLoginIp($request->getClientIp());
+               
+               
                  
                $manager->flush();
                
@@ -85,7 +95,7 @@ class SecurityController extends Controller
         
         if(!$login_passed)
         {
-          $errorMessage = $errorMessage ? $errorMessage : 'User does not exist.';
+          $errorMessage = $errorMessage ? $errorMessage : 'Account is not active.';
           $this->get('session')->getFlashBag()->add('login_error', $errorMessage);
           return $this->redirect($this->generateUrl('login', array('user_type'=>$user_type)));   
         }

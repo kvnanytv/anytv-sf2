@@ -74,8 +74,6 @@ class LoadAffiliateData extends AbstractFixture implements OrderedFixtureInterfa
                 
                 foreach($affiliate_users_object as $affiliate_user_object)
                 {
-                
-                  
                     $affiliate_user = new AffiliateUser(); 
                     $affiliate_user->setAffiliateUserId($affiliate_user_object->id);
                     
@@ -98,6 +96,11 @@ class LoadAffiliateData extends AbstractFixture implements OrderedFixtureInterfa
                     $affiliate_user->setWantsAlerts($affiliate_user_object->wants_alerts);
           
                     $affiliate_user->setAffiliate($affiliate); 
+                    
+                    if($affiliate_object->status != 'active')
+                    {
+                      $affiliate_user->setIsActive(false);    
+                    }
              
                     $manager->persist($affiliate_user);    
                   

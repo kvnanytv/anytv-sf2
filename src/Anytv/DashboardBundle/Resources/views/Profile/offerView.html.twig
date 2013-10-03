@@ -1,0 +1,15 @@
+<h3>{{ offer }}</h3>
+<p>{{ offer.description }}</p>
+<em>play now link -> {{ tracking_link.clickUrl }}</em>
+{% if(offer_group) %}
+  {% if(offer_group.thumbnail) %}
+    <img src="{{ asset(offer_group.getWebPath()) }}" alt="{{ offer_group }}" style="width:100px" />
+  {% else %}
+    &nbsp;
+  {% endif %}
+{% else %}
+{% endif %}
+<ul>
+  <li style="display:block">{% trans %}Advertiser{% endtrans %}: {% if(offer.advertiser) %}{{ offer.advertiser.company }}{% else %}&nbsp;{% endif %}</li>
+  <li style="display:block">{% trans %}Preview URL{% endtrans %}: <a href="{{ offer.previewUrl }}" target="_blank">{{ offer.previewUrl }}</a></li>
+</ul>
