@@ -44,8 +44,16 @@ class OfferGroupRepository extends EntityRepository
                  ->join('og.offers', 'o')
                  ->where("o.id = :offer_id")
                  ->setParameters(array('offer_id'=>$offer_id))
+                 ->setMaxResults(1)
                  ->getQuery();
         
-        return $query->getSingleResult();
+        try 
+        {
+          return $query->getSingleResult();
+        } 
+        catch (\Doctrine\Orm\NoResultException $e) 
+        {
+          return null;
+        }
     }
 }

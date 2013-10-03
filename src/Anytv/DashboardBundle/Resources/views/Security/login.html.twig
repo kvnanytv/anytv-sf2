@@ -12,7 +12,7 @@
     <div class="container">
       <div id="con-body" class="row">
         <div class="col-lg-5">
-            <div class="panel panel-default lgin-panel">
+            <div class="panel panel-default lgin-panel initial-login">
               <div class="panel-heading">
                 <h3 class="panel-title"><strong>{% trans %}Dashboard{% endtrans %} {% trans %}Login{% endtrans %}</strong></h3>
               </div>
@@ -23,13 +23,13 @@
                     <strong>{{ flashMessage }}</strong>
                   </div>
                 {% endfor %}
-                <form action="{{ path(form_action) }}" method="post" class="form-signin" id="login_form">
+                <form action="{{ path(form_action) }}" method="post" class="form-signin" id="login_form" onsubmit="$('.initial-login').hide();$('#auth-message').show();">
                     <input type="hidden" name="user_type" value="{{ user_type }}">
                     <p><strong>{% trans %}Email{% endtrans %}</strong></p>
-                    <input type="text" id="username" name="_username" value="{{ username }}" class="form-control brdrrad-0" autofocus>
+                    <input type="email" id="username" name="_username" value="{{ username }}" class="form-control brdrrad-0" required="required" autofocus>
                     <div class="cl-20"></div>
-                    <p style="float: left"><strong>{% trans %}Password{% endtrans %}</strong></p><span class="frgot-lnk"><a href="{{ path('login')}}" tabindex="5">{% trans %}Forgot Password?{% endtrans %}</a></span>
-                    <input type="password" id="password" name="_password" class="form-control brdrrad-0">
+                    <p style="float: left"><strong>{% trans %}Password{% endtrans %}</strong></p><span class="frgot-lnk"><a href="{{ path('login')}}" tabindex="5" style="display:none">{% trans %}Forgot Password?{% endtrans %}</a></span>
+                    <input type="password" id="password" name="_password" class="form-control brdrrad-0" required="required">
                     <div class="cl-20"></div>
                     <button type="submit" class="btn btn-lg btn-primary btn-block"><strong>{% trans %}Login{% endtrans %}</strong></button>       
                 </form>
@@ -40,7 +40,12 @@
                 </form>
               </div>
             </div>
-            <p class="txt-default">View our <a href="">Privacy Policy</a></p>  
+            <p class="txt-default initial-login">View our <a href="">Privacy Policy</a></p> 
+            <div class="panel panel-default lgin-panel" id="auth-message" style="display:none">
+              <div class="panel-body">
+                <p class="txt-default" style="font-weight:bold">Authenticating...</p> 
+              </div>
+            </div>
         </div>
           <div class="col-lg-7 ft-game">
           {% if(featured_offer) %}

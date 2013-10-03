@@ -21,7 +21,7 @@
           </select>
         </div>
 	<div class="btn-group">
-	  <label>B{% trans %}Country{% endtrans %}</label>
+	  <label>{% trans %}Country{% endtrans %}</label>
           <select name="offer_country">
             <option value="">&nbsp;</option>
             {% for country in countries %}
@@ -58,7 +58,7 @@
             <td>{{ offer }}</td>
 	    <td><a href="{{ offer.previewUrl }}" target=_blank">{% trans %}preview{% endtrans %}</a></td>
 	    <td>${{ offer.defaultPayout }}</td>
-	    <td></td>
+	    <td><a data-toggle="modal" href="#myModal" onclick="showOffer('{{ path('profile_offer_view', {'id':offer.id}) }}');" class="btn btn-default">Get Link</a></td>
 	  </tr>
           {% endfor %}
           {% if (total_pages > 1) %}
@@ -89,6 +89,25 @@
       </table>
     </div>
   </div>				    	
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Game Details</h4>
+			</div>
+			<div class="modal-body" id="profile_offer_content">
+				
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				
+			</div>
+		</div>
+	</div>
 </div>
 		
 						

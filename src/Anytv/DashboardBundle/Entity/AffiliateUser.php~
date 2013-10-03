@@ -156,6 +156,27 @@ class AffiliateUser implements UserInterface, \Serializable
     private $lastLogin;
     
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="login_count", type="integer")
+     */
+    private $loginCount;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="login_ip", type="string", length=255, nullable=true)
+     */
+    private $loginIp;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="login_ip_change_count", type="integer")
+     */
+    private $loginIpChangeCount;
+    
+    /**
      * @var string
      * 
      * @ORM\Column(name="thumbnail", type="string", length=255, nullable=true)
@@ -307,6 +328,8 @@ class AffiliateUser implements UserInterface, \Serializable
         $this->isAdmin = false;
         $this->isActive = true;
         $this->salt = md5(uniqid(null, true));
+        $this->loginCount = 0;
+        $this->loginIpChangeCount = 0;
     }
 
     /**
@@ -864,5 +887,74 @@ class AffiliateUser implements UserInterface, \Serializable
     public function getIsAdmin()
     {
         return $this->isAdmin;
+    }
+
+    /**
+     * Set loginCount
+     *
+     * @param integer $loginCount
+     * @return AffiliateUser
+     */
+    public function setLoginCount($loginCount)
+    {
+        $this->loginCount = $loginCount;
+    
+        return $this;
+    }
+
+    /**
+     * Get loginCount
+     *
+     * @return integer 
+     */
+    public function getLoginCount()
+    {
+        return $this->loginCount;
+    }
+
+    /**
+     * Set loginIp
+     *
+     * @param string $loginIp
+     * @return AffiliateUser
+     */
+    public function setLoginIp($loginIp)
+    {
+        $this->loginIp = $loginIp;
+    
+        return $this;
+    }
+
+    /**
+     * Get loginIp
+     *
+     * @return string 
+     */
+    public function getLoginIp()
+    {
+        return $this->loginIp;
+    }
+
+    /**
+     * Set loginIpChangeCount
+     *
+     * @param integer $loginIpChangeCount
+     * @return AffiliateUser
+     */
+    public function setLoginIpChangeCount($loginIpChangeCount)
+    {
+        $this->loginIpChangeCount = $loginIpChangeCount;
+    
+        return $this;
+    }
+
+    /**
+     * Get loginIpChangeCount
+     *
+     * @return integer 
+     */
+    public function getLoginIpChangeCount()
+    {
+        return $this->loginIpChangeCount;
     }
 }

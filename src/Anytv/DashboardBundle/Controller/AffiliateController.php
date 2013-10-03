@@ -116,7 +116,12 @@ class AffiliateController extends Controller
                     $affiliate_user->setLastLogin(new \DateTime($affiliate_user_object->last_login));
                     $affiliate_user->setWantsAlerts($affiliate_user_object->wants_alerts);
           
-                    $affiliate_user->setAffiliate($affiliate);    
+                    $affiliate_user->setAffiliate($affiliate); 
+                    
+                    if($affiliate_object->status != 'active')
+                    {
+                      $affiliate_user->setIsActive(false);    
+                    }
                   }
                   else
                   {
@@ -140,7 +145,12 @@ class AffiliateController extends Controller
                     $affiliate_user->setLastLogin(new \DateTime($affiliate_user_object->last_login));
                     $affiliate_user->setWantsAlerts($affiliate_user_object->wants_alerts);
           
-                    $affiliate_user->setAffiliate($affiliate); 
+                    $affiliate_user->setAffiliate($affiliate);
+                    
+                    if($affiliate_object->status != 'active')
+                    {
+                      $affiliate_user->setIsActive(false);    
+                    }
              
                     $manager->persist($affiliate_user);    
                   }
@@ -196,7 +206,12 @@ class AffiliateController extends Controller
                     $affiliate_user->setLastLogin(new \DateTime($affiliate_user_object->last_login));
                     $affiliate_user->setWantsAlerts($affiliate_user_object->wants_alerts);
           
-                    $affiliate_user->setAffiliate($affiliate);    
+                    $affiliate_user->setAffiliate($affiliate);
+                    
+                    if($affiliate_object->status != 'active')
+                    {
+                      $affiliate_user->setIsActive(false);    
+                    }
                   }
                   else
                   {
@@ -221,6 +236,11 @@ class AffiliateController extends Controller
                     $affiliate_user->setWantsAlerts($affiliate_user_object->wants_alerts);
           
                     $affiliate_user->setAffiliate($affiliate); 
+                    
+                    if($affiliate_object->status != 'active')
+                    {
+                      $affiliate_user->setIsActive(false);    
+                    }
              
                     $manager->persist($affiliate_user);    
                   }
