@@ -28,7 +28,8 @@
 							</div>
 						</div>
 						<div class="col-lg-7">							
-							<img src="images/mac-monitor.png" class="img-responsive">            							
+							<img src="images/mac-monitor.png" >
+          							
 							
 						</div>
 					</div>
@@ -174,7 +175,11 @@
 	</section>
 
 	<section id="about-anytv">
-		<div></div>
+		<div class="container">
+			<div class="aa-title">
+				<h3>Happy Affiliates!</h3>
+			</div>
+		</div>
 	</section>	
 
 	<section id="our-partners">

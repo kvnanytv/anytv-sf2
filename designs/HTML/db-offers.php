@@ -26,7 +26,7 @@
 								<p>
 									<?php
 									$userpic = 1;
- 	
+
 									if($userpic == 0) {
 										echo "<a class='pic-up-btn' href=''>Upload</a>";
 									}
@@ -57,8 +57,8 @@
 											Dashboard
 										</a>
 									</li>
-									<li class="active"><a href="#">My Profile</a></li>
-									<li><a href="db-offers.php">Offers</a></li>
+									<li><a href="db-profile.php">My Profile</a></li>
+									<li class="active"><a href="#">Offers</a></li>
 									<li><a href="#">Reports</a></li>						  
 								</ul>
 							</div>
@@ -70,14 +70,97 @@
 				<div class="col-lg-9">
 					<div class="tabbable">
 						<ul class="nav nav-tabs">
-							<li class="active"><a href="#pane1" data-toggle="tab">My Profile</a></li>
+							<li class="active"><a href="#pane1" data-toggle="tab">My Offers</a></li>
 							<li><a href="#pane2" data-toggle="tab">Browse Offers</a></li>
 							<li><a href="#pane3" data-toggle="tab">Tab 3</a></li>
 							<li><a href="#pane4" data-toggle="tab">Tab 4</a></li>
 						</ul>
 						<div class="tab-content">
 							<div id="pane1" class="tab-pane active">
-		    	
+
+								<div id="user-content-offers">
+									<form>
+										<div class="input-group input-group-lg">
+											<input type="text" class="form-control input-lg" placeholder="Search Offers">
+											<span class="input-group-btn">
+												<button class="btn btn-default" type="button">Go!</button>
+											</span>
+										</div>
+										<div class="cl-20"></div>
+										<div class="search-btns">				
+
+												<select class="selectpicker" multiple title="Browse by Category" data-live-search="true" data-width="25%">
+													<option>Potato</option>
+												</select>												
+												<select class="selectpicker" multiple title="Browse by Country" data-live-search="true" data-width="25%">
+													<option>Potato</option>
+												</select>													
+
+										<div class="rfrsh-wrap">
+											<a href="" class="btn btn-default btn-lg"><i class="icon-refresh"></i></a>
+										</div>												
+												
+										</div>
+
+									</form>
+								</div>
+								<div class="cl-20"></div>
+								<div class="progress progress-striped active">
+									<div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 50%">							    
+									</div> 
+								</div>							
+								<div class="table-responsive">
+									<div class="offer-tbl-wrap">
+										<table class="table table-striped">							
+											<thead>
+												<tr>
+													<th>Photo</th>
+													<th>Name</th>
+													<th>Preview</th>
+													<th>Payout</th>
+													<th>Play Now Link</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>											
+														<?php if (true) {?>
+														<img src="images/db-img/photo-thmb.jpg">
+														<?php } else {?>
+														<img src="">
+														<?php } ?>
+													</td>
+													<td>Warframe</td>
+													<td>warframe.com</td>
+													<td>$0.60</td>
+													<td>
+														<?php if (true) {?>
+														<a data-toggle="modal" href="#myModal" class="btn btn-default">Get Link</a>
+														<?php } else {?>
+														<a href="#"></a>
+														<?php } ?>
+													</td>
+												</tr>
+
+												<tfoot>
+													<tr>
+														<td class="al-cntr" colspan="6">
+															<ul class="pagination">
+																<li class="disabled"><a href="#">&laquo;</a></li>
+																<li class="active"><span>1 <span class="sr-only">(current)</span></span></li>
+																<li><a href="">2</a></li>
+																<li><a href="">3</a></li>
+																<li><a href="">4</a></li>
+																<li><a href="">5</a></li>
+																<li><a href="#">&raquo;</a></li>
+															</ul>						
+														</td>
+													</tr>
+												</tfoot>									
+											</tbody>
+										</table>
+									</div>
+								</div>				    	
 							</div>
 							<div id="pane2" class="tab-pane">
 								<h4>Pane 2 Content</h4>

@@ -535,6 +535,13 @@ input:-moz-placeholder { font-style:; }
 	background-color: #fff;
 }
 
+.aa-title h3 {
+	text-align: center;
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	color: #fff;
+	font-size: 36px;
+}
+
 /********************** Section: Our Partners *******************/
 
 #our-partners {
@@ -763,3 +770,16 @@ footer {
 	margin: 0 20px 20px 20px;
 }
 
+.video {
+	position: absolute;
+	top: 44px;
+	left: 55px;
+	min-width: 555px;
+}
+	.video embed,
+	.video object,
+	.video iframe {
+		width: 100%;
+		height: auto;
+		min-height: 315px;
+	}
