@@ -35,7 +35,7 @@
 
 <script type="text/javascript" src="js/bootstrap/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
 <script type="text/javascript" src="js/bootstrap/bootstrap-tagsinput/bootstrap-tagsinput-angular.js"></script>
-<script type="text/javascript" src="js/assets/js/angular.min.js"></script>
+<script type="text/javascript" src="assets/js/angular.min.js"></script>
 
 <script type="text/javascript">
     $(window).on('load', function () {
