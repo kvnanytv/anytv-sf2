@@ -89,8 +89,10 @@
 										<div class="cl-20"></div>
 										<div class="search-btns">				
 
-												<select class="selectpicker" multiple title="Browse by Category" data-live-search="true" data-width="25%">
-													<option>Potato</option>
+												<select class="selectpicker" data-live-search="true" data-width="25%">
+													<option>Browse by Category</option>
+													<option>Test 1</option>
+													<option>Test 2</option>
 												</select>												
 												<select class="selectpicker" multiple title="Browse by Country" data-live-search="true" data-width="25%">
 													<option>Potato</option>

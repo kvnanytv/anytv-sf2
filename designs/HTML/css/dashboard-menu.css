@@ -172,6 +172,10 @@ Accordion Menu
 
 /************************************** Tabs *****************************************/
 
+.tabbable .nav-tabs > li.active > a, .tabbable .nav-tabs > li > a {
+	outline: 0;
+}
+
 .tab-content {
 	padding: 20px;
 	background-color: #fff;
@@ -183,4 +187,11 @@ Accordion Menu
 .chck-tst {
 	background-color: #000 !important;
 	color: #fff !important;
+}
+
+#user-prof-img {
+	height: 250px !important;
+	max-height: 50%;
+	border: 1px solid #dddddd;
+	border-radius: 4px;	
 }
