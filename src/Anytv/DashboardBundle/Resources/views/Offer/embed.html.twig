@@ -28,7 +28,7 @@
               <th>{% trans %}Games{% endtrans %}</th>
               <th>{% trans %}Payout{% endtrans %}</th>
               <th>{% trans %}Countries{% endtrans %}</th>
-              <th>{% trans %}Play Now Links{% endtrans %}</th>        
+              <th>{% trans %}Play Now Link{% endtrans %}</th>        
             </tr>
           </thead> 
                                        
@@ -42,7 +42,7 @@
               {% if(app.user) %}
                 <a href="javascript:void(0)" onclick="playNowLink('{{ path('offer_play_now_link', {'id':offer.offerId }) }}', {{ offer.offerId }});" class="btn btn-default btn-glink">{% trans %}Get Link{% endtrans %}</a>
               {% else %}
-                <a href="{{ path('anytv_dashboard_homepage') }}" class="btn btn-default btn-glink">{% trans %}Get Link{% endtrans %}</a>
+                <a href="{{ path('anytv_dashboard_homepage') }}" class="btn btn-default btn-glink">{% trans %}Get play now link{% endtrans %}</a>
               {% endif %}
             </td>
           </tr>

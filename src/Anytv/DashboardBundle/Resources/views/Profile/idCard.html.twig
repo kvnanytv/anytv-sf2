@@ -13,14 +13,14 @@
       <h3><span>{{ affiliate_user }}</span></h3>
       <div class="user-det">
         <p>{% trans %}Refer-a-Friend link{% endtrans %}:</p>
-        <input id="ref-lnk" type="text" class="form-control" value="{{ url('signup', { 'id': affiliate.affiliateId }) }}" disabled>								
-	<a id="cpy-ref-btn" class="btn btn-default">Copy Link</a>
+        <input id="ref-lnk" type="text" class="form-control" value="{{ url('signup', { 'id': affiliate.affiliateId }) }}" title="{{ url('signup', { 'id': affiliate.affiliateId }) }}" disabled>								
+	<a id="cpy-ref-btn" class="btn btn-default">{% trans %}Copy Link{% endtrans %}</a>
       </div>
     </div>
     
     <div id="user-menus">
       <ul class="nav nav-pills nav-stacked">
-	<li class="active"><a href="{{ path('profile_view') }}">{% trans %}My Profile{% endtrans %}</a></li>
+	<li><a href="{{ path('profile_view') }}">{% trans %}My Profile{% endtrans %}</a></li>
 	<li><a href="{{ path('anytv_dashboard_homepage') }}">{% trans %}Offers{% endtrans %}</a></li>						  
       </ul>
     </div>

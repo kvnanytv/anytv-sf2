@@ -33,14 +33,14 @@
                     <div class="cl-20"></div>
                     <button type="submit" class="btn btn-lg btn-primary btn-block"><strong>{% trans %}Login{% endtrans %}</strong></button>       
                 </form>
-                <div class="brdr-h"></div>
-                <p align="center">{% trans %}Don't have an account yet?{% endtrans %}</p>
-                <form action="">
-                  <button type="submit" class="btn btn-lg btn-primary btn-block"><strong>{% trans %}CREATE AN ACCOUNT{% endtrans %}</strong></button>
+                
+                <p align="center" style="display:none">{% trans %}Don't have an account yet?{% endtrans %}</p>
+                <form action="" style="display:none">
+                  <button style="display:none" type="submit" class="btn btn-lg btn-primary btn-block"><strong>{% trans %}CREATE AN ACCOUNT{% endtrans %}</strong></button>
                 </form>
               </div>
             </div>
-            <p class="txt-default initial-login">View our <a href="">Privacy Policy</a></p> 
+            <p style="display:none" class="txt-default initial-login">View our <a href="">Privacy Policy</a></p> 
             <div class="panel panel-default lgin-panel" id="auth-message" style="display:none">
               <div class="panel-body">
                 <p class="txt-default" style="font-weight:bold">Authenticating...</p> 
@@ -74,11 +74,18 @@
             </div>
             <div class="panel panel-default lgin-panel">
               <div class="panel-body">
-                <p class="txt-default" style="font-weight:bold">Logging you in securely...</p> 
+                <p class="txt-default" style="font-weight:bold">{% trans %}Logging you in securely{% endtrans %}...</p> 
               </div>
             </div>
         </div>
           <div class="col-lg-7 ft-game">
+              {% if(featured_offer) %}
+          {% if(offer_group and offer_group.thumbnail) %}
+            <img src="{{ asset(offer_group.getWebPath()) | apply_filter('featured_offer') }}" alt="{{ featured_offer }}" />
+          {% endif %}
+          <p><strong>{{ featured_offer }}</strong> {% trans %}Countries{% endtrans %}: {{ featured_offer.countryCount }}</p>
+          <p style="font-size: 13px !important; font-family: Arial, Helvetica, sans-serif;">{{ featured_offer.description }}</p> 
+          {% endif %}
           </div>
         </div>
       </div>
