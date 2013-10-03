@@ -11,7 +11,6 @@ class SecurityController extends Controller
     public function loginAction(Request $request, $user_type)
     {
         $offer_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
-        $offer_group_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:OfferGroup');
         $session = $request->getSession();
 
         // get the login error if there is one
@@ -25,11 +24,20 @@ class SecurityController extends Controller
             $session->remove(SecurityContext::AUTHENTICATION_ERROR);
         }
         
-        $featured_offer = $offer_repository->findOneBy(array('isFeatured'=>1));
+        $featured_offer = null;
+        if($featured_offers = $offer_repository->findBy(array('isFeatured'=>1)))
+        {
+            shuffle($featured_offers);
+            $featured_offer = array_pop($featured_offers);
+        }
+        
         $offer_group = null;
         if($featured_offer)
         {
-          $offer_group = $offer_group_repository->findOneOfferGroupByOffer($featured_offer->getId());   
+          if($offer_groups = $featured_offer->getOfferGroups())
+          {
+            $offer_group = $offer_groups[0];
+          }
         }
         
         return $this->render('AnytvDashboardBundle:Security:login.html.twig', array('username' => $session->get(SecurityContext::LAST_USERNAME), 'password'=>'', 'error' => $error, 'user_type'=>$user_type, 'form_action'=>'login_hasoffers', 'featured_offer'=>$featured_offer, 'offer_group'=>$offer_group));
@@ -39,6 +47,7 @@ class SecurityController extends Controller
     {
         $session = $request->getSession();
         $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:AffiliateUser');
+        $offer_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
         
         $username = $request->get('_username');
         $password = $request->get('_password');
@@ -100,6 +109,22 @@ class SecurityController extends Controller
           return $this->redirect($this->generateUrl('login', array('user_type'=>$user_type)));   
         }
         
-        return $this->render('AnytvDashboardBundle:Security:login.html.twig', array('username'=>$username, 'password'=>$password, 'form_action'=>'login_check'));
+        $featured_offer = null;
+        if($featured_offers = $offer_repository->findBy(array('isFeatured'=>1)))
+        {
+            shuffle($featured_offers);
+            $featured_offer = array_pop($featured_offers);
+        }
+        
+        $offer_group = null;
+        if($featured_offer)
+        {
+          if($offer_groups = $featured_offer->getOfferGroups())
+          {
+            $offer_group = $offer_groups[0];
+          }
+        }
+        
+        return $this->render('AnytvDashboardBundle:Security:login.html.twig', array('username'=>$username, 'password'=>$password, 'form_action'=>'login_check', 'featured_offer'=>$featured_offer, 'offer_group'=>$offer_group));
     }
 }

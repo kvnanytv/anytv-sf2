@@ -1,10 +1,11 @@
 <div class="tabbable">
   <ul class="nav nav-tabs">
-    <li class="active"><a href="javascript:void(0)" onclick="showTab('{{ path('profile_my_offers') }}');" data-toggle="tab">{% trans %}My Offers{% endtrans %}</a></li> 
-    <li><a href="javascript:void(0)" onclick="showTab('{{ path('profile_browse_offers') }}');" data-toggle="tab">{% trans %}Browse Offers{% endtrans %}</a></li>
+    <li class="active"><a href="javascript:void(0)" onclick="showTab('{{ path('profile_browse_offers') }}');" data-toggle="tab">{% trans %}Browse Offers{% endtrans %}</a></li>
+    <li><a href="javascript:void(0)" onclick="showTab('{{ path('profile_my_offers') }}');" data-toggle="tab">{% trans %}My Offers{% endtrans %}</a></li>
     <li><a href="javascript:void(0)" onclick="showTab('{{ path('profile_partners') }}');" data-toggle="tab">{% trans %}Partners{% endtrans %}</a></li>
   </ul>
   <div class="tab-content" id="profile_tab_content">
-    {{ render(controller('AnytvDashboardBundle:Profile:myOffers', {'page': 1})) }}
+    {{ render(controller('AnytvDashboardBundle:Profile:browseOffers', {'page': 1})) }}
   </div>
 </div>	
+

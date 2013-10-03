@@ -118,12 +118,7 @@ class ProfileController extends Controller
     
     public function browseOffersAction(Request $request, $page)
     {
-      if(!$request->isXmlHttpRequest())
-      {
-        throw $this->createNotFoundException(
-            'Invalid request'
-        );
-      }
+      
       
       $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
       $offer_category_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:OfferCategory');
@@ -189,8 +184,15 @@ class ProfileController extends Controller
       return $this->render('AnytvDashboardBundle:Profile:partners.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'page'=>$page));
     }
     
-    public function offerViewAction($id)
+    public function offerViewAction(Request $request, $id)
     {
+      if(!$request->isXmlHttpRequest())
+      {
+        throw $this->createNotFoundException(
+            'Invalid request'
+        );
+      }
+      
       $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
       //$country_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Country');
       $offer_group_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:OfferGroup');

@@ -22,7 +22,7 @@
 						<div class="panel panel-default user-panel">
       <div class="panel-body">
             <!-- <div id="user-thmb"></div> -->
-            <h3>Company Details</h3>
+            <h3>{% trans %}Company Details{% endtrans %}</h3>
                 
                   {% if(affiliate.thumbnail) %}
                     <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ affiliate.company }}" />
@@ -45,7 +45,7 @@
         
       </ul>
       
-                <h3>User Details</h3>
+                <h3>{% trans %}User Details{% endtrans %}</h3>
       <em><a href="{{ path('profile_edit') }}" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em>
     
     <h3>{{ affiliate_user }}<p>{% trans %}dashboard.tm ID{% endtrans %}: {{ affiliate_user.affiliateUserId }} - ({{ affiliate_user_status }})</p></h3>

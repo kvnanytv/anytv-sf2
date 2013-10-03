@@ -5,7 +5,7 @@
     <div class="input-group input-group-lg">
       <input type="text" name="offer_keyword" class="form-control input-lg" value="{{ offer_keyword }}" placeholder="{% trans %}Search Offers{% endtrans %}">
       <span class="input-group-btn">
-        <input class="btn btn-default" type="submit" value="Go!">
+        <input class="btn btn-default" type="submit" value="{% trans %}Go!{% endtrans %}">
       </span>
     </div>
     <div class="cl-20"></div>
@@ -58,7 +58,7 @@
             <td>{{ offer }}</td>
 	    <td><a href="{{ offer.previewUrl }}" target=_blank">{% trans %}preview{% endtrans %}</a></td>
 	    <td>${{ offer.defaultPayout }}</td>
-	    <td><a data-toggle="modal" href="#myModal" onclick="showOffer('{{ path('profile_offer_view', {'id':offer.id}) }}');" class="btn btn-default">Get Link</a></td>
+	    <td><a data-toggle="modal" href="#myModal" onclick="showOffer('{{ path('profile_offer_view', {'id':offer.id}) }}');" class="btn btn-default">{% trans %}Get play now link{% endtrans %}</a></td>
 	  </tr>
           {% endfor %}
           {% if (total_pages > 1) %}
