@@ -26,7 +26,7 @@
 								<p>
 									<?php
 									$userpic = 1;
- 	
+
 									if($userpic == 0) {
 										echo "<a class='pic-up-btn' href=''>Upload</a>";
 									}
@@ -75,158 +75,146 @@
 							<li><a href="#pane3" data-toggle="tab">Password</a></li>
 						</ul>
 						<div class="tab-content">
-						<!-- USER DETAILS -->
+							<!-- USER DETAILS -->
 							<div id="pane1" class="tab-pane active">
-		    					<div class="row">
-		    						<div class="col-lg-8">
-		    							<h3>User Details</h3>
-		    							<hr>
+								<div class="row">
+									<div class="col-lg-8">
+										<h3>User Details</h3>
+										<hr>
 
 										<div id="user-prof-name">
-										<label>
-										Name 
-										    <div class="input-group input-group-lg">										    
-										      <input type="text" class="form-control" value="Jane Doe" disabled>
-										      <span class="input-group-btn">
-										      <?php if(true): ?>
-										        <a class="btn btn-default">Edit</a>
-										      <?php else: ?>
-										        <a class="btn btn-default">Save</a>										      
-										      <?php endif ?>
-										      </span>
-									    	</div>
-									    </label>
+										<label>First Name</label>					 										    
+											<input type="text" class="form-control input-lg" value="Jane">
+											<div class="cl-20"></div>
+										<label>Last Name</label>					 										    
+											<input type="text" class="form-control input-lg" value="Doe">										
+
+
 										</div>
 										<div class="cl-20"></div>
 										<div id="user-prof-email">
-										<label>
-										Email 
-										    <div class="input-group input-group-lg">										    
-										      <input type="email" class="form-control" value="janedoe@gmail.com" disabled>
-										      <span class="input-group-btn">
-										      <?php if(true): ?>
-										        <a class="btn btn-default">Edit</a>
-										      <?php else: ?>
-										        <a class="btn btn-default">Save</a>										      
-										      <?php endif ?>
-										      </span>
-									    	</div>
-									    </label>
+											<label>
+												Email 
+										    </label>
+											<input type="email" class="form-control input-lg" value="janedoe@gmail.com" disabled>
+
+
+										
 										</div>
 										<div class="cl-20"></div> 										    									    							
 										<div id="user-prof-phone">
-										<label>
-										Phone 
-										    <div class="input-group input-group-lg">										    
-										      <input type="text" class="form-control" value="(02)999-9999" disabled>
-										      <span class="input-group-btn">
-										      <?php if(true): ?>
-										        <a class="btn btn-default">Edit</a>
-										      <?php else: ?>
-										        <a class="btn btn-default">Save</a>										      
-										      <?php endif ?>
-										      </span>
-									    	</div>
-									    </label>
+											<label>
+												Phone 
+												<div class="input-group input-group-lg">										    
+													<input type="text" class="form-control" value="(02)999-9999" disabled>
+													<span class="input-group-btn">
+														<?php if(true): ?>
+															<a class="btn btn-default">Edit</a>
+														<?php else: ?>
+															<a class="btn btn-default">Save</a>										      
+														<?php endif ?>
+													</span>
+												</div>
+											</label>
 										</div> 										
-		    						</div>
-		    						<div class="col-lg-4">
-			    						<div id="user-prof-img">
-			    							<img src="">	
-			    						</div>
-		    						</div>
-		    					</div>
+									</div>
+									<div class="col-lg-4">
+										<div id="user-prof-img">
+											<img src="">	
+										</div>
+									</div>
+								</div>
 							</div>
 
 							<!-- COMPANY DETAILS -->
 							<div id="pane2" class="tab-pane">
-		    					<div class="row">
-		    						<div class="col-lg-8">
-		    							<h3>Company Details</h3>
-		    							<hr>
+								<div class="row">
+									<div class="col-lg-8">
+										<h3>Company Details</h3>
+										<hr>
 
 										<div id="comp-prof-name">
-										<label>
-										Name 
-										    <div class="input-group input-group-lg">										    
-										      <input type="text" class="form-control" value="Jane Doe" disabled>
-										      <span class="input-group-btn">
-										      <?php if(true): ?>
-										        <button type="button" class=" btn btn-default">Edit</button>
-										      <?php else: ?>
-										        <button type="submit" class="btn btn-default">Save</button>										      
-										      <?php endif ?>
-										      </span>
-									    	</div>
-									    </label>
+											<label>
+												Name 
+												<div class="input-group input-group-lg">										    
+													<input type="text" class="form-control" value="Jane Doe" disabled>
+													<span class="input-group-btn">
+														<?php if(true): ?>
+															<button type="button" class=" btn btn-default">Edit</button>
+														<?php else: ?>
+															<button type="submit" class="btn btn-default">Save</button>										      
+														<?php endif ?>
+													</span>
+												</div>
+											</label>
 										</div>
 										<div class="cl-20"></div>
 										<div id="comp-prof-email">
-										<label>
-										Email 
-										    <div class="input-group input-group-lg">										    
-										      <input type="email" class="form-control" value="janedoe@gmail.com" disabled>
-										      <span class="input-group-btn">
-										      <?php if(true): ?>
-										        <button type="button" class=" btn btn-default">Edit</button>
-										      <?php else: ?>
-										        <button type="submit" class="btn btn-default">Save</button>										      
-										      <?php endif ?>
-										      </span>
-									    	</div>
-									    </label>
+											<label>
+												Email 
+												<div class="input-group input-group-lg">										    
+													<input type="email" class="form-control" value="janedoe@gmail.com" disabled>
+													<span class="input-group-btn">
+														<?php if(true): ?>
+															<button type="button" class=" btn btn-default">Edit</button>
+														<?php else: ?>
+															<button type="submit" class="btn btn-default">Save</button>										      
+														<?php endif ?>
+													</span>
+												</div>
+											</label>
 										</div>
 										<div class="cl-20"></div> 										    									    							
 										<div id="comp-prof-email">
-										<label>
-										Phone 
-										    <div class="input-group input-group-lg">										    
-										      <input type="text" class="form-control" value="(02)999-9999" disabled>
-										      <span class="input-group-btn">
-										      <?php if(true): ?>
-										        <button type="button" class=" btn btn-default">Edit</button>
-										      <?php else: ?>
-										        <button type="submit" class="btn btn-default">Save</button>										      
-										      <?php endif ?>
-										      </span>
-									    	</div>
-									    </label>
+											<label>
+												Phone 
+												<div class="input-group input-group-lg">										    
+													<input type="text" class="form-control" value="(02)999-9999" disabled>
+													<span class="input-group-btn">
+														<?php if(true): ?>
+															<button type="button" class=" btn btn-default">Edit</button>
+														<?php else: ?>
+															<button type="submit" class="btn btn-default">Save</button>										      
+														<?php endif ?>
+													</span>
+												</div>
+											</label>
 										</div> 										
-		    						</div>
-		    						<div class="col-lg-4">
-		    						</div>
-		    					</div>
+									</div>
+									<div class="col-lg-4">
+									</div>
+								</div>
 							</div>
 
 							<!-- PASSWORD -->
 							<div id="pane3" class="tab-pane">
-		    					<div class="row">
-		    						<div class="col-lg-8">
-		    							<h3>Change Password</h3>
-		    							<hr>
-		    							<form>
-										<div id="pass-old">
-											<label>Old Password</label>
-											<input type="password" class="form-control input-lg">											
-										</div>
-										<div class="cl-20"></div>
+								<div class="row">
+									<div class="col-lg-8">
+										<h3>Change Password</h3>
+										<hr>
+										<form>
+											<div id="pass-old">
+												<label>Old Password</label>
+												<input type="password" class="form-control input-lg">											
+											</div>
+											<div class="cl-20"></div>
 
-										<div id="pass-new">
-											<label>New Password</label>
-											<input type="password" class="form-control input-lg">											
-										</div>
-										<div class="cl-20"></div> 										    									    							
-										<div id="pass-new-confrm">
-											<label>Confirm New Password</label>
-											<input type="password" class="form-control input-lg">
-										</div>
-										<div class="cl-20"></div> 										    									    																	 
-										<button type="submit" class="btn btn-default btn-lg">Save Changes</button>
-									</form>										
-		    						</div>
-		    						<div class="col-lg-4">
-		    						</div>
-		    					</div>								
+											<div id="pass-new">
+												<label>New Password</label>
+												<input type="password" class="form-control input-lg">											
+											</div>
+											<div class="cl-20"></div> 										    									    							
+											<div id="pass-new-confrm">
+												<label>Confirm New Password</label>
+												<input type="password" class="form-control input-lg">
+											</div>
+											<div class="cl-20"></div> 										    									    																	 
+											<button type="submit" class="btn btn-default btn-lg">Save Changes</button>
+										</form>										
+									</div>
+									<div class="col-lg-4">
+									</div>
+								</div>								
 							</div>
 
 						</div><!-- /.tab-content -->
