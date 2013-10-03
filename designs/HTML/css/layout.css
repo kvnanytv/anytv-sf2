@@ -55,6 +55,13 @@ html, body {
 
 }
 
+.f-lft {
+	float: left;
+}
+
+.f-rght {
+	float: right;
+}
 
 
 /********************** Header *******************/
@@ -315,28 +322,25 @@ html, body {
 	width: 50px;
 }
 
-.yt-video {
+.video {
 	position: relative;
-	top: -441px;
+	top: 20px;	
+	padding-bottom: 56.25%;
+}
+
+.video iframe {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
+
+.video-wrap {
+	width: 604px;
+	height: 465px;
 	max-width: 100%;
-	width: 560px;
-	height: 315px;
-	max-height: 100%;
-	margin: 0 auto;
+	background: url(../images/mac-monitor.png) no-repeat center 100%;
 }
 
-.yt-video iframe,
-.yt-video object,
-.yt-video embed {    
-    width: 100%;
-    height: 100%
-}
-
-.vid-yt {
-	position: relative;
-	top: -50px;
-
-}
 
 .ban-btns {
 	list-style: none;
@@ -502,6 +506,7 @@ input:-moz-placeholder { font-style:; }
 	background-size: cover;	
 	background-position: bottom;
 	margin: 0;
+	padding: 20px 0 20px 0;
 	/*height: 500px;*/
 }
 
@@ -531,14 +536,15 @@ input:-moz-placeholder { font-style:; }
 /********************** Section: About AnyTV *******************/
 
 #about-anytv {
-	height: 380px;
+	
 	background-color: #fff;
+	padding: 20px 0 20px 0;
 }
 
 .aa-title h3 {
 	text-align: center;
 	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-	color: #fff;
+	color: #eaa13f;
 	font-size: 36px;
 }
 
@@ -546,7 +552,7 @@ input:-moz-placeholder { font-style:; }
 
 #our-partners {
 	height: 380px;	
-	padding-top: 20px;
+	padding: 20px 0 20px 0;
 	margin: 0;
 
 	background-image: url(../images/grass-1.jpg);
@@ -770,16 +776,3 @@ footer {
 	margin: 0 20px 20px 20px;
 }
 
-.video {
-	position: absolute;
-	top: 44px;
-	left: 55px;
-	min-width: 555px;
-}
-	.video embed,
-	.video object,
-	.video iframe {
-		width: 100%;
-		height: auto;
-		min-height: 315px;
-	}
