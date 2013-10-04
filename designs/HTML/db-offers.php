@@ -72,8 +72,6 @@
 						<ul class="nav nav-tabs">
 							<li class="active"><a href="#pane1" data-toggle="tab">My Offers</a></li>
 							<li><a href="#pane2" data-toggle="tab">Browse Offers</a></li>
-							<li><a href="#pane3" data-toggle="tab">Tab 3</a></li>
-							<li><a href="#pane4" data-toggle="tab">Tab 4</a></li>
 						</ul>
 						<div class="tab-content">
 							<div id="pane1" class="tab-pane active">
@@ -83,25 +81,30 @@
 										<div class="input-group input-group-lg">
 											<input type="text" class="form-control input-lg" placeholder="Search Offers">
 											<span class="input-group-btn">
-												<button class="btn btn-default" type="button">Go!</button>
+												<button class="btn btn-default" type="button"><i class="icon-search"></i></button>
 											</span>
 										</div>
 										<div class="cl-20"></div>
 										<div class="search-btns">				
-
-												<select class="selectpicker" data-live-search="true" data-width="25%">
-													<option>Browse by Category</option>
-													<option>Test 1</option>
-													<option>Test 2</option>
-												</select>												
-												<select class="selectpicker" multiple title="Browse by Country" data-live-search="true" data-width="25%">
-													<option>Potato</option>
-												</select>													
+										<label class="fnt-13">
+											Browse by Category
+											<br>
+											<select class="selectpicker" data-live-search="true">
+												<option>Test 1</option>
+												<option>Test 2</option>
+											</select>
+										</label>
+										<label class="fnt-13 pdd-left-20">
+											Browse by Country
+											<br>
+											<select class="selectpicker" data-live-search="true">
+												<option>Potato</option>													
+											</select>																				
+										</label>
 
 										<div class="rfrsh-wrap">
 											<a href="" class="btn btn-default btn-lg"><i class="icon-refresh"></i></a>
-										</div>												
-												
+										</div>											
 										</div>
 
 									</form>
@@ -116,7 +119,6 @@
 										<table class="table table-striped">							
 											<thead>
 												<tr>
-													<th>Photo</th>
 													<th>Name</th>
 													<th>Preview</th>
 													<th>Payout</th>
@@ -125,13 +127,6 @@
 											</thead>
 											<tbody>
 												<tr>
-													<td>											
-														<?php if (true) {?>
-														<img src="images/db-img/photo-thmb.jpg">
-														<?php } else {?>
-														<img src="">
-														<?php } ?>
-													</td>
 													<td>Warframe</td>
 													<td>warframe.com</td>
 													<td>$0.60</td>
@@ -164,15 +159,11 @@
 									</div>
 								</div>				    	
 							</div>
+
 							<div id="pane2" class="tab-pane">
-								<h4>Pane 2 Content</h4>
+								<h3>Hi</h3>
 							</div>
-							<div id="pane3" class="tab-pane">
-								<h4>Pane 3 Content</h4>
-							</div>
-							<div id="pane4" class="tab-pane">
-								<h4>Pane 4 Content</h4>
-							</div>
+
 						</div><!-- /.tab-content -->
 					</div><!-- /.tabbable -->				
 
@@ -187,27 +178,46 @@
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
+
 		<div class="modal-content">
+		<?php if(false): ?>
+			<div class="preloader">
+				<img src="images/preloader.gif">
+			</div>
+		<?php else: ?>
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title">Game Details</h4>
+				<h3 class="modal-title">Warframe</h3>
 			</div>
-			<div class="modal-body">
-				Expires in
-				<div id="share-div">
-					<p><strong>Share</strong></p>
-					<span class='st_googleplus_large' displayText='Google +'></span>
-					<span class='st_facebook_large' displayText='Facebook'></span>
-					<span class='st_twitter_large' displayText='Tweet'></span>
-					<span class='st_linkedin_large' displayText='LinkedIn'></span>
-					<span class='st_email_large' displayText='Email'></span>
-					<span class='st_sharethis_large' displayText='ShareThis'></span>          
+			<div id="game-det">
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-lg-12">
+							<div id="game-det-banner">
+								<img src="images/game-thmbs/warframe-cvr.jpg">
+							</div>
+							<div class="pdd-20" id="game-det-desc">
+									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+									tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+									quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+									consequat.
+							</div>
+						</div>
+						<div class="col-lg-6">
+						 	<div id="game-det-">								
+							</div>
+						</div>
+
+						
+					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-			</div>
+			</div>			
+		<?php endif ?>
+
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
