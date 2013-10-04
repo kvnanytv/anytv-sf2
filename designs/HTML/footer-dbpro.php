@@ -66,11 +66,38 @@
 afterCopy:function(){
   $('#ref-link').css('background','green');
 // $(this).css('color','purple');
-$(this).innerHTML("COPIED");
 $(this).next('.check').show();
 }
 });
   });
+</script>
+
+<script>
+  // $(document).ready(function(){
+    var ini = 0;
+    function hoverCopy(){
+      // alert('bind');
+      if(ini == 0){
+        ini = 1;
+        $("a#cpy-ref-btn1").zclip({
+          path:'js/zclip/ZeroClipboard.swf',
+          copy:$('#ref-lnk1').val(),
+          beforeCopy:function(){
+              $('#ref-lnk1').css('background','#2dc575');
+              $('#ref-lnk1').css('color','white');
+          // $(this).css('color','orange');
+          },
+          afterCopy:function(){
+  $('#ref-link').css('background','green');
+// $(this).css('color','purple');
+$(this).next('.check').show();
+}
+        });
+     
+
+      }
+    }
+
 </script>
 
 
