@@ -40,7 +40,7 @@
             <td>{{ offer.countryCount }}</td>
             <td id="play_now_link_{{ offer.offerId }}">
               {% if(app.user) %}
-                <a href="javascript:void(0)" onclick="playNowLink('{{ path('offer_play_now_link', {'id':offer.offerId }) }}', {{ offer.offerId }});" class="btn btn-default btn-glink">{% trans %}Get Link{% endtrans %}</a>
+                <a data-toggle="modal" href="#myModal" onclick="showOffer('{{ path('profile_offer_view', {'id':offer.id}) }}');" class="btn btn-default btn-glink">{% trans %}Get play now link{% endtrans %}</a>
               {% else %}
                 <a href="{{ path('anytv_dashboard_homepage') }}" class="btn btn-default btn-glink">{% trans %}Get play now link{% endtrans %}</a>
               {% endif %}

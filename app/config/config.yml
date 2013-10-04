@@ -81,6 +81,9 @@ avalanche_imagine:
         profile_thumbnail:
             type:    thumbnail
             options: { size: [55, 55], mode: outbound }
+        profile_detail:
+            type:    thumbnail
+            options: { size: [250, 250], mode: outbound }
         featured_offer:
             type:    thumbnail
             options: { size: [635, 314], mode: outbound }

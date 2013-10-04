@@ -13,22 +13,24 @@
     <div class="search-btns">				
       
         
-          <label>{% trans %}Category{% endtrans %}</label>
+        
+          <label class="fnt-13">{% trans %}Category{% endtrans %}<br>
           <select name="offer_category" class="selectpicker" data-width="25%">
             <option value="">&nbsp;</option>
             {% for offer_category in offer_categories %}
               <option value="{{ offer_category.id }}" {% if(offer_category.id == selected_offer_category) %}selected{% endif %}>{{ offer_category }}</option>
             {% endfor %}
           </select>
-        
+          </label>
 	
-	  <label>{% trans %}Country{% endtrans %}</label>
+	  <label class="fnt-13 pdd-left-20">{% trans %}Country{% endtrans %}<br>
           <select name="offer_country" class="selectpicker" data-width="25%">
             <option value="">&nbsp;</option>
             {% for country in countries %}
               <option value="{{ country.id }}" {% if(country.id == selected_offer_country) %}selected{% endif %}>{{ country }}</option>
             {% endfor %}
           </select>
+          </label>
 	
          <div class="rfrsh-wrap">
       <a href="javascript:void(0)" onclick="showTab('{{ path('profile_browse_offers') }}');" class="btn btn-default btn-lg"><i class="icon-refresh"></i></a>

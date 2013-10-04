@@ -1,0 +1,68 @@
+<div id="pane1" class="tab-pane active">
+  <div class="row">
+    <div class="col-lg-8">
+      <h3>{% trans %}Company Details{% endtrans %}</h3>
+      <em><a href="{{ path('profile_company_edit') }}" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em>
+      <hr>
+      <div id="user-prof-name">
+        <label>Company Name</label>
+	<input type="text" class="form-control input-lg" value="{{ affiliate }}" disabled>
+	<div class="cl-20"></div>
+	<label>{% trans %}Address{% endtrans %}</label>					 										    
+	<input type="text" class="form-control input-lg" value="{{ affiliate.getFullAddress() }}" disabled>									
+      </div>
+      <div class="cl-20"></div> 										    									    							
+      <div id="user-prof-phone">
+        <label>
+          {% trans %}Phone{% endtrans %} 
+          <div class="input-group input-group-lg">										    
+	    <input type="text" class="form-control" value="{{ affiliate.phone }}" disabled>
+          </div>
+	</label>
+      </div> 
+      <div id="user-prof-phone">
+        <label>
+          {% trans %}Fax{% endtrans %} 
+          <div class="input-group input-group-lg">										    
+	    <input type="text" class="form-control" value="{{ affiliate.fax }}" disabled>
+          </div>
+	</label>
+      </div> 
+    </div>
+    <div class="col-lg-4">
+      <div id="user-prof-img">
+        {% if(affiliate.thumbnail) %}
+          <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_detail') }}" alt="{{ affiliate }}" />
+        {% else %}
+          
+        {% endif %}
+        <img src="">	
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if(false) %}
+  
+  <h3>{{ affiliate }}<p>{% trans %}dashboard.tm ID{% endtrans %}: {{ affiliate.affiliateId }} - ({{ affiliate_status }})</p></h3>
+  
+  <ul>
+        
+        <li style="display:block">{% trans %}Country{% endtrans %}: {% if(affiliate.country) %}{{ affiliate.country }}{% else %}&nbsp;{% endif %}</li>
+        {% if(affiliate.other) %}
+          <li style="display:block">{% trans %}Other{% endtrans %}: {{ affiliate.other }}</li>
+        {% endif %}
+        
+      </ul>
+  
+  
+{% endif %}
+                  
+            
+            
+                
+                
+      
+                 
+      
+                

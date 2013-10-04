@@ -195,3 +195,21 @@ Accordion Menu
 	border: 1px solid #dddddd;
 	border-radius: 4px;	
 }
+
+.preloader {
+	text-align: center;
+	padding: 20px;
+}
+
+#game-det .modal-body {
+	padding: 0 !important;
+}
+
+#game-det-banner {
+	overflow: hidden;
+	height: 200px;
+}
+
+#game-det-desc {
+	font-size: 13px;
+}

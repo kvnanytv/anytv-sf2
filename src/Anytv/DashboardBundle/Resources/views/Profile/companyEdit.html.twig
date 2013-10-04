@@ -24,9 +24,7 @@
       <div class="panel-body">
            
           
-           {% if(affiliate.thumbnail) %}
-           <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ affiliate.company }}" />
-         {% endif %}
+           
                  
 
           <em><a href="{{ path('profile_view') }}" title="{% trans %}View{% endtrans %}">{% trans %}view{% endtrans %}</a></em>
@@ -44,6 +42,10 @@
          {{ form_row(form.other) }}
          {{ form_row(form.zipcode) }}
          
+          {% if(affiliate.thumbnail) %}
+           <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ affiliate.company }}" />
+         {% endif %}
+          
          {{ form_row(form.file) }}
          {{ form_row(form.phone) }}
          {{ form_row(form.fax) }}
