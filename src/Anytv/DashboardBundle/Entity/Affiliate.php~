@@ -122,7 +122,7 @@ class Affiliate
     /**
      * @var boolean
      *
-     * @ORM\Column(name="wants_alerts", type="boolean", nullable=true)
+     * @ORM\Column(name="wants_alerts", type="boolean")
      */
     private $wantsAlerts;
 
@@ -208,6 +208,7 @@ class Affiliate
         $this->affiliateUsers = new ArrayCollection();
         $this->trafficReferrals = new ArrayCollection();
         $this->referredAffiliates = new ArrayCollection();
+        $this->wantsAlerts = true;
     }
     
     /**
