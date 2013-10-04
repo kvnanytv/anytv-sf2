@@ -29,6 +29,13 @@ profile_tab:
         _locale:  %anytv.locales%
         type:  \d+
         
+profile_my_videos:
+    path:      /{_locale}/profile/my_videos/{page}
+    defaults:  { _controller: AnytvDashboardBundle:Profile:MyVideos, _locale: en, page: 1 }
+    requirements:
+        _locale:  %anytv.locales%
+        page:  \d+
+        
 profile_my_offers:
     path:      /{_locale}/profile/my_offers/{page}
     defaults:  { _controller: AnytvDashboardBundle:Profile:MyOffers, _locale: en, page: 1 }

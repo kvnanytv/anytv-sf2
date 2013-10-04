@@ -116,7 +116,7 @@ class AffiliateUser implements UserInterface, \Serializable
     /**
      * @var boolean
      *
-     * @ORM\Column(name="wants_alerts", type="boolean", nullable=true)
+     * @ORM\Column(name="wants_alerts", type="boolean")
      */
     private $wantsAlerts;
 
@@ -175,6 +175,27 @@ class AffiliateUser implements UserInterface, \Serializable
      * @ORM\Column(name="login_ip_change_count", type="integer")
      */
     private $loginIpChangeCount;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="show_photo", type="boolean")
+     */
+    private $showPhoto;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_public", type="boolean")
+     */
+    private $isPublic;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="shoutout", type="string", length=255, nullable=true)
+     */
+    private $shoutout;
     
     /**
      * @var string
@@ -330,6 +351,9 @@ class AffiliateUser implements UserInterface, \Serializable
         $this->salt = md5(uniqid(null, true));
         $this->loginCount = 0;
         $this->loginIpChangeCount = 0;
+        $this->showPhoto = true;
+        $this->isPublic = true;
+        $this->wantsAlerts = true;
     }
 
     /**
@@ -956,5 +980,28 @@ class AffiliateUser implements UserInterface, \Serializable
     public function getLoginIpChangeCount()
     {
         return $this->loginIpChangeCount;
+    }
+
+    /**
+     * Set showPhoto
+     *
+     * @param boolean $showPhoto
+     * @return AffiliateUser
+     */
+    public function setShowPhoto($showPhoto)
+    {
+        $this->showPhoto = $showPhoto;
+    
+        return $this;
+    }
+
+    /**
+     * Get showPhoto
+     *
+     * @return boolean 
+     */
+    public function getShowPhoto()
+    {
+        return $this->showPhoto;
     }
 }

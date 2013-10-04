@@ -115,11 +115,17 @@ Accordion Menu
 	color: #fff !important;
 }
 
-#user-menus .nav-pills > li.active > a, .nav-pills > li.active > a:hover {
+#user-menus .nav-pills > li.active > a {
 	background-color: #0c4172;
 	color: #fff;
 	font-weight: bold;
 	border-radius: 0 !important;
+}
+
+#user-menus .nav > li > a:focus {
+	background-color: transparent;
+	border-radius: 0 !important;
+	outline: 0;
 }
 
 #user-menus .nav > li > a:hover {
@@ -143,6 +149,9 @@ Accordion Menu
 	width: 100%;
 }
 
+
+
+
 .offer-tbl-wrap {
 	background-color: #fff;
 	border-radius: 5px;
@@ -154,7 +163,7 @@ Accordion Menu
 }
 
 .search-btns {
-	float: left;
+	/*float: left;*/
 }
 
 .rfrsh-wrap {
@@ -162,6 +171,10 @@ Accordion Menu
 }
 
 /************************************** Tabs *****************************************/
+
+.tabbable .nav-tabs > li.active > a, .tabbable .nav-tabs > li > a {
+	outline: 0;
+}
 
 .tab-content {
 	padding: 20px;
@@ -174,4 +187,11 @@ Accordion Menu
 .chck-tst {
 	background-color: #000 !important;
 	color: #fff !important;
+}
+
+#user-prof-img {
+	height: 250px !important;
+	max-height: 50%;
+	border: 1px solid #dddddd;
+	border-radius: 4px;	
 }
