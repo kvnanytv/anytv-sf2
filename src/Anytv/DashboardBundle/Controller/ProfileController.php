@@ -100,6 +100,11 @@ class ProfileController extends Controller
     {
       return $this->render('AnytvDashboardBundle:Profile:tabbedComponent.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user));
     }
+    
+    public function tabbedProfileComponentAction()
+    {
+      return $this->render('AnytvDashboardBundle:Profile:tabbedProfileComponent.html.twig');
+    }
      
     public function myOffersAction(Request $request, $page)
     {
@@ -271,5 +276,37 @@ class ProfileController extends Controller
       $affiliate = $affiliate_user->getAffiliate();
       
       return $this->render('AnytvDashboardBundle:Profile:myVideos.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'page'=>$page));
+    }
+    
+    public function companyAction(Request $request)
+    {
+      $translator = $this->get('translator');
+      $affiliate_user = $this->getUser();
+
+      if (!$affiliate_user) {
+        throw $this->createNotFoundException(
+            'No user found'
+        );
+      }
+      
+      $affiliate = $affiliate_user->getAffiliate();
+      
+      return $this->render('AnytvDashboardBundle:Profile:company.html.twig', array('affiliate'=>$affiliate));
+    }
+    
+    public function userAction(Request $request)
+    {
+      $translator = $this->get('translator');
+      $affiliate_user = $this->getUser();
+
+      if (!$affiliate_user) {
+        throw $this->createNotFoundException(
+            'No user found'
+        );
+      }
+      
+      $affiliate = $affiliate_user->getAffiliate();
+      
+      return $this->render('AnytvDashboardBundle:Profile:user.html.twig', array('title'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'affiliate'=>$affiliate, 'affiliate_user_status'=>$translator->trans($affiliate_user->getStatus()), 'affiliate_status'=>$translator->trans($affiliate->getStatus())));
     }
 }

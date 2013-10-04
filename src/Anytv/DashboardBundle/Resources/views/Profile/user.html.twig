@@ -1,0 +1,56 @@
+<div id="pane1" class="tab-pane active">
+  <div class="row">
+    <div class="col-lg-8">
+      <h3>{% trans %}User Details{% endtrans %}</h3>
+      <em><a href="{{ path('profile_edit') }}" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em>
+      <hr>
+      <div id="user-prof-name">
+        <label>{% trans %}Name{% endtrans %}</label>					 										    
+	<input type="text" class="form-control input-lg" value="{{ affiliate_user.getFullName() }}" disabled>
+	<div class="cl-20"></div>
+	<label>{% trans %}Email{% endtrans %}</label>					 										    
+	<input type="text" class="form-control input-lg" value="{{ affiliate_user.email }}" disabled>									
+      </div>
+      <div class="cl-20"></div> 										    									    							
+      <div id="user-prof-phone">
+        <label>
+          {% trans %}Phone{% endtrans %} 									    
+	  <input type="text" class="form-control" value="{{ affiliate_user.phone }}" disabled>
+	</label>
+      </div> 
+      <div id="user-prof-phone">
+        <label>
+          {% trans %}Mobile{% endtrans %} 
+          <div class="input-group input-group-lg">										    
+	    <input type="text" class="form-control" value="{{ affiliate_user.cellPhone }}" disabled>
+          </div>
+	</label>
+      </div>
+      <div id="user-prof-name">
+        <label>{% trans %}Date Joined{% endtrans %}</label>					 										    
+	<input type="text" class="form-control input-lg" value="{{ affiliate_user.getDateJoinedAsString() }}" disabled>								
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% if(false) %}
+  
+  
+  <h3>{% trans %}User Details{% endtrans %}</h3>
+      
+    
+    <h3>{{ affiliate_user }}<p>{% trans %}dashboard.tm ID{% endtrans %}: {{ affiliate_user.affiliateUserId }} - ({{ affiliate_user_status }})</p></h3>
+    
+    
+{% endif %}
+                  
+            
+            
+                
+                
+      
+                 
+      
+                

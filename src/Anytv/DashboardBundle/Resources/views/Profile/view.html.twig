@@ -15,60 +15,12 @@
       <div class="cl-20"></div>
       </div>
       <div class="col-lg-9">
-				<div class="tabbable">
-					
-					<div class="tab-content">
-						
-						<div class="panel panel-default user-panel">
-      <div class="panel-body">
-            <!-- <div id="user-thmb"></div> -->
-            <h3>{% trans %}Company Details{% endtrans %}</h3>
-                
-                  {% if(affiliate.thumbnail) %}
-                    <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ affiliate.company }}" />
-                  {% endif %}
-                  
-            
-            <em><a href="{{ path('profile_company_edit') }}" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em>
-                <h3>{{ affiliate }}<p>{% trans %}dashboard.tm ID{% endtrans %}: {{ affiliate.affiliateId }} - ({{ affiliate_status }})</p></h3>
-                
-                
-      
-                 <ul>
-        <li style="display:block">{% trans %}Address{% endtrans %}: {{ affiliate.getFullAddress() }}</li>
-        <li style="display:block">{% trans %}Country{% endtrans %}: {% if(affiliate.country) %}{{ affiliate.country }}{% else %}&nbsp;{% endif %}</li>
-        {% if(affiliate.other) %}
-          <li style="display:block">{% trans %}Other{% endtrans %}: {{ affiliate.other }}</li>
-        {% endif %}
-        <li style="display:block">{% trans %}Phone{% endtrans %}: {{ affiliate.phone }}</li>
-        <li style="display:block">{% trans %}Fax{% endtrans %}: {{ affiliate.fax }}</li>
-        
-      </ul>
-      
-                <h3>{% trans %}User Details{% endtrans %}</h3>
-      <em><a href="{{ path('profile_edit') }}" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em>
-    
-    <h3>{{ affiliate_user }}<p>{% trans %}dashboard.tm ID{% endtrans %}: {{ affiliate_user.affiliateUserId }} - ({{ affiliate_user_status }})</p></h3>
-    
-    <ul>
-        <li style="display:block">{% trans %}Name{% endtrans %}: {{ affiliate_user.getFullName() }}</li>
-        <li style="display:block">{% trans %}Email{% endtrans %}: {{ affiliate_user.email }}</li>
-        <li style="display:block">{% trans %}Phone{% endtrans %}: {{ affiliate_user.phone }}</li>
-        <li style="display:block">{% trans %}Mobile{% endtrans %}: {{ affiliate_user.cellPhone }}</li>
-        <li style="display:block">{% trans %}Date Joined{% endtrans %}: {{ affiliate_user.getDateJoinedAsString() }}</li>
-      </ul>
-
-      </div>
-    </div>
-                                            
-					</div><!-- /.tab-content -->
-				</div><!-- /.tabbable -->				
+          {{ render(controller('AnytvDashboardBundle:Profile:tabbedProfileComponent')) }}
+								
 
 			</div> 
 		</div>
 	</div>
-
-</div>
 </section>
 
 

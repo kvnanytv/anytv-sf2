@@ -14,3 +14,9 @@ function playNowLink(url, id){
       }
     );
 }
+
+function showOffer(url){
+    $('#profile_offer_content').html('');
+    $.get(url)
+    .done(function( data ) { $('#profile_offer_content').html(data); });
+}
