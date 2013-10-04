@@ -184,38 +184,43 @@
 			<div class="preloader">
 				<img src="images/preloader.gif">
 			</div>
-		<?php else: ?>
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3 class="modal-title">Warframe</h3>
-			</div>
+		<?php else: ?>	
 			<div id="game-det">
+		
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-lg-12">
+							<div id="game-det-title">
+								<h3 class="modal-title">Warframe</h3>								
+							</div>
 							<div id="game-det-banner">
-								<img src="images/game-thmbs/warframe-cvr.jpg">
+								<img src="images/game-thmbs/default-game-img.jpg">
+							</div>							
+							<div class="pdd-20">
+								<div id="game-det-prev">
+									<div class="row">
+										<div class="col-lg-6"><a href="#">Preview Game</a></div>
+										<div class="col-lg-6"><a href="#">Advertiser</a></div>
+									</div>
+								</div>
+								<div class="cl-20"></div>							
+								<div id="game-det-desc">
+										Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+										tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+										quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+										consequat.
+								</div>
+								<div class="cl-20"></div>
+								<div id="game-det-lnk">
+									<input id="ref-lnk1" type="text" class="form-control input-lg" value="play.tm/fjr38" disabled>								
+									<a id="cpy-ref-btn1" class="btn btn-default btn-lg" onmouseover="hoverCopy()">Copy Play Now Link</a>
+								</div>
 							</div>
-							<div class="pdd-20" id="game-det-desc">
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-									tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-									quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-									consequat.
-							</div>
-						</div>
-						<div class="col-lg-6">
-						 	<div id="game-det-">								
-							</div>
-						</div>
-
-						
+						</div>					
 					</div>
 				</div>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-			</div>			
+		
 		<?php endif ?>
 
 		</div><!-- /.modal-content -->
