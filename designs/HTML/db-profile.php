@@ -22,7 +22,7 @@
 						<div class="panel panel-default user-panel">
 							<div class="panel-heading"></div>
 							<div class="user-pic">								
-								<img src="images/db-img/default-photo.png">
+								<img src="images/db-img/profile-default-sm.png">
 								<p>
 									<?php
 									$userpic = 1;
@@ -96,34 +96,27 @@
 											<label>
 												Email 
 										    </label>
-											<input type="email" class="form-control input-lg" value="janedoe@gmail.com" disabled>
+											<input type="email" class="form-control input-lg" value="janedoe@gmail.com">
 
 
 										
 										</div>
 										<div class="cl-20"></div> 										    									    							
 										<div id="user-prof-phone">
-											<label>
-												Phone 
-												<div class="input-group input-group-lg">										    
-													<input type="text" class="form-control" value="(02)999-9999" disabled>
-													<span class="input-group-btn">
-														<?php if(true): ?>
-															<a class="btn btn-default">Edit</a>
-														<?php else: ?>
-															<a class="btn btn-default">Save</a>										      
-														<?php endif ?>
-													</span>
-												</div>
-											</label>
+											<label>Phone</label>							    
+												<input type="text" class="form-control input-lg" value="(02)999-9999">
+											
 										</div> 										
 									</div>
 									<div class="col-lg-4">
 										<div id="user-prof-img">
-											<img src="">	
+											<img src="images/db-img/profile-default-lg.svg">
+											<a href="#">Change Picture</a>
 										</div>
 									</div>
 								</div>
+								<hr>
+								<button class="btn btn-default btn-lg">Save Changes</button>
 							</div>
 
 							<!-- COMPANY DETAILS -->

@@ -190,10 +190,7 @@ Accordion Menu
 }
 
 #user-prof-img {
-	height: 250px !important;
-	max-height: 50%;
-	border: 1px solid #dddddd;
-	border-radius: 4px;	
+	text-align: center;
 }
 
 .preloader {
