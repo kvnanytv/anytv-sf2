@@ -82,9 +82,10 @@
 								<div class="row">
 									<div class="col-lg-8">
 										<div class="f-lft">
-											<h3>User Details</h3>						
+											<h3>User Details</h3>
+																
 										</div>
-										<a class="btn btn-default">Edit</a>
+										<a style="float: right" class="btn btn-default">Edit</a>	
 										<div class="cl-20"></div>
 										<hr>
 
