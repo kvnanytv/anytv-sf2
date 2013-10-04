@@ -201,6 +201,11 @@ Accordion Menu
 	padding: 20px;
 }
 
+#game-det .modal-header {
+	border-bottom: none !important;
+	text-align: right;
+}
+
 #game-det .modal-body {
 	padding: 0 !important;
 }
@@ -212,4 +217,13 @@ Accordion Menu
 
 #game-det-desc {
 	font-size: 13px;
+}
+
+#game-det-lnk input[type="text"]:disabled {
+	background-color: white;
+	text-align: center;
+}
+
+#game-det-lnk #cpy-ref-btn1 {
+	width: 100%;	
 }
