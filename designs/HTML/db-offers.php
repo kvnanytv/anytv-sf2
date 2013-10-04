@@ -22,7 +22,7 @@
 						<div class="panel panel-default user-panel">
 							<div class="panel-heading"></div>
 							<div class="user-pic">								
-								<img src="images/db-img/default-photo.png">
+								<img src="images/db-img/profile-default-sm.png">
 								<p>
 									<?php
 									$userpic = 1;
@@ -138,6 +138,19 @@
 														<?php } ?>
 													</td>
 												</tr>
+												<tr>
+													<td>Warframe</td>
+													<td>warframe.com</td>
+													<td>$0.60</td>
+													<td>
+														<?php if (true) {?>
+														<a data-toggle="modal" href="#myModal1" class="btn btn-default">Get Link</a>
+														<?php } else {?>
+														<a href="#"></a>
+														<?php } ?>
+													</td>
+												</tr>
+											</tbody>	
 
 												<tfoot>
 													<tr>
@@ -154,7 +167,7 @@
 														</td>
 													</tr>
 												</tfoot>									
-											</tbody>
+										
 										</table>
 									</div>
 								</div>				    	
@@ -180,10 +193,8 @@
 	<div class="modal-dialog">
 
 		<div class="modal-content">
-		<?php if(false): ?>
-			<div class="preloader">
-				<img src="images/preloader.gif">
-			</div>
+		<?php if(false): ?>	
+			<div></div>
 		<?php else: ?>	
 			<div id="game-det">
 		
@@ -226,5 +237,7 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
 
 <?php include 'footer-dbpro.php' ?>

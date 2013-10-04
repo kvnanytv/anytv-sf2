@@ -70,7 +70,9 @@
 				<div class="col-lg-9">
 					<div class="tabbable">
 						<ul class="nav nav-tabs">
-							<li class="active"><a href="#pane1" data-toggle="tab">User Details</a></li>
+							<li class="active">
+								<a href="#pane1" data-toggle="tab">User Details</a>
+							</li>
 							<li><a href="#pane2" data-toggle="tab">Company Details</a></li>
 							<li><a href="#pane3" data-toggle="tab">Password</a></li>
 						</ul>
@@ -79,7 +81,11 @@
 							<div id="pane1" class="tab-pane active">
 								<div class="row">
 									<div class="col-lg-8">
-										<h3>User Details</h3>
+										<div class="f-lft">
+											<h3>User Details</h3>						
+										</div>
+										<a class="btn btn-default">Edit</a>
+										<div class="cl-20"></div>
 										<hr>
 
 										<div id="user-prof-name">
@@ -101,17 +107,27 @@
 
 										
 										</div>
-										<div class="cl-20"></div> 										    									    							
+										<div class="cl-20"></div>    							
 										<div id="user-prof-phone">
 											<label>Phone</label>							    
 												<input type="text" class="form-control input-lg" value="(02)999-9999">
 											
-										</div> 										
+										</div>
+
+										<div class="cl-20"></div>
+										<label>Country</label>
+										<div id="select-option">
+											<select class="selectpicker" data-live-search="true" data-width="100%">
+												<option>Potato</option>							
+											</select>											
+										</div>
+
 									</div>
 									<div class="col-lg-4">
 										<div id="user-prof-img">
 											<img src="images/db-img/profile-default-lg.svg">
-											<a href="#">Change Picture</a>
+											<div class="cl-20"></div>
+											<a href="#">Change Photo</a>
 										</div>
 									</div>
 								</div>

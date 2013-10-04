@@ -789,3 +789,55 @@ footer {
 	margin: 0 20px 20px 20px;
 }
 
+/************************************** Modal *****************************************/
+
+#user-prof-img {
+	text-align: center;
+}
+
+#user-prof-img img {
+	border: 1px solid #ececec;
+}
+
+.preloader {
+	text-align: center;
+	height: 100px;
+	background: #fff url(images/preloader.gif) center no-repeat !important; 
+}
+
+#game-det .close-btn {
+	position: absolute;
+	left: 200px;
+}
+
+#game-det .modal-header {
+	border-bottom: none !important;
+}
+
+#game-det .modal-body {
+	padding: 0 !important;
+}
+
+#game-det-title {
+	padding: 20px;
+}
+
+#game-det-banner {
+	overflow: hidden;
+	height: 200px;
+}
+
+#game-det-desc {
+	font-size: 13px;
+}
+
+#game-det-lnk input[type="text"]:disabled {
+	background-color: white;
+	text-align: center;
+}
+
+#game-det-lnk #cpy-ref-btn1 {
+	width: 100%;	
+}
+
+
