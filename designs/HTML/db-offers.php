@@ -184,17 +184,13 @@
 			<div class="preloader">
 				<img src="images/preloader.gif">
 			</div>
-		<?php else: ?>
+		<?php else: ?>	
 			<div id="game-det">
-			<div class="modal-header">
-				<!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
-				<button type="button" class="btn btn-default close-btn" data-dismiss="modal">Close</button>
-			</div>
-			
+		
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-lg-12">
-							<div class="pdd-20" id="game-det-title">
+							<div id="game-det-title">
 								<h3 class="modal-title">Warframe</h3>								
 							</div>
 							<div id="game-det-banner">
