@@ -546,6 +546,13 @@ input:-moz-placeholder { font-style:; }
 	font-size: 20px;
 }
 
+.news-updates {
+	overflow-y: scroll;
+	height: 250px;
+	text-align: left;
+}
+
+
 /********************** Section: About AnyTV *******************/
 
 #about-anytv {
