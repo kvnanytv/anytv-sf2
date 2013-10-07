@@ -22,7 +22,7 @@
 						<div class="panel panel-default user-panel">
 							<div class="panel-heading"></div>
 							<div class="user-pic">								
-								<img src="images/db-img/default-photo.png">
+								<img src="images/db-img/profile-default-sm.png">
 								<p>
 									<?php
 									$userpic = 1;
@@ -70,7 +70,9 @@
 				<div class="col-lg-9">
 					<div class="tabbable">
 						<ul class="nav nav-tabs">
-							<li class="active"><a href="#pane1" data-toggle="tab">User Details</a></li>
+							<li class="active">
+								<a href="#pane1" data-toggle="tab">User Details</a>
+							</li>
 							<li><a href="#pane2" data-toggle="tab">Company Details</a></li>
 							<li><a href="#pane3" data-toggle="tab">Password</a></li>
 						</ul>
@@ -79,7 +81,12 @@
 							<div id="pane1" class="tab-pane active">
 								<div class="row">
 									<div class="col-lg-8">
-										<h3>User Details</h3>
+										<div class="f-lft">
+											<h3>User Details</h3>
+																
+										</div>
+										<a style="float: right" class="btn btn-default">Edit</a>	
+										<div class="cl-20"></div>
 										<hr>
 
 										<div id="user-prof-name">
@@ -96,34 +103,37 @@
 											<label>
 												Email 
 										    </label>
-											<input type="email" class="form-control input-lg" value="janedoe@gmail.com" disabled>
+											<input type="email" class="form-control input-lg" value="janedoe@gmail.com">
 
 
 										
 										</div>
-										<div class="cl-20"></div> 										    									    							
+										<div class="cl-20"></div>    							
 										<div id="user-prof-phone">
-											<label>
-												Phone 
-												<div class="input-group input-group-lg">										    
-													<input type="text" class="form-control" value="(02)999-9999" disabled>
-													<span class="input-group-btn">
-														<?php if(true): ?>
-															<a class="btn btn-default">Edit</a>
-														<?php else: ?>
-															<a class="btn btn-default">Save</a>										      
-														<?php endif ?>
-													</span>
-												</div>
-											</label>
-										</div> 										
+											<label>Phone</label>							    
+												<input type="text" class="form-control input-lg" value="(02)999-9999">
+											
+										</div>
+
+										<div class="cl-20"></div>
+										<label>Country</label>
+										<div id="select-option">
+											<select class="selectpicker" data-live-search="true" data-width="100%">
+												<option>Potato</option>							
+											</select>											
+										</div>
+
 									</div>
 									<div class="col-lg-4">
 										<div id="user-prof-img">
-											<img src="">	
+											<img src="images/db-img/profile-default-lg.svg">
+											<div class="cl-20"></div>
+											<a href="#">Change Photo</a>
 										</div>
 									</div>
 								</div>
+								<hr>
+								<button class="btn btn-default btn-lg">Save Changes</button>
 							</div>
 
 							<!-- COMPANY DETAILS -->

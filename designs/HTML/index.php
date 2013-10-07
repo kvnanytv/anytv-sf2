@@ -27,9 +27,10 @@
 									<a class="btn btn-primary btn-lg btn-join">Join Us!</a>
 								</div>
 							</div>
-							<div class="col-lg-7">							
-								<img src="images/mac-monitor.png" >
-
+							<div class="col-lg-7">			
+								<div class="video-container">
+								         <iframe src="http://www.youtube.com/embed/UCqJAZuvUS0" frameborder="0" width="560" height="315"></iframe>
+								</div>							
 							</div>
 						</div>
 					</div>
@@ -151,15 +152,30 @@
 							<p>As promised.</p>
 							<p>I am the ex-President and founder of TGN, my old company that I sold to BroadbandTV in 2012. It was time for something new.</p>
 							<p>Will you help me build any.TV together?</p>
-							<a href="#" class="btn btn-default">Help George</a>
+							<a href="#" style="bottom: 0;" class="btn btn-default">Help George</a>
 						</div>					
 					</div>
 					<div class="col-lg-4">
 						<div id="net-col">
-							<h4>Sega comes to any.TV!</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-								tempor incididunt ut labore et dolore magna aliqua.</p>
-							</div>	
+							<h4>News and Updates</h4>
+							<div class="news-updates fnt-13">
+
+								<p><strong>Lorem ipsum dolor sit amet</strong>
+								consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+								<p><strong>Lorem ipsum dolor sit amet</strong>
+								consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+								<p><strong>Lorem ipsum dolor sit amet</strong>
+								consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+								<p><strong>Lorem ipsum dolor sit amet</strong>
+								consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+								<p><strong>Lorem ipsum dolor sit amet</strong>
+								consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>																									
+							</div>
+						</div>	
 						</div>
 						<div class="col-lg-4">
 							<div id="net-col">	

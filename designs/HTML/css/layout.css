@@ -259,40 +259,58 @@ html, body {
 /********************** Section 1: Banner *******************/
 
 .banner {
-	height: 450px; 	
+	/*height: 450px; 	*/
+	padding: 30px 0 40px 0;
  }
 
 @media (min-width: 320px) and (max-width: 479px) {
-	.banner img {
+	.video-container {
 		display: none;
 	}
 }
 
 @media (min-width: 480px) and (max-width: 639px) {
-	.banner img {
+	.video-container {
 		display: none;
 	}
 }
 
 @media (min-width: 640px) and (max-width: 767px) {
-  .banner {
-    height: 690px;
-  }
+	.video-container {
+		display: none;
+	}
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-  .banner {
-    height: 720px;
-  }
+	.video-container {
+		display: none;
+	}
 }
 
 @media (min-width: 1024px) and (max-width: 1279px) {
-  .banner {
-    height: 670px;
-  }
+	.video-container {
+		display: none;
+	}
 }
 
 
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; 
+    height: 0; 
+    overflow: hidden;
+}
+ 
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 
 .cta-home {
 	text-align: center;
@@ -333,25 +351,6 @@ html, body {
 
 #lang-picker {
 	width: 50px;
-}
-
-.video {
-	position: relative;
-	top: 20px;	
-	padding-bottom: 56.25%;
-}
-
-.video iframe {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-	}
-
-.video-wrap {
-	width: 604px;
-	height: 465px;
-	max-width: 100%;
-	background: url(../images/mac-monitor.png) no-repeat center 100%;
 }
 
 
@@ -545,6 +544,13 @@ input:-moz-placeholder { font-style:; }
 	font-weight: 400;
 	font-size: 20px;
 }
+
+.news-updates {
+	overflow-y: scroll;
+	height: 250px;
+	text-align: left;
+}
+
 
 /********************** Section: About AnyTV *******************/
 
@@ -788,4 +794,56 @@ footer {
 .term-con input[type=checkbox] {
 	margin: 0 20px 20px 20px;
 }
+
+/************************************** Modal *****************************************/
+
+#user-prof-img {
+	text-align: center;
+}
+
+#user-prof-img img {
+	border: 1px solid #ececec;
+}
+
+.preloader {
+	text-align: center;
+	height: 100px;
+	background: #fff url(images/preloader.gif) center no-repeat !important; 
+}
+
+#game-det .close-btn {
+	position: absolute;
+	left: 200px;
+}
+
+#game-det .modal-header {
+	border-bottom: none !important;
+}
+
+#game-det .modal-body {
+	padding: 0 !important;
+}
+
+#game-det-title {
+	padding: 20px;
+}
+
+#game-det-banner {
+	overflow: hidden;
+	height: 200px;
+}
+
+#game-det-desc {
+	font-size: 13px;
+}
+
+#game-det-lnk input[type="text"]:disabled {
+	background-color: white;
+	text-align: center;
+}
+
+#game-det-lnk #cpy-ref-btn1 {
+	width: 100%;	
+}
+
 
