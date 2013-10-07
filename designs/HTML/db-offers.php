@@ -194,7 +194,7 @@
 
 		<div class="modal-content">
 		<?php if(false): ?>	
-			<div></div>
+			<div class="preloader"></div>
 		<?php else: ?>	
 			<div id="game-det">
 		
