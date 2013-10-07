@@ -88,8 +88,8 @@ $(this).next('.check').show();
           // $(this).css('color','orange');
           },
           afterCopy:function(){
-  $('#ref-link').css('background','green');
-// $(this).css('color','purple');
+  $('#ref-link').css('background','white');
+  $('#ref-link').css('color','black');
 $(this).next('.check').show();
 }
         });
