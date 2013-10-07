@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 /**
  * Affiliate
  *
- * @ORM\Table()
+ * @ORM\Table(name="Affiliate")
  * @ORM\Entity(repositoryClass="Anytv\DashboardBundle\Entity\AffiliateRepository")
  * @ORM\HasLifecycleCallbacks()
  */

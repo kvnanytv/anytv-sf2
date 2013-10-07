@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Country
  *
- * @ORM\Table()
+ * @ORM\Table(name="Country")
  * @ORM\Entity(repositoryClass="Anytv\DashboardBundle\Entity\CountryRepository")
  * @ORM\HasLifecycleCallbacks()
  */

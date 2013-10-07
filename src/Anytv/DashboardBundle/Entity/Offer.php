@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Offer
  *
- * @ORM\Table()
+ * @ORM\Table(name="Offer")
  * @ORM\Entity(repositoryClass="Anytv\DashboardBundle\Entity\OfferRepository")
  * @ORM\HasLifecycleCallbacks()
  */

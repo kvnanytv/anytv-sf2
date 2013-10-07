@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * AffiliateUser
  *
- * @ORM\Table()
+ * @ORM\Table(name="AffiliateUser")
  * @ORM\Entity(repositoryClass="Anytv\DashboardBundle\Entity\AffiliateUserRepository")
  * @ORM\HasLifecycleCallbacks()
  */
@@ -1003,5 +1003,51 @@ class AffiliateUser implements UserInterface, \Serializable
     public function getShowPhoto()
     {
         return $this->showPhoto;
+    }
+
+    /**
+     * Set isPublic
+     *
+     * @param boolean $isPublic
+     * @return AffiliateUser
+     */
+    public function setIsPublic($isPublic)
+    {
+        $this->isPublic = $isPublic;
+    
+        return $this;
+    }
+
+    /**
+     * Get isPublic
+     *
+     * @return boolean 
+     */
+    public function getIsPublic()
+    {
+        return $this->isPublic;
+    }
+
+    /**
+     * Set shoutout
+     *
+     * @param string $shoutout
+     * @return AffiliateUser
+     */
+    public function setShoutout($shoutout)
+    {
+        $this->shoutout = $shoutout;
+    
+        return $this;
+    }
+
+    /**
+     * Get shoutout
+     *
+     * @return string 
+     */
+    public function getShoutout()
+    {
+        return $this->shoutout;
     }
 }

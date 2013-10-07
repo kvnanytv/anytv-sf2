@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * OfferCategory
  *
- * @ORM\Table()
+ * @ORM\Table(name="OfferCategory")
  * @ORM\Entity(repositoryClass="Anytv\DashboardBundle\Entity\OfferCategoryRepository")
  * @ORM\HasLifecycleCallbacks()
  */

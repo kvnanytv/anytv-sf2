@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Faq
  *
- * @ORM\Table()
+ * @ORM\Table(name="Faq")
  * @ORM\Entity(repositoryClass="Anytv\MainBundle\Entity\FaqRepository")
  * @ORM\HasLifecycleCallbacks()
  */

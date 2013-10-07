@@ -8,7 +8,7 @@ use Anytv\DashboardBundle\Entity\Offer;
 /**
  * TrafficReferral
  *
- * @ORM\Table()
+ * @ORM\Table(name="TrafficReferral")
  * @ORM\Entity(repositoryClass="Anytv\DashboardBundle\Entity\TrafficReferralRepository")
  * @ORM\HasLifecycleCallbacks()
  */
