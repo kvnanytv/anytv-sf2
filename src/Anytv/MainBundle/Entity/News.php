@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 /**
  * News
  *
- * @ORM\Table()
+ * @ORM\Table(name="News")
  * @ORM\Entity(repositoryClass="Anytv\MainBundle\Entity\NewsRepository")
  * @ORM\HasLifecycleCallbacks()
  */

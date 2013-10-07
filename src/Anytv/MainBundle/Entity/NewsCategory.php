@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * NewsCategory
  *
- * @ORM\Table()
+ * @ORM\Table(name="NewsCategory")
  * @ORM\Entity(repositoryClass="Anytv\MainBundle\Entity\NewsCategoryRepository")
  * @ORM\HasLifecycleCallbacks()
  */

@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * FaqCategory
  *
- * @ORM\Table()
+ * @ORM\Table(name="FaqCategory")
  * @ORM\Entity(repositoryClass="Anytv\MainBundle\Entity\FaqCategoryRepository")
  */
 class FaqCategory

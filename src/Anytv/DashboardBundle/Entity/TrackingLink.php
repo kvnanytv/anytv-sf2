@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TrackingLink
  *
- * @ORM\Table()
+ * @ORM\Table(name="TrackingLink")
  * @ORM\Entity(repositoryClass="Anytv\DashboardBundle\Entity\TrackingLinkRepository")
  */
 class TrackingLink

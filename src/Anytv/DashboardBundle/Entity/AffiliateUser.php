@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * AffiliateUser
  *
- * @ORM\Table()
+ * @ORM\Table(name="AffiliateUser")
  * @ORM\Entity(repositoryClass="Anytv\DashboardBundle\Entity\AffiliateUserRepository")
  * @ORM\HasLifecycleCallbacks()
  */

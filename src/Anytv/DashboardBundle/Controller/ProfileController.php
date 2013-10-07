@@ -309,4 +309,9 @@ class ProfileController extends Controller
       
       return $this->render('AnytvDashboardBundle:Profile:user.html.twig', array('title'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'affiliate'=>$affiliate, 'affiliate_user_status'=>$translator->trans($affiliate_user->getStatus()), 'affiliate_status'=>$translator->trans($affiliate->getStatus())));
     }
+    
+    public function offerViewPopupAction()
+    {
+      return $this->render('AnytvDashboardBundle:Profile:offerViewPopup.html.twig');
+    }
 }

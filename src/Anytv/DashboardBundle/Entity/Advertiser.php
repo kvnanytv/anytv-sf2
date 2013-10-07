@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Advertiser
  *
- * @ORM\Table()
+ * @ORM\Table(name="Advertiser")
  * @ORM\Entity(repositoryClass="Anytv\DashboardBundle\Entity\AdvertiserRepository")
  * @ORM\HasLifecycleCallbacks()
  */

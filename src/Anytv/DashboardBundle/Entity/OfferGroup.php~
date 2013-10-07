@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 /**
  * OfferGroup
  *
- * @ORM\Table()
+ * @ORM\Table(name="OfferGroup")
  * @ORM\Entity(repositoryClass="Anytv\DashboardBundle\Entity\OfferGroupRepository")
  * @ORM\HasLifecycleCallbacks()
  */
