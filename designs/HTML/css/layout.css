@@ -77,6 +77,14 @@ html, body {
 	font-size: 13px;
 }
 
+.v-mid {
+	vertical-align: middle;
+}
+
+.mtop-10 {
+	margin: 10px 0 0 0;
+}
+
 /********************** Header *******************/
 
 #top-navigation {
@@ -797,6 +805,10 @@ footer {
 
 /************************************** Modal *****************************************/
 
+#plnw-pop .modal{
+	overflow: hidden !important;
+}
+
 #user-prof-img {
 	text-align: center;
 }
@@ -807,8 +819,9 @@ footer {
 
 .preloader {
 	text-align: center;
+	width: 100%;
 	height: 100px;
-	background: #fff url(images/preloader.gif) center no-repeat !important; 
+	background: #fff url(../images/preloader.gif) no-repeat center !important; 
 }
 
 #game-det .close-btn {
@@ -846,4 +859,16 @@ footer {
 	width: 100%;	
 }
 
+/******************************* User Profile **********************************/
 
+#form-row-style > .form_row input {
+
+	margin-bottom: 20px;
+}
+
+
+#form-row-style > .form_row select {
+	margin-bottom: 20px;
+	display: inline-block;
+	outline: none;
+}

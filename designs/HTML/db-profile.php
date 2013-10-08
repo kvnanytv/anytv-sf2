@@ -59,7 +59,7 @@
 									</li>
 									<li class="active"><a href="#">My Profile</a></li>
 									<li><a href="db-offers.php">Offers</a></li>
-									<li><a href="#">Reports</a></li>						  
+									<li><a href="#">Reports</a> </li>						  
 								</ul>
 							</div>
 						</div>
@@ -71,169 +71,185 @@
 					<div class="tabbable">
 						<ul class="nav nav-tabs">
 							<li class="active">
-								<a href="#pane1" data-toggle="tab">User Details</a>
+								<a href="#pane1" data-toggle="tab">Company Details</a>
 							</li>
-							<li><a href="#pane2" data-toggle="tab">Company Details</a></li>
-							<li><a href="#pane3" data-toggle="tab">Password</a></li>
+							<li><a href="#pane2" data-toggle="tab">User Details</a></li>
+							<li><a href="#pane3" data-toggle="tab">Password</a></li>							
 						</ul>
 						<div class="tab-content">
 							<!-- USER DETAILS -->
 							<div id="pane1" class="tab-pane active">
 								<div class="row">
 									<div class="col-lg-8">
-										<div class="f-lft">
-											<h3>User Details</h3>
-																
+										<div class="f-lft v-mid">
+											<h3>Company Details</h3>
 										</div>
-										<a style="float: right" class="btn btn-default">Edit</a>	
-										<div class="cl-20"></div>
-										<hr>
-
-										<div id="user-prof-name">
-										<label>First Name</label>					 										    
-											<input type="text" class="form-control input-lg" value="Jane">
-											<div class="cl-20"></div>
-										<label>Last Name</label>					 										    
-											<input type="text" class="form-control input-lg" value="Doe">										
-
-
-										</div>
-										<div class="cl-20"></div>
-										<div id="user-prof-email">
-											<label>
-												Email 
-										    </label>
-											<input type="email" class="form-control input-lg" value="janedoe@gmail.com">
-
-
+										<div class="f-rght mtop-10">
+											<a class="btn btn-default">Edit</a>	
+										</div>	
 										
-										</div>
-										<div class="cl-20"></div>    							
-										<div id="user-prof-phone">
-											<label>Phone</label>							    
-												<input type="text" class="form-control input-lg" value="(02)999-9999">
-											
-										</div>
-
 										<div class="cl-20"></div>
-										<label>Country</label>
-										<div id="select-option">
-											<select class="selectpicker" data-live-search="true" data-width="100%">
-												<option>Potato</option>							
-											</select>											
-										</div>
-
-									</div>
-									<div class="col-lg-4">
-										<div id="user-prof-img">
-											<img src="images/db-img/profile-default-lg.svg">
-											<div class="cl-20"></div>
-											<a href="#">Change Photo</a>
-										</div>
-									</div>
-								</div>
-								<hr>
-								<button class="btn btn-default btn-lg">Save Changes</button>
-							</div>
-
-							<!-- COMPANY DETAILS -->
-							<div id="pane2" class="tab-pane">
-								<div class="row">
-									<div class="col-lg-8">
-										<h3>Company Details</h3>
 										<hr>
 
-										<div id="comp-prof-name">
-											<label>
-												Name 
-												<div class="input-group input-group-lg">										    
-													<input type="text" class="form-control" value="Jane Doe" disabled>
-													<span class="input-group-btn">
-														<?php if(true): ?>
-															<button type="button" class=" btn btn-default">Edit</button>
-														<?php else: ?>
-															<button type="submit" class="btn btn-default">Save</button>										      
-														<?php endif ?>
-													</span>
-												</div>
-											</label>
-										</div>
-										<div class="cl-20"></div>
-										<div id="comp-prof-email">
-											<label>
-												Email 
-												<div class="input-group input-group-lg">										    
-													<input type="email" class="form-control" value="janedoe@gmail.com" disabled>
-													<span class="input-group-btn">
-														<?php if(true): ?>
-															<button type="button" class=" btn btn-default">Edit</button>
-														<?php else: ?>
-															<button type="submit" class="btn btn-default">Save</button>										      
-														<?php endif ?>
-													</span>
-												</div>
-											</label>
-										</div>
-										<div class="cl-20"></div> 										    									    							
-										<div id="comp-prof-email">
-											<label>
-												Phone 
-												<div class="input-group input-group-lg">										    
-													<input type="text" class="form-control" value="(02)999-9999" disabled>
-													<span class="input-group-btn">
-														<?php if(true): ?>
-															<button type="button" class=" btn btn-default">Edit</button>
-														<?php else: ?>
-															<button type="submit" class="btn btn-default">Save</button>										      
-														<?php endif ?>
-													</span>
-												</div>
-											</label>
-										</div> 										
-									</div>
-									<div class="col-lg-4">
-									</div>
-								</div>
-							</div>
-
-							<!-- PASSWORD -->
-							<div id="pane3" class="tab-pane">
-								<div class="row">
-									<div class="col-lg-8">
-										<h3>Change Password</h3>
-										<hr>
-										<form>
-											<div id="pass-old">
-												<label>Old Password</label>
-												<input type="password" class="form-control input-lg">											
+										<div id="form-row-style">
+											<div class="form_row">
+												<label for="company_company" class="required">Company</label>
+												<input class="form-control input-lg" type="text" id="company_company" name="company[company]" required="required" maxlength="255" value="AnyTV Philippines" />
 											</div>
-											<div class="cl-20"></div>
 
-											<div id="pass-new">
-												<label>New Password</label>
-												<input type="password" class="form-control input-lg">											
+											<div class="form_row">
+												<label for="company_address1">Address1</label>
+												<input class="form-control input-lg" type="text" id="company_address1" name="company[address1]" maxlength="255" value="1902 Belmira, Cypress Towers" />
 											</div>
-											<div class="cl-20"></div> 										    									    							
-											<div id="pass-new-confrm">
-												<label>Confirm New Password</label>
-												<input type="password" class="form-control input-lg">
+
+											<div class="form_row"><label for="company_address2">Address2</label>
+												<input class="form-control input-lg" type="text" id="company_address2" name="company[address2]" maxlength="255" />
 											</div>
-											<div class="cl-20"></div> 										    									    																	 
-											<button type="submit" class="btn btn-default btn-lg">Save Changes</button>
-										</form>										
-									</div>
-									<div class="col-lg-4">
-									</div>
-								</div>								
-							</div>
 
-						</div><!-- /.tab-content -->
-					</div><!-- /.tabbable -->				
+											<div class="form_row"><label for="company_city">City</label>
+												<input class="form-control input-lg" type="text" id="company_city" name="company[city]" maxlength="255" value="Taguig City" />
+											</div>
 
-				</div> 
+											<div class="form_row"><label for="company_region">Region</label>
+												<input class="form-control input-lg" type="text" id="company_region" name="company[region]" maxlength="255" value="NCR" />
+											</div>
+
+											<div class="form_row"><label for="company_country">Country</label>
+												<select class="selectpicker" data-width="100%" id="company_country" name="company[country]">
+													<option value=""></option>
+													<option value="1">Afghanistan</option>
+													<option value="2">Aland Islands</option></select>
+												</div>
+
+												<img src="/app_dev.php/media/cache/profile_thumbnail/uploads/affiliates/thumbnails/beaca476948deea6fb0239ffb791e809675d2a44.jpeg" alt="AnyTV Philippines" />     
+												<div class="form_row"><label for="company_file">File</label>
+													<input class="form-control input-lg" type="file" id="company_file" name="company[file]" />
+												</div>
+
+												<div class="form_row">
+													<label for="company_phone">Phone</label>
+													<input class="form-control input-lg" type="text" id="company_phone" name="company[phone]" maxlength="255" value="639178014866" />
+												</div>
+
+												<div class="form_row">
+													<label for="company_fax">Fax</label>
+													<input class="form-control input-lg" type="text" id="company_fax" name="company[fax]" maxlength="255" value="027253202" />
+												</div>
+
+  <div><button class="btn btn-default btn-lg" type="submit" id="company_save" name="company[save]">Save</button></div>
+</div>
+
+</div>
+<div class="col-lg-4">
+	<div id="user-prof-img">
+		<img src="images/db-img/profile-default-lg.svg">
+		<div class="cl-20"></div>
+		<a href="#">Change Photo</a>
+	</div>
+</div>
+</div>
+<hr>
+<!-- <button class="btn btn-default btn-lg">Save Changes</button> -->
+</div>
+
+<!-- COMPANY DETAILS -->
+<div id="pane2" class="tab-pane">
+	<div class="row">
+		<div class="col-lg-8">
+			<h3>User Details</h3>
+			<hr>
+
+			<div id="comp-prof-name">
+				<label>
+					Name 
+					<div class="input-group input-group-lg">										    
+						<input type="text" class="form-control" value="Jane Doe" disabled>
+						<span class="input-group-btn">
+							<?php if(true): ?>
+								<button type="button" class=" btn btn-default">Edit</button>
+							<?php else: ?>
+								<button type="submit" class="btn btn-default">Save</button>										      
+							<?php endif ?>
+						</span>
+					</div>
+				</label>
 			</div>
+			<div class="cl-20"></div>
+			<div id="comp-prof-email">
+				<label>
+					Email 
+					<div class="input-group input-group-lg">										    
+						<input type="email" class="form-control" value="janedoe@gmail.com" disabled>
+						<span class="input-group-btn">
+							<?php if(true): ?>
+								<button type="button" class=" btn btn-default">Edit</button>
+							<?php else: ?>
+								<button type="submit" class="btn btn-default">Save</button>										      
+							<?php endif ?>
+						</span>
+					</div>
+				</label>
+			</div>
+			<div class="cl-20"></div> 										    									    							
+			<div id="comp-prof-email">
+				<label>
+					Phone 
+					<div class="input-group input-group-lg">										    
+						<input type="text" class="form-control" value="(02)999-9999" disabled>
+						<span class="input-group-btn">
+							<?php if(true): ?>
+								<button type="button" class=" btn btn-default">Edit</button>
+							<?php else: ?>
+								<button type="submit" class="btn btn-default">Save</button>										      
+							<?php endif ?>
+						</span>
+					</div>
+				</label>
+			</div> 										
+		</div>
+		<div class="col-lg-4">
 		</div>
 	</div>
+</div>
+
+<!-- PASSWORD -->
+<div id="pane3" class="tab-pane">
+	<div class="row">
+		<div class="col-lg-8">
+			<h3>Change Password</h3>
+			<hr>
+			<form>
+				<div id="pass-old">
+					<label>Old Password</label>
+					<input type="password" class="form-control input-lg">											
+				</div>
+				<div class="cl-20"></div>
+
+				<div id="pass-new">
+					<label>New Password</label>
+					<input type="password" class="form-control input-lg">											
+				</div>
+				<div class="cl-20"></div> 										    									    							
+				<div id="pass-new-confrm">
+					<label>Confirm New Password</label>
+					<input type="password" class="form-control input-lg">
+				</div>
+				<div class="cl-20"></div> 										    									    																	 
+				<button type="submit" class="btn btn-default btn-lg">Save Changes</button>
+			</form>										
+		</div>
+		<div class="col-lg-4">
+		</div>
+	</div>								
+</div>
+
+</div><!-- /.tab-content -->
+</div><!-- /.tabbable -->				
+
+</div> 
+</div>
+</div>
+</div>
 </section>
 <!-- /content -->
 
