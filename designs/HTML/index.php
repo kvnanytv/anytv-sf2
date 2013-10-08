@@ -29,7 +29,7 @@
 							</div>
 							<div class="col-lg-7">			
 								<div class="video-container">
-								         <iframe src="http://www.youtube.com/embed/UCqJAZuvUS0" frameborder="0" width="560" height="315"></iframe>
+								         <iframe src="http://www.youtube.com/embed/UCqJAZuvUS0&wmode=opaque" frameborder="0" width="560" height="315"></iframe>
 								</div>							
 							</div>
 						</div>
