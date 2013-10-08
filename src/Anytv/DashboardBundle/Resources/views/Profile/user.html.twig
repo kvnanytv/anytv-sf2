@@ -45,17 +45,19 @@
       
       {% elseif(mode == 'edit') %}
       
+      <div id="form-row-style">
       {{ form_start(form, {'action': path('profile_view', { 'mode' : 'edit', 'tab' : 'user' }), 'method': 'POST'}) }}    
       
       {{ form_errors(form) }}
-      {{ form_row(form.title) }}
-      {{ form_row(form.firstName) }}
-      {{ form_row(form.lastName) }}
-      {{ form_row(form.phone) }}
-      {{ form_row(form.cellPhone) }}
+      {{ form_row(form.title, {'attr': {'class': 'form-control input-lg'}}) }}
+      {{ form_row(form.firstName, {'attr': {'class': 'form-control input-lg'}}) }}
+      {{ form_row(form.lastName, {'attr': {'class': 'form-control input-lg'}}) }}
+      {{ form_row(form.phone, {'attr': {'class': 'form-control input-lg'}}) }}
+      {{ form_row(form.cellPhone, {'attr': {'class': 'form-control input-lg'}}) }}
+      {{ form_row(form.save, {'attr': {'class': 'btn btn-default btn-lg'}}) }}
         
       {{ form_end(form) }}
-      
+      </div>
       {% endif %}
     </div>
 

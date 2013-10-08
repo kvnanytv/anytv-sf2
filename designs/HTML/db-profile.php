@@ -123,7 +123,7 @@
 
 												<img src="/app_dev.php/media/cache/profile_thumbnail/uploads/affiliates/thumbnails/beaca476948deea6fb0239ffb791e809675d2a44.jpeg" alt="AnyTV Philippines" />     
 												<div class="form_row"><label for="company_file">File</label>
-													<input class="form-control input-lg" type="file" id="company_file" name="company[file]" />
+													<input class="" type="file" id="company_file" name="company[file]" />
 												</div>
 
 												<div class="form_row">

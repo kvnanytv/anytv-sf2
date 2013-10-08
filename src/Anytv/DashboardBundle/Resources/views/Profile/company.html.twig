@@ -1,12 +1,14 @@
 <div id="pane1" class="tab-pane active">
   <div class="row">
     <div class="col-lg-8">
-      <div class="f-lft">
+      <div class="f-lft v-mid">
         <h3>{% trans %}Company Details{% endtrans %}</h3>
       </div>
             
       {% if(mode == 'view') %}
-        <a href="{{ path('profile_view', { 'tab': 'company', 'mode': 'edit' }) }}" title="{% trans %}edit{% endtrans %}" style="float: right" class="btn btn-default">{% trans %}edit{% endtrans %}</a>
+        <div class="f-rght mtop-10">
+          <a href="{{ path('profile_view', { 'tab': 'company', 'mode': 'edit' }) }}" title="{% trans %}edit{% endtrans %}" style="float: right" class="btn btn-default">{% trans %}edit{% endtrans %}</a>
+        </div>
       {% endif %}
       	
       <div class="cl-20"></div>                                                                     
@@ -60,27 +62,31 @@
       
       {% elseif(mode == 'edit') %}
       
+      <div id="form-row-style">
+          
       {{ form_start(form, {'action': path('profile_view', { 'mode' : 'edit' }), 'method': 'POST'}) }}    
       
       {{ form_errors(form) }}
-      {{ form_row(form.company) }}
-      {{ form_row(form.address1) }}
-      {{ form_row(form.address2) }}
-      {{ form_row(form.city) }}
-      {{ form_row(form.region) }}
-      {{ form_row(form.country) }}
-      {{ form_row(form.other) }}
-      {{ form_row(form.zipcode) }}
+      {{ form_row(form.company, {'attr': {'class': 'form-control input-lg'}}) }}
+      {{ form_row(form.address1, {'attr': {'class': 'form-control input-lg'}}) }}
+      {{ form_row(form.address2, {'attr': {'class': 'form-control input-lg'}}) }}
+      {{ form_row(form.city, {'attr': {'class': 'form-control input-lg'}}) }}
+      {{ form_row(form.region, {'attr': {'class': 'form-control input-lg'}}) }}
+      {{ form_row(form.country, {'attr': {'class': 'selectpicker', 'data-width': '100%' }}) }}
+      {{ form_row(form.other, {'attr': {'class': 'form-control input-lg'}}) }}
+      {{ form_row(form.zipcode, {'attr': {'class': 'form-control input-lg'}}) }}
          
       {% if(affiliate.thumbnail) %}
         <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ affiliate.company }}" />
       {% endif %}
           
-      {{ form_row(form.file) }}
-      {{ form_row(form.phone) }}
-      {{ form_row(form.fax) }}
+      {{ form_row(form.file, {'label': 'Photo'}) }}
+      {{ form_row(form.phone, {'attr': {'class': 'form-control input-lg'}}) }}
+      {{ form_row(form.fax, {'attr': {'class': 'form-control input-lg'}}) }}
+      {{ form_row(form.save, {'attr': {'class': 'btn btn-default btn-lg'}}) }}
          
       {{ form_end(form) }}
+      </div>
       
       {% endif %}
       

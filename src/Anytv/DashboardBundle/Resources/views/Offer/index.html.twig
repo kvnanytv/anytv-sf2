@@ -7,8 +7,12 @@
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
 
-    
-<h1 class="title">{{ title }}</h1><span>{{ max_offer_id }}</span>
+<section id="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        
+          <h1 class="title">{{ title|upper }}</h1><span>last offer id = {{ max_offer_id }}</span>
     
     <p>&nbsp;</p>
               
@@ -52,17 +56,35 @@
        {% endfor %} 
       </table>
        
+      
+    
       {% if (total_pages > 1) %}
-        <ul>
-        {% for i in 1..total_pages %}
+        <ul class="pagination">
+        {% if(page > 1) %}
+          <li><a href="{{ path('offers', {'page':(page-1)}) }}"  title="{{ (page-1) }}">&laquo;</a></li>
+        {% endif %}
+        {% for i in 1..total_pages if((page-i)|abs < 8) %}
           {% if(page == i) %}
-            <li>{{ i }}</li>
+            <li class="active"><span>{{ i }}<span class="sr-only">(current)</span></span></li>
           {% else %}
             <li><a href="{{ path('offers', {'page':i}) }}" title="{{ i }}">{{ i }}</a></li>
           {% endif %}
         {% endfor %}
+        {% if(page < total_pages) %}
+          <li><a href="{{ path('offers', {'page':(page+1)}) }}" title="{{ (page+1) }}">&raquo;</a></li>
+        {% endif %}
         </ul>
       {% endif %}
+    
+    
+      <div class="cl-20"></div>
+      </div>
+      
+		</div>
+	</div>
+</section>
+    
+
                     
             
       
