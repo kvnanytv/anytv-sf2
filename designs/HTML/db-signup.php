@@ -94,119 +94,120 @@
                   <div class="cl-20"></div>
 
                   <!-- Address 2 -->
-                  <p><strong>Address 2</strong></p>               
-                  <input type="text" class="form-control input-lg brdrrad-0">
-                </div>         
-                <div class="cl-20"></div> 
-
-                <!-- City -->
-                <div class="form_row">
-                  <p><strong>City</strong> *</p>               
-                  <input type="text" class="form-control input-lg brdrrad-0">         
-                </div>
-                <div class="cl-20"></div>               
-
-                <!-- Country -->
-                <div class="form_row">
-                  <p><strong>Country</strong> *</p>
-                  <select class="selectpicker" data-live-search="true" data-width="100%">
-                    <option>Potato</option>
-                  </select>
-                </div>
-                <div class="cl-20"></div>
-
-                <div class="row">
-                  <div class="col-md-6">
-
-                    <!-- Zipcode -->
-                    <div class="form_row">
-                      <p><strong>Zipcode</strong> *</p>               
-                      <input type="text" class="form-control input-lg brdrrad-0">         
-                    </div>
-                    <div class="cl-20"></div>
+                  <div class="form_row">
+                    <p><strong>Address 2</strong></p>               
+                    <input type="text" class="form-control input-lg brdrrad-0">
                   </div>
-                  <div class="col-md-6">
-                    <!-- Region -->
-                    <div class="form_row">
-                      <p><strong>Region</strong> *</p>               
-                      <input type="text" class="form-control input-lg brdrrad-0">         
-                    </div>
-                    <div class="cl-20"></div>
-                  </div>                                                              
-                </div>
+                  <div class="cl-20"></div> 
 
+                  <!-- City -->
+                  <div class="form_row">
+                    <p><strong>City</strong> *</p>               
+                    <input type="text" class="form-control input-lg brdrrad-0">         
+                  </div>
+                  <div class="cl-20"></div>               
 
+                  <!-- Country -->
+                  <div class="form_row">
+                    <p><strong>Country</strong> *</p>
+                    <select class="selectpicker" data-live-search="true" data-width="100%">
+                      <option>Potato</option>
+                    </select>
+                  </div>
+                  <div class="cl-20"></div>
 
-              <!-- Additional Questions -->
-              <div class="well">
-                <!-- Youtube Channels -->
-                <div class="form_row">
-                  <p><strong>Your YouTube Channels</strong></p>
-                  <input class="form-control" type="text" value="" name="yt-chs" data-role="tagsinput"/>
-                </div>
-                <div class="cl-20"></div>
-
-                <!-- Best Video -->
-                <div class="form_row">
-                  <p><strong>Link to your best video?</strong></p>
-                  <input class="form-control input-lg brdrrad-0" type="text" />
-                </div>
-                <div class="cl-20"></div>                 
-
-                <!-- YouTube Network -->
-                <div class="form_row">
-                  <p><strong>YouTube Network</strong></p>
-                  <input class="form-control input-lg brdrrad-0" type="text" />
-                </div>
-                <div class="cl-20"></div>
-
-                <!-- Twitch -->
-                <div class="form_row">
-                  <p><strong>Do you use Twitch or live stream?</strong></p>
                   <div class="row">
-                    <div class="col-lg-2">                    
-                      <div class="radio">
-                        <label>
-                          <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                          Yes
-                        </label>
+                    <div class="col-md-6">
+
+                      <!-- Zipcode -->
+                      <div class="form_row">
+                        <p><strong>Zipcode</strong> *</p>               
+                        <input type="text" class="form-control input-lg brdrrad-0">         
                       </div>
+                      <div class="cl-20"></div>
                     </div>
-                    <div class="col-lg-2">                    
-                      <div class="radio">
-                        <label>
-                          <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                          No
-                        </label>
+                    <div class="col-md-6">
+                      <!-- Region -->
+                      <div class="form_row">
+                        <p><strong>Region</strong> *</p>               
+                        <input type="text" class="form-control input-lg brdrrad-0">         
+                      </div>
+                      <div class="cl-20"></div>
+                    </div>                                                              
+                  </div>
+
+                </div>  
+
+                <!-- Additional Questions -->
+                <div class="well">
+                  <!-- Youtube Channels -->
+                  <div class="form_row">
+                    <p><strong>Your YouTube Channels</strong></p>
+                    <input class="form-control" type="text" value="" name="yt-chs" data-role="tagsinput"/>
+                  </div>
+                  <div class="cl-20"></div>
+
+                  <!-- Best Video -->
+                  <div class="form_row">
+                    <p><strong>Link to your best video?</strong></p>
+                    <input class="form-control input-lg brdrrad-0" type="text" />
+                  </div>
+                  <div class="cl-20"></div>                 
+
+                  <!-- YouTube Network -->
+                  <div class="form_row">
+                    <p><strong>YouTube Network</strong></p>
+                    <input class="form-control input-lg brdrrad-0" type="text" />
+                  </div>
+                  <div class="cl-20"></div>
+
+                  <!-- Twitch -->
+                  <div class="form_row">
+                    <p><strong>Do you use Twitch or live stream?</strong></p>
+                    <div class="row">
+                      <div class="col-lg-2">                    
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                            Yes
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-lg-2">                    
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                            No
+                          </label>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="cl-20"></div>
+                  <div class="cl-20"></div>
 
-                <!-- Skype Name -->
+                  <!-- Skype Name -->
+                  <div class="form_row">
+                    <p><strong>Skype Name</strong></p>
+                    <input class="form-control input-lg brdrrad-0" type="text" />
+                  </div>
+                  <div class="cl-20"></div>                 
+
+                </div>              
+                <hr>                
+                <!-- Terms and Condition -->
                 <div class="form_row">
-                  <p><strong>Skype Name</strong></p>
-                  <input class="form-control input-lg brdrrad-0" type="text" />
+                  <div class="term-con">
+                    <input type="checkbox" value="">I agree to the <a href="" target="_blank">Terms and Conditions.</a>
+                  </div>
                 </div>
-                <div class="cl-20"></div>                 
 
-              </div>              
-              <hr>                
-              <!-- Terms and Condition -->
-              <div class="form_row">
-                <div class="term-con">
-                  <input type="checkbox" value="">I agree to the <a href="" target="_blank">Terms and Conditions.</a>
+                <!-- Create Account Button -->
+                <div class="form_row">
+                  <a class="btn btn-lg btn-primary btn-block" href="#"><strong>CREATE ACCOUNT</strong></a>
                 </div>
-              </div>
-
-              <!-- Create Account Button -->
-              <div class="form_row">
-                <a class="btn btn-lg btn-primary btn-block" href="#"><strong>CREATE ACCOUNT</strong></a>
-              </div>
                 
               </div>        
-        <div class="col-lg-3"></div>      
+              <div class="col-lg-3"></div>      
 
     <!-- <div class="col-lg-5">       
   </div> -->
