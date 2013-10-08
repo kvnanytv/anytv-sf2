@@ -14,7 +14,6 @@
 	<?php include 'header-main.php'; ?>
 
 	<div id="content">
-
 		<section class="banner">
 			<div class="container">
 				<div class="container-fluid">
