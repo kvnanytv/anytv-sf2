@@ -16,8 +16,8 @@ function playNowLink(url, id){
 }
 
 function showOffer(url){
-    $('#loader').show();
+    $('.modal-content').addClass('preloader');
     $('#profile_offer_content').html('');
     $.get(url)
-    .done(function( data ) { $('#profile_offer_content').html(data); $('#loader').hide(); });
+    .done(function( data ) { $('#profile_offer_content').html(data); $('.modal-content').removeClass('preloader');; });
 }

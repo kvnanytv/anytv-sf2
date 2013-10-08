@@ -49,7 +49,7 @@
           <div style="padding-top: 5px;" class="collapse navbar-collapse navbar-ex1-collapse atv-sites">        
             <ul class="nav navbar-nav navbar-left">    
               <li><a class="lnk-blue" href="{{ path('anytv_main_homepage') }}">any.TV</a></li>
-              <li><a class="lnk-yellow" href="{{ path('anytv_dashboard_homepage') }}">dashboard</a></li>
+              <li><a class="lnk-yellow" href="{{ path('anytv_dashboard_homepage') }}">{% trans %}dashboard{% endtrans %}</a></li>
               <li><a class="lnk-red" href="http://www.mmo.tm" target="_blank">mmo</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -67,20 +67,20 @@
                 {% block transmenu %}
                    <a href="{{ path('anytv_main_homepage', { _locale: app.request.get('_locale', 'en') }) }}" class="dropdown-toggle" data-toggle="dropdown">
                    {% if(app.request.get('_locale', 'en') == 'zh') %}
-                     chinese
+                     {% trans %}chinese{% endtrans %}
                    {% else %}
-                     english
+                     {% trans %}english{% endtrans %}
                    {% endif %}
                    &nbsp;<b class="caret"></b></a>
                    <ul class="dropdown-menu dd-height">
                      <li>
-                       <a href="{{ path('anytv_main_homepage', { _locale: 'en' }) }}" title="English (US)">
-                         English
+                       <a href="{{ path('anytv_main_homepage', { _locale: 'en' }) }}" title="{% trans %}english{% endtrans %}">
+                         {% trans %}english{% endtrans %}
                        </a>
                      </li>
                      <li>
-                       <a href="{{ path('anytv_main_homepage', { _locale: 'zh' }) }}" title="Chinese">
-                         Chinese
+                       <a href="{{ path('anytv_main_homepage', { _locale: 'zh' }) }}" title="中文 (chinese)">
+                         中文 (chinese)
                        </a>
                      </li>
                      

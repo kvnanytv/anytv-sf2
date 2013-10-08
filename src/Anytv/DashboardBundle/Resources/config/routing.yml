@@ -5,22 +5,12 @@ anytv_dashboard_homepage:
         _locale:  %anytv.locales%
         
 profile_view:
-    path:      /{_locale}/profile/view
-    defaults:  { _controller: AnytvDashboardBundle:Profile:view, _locale: en }
+    path:      /{_locale}/profile/{tab}/{mode}
+    defaults:  { _controller: AnytvDashboardBundle:Profile:view, _locale: en, tab: company, mode: view }
     requirements:
         _locale:  %anytv.locales%
-        
-profile_edit:
-    path:      /{_locale}/profile/edit
-    defaults:  { _controller: AnytvDashboardBundle:Profile:edit, _locale: en }
-    requirements:
-        _locale:  %anytv.locales%
-        
-profile_company_edit:
-    path:      /{_locale}/profile/company/edit
-    defaults:  { _controller: AnytvDashboardBundle:Profile:companyEdit, _locale: en }
-    requirements:
-        _locale:  %anytv.locales%
+        tab: company|user
+        mode: view|edit
         
 profile_tab:
     path:      /{_locale}/profile/tab/{type}
@@ -58,16 +48,18 @@ profile_partners:
         page:  \d+
         
 profile_company:
-    path:      /{_locale}/profile/company
-    defaults:  { _controller: AnytvDashboardBundle:Profile:company, _locale: en }
+    path:      /{_locale}/profile/company/{mode}
+    defaults:  { _controller: AnytvDashboardBundle:Profile:company, _locale: en, mode: view }
     requirements:
         _locale:  %anytv.locales%
+        mode: view|edit
         
 profile_user:
-    path:      /{_locale}/profile/user
-    defaults:  { _controller: AnytvDashboardBundle:Profile:user, _locale: en }
+    path:      /{_locale}/profile/user/{mode}
+    defaults:  { _controller: AnytvDashboardBundle:Profile:user, _locale: en, mode: view }
     requirements:
         _locale:  %anytv.locales%
+        mode: view|edit
   
         
 profile_offer_view:

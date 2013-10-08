@@ -16,13 +16,16 @@
                 <div class="col-lg-5">
             			<h3>{% trans %}A new kind of YouTube Network{% endtrans %}</h3>
             			<p>{% trans %}Don’t unpartner from your YouTube Network{% endtrans %}</p>
-                  <p><a href="{{ path('signup') }}" class="btn btn-primary btn-lg btn-join">{% trans %}Join any.TV{% endtrans %}</a></p>
+                                {% if(app.user == false) %}
+                                  <p><a href="{{ path('signup') }}" class="btn btn-primary btn-lg btn-join">{% trans %}Join any.TV{% endtrans %}</a></p>
+                                {% endif %}
                   
                 </div>
                 <div class="col-lg-7">
                 
-            			<img src="{{ asset('bundles/anytvmain/images/mac-monitor.png') }}">            
-                  
+            			<div class="video-container">
+								         <iframe src="http://www.youtube.com/embed/UCqJAZuvUS0?wmode=transparent" frameborder="0" width="560" height="315"></iframe>
+								</div>	
                 
                 </div>
           		</div>
@@ -65,7 +68,9 @@
                 <p>You do not need to unpartner from your current Network to join any.TV.</p>
                 <p>Why?</p>
                 <p>Because we <b>don’t</b> partner channels.</p>
-                <a href="{{ path('signup') }}" class="btn btn-default">Join any.TV</a>  
+                {% if(app.user == false) %}
+                  <a href="{{ path('signup') }}" class="btn btn-default">Join any.TV</a>  
+                {% endif %}
 					</div>	
 				</div>
 				<div class="col-lg-4">

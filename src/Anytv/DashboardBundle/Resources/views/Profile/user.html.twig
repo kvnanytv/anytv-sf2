@@ -1,9 +1,19 @@
 <div id="pane1" class="tab-pane active">
   <div class="row">
     <div class="col-lg-8">
-      <h3>{% trans %}User Details{% endtrans %}</h3>
-      <em><a href="{{ path('profile_edit') }}" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em>
+      <div class="f-lft">
+        <h3>{% trans %}User Details{% endtrans %}</h3>
+      </div>
+      
+      {% if(mode == 'view') %}
+        <a href="{{ path('profile_view', { 'tab': 'user', 'mode': 'edit' }) }}" title="{% trans %}edit{% endtrans %}" style="float: right" class="btn btn-default">{% trans %}edit{% endtrans %}</a>
+      {% endif %}
+        
+      <div class="cl-20"></div>
       <hr>
+      
+      {% if(mode == 'view') %}
+      
       <div id="user-prof-name">
         <label>{% trans %}Name{% endtrans %}</label>					 										    
 	<input type="text" class="form-control input-lg" value="{{ affiliate_user.getFullName() }}" disabled>
@@ -14,8 +24,10 @@
       <div class="cl-20"></div> 										    									    							
       <div id="user-prof-phone">
         <label>
-          {% trans %}Phone{% endtrans %} 									    
-	  <input type="text" class="form-control" value="{{ affiliate_user.phone }}" disabled>
+          {% trans %}Phone{% endtrans %} 
+          <div class="input-group input-group-lg">	
+	    <input type="text" class="form-control" value="{{ affiliate_user.phone }}" disabled>
+          </div>
 	</label>
       </div> 
       <div id="user-prof-phone">
@@ -30,6 +42,21 @@
         <label>{% trans %}Date Joined{% endtrans %}</label>					 										    
 	<input type="text" class="form-control input-lg" value="{{ affiliate_user.getDateJoinedAsString() }}" disabled>								
       </div>
+      
+      {% elseif(mode == 'edit') %}
+      
+      {{ form_start(form, {'action': path('profile_view', { 'mode' : 'edit', 'tab' : 'user' }), 'method': 'POST'}) }}    
+      
+      {{ form_errors(form) }}
+      {{ form_row(form.title) }}
+      {{ form_row(form.firstName) }}
+      {{ form_row(form.lastName) }}
+      {{ form_row(form.phone) }}
+      {{ form_row(form.cellPhone) }}
+        
+      {{ form_end(form) }}
+      
+      {% endif %}
     </div>
 
   </div>

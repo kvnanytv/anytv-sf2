@@ -189,49 +189,8 @@ Accordion Menu
 	color: #fff !important;
 }
 
-#user-prof-img {
-	height: 250px !important;
-	max-height: 50%;
-	border: 1px solid #dddddd;
-	border-radius: 4px;	
+#pane1 h3 {
+	float: left;
 }
 
-.preloader {
-	text-align: center;
-	padding: 20px;
-}
 
-#game-det .close-btn {
-	position: absolute;
-	left: 200px;
-}
-
-#game-det .modal-header {
-	border-bottom: none !important;
-}
-
-#game-det .modal-body {
-	padding: 0 !important;
-}
-
-#game-det-title {
-	padding: 20px;
-}
-
-#game-det-banner {
-	overflow: hidden;
-	height: 200px;
-}
-
-#game-det-desc {
-	font-size: 13px;
-}
-
-#game-det-lnk input[type="text"]:disabled {
-	background-color: white;
-	text-align: center;
-}
-
-#game-det-lnk #cpy-ref-btn1 {
-	width: 100%;	
-}

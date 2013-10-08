@@ -1,9 +1,13 @@
 <div class="tabbable">
   <ul class="nav nav-tabs"> 
-    <li class="active"><a href="javascript:void(0)" onclick="showTab('{{ path('profile_company') }}');" data-toggle="tab">{% trans %}Company Details{% endtrans %}</a></li>
-    <li><a href="javascript:void(0)" onclick="showTab('{{ path('profile_user') }}');" data-toggle="tab">{% trans %}User Details{% endtrans %}</a></li>
+    <li {% if(tab == 'company') %}class="active"{% endif %}><a href="{{ path('profile_view') }}">{% trans %}Company Details{% endtrans %}</a></li>
+    <li {% if(tab == 'user') %}class="active"{% endif %}><a href="{{ path('profile_view', { 'tab': 'user' }) }}">{% trans %}User Details{% endtrans %}</a></li>
   </ul>
   <div class="tab-content" id="profile_tab_content">
-    {{ render(controller('AnytvDashboardBundle:Profile:company', { 'mode': 'view' })) }}
+    {% if(tab == 'company') %}
+      {{ render(controller('AnytvDashboardBundle:Profile:company', { 'mode': mode, 'form': form })) }}
+    {% elseif(tab == 'user') %}
+      {{ render(controller('AnytvDashboardBundle:Profile:user', { 'mode': mode, 'form': form })) }}
+    {% endif %}
   </div>						
 </div>

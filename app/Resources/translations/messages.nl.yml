@@ -74,15 +74,16 @@
 'Login': Aanmelden
 'FAQ': FAQ
 'A new kind of YouTube Network': Een nieuw soort YouTube netwerk
-'Don’t unpartner from your YouTube Network': Ga niet weg van je YouTube Netwerk
+'Don’t unpartner from your YouTube Network': On-partner niet van je huidige YouTube netwerk
 'Join any.TV': Sluit je aan bij any.TV
 'All': All
 'Dashboard': Dashboard
+'dashboard': dashboard
 'Password': Wachtwoord
 'Forgot Password?': Wachtwoord vergeten?
 'part of the anyTV family': Onderdeel van de anyTV familie
 "Don't have an account yet?": Heb je nog geen account?
-'Copyright 2013 any.TV Limited | All Rights Reserved': Copyright 2013 any.TV gelimiteerd | Alle rechten voorbehouden
+'Copyright 2013 any.TV Limited | All Rights Reserved': Copyright 2013 any.TV | Alle rechten voorbehouden
 'What is any.TV?': What is any.TV?
 'Branding Kit': Branding Kit
 'Games List': Spellen lijst
@@ -104,7 +105,16 @@
 'My Offers': My Offers
 'Browse Offers': Browse Offers
 'Search Offers': Search Offers
-'Go!': Go!
+'Go!': Ga!
 'Company Details': Bedrijf details
 'User Details': Gebruikers details
 'Affiliate Sign Up': Leden login
+'Authenticating': Veriferen
+'Invalid Authorization': Geen toegang
+'Account is not active': Account is niet actief
+'Refer-a-Friend link': Nodig-een-vriend-uit link
+'Copy Link': Link kopiëren
+'close': sluiten
+'My Videos': Mijn videos
+'chinese': Chinees
+'Preview URL': Voorproef URL

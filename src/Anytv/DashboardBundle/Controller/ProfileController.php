@@ -13,7 +13,7 @@ use Anytv\DashboardBundle\Entity\TrackingLink;
 
 class ProfileController extends Controller
 {
-    public function viewAction()
+    public function viewAction(Request $request, $tab, $mode)
     {
       $affiliate_user = $this->getUser();
       $translator = $this->get('translator');
@@ -26,39 +26,49 @@ class ProfileController extends Controller
       }
       
       $affiliate = $affiliate_user->getAffiliate();
-
-      return $this->render('AnytvDashboardBundle:Profile:view.html.twig', array('title'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'affiliate'=>$affiliate, 'affiliate_user_status'=>$translator->trans($affiliate_user->getStatus()), 'affiliate_status'=>$translator->trans($affiliate->getStatus())));
-    }   
-    
-    public function editAction(Request $request)
-    {
-      $affiliate_user = $this->getUser();
-
-      if (!$affiliate_user) {
+      
+      if (!$affiliate) {
         throw $this->createNotFoundException(
-            'No user found for id'
+            'No affiliate found'
         );
       }
-
-      $form = $this->createForm(new ProfileType(), $affiliate_user);
-
-      $form->handleRequest($request);
-
-      if ($form->isValid()) {
-        
-        $affiliate_user = $form->getData();
-        
-        $em = $this->getDoctrine()->getManager();
-        
-        $em->flush();
-
-        return $this->redirect($this->generateUrl('profile_view'));
-      }
       
-      $affiliate = $affiliate_user->getAffiliate();
+      $form = null;
+      $form_view = null;
+      
+      if($mode == 'edit')
+      {
+        if($tab == 'company')
+        {
+          $form = $this->createForm(new CompanyType(), $affiliate);   
+        }
+        elseif($tab == 'user')
+        {
+          $form = $this->createForm(new ProfileType(), $affiliate_user);  
+        }   
+        
+        $form->handleRequest($request);
+        
+        if ($form->isValid()) {
+            
+          $em = $this->getDoctrine()->getManager();
+          $em->flush();
 
-      return $this->render('AnytvDashboardBundle:Profile:edit.html.twig', array('title'=>'Edit my profile', 'form'=>$form->createView(), 'affiliate_user'=>$affiliate_user, 'affiliate'=>$affiliate));
-    }
+          if($tab == 'company')
+          {
+            return $this->redirect($this->generateUrl('profile_view'));   
+          }
+          elseif($tab == 'user')
+          {
+            return $this->redirect($this->generateUrl('profile_view', array('tab'=>'user')));  
+          }   
+        }
+        
+        $form_view = $form->createView();
+      }
+
+      return $this->render('AnytvDashboardBundle:Profile:view.html.twig', array('title'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'affiliate'=>$affiliate, 'affiliate_user_status'=>$translator->trans($affiliate_user->getStatus()), 'affiliate_status'=>$translator->trans($affiliate->getStatus()), 'tab'=>$tab, 'mode'=>$mode, 'form'=>$form_view));
+    }   
     
     public function companyEditAction(Request $request)
     {
@@ -91,9 +101,9 @@ class ProfileController extends Controller
       return $this->render('AnytvDashboardBundle:Profile:companyEdit.html.twig', array('title'=>'Edit '.$affiliate, 'form'=>$form->createView(), 'affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user));
     }
     
-    public function idCardAction($affiliate, $affiliate_user)
+    public function idCardAction($affiliate, $affiliate_user, $page)
     {
-      return $this->render('AnytvDashboardBundle:Profile:idCard.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user));
+      return $this->render('AnytvDashboardBundle:Profile:idCard.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'page'=>$page));
     }
     
     public function tabbedComponentAction($affiliate, $affiliate_user)
@@ -101,9 +111,9 @@ class ProfileController extends Controller
       return $this->render('AnytvDashboardBundle:Profile:tabbedComponent.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user));
     }
     
-    public function tabbedProfileComponentAction()
+    public function tabbedProfileComponentAction($tab, $mode, $form)
     {
-      return $this->render('AnytvDashboardBundle:Profile:tabbedProfileComponent.html.twig');
+      return $this->render('AnytvDashboardBundle:Profile:tabbedProfileComponent.html.twig', array('tab'=>$tab, 'mode'=>$mode, 'form'=>$form));
     }
      
     public function myOffersAction(Request $request, $page)
@@ -278,7 +288,7 @@ class ProfileController extends Controller
       return $this->render('AnytvDashboardBundle:Profile:myVideos.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'page'=>$page));
     }
     
-    public function companyAction(Request $request)
+    public function companyAction(Request $request, $mode, $form)
     {
       $translator = $this->get('translator');
       $affiliate_user = $this->getUser();
@@ -291,10 +301,10 @@ class ProfileController extends Controller
       
       $affiliate = $affiliate_user->getAffiliate();
       
-      return $this->render('AnytvDashboardBundle:Profile:company.html.twig', array('affiliate'=>$affiliate));
+      return $this->render('AnytvDashboardBundle:Profile:company.html.twig', array('affiliate'=>$affiliate, 'mode'=>$mode, 'form'=>$form));
     }
     
-    public function userAction(Request $request)
+    public function userAction(Request $request, $mode, $form)
     {
       $translator = $this->get('translator');
       $affiliate_user = $this->getUser();
@@ -307,7 +317,7 @@ class ProfileController extends Controller
       
       $affiliate = $affiliate_user->getAffiliate();
       
-      return $this->render('AnytvDashboardBundle:Profile:user.html.twig', array('title'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'affiliate'=>$affiliate, 'affiliate_user_status'=>$translator->trans($affiliate_user->getStatus()), 'affiliate_status'=>$translator->trans($affiliate->getStatus())));
+      return $this->render('AnytvDashboardBundle:Profile:user.html.twig', array('title'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'affiliate'=>$affiliate, 'affiliate_user_status'=>$translator->trans($affiliate_user->getStatus()), 'affiliate_status'=>$translator->trans($affiliate->getStatus()), 'mode'=>$mode, 'form'=>$form));
     }
     
     public function offerViewPopupAction()
