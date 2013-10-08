@@ -135,7 +135,7 @@
                   </div>                                                              
                 </div>
 
-              </div>
+
 
               <!-- Additional Questions -->
               <div class="well">
@@ -192,8 +192,7 @@
                 <div class="cl-20"></div>                 
 
               </div>              
-
-              <div class="brdr-h"></div>    
+              <hr>                
               <!-- Terms and Condition -->
               <div class="form_row">
                 <div class="term-con">
@@ -205,9 +204,8 @@
               <div class="form_row">
                 <a class="btn btn-lg btn-primary btn-block" href="#"><strong>CREATE ACCOUNT</strong></a>
               </div>
-            </div>                  
-          </div>
-        </div>
+                
+              </div>        
         <div class="col-lg-3"></div>      
 
     <!-- <div class="col-lg-5">       
