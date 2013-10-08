@@ -791,7 +791,7 @@ class AffiliateUser implements UserInterface, \Serializable
      */
     public function getDateJoinedAsString()
     {
-        return date_format($this->joinDate, 'Y-m-d');
+        return date_format($this->joinDate, 'F d, Y');
     }
     
     /**

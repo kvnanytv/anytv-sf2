@@ -74,15 +74,16 @@
 'Login': 登入
 'FAQ': 問與答
 'A new kind of YouTube Network': 一個全新的YouTube社群網
-'Don’t unpartner from your YouTube Network': 不需要停止和YouTube平台合作
+'Don’t unpartner from your YouTube Network': 可同時和其他的YouTube平台合作
 'Join any.TV': 加入any.TV
 'All': 全部
 'Dashboard': 資訊介面板
+'dashboard': 資訊介面板
 'Password': 密碼
 'Forgot Password?': 忘記密碼?
 'part of the anyTV family': any.TV 家族成員之一
 "Don't have an account yet?": 還沒有帳號嗎?
-'Copyright 2013 any.TV Limited | All Rights Reserved': any.TV有限公司2013年版權
+'Copyright 2013 any.TV Limited | All Rights Reserved': 2013年any.TV有限公司版權所有
 'What is any.TV?': 什麼是any.TV?
 'Branding Kit': any.TV品牌套組
 'Games List': 遊戲清單
@@ -108,3 +109,12 @@
 'Company Details': 公司詳情
 'User Details': 用戶資訊
 'Affiliate Sign Up': 合作公司註冊
+'Authenticating': 驗證中
+'Invalid Authorization': 驗證無效
+'Account is not active': 帳號未啟動
+'Refer-a-Friend link': '"介紹朋友"連結網址'
+'Copy Link': 複製連結
+'close': 關閉
+'My Videos': 我的影片
+'chinese': 中文
+'Preview URL': 預覽網址

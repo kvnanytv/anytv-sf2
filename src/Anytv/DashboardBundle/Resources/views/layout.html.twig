@@ -34,20 +34,20 @@
 {% block transmenu %}
 <a href="{{ path('anytv_dashboard_homepage', { _locale: app.request.get('_locale', 'en') }) }}" class="dropdown-toggle" data-toggle="dropdown">
 {% if(app.request.get('_locale', 'en') == 'zh') %}
-  chinese
+  {% trans %}chinese{% endtrans %}
 {% else %}
-  english
+  {% trans %}english{% endtrans %}
 {% endif %}
 &nbsp;<b class="caret"></b></a>
 <ul class="dropdown-menu dd-height">
   <li>
-    <a href="{{ path('anytv_dashboard_homepage', { _locale: 'en' }) }}" title="English (US)">
-      English
+    <a href="{{ path('anytv_dashboard_homepage', { _locale: 'en' }) }}" title="{% trans %}english{% endtrans %}">
+      {% trans %}english{% endtrans %}
     </a>
   </li>
   <li>
-    <a href="{{ path('anytv_dashboard_homepage', { _locale: 'zh' }) }}" title="Chinese">
-      Chinese
+    <a href="{{ path('anytv_dashboard_homepage', { _locale: 'zh' }) }}" title="中文 (chinese)">
+      中文 (chinese)
     </a>
   </li>
 </ul>
@@ -61,12 +61,12 @@
   <ul id="nav">
     <li><a href="{{ path('profile_view') }}" title="{% trans %}My Profile{% endtrans %}">{% trans %}My Profile{% endtrans %}</a></li>
     {% if is_granted('ROLE_ADMIN') %}
-      <li><a href="{{ path('advertisers') }}" title="Advertisers">Advertisers</a></li>
-      <li><a href="{{ path('offer_groups') }}" title="Offer Groups">Offer Groups</a></li>
-      <li><a href="{{ path('offers') }}" title="Offers">Offers</a></li>
-      <li><a href="{{ path('affiliates') }}" title="Affiliates">Affiliates</a></li>
-      <li><a href="{{ path('traffic_referrals') }}" title="Traffic Referrals">Traffic Referrals</a></li>
-      <li><a href="{{ path('countries') }}" title="Countries">Countries</a></li>
+      <li><a href="{{ path('advertisers') }}" title="{% trans %}Advertisers{% endtrans %}">{% trans %}Advertisers{% endtrans %}</a></li>
+      <li><a href="{{ path('offer_groups') }}" title="{% trans %}Offer Groups{% endtrans %}">{% trans %}Offer Groups{% endtrans %}</a></li>
+      <li><a href="{{ path('offers') }}" title="{% trans %}Offers{% endtrans %}">{% trans %}Offers{% endtrans %}</a></li>
+      <li><a href="{{ path('affiliates') }}" title="{% trans %}Affiliates{% endtrans %}">{% trans %}Affiliates{% endtrans %}</a></li>
+      <li><a href="{{ path('traffic_referrals') }}" title="{% trans %}Traffic Referrals{% endtrans %}">{% trans %}Traffic Referrals{% endtrans %}</a></li>
+      <li><a href="{{ path('countries') }}" title="{% trans %}Countries{% endtrans %}">{% trans %}Countries{% endtrans %}</a></li>
     {% endif %} 
   </ul>
   {% endif %}

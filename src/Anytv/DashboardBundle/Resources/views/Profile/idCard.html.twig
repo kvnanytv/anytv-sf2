@@ -20,8 +20,8 @@
     
     <div id="user-menus">
       <ul class="nav nav-pills nav-stacked">
-	<li><a href="{{ path('profile_view') }}">{% trans %}My Profile{% endtrans %}</a></li>
-	<li><a href="{{ path('anytv_dashboard_homepage') }}">{% trans %}Offers{% endtrans %}</a></li>						  
+	<li {% if(page == 'profile') %}class="active"{% endif %}><a href="{{ path('profile_view') }}">{% trans %}My Profile{% endtrans %}</a></li>
+	<li {% if(page == 'home') %}class="active"{% endif %}><a href="{{ path('anytv_dashboard_homepage') }}">{% trans %}Offers{% endtrans %}</a></li>						  
       </ul>
     </div>
   </div> 

@@ -1,9 +1,19 @@
 <div id="pane1" class="tab-pane active">
   <div class="row">
     <div class="col-lg-8">
-      <h3>{% trans %}Company Details{% endtrans %}</h3>
-      <em><a href="{{ path('profile_company_edit') }}" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em>
+      <div class="f-lft">
+        <h3>{% trans %}Company Details{% endtrans %}</h3>
+      </div>
+            
+      {% if(mode == 'view') %}
+        <a href="{{ path('profile_view', { 'tab': 'company', 'mode': 'edit' }) }}" title="{% trans %}edit{% endtrans %}" style="float: right" class="btn btn-default">{% trans %}edit{% endtrans %}</a>
+      {% endif %}
+      	
+      <div class="cl-20"></div>                                                                     
       <hr>
+      
+      {% if(mode == 'view') %}
+      
       <div id="user-prof-name">
         <label>{% trans %}Name{% endtrans %}</label>
 	<input type="text" class="form-control input-lg" value="{{ affiliate }}" disabled>
@@ -28,15 +38,60 @@
           </div>
 	</label>
       </div> 
+      {% if(affiliate.country) %}
+      <div id="user-prof-phone">
+      <label>
+        {% trans %}Country{% endtrans %} 
+        <div class="input-group input-group-lg">										    
+	  <input type="text" class="form-control" value="{{ affiliate.country }}" disabled>
+        </div>
+      </label>
+      </div> 
+      {% elseif(affiliate.other) %}
+      <div id="user-prof-phone">
+      <label>
+        {% trans %}Country{% endtrans %} 
+        <div class="input-group input-group-lg">										    
+	  <input type="text" class="form-control" value="{{ affiliate.other }}" disabled>
+        </div>
+      </label>
+      </div> 
+      {% endif %}
+      
+      {% elseif(mode == 'edit') %}
+      
+      {{ form_start(form, {'action': path('profile_view', { 'mode' : 'edit' }), 'method': 'POST'}) }}    
+      
+      {{ form_errors(form) }}
+      {{ form_row(form.company) }}
+      {{ form_row(form.address1) }}
+      {{ form_row(form.address2) }}
+      {{ form_row(form.city) }}
+      {{ form_row(form.region) }}
+      {{ form_row(form.country) }}
+      {{ form_row(form.other) }}
+      {{ form_row(form.zipcode) }}
+         
+      {% if(affiliate.thumbnail) %}
+        <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ affiliate.company }}" />
+      {% endif %}
+          
+      {{ form_row(form.file) }}
+      {{ form_row(form.phone) }}
+      {{ form_row(form.fax) }}
+         
+      {{ form_end(form) }}
+      
+      {% endif %}
+      
     </div>
     <div class="col-lg-4">
       <div id="user-prof-img">
         {% if(affiliate.thumbnail) %}
           <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_detail') }}" alt="{{ affiliate }}" />
         {% else %}
-          
+          <img src="{{ asset('bundles/anytvdashboard/images/profile-default-lg.svg') }}">
         {% endif %}
-        <img src="">	
       </div>
     </div>
   </div>
@@ -44,16 +99,9 @@
 
 {% if(false) %}
   
-  <h3>{{ affiliate }}<p>{% trans %}dashboard.tm ID{% endtrans %}: {{ affiliate.affiliateId }} - ({{ affiliate_status }})</p></h3>
+  <h3>{{ affiliate }}<p>{% trans %}dashboard.tm ID{% endtrans %}: {{ affiliate.affiliateId }}</p></h3>
   
-  <ul>
-        
-        <li style="display:block">{% trans %}Country{% endtrans %}: {% if(affiliate.country) %}{{ affiliate.country }}{% else %}&nbsp;{% endif %}</li>
-        {% if(affiliate.other) %}
-          <li style="display:block">{% trans %}Other{% endtrans %}: {{ affiliate.other }}</li>
-        {% endif %}
-        
-      </ul>
+  
   
   
 {% endif %}
