@@ -47,17 +47,17 @@
                     <div class="alert alert-danger">
                       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>                
                       Password did not match
-                    </div>
-                    <p><strong>Password</strong> *</p>               
-                    <input type="password" class="form-control input-lg brdrrad-0">                                         
-     
+                    </div>                    
+                    <p style="float: left"><strong>Password</strong> *</p><span class="fld-lnk-sm"><label  for ="passwordStrength" class="help-inline" name="passwordStrengthLabel" id="passwordStrengthLabel" ></label></span>               
+                    <br>
+                    <input id="passwordStrength" type="password" class="form-control input-lg passwordTarget control-group brdrrad-0">      
                   </div>
                   <div class="cl-20"></div>
 
                   <!-- Confirm Password -->
-                  <div class="form_row">
+                  <div class="form_row">                  
                     <p><strong>Confirm Password</strong> *</p>               
-                    <input type="password" class="form-control input-lg brdrrad-0">         
+                    <input type="text" class="form-control input-lg brdrrad-0">      
                   </div>
                   <div class="cl-20"></div>               
 
