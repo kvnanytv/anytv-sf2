@@ -862,13 +862,32 @@ footer {
 /******************************* User Profile **********************************/
 
 #form-row-style > .form_row input {
-
 	margin-bottom: 20px;
 }
-
 
 #form-row-style > .form_row select {
 	margin-bottom: 20px;
 	display: inline-block;
 	outline: none;
+}
+
+/******************************* Error 404 **********************************/
+
+#er-404 {
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+}
+
+#er-404 h1 {
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	font-weight: 700;
+	color: #fff;
+	font-size: 300px;
+}
+
+#er-404 p {
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	color: #fff;
+	font-size: 32px;
 }

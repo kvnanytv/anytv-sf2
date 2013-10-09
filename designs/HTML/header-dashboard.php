@@ -26,11 +26,16 @@
   <!-- Fonts -->
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,700,800,600' rel='stylesheet' type='text/css'>  
 
-  <!-- Bootstrap -->
-  <link href="css/bootstrap/bootstrap.css" rel="stylesheet"> 
-  <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-select.css">
+  <style type="text/css">
+   @import url('css/layout.css');     
+   @import url('css/normalize.css');
+   @import url('css/subnav.css');                     
+   @import url('css/bootstrap/bootstrap.css'); 
+   @import url('css/bootstrap/bootstrap-select.css');
+   @import url('font-awesome/css/font-awesome.min.css');
 
-  <!-- -->
+   @import url('css/dashboard-menu.css');
+ </style>
 
 
 
