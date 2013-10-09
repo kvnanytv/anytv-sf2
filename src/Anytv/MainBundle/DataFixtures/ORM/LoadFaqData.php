@@ -369,6 +369,7 @@ class LoadFaqData extends AbstractFixture implements OrderedFixtureInterface
                        'categories'=>array('Payments')
                        );
         
+        /*
         $faq[] = array('question'=>'Why does my billing page show $0, but the dashboard says I made $33?',
                        'answer'=>'<p>The dashboard shows all your earnings updated every minute that will be paid to you monthly.</p>'.
                                   '<p>The billing page shows when you get paid with a detailed breakdown.</p>'.
@@ -376,6 +377,7 @@ class LoadFaqData extends AbstractFixture implements OrderedFixtureInterface
                        'sortOrder'=>7,
                        'categories'=>array('Payments')
                        );
+         */
         
         $faq[] = array('question'=>'Are there any taxes involved in any.TV?',
                        'answer'=>'<p>There are no taxes involved in any.TV﻿</p>'.

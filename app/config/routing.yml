@@ -1,7 +1,3 @@
-anytv_community:
-    resource: "@AnytvCommunityBundle/Resources/config/routing.yml"
-    prefix:   /community
-
 anytv_main:
     resource: "@AnytvMainBundle/Resources/config/routing.yml"
     prefix:   /

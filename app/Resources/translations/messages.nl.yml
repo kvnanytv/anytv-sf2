@@ -20,7 +20,7 @@
 'Edit Offer': Uitgeven Aanbiedingen
 'Affiliate': Lid
 'Affiliates': Lid
-'Traffic Referrals': Traffic Referrals
+'Traffic Referrals': Verkeersverwijzingen
 'Company': Bedrijf
 'Address': Adres
 'Address1': Adres1
@@ -42,7 +42,7 @@
 'active': actief
 'paused': 'paused'
 'pending': op wacht
-'expired':
+'expired': afgelopen
 'deleted': verwijderd
 'blocked': geblokkeerd
 'rejected': afgewezen
@@ -111,7 +111,7 @@
 'Affiliate Sign Up': Leden login
 'Authenticating': Veriferen
 'Invalid Authorization': Geen toegang
-'Account is not active': Account is niet actief
+'Account is not active.': Account is niet actief
 'Refer-a-Friend link': Nodig-een-vriend-uit link
 'Copy Link': Link kopiëren
 'close': sluiten

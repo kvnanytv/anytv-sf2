@@ -288,8 +288,8 @@ class OfferController extends Controller
       $order_by = 'name';
       $order = 'ASC';
         
-      $offers = $repository->findAllOffers($page, $items_per_page, $order_by, $order, null, 'active');
-      $total_offers = $repository->countAllOffers(null, 'active');
+      $offers = $repository->findAllOffers($page, $items_per_page, $order_by, $order, null, 'active', null, null, true);
+      $total_offers = $repository->countAllOffers(null, 'active', null, null, true);
       $total_pages = ceil($total_offers / $items_per_page);
       
       return $this->render('AnytvDashboardBundle:Offer:embed.html.twig', array('offers'=>$offers, 'total_offers'=>$total_offers, 'page'=>$page, 'total_pages'=>$total_pages, 'country_repository'=>$country_repository));
