@@ -6,8 +6,14 @@
 
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
-    {{ parent() }}
-    <em><a href="{{ path('affiliate_edit', { 'id' : affiliate.id }) }}" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em>
+
+
+
+<section id="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <em><a href="{{ path('affiliate_edit', { 'id' : affiliate.id }) }}" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em>
     
     <h1 class="title">{{ title }}<p>dashboard.tm ID: {{ affiliate.affiliateId }} - ({{ affiliate_status }})</p></h1>
     
@@ -15,7 +21,7 @@
       <img src="{{ asset(affiliate.getWebPath()) }}" alt="{{ affiliate.company }}" style="width:100px" />
     {% endif %}
     
-    <div class="symfony-blocks-welcome">
+   
       <ul>
         <li style="display:block">{% trans %}Address{% endtrans %}: {{ affiliate.getFullAddress() }}</li>
         <li style="display:block">{% trans %}Country{% endtrans %}: {% if(affiliate.country) %}<a href="{{ path('country_view', { 'id' : affiliate.country.id }) }}" title="{% trans %}View{% endtrans %}">{{ affiliate.country.name }}</a>{% else %}&nbsp;{% endif %}</li>
@@ -58,10 +64,16 @@
           {% endfor %}
         </ul>
       {% endif %}
-    </div>
+      <div class="cl-20"></div>
+      </div>
+      
+		</div>
+	</div>
+</section>
 
-    <div class="symfony-blocks-help">
-        
-       
-    </div>
+
+
+    {{ parent() }}
+    
+    
 {% endblock %}

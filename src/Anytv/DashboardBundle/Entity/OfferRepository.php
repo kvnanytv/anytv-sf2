@@ -13,7 +13,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class OfferRepository extends EntityRepository
 {
-    public function findAllOffers($page, $items_per_page, $order_by, $order, $keyword, $status, $category = null, $country = null)
+    public function findAllOffers($page, $items_per_page, $order_by, $order, $keyword, $status, $category = null, $country = null, $non_zero_payout = false)
     {
         $first_result = ($items_per_page * ($page-1));
         
@@ -36,17 +36,37 @@ class OfferRepository extends EntityRepository
           $params['country'] = $country;
         }
         
-        $query = $query->where($where)
-                       ->setParameters($params)
-                        ->setFirstResult($first_result)
-                       ->setMaxResults($items_per_page)
-                       ->orderBy('o.'.$order_by, $order)
-                       ->getQuery();
+        if($non_zero_payout)
+        {
+          $where .= " AND o.default_payout > :default_payout";
+          $params['default_payout'] = 0;
+        }
+        
+        if($non_zero_payout)
+        {
+          $query = $query->where($where)
+                         ->setParameters($params)
+                         ->setFirstResult($first_result)
+                         ->setMaxResults($items_per_page)
+                         ->groupBy('o.name')
+                         ->addOrderBy('o.'.$order_by, $order)
+                         ->addOrderBy('o.default_payout', 'DESC')
+                         ->getQuery();
+        }
+        else
+        {
+          $query = $query->where($where)
+                         ->setParameters($params)
+                         ->setFirstResult($first_result)
+                         ->setMaxResults($items_per_page)
+                         ->orderBy('o.'.$order_by, $order)
+                         ->getQuery();    
+        }
         
         return $query->getResult();
     }
     
-    public function countAllOffers($keyword, $status, $category = null, $country = null)
+    public function countAllOffers($keyword, $status, $category = null, $country = null, $non_zero_payout = false)
     {    
         $query = $this->createQueryBuilder('o')
                       ->select('count(o.id)');
@@ -68,11 +88,29 @@ class OfferRepository extends EntityRepository
           $params['country'] = $country;
         }
         
-        $query = $query->where($where)
-                       ->setParameters($params)
-                       ->getQuery();
+        if($non_zero_payout)
+        {
+          $where .= " AND o.default_payout > :default_payout";
+          $params['default_payout'] = 0;
+        }
         
-        return $query->getSingleScalarResult();
+        if($non_zero_payout)
+        {
+          $query = $query->where($where)
+                       ->setParameters($params)
+                       ->groupBy('o.name')
+                       ->getQuery();   
+          
+          return count($query->getResult());
+        }
+        else
+        {
+          $query = $query->where($where)
+                       ->setParameters($params)
+                       ->getQuery(); 
+          
+          return $query->getSingleScalarResult();
+        }
     }
     
     public function getMaxOfferId()

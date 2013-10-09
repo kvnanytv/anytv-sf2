@@ -20,7 +20,7 @@
 'Edit Offer': 編輯 供應
 'Affiliate': 合作公司
 'Affiliates': 合作公司
-'Traffic Referrals': 介紹出去後的流量
+'Traffic Referrals': 介紹流量
 'Company': 公司
 'Address': 地址
 'Address1': 地址1
@@ -39,13 +39,13 @@
 'Phone': 電話號碼
 'Fax': 傳真
 'Website': 網站
-'active': 使用中
+'active': 供應中
 'paused': 暫停
 'pending': 回覆中
-'expired':
+'expired': 過期
 'deleted': 刪除的
-'blocked': 封鎖
-'rejected': 拒絕
+'blocked': 封鎖的
+'rejected': 拒絕的
 'Email': 郵件信箱
 'Mobile': 手機
 'edit': 編輯
@@ -69,7 +69,7 @@
 'All': All
 'dashboard.tm ID': 資訊介面板 身分
 'My Profile': 我的檔案
-"You're logged in as": 你以的帳號登入
+"You're logged in as": 已登入你的帳號
 'Logout': 登出
 'Login': 登入
 'FAQ': 問與答
@@ -111,10 +111,11 @@
 'Affiliate Sign Up': 合作公司註冊
 'Authenticating': 驗證中
 'Invalid Authorization': 驗證無效
-'Account is not active': 帳號未啟動
+'Account is not active.': 帳號未啟動
 'Refer-a-Friend link': '"介紹朋友"連結網址'
 'Copy Link': 複製連結
 'close': 關閉
 'My Videos': 我的影片
 'chinese': 中文
 'Preview URL': 預覽網址
+'Offer Groups': 供應組群

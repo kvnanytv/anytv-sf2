@@ -6,8 +6,13 @@
 
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
-    {{ parent() }}
-    <h1 class="title">{{ title|upper }}</h1>
+
+    <section id="content">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            	
+              <h1 class="title">{{ title|upper }}</h1>
     
     <p>&nbsp;</p>
     <div style="margin-bottom: 20px">
@@ -26,7 +31,7 @@
        {{ form_end(form) }}
     </div>
 
-    <div class="symfony-blocks-welcome">
+    
       <table border="1" cellspacing="15" cellpadding="15">
         <tr>
          <th>ID</th>
@@ -53,21 +58,25 @@
       </table>
        
       {% if (total_pages > 1) %}
-        <ul>
+        <ul class="pagination">
         {% for i in 1..total_pages %}
           {% if(page == i) %}
-            <li>{{ i }}</li>
+            <li class="active"><span>{{ i }}<span class="sr-only">(current)</span></span></li>
           {% else %}
             <li><a href="{{ path('offer_groups', {'page':i}) }}" title="{{ i }}">{{ i }}</a></li>
           {% endif %}
         {% endfor %}
         </ul>
       {% endif %}
-        
-    </div>
+              
+            <div class="cl-20"></div>
+          </div>
+	</div>
+      </div>
+    </section>
 
-    <div class="symfony-blocks-help">
+    {{ parent() }}
+    
         
-       
-    </div>
+    
 {% endblock %}

@@ -48,6 +48,7 @@ class SecurityController extends Controller
         $session = $request->getSession();
         $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:AffiliateUser');
         $offer_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
+        $translator = $this->get('translator');
         
         $username = $request->get('_username');
         $password = $request->get('_password');
@@ -105,6 +106,7 @@ class SecurityController extends Controller
         if(!$login_passed)
         {
           $errorMessage = $errorMessage ? $errorMessage : 'Account is not active.';
+          $errorMessage = $translator->trans($errorMessage);
           $this->get('session')->getFlashBag()->add('login_error', $errorMessage);
           return $this->redirect($this->generateUrl('login', array('user_type'=>$user_type)));   
         }
