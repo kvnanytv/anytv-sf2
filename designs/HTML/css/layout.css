@@ -81,6 +81,10 @@ html, body {
 	vertical-align: middle;
 }
 
+.mtop-20 {
+	margin: 20px 0 0 0;
+}
+
 .mtop-10 {
 	margin: 10px 0 0 0;
 }
@@ -742,6 +746,45 @@ footer {
 	text-shadow: 0px 1px 0px rgba(255, 255, 255, 1);
 }
 
+/******************************* What is Any.tv **********************************/
+
+
+.wat-wrap {
+	padding: 20px;
+}
+
+.wat-wrap h1 {	
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;	
+	font-weight: 700;
+	width: 100%;
+}
+
+.wat-wrap p {
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	font-size: 18px;
+}
+
+#first-slide {
+	background-color: #fff;
+}
+
+#first-slide h1 {
+	color: #2c7dc6;
+}
+
+
+#second-slide {
+	background-color: #EAA13F;
+	color: #fff;
+	font-weight: 300;
+	text-align: center;
+}
+
+#third-slide {
+	background-color: #fff;
+}
+
+
 
 /******************************* FAQs **********************************/
 
@@ -768,11 +811,11 @@ footer {
 	min-height: 100%;
 }
 
-@media only screen and (min-height: 960px) {
+/*@media only screen and (min-height: 960px) {
 	.sec-content {
 		min-height: 650px;
 	}
-}
+}*/
 
 .sec-content .tab-content {
 	padding: 20px 0;	

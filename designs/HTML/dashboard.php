@@ -46,8 +46,11 @@
 			<div class="col-lg-7 ft-game">
 				<img src="images/game-thmbs/warframe-cvr1.png">
 				<p><strong>Warframe</strong> Countries: 235 <em>Active</em></p>
-				<p style="font-size: 13px !important; font-family: Arial, Helvetica, sans-serif;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</p>            
+				<p style="font-size: 13px !important; font-family: Arial, Helvetica, sans-serif;">
+					They were called Tenno. Warriors of blade and gun: masters of the Warframe armor. Those that survived the old war were left drifting among the ruins. Now they are needed once more.
+					<br>
+					<a href="#"  >Read more</a>
+				</p>            
 			</div>
 		</div>
 	</div>
