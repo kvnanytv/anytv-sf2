@@ -765,7 +765,7 @@ footer {
 .sec-content {
 	background-color: #fff;
 	height: 100%;
-	min-height: 430px;		
+	min-height: 100%;
 }
 
 @media only screen and (min-height: 960px) {
@@ -891,3 +891,28 @@ footer {
 	color: #fff;
 	font-size: 32px;
 }
+
+/******************************* Error 404 **********************************/
+
+#maintenance {
+	position: relative;
+	top: 20%;
+	text-align: center;
+	color: #fff;
+}
+
+#maintenance article h1, #maintenance article p  {
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;	
+}
+
+#maintenance article h1 {
+	font-size: 32px;
+	font-weight: 600;
+}
+
+#maintenance article p {
+	font-size: 48px;
+	font-weight: 300;
+}
+
+
