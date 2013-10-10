@@ -29,14 +29,12 @@
 </head>
 
 <body>
-	<section id="maintenance">
-		<div class="container">
-			<article>
+	<section class="block">
+		<article class="centered">
 			<img src="images/anytvlogo-white-lg.png">
-				<h1>any.TV is currently undergoing maintenance</h1>
-				<p>We'll be back very soon!</p>
-			</article>
-		</div>
+			<h1>Down for Maintenance</h1>
+			<p>We'll be back very soon!</p>
+		</article>
 	</section>
 </body>
 

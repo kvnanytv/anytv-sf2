@@ -892,27 +892,36 @@ footer {
 	font-size: 32px;
 }
 
-/******************************* Error 404 **********************************/
+/******************************* Maintenance **********************************/
 
-#maintenance {
-	position: relative;
-	top: 20%;
-	text-align: center;
-	color: #fff;
+
+.block {
+  text-align: center;
+  height: 600px;
+  color: #fff;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;  
+}
+ 
+.block:before {
+  content: '';
+  display: inline-block;
+  height: 100%; 
+  vertical-align: middle;
+  margin-right: -0.25em;
+ }
+ 
+.centered {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  padding: 10px 15px;
+ }
+
+.centered h1 {
+	font-size: 52px;	
 }
 
-#maintenance article h1, #maintenance article p  {
-	font-family: 'Open Sans', Arial, Helvetica, sans-serif;	
-}
-
-#maintenance article h1 {
-	font-size: 32px;
-	font-weight: 600;
-}
-
-#maintenance article p {
+.centered p {
 	font-size: 48px;
-	font-weight: 300;
+	font-weight:300;
 }
-
-
