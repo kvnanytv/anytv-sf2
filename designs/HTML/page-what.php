@@ -55,7 +55,7 @@
 		<section id="third-slide">
 			<div class="container">
 				<div class="wat-wrap">
-				<h1>Why Join any.TV?</h1>
+				<h3>Why Join any.TV?</h3>
 				<p>We pay you recommendation revenue in addition to YouTube ad revenue, and we have a fully-functioning dashboard that reports your earnings the moment they happen.</p>
 				<p>Also, we pay you a lifetime 10% bonus for recommending us to your friends! The CEO and founder, George Vanous, is the former President of TGN, his previous successful startup that he sold in Oct, 2012.</p>
 				</div>
