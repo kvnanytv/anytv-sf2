@@ -4,6 +4,8 @@ namespace Anytv\DashboardBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\View\ChoiceView;
+use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceList;
 
 use Anytv\DashboardBundle\Entity\Affiliate;
 use Anytv\DashboardBundle\Entity\AffiliateUser;
@@ -17,6 +19,7 @@ class ProfileController extends Controller
     {
       $affiliate_user = $this->getUser();
       $translator = $this->get('translator');
+      $em = $this->getDoctrine()->getManager();
       
    
       if (!$affiliate_user) {
@@ -33,6 +36,25 @@ class ProfileController extends Controller
         );
       }
       
+      // paypal auto-retrieve upon profile view
+      
+      if($affiliate->getPaypalEmailRequested() === false)
+      {
+        $hasoffers = $this->get('hasoffers');
+        
+        if($paypal_email = $hasoffers->getPaypalEmail($affiliate->getAffiliateId()))
+        {
+          $affiliate->setPaypalEmail($paypal_email);
+        }
+        
+        $affiliate->setPaypalEmailRequested(true); 
+        
+        $em->flush();
+        
+        // fetch the record again
+        $affiliate = $affiliate_user->getAffiliate();
+      }
+      
       $form = null;
       $form_view = null;
       
@@ -40,7 +62,7 @@ class ProfileController extends Controller
       {
         if($tab == 'company')
         {
-          $form = $this->createForm(new CompanyType(), $affiliate);   
+          $form = $this->createForm(new CompanyType(), $affiliate); 
         }
         elseif($tab == 'user')
         {
@@ -51,7 +73,6 @@ class ProfileController extends Controller
         
         if ($form->isValid()) {
             
-          $em = $this->getDoctrine()->getManager();
           $em->flush();
 
           if($tab == 'company')

@@ -58,8 +58,9 @@
 <div id="sub-nav" class="dashbrd">
 <div class="container">
 <nav class="subnav-cllps db-lnks">
-  {% if(app.user) %}
   <ul id="nav">
+    <li><a href="{{ path('terms') }}" title="{% trans %}Terms & Conditions{% endtrans %}">{% trans %}Terms & Conditions{% endtrans %}</a></li> 
+  {% if(app.user) %}
     <li><a href="{{ path('profile_view') }}" title="{% trans %}My Profile{% endtrans %}">{% trans %}My Profile{% endtrans %}</a></li>
     {% if is_granted('ROLE_ADMIN') %}
       <li><a href="{{ path('advertisers') }}" title="{% trans %}Advertisers{% endtrans %}">{% trans %}Advertisers{% endtrans %}</a></li>
@@ -69,8 +70,10 @@
       <li><a href="{{ path('traffic_referrals') }}" title="{% trans %}Traffic Referrals{% endtrans %}">{% trans %}Traffic Referrals{% endtrans %}</a></li>
       <li><a href="{{ path('countries') }}" title="{% trans %}Countries{% endtrans %}">{% trans %}Countries{% endtrans %}</a></li>
     {% endif %} 
-  </ul>
+  {% else %}
+    <li><a href="{{ path('signup') }}" title="{% trans %}Affiliate Sign Up{% endtrans %}">{% trans %}Affiliate Sign Up{% endtrans %}</a></li>
   {% endif %}
+  </ul>
 </nav>
 </div>
 </div>

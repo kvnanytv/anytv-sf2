@@ -155,4 +155,38 @@ class HasoffersAPI
         
         return $response;
     }
+    
+    public function getPaypalEmail($affiliate_id)
+    {
+        $this->api_params['Target'] = 'Affiliate';
+        $this->api_params['Method'] = 'getPaymentMethods';
+        $this->api_params['id'] = $affiliate_id;
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = (array) json_decode( $result );
+        $response = (array) $result['response'];
+        $data = (array) $response['data'];
+        $paypal = (array) $data['Paypal'];
+        return isset($paypal['email']) ? $paypal['email'] : null;
+    }
+    
+    public function signup($affiliate_data, $affiliate_user_data)
+    {
+        $this->api_params['Target'] = 'Affiliate';
+        $this->api_params['Method'] = 'signup';
+        $this->api_params['account'] = $affiliate_data;
+        $this->api_params['user'] = $affiliate_user_data;
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = (array) json_decode( $result );
+        $response = (array) $result['response'];
+        
+        return $response;
+    }
 }

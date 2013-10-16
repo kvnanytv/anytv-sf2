@@ -13,6 +13,13 @@
       <div class="col-lg-12">
         
           <h1 class="title">{{ title|upper }}</h1><span>last affiliate id = {{ max_affiliate_id }}</span>
+          
+          {% for flashMessage in app.session.flashbag.get('flash_message') %}
+            <div class="alert alert-danger alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <strong>{{ flashMessage }}</strong>
+            </div>
+          {% endfor %}
     
     <p>&nbsp;</p>
     <div style="margin-bottom: 20px">
@@ -26,11 +33,15 @@
          {{ form_label(form.affiliate_country) }}
          {{ form_errors(form.affiliate_country) }}
          {{ form_widget(form.affiliate_country, {'attr': {'class': 'affiliate_country_field'}}) }}
+         {{ form_label(form.affiliate_paypal) }}
+         {{ form_errors(form.affiliate_paypal) }}
+         {{ form_widget(form.affiliate_paypal, {'attr': {'class': ''}}) }}
          {{ form_label(form.affiliate_status) }}
          {{ form_errors(form.affiliate_status) }}
          {{ form_widget(form.affiliate_status, {'attr': {'class': 'affiliate_status_field'}}) }}
          {{ form_widget(form.affiliate_search) }}
          {{ form_widget(form.affiliate_update) }}
+         {{ form_widget(form.affiliate_update_paypal) }}
        {{ form_end(form) }}
     </div>
 
@@ -40,9 +51,9 @@
          <th>Id</th>
          <th>{% trans %}Affiliate{% endtrans %} Id</th>
          <th>{% trans %}Company{% endtrans %}</th>
-         <th>{% trans %}Region{% endtrans %}</th>
          <th>{% trans %}Country{% endtrans %}</th>
          <th>{% trans %}Date Added{% endtrans %}</th>
+         <th>{% trans %}Paypal{% endtrans %}</th>
          <th>{% trans %}Thumbnail{% endtrans %}</th>
        </tr>
        {% for affiliate in affiliates %}
@@ -50,15 +61,15 @@
            <td>{{ affiliate.id }}</td>
            <td>{{ affiliate.affiliateId }}</td>
            <td><a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="Edit">{{ affiliate.company }}</a></td>
-           <td>{{ affiliate.region }}</td>
            {% if(affiliate.country) %}
              <td><a href="{{ path('country_view', { 'id' : affiliate.country.id }) }}" title="{% trans %}View{% endtrans %}">{{ affiliate.country }}</a></td>
            {% else %}
              <td>&nbsp;</td>
            {% endif %}
            <td>{{ affiliate.getDateAddedAsString() }}</td>
+           <td>{{ affiliate.paypalEmail }}</td>
            {% if(affiliate.thumbnail) %}
-             <td><img src="{{ asset(affiliate.getWebPath()) }}" alt="{{ affiliate.company }}" style="width:100px" /></td>
+             <td><img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ affiliate.company }}" /></td>
            {%  else %}
              <td>&nbsp;</td>
            {% endif %}

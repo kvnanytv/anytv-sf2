@@ -42,7 +42,7 @@ class Affiliate
     /**
      * @var string
      *
-     * @ORM\Column(name="address1", type="string", length=255, nullable=true)
+     * @ORM\Column(name="address1", type="string", length=255)
      */
     private $address1;
 
@@ -56,16 +56,9 @@ class Affiliate
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=255, nullable=true)
+     * @ORM\Column(name="city", type="string", length=255)
      */
     private $city;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="region", type="string", length=255, nullable=true)
-     */
-    private $region;
     
     /**
      * @ORM\ManyToOne(targetEntity="Country", inversedBy="affiliates")
@@ -83,14 +76,14 @@ class Affiliate
     /**
      * @var string
      *
-     * @ORM\Column(name="zipcode", type="string", length=255, nullable=true)
+     * @ORM\Column(name="zipcode", type="string", length=255)
      */
     private $zipcode;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="phone", type="string", length=255, nullable=true)
+     * @ORM\Column(name="phone", type="string", length=255)
      */
     private $phone;
 
@@ -139,20 +132,27 @@ class Affiliate
      * @ORM\Column(name="payment_method", type="string", length=255, nullable=true)
      */
     private $paymentMethod;
-
+    
     /**
      * @var string
      *
-     * @ORM\Column(name="payment_terms", type="string", length=255, nullable=true)
+     * @ORM\Column(name="paypal_email", type="string", length=100, nullable=true)
      */
-    private $paymentTerms;
-
+    private $paypalEmail;
+    
     /**
      * @var boolean
      *
-     * @ORM\Column(name="w9_filed", type="boolean", nullable=true)
+     * @ORM\Column(name="paypal_email_requested", type="boolean")
      */
-    private $w9Filed;
+    private $paypalEmailRequested;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="paypal_email_modified", type="datetime", nullable=true)
+     */
+    private $paypalEmailModified;
 
     /**
      * @var integer
@@ -166,13 +166,6 @@ class Affiliate
      * @ORM\JoinColumn(name="referrer_id", referencedColumnName="id")
      */
     private $referrer;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="affiliate_tier_id", type="integer", nullable=true)
-     */
-    private $affiliateTierId;
 
     /**
      * @var \DateTime
@@ -209,6 +202,7 @@ class Affiliate
         $this->trafficReferrals = new ArrayCollection();
         $this->referredAffiliates = new ArrayCollection();
         $this->wantsAlerts = true;
+        $this->paypalEmailRequested = false;
     }
     
     /**
@@ -447,11 +441,6 @@ class Affiliate
           $full_address .= $full_address ? ' '.$this->city.',' : $this->city.',';    
         }
         
-        if($this->region)
-        {
-          $full_address .= $full_address ? ' '.$this->region : $this->region;    
-        }
-        
         if($this->country)
         {
           $full_address .= $full_address ? ' '.$this->country : $this->country;    
@@ -493,29 +482,6 @@ class Affiliate
     }
 
     /**
-     * Set region
-     *
-     * @param string $region
-     * @return Affiliate
-     */
-    public function setRegion($region)
-    {
-        $this->region = $region;
-    
-        return $this;
-    }
-
-    /**
-     * Get region
-     *
-     * @return string 
-     */
-    public function getRegion()
-    {
-        return $this->region;
-    }
-
-    /**
      * Set other
      *
      * @param string $other
@@ -536,52 +502,6 @@ class Affiliate
     public function getOther()
     {
         return $this->other;
-    }
-
-    /**
-     * Set zipcode
-     *
-     * @param string $zipcode
-     * @return Affiliate
-     */
-    public function setZipcode($zipcode)
-    {
-        $this->zipcode = $zipcode;
-    
-        return $this;
-    }
-
-    /**
-     * Get zipcode
-     *
-     * @return string 
-     */
-    public function getZipcode()
-    {
-        return $this->zipcode;
-    }
-
-    /**
-     * Set phone
-     *
-     * @param string $phone
-     * @return Affiliate
-     */
-    public function setPhone($phone)
-    {
-        $this->phone = $phone;
-    
-        return $this;
-    }
-
-    /**
-     * Get phone
-     *
-     * @return string 
-     */
-    public function getPhone()
-    {
-        return $this->phone;
     }
 
     /**
@@ -1060,5 +980,120 @@ class Affiliate
     public function getReferredAffiliates()
     {
         return $this->referredAffiliates;
+    }
+
+    /**
+     * Set paypalEmail
+     *
+     * @param string $paypalEmail
+     * @return Affiliate
+     */
+    public function setPaypalEmail($paypalEmail)
+    {
+        $this->paypalEmail = $paypalEmail;
+    
+        return $this;
+    }
+
+    /**
+     * Get paypalEmail
+     *
+     * @return string 
+     */
+    public function getPaypalEmail()
+    {
+        return $this->paypalEmail;
+    }
+
+    /**
+     * Set paypalEmailModified
+     *
+     * @param \DateTime $paypalEmailModified
+     * @return Affiliate
+     */
+    public function setPaypalEmailModified($paypalEmailModified)
+    {
+        $this->paypalEmailModified = $paypalEmailModified;
+    
+        return $this;
+    }
+
+    /**
+     * Get paypalEmailModified
+     *
+     * @return \DateTime 
+     */
+    public function getPaypalEmailModified()
+    {
+        return $this->paypalEmailModified;
+    }
+
+    /**
+     * Set paypalEmailRequested
+     *
+     * @param boolean $paypalEmailRequested
+     * @return Affiliate
+     */
+    public function setPaypalEmailRequested($paypalEmailRequested)
+    {
+        $this->paypalEmailRequested = $paypalEmailRequested;
+    
+        return $this;
+    }
+
+    /**
+     * Get paypalEmailRequested
+     *
+     * @return boolean 
+     */
+    public function getPaypalEmailRequested()
+    {
+        return $this->paypalEmailRequested;
+    }
+
+    /**
+     * Set zipcode
+     *
+     * @param string $zipcode
+     * @return Affiliate
+     */
+    public function setZipcode($zipcode)
+    {
+        $this->zipcode = $zipcode;
+    
+        return $this;
+    }
+
+    /**
+     * Get zipcode
+     *
+     * @return string 
+     */
+    public function getZipcode()
+    {
+        return $this->zipcode;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     * @return Affiliate
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+    
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string 
+     */
+    public function getPhone()
+    {
+        return $this->phone;
     }
 }

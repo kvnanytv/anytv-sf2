@@ -49,7 +49,6 @@ class LoadAffiliateData extends AbstractFixture implements OrderedFixtureInterfa
                 $affiliate->setAddress1($affiliate_object->address1);
                 $affiliate->setAddress2($affiliate_object->address2);
                 $affiliate->setCity($affiliate_object->city);
-                $affiliate->setRegion($affiliate_object->region);
                 
                 if($this->hasReference('country_'.$affiliate_object->country))
                 {
@@ -64,11 +63,11 @@ class LoadAffiliateData extends AbstractFixture implements OrderedFixtureInterfa
                 $affiliate->setDateAdded(new \DateTime($affiliate_object->date_added));
                 $affiliate->setStatus($affiliate_object->status);
                 $affiliate->setWantsAlerts($affiliate_object->wants_alerts);
-                $affiliate->setPaymentMethod($affiliate_object->payment_method);
-                $affiliate->setPaymentTerms($affiliate_object->payment_terms);
-                $affiliate->setW9Filed($affiliate_object->w9_filed);
+                //$affiliate->setPaymentMethod($affiliate_object->payment_method);
+                //$affiliate->setPaymentTerms($affiliate_object->payment_terms);
+                //$affiliate->setW9Filed($affiliate_object->w9_filed);
                 $affiliate->setReferralId($affiliate_object->referral_id);
-                $affiliate->setAffiliateTierId($affiliate_object->affiliate_tier_id);
+                //$affiliate->setAffiliateTierId($affiliate_object->affiliate_tier_id);
           
                 $manager->persist($affiliate);   
                 
@@ -84,8 +83,15 @@ class LoadAffiliateData extends AbstractFixture implements OrderedFixtureInterfa
                     
                     $affiliate_user->setEmail($affiliate_user_object->email);
                     $affiliate_user->setTitle($affiliate_user_object->title);
-                    $affiliate_user->setFirstName($affiliate_user_object->first_name);
-                    $affiliate_user->setLastName($affiliate_user_object->last_name);
+                    
+                    $first_name = $affiliate_user_object->first_name;
+                    $first_name = $first_name ? $first_name : 'no first name';
+                    $affiliate_user->setFirstName($first_name);
+                    
+                    $last_name = $affiliate_user_object->last_name;
+                    $last_name = $last_name ? $last_name : 'no last name';
+                    $affiliate_user->setLastName($last_name);
+                    
                     $affiliate_user->setPhone($affiliate_user_object->phone);
                     $affiliate_user->setCellPhone($affiliate_user_object->cell_phone);
                     $affiliate_user->setStatus($affiliate_user_object->status);

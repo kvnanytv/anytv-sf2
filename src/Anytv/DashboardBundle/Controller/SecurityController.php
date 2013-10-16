@@ -43,6 +43,41 @@ class SecurityController extends Controller
         return $this->render('AnytvDashboardBundle:Security:login.html.twig', array('username' => $session->get(SecurityContext::LAST_USERNAME), 'password'=>'', 'error' => $error, 'user_type'=>$user_type, 'form_action'=>'login_hasoffers', 'featured_offer'=>$featured_offer, 'offer_group'=>$offer_group));
     }
     
+    public function loginAfterRegisterAction(Request $request, $user_type, $username, $password)
+    {
+        $offer_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
+        $session = $request->getSession();
+
+        // get the login error if there is one
+        if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) 
+        {
+            $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
+        } 
+        else 
+        {
+            $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
+            $session->remove(SecurityContext::AUTHENTICATION_ERROR);
+        }
+        
+        $featured_offer = null;
+        if($featured_offers = $offer_repository->findBy(array('isFeatured'=>1)))
+        {
+            shuffle($featured_offers);
+            $featured_offer = array_pop($featured_offers);
+        }
+        
+        $offer_group = null;
+        if($featured_offer)
+        {
+          if($offer_groups = $featured_offer->getOfferGroups())
+          {
+            $offer_group = $offer_groups[0];
+          }
+        }
+        
+        return $this->render('AnytvDashboardBundle:Security:loginAfterRegister.html.twig', array('username' => $username, 'password'=>$password, 'error' => $error, 'user_type'=>$user_type, 'featured_offer'=>$featured_offer, 'offer_group'=>$offer_group));
+    }
+    
     public function loginHasoffersAction(Request $request)
     {
         $session = $request->getSession();

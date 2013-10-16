@@ -16,7 +16,7 @@
     <h1 class="title">{{ title }}<p>dashboard.tm ID: {{ offer_group.offerGroupId }} - ({{ offer_group_status }})</p></h1>
     
     {% if(offer_group.thumbnail) %}
-      <img src="{{ asset(offer_group.getWebPath()) }}" alt="{{ offer_group }}" style="width:100px" />
+      <img src="{{ asset(offer_group.getWebPath()) | apply_filter('featured_offer') }}" alt="{{ offer_group }}"/>
     {% endif %}
     
     

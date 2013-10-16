@@ -57,14 +57,7 @@ faq_spreadsheet:
     defaults:  { _controller: AnytvMainBundle:Default:faqSpreadsheet, _locale: en }
     requirements:
         _locale:  %anytv.locales%
-        
-signup:
-    path:      /signup/{id}/{_locale}
-    defaults:  { _controller: AnytvMainBundle:Default:signup, _locale: en, id: 1000 }
-    requirements:
-        _locale:  %anytv.locales%
-        id:  \d+
-        
+            
 news_reset:
     path:      /{_locale}/admin/news/reset
     defaults:  { _controller: AnytvMainBundle:News:reset, _locale: en }

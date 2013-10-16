@@ -36,6 +36,55 @@ class Faq
      * @ORM\Column(name="answer", type="text")
      */
     private $answer;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="question_zh", type="string", length=255, nullable=true)
+     */
+    private $questionZh;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="answer_zh", type="text", nullable=true)
+     */
+    private $answerZh;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="question_nl", type="string", length=255, nullable=true)
+     */
+    private $questionNl;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="answer_nl", type="text", nullable=true)
+     */
+    private $answerNl;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="question_de", type="string", length=255, nullable=true)
+     */
+    private $questionDe;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="answer_de", type="text", nullable=true)
+     */
+    private $answerDe;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
 
     /**
      * @var integer
@@ -66,6 +115,7 @@ class Faq
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+        $this->isActive = true;
     }
 
     /**
@@ -263,5 +313,166 @@ class Faq
     public function getCategories()
     {
         return $this->categories;
+    }
+
+    /**
+     * Set questionZh
+     *
+     * @param string $questionZh
+     * @return Faq
+     */
+    public function setQuestionZh($questionZh)
+    {
+        $this->questionZh = $questionZh;
+    
+        return $this;
+    }
+
+    /**
+     * Get questionZh
+     *
+     * @return string 
+     */
+    public function getQuestionZh()
+    {
+        return $this->questionZh;
+    }
+
+    /**
+     * Set answerZh
+     *
+     * @param string $answerZh
+     * @return Faq
+     */
+    public function setAnswerZh($answerZh)
+    {
+        $this->answerZh = $answerZh;
+    
+        return $this;
+    }
+
+    /**
+     * Get answerZh
+     *
+     * @return string 
+     */
+    public function getAnswerZh()
+    {
+        return $this->answerZh;
+    }
+
+    /**
+     * Set questionNl
+     *
+     * @param string $questionNl
+     * @return Faq
+     */
+    public function setQuestionNl($questionNl)
+    {
+        $this->questionNl = $questionNl;
+    
+        return $this;
+    }
+
+    /**
+     * Get questionNl
+     *
+     * @return string 
+     */
+    public function getQuestionNl()
+    {
+        return $this->questionNl;
+    }
+
+    /**
+     * Set answerNl
+     *
+     * @param string $answerNl
+     * @return Faq
+     */
+    public function setAnswerNl($answerNl)
+    {
+        $this->answerNl = $answerNl;
+    
+        return $this;
+    }
+
+    /**
+     * Get answerNl
+     *
+     * @return string 
+     */
+    public function getAnswerNl()
+    {
+        return $this->answerNl;
+    }
+
+    /**
+     * Set questionDe
+     *
+     * @param string $questionDe
+     * @return Faq
+     */
+    public function setQuestionDe($questionDe)
+    {
+        $this->questionDe = $questionDe;
+    
+        return $this;
+    }
+
+    /**
+     * Get questionDe
+     *
+     * @return string 
+     */
+    public function getQuestionDe()
+    {
+        return $this->questionDe;
+    }
+
+    /**
+     * Set answerDe
+     *
+     * @param string $answerDe
+     * @return Faq
+     */
+    public function setAnswerDe($answerDe)
+    {
+        $this->answerDe = $answerDe;
+    
+        return $this;
+    }
+
+    /**
+     * Get answerDe
+     *
+     * @return string 
+     */
+    public function getAnswerDe()
+    {
+        return $this->answerDe;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     * @return Faq
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean 
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
     }
 }

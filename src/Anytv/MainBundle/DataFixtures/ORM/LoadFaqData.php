@@ -32,7 +32,7 @@ class LoadFaqData extends AbstractFixture implements OrderedFixtureInterface
                                       '<iframe title="YouTube video player" width="640" height="360" src="http://www.youtube.com/embed/RvPsDhrtgZg?list=PLyI74zGGymu8k7eVhGPcVSh3nKljHfiVX" marginwidth="0" marginheight="0" frameborder="0" allowfullscreen></iframe>'.
                                     '</div>'.
                                   '</div>'.
-                                  '<p>Learn more on our website: <a href="http://www.any.tv">www.any.tv</a></p>',
+                                  '<p>Learn more on our website: <a href="http://anytv-sf2.localhost/app_dev.php">anytv-sf2.localhost/app_dev.php</a></p>',
                        'sortOrder'=>1,
                        'categories'=>array('any.TV')
                        );
@@ -40,7 +40,7 @@ class LoadFaqData extends AbstractFixture implements OrderedFixtureInterface
         $faq[] = array('question'=>'Why did you leave TGN, George? &#8211; Professional differences and&#8230;',
                        'answer'=>'<p>TGN has many good people and I wish them well.</p>'.
                                   '<p>I (George) chose to leave because of professional differences, and I saw the opportunity to do something new and exciting with any.TV.</p>'.
-                                  '<p>We now have 5,000 YouTube partners, growing at 1 new partner per hour! We &#8211; the <a href="http://www.any.tv/staff">entire any.TV team</a> - are  friends, welcoming new friends, and we are leaders who make the decisions that grow any.TV.</p>'.
+                                  '<p>We now have 5,000 YouTube partners, growing at 1 new partner per hour! We &#8211; the <a href="http://anytv-sf2.localhost/app_dev.php/staff">entire any.TV team</a> - are  friends, welcoming new friends, and we are leaders who make the decisions that grow any.TV.</p>'.
                                   '<p>Hope this helps.</p>',
                        'sortOrder'=>2,
                        'categories'=>array('any.TV')
@@ -72,7 +72,7 @@ class LoadFaqData extends AbstractFixture implements OrderedFixtureInterface
         
         $faq[] = array('question'=>'I have more questions!',
                        'answer'=>'<p>Great!</p>'.
-                                  '<p>See the full any.TV FAQ spreadsheet at:<br><a href="http://www.any.tv/faq-spreadsheet/">www.any.tv/faq-spreadsheet</a></p>',
+                                  '<p>See the full any.TV FAQ spreadsheet at:<br><a href="http://anytv-sf2.localhost/app_dev.php/faq-spreadsheet/">anytv-sf2.localhost/app_dev.php/faq-spreadsheet</a></p>',
                        'sortOrder'=>5,
                        'categories'=>array('any.TV')
                        );
@@ -81,7 +81,7 @@ class LoadFaqData extends AbstractFixture implements OrderedFixtureInterface
         
         $faq[] = array('question'=>'Which Play Now link should I use? - Any one!',
                        'answer'=>'<p>Use our Games Team <a href="http://www.games.tm/" target="_blank">www.games.tm<a> to get your Play Now links for games!</p>'.
-                                  '<p>Or, use any Play Now link after signing in at <a href="http://www.any.tv/dashboard" target="_blank">www.any.tv/dashboard</a>. When someone from another country clicks it, they are automatically redirected by the dashboard to the correct country\'s Play Now link.</p>'.
+                                  '<p>Or, use any Play Now link after signing in at <a href="http://anytv-sf2.localhost/app_dev.php/dashboard" target="_blank">anytv-sf2.localhost/app_dev.php/dashboard</a>. When someone from another country clicks it, they are automatically redirected by the dashboard to the correct country\'s Play Now link.</p>'.
                                   '<p>Simply put, you will get paid correctly by using any of the Play Now links!</p>'.
                                   '<p>For more info, see this video: <a href="http://www.youtube.com/watch?v=cgtxDAYaXr0&list=PLyI74zGGymu8k7eVhGPcVSh3nKljHfiVX#t=25s" target="_blank">www.youtube.com/watch?v=cgtxDAYaXr0&list=PLyI74zGGymu8k7eVhGPcVSh3nKljHfiVX#t=25s</a></p>',
                        'sortOrder'=>1,
@@ -120,7 +120,7 @@ class LoadFaqData extends AbstractFixture implements OrderedFixtureInterface
                        );
         
         $faq[] = array('question'=>'Where is my Refer-a-Friend link?',
-                       'answer'=>'<p>Sign into the dashboard at <a href="http://www.any.tv/dashboard" target="_blank">www.any.tv/dashboard</a>, you can see it on your control panel on the left.</p>',                  
+                       'answer'=>'<p>Sign into the dashboard at <a href="http://anytv-sf2.localhost/app_dev.php/dashboard" target="_blank">anytv-sf2.localhost/app_dev.php/dashboard</a>, you can see it on your control panel on the left.</p>',                  
                        'sortOrder'=>5,
                        'categories'=>array('Dashboard', 'Marketing')
                        );
@@ -143,7 +143,7 @@ class LoadFaqData extends AbstractFixture implements OrderedFixtureInterface
         
         $faq[] = array('question'=>'How can you track clicks from my YouTube videos? - Through our dashboard ...',
                        'answer'=>'<p>Our dashboard tracks every click and conversion from our Play Now links.</p>'.
-                                  '<p>After you sign in to <a href="http://www.any.tv/dashboard" target="_blank">www.any.tv/dashboard</a>, click on "Offers" and pick one. Notice the Play Now link? Each Play Now link is unique to your account.</p>'. 
+                                  '<p>After you sign in to <a href="http://anytv-sf2.localhost/app_dev.php/dashboard" target="_blank">anytv-sf2.localhost/app_dev.php/dashboard</a>, click on "Offers" and pick one. Notice the Play Now link? Each Play Now link is unique to your account.</p>'. 
                                   '<p>Paste your Play Now links beneath your videos. Then, everyone who watches your videos and clicks your Play Now links is tracked by our dashboard!</p>',
                        'sortOrder'=>8,
                        'categories'=>array('Dashboard')
@@ -169,7 +169,7 @@ class LoadFaqData extends AbstractFixture implements OrderedFixtureInterface
         
         $faq[] = array('question'=>'Where do I get my "Play Now" links?',
                        'answer'=>'<p>Step 1: Click <a href="http://www.games.tm/" target="_blank">games list</a> to see all the games.</p>'.
-                                  '<p>Step 2: Get your Play Now links from <a href="http://www.any.tv/dashboard" target="_blank">www.any.tv/dashboard</a> and click the "Offers" tab.</p>',
+                                  '<p>Step 2: Get your Play Now links from <a href="http://anytv-sf2.localhost/app_dev.php/dashboard" target="_blank">anytv-sf2.localhost/app_dev.php/dashboard</a> and click the "Offers" tab.</p>',
                        'sortOrder'=>11,
                        'categories'=>array('Dashboard')
                        );
@@ -187,7 +187,7 @@ class LoadFaqData extends AbstractFixture implements OrderedFixtureInterface
                        'answer'=>'<p>You must use video or live streams to promote your Play Now links!</p>'.
                                   '<p>If you don\'t make videos, simply pick your favorite video from YouTube or our Games Team <a href="http://www.games.tm/" target="_blank">www.games.tm</a> and embed it next to your Play Now link.</p>'.
                                   '<p>Yes, it is okay to use anyone\'s video to promote your Play Now links because YouTube allows you to embed any video anywhere you like. That\'s the whole point of YouTube: it is a public video library.</p>'. 
-                                  '<p>See our Terms and Conditions for more info: <a href="http://www.any.tv/terms" target="_blank">www.any.tv/terms</a></p>'.
+                                  '<p>See our Terms and Conditions for more info: <a href="http://anytv-sf2.localhost/app_dev.php/dashboard/terms" target="_blank">anytv-sf2.localhost/app_dev.php/dashboard/terms</a></p>'.
                                   '<p>Of course, we recommend you make your own videos or live streams so that you build your own audience and improve your skill as a content creator.</p>'.
                                   '<p>But if you have a popular website, Facebook or Twitter and do not want to create videos, simply find the most relevant videos on YouTube or our Games Team and embed them next to your Play Now links.</p>',
                        'sortOrder'=>1,
@@ -201,7 +201,7 @@ class LoadFaqData extends AbstractFixture implements OrderedFixtureInterface
                                   '<p>But contests featuring the game are encouraged!</p>'.
                                   '<p>For example: Challenge people to play a game: "How fast can you level up from 1 to 10? Click the Play Now link below to play! Post a video response proving your achievement and I will giveaway a game timecard to the winner."</p>'.
                                   '<p>These contests or giveaways create genuine interest in the game (who would play from level 1 to 10 if they have zero interest in the game?) which is exactly what game publishers want!</p>'. 
-                                  '<p>See our Terms and Conditions for more info: <a href="http://www.any.tv/terms" target="_blank">www.any.tv/terms</a></p>',
+                                  '<p>See our Terms and Conditions for more info: <a href="http://anytv-sf2.localhost/app_dev.php/dashboard/terms" target="_blank">anytv-sf2.localhost/app_dev.php/dashboard/terms</a></p>',
                        'sortOrder'=>2,
                        'categories'=>array('Marketing')
                        );
@@ -252,7 +252,7 @@ class LoadFaqData extends AbstractFixture implements OrderedFixtureInterface
                        );
         
         $faq[] = array('question'=>'Can I do PPC or PPV traffic? - Only if ...',
-                       'answer'=>'<p>As we say in our Terms & Conditions at <a href="http://www.any.tv/terms" target="_blank">www.any.tv/terms</a> the #1 Main Rule is: You must use relevant videos or live streams to promote our Play Now links.</p>'.
+                       'answer'=>'<p>As we say in our Terms & Conditions at <a href="http://anytv-sf2.localhost/app_dev.php/dashboard/terms" target="_blank">anytv-sf2.localhost/app_dev.php/dashboard/terms</a> the #1 Main Rule is: You must use relevant videos or live streams to promote our Play Now links.</p>'.
                                   '<p>Also, you cannot use incentivized traffic, such as giveaways where one of the steps is to click our Play Now links.</p>'.
                                   '<p>So, you can do PPC or PPV traffic only if you use video next to our Play Now links and it is not incentivized.</p>'. 
                                   '<p>For example, here is a great forum post: <a href="http://my.mmosite.com/3031804/blog/item/scarlet_blade_open_beta_first_look.html" target="_blank">my.mmosite.com/3031804/blog/item/scarlet_blade_open_beta_first_look.html</a></p>'.
@@ -323,7 +323,7 @@ class LoadFaqData extends AbstractFixture implements OrderedFixtureInterface
                                   '<li>Jul ➜ Sep</li>'.
                                   '</ul>'.
                                   '<p>If you do not follow our Terms & Conditions, your account may get blocked.</p>'.
-                                  '<p>See <a href="http://www.any.tv/terms" target="_blank">www.any.tv/terms</a></p>',
+                                  '<p>See <a href="http://anytv-sf2.localhost/app_dev.php/dashboard/terms" target="_blank">anytv-sf2.localhost/app_dev.php/dashboard/terms</a></p>',
                        'sortOrder'=>1,
                        'categories'=>array('Payments')
                        );
@@ -332,7 +332,7 @@ class LoadFaqData extends AbstractFixture implements OrderedFixtureInterface
                        'answer'=>'<p>You will get paid Refer-a-Friend revenue only if you get at least one Play Now link conversion.</p>'.
                                   '<p>Why?</p>'.
                                   '<p>We want our partners to use the dashboard, not just promote it to others. This is called "eating your own steak" :-)</p>'. 
-                                  '<p>The easiest way to get a conversion is to make a video about any offer that interests you from <a href="http://www.any.tv/dashboard" target="_blank">www.any.tv/dashboard</a> by clicking your own Play Now link. As long as you promote the offer, it is okay to click your own link.</p>'.
+                                  '<p>The easiest way to get a conversion is to make a video about any offer that interests you from <a href="http://anytv-sf2.localhost/app_dev.php/dashboard" target="_blank">anytv-sf2.localhost/app_dev.php/dashboard</a> by clicking your own Play Now link. As long as you promote the offer, it is okay to click your own link.</p>'.
                                   '<p>Note: If you do not get a conversion one month, your Refer-a-Friend revenue carries over to the next month and will be paid out as soon as you have a month with at least one conversion.</p>',
                        'sortOrder'=>2,
                        'categories'=>array('Payments')
@@ -355,7 +355,7 @@ class LoadFaqData extends AbstractFixture implements OrderedFixtureInterface
         
         $faq[] = array('question'=>'What does $11 CPM mean?',
                        'answer'=>'<p>$11 CPM means, on average, any.TV partners earn $11 per thousand views by using Play Now links from our dashboard in their YouTube videos and Twitch live streams.</p>'.
-                                  '<p>For some real example, see "Featured any.TV Partners" on <a href="http://www.any.tv">www.any.tv</a></p>',
+                                  '<p>For some real example, see "Featured any.TV Partners" on <a href="http://anytv-sf2.localhost/app_dev.php">anytv-sf2.localhost/app_dev.php</a></p>',
                        'sortOrder'=>5,
                        'categories'=>array('Payments')
                        );
@@ -364,7 +364,7 @@ class LoadFaqData extends AbstractFixture implements OrderedFixtureInterface
                        'answer'=>'<p>No, we pay you about $1.00 per gamer.</p>'.
                                   '<p>We found that, on average, if you make good videos that get people excited to play the game, this $1.00 payout is the same as $11 CPM.</p>'.
                                   '<p>How do you calculate your CPM? Divide your earnings by your video views that have Play Now links.</p>'. 
-                                  '<p>For some real-life CPM examples, see "Featured any.TV partners" on our website: <a href="http://www.any.tv">www.any.tv</a></p>',
+                                  '<p>For some real-life CPM examples, see "Featured any.TV partners" on our website: <a href="http://anytv-sf2.localhost/app_dev.php">anytv-sf2.localhost/app_dev.php</a></p>',
                        'sortOrder'=>6,
                        'categories'=>array('Payments')
                        );

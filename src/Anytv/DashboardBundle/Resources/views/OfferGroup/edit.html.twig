@@ -29,10 +29,10 @@
          {{ form_row(form.status) }}
         
         {% if(offer_group.thumbnail) %}
-      <img src="{{ asset(offer_group.getWebPath()) }}" alt="{{ offer_group }}" style="width:100px" />
+      <img src="{{ asset(offer_group.getWebPath()) | apply_filter('featured_offer') }}" alt="{{ offer_group }}" />
     {% endif %}
         
-          {{ form_row(form.file) }}
+          {{ form_row(form.file, {'label': 'Photo'}) }}
          
        {{ form_end(form) }}
        

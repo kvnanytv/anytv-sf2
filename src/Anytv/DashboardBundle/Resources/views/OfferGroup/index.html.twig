@@ -48,7 +48,7 @@
            <td>{{ offer_group.offerCount }}</a></td>
            <td>
            {% if(offer_group.thumbnail) %}
-             <img src="{{ asset(offer_group.getWebPath()) }}" alt="{{ offer_group }}" style="width:100px" />
+             <img src="{{ asset(offer_group.getWebPath()) | apply_filter('offer_group_thumbnail') }}" alt="{{ offer_group }}"/>
            {% else %}
              &nbsp;
            {% endif %}

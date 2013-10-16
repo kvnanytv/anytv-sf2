@@ -4,6 +4,19 @@ anytv_dashboard_homepage:
     requirements:
         _locale:  %anytv.locales%
         
+terms:
+    path:      /terms/{_locale}
+    defaults:  { _controller: AnytvDashboardBundle:Default:terms, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
+signup:
+    path:      /signup/{id}/{_locale}
+    defaults:  { _controller: AnytvDashboardBundle:Default:signup, _locale: en, id: 1000 }
+    requirements:
+        _locale:  %anytv.locales%
+        id:  \d+
+        
 profile_view:
     path:      /{_locale}/profile/{tab}/{mode}
     defaults:  { _controller: AnytvDashboardBundle:Profile:view, _locale: en, tab: company, mode: view }

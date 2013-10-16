@@ -1,0 +1,54 @@
+{% extends 'AnytvDashboardBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {% trans %}Login{% endtrans %}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+    
+  <section id="content">
+    <div class="container">
+      <div id="con-body" class="row">
+        <div class="col-lg-5">
+            <div class="panel panel-default lgin-panel" style="display:none">  
+              <div class="panel-body">
+                <form action="{{ path('login_hasoffers') }}" method="post" class="form-signin" id="login_form">
+                  <input type="hidden" name="user_type" value="{{ user_type }}">
+                  <input type="hidden" id="username" name="_username" value="{{ username }}">
+                  <input type="hidden" id="password" name="_password" value="{{ password }}">             
+                </form>
+              </div>
+            </div>
+            <div class="panel panel-default lgin-panel">
+              <div class="panel-body">
+                <p class="txt-default" style="font-weight:bold">{% trans %}Authenticating{% endtrans %}...</p> 
+              </div>
+            </div>
+        </div>
+          <div class="col-lg-7 ft-game">
+              {% if(featured_offer) %}
+          {% if(offer_group and offer_group.thumbnail) %}
+            <img src="{{ asset(offer_group.getWebPath()) | apply_filter('featured_offer') }}" alt="{{ featured_offer }}" />
+          {% endif %}
+          <p><strong>{{ featured_offer }}</strong> {% trans %}Countries{% endtrans %}: {{ featured_offer.countryCount }}</p>
+          <p style="font-size: 13px !important; font-family: Arial, Helvetica, sans-serif;">{{ featured_offer.description }}</p> 
+          {% endif %}
+          </div>
+        </div>
+      </div>
+ </section>   
+
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+     
+  <script>
+    $(function () 
+    {
+      $("#login_form").submit();
+    });
+  </script>
+  
+{% endblock %}

@@ -87,6 +87,9 @@ avalanche_imagine:
         featured_offer:
             type:    thumbnail
             options: { size: [635, 314], mode: outbound }
+        offer_group_thumbnail:
+            type:    thumbnail
+            options: { size: [55, 55], mode: outbound }
     
     
     

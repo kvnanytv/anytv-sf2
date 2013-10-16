@@ -18,7 +18,7 @@
     <h1 class="title">{{ title }}<p>dashboard.tm ID: {{ affiliate.affiliateId }} - ({{ affiliate_status }})</p></h1>
     
     {% if(affiliate.thumbnail) %}
-      <img src="{{ asset(affiliate.getWebPath()) }}" alt="{{ affiliate.company }}" style="width:100px" />
+      <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ affiliate.company }}" />
     {% endif %}
     
    
@@ -30,7 +30,7 @@
         {% endif %}
         <li style="display:block">{% trans %}Phone{% endtrans %}: {{ affiliate.phone }}</li>
         <li style="display:block">{% trans %}Fax{% endtrans %}: {{ affiliate.fax }}</li>
-        
+        <li style="display:block">{% trans %}Paypal Email{% endtrans %}: {{ affiliate.paypalEmail }}</li>
       </ul>
             
       {% if(affiliate_users) %}
@@ -44,9 +44,7 @@
                 <a href="{{ path('affiliate_user_view', { 'id' : affiliate_user.id }) }}" title="View">{{ affiliate_user.email }}</a>
               {% endif %}
               ({{ affiliate_user.email }})
-              {% if(affiliate_user.thumbnail) %}
-                <img src="{{ asset(affiliate_user.getWebPath()) }}" alt="{{ affiliate_user.getFullName() }}" style="width:100px" />
-              {% endif %}
+              
               - {{ affiliate_user.status }} - is creator = {{ affiliate_user.isCreator }}
             </li> 
           {% endfor %}

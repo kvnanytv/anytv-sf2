@@ -105,12 +105,7 @@ class DefaultController extends Controller
         return $this->render('AnytvMainBundle:Default:faqSpreadsheet.html.twig', array('title'=>$translator->trans('FAQ Spreadsheet')));
     }
     
-    public function signupAction(Request $request)
-    {
-        $translator = $this->get('translator');
-        
-        return $this->render('AnytvMainBundle:Default:signup.html.twig', array('title'=>$translator->trans('Affiliate Sign Up')));
-    }
+    
     
     
 }
