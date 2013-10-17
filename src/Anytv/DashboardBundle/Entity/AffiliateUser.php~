@@ -49,14 +49,14 @@ class AffiliateUser implements UserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="first_name", type="string", length=255, nullable=true)
+     * @ORM\Column(name="first_name", type="string", length=255)
      */
     private $firstName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="last_name", type="string", length=255, nullable=true)
+     * @ORM\Column(name="last_name", type="string", length=255)
      */
     private $lastName;
 
@@ -80,6 +80,13 @@ class AffiliateUser implements UserInterface, \Serializable
      * @ORM\Column(name="salt", type="string", length=32)
      */
     private $salt;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="secret_code", type="string", length=32)
+     */
+    private $secret_code;
 
     /**
      * @var string
@@ -349,6 +356,7 @@ class AffiliateUser implements UserInterface, \Serializable
         $this->isAdmin = false;
         $this->isActive = true;
         $this->salt = md5(uniqid(null, true));
+        $this->secret_code = md5(uniqid(null, true));
         $this->loginCount = 0;
         $this->loginIpChangeCount = 0;
         $this->showPhoto = true;
@@ -757,7 +765,7 @@ class AffiliateUser implements UserInterface, \Serializable
         return $this->affiliate;
     }
     
-    public function getFullName()
+    public function getFullName($default_company_name = true)
     {
         $full_name = '';
         
@@ -776,7 +784,7 @@ class AffiliateUser implements UserInterface, \Serializable
           $full_name .= $this->lastName;
         }
         
-        return $full_name ? $full_name : $this->getAffiliate()->getCompany();
+        return $full_name ? $full_name : ($default_company_name ? $this->getAffiliate()->getCompany() : '');
     }
     
     public function __toString() 
@@ -791,7 +799,7 @@ class AffiliateUser implements UserInterface, \Serializable
      */
     public function getDateJoinedAsString()
     {
-        return date_format($this->joinDate, 'Y-m-d');
+        return date_format($this->joinDate, 'F d, Y');
     }
     
     /**
@@ -1049,5 +1057,28 @@ class AffiliateUser implements UserInterface, \Serializable
     public function getShoutout()
     {
         return $this->shoutout;
+    }
+
+    /**
+     * Set secret_code
+     *
+     * @param string $secretCode
+     * @return AffiliateUser
+     */
+    public function setSecretCode($secretCode)
+    {
+        $this->secret_code = $secretCode;
+    
+        return $this;
+    }
+
+    /**
+     * Get secret_code
+     *
+     * @return string 
+     */
+    public function getSecretCode()
+    {
+        return $this->secret_code;
     }
 }

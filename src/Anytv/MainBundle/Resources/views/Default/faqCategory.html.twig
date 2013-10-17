@@ -13,7 +13,7 @@
         <div class="tab-content">
           {% for faq in faqs %}
 	    <div class="tab-pane active" id="faq_answer_{{ faq.id }}" style="display:none">
-	      {{ faq.answer|raw }}
+	      {{ faq.getAnswer()|raw }}
 	    </div>
           {% endfor %}	
 	</div>

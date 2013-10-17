@@ -16,7 +16,7 @@
       
       <div id="user-prof-name">
         <label>{% trans %}Name{% endtrans %}</label>					 										    
-	<input type="text" class="form-control input-lg" value="{{ affiliate_user.getFullName() }}" disabled>
+	<input type="text" class="form-control input-lg" value="{{ affiliate_user.getFullName(false) }}" disabled>
 	<div class="cl-20"></div>
 	<label>{% trans %}Email{% endtrans %}</label>					 										    
 	<input type="text" class="form-control input-lg" value="{{ affiliate_user.email }}" disabled>									
@@ -30,6 +30,7 @@
           </div>
 	</label>
       </div> 
+      <div class="cl-20"></div>
       <div id="user-prof-phone">
         <label>
           {% trans %}Mobile{% endtrans %} 
@@ -38,6 +39,7 @@
           </div>
 	</label>
       </div>
+      <div class="cl-20"></div>
       <div id="user-prof-name">
         <label>{% trans %}Date Joined{% endtrans %}</label>					 										    
 	<input type="text" class="form-control input-lg" value="{{ affiliate_user.getDateJoinedAsString() }}" disabled>								

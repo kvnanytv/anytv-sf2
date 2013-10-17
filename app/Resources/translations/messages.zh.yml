@@ -9,6 +9,7 @@
 'search': 搜尋
 'Believe in you': 相信自已
 'Title': 職稱
+'Title:': '職稱:'
 'Save': 儲存
 'Edit News': 編輯 最新消息
 'Name': 姓名
@@ -25,9 +26,14 @@
 'Address': 地址
 'Address1': 地址1
 'Address2': 地址2
+'Address 1: *': '地址1: *'
+'Address 2:': '地址2:'
 'City': 城市
+'City: *': '城市: *'
 'Region': 行政區
 'Country': 國家
+'Country: *': '國家: *'
+'Country (other): *': '國家 (其它): *'
 'Countries': 國家
 'Affiliate country': 國家
 'Status': 感情狀態
@@ -36,7 +42,9 @@
 'Date Joined': 註冊日期
 'Other': 其它
 'Zipcode': 郵遞區號
+'Zipcode: *': '郵遞區號: *'
 'Phone': 電話號碼
+'Phone: *': '電話號碼: *'
 'Fax': 傳真
 'Website': 網站
 'active': 供應中
@@ -47,11 +55,14 @@
 'blocked': 封鎖的
 'rejected': 拒絕的
 'Email': 郵件信箱
+'Email: *': '郵件信箱: *'
 'Mobile': 手機
 'edit': 編輯
 'Edit': 編輯
 'First name': 名字
+'First name: *': '名字: *'
 'Last name': 姓
+'Last name: *': '姓: *'
 'File': 檔案
 'Cell phone': 手機
 'Browse': 搜尋
@@ -80,6 +91,8 @@
 'Dashboard': 資訊介面板
 'dashboard': 資訊介面板
 'Password': 密碼
+'Password: *': '密碼: *'
+'Confirm Password: *': '確認密碼: *'
 'Forgot Password?': 忘記密碼?
 'part of the anyTV family': any.TV 家族成員之一
 "Don't have an account yet?": 還沒有帳號嗎?
@@ -111,7 +124,7 @@
 'Affiliate Sign Up': 合作公司註冊
 'Authenticating': 驗證中
 'Invalid Authorization': 驗證無效
-'Account is not active.': 帳號未啟動
+'Account is not active.': 帳號無法使用
 'Refer-a-Friend link': '"介紹朋友"連結網址'
 'Copy Link': 複製連結
 'close': 關閉
@@ -119,3 +132,18 @@
 'chinese': 中文
 'Preview URL': 預覽網址
 'Offer Groups': 供應組群
+'Photo': Photo
+'Company / Name: *': '公司 / 姓名: *' 
+'Terms & Conditions': 條文和法則
+'Not Listed': 沒有在選單中
+'Password should be between 4 and 16 characters.': 密碼請設定在4到16個字數內。
+'E-mail Address already exists.': 此信箱已存在
+'Country is required.': 國家必填
+'Passwords do not match.': 密碼不正確
+'City is required.': 城市必填
+'Address 1 is required.': 地址1必填
+'Company / Name is required.': 公司/名字 必填
+'Zipcode is required.': 郵地區號必填
+'Phone is required.': 電話必填
+'First Name is required.': 名字必填
+'Last Name is required.': 姓氏必填

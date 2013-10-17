@@ -28,19 +28,17 @@ class AffiliateController extends Controller
           $countries_choices[$country->getId()] = $country->getName();  
         }
         
-        $form = $this->createFormBuilder(array('affiliate_keyword'=>$session->get('affiliate_keyword'), 'affiliate_country'=>$session->get('affiliate_country'), 'affiliate_status'=>$session->get('affiliate_status', 'active')))
+        $form = $this->createFormBuilder(array('affiliate_keyword'=>$session->get('affiliate_keyword'), 'affiliate_country'=>$session->get('affiliate_country'), 'affiliate_paypal'=>$session->get('affiliate_paypal', false), 'affiliate_status'=>$session->get('affiliate_status', 'active')))
         ->add('affiliate_keyword', 'text', array('required'=>false))
-        ->add('affiliate_country', 'choice', array('required' => false, 'choices' => $countries_choices, 'empty_value' => ''))
-        ->add('affiliate_status', 'choice', array('required' => true, 'choices' => array('active'=>'active', 'pending'=>'pending', 'deleted'=>'deleted', 'blocked'=>'blocked', 'rejected'=>'rejected')))
+        ->add('affiliate_country', 'choice', array('required' => false, 'choices' => $countries_choices, 'empty_value' => '', 'label'=>$translator->trans('Country')))
+        ->add('affiliate_paypal', 'checkbox', array('label'=>$translator->trans('Paypal Email'), 'required'=>false))
+        ->add('affiliate_status', 'choice', array('required' => true, 'choices' => array('active'=>'active', 'pending'=>'pending', 'deleted'=>'deleted', 'blocked'=>'blocked', 'rejected'=>'rejected'), 'label'=>$translator->trans('Status')))
         ->add('affiliate_search', 'submit', array('label'=>$translator->trans('search')))
         ->add('affiliate_update', 'submit', array('label'=>$translator->trans('update')))
+        ->add('affiliate_update_paypal', 'submit', array('label'=>$translator->trans('update paypal')))
         ->getForm();
         
         $form->handleRequest($request);
-
-        $affiliate_keyword = null;
-        $affiliate_country = null;
-        $affiliate_status = 'active';
         
         if($form->isValid()) 
         {
@@ -49,7 +47,41 @@ class AffiliateController extends Controller
             $data = $form->getData();
             $session->set('affiliate_keyword', $data['affiliate_keyword']);
             $session->set('affiliate_country', $data['affiliate_country']);
+            $session->set('affiliate_paypal', $data['affiliate_paypal']);
             $session->set('affiliate_status', $data['affiliate_status']);
+          }
+          elseif($form->get('affiliate_update_paypal')->isClicked())
+          {
+            $manager = $this->getDoctrine()->getManager();
+            $hasoffers = $this->get('hasoffers');
+            $paypal_email_count = 0;
+            $paypal_request_batch = 100;
+            
+            $affiliates_wo_paypal_email = $repository->findBy(array('status'=>'active', 'paypalEmailRequested'=>false), null, $paypal_request_batch);
+            
+            if($affiliates_wo_paypal_email)
+            {
+              foreach($affiliates_wo_paypal_email as $affiliate)
+              {
+                if($paypal_email = $hasoffers->getPaypalEmail($affiliate->getAffiliateId()))
+                {
+                  $affiliate->setPaypalEmail($paypal_email);
+                  $paypal_email_count++;
+                }
+                
+                $affiliate->setPaypalEmailRequested(true);   
+              }
+            
+              $manager->flush();
+            
+              $session->getFlashBag()->add('flash_message', $paypal_email_count.'/'.$paypal_request_batch.' paypal emails set.');  
+            }
+            else
+            {
+              $session->getFlashBag()->add('flash_message', 'All paypal emails are set.');  
+            }
+            
+            return $this->redirect($this->generateUrl('affiliates'));  
           }
           else
           {
@@ -73,7 +105,7 @@ class AffiliateController extends Controller
                 $affiliate->setAddress1($affiliate_object->address1);
                 $affiliate->setAddress2($affiliate_object->address2);
                 $affiliate->setCity($affiliate_object->city);
-                $affiliate->setRegion($affiliate_object->region);
+                //$affiliate->setRegion($affiliate_object->region);
                 
                 if($country = $country_repository->findOneByCode($affiliate_object->country))
                 {
@@ -164,7 +196,7 @@ class AffiliateController extends Controller
                 $affiliate->setAddress1($affiliate_object->address1);
                 $affiliate->setAddress2($affiliate_object->address2);
                 $affiliate->setCity($affiliate_object->city);
-                $affiliate->setRegion($affiliate_object->region);
+                //$affiliate->setRegion($affiliate_object->region);
           
                 if($country = $country_repository->findOneByCode($affiliate_object->country))
                 {
@@ -260,8 +292,8 @@ class AffiliateController extends Controller
         $order_by = 'dateAdded';
         $order = 'DESC';
         
-        $affiliates = $repository->findAllAffiliates($page, $items_per_page, $order_by, $order, $session->get('affiliate_keyword', null), $session->get('affiliate_country', null), $session->get('affiliate_status', 'active'));
-        $total_affiliates = $repository->countAllAffiliates($session->get('affiliate_keyword', null), $session->get('affiliate_country', null), $session->get('affiliate_status', 'active'));
+        $affiliates = $repository->findAllAffiliates($page, $items_per_page, $order_by, $order, $session->get('affiliate_keyword', null), $session->get('affiliate_country', null), $session->get('affiliate_status', 'active'), $session->get('affiliate_paypal', false));
+        $total_affiliates = $repository->countAllAffiliates($session->get('affiliate_keyword', null), $session->get('affiliate_country', null), $session->get('affiliate_status', 'active'), $session->get('affiliate_paypal', false));
         $total_pages = ceil($total_affiliates / $items_per_page);
         
         return $this->render('AnytvDashboardBundle:Affiliate:index.html.twig', array('title'=>$translator->trans('Affiliates'), 'affiliates'=>$affiliates, 'total_affiliates'=>$total_affiliates, 'page'=>$page, 'total_pages'=>$total_pages, 'form'=>$form->createView(), 'max_affiliate_id'=>$max_affiliate_id));
@@ -272,6 +304,7 @@ class AffiliateController extends Controller
         $session = $this->get('session');
         $session->set('affiliate_keyword', null);
         $session->set('affiliate_country', null);
+        $session->set('affiliate_paypal', false);
         $session->set('affiliate_status', 'active');
         
         return $this->redirect($this->generateUrl('affiliates'));

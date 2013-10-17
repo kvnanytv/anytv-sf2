@@ -11,6 +11,12 @@ login_hasoffers:
     defaults: { _controller: AnytvDashboardBundle:Security:loginHasoffers, _locale: en }
     requirements:
         _locale:  %anytv.locales%
+        
+login_after_register:
+    path:  /login/after_register/{user_type}/{username}/{password}/{_locale}
+    defaults: { _controller: AnytvDashboardBundle:Security:loginAfterRegister, _locale: en, user_type: affiliate_user }
+    requirements:
+        _locale:  %anytv.locales%
     
 login:
     path:  /login/{user_type}/{_locale}

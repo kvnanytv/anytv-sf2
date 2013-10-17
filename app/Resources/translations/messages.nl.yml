@@ -9,6 +9,7 @@
 'search': Zoek
 'Believe in you': Geloof in jezelf
 'Title': Titel
+'Title:': 'Titel:'
 'Save': Opslaan
 'Edit News': Uitgeven Nieuws
 'Name': Naam
@@ -25,9 +26,14 @@
 'Address': Adres
 'Address1': Adres1
 'Address2': Adres2
+'Address 1: *': 'Adres1: *'
+'Address 2:': 'Adres2:'
 'City': Stad
+'City: *': 'Stad: *'
 'Region': Regio
 'Country': Land
+'Country: *': 'Land: *'
+'Country (other): *': 'Country (other): *'
 'Countries': Land
 'Affiliate country': Land
 'Status': Status
@@ -36,7 +42,9 @@
 'Date Joined': Aanmeld datum
 'Other': Anders
 'Zipcode': Postcode
+'Zipcode: *': 'Postcode: *'
 'Phone': Telefoon
+'Phone: *': 'Telefoon: *'
 'Fax': Fax
 'Website': Website
 'active': actief
@@ -47,11 +55,14 @@
 'blocked': geblokkeerd
 'rejected': afgewezen
 'Email': E-mail adres
+'Email: *': 'E-mail adres: *'
 'Mobile': Mobiel
 'edit': edit
 'Edit': Edit
 'First name': Voornaam
+'First name: *': 'Voornaam: *'
 'Last name': Achternaam
+'Last name: *': 'Achternaam: *'
 'File': File
 'Cell phone': Mobiel
 'Browse': Surf
@@ -80,6 +91,8 @@
 'Dashboard': Dashboard
 'dashboard': dashboard
 'Password': Wachtwoord
+'Password: *': 'Wachtwoord: *'
+'Confirm Password: *': 'Confirm Password: *'
 'Forgot Password?': Wachtwoord vergeten?
 'part of the anyTV family': Onderdeel van de anyTV familie
 "Don't have an account yet?": Heb je nog geen account?
@@ -119,3 +132,19 @@
 'chinese': Chinees
 'Preview URL': Voorproef URL
 'Offer Groups': Offer Groups
+'Photo': Photo
+'Company / Name: *': 'Bedrijf / Naam: *' 
+'Terms & Conditions': 'Terms & Conditions'
+'Not Listed': Not Listed
+'Password should be between 4 and 16 characters.': Password should be between 4 and 16 characters. 
+'E-mail Address already exists.': E-mail Address already exists.
+'Country is required.': Country is required.
+'Passwords do not match.': Passwords do not match.
+'City is required.': City is required.
+'Address 1 is required.': Address 1 is required.
+'Company / Name is required.': Company / Name is required.
+'Zipcode is required.': Zipcode is required.
+'Phone is required.': Phone is required.
+'First Name is required.': First Name is required.
+'Last Name is required.': Last Name is required.
+

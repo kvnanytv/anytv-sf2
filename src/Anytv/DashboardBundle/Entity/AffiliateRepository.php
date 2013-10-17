@@ -12,109 +12,73 @@ use Doctrine\ORM\EntityRepository;
  */
 class AffiliateRepository extends EntityRepository
 {
-    public function findAllAffiliates($page, $items_per_page, $order_by, $order, $keyword, $country_id, $status)
+    public function findAllAffiliates($page, $items_per_page, $order_by, $order, $keyword, $country_id, $status, $with_paypal)
     {
         $first_result = ($items_per_page * ($page-1));
         
-        if($keyword && $country_id)
+        $query = $this->createQueryBuilder('a')
+                      ->leftJoin('a.country', 'c');
+        
+        $where = "a.status = :status";
+        $params = array('status'=>$status);
+        
+        if($keyword)
         {
-          $query = $this->getEntityManager()->createQueryBuilder()
-          ->select(array('a', 'c'))
-          ->from('Anytv\DashboardBundle\Entity\Affiliate', 'a')
-          ->leftJoin('a.country', 'c')
-          ->where("a.company LIKE :keyword AND a.status = :status AND c.id = :country_id")
-          ->setParameters(array('keyword' => "%$keyword%", 'country_id' => $country_id, 'status' => $status))
-          ->setFirstResult($first_result)
-          ->setMaxResults($items_per_page)
-          ->orderBy('a.'.$order_by, $order)
-          ->getQuery();     
+          $where .= " AND a.company LIKE :keyword";
+          $params['keyword'] = "%$keyword%"; 
         }
-        elseif($keyword)
+        
+        if($country_id)
         {
-          $query = $this->getEntityManager()->createQueryBuilder()
-          ->select(array('a', 'c'))
-          ->from('Anytv\DashboardBundle\Entity\Affiliate', 'a')
-          ->leftJoin('a.country', 'c')
-          ->where("a.company LIKE :keyword AND a.status = :status")
-          ->setParameters(array('keyword' => "%$keyword%", 'status' => $status))
-          ->setFirstResult($first_result)
-          ->setMaxResults($items_per_page)
-          ->orderBy('a.'.$order_by, $order)
-          ->getQuery();      
+          $where .= " AND c.id = :country_id";
+          $params['country_id'] = $country_id; 
         }
-        elseif($country_id)
+        
+        if($with_paypal)
         {
-          $query = $this->getEntityManager()->createQueryBuilder()
-          ->select(array('a', 'c'))
-          ->from('Anytv\DashboardBundle\Entity\Affiliate', 'a')
-          ->leftJoin('a.country', 'c')
-          ->where("a.status = :status AND c.id = :country_id")
-          ->setParameters(array('country_id' => $country_id, 'status' => $status))
-          ->setFirstResult($first_result)
-          ->setMaxResults($items_per_page)
-          ->orderBy('a.'.$order_by, $order)
-          ->getQuery();    
+          $where .= " AND a.paypalEmail IS NOT NULL";
         }
-        else
-        {
-          $query = $this->getEntityManager()->createQueryBuilder()
-          ->select(array('a', 'c'))
-          ->from('Anytv\DashboardBundle\Entity\Affiliate', 'a')
-          ->leftJoin('a.country', 'c')
-          ->where("a.status = :status")
-          ->setParameters(array('status' => $status))
-          ->setFirstResult($first_result)
-          ->setMaxResults($items_per_page)
-          ->orderBy('a.'.$order_by, $order)
-          ->getQuery();
-        }
+        
+        $query = $query->where($where)
+                       ->setParameters($params)
+                       ->setFirstResult($first_result)
+                       ->setMaxResults($items_per_page)
+                       ->orderBy('a.'.$order_by, $order)
+                       ->getQuery();
           
         return $query->getResult();
     }
     
-    public function countAllAffiliates($keyword, $country_id, $status)
+    public function countAllAffiliates($keyword, $country_id, $status, $with_paypal)
     {    
-        if($keyword && $country_id)
+        $query = $this->createQueryBuilder('a')
+                      ->select('count(a.id)')
+                      ->leftJoin('a.country', 'c');
+        
+        $where = "a.status = :status";
+        $params = array('status'=>$status);
+        
+        if($keyword)
         {
-          $query = $this->getEntityManager()->createQueryBuilder()
-          ->select('count(a.id)')
-          ->from('Anytv\DashboardBundle\Entity\Affiliate', 'a')
-          ->leftJoin('a.country', 'c')
-          ->where("a.company LIKE :keyword AND a.status = :status AND c.id = :country_id")
-          ->setParameters(array('keyword' => "%$keyword%", 'country_id' => $country_id, 'status' => $status))
-          ->getQuery();   
-        }
-        elseif($keyword)
-        {
-          $query = $this->getEntityManager()->createQueryBuilder()
-          ->select('count(a.id)')
-          ->from('Anytv\DashboardBundle\Entity\Affiliate', 'a')
-          ->leftJoin('a.country', 'c')
-          ->where("a.company LIKE :keyword AND a.status = :status")
-          ->setParameters(array('keyword' => "%$keyword%", 'status' => $status))
-          ->getQuery();
-        }
-        elseif($country_id)
-        {
-          $query = $this->getEntityManager()->createQueryBuilder()
-          ->select('count(a.id)')
-          ->from('Anytv\DashboardBundle\Entity\Affiliate', 'a')
-          ->leftJoin('a.country', 'c')
-          ->where("a.status = :status AND c.id = :country_id")
-          ->setParameters(array('country_id' => $country_id, 'status' => $status))
-          ->getQuery();     
-        }
-        else
-        {
-          $query = $this->getEntityManager()->createQueryBuilder()
-          ->select('count(a.id)')
-          ->from('Anytv\DashboardBundle\Entity\Affiliate', 'a')
-          ->leftJoin('a.country', 'c')
-          ->where("a.status = :status")
-          ->setParameters(array('status' => $status))
-          ->getQuery();  
+          $where .= " AND a.company LIKE :keyword";
+          $params['keyword'] = "%$keyword%"; 
         }
         
+        if($country_id)
+        {
+          $where .= " AND c.id = :country_id";
+          $params['country_id'] = $country_id; 
+        }
+        
+        if($with_paypal)
+        {
+          $where .= " AND a.paypalEmail IS NOT NULL";
+        }
+        
+        $query = $query->where($where)
+                       ->setParameters($params)
+                       ->getQuery(); 
+          
         return $query->getSingleScalarResult();
     }
     

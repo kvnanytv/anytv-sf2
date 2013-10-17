@@ -14,7 +14,6 @@ class AffiliateType extends AbstractType
             ->add('address1')
             ->add('address2')
             ->add('city')
-            ->add('region')
             ->add('country')
             ->add('other')
             ->add('zipcode')
