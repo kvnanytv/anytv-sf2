@@ -116,6 +116,13 @@ class DefaultController extends Controller
         return $this->render('AnytvDashboardBundle:Default:terms.html.twig', array('title'=>$translator->trans('Terms & Conditions')));
     }
     
+    public function privacyPolicyAction(Request $request)
+    {
+        $translator = $this->get('translator');
+        
+        return $this->render('AnytvDashboardBundle:Default:privacyPolicy.html.twig', array('title'=>$translator->trans('Privacy Policy')));
+    }
+    
     public function signupAction(Request $request, $id)
     {
         if ($this->getUser()) 
@@ -152,7 +159,7 @@ class DefaultController extends Controller
           ->add('first_name', 'text', array('label'=>$translator->trans('First name: *')))
           ->add('last_name', 'text', array('label'=>$translator->trans('Last name: *')))
           ->add('title', 'text', array('label'=>$translator->trans('Title:'), 'required'=>false))
-          //->add('message', 'textarea')
+          ->add('terms', 'checkbox')
           ->add('signup', 'submit', array('label'=>$translator->trans('CREATE AN ACCOUNT')))
           ->getForm();
 

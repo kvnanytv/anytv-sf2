@@ -72,7 +72,7 @@ class LoadFaqData extends AbstractFixture implements OrderedFixtureInterface
         
         $faq[] = array('question'=>'I have more questions!',
                        'answer'=>'<p>Great!</p>'.
-                                  '<p>See the full any.TV FAQ spreadsheet at:<br><a href="{ANYTV_URL}/faq-spreadsheet/">{ANYTV_URL}/faq-spreadsheet</a></p>',
+                                  '<p>See the full any.TV FAQ spreadsheet at:<br><a href="{ANYTV_URL}/faq-spreadsheet">{ANYTV_URL}/faq-spreadsheet</a></p>',
                        'sortOrder'=>5,
                        'categories'=>array('any.TV')
                        );
@@ -409,12 +409,16 @@ class LoadFaqData extends AbstractFixture implements OrderedFixtureInterface
                        'categories'=>array('Payments')
                        );
         
+        //$anytv_url = 'http://anytv-sf2.localhost/app_dev.php';
+        $anytv_url = 'http://new.any.tv';
+        //$anytv_url = 'http://www.any.tv';
+        
         foreach($faq as $faq_element)
         {
           $faq_item = new Faq();
           $faq_item->setQuestion($faq_element['question']);
           
-          $answer = str_replace('{ANYTV_URL}', 'http://anytv-sf2.localhost/app_dev.php', $faq_element['answer']);
+          $answer = str_replace('{ANYTV_URL}', $anytv_url, $faq_element['answer']);
           $faq_item->setAnswer($answer);
           
           $faq_item->setSortOrder($faq_element['sortOrder']);

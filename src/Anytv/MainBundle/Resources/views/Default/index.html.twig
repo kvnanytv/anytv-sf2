@@ -53,33 +53,33 @@
 					</div>
 				<div class="col-lg-4">
 					<div id="net-col">					
-						<h4>George is Back!</h4>
-						<p>As promised.</p>
-                <p>I am the ex-President and founder of TGN, my old company that I sold to BroadbandTV in 2012. It was time for something new.</p>
-                <p>Will you <b>help me</b> build any.TV together?</p>
-                <a href="{{ path('staff') }}" class="btn btn-default">Help George</a> 
+						<h4>{% trans %}George is Back!{% endtrans %}</h4>
+						<p>{% trans %}As promised.{% endtrans %}</p>
+                <p>{% trans %}I am the ex-President and founder of TGN, my old company that I sold to BroadbandTV in 2012. It was time for something new.{% endtrans %}</p>
+                <p>{% trans %}Will you <b>help me</b> build any.TV together?{% endtrans %}</p>
+                <a href="{{ path('staff') }}" class="btn btn-default">{% trans %}Help George{% endtrans %}</a> 
 
 					</div>					
 				</div>
 				<div class="col-lg-4">
 					<div id="net-col">
-						<h4>Do Not Unpartner!</h4>
-                <p>Really.</p>
-                <p>You do not need to unpartner from your current Network to join any.TV.</p>
-                <p>Why?</p>
-                <p>Because we <b>don’t</b> partner channels.</p>
+						<h4>{% trans %}Do Not Unpartner!{% endtrans %}</h4>
+                <p>{% trans %}Really.{% endtrans %}</p>
+                <p>{% trans %}You do not need to unpartner from your current Network to join any.TV.{% endtrans %}</p>
+                <p>{% trans %}Why?{% endtrans %}</p>
+                <p>{% trans %}Because we <b>don’t</b> partner channels.{% endtrans %}</p>
                 {% if(app.user == false) %}
-                  <a href="{{ path('signup') }}" class="btn btn-default">Join any.TV</a>  
+                  <a href="{{ path('signup') }}" class="btn btn-default">{% trans %}Join any.TV{% endtrans %}</a>  
                 {% endif %}
 					</div>	
 				</div>
 				<div class="col-lg-4">
 					<div id="net-col">
-						<h4>10% Lifetime Bonus!</h4>
-                <p>Yes, we mean forever.</p>
-                <p>any.TV pays you a 10% bonus of everything your referrals make, our way of saying “Thank You” for recommending any.TV to your friends and partners!</p>
-                <p>This is <b>not</b> a pyramid scheme.</p>
-                <a href="http://www.youtube.com/watch?v=Hs1Tq_Mi_Yg&list=PLyI74zGGymu8k7eVhGPcVSh3nKljHfiVX" target="_blank" class="btn btn-default">Learn More</a>
+						<h4>{% trans %}10% Lifetime Bonus!{% endtrans %}</h4>
+                <p>{% trans %}Yes, we mean forever.{% endtrans %}</p>
+                <p>{% trans %}any.TV pays you a 10% bonus of everything your referrals make, our way of saying “Thank You” for recommending any.TV to your friends and partners!{% endtrans %}</p>
+                <p>{% trans %}This is <b>not</b> a pyramid scheme.{% endtrans %}</p>
+                <a href="http://www.youtube.com/watch?v=Hs1Tq_Mi_Yg&list=PLyI74zGGymu8k7eVhGPcVSh3nKljHfiVX" target="_blank" class="btn btn-default">{% trans %}Learn More{% endtrans %}</a>
 					</div>	
 				</div>
 			</div>

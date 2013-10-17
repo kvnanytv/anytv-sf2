@@ -34,13 +34,12 @@
                     <button type="submit" class="btn btn-lg btn-primary btn-block"><strong>{% trans %}Login{% endtrans %}</strong></button>       
                 </form>
                 
-                <p align="center" style="display:none">{% trans %}Don't have an account yet?{% endtrans %}</p>
-                <form action="" style="display:none">
-                  <button style="display:none" type="submit" class="btn btn-lg btn-primary btn-block"><strong>{% trans %}CREATE AN ACCOUNT{% endtrans %}</strong></button>
-                </form>
+                <div class="brdr-h"></div>
+		<p align="center">{% trans %}Don't have an account yet?{% endtrans %}</p>
+		<a class="btn btn-lg btn-primary btn-block btn-create" href="{{ path('signup') }}"><strong>{% trans %}CREATE AN ACCOUNT{% endtrans %}</strong></a>
               </div>
             </div>
-            <p style="display:none" class="txt-default initial-login">View our <a href="">Privacy Policy</a></p> 
+            <p class="txt-default initial-login">{% trans %}View our{% endtrans %} <a href="{{ path('privacy_policy') }}">{% trans %}Privacy Policy{% endtrans %}</a></p> 
             <div class="panel panel-default lgin-panel" id="auth-message" style="display:none">
               <div class="panel-body">
                 <p class="txt-default" style="font-weight:bold">{% trans %}Authenticating{% endtrans %}...</p> 

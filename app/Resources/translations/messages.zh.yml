@@ -106,7 +106,8 @@
 'Staff': any.TV員工
 'Games': 遊戲
 'Payout': 支付
-'View our privacy policy': 檢視公司的原則 
+'Privacy Policy': 穩私權
+'View our': 查看公司
 'Marketing': 行銷
 'Partnership': 合作關係
 'Payments': 付款
@@ -134,7 +135,8 @@
 'Offer Groups': 供應組群
 'Photo': Photo
 'Company / Name: *': '公司 / 姓名: *' 
-'Terms & Conditions': 條文和法則
+'Terms & Conditions': 條件和規則
+'I agree to the': 我同意所有的
 'Not Listed': 沒有在選單中
 'Password should be between 4 and 16 characters.': 密碼請設定在4到16個字數內。
 'E-mail Address already exists.': 此信箱已存在
@@ -147,3 +149,4 @@
 'Phone is required.': 電話必填
 'First Name is required.': 名字必填
 'Last Name is required.': 姓氏必填
+'Learn More': 了解更多 
