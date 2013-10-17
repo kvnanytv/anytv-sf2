@@ -76,7 +76,7 @@ class LoadAffiliateData extends AbstractFixture implements OrderedFixtureInterfa
                     $affiliate_user = new AffiliateUser(); 
                     $affiliate_user->setAffiliateUserId($affiliate_user_object->id);
                     
-                    if(in_array($affiliate_user_object->id, array(2, 6994)))
+                    if(in_array($affiliate_user_object->id, array(2, 192, 6994)))
                     {
                       $affiliate_user->setIsAdmin(true);  
                     }

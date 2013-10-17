@@ -155,20 +155,6 @@ class Affiliate
     private $paypalEmailModified;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="payment_terms", type="string", length=255, nullable=true)
-     */
-    private $paymentTerms;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="w9_filed", type="boolean", nullable=true)
-     */
-    private $w9Filed;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="referral_id", type="integer", nullable=true)
@@ -180,13 +166,6 @@ class Affiliate
      * @ORM\JoinColumn(name="referrer_id", referencedColumnName="id")
      */
     private $referrer;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="affiliate_tier_id", type="integer", nullable=true)
-     */
-    private $affiliateTierId;
 
     /**
      * @var \DateTime

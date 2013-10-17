@@ -105,7 +105,7 @@ class AffiliateController extends Controller
                 $affiliate->setAddress1($affiliate_object->address1);
                 $affiliate->setAddress2($affiliate_object->address2);
                 $affiliate->setCity($affiliate_object->city);
-                $affiliate->setRegion($affiliate_object->region);
+                //$affiliate->setRegion($affiliate_object->region);
                 
                 if($country = $country_repository->findOneByCode($affiliate_object->country))
                 {
@@ -196,7 +196,7 @@ class AffiliateController extends Controller
                 $affiliate->setAddress1($affiliate_object->address1);
                 $affiliate->setAddress2($affiliate_object->address2);
                 $affiliate->setCity($affiliate_object->city);
-                $affiliate->setRegion($affiliate_object->region);
+                //$affiliate->setRegion($affiliate_object->region);
           
                 if($country = $country_repository->findOneByCode($affiliate_object->country))
                 {
