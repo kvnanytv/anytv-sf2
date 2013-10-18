@@ -855,7 +855,7 @@ footer {
 /************************************** Modal *****************************************/
 
 #plnw-pop .modal{
-	overflow: hidden !important;
+	/*overflow: hidden !important;*/
 }
 
 #user-prof-img {
