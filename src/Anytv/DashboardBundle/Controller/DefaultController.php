@@ -123,6 +123,82 @@ class DefaultController extends Controller
         return $this->render('AnytvDashboardBundle:Default:privacyPolicy.html.twig', array('title'=>$translator->trans('Privacy Policy')));
     }
     
+    public function forgotPasswordAction(Request $request)
+    {
+        $affiliate_user_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:AffiliateUser');
+        $translator = $this->get('translator');
+        
+        $form = $this->createFormBuilder()    
+          ->add('email', 'email', array('label'=>$translator->trans('Email: *')))
+          ->add('lookup', 'submit', array('label'=>$translator->trans('Lookup Account')))
+          ->getForm();
+
+        $form->handleRequest($request);
+        
+        $errors = array();
+        $password_reset = false;
+        
+        if ($form->isValid()) {
+          
+          $data = $form->getData();
+          
+          $email = $data['email'];
+          
+          $affiliate_user = $affiliate_user_repository->findOneBy(array('email'=>$email));
+          
+          if(!$affiliate_user)
+          {
+            $errors[] = $translator->trans('No user account was found for the address given.');
+          }
+          else
+          {
+            $hasoffers = $this->get('hasoffers');
+            $reset_password_result = $hasoffers->resetPassword($affiliate_user->getAffiliateUserId()); 
+            
+            if(($reset_password_result->status == 1) && $reset_password_result->data)
+            {
+              $update_password_result = $hasoffers->updateAffiliateUserField($affiliate_user->getAffiliateUserId(), 'password', trim($reset_password_result->data), false); 
+              
+              if(($update_password_result->status == 1) && $update_password_result->data)
+              {
+                $password_reset = true; 
+              
+                $manager = $this->getDoctrine()->getManager();
+              
+                $affiliate_user->setLastChangePassword(new \DateTime());
+                $affiliate_user->setForgotPasswordRequestCount($affiliate_user->getForgotPasswordRequestCount() + 1);
+               
+                $manager->flush();
+                
+                $dashboard_url = $this->generateUrl('anytv_dashboard_homepage', array(), true);
+              
+                $message = \Swift_Message::newInstance()
+                  ->setContentType('text/html')
+                  ->setSubject($translator->trans('Recover Lost Password‏'))
+                  ->setFrom('support@any.tv', 'any.TV')
+                  ->setTo($email)
+                  ->setBody($this->renderView('AnytvDashboardBundle:Default:forgotPasswordEmail.html.twig', array('affiliate_user' => $affiliate_user, 'new_password'=>$reset_password_result->data, 'dashboard_url'=>$dashboard_url)));
+            
+                $this->get('mailer')->send($message);    
+              }
+              else
+              {
+                //$errors[] = $translator->trans(json_decode($reset_password_result->errors));
+                $errors[] = $translator->trans('An error has occurred, please try again.');    
+              }
+            }
+            else
+            {
+              //$errors[] = $translator->trans(json_decode($reset_password_result->errors));
+              $errors[] = $translator->trans('An error has occurred, please try again.');
+            }
+          }
+          
+        }
+        
+        return $this->render('AnytvDashboardBundle:Default:forgotPassword.html.twig', array('title'=>$translator->trans('Recover Lost Password '), 'form'=>$form->createView(), 'errors'=>$errors, 'password_reset'=>$password_reset));
+    }
+    
     public function signupAction(Request $request, $id)
     {
         if ($this->getUser()) 

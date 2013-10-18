@@ -23,6 +23,12 @@ signup:
         _locale:  %anytv.locales%
         id:  \d+
         
+forgot_password:
+    path:      /forgot_password/{_locale}
+    defaults:  { _controller: AnytvDashboardBundle:Default:forgotPassword, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
 profile_view:
     path:      /{_locale}/profile/{tab}/{mode}
     defaults:  { _controller: AnytvDashboardBundle:Profile:view, _locale: en, tab: company, mode: view }

@@ -28,7 +28,7 @@
                     <p><strong>{% trans %}Email{% endtrans %}</strong></p>
                     <input type="email" id="username" name="_username" value="{{ username }}" class="form-control brdrrad-0" required="required" autofocus>
                     <div class="cl-20"></div>
-                    <p style="float: left"><strong>{% trans %}Password{% endtrans %}</strong></p><span class="frgot-lnk"><a href="{{ path('login')}}" tabindex="5" style="display:none">{% trans %}Forgot Password?{% endtrans %}</a></span>
+                    <p style="float: left"><strong>{% trans %}Password{% endtrans %}</strong></p><span class="fld-lnk-sm"><a href="{{ path('forgot_password')}}" tabindex="5">{% trans %}Forgot Password?{% endtrans %}</a></span>
                     <input type="password" id="password" name="_password" value="{{ password }}" class="form-control brdrrad-0" required="required">
                     <div class="cl-20"></div>
                     <button type="submit" class="btn btn-lg btn-primary btn-block"><strong>{% trans %}Login{% endtrans %}</strong></button>       
