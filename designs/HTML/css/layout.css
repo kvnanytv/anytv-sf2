@@ -854,9 +854,9 @@ footer {
 
 /************************************** Modal *****************************************/
 
-#plnw-pop .modal{
-	/*overflow: hidden !important;*/
-}
+/*#plnw-pop .modal{
+	overflow: hidden !important;
+}*/
 
 #user-prof-img {
 	text-align: center;
