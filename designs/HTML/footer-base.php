@@ -1,5 +1,6 @@
 </body>
 
+
 <script src="assets/js/jquery.js"></script>  
 <script src="js/zclip/jquery.zclip.js"></script>   
 <script src="js/bootstrap/bootstrap.min.js"></script>

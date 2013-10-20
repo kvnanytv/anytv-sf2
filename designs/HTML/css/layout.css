@@ -852,6 +852,20 @@ footer {
 	margin: 0 20px 20px 20px;
 }
 
+/************************************************/
+#faq-qstn-wrap  h4.panel-title {
+	font-weight: bold;
+}
+
+.faq-ul {
+	list-style: none;
+	padding: 0 !important;
+}
+
+.faq-ul li {
+
+}
+
 /************************************** Modal *****************************************/
 
 /*#plnw-pop .modal{
@@ -973,4 +987,22 @@ footer {
 .centered p {
 	font-size: 48px;
 	font-weight:300;
+}
+
+/******************************* Stick Em **********************************/
+
+.stickem-container {
+  position: relative;
+}
+
+.stickit {
+    margin-left: 660px;
+    position: fixed;
+    top: 0;
+}
+
+.stickit-end {
+    bottom: 40px;
+    position: absolute;
+    right: 0;
 }

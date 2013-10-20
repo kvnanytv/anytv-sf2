@@ -43,7 +43,7 @@
 
 									<p>Referral link:</p>
 
-									<input id="ref-lnk" type="text" class="form-control" value="http://www.any.tv/dashboard/signup/79745/zh" disabled>								
+									<input id="ref-lnk" type="text" class="form-control" value="http://www.any.tv/dashboard/signup/79745/zh" readonly="readonly">								
 									<a id="cpy-ref-btn" class="btn btn-default">Copy Link</a>
 
 
