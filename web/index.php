@@ -1,8 +1,42 @@
-<div style="padding:200px">
-  <div>
-    <img src="http://www.any.tv/wp-content/uploads/2013/03/anytv-logo-1600x1600-to-84x32.png" />
-  </div>
-  <div>
-    <img src="http://www.mtolive-indy.org/under-main.jpg" />
-  </div>
-</div>
+<!DOCTYPE HTML>
+
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>AnyTV | Under Maintenance</title>
+
+	<!-- Favicon -->
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png"/>
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png"/>
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png"/>
+	<link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png"/>
+	<link rel="shortcut icon" href="faviconanytv.ico"/>
+
+	<!-- Fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,700,800,600' rel='stylesheet' type='text/css'>    
+
+	<style type="text/css">
+		@import url('bundles/anytvmain/css/layout.css');     
+		@import url('bundles/anytvmain/css/normalize.css');      
+		@import url('bundles/anytvmain/css/bootstrap.css'); 
+		@import url('bundles/anytvdashboard/css/bootstrap-select.css');
+		@import url('bundles/anytvmain/css/font-awesome.min.css');
+	</style>	
+</head>
+
+<body>
+	<section class="block">
+		<article class="centered">
+			<img src="bundles/anytvmain/images/anytvlogo-white-lg.png">
+			<h1>Down for Maintenance</h1>
+			<p>We'll be back very soon!</p>
+		</article>
+	</section>
+</body>
+
+
+</html>

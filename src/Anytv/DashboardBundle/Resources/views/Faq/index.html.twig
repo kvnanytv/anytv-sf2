@@ -1,0 +1,66 @@
+{% extends 'AnytvDashboardBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title}}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+
+<section id="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        
+          <h1 class="title">{{ title|upper }}</h1>
+    
+    <p>&nbsp;</p>
+    
+
+    
+      <table border="1" cellspacing="15" cellpadding="15">
+        <tr>
+         <th>ID</th>
+         <th>{% trans %}Question{% endtrans %}</th>
+         <th>{% trans %}Answer{% endtrans %}</th>
+       </tr>
+       {% for faq in faqs %}
+         <tr>
+           <td>{{ faq.id }}</td>
+           <td><a href="{{ path('faq_edit', { 'id' : faq.id }) }}" title="{% trans %}Edit{% endtrans %}">{{ faq.question }}</a></td>
+           <td>{{ faq.answer }}</td>
+         </tr>
+       {% endfor %} 
+      </table>
+       
+      {% if (total_pages > 1) %}
+        <ul class="pagination">
+        {% if(page > 1) %}
+          <li><a href="{{ path('faqs', {'page':(page-1)}) }}"  title="{{ (page-1) }}">&laquo;</a></li>
+        {% endif %}
+        {% for i in 1..total_pages if((page-i)|abs < 8) %}
+          {% if(page == i) %}
+            <li class="active"><span>{{ i }}<span class="sr-only">(current)</span></span></li>
+          {% else %}
+            <li><a href="{{ path('faqs', {'page':i}) }}" title="{{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if(page < total_pages) %}
+          <li><a href="{{ path('faqs', {'page':(page+1)}) }}" title="{{ (page+1) }}">&raquo;</a></li>
+        {% endif %}
+        </ul>
+      {% endif %}
+          
+          
+      <div class="cl-20"></div>
+      </div>
+      
+		</div>
+	</div>
+</section>
+
+    {{ parent() }}
+    
+        
+   
+{% endblock %}

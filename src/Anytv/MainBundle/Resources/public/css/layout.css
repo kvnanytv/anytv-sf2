@@ -16,6 +16,7 @@ body.dashbrd-bg {
 	background-color: #f1f1f1;
 }
  
+
 .cl {
 	clear: both;
 	float: none;
@@ -79,6 +80,10 @@ html, body {
 
 .v-mid {
 	vertical-align: middle;
+}
+
+.mtop-20 {
+	margin: 20px 0 0 0;
 }
 
 .mtop-10 {
@@ -742,6 +747,50 @@ footer {
 	text-shadow: 0px 1px 0px rgba(255, 255, 255, 1);
 }
 
+/******************************* What is Any.tv **********************************/
+
+
+.wat-wrap {
+	padding: 20px;
+}
+
+.wat-wrap h1 {	
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;	
+	font-weight: 700;
+	width: 100%;
+}
+
+.wat-wrap p {
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	font-size: 18px;
+}
+
+#first-slide {
+	background-color: #fff;
+}
+
+#first-slide h1 {
+	color: #2c7dc6;
+}
+
+
+#second-slide {
+	background-color: #EAA13F;
+	color: #fff;
+	font-weight: 300;
+	text-align: center;
+}
+
+#third-slide {
+	background-color: #fff;
+}
+
+#third-slide h3 {
+	font-family: 'Open Sans', Arial, Helvetica,sans-serif;
+	font-weight: 600;
+}
+
+
 
 /******************************* FAQs **********************************/
 
@@ -765,14 +814,14 @@ footer {
 .sec-content {
 	background-color: #fff;
 	height: 100%;
-	min-height: 430px;		
+	min-height: 100%;
 }
 
-@media only screen and (min-height: 960px) {
+/*@media only screen and (min-height: 960px) {
 	.sec-content {
 		min-height: 650px;
 	}
-}
+}*/
 
 .sec-content .tab-content {
 	padding: 20px 0;	
@@ -890,4 +939,38 @@ footer {
 	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 	color: #fff;
 	font-size: 32px;
+}
+
+/******************************* Maintenance **********************************/
+
+
+.block {
+  text-align: center;
+  height: 600px;
+  color: #fff;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;  
+}
+ 
+.block:before {
+  content: '';
+  display: inline-block;
+  height: 100%; 
+  vertical-align: middle;
+  margin-right: -0.25em;
+ }
+ 
+.centered {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  padding: 10px 15px;
+ }
+
+.centered h1 {
+	font-size: 52px;	
+}
+
+.centered p {
+	font-size: 48px;
+	font-weight:300;
 }

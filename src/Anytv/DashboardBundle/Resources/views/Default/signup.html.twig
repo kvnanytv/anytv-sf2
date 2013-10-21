@@ -61,6 +61,14 @@
       {{ form_row(form.last_name, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
       <div class="cl-20"></div>
       {{ form_row(form.title, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
+      <hr>                
+      <div class="form_row">
+        <div class="term-con">
+          {{ form_widget(form.terms, {'attr': {'class': ''}}) }}
+          {% trans %}I agree to the{% endtrans %} <a href="{{ path('terms') }}" target="_blank">{% trans %}Terms & Conditions{% endtrans %}.</a>
+        </div>
+      </div>
+                
       <div class="cl-20"></div>
       {{ form_row(form.signup, {'attr': {'class': 'btn btn-lg btn-primary btn-block'}}) }}
          

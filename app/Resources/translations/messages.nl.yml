@@ -106,7 +106,8 @@
 'Staff': Personeel
 'Games': Spellen
 'Payout': Payout
-'View our privacy policy': Bekijk de privacy voorwaarden
+'Privacy Policy': Privacy voorwaarden
+'View our': Bekijk de
 'Marketing': Marketing
 'Partnership': Partnership
 'Payments': Betalingen
@@ -135,6 +136,7 @@
 'Photo': Photo
 'Company / Name: *': 'Bedrijf / Naam: *' 
 'Terms & Conditions': 'Terms & Conditions'
+'I agree to the': I agree to the
 'Not Listed': Not Listed
 'Password should be between 4 and 16 characters.': Password should be between 4 and 16 characters. 
 'E-mail Address already exists.': E-mail Address already exists.
@@ -147,4 +149,5 @@
 'Phone is required.': Phone is required.
 'First Name is required.': First Name is required.
 'Last Name is required.': Last Name is required.
+'Learn More': Leer Meer
 

@@ -10,12 +10,24 @@ terms:
     requirements:
         _locale:  %anytv.locales%
         
+privacy_policy:
+    path:      /privacy_policy/{_locale}
+    defaults:  { _controller: AnytvDashboardBundle:Default:privacyPolicy, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
 signup:
     path:      /signup/{id}/{_locale}
     defaults:  { _controller: AnytvDashboardBundle:Default:signup, _locale: en, id: 1000 }
     requirements:
         _locale:  %anytv.locales%
         id:  \d+
+        
+forgot_password:
+    path:      /forgot_password/{_locale}
+    defaults:  { _controller: AnytvDashboardBundle:Default:forgotPassword, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
         
 profile_view:
     path:      /{_locale}/profile/{tab}/{mode}
@@ -233,6 +245,20 @@ countries:
 country_view:
     path:      /{_locale}/admin/countries/view/{id}
     defaults:  { _controller: AnytvDashboardBundle:Country:view, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        id:  \d+
+        
+faqs:
+    path:      /{_locale}/admin/faq/{page}
+    defaults:  { _controller: AnytvDashboardBundle:Faq:index, _locale: en, page: 1 }
+    requirements:
+        _locale:  %anytv.locales%
+        page:  \d+
+        
+faq_edit:
+    path:      /{_locale}/admin/faq/edit/{id}
+    defaults:  { _controller: AnytvDashboardBundle:Faq:edit, _locale: en }
     requirements:
         _locale:  %anytv.locales%
         id:  \d+

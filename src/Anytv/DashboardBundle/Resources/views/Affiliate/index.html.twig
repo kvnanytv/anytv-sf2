@@ -54,6 +54,7 @@
          <th>{% trans %}Country{% endtrans %}</th>
          <th>{% trans %}Date Added{% endtrans %}</th>
          <th>{% trans %}Paypal{% endtrans %}</th>
+         <th>{% trans %}Signup IP{% endtrans %}</th>
          <th>{% trans %}Thumbnail{% endtrans %}</th>
        </tr>
        {% for affiliate in affiliates %}
@@ -68,6 +69,7 @@
            {% endif %}
            <td>{{ affiliate.getDateAddedAsString() }}</td>
            <td>{{ affiliate.paypalEmail }}</td>
+           <td>{{ affiliate.signupIp }}</td>
            {% if(affiliate.thumbnail) %}
              <td><img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ affiliate.company }}" /></td>
            {%  else %}

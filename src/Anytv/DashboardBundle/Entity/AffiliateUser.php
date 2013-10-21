@@ -184,6 +184,20 @@ class AffiliateUser implements UserInterface, \Serializable
     private $loginIpChangeCount;
     
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="last_change_password", type="datetime", nullable=true)
+     */
+    private $lastChangePassword;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="forgot_password_request_count", type="integer")
+     */
+    private $forgotPasswordRequestCount;
+    
+    /**
      * @var boolean
      *
      * @ORM\Column(name="show_photo", type="boolean")
@@ -359,6 +373,7 @@ class AffiliateUser implements UserInterface, \Serializable
         $this->secret_code = md5(uniqid(null, true));
         $this->loginCount = 0;
         $this->loginIpChangeCount = 0;
+        $this->forgotPasswordRequestCount = 0;
         $this->showPhoto = true;
         $this->isPublic = true;
         $this->wantsAlerts = true;
@@ -1080,5 +1095,51 @@ class AffiliateUser implements UserInterface, \Serializable
     public function getSecretCode()
     {
         return $this->secret_code;
+    }
+
+    /**
+     * Set forgotPasswordRequestCount
+     *
+     * @param integer $forgotPasswordRequestCount
+     * @return AffiliateUser
+     */
+    public function setForgotPasswordRequestCount($forgotPasswordRequestCount)
+    {
+        $this->forgotPasswordRequestCount = $forgotPasswordRequestCount;
+    
+        return $this;
+    }
+
+    /**
+     * Get forgotPasswordRequestCount
+     *
+     * @return integer 
+     */
+    public function getForgotPasswordRequestCount()
+    {
+        return $this->forgotPasswordRequestCount;
+    }
+
+    /**
+     * Set lastChangePassword
+     *
+     * @param \DateTime $lastChangePassword
+     * @return AffiliateUser
+     */
+    public function setLastChangePassword($lastChangePassword)
+    {
+        $this->lastChangePassword = $lastChangePassword;
+    
+        return $this;
+    }
+
+    /**
+     * Get lastChangePassword
+     *
+     * @return \DateTime 
+     */
+    public function getLastChangePassword()
+    {
+        return $this->lastChangePassword;
     }
 }

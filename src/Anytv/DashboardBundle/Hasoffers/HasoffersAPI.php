@@ -189,4 +189,38 @@ class HasoffersAPI
         
         return $response;
     }
+    
+    public function resetPassword($affiliate_user_id)
+    {
+        $this->api_params['Target'] = 'AffiliateUser';
+        $this->api_params['Method'] = 'resetPassword';
+        $this->api_params['id'] = $affiliate_user_id;
+        $this->api_params['length'] = 12;
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = (array) json_decode( $result );
+        
+        return $result['response'];
+    }
+    
+    public function updateAffiliateUserField($affiliate_user_id, $field_name, $field_value, $return_object = true)
+    {
+        $this->api_params['Target'] = 'AffiliateUser';
+        $this->api_params['Method'] = 'updateField';
+        $this->api_params['id'] = $affiliate_user_id;
+        $this->api_params['field'] = $field_name;
+        $this->api_params['value'] = $field_value;
+        $this->api_params['return_object'] = $return_object;
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = (array) json_decode( $result );
+        
+        return $result['response'];
+    }
 }

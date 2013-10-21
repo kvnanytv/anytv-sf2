@@ -26,7 +26,7 @@ class Faq
     /**
      * @var string
      *
-     * @ORM\Column(name="question", type="string", length=255)
+     * @ORM\Column(name="question", type="text")
      */
     private $question;
 
@@ -40,7 +40,7 @@ class Faq
     /**
      * @var string
      *
-     * @ORM\Column(name="question_zh", type="string", length=255, nullable=true)
+     * @ORM\Column(name="question_zh", type="text", nullable=true)
      */
     private $questionZh;
 
@@ -54,7 +54,7 @@ class Faq
     /**
      * @var string
      *
-     * @ORM\Column(name="question_nl", type="string", length=255, nullable=true)
+     * @ORM\Column(name="question_nl", type="text", nullable=true)
      */
     private $questionNl;
 
@@ -68,7 +68,7 @@ class Faq
     /**
      * @var string
      *
-     * @ORM\Column(name="question_de", type="string", length=255, nullable=true)
+     * @ORM\Column(name="question_de", type="text", nullable=true)
      */
     private $questionDe;
 
@@ -146,9 +146,27 @@ class Faq
      *
      * @return string 
      */
-    public function getQuestion()
+    public function getQuestion($locale = 'en')
     {
-        return $this->question;
+        $question = '';
+        
+        switch($locale)
+        {
+          case 'en':
+              $question = $this->question;
+              break;
+          case 'zh':
+              $question = $this->questionZh;
+              break;
+          case 'nl':
+              $question = $this->questionNl;
+              break;
+          case 'de':
+              $question = $this->questionDe;
+              break;
+        }
+        
+        return $question ? $question : $this->question;
     }
 
     /**
@@ -169,9 +187,27 @@ class Faq
      *
      * @return string 
      */
-    public function getAnswer()
+    public function getAnswer($locale = 'en')
     {
-        return $this->answer;
+        $answer = '';
+        
+        switch($locale)
+        {
+          case 'en':
+              $answer = $this->answer;
+              break;
+          case 'zh':
+              $answer = $this->answerZh;
+              break;
+          case 'nl':
+              $answer = $this->answerNl;
+              break;
+          case 'de':
+              $answer = $this->answerDe;
+              break;
+        }
+        
+        return $answer ? $answer : $this->answer;
     }
 
     /**
@@ -474,5 +510,10 @@ class Faq
     public function getIsActive()
     {
         return $this->isActive;
+    }
+    
+    public function __toString() 
+    {
+      return $this->getQuestion();
     }
 }
