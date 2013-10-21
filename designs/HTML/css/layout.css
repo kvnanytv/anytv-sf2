@@ -90,6 +90,14 @@ html, body {
 	margin: 10px 0 0 0;
 }
 
+.pos-fixed {
+	position: fixed !important;
+}
+
+.pdd-0 {
+	padding: 0 !important;
+}
+
 /********************** Header *******************/
 
 #top-navigation {
@@ -853,6 +861,11 @@ footer {
 }
 
 /************************************************/
+
+#faq-qstn-wrap {
+	padding: 20px 0 0 0;
+}
+
 #faq-qstn-wrap  h4.panel-title {
 	font-weight: bold;
 }
