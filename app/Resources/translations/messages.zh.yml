@@ -16,11 +16,11 @@
 'Advertiser': 廣告商
 'Advertisers': 廣告商
 'Edit Advertiser': 編輯 廣告商
-'Offer': 供應
-'Offers': 供應
+'Offer': 供應選項
+'Offers': 供應選項
 'Edit Offer': 編輯 供應
-'Affiliate': 合作公司
-'Affiliates': 合作公司
+'Affiliate': 用戶
+'Affiliates': 用戶
 'Traffic Referrals': 介紹流量
 'Company': 公司
 'Address': 地址
@@ -122,7 +122,7 @@
 'Go!': Go!
 'Company Details': 公司詳情
 'User Details': 用戶資訊
-'Affiliate Sign Up': 合作公司註冊
+'Affiliate Sign Up': 用戶註冊
 'Authenticating': 驗證中
 'Invalid Authorization': 驗證無效
 'Account is not active.': 帳號無法使用
