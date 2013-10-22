@@ -15,7 +15,6 @@ body.dashbrd-bg {
 	background-image: none;
 	background-color: #f1f1f1;
 }
- 
 
 .cl {
 	clear: both;
@@ -98,6 +97,11 @@ html, body {
 	padding: 0 !important;
 }
 
+
+.lbl-h {
+	display: inline-block;
+	padding: 0 5px 0 20px;
+}
 /********************** Header *******************/
 
 #top-navigation {
@@ -833,7 +837,7 @@ footer {
 /******************************* FAQs **********************************/
 
 .sec-content-title {
-	padding: 50px 0;
+	padding: 30px 0 50px 0;
 }
 
 .sec-content-title h3 {
@@ -1053,3 +1057,43 @@ footer {
     position: absolute;
     right: 0;
 }
+
+/******************************* Dashboard Inside Pages **********************************/
+
+#dboard-wrap .sec-content-title h3 {
+	color: #e89f3d;
+	text-shadow:1px 1px 0px #fff;
+}
+
+.db-slide-1 .btn-srch {
+	border: 0 !important;
+	background: #005fb4 !important;
+	text-shadow: 0px -1px 0px rgba(13, 63, 135, 1);	
+}
+
+.db-slide-1 .btn-srch:hover {
+	background: #0d3f87 !important;
+}
+
+.db-slide-1 .btn-srch:focus {
+	outline: none;
+}
+
+.db-slide-1 {
+	background: #fff;
+	padding: 20px;
+}
+
+.db-slide-1 .input-group {
+	margin-bottom: 10px;
+}
+
+.db-slide-1 .input-group .icon-search {
+	color: #fff !important;
+}
+
+.db-slide-1 .f-rght > button {
+	margin-top: 5px;
+	padding: 10px;
+}
+
