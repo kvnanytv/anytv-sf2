@@ -1,137 +1,331 @@
-<!DOCTYPE html> 
-<html> 
-<head>
-	<title>jQuery Stick 'em</title>
-	<meta charset="utf-8">
-	<link href="screen.css" rel="stylesheet">
+<?php include 'header-top.php' ?>
 
 
+<?php include 'navigation.php' ?>
 
-<style type="text/css">
-	* {
-	margin: 0;
-	padding: 0;
-}
+<div id="content">
+	<section class="sec-content-title">
+		<div class="container">
+			<h3>Frequently Asked Questions</h3>
 
-body {
-	font: 14px/1.5 Helvetica, Arial, sans-serif;
-}
+		</div>			
+	</section>
 
-.container {
-	margin: 20px auto;
-	width: 960px;
-}
+	<section class="sec-content">
+		<div class="container">
+			<div class="row">
+				<!-- <div class="cl-20"></div> -->
+				<!-- Questions -->
 
-.row {
-	border-bottom: 1px solid #ccc;
-	margin-bottom: 40px;
-	padding-bottom: 40px;
-	position: relative;
-}
+				<div class="col-lg-4">
+					<div id="faq-qstn-wrap">
+						<div class="panel-group" id="accordion">
+							<!-- Category 1 -->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+											All
+										</a>
+									</h4>
+								</div>
+								<div id="collapseOne" class="panel-collapse collapse in" style="height: 0px;">
+									<div class="panel-body">
+										<div class="tabbable">
+											<ul class="faq-ul">
+												<li><a href="#bk1" data-toggle="tab">What is any.TV?</a></li>
+												<li><a href="#bk" data-toggle="tab">Why did you leave TGN, George?</a></li>
+												<li><a href="#tab3" data-toggle="tab">How do I make my own Network?</a></li>
+												<li><a href="#tab4" data-toggle="tab">Is any.TV a pyramid scheme?</a></li>
+												<li><a href="#tab5" data-toggle="tab">I have more questions!</a></li>
+												<li><a href="#tab6" data-toggle="tab">This is Three</a></li>
+												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
+												<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
+												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>
+												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
+												<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
+												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>											
+												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
+												<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
+												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>
+												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
+												<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
+												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>
+												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
+												<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
+												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>
+												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
+												<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
+												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>	
+												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
+												<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
+												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>
+												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
+												<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
+												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>
+												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
+												<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
+												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>
+												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
+												<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
+												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>																									
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
 
-.row:after {
-	clear: both;
-	content: ".";
-	display: block;
-	height: 0;
-	visibility: hidden;
-}
+							<!-- Category 2 -->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+											any.TV
+										</a>
+									</h4>
+								</div>
+								<div id="collapseTwo" class="panel-collapse collapse" style="height: 0px;">
+									<div class="panel-body">
+										<ul class="faq-ul">
+											<li><a href="#tab1">This is one</a></li>
+											<li>This is two</li>
+											<li>This is Three</li>
+										</ul>
+									</div>
+								</div>
+							</div>
 
-.content {
-	float: left;
-	width: 640px;
-}
+							<!-- Category 3 -->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+											Dashboard
+										</a>
+									</h4>
+								</div>
+								<div id="collapseThree" class="panel-collapse collapse" style="height: 0px;">
+									<div class="panel-body">
+										<ul>
+											<li>This is one</li>
+											<li>This is two</li>
+											<li>This is Three</li>
+										</ul>
+									</div>
+								</div>
+							</div>
 
-.aside {
-	background: #cecece;
-	float: right;
-	/*padding: 20px;*/
-	padding: 0 20px;
-	width: 260px;
-}
+							<!-- Category 4 -->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+											Marketing
+										</a>
+									</h4>
+								</div>
+								<div id="collapseFour" class="panel-collapse collapse" style="height: 0px;">
+									<div class="panel-body">
+										<ul>
+											<li>This is one</li>
+											<li>This is two</li>
+											<li>This is Three</li>
+										</ul>
+									</div>
+								</div>
+							</div>
 
-h2 {
-	font-size: 20px;
-}
+							<!-- Category 5 -->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+											Partnership
+										</a>
+									</h4>
+								</div>
+								<div id="collapseFive" class="panel-collapse collapse" style="height: 0px;">
+									<div class="panel-body">
+										<ul>
+											<li>This is one</li>
+											<li>This is two</li>
+											<li>This is Three</li>
+										</ul>
+									</div>
+								</div>
+							</div>
 
-p {
-	margin-bottom: 1.5em;
-}
+							<!-- Category 6 -->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+											Payments
+										</a>
+									</h4>
+								</div>
+								<div id="collapseSix" class="panel-collapse collapse" style="height: 0px;">
+									<div class="panel-body">
+										<ul>
+											<li>This is one</li>
+											<li>This is two</li>
+											<li>This is Three</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
 
-.stickit {
-	margin-left: 660px;
-	position: fixed;
-	top: 0;
-}
+					</div>
+				</div>
 
-.stickit-end {
-	bottom: 40px;
-	position: absolute;
-	right: 0;
-}	
-</style>
-</head>
-<body>
+				<!-- Content -->
+
+				<div class="col-lg-8">
+
+					<div class="tab-content">
+						<!-- Content 1 -->
+						<div class="tab-pane active" id="tab1">
+							<div id="qstn">
+								<h4 id="bk1">What is any.TV?</h4>
+								<p>any.TV is a new kind of YouTube Network that pays recommendation revenue!</p>
+								<p>Highlights:</p>
+								<ul>
+									<li>No contract</li>
+									<li>New revenue stream: recommendation revenue</li>
+									<li>2 partnership at once: stay partnered with your current Network</li>
+									<li>10% lifetime bonus for recommending any.TV to your friends and partners</li>
+								</ul>
+								<hr>
+							</div>
+
+							<div id="qstn">
+								<h4>Why did you leave TGN, George?</h4>
+								<p>any.TV is a new kind of YouTube Network that pays recommendation revenue!</p>
+								<p>Highlights:</p>
+								<ul>
+									<li>No contract</li>
+									<li>New revenue stream: recommendation revenue</li>
+									<li>2 partnership at once: stay partnered with your current Network</li>
+									<li>10% lifetime bonus for recommending any.TV to your friends and partners</li>
+								</ul>
+							</div>
+
+							<div id="qstn">
+								<h4>What is any.TV?</h4>
+								<p>any.TV is a new kind of YouTube Network that pays recommendation revenue!</p>
+								<p>Highlights:</p>
+								<ul>
+									<li>No contract</li>
+									<li>New revenue stream: recommendation revenue</li>
+									<li>2 partnership at once: stay partnered with your current Network</li>
+									<li>10% lifetime bonus for recommending any.TV to your friends and partners</li>
+								</ul>
+								<hr>
+							</div>
+
+							<div id="qstn">
+								<h4>Why did you leave TGN, George?</h4>
+								<p>any.TV is a new kind of YouTube Network that pays recommendation revenue!</p>
+								<p>Highlights:</p>
+								<ul>
+									<li>No contract</li>
+									<li>New revenue stream: recommendation revenue</li>
+									<li>2 partnership at once: stay partnered with your current Network</li>
+									<li>10% lifetime bonus for recommending any.TV to your friends and partners</li>
+								</ul>
+							</div>
+
+							<div id="qstn">
+								<h4>What is any.TV?</h4>
+								<p>any.TV is a new kind of YouTube Network that pays recommendation revenue!</p>
+								<p>Highlights:</p>
+								<ul>
+									<li>No contract</li>
+									<li>New revenue stream: recommendation revenue</li>
+									<li>2 partnership at once: stay partnered with your current Network</li>
+									<li>10% lifetime bonus for recommending any.TV to your friends and partners</li>
+								</ul>
+								<hr>
+							</div>
+
+							<div id="qstn">
+								<h4>Why did you leave TGN, George?</h4>
+								<p>any.TV is a new kind of YouTube Network that pays recommendation revenue!</p>
+								<p>Highlights:</p>
+								<ul>
+									<li>No contract</li>
+									<li>New revenue stream: recommendation revenue</li>
+									<li>2 partnership at once: stay partnered with your current Network</li>
+									<li>10% lifetime bonus for recommending any.TV to your friends and partners</li>
+								</ul>
+							</div>
+
+							<div id="qstn">
+								<h4>What is any.TV?</h4>
+								<p>any.TV is a new kind of YouTube Network that pays recommendation revenue!</p>
+								<p>Highlights:</p>
+								<ul>
+									<li>No contract</li>
+									<li>New revenue stream: recommendation revenue</li>
+									<li>2 partnership at once: stay partnered with your current Network</li>
+									<li>10% lifetime bonus for recommending any.TV to your friends and partners</li>
+								</ul>
+								<hr>
+							</div>
+
+							<div id="qstn">
+								<h4>Why did you leave TGN, George?</h4>
+								<p>any.TV is a new kind of YouTube Network that pays recommendation revenue!</p>
+								<p>Highlights:</p>
+								<ul>
+									<li>No contract</li>
+									<li>New revenue stream: recommendation revenue</li>
+									<li>2 partnership at once: stay partnered with your current Network</li>
+									<li>10% lifetime bonus for recommending any.TV to your friends and partners</li>
+								</ul>
+							</div>																								
 
 
-	<div class="container">
-		<div class="row stickem-container">
-			<div class="content">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						</div>
+
+						<!-- Content 2 -->
+						<div class="tab-pane" id="tab2">
+							Test 1
+						</div>
+					</div>
+
+				</div>
+
+				<div class="cl-20"></div>
 			</div>
-			
-			<div class="aside stickem">
-				<h2>Heading</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-			</div>
-		</div>
+		</div>	
+	</section>		
 
-		<div class="row stickem-container">
-			<div class="content">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			</div>
-			
-			<div class="aside stickem">
-				<h2>Heading</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			</div>
-		</div>
-		
-		<div class="row stickem-container">
-			<div class="content">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			</div>
-			
-			<div class="aside stickem">
-				<h2>Heading</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-			</div>
-		</div>
-		
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	</div>
-	
-<!-- Stickem -->
-<script src="js/stickem/jquery.js"></script>
-<script src="js/stickem/jquery.stickem.js"></script>
+</div>
+</div>
+
+
+<?php include 'pagewrap-footer.php'; ?>
+<script src="js/mq-events/mq-events.js"></script>
 
 <script>
-	$(document).ready(function() {
-		$('.container').stickem();
-	});
+	function fixDiv() {
+
+  var $cache = $('#faq-qstn-wrap'); 
+  if ($(window).scrollTop() > 300 && $(window).width() > 1024 )
+    $cache.css({'position': 'fixed', 'top': '0', 'width': '360px'}); 
+  else
+  	$cache.css({'position': 'relative', 'width' : '100%'});
+
+    
+}
+
+
+
+$(window).scroll(fixDiv);
+fixDiv();
 </script>
-</body>
-</html>
+
+
+<?php include 'footer-base.php'; ?>

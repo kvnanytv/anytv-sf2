@@ -187,12 +187,30 @@
 						<div class="tab-content">
 							<!-- Content 1 -->
 							<div class="tab-pane active" id="tab1">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-								consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-								cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-								proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+								<div id="qstn">
+									<h4>What is any.TV?</h4>
+									<p>any.TV is a new kind of YouTube Network that pays recommendation revenue!</p>
+									<p>Highlights:</p>
+									<ul>
+										<li>No contract</li>
+										<li>New revenue stream: recommendation revenue</li>
+										<li>2 partnership at once: stay partnered with your current Network</li>
+										<li>10% lifetime bonus for recommending any.TV to your friends and partners</li>
+									</ul>
+									<hr>
+								</div>
+
+								<div id="qstn">
+									<h4>Why did you leave TGN, George</h4>
+									<p>any.TV is a new kind of YouTube Network that pays recommendation revenue!</p>
+									<p>Highlights:</p>
+									<ul>
+										<li>No contract</li>
+										<li>New revenue stream: recommendation revenue</li>
+										<li>2 partnership at once: stay partnered with your current Network</li>
+										<li>10% lifetime bonus for recommending any.TV to your friends and partners</li>
+									</ul>
+								</div>
 							</div>
 
 							<!-- Content 2 -->

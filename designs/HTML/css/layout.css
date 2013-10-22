@@ -798,7 +798,37 @@ footer {
 	font-weight: 600;
 }
 
+/******************************* Branding Kit **********************************/
 
+#brndkt-slide1 {
+	background-color: #fff;
+	padding: 20px 0;
+}
+
+#brndkt-slide1 h1 {
+	color: #2c7dc6;
+	text-align: center;
+	margin: 0 0 20px 0 !important;
+}
+
+#brndkt-slide1 .btn {
+	background-color: #fff;
+	border: 1px solid #adadad;
+	width: 100%;
+	padding: 20px 0 !important;
+}
+
+#brndkt-slide1 select {
+	font-size: 20px !important;
+}
+
+#brndkt-slide1 .sp-lg {
+	width: 100%;
+}
+
+#brndkt-slide1 .selectpicker > option {
+	text-align: center;
+}
 
 /******************************* FAQs **********************************/
 
@@ -858,6 +888,10 @@ footer {
 
 .term-con input[type=checkbox] {
 	margin: 0 20px 20px 20px;
+}
+
+#qstn {
+	margin-bottom: 20px;
 }
 
 /************************************************/
