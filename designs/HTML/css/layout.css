@@ -836,20 +836,16 @@ footer {
 }
 
 #brndkt-slide1 h1 {
+	font-family: 'Open Sans', Arial, Helvetica,sans-serif;
+	font-weight: 600;
 	color: #2c7dc6;
 	text-align: center;
 	margin: 0 0 20px 0 !important;
 }
 
 #brndkt-slide1 .btn {
-	background-color: #fff;
-	border: 1px solid #adadad;
 	width: 100%;
-	padding: 20px 0 !important;
-}
-
-#brndkt-slide1 select {
-	font-size: 20px !important;
+	padding: 20px 0 !important;	
 }
 
 #brndkt-slide1 .sp-lg {
@@ -860,6 +856,21 @@ footer {
 	text-align: center;
 }
 
+#brndkt-slide2 {
+	background: #f8f8f8;
+	padding: 20px 0;
+	color: ;
+}
+
+#brndkt-slide2 h1 {
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	font-size: 22px;
+	font-weight: 600;
+}
+
+#brndkt-slide2 h1 > p {
+	font-size: 18px;
+}
 /******************************* FAQs **********************************/
 
 .sec-content-title {
