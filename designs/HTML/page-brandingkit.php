@@ -26,7 +26,7 @@
 					<div class="row">
 						<div class="col-lg-2"></div>
 						<div class="col-lg-8">
-							<select class="selectpicker sp-lg" data-live-search="true">
+							<select class="selectpicker" data-width="100%">
 								<option>720p</option>
 							</select>
 							<button type="button" class="btn btn-lg">Download</button>

@@ -39,7 +39,7 @@
 		<section id="games-lists">
 			<div class="container">
 				<div class="games-list-wrap">
-					<h3>any.TV <strong>Games List</strong></h3>
+					<h3>any.TV <span>Games List</span></h3>
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="input-group input-group-lg">

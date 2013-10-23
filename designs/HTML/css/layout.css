@@ -102,6 +102,24 @@ html, body {
 	display: inline-block;
 	padding: 0 5px 0 20px;
 }
+/********************** Notification *******************/
+
+.any-notif {
+	margin-bottom: 0 !important;
+	border-radius: 0 !important;
+	border: 0 !important;
+	background-color: #333333 !important;
+	color: #fff !important;
+}
+
+.any-notif .close {
+	color: #fff !important;
+}
+
+.any-notif .close:focus {
+	outline: none;
+}
+
 /********************** Header *******************/
 
 #top-navigation {
@@ -127,6 +145,13 @@ html, body {
 	margin: 0 !important;
 	background: transparent !important;
 	border: none !impofrtant;
+}
+
+#main-nav .navbar-fixed-top {
+	background: #fff !important;
+	-webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);	
 }
 
 .atv-sites li a {
@@ -437,13 +462,14 @@ html, body {
 	text-align: center;
 	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 	font-size: 36px;
-	font-weight: 400;	
+	font-weight: 700;	
 	color: #2c7dc6;
+	margin-bottom: 20px;
 }
 
-.games-list-wrap h3 > strong {
+.games-list-wrap h3 > span {
 	color: #e51915;
-	font-weight: 400;
+	font-weight: 300;
 }
 
 .games-list-wrap input {

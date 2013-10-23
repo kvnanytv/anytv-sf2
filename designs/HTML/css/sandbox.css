@@ -1,0 +1,20 @@
+#main-nav ul.nav li {
+	display: block;
+}
+
+#main-nav ul.nav li ul {
+	display: none;
+}
+
+#main-nav ul.nav li:hover ul {
+	display: block;
+	background: #000;
+	position: absolute;
+	left: 0px;
+	width: 100%;
+}
+
+#main-nav ul.nav li:hover ul li {
+	display: inline;
+}
+

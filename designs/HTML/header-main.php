@@ -32,6 +32,10 @@
 
 
     <div class="page-wrap">
+      <div class="alert alert-dismissable alert-info any-notif">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <strong><i class="icon-exclamation-sign"></i> New on any.TV?</strong> Sign up now to get free tees!
+      </div>    
       <header>
         <div id="main-nav">    
           <nav class="navbar navbar-default" role="navigation">
