@@ -52,9 +52,12 @@
 		<section id="brndkt-slide2">
 			<div class="container">
 				<div class="row">
-								<div class="video-container">
-								         <iframe src="http://www.youtube.com/embed/UCqJAZuvUS0&wmode=opaque" frameborder="0" width="560" height="315"></iframe>
-								</div>												
+				<div class="col-lg-3"></div>
+				<div class="col-lg-6"><div class="video-container">
+								         <iframe src="http://www.youtube.com/embed/UCqJAZuvUS0&wmode=opaque" frameborder="0" width="420" height="315"></iframe>
+								</div>	</div>
+				<div class="col-lg-3"></div>
+																			
 					<div class="col-lg-6">
 						<h1>Re-upload the "What is any.TV" video to your channel to help your audience learn about any.TV! </h1>
 						<p>(Yes, you may claim it, monetize it and puts ads around the video if you want to :-)) Encourage them to sign-up using your "Refer-a-Friend" link in the video description. </p>
@@ -65,7 +68,8 @@
 					</div>
 				</div>
 			</div>
-		</section>		
+		</section>
+
 
 	</div><!-- /#content -->
 

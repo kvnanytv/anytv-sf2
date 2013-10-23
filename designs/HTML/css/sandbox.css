@@ -21,9 +21,16 @@
     width: 370px;
 }
 
+@media (min-width: 320px) and (max-width: 1024px) {
+    .#brndkt-slide1 select {
+        color: red !important;
+    }
+}
+
+
 /* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-    select {padding-right:18px}
+    #brndkt-slide1 select {padding-right:18px;}
 }
 
 label {position:relative;}
