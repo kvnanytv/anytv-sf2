@@ -93,7 +93,7 @@
               <nav class="subnav-cllps clr-black">
                 <ul id="nav">
                   <li><a href="page-what.php">What is any.TV?</a></li>
-                  <li><a href="#">Branding Kit</a></li>
+                  <li><a href="page-brandingkit.php">Branding Kit</a></li>
                   <li><a href="http://www.games.tm">Games List</a></li>
                   <li><a href="#">Livestream Handbook</a></li>
                   <li><a href="#">Recruiters Handbook</a></li>

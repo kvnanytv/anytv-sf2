@@ -58,8 +58,8 @@
     #brndkt-slide1 select {padding-right:18px;}
 }
 
-label {position:relative;}
-label:after {
+#brndkt-slide1 label {position:relative;}
+#brndkt-slide1 label:after {
     content:'▼';
     font:18px "Consolas", monospace;
     color:#aaa;
@@ -73,7 +73,8 @@ label:after {
     position:absolute;
     pointer-events:none;
 }
-label:before {
+
+#brndkt-slide1 label:before {
     content:'';
 
     right:6px; top:0px;
