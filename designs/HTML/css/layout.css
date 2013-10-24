@@ -110,6 +110,7 @@ html, body {
 	border: 0 !important;
 	background-color: #dc2127 !important;
 	color: #fff !important;
+	text-align: center;
 }
 
 .any-notif .close {
@@ -1130,7 +1131,7 @@ footer {
 
 .block {
   text-align: center;
-  height: 600px;
+  margin-top: 100px;
   color: #fff;
   font-family: 'Open Sans', Arial, Helvetica, sans-serif;  
 }
