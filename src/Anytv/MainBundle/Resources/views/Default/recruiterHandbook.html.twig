@@ -20,10 +20,12 @@
 			<div class="cl-20"></div>
 				<div class="row">
 					<div class="col-lg-12">
-                                            <p class="font-lg">
-                                              <a href="https://docs.google.com/presentation/d/1NsCoRdfueLqLrkCg6nGEs7z8KGHYQP4z-DvSaE7jTgg/embed?start=false&amp;loop=false&amp;delayms=3000" target="_blank">Pop out the Recruiter Handbook ›</a>
-                                            </p>
-                                            <iframe width="770" height="605" src="https://docs.google.com/presentation/d/1NsCoRdfueLqLrkCg6nGEs7z8KGHYQP4z-DvSaE7jTgg/embed?start=false&amp;loop=false" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+                                            
+                                            {% if(page_content) %}
+                                              {{ page_content|raw }}
+                                            {% endif %}
+                                            
+                                            
                                         </div>
 					
 				</div>

@@ -166,6 +166,13 @@ class Affiliate
      * @ORM\JoinColumn(name="referrer_id", referencedColumnName="id")
      */
     private $referrer;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="referrer_requested", type="boolean")
+     */
+    private $referrerRequested;
 
     /**
      * @var \DateTime
@@ -192,6 +199,11 @@ class Affiliate
     private $trafficReferrals;
     
     /**
+     * @ORM\OneToMany(targetEntity="Conversion", mappedBy="affiliate")
+     */
+    private $conversions;
+    
+    /**
      * @ORM\OneToMany(targetEntity="Affiliate", mappedBy="referrer")
      */
     private $referredAffiliates;
@@ -201,8 +213,10 @@ class Affiliate
         $this->affiliateUsers = new ArrayCollection();
         $this->trafficReferrals = new ArrayCollection();
         $this->referredAffiliates = new ArrayCollection();
+        $this->conversions = new ArrayCollection();
         $this->wantsAlerts = true;
         $this->paypalEmailRequested = false;
+        $this->referrerRequested = false;
     }
     
     /**
@@ -1095,5 +1109,61 @@ class Affiliate
     public function getPhone()
     {
         return $this->phone;
+    }
+
+    /**
+     * Set referrerRequested
+     *
+     * @param boolean $referrerRequested
+     * @return Affiliate
+     */
+    public function setReferrerRequested($referrerRequested)
+    {
+        $this->referrerRequested = $referrerRequested;
+    
+        return $this;
+    }
+
+    /**
+     * Get referrerRequested
+     *
+     * @return boolean 
+     */
+    public function getReferrerRequested()
+    {
+        return $this->referrerRequested;
+    }
+
+    /**
+     * Add conversions
+     *
+     * @param \Anytv\DashboardBundle\Entity\Conversion $conversions
+     * @return Affiliate
+     */
+    public function addConversion(\Anytv\DashboardBundle\Entity\Conversion $conversions)
+    {
+        $this->conversions[] = $conversions;
+    
+        return $this;
+    }
+
+    /**
+     * Remove conversions
+     *
+     * @param \Anytv\DashboardBundle\Entity\Conversion $conversions
+     */
+    public function removeConversion(\Anytv\DashboardBundle\Entity\Conversion $conversions)
+    {
+        $this->conversions->removeElement($conversions);
+    }
+
+    /**
+     * Get conversions
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getConversions()
+    {
+        return $this->conversions;
     }
 }

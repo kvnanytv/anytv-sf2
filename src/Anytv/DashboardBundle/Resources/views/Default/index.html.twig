@@ -25,3 +25,16 @@
 {{ parent() }}
 
 {% endblock %}
+
+
+{% block javascripts %}
+  {{ parent() }}
+  <script type="text/javascript">
+    $(document).ready(
+      function()
+      {
+        showTab('{{ path('profile_browse_offers') }}');     
+      }
+    );
+  </script>
+{% endblock %}

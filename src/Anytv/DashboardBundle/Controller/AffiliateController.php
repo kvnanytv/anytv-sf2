@@ -36,6 +36,7 @@ class AffiliateController extends Controller
         ->add('affiliate_search', 'submit', array('label'=>$translator->trans('search')))
         ->add('affiliate_update', 'submit', array('label'=>$translator->trans('update')))
         ->add('affiliate_update_paypal', 'submit', array('label'=>$translator->trans('update paypal')))
+        ->add('affiliate_update_referrer', 'submit', array('label'=>$translator->trans('update referrer')))
         ->getForm();
         
         $form->handleRequest($request);
@@ -79,6 +80,39 @@ class AffiliateController extends Controller
             else
             {
               $session->getFlashBag()->add('flash_message', 'All paypal emails are set.');  
+            }
+            
+            return $this->redirect($this->generateUrl('affiliates'));  
+          }
+          elseif($form->get('affiliate_update_referrer')->isClicked())
+          {
+            $manager = $this->getDoctrine()->getManager();
+            
+            $referrer_count = 0;
+            $referrer_request_batch = 500;
+            
+            $affiliates_wo_referrers = $repository->findBy(array('referrerRequested'=>false), null, $referrer_request_batch);
+            
+            if($affiliates_wo_referrers)
+            {
+              foreach($affiliates_wo_referrers as $affiliate)
+              {
+                if($affiliate->getReferralId() && ($referrer = $repository->findOneBy(array('affiliateId'=>$affiliate->getReferralId()))))
+                {
+                  $affiliate->setReferrer($referrer);
+                  $referrer_count++;
+                }
+                
+                $affiliate->setReferrerRequested(true);   
+              }
+            
+              $manager->flush();
+            
+              $session->getFlashBag()->add('flash_message', $referrer_count.'/'.$referrer_request_batch.' referrers set.');  
+            }
+            else
+            {
+              $session->getFlashBag()->add('flash_message', 'All referrers are set.');  
             }
             
             return $this->redirect($this->generateUrl('affiliates'));  
@@ -358,8 +392,9 @@ class AffiliateController extends Controller
       $affiliate_users = $affiliate->getAffiliateUsers();
       //$traffic_referrals = $affiliate->getTrafficReferrals();
       $traffic_referrals = $traffic_referral_repository->findTrafficReferralsByAffiliate($affiliate);
+      $referred_affiliates = $affiliate->getReferredAffiliates();
 
-      return $this->render('AnytvDashboardBundle:Affiliate:view.html.twig', array('title'=>$affiliate, 'affiliate'=>$affiliate, 'affiliate_status'=>$translator->trans($affiliate->getStatus()), 'affiliate_users'=>$affiliate_users, 'traffic_referrals'=>$traffic_referrals));
+      return $this->render('AnytvDashboardBundle:Affiliate:view.html.twig', array('title'=>$affiliate, 'affiliate'=>$affiliate, 'affiliate_status'=>$translator->trans($affiliate->getStatus()), 'affiliate_users'=>$affiliate_users, 'traffic_referrals'=>$traffic_referrals, 'referred_affiliates'=>$referred_affiliates));
     }
     
     

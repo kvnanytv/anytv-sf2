@@ -32,6 +32,13 @@
         <li style="display:block">{% trans %}Fax{% endtrans %}: {{ affiliate.fax }}</li>
         <li style="display:block">{% trans %}Paypal Email{% endtrans %}: {{ affiliate.paypalEmail }}</li>
         <li style="display:block">{% trans %}Signup IP{% endtrans %}: {{ affiliate.signupIp }}</li>
+        <li style="display:block">{% trans %}Referred by{% endtrans %}: 
+          {% if(affiliate.referrer) %}
+            <a href="{{ path('affiliate_view', { 'id' : affiliate.referrer.id }) }}" title="View">{{ affiliate.referrer }}</a>
+          {% else %}
+            &nbsp;
+          {% endif %}
+        </li>
       </ul>
             
       {% if(affiliate_users) %}
@@ -51,6 +58,18 @@
           {% endfor %}
         </ul>
       {% endif %}
+        
+      {% if(referred_affiliates|length) %}
+        <h2>Referred Affiliates:</h2>
+        <ul>
+          {% for affiliate in referred_affiliates %}
+            <li style="display:block">
+              <a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="View">{{ affiliate }}</a>
+            </li> 
+          {% endfor %}
+        </ul>
+      {% endif %}
+        
       {% if(traffic_referrals|length) %}
         <h2>Traffic Referrals: ({{ traffic_referrals|length }})</h2>
         <ul>

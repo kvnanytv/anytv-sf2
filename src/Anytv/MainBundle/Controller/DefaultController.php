@@ -20,44 +20,116 @@ class DefaultController extends Controller
     
     public function aboutAction(Request $request)
     {
+        $repository = $this->getDoctrine()->getRepository('AnytvMainBundle:Page');
+      
+      $page = $repository->findOneBy(array('pageKey'=>'about_anytv'));
+
+      if (!$page) {
+        throw $this->createNotFoundException(
+            'No page found'
+        );
+      }
+      
         $translator = $this->get('translator');
         
-        return $this->render('AnytvMainBundle:Default:about.html.twig', array('title'=>$translator->trans('What is any.TV?')));
+        $page_content = $page->getContent($request->get('_locale', 'en'));
+        
+        return $this->render('AnytvMainBundle:Default:about.html.twig', array('title'=>$translator->trans($page->getTitle()), 'page'=>$page, 'page_content'=>$page_content));
     }
     
     public function brandingKitAction(Request $request)
     {
+        $repository = $this->getDoctrine()->getRepository('AnytvMainBundle:Page');
+      
+      $page = $repository->findOneBy(array('pageKey'=>'branding_kit'));
+
+      if (!$page) {
+        throw $this->createNotFoundException(
+            'No page found'
+        );
+      }
+      
         $translator = $this->get('translator');
         
-        return $this->render('AnytvMainBundle:Default:brandingKit.html.twig', array('title'=>$translator->trans('Branding Kit')));
+        $page_content = $page->getContent($request->get('_locale', 'en'));
+        
+        return $this->render('AnytvMainBundle:Default:brandingKit.html.twig', array('title'=>$translator->trans($page->getTitle()), 'page'=>$page, 'page_content'=>$page_content));
     }
     
     public function liveStreamHandbookAction(Request $request)
     {
+        $repository = $this->getDoctrine()->getRepository('AnytvMainBundle:Page');
+      
+      $page = $repository->findOneBy(array('pageKey'=>'live_stream_handbook'));
+
+      if (!$page) {
+        throw $this->createNotFoundException(
+            'No page found'
+        );
+      }
+      
         $translator = $this->get('translator');
         
-        return $this->render('AnytvMainBundle:Default:liveStreamHandbook.html.twig', array('title'=>$translator->trans('Live Stream Handbook')));
+        $page_content = $page->getContent($request->get('_locale', 'en'));
+        
+        return $this->render('AnytvMainBundle:Default:liveStreamHandbook.html.twig', array('title'=>$translator->trans($page->getTitle()), 'page'=>$page, 'page_content'=>$page_content));
     }
     
     public function recruiterHandbookAction(Request $request)
     {
+        $repository = $this->getDoctrine()->getRepository('AnytvMainBundle:Page');
+      
+      $page = $repository->findOneBy(array('pageKey'=>'recruiter_handbook'));
+
+      if (!$page) {
+        throw $this->createNotFoundException(
+            'No page found'
+        );
+      }
+      
         $translator = $this->get('translator');
         
-        return $this->render('AnytvMainBundle:Default:recruiterHandbook.html.twig', array('title'=>$translator->trans('Recruiter Handbook')));
+        $page_content = $page->getContent($request->get('_locale', 'en'));
+        
+        return $this->render('AnytvMainBundle:Default:recruiterHandbook.html.twig', array('title'=>$translator->trans($page->getTitle()), 'page'=>$page, 'page_content'=>$page_content));
     }
     
     public function joinOurTwitchTeamAction(Request $request)
     {
+        $repository = $this->getDoctrine()->getRepository('AnytvMainBundle:Page');
+      
+      $page = $repository->findOneBy(array('pageKey'=>'join_our_twitch_team'));
+
+      if (!$page) {
+        throw $this->createNotFoundException(
+            'No page found'
+        );
+      }
+      
         $translator = $this->get('translator');
         
-        return $this->render('AnytvMainBundle:Default:joinOurTwitchTeam.html.twig', array('title'=>$translator->trans('Join our Twitch Team!')));
+        $page_content = $page->getContent($request->get('_locale', 'en'));
+        
+        return $this->render('AnytvMainBundle:Default:joinOurTwitchTeam.html.twig', array('title'=>$translator->trans($page->getTitle()), 'page'=>$page, 'page_content'=>$page_content));
     }
     
     public function staffAction(Request $request)
     {
+        $repository = $this->getDoctrine()->getRepository('AnytvMainBundle:Page');
+      
+      $page = $repository->findOneBy(array('pageKey'=>'staff'));
+
+      if (!$page) {
+        throw $this->createNotFoundException(
+            'No page found'
+        );
+      }
+      
         $translator = $this->get('translator');
         
-        return $this->render('AnytvMainBundle:Default:staff.html.twig', array('title'=>$translator->trans('Staff')));
+        $page_content = $page->getContent($request->get('_locale', 'en'));
+        
+        return $this->render('AnytvMainBundle:Default:staff.html.twig', array('title'=>$translator->trans($page->getTitle()), 'page'=>$page, 'page_content'=>$page_content));
     }
     
     public function faqAction(Request $request)
@@ -100,9 +172,21 @@ class DefaultController extends Controller
     
     public function faqSpreadsheetAction(Request $request)
     {
+        $repository = $this->getDoctrine()->getRepository('AnytvMainBundle:Page');
+      
+      $page = $repository->findOneBy(array('pageKey'=>'faq_spreadsheet'));
+
+      if (!$page) {
+        throw $this->createNotFoundException(
+            'No page found'
+        );
+      }
+      
         $translator = $this->get('translator');
         
-        return $this->render('AnytvMainBundle:Default:faqSpreadsheet.html.twig', array('title'=>$translator->trans('FAQ Spreadsheet')));
+        $page_content = $page->getContent($request->get('_locale', 'en'));
+        
+        return $this->render('AnytvMainBundle:Default:faqSpreadsheet.html.twig', array('title'=>$translator->trans($page->getTitle()), 'page'=>$page, 'page_content'=>$page_content));
     }
     
     

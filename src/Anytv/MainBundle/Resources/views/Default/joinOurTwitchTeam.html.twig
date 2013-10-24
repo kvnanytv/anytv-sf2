@@ -20,12 +20,12 @@
 			<div class="cl-20"></div>
 				<div class="row">
 					<div class="col-lg-12">
-                                            <p class="font-lg">
-                                             
-                                            Join the any.TV Twitch Team!</p>
-<p class="font-lg">See the team page here ➜ <a href="http://www.twitch.tv/team/anytvnetwork">www.twitch.tv/team/anytvnetwork</a></p>
-<p>Sign up below:</p>
-<div class="center-block" style="max-width:640px;max-height:500px;"><div class="video-shortcode"><iframe width="640" height="500" src="https://docs.google.com/forms/d/1VbiGGzLMX0S3SuaBj6Ygn2Q_owF8Yrxd-TIzGY_PS40/viewform?embedded=true" marginwidth="0" marginheight="0" frameborder="0"></iframe></div></div>
+                                            
+                                            {% if(page_content) %}
+                                              {{ page_content|raw }}
+                                            {% endif %}
+                                            
+                                            
 </div>
                                         </div>
 					

@@ -20,10 +20,11 @@
 			<div class="cl-20"></div>
 				<div class="row">
 					<div class="col-lg-12">
-                                            <p class="font-lg">
-                                              <a target="_blank" href="https://docs.google.com/presentation/d/1HSVfH48repKAoFUY8xMeBTblisJKYGNvBjpvj4gm5us/embed?start=false&#038;loop=false">Pop out the Live Handbook ›</a>
-                                            </p>
-                                              <iframe width="770" height="605" src="https://docs.google.com/presentation/d/1HSVfH48repKAoFUY8xMeBTblisJKYGNvBjpvj4gm5us/embed?start=false&#038;loop=false" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+                                            
+                                            {% if(page_content) %}
+                                              {{ page_content|raw }}
+                                            {% endif %}
+                                            
                                             
                                         </div>
 					

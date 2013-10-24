@@ -37,6 +37,26 @@ profile_view:
         tab: company|user
         mode: view|edit
         
+profile_reports:
+    path:      /{_locale}/profile/reports
+    defaults:  { _controller: AnytvDashboardBundle:Profile:reports, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
+profile_reports_referrals:
+    path:      /{_locale}/profile/reports/referrals/{page}
+    defaults:  { _controller: AnytvDashboardBundle:Profile:MyReferrals, _locale: en, page: 1 }
+    requirements:
+        _locale:  %anytv.locales%
+        page:  \d+
+        
+profile_reports_conversions:
+    path:      /{_locale}/profile/reports/conversions/{page}
+    defaults:  { _controller: AnytvDashboardBundle:Profile:MyConversions, _locale: en, page: 1 }
+    requirements:
+        _locale:  %anytv.locales%
+        page:  \d+
+        
 profile_tab:
     path:      /{_locale}/profile/tab/{type}
     defaults:  { _controller: AnytvDashboardBundle:Profile:tab, _locale: en, type: 1 }
@@ -249,6 +269,13 @@ country_view:
         _locale:  %anytv.locales%
         id:  \d+
         
+conversions:
+    path:      /{_locale}/admin/conversions/{page}
+    defaults:  { _controller: AnytvDashboardBundle:Conversion:index, _locale: en, page: 1 }
+    requirements:
+        _locale:  %anytv.locales%
+        page:  \d+
+        
 faqs:
     path:      /{_locale}/admin/faq/{page}
     defaults:  { _controller: AnytvDashboardBundle:Faq:index, _locale: en, page: 1 }
@@ -259,6 +286,19 @@ faqs:
 faq_edit:
     path:      /{_locale}/admin/faq/edit/{id}
     defaults:  { _controller: AnytvDashboardBundle:Faq:edit, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        id:  \d+
+        
+pages:
+    path:      /{_locale}/admin/pages
+    defaults:  { _controller: AnytvDashboardBundle:Page:index, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
+page_edit:
+    path:      /{_locale}/admin/pages/edit/{id}
+    defaults:  { _controller: AnytvDashboardBundle:Page:edit, _locale: en }
     requirements:
         _locale:  %anytv.locales%
         id:  \d+
