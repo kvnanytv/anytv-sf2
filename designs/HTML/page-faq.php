@@ -1,141 +1,235 @@
-<!DOCTYPE HTML>
+<?php include 'header-top.php' ?>
 
-<html>
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author" content="">
+<?php include 'navigation.php' ?>
 
-	<title>AnyTV | Frequently Asked Questions</title>
+<div id="content">
+	<section class="sec-content-title">
+		<div class="container">
+			<h3>Frequently Asked Questions</h3>
 
-	<?php include 'header-main.php'; ?>
+		</div>			
+	</section>
 
-	<div id="content">
-		<section class="sec-content-title">
-			<div class="container">
-				<h3>Frequently Asked Questions</h3>
-<!-- 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua.</p> -->
-				</div>			
-			</section>
+	<section class="sec-content">
+		<div class="container">
+			<div class="row">
+				<!-- <div class="cl-20"></div> -->
+				<!-- Questions -->
 
-			<section class="sec-content">
-				<div class="container">
-
-					<div class="row">
-						<div class="cl-20"></div>
-						<div class="tabbable">
-							<ul class="nav nav-tabs">
-								<li class="active"><a href="#all-pane" data-toggle="tab">All</a></li>
-								<li><a href="#anytv-pane" data-toggle="tab">any.TV</a></li>
-								<li><a href="#db-pane" data-toggle="tab">Dashboard</a></li>
-								<li><a href="#market-pane" data-toggle="tab">Marketing</a></li>
-								<li><a href="#part-pane" data-toggle="tab">Partnership</a></li>
-								<li><a href="#payment-pane" data-toggle="tab">Payments</a></li>					  
-							</ul>
-							<div class="tab-content">
-							<!-- All PANE -->
-								<div id="all-pane" class="tab-pane active">
-									<div id="sidebar" class="tabbable">
-										<div style="row">
-											<div class="col-lg-3">
-												<ul id="sidenav" class="nav nav-pills nav-stacked">
-													<li class="active"><a href="#tab1" data-toggle="tab"><strong>What is any.TV Video recommendation revenue?</strong></a></li>
-													<li><a href="#tab2" data-toggle="tab"><strong>Question 2</strong></a></li>																
-												</ul>
-											</div><!-- .well -->
-
-											<div class="col-lg-9">				
-												<div class="tab-content">
-													<div class="tab-pane active" id="tab1">
-														<h4>any.TV is a new kind of YouTube Network that pays recommendation revenue! <br>Highlights:</h4>
-														<iframe width="560" height="315" src="//www.youtube.com/embed/RvPsDhrtgZg?list=PLyI74zGGymu8k7eVhGPcVSh3nKljHfiVX" frameborder="0" allowfullscreen></iframe>
-													</div><!-- #tabs1 -->
-													<div class="tab-pane" id="tab2">
-														<h3>Sample Header</h3>
-													</div><!-- .tabs-basic -->
-												</div>
-											</div>
-										</div>
-									</div>
-								</div> <!-- /#all-pane -->
-
-								<!-- What is Any.TV - PANE -->
-								<div id="anytv-pane" class="tab-pane">
-									<div style="row">
-										<div class="col-lg-3">
-											<ul id="sidenav" class="nav nav-pills nav-stacked">
-												<li class="active"><a href="#tab1" data-toggle="tab"><strong>Question 1</strong></a></li>
-												<li><a href="#tab2" data-toggle="tab"><strong>Question 2</strong></a></li>																
+				<div class="col-lg-4">
+				<div id="faq-qstn-wrap">
+						<div class="panel-group" id="accordion">
+							<!-- Category 1 -->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+											All
+										</a>
+									</h4>
+								</div>
+								<div id="collapseOne" class="panel-collapse collapse in" style="height: 0px;">
+									<div class="panel-body">
+										<div class="tabbable">
+											<ul class="faq-ul">
+												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
+												<li><a href="#tab2" data-toggle="tab">Why did you leave TGN, George?</a></li>
+												<li><a href="#tab3" data-toggle="tab">How do I make my own Network?</a></li>
+												<li><a href="#tab4" data-toggle="tab">Is any.TV a pyramid scheme?</a></li>
+												<li><a href="#tab5" data-toggle="tab">I have more questions!</a></li>
+												<li><a href="#tab6" data-toggle="tab">This is Three</a></li>
+												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
+												<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
+												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>
+												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
+												<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
+												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>											
+												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
+												<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
+												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>
+												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
+												<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
+												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>
+												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
+												<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
+												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>
+												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
+												<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
+												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>	
+												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
+												<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
+												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>
+												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
+												<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
+												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>
+												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
+												<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
+												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>
+												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
+												<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
+												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>																									
 											</ul>
-										</div><!-- .well -->
-
-										<div class="col-lg-9">				
-											<div class="tab-content">
-												<div class="tab-pane active" id="tab1">
-
-												</div><!-- #tabs1 -->
-												<div class="tab-pane" id="tab2">
-													<h3>Sample Header</h3>
-												</div><!-- .tabs-basic -->
-											</div>
-										</div>
-									</div>
-								</div> <!-- /#anytv-pane -->
-								<!-- Dashboard - PANE -->
-								<div id="db-pane" class="tab-pane">
-									<div style="row">
-										<div class="col-lg-3">
-											<ul id="sidenav" class="nav nav-pills nav-stacked">
-												<li class="active"><a href="#tab1" data-toggle="tab"><strong>Question 1</strong></a></li>
-												<li><a href="#tab2" data-toggle="tab"><strong>Question 2</strong></a></li>																
-											</ul>
-										</div><!-- .well -->
-
-										<div class="col-lg-9">				
-											<div class="tab-content">
-												<div class="tab-pane active" id="tab1">
-
-												</div><!-- #tabs1 -->
-												<div class="tab-pane" id="tab2">
-													<h3>Sample Header</h3>
-												</div><!-- .tabs-basic -->
-											</div>
 										</div>
 									</div>
 								</div>
-								<!-- Marketing - PANE -->
-								<div id="market-pane" class="tab-pane">
-									<div style="row">
-										<div class="col-lg-3">
-											<ul id="sidenav" class="nav nav-pills nav-stacked">
-												<li class="active"><a href="#tab1" data-toggle="tab"><strong>Question 1</strong></a></li>
-												<li><a href="#tab2" data-toggle="tab"><strong>Question 2</strong></a></li>																
-											</ul>
-										</div><!-- .well -->
+							</div>
 
-										<div class="col-lg-9">				
-											<div class="tab-content">
-												<div class="tab-pane active" id="tab1">
-
-												</div><!-- #tabs1 -->
-												<div class="tab-pane" id="tab2">
-													<h3>Sample Header</h3>
-												</div><!-- .tabs-basic -->
-											</div>
-										</div>
+							<!-- Category 2 -->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+											any.TV
+										</a>
+									</h4>
+								</div>
+								<div id="collapseTwo" class="panel-collapse collapse" style="height: 0px;">
+									<div class="panel-body">
+										<ul class="faq-ul">
+											<li>This is one</li>
+											<li>This is two</li>
+											<li>This is Three</li>
+										</ul>
 									</div>
-								</div> <!-- /#all-pane -->
-							</div><!-- /.tab-content -->
-						</div><!-- /.tabbable -->				
+								</div>
+							</div>
+
+							<!-- Category 3 -->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+											Dashboard
+										</a>
+									</h4>
+								</div>
+								<div id="collapseThree" class="panel-collapse collapse" style="height: 0px;">
+									<div class="panel-body">
+										<ul>
+											<li>This is one</li>
+											<li>This is two</li>
+											<li>This is Three</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<!-- Category 4 -->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+											Marketing
+										</a>
+									</h4>
+								</div>
+								<div id="collapseFour" class="panel-collapse collapse" style="height: 0px;">
+									<div class="panel-body">
+										<ul>
+											<li>This is one</li>
+											<li>This is two</li>
+											<li>This is Three</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<!-- Category 5 -->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+											Partnership
+										</a>
+									</h4>
+								</div>
+								<div id="collapseFive" class="panel-collapse collapse" style="height: 0px;">
+									<div class="panel-body">
+										<ul>
+											<li>This is one</li>
+											<li>This is two</li>
+											<li>This is Three</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<!-- Category 6 -->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+											Payments
+										</a>
+									</h4>
+								</div>
+								<div id="collapseSix" class="panel-collapse collapse" style="height: 0px;">
+									<div class="panel-body">
+										<ul>
+											<li>This is one</li>
+											<li>This is two</li>
+											<li>This is Three</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+
+						</div>
 					</div>
+				</div>
 
-				</div>	
-			</section>		
+				<!-- Content -->
 
-		</div>
-	</div>
-	
-	<?php include 'footer.php'; ?>
+				<div class="col-lg-8">
+					<div id="getFixed">
+						<div class="tab-content">
+							<!-- Content 1 -->
+							<div class="tab-pane active" id="tab1">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+								consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+								cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+								proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+							</div>
+
+							<!-- Content 2 -->
+							<div class="tab-pane" id="tab2">
+								Test 1
+							</div>
+						</div>
+					</div>	
+				</div>
+
+				<div class="cl-20"></div>
+			</div>
+		</div>	
+	</section>		
+
+</div>
+</div>
+
+
+<?php include 'footer-pagewrap.php'; ?>
+
+<script>
+	function fixDiv() {
+
+  var $cache = $('#getFixed'); 
+  if ($(window).scrollTop() > 300 && $(window).width() > 1024)
+    $cache.css({'position': 'fixed', 'top': '0', 'padding-right': '150px'}); 
+  else
+  	$cache.css({'position': 'relative', 'padding-right': '0'});
+
+    
+}
+
+
+
+$(window).scroll(fixDiv);
+fixDiv();
+</script>
+
+<?php include 'footer-base.php'; ?>
