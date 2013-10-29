@@ -276,6 +276,13 @@ conversions:
         _locale:  %anytv.locales%
         page:  \d+
         
+referrals:
+    path:      /{_locale}/admin/referrals/{page}
+    defaults:  { _controller: AnytvDashboardBundle:Referral:index, _locale: en, page: 1 }
+    requirements:
+        _locale:  %anytv.locales%
+        page:  \d+
+        
 faqs:
     path:      /{_locale}/admin/faq/{page}
     defaults:  { _controller: AnytvDashboardBundle:Faq:index, _locale: en, page: 1 }

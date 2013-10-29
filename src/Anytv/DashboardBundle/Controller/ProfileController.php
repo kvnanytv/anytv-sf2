@@ -285,7 +285,7 @@ class ProfileController extends Controller
     
     public function myReferralsAction(Request $request, $page)
     {
-      $affiliate_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Affiliate');
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Referral');
       $affiliate_user = $this->getUser();
 
       if (!$affiliate_user) {
@@ -297,7 +297,7 @@ class ProfileController extends Controller
       $affiliate = $affiliate_user->getAffiliate();
       
       //$referred_affiliates = $affiliate->getReferredAffiliates();
-      
+      /*
       $referred_affiliates = array();
       
       $hasoffers = $this->get('hasoffers');
@@ -323,13 +323,22 @@ class ProfileController extends Controller
               
         $referred_affiliates[] = $referred_affiliate; 
       }
+       */
+      
+      $items_per_page = 10;
+      $order_by = 'id';
+      $order = 'DESC';
+        
+      $referrals = $repository->findAllReferrals($page, $items_per_page, $order_by, $order, $affiliate);
+      $total_referrals = $repository->countAllReferrals($affiliate);
+      $total_pages = ceil($total_referrals / $items_per_page);
 
-      return $this->render('AnytvDashboardBundle:Profile:myReferrals.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'referred_affiliates'=>$referred_affiliates, 'total_pages'=>$total_pages, 'page'=>$page));
+      return $this->render('AnytvDashboardBundle:Profile:myReferrals.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'referrals'=>$referrals, 'total_pages'=>$total_pages, 'page'=>$page));
     }
     
     public function myConversionsAction(Request $request, $page)
     {
-      $offer_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
+      $conversion_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Conversion');
       $affiliate_user = $this->getUser();
 
       if (!$affiliate_user) {
@@ -340,6 +349,7 @@ class ProfileController extends Controller
       
       $affiliate = $affiliate_user->getAffiliate();
       
+      /*
       $conversions = array();
       
       $hasoffers = $this->get('hasoffers');
@@ -369,8 +379,17 @@ class ProfileController extends Controller
               
         $conversions[] = $conversion; 
       }
-            
+      */
+      
       //$conversions = $affiliate->getConversions();
+      
+      $items_per_page = 10;
+      $order_by = 'createdAt';
+      $order = 'DESC';
+        
+      $conversions = $conversion_repository->findAllConversions($page, $items_per_page, $order_by, $order, $affiliate);
+      $total_conversions = $conversion_repository->countAllConversions($affiliate);
+      $total_pages = ceil($total_conversions / $items_per_page);
 
       return $this->render('AnytvDashboardBundle:Profile:myConversions.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'conversions'=>$conversions, 'total_pages'=>$total_pages, 'page'=>$page));
     }

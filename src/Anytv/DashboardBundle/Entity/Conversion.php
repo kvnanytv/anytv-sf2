@@ -321,7 +321,8 @@ class Conversion
      */
     public function getCreatedAtAsString()
     {
-        return date_format($this->createdAt, 'Y-m-d H:i:s');
+        //return date_format($this->createdAt, 'Y-m-d H:i:s');
+        return date_format($this->createdAt, 'Y-m-d');
     }
 
     /**

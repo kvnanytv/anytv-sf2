@@ -1,0 +1,56 @@
+{% extends 'AnytvMainBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title }}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+    
+    
+    
+    	
+     <div id="content">
+		<section class="sec-content-title">
+			<div class="container">
+				<h3>{{ title }}</h3>
+				<p>&nbsp;</p>				
+			</div>
+		</section>
+
+		<section class="sec-content">
+			<div class="container">
+			<div class="cl-20"></div>
+				<div class="row">
+					<div class="col-lg-12">
+                                            
+                                            
+<p><a href="http://emotionvfx.com/"><img src="{{ asset('bundles/anytvmain/images/emotionvfx-logo.png') }}" alt="emotionvfx-logo" width="160" height="40"/></a></p>
+<p>EmotionVFX Production Studio creates amazing motion graphics videos, like this one:</p>
+<h2>A New Kind of YouTube Network</h2>
+<div class="center-block" style="max-width:640px;max-height:360px;"><div class="video-shortcode"><iframe title="YouTube video player" width="640" height="360" src="http://www.youtube.com/embed/UCqJAZuvUS0?list=PLyI74zGGymu8k7eVhGPcVSh3nKljHfiVX" marginwidth="0" marginheight="0" frameborder="0" allowfullscreen></iframe></div></div>
+<p>Meet the man behind the magic: Marco Fleischhut, aka Lyrica2010, living in Heilshorn, Germany!</p>
+<p>If you have a project, Marco has the passion. Let him put your message into motion!</p>
+<p>Note: Marco does not work for free <img style="display:none;visibility:hidden;" data-cfsrc='http://www.any.tv/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley'/><noscript><img src='http://www.any.tv/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley'/></noscript> </p>
+<p>Official EmotionVFX website<br/>
+➜ <a href="http://emotionvfx.com/">http://emotionvfx.com</a></p>
+
+                                            
+                                            
+                                        </div>
+				</div>
+			</div>
+		</section>
+
+	</div>
+     
+     
+
+      
+
+      {{ parent() }}
+    
+{% endblock %}
+     
+
+

@@ -52,6 +52,13 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
                          'title'=>'FAQ Spreadsheet'
                         );
         
+        $pages[] = array('page_key'=>'upload',
+                         'title'=>'Get paid $5 per video submitted to any.TV!'
+                        );
+        
+        $pages[] = array('page_key'=>'emotionvfx',
+                         'title'=>'EmotionVFX'
+                        );
         
         foreach($pages as $page_item)
         {

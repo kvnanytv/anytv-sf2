@@ -12,26 +12,47 @@ use Doctrine\ORM\EntityRepository;
  */
 class ConversionRepository extends EntityRepository
 {
-    public function findAllConversions($page, $items_per_page, $order_by, $order)
+    public function findAllConversions($page, $items_per_page, $order_by, $order, $affiliate = null)
     {
         $first_result = ($items_per_page * ($page-1));
         
         $query = $this->createQueryBuilder('c');
-         
-        $query = $query->setFirstResult($first_result)
-                       ->setMaxResults($items_per_page)
-                       ->orderBy('c.'.$order_by, $order)
-                       ->getQuery();
+        
+        if($affiliate)
+        {
+          $query = $query->where("c.affiliate = :affiliate AND c.status = :status")
+                         ->setParameters(array('affiliate'=>$affiliate, 'status'=>'approved'))
+                         ->setFirstResult($first_result)
+                         ->setMaxResults($items_per_page)
+                         ->orderBy('c.'.$order_by, $order)
+                         ->getQuery();  
+        }
+        else
+        {
+          $query = $query->setFirstResult($first_result)
+                         ->setMaxResults($items_per_page)
+                         ->orderBy('c.'.$order_by, $order)
+                         ->getQuery();  
+        }
           
         return $query->getResult();
     }
     
-    public function countAllConversions()
+    public function countAllConversions($affiliate = null)
     {    
         $query = $this->createQueryBuilder('c')
                       ->select('count(c.id)');
         
-        $query = $query->getQuery(); 
+        if($affiliate)
+        {
+          $query = $query->where("c.affiliate = :affiliate AND c.status = :status")
+                         ->setParameters(array('affiliate'=>$affiliate, 'status'=>'approved'))
+                         ->getQuery();
+        }
+        else
+        {
+          $query = $query->getQuery(); 
+        } 
           
         return $query->getSingleScalarResult();
     }

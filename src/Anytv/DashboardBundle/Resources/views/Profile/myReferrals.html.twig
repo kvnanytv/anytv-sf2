@@ -12,19 +12,23 @@
   </div>												
   <div class="table-responsive" id="profile-tab-results">
     <div class="offer-tbl-wrap">
-      {% if(referred_affiliates) %}
+      {% if(referrals) %}
       <table class="table table-striped">							
         <thead>
           <tr>
-            <th>{% trans %}Name{% endtrans %}</th>
+            <th>{% trans %}Date{% endtrans %}</th>
+            <th>{% trans %}Referrer{% endtrans %}</th>
+            <th>{% trans %}Affiliate{% endtrans %}</th>
 	    <th>{% trans %}Amount{% endtrans %}</th>
           </tr>
 	</thead>								
         <tbody>
-          {% for referred_affiliate in referred_affiliates %}
+          {% for referral in referrals %}
 	  <tr>
-            <td>{{ referred_affiliate.affiliate }}</td>
-            <td>${{ referred_affiliate.amount }}</td>
+            <td>{{ referral.getDateAsString() }}</td>
+            <td>{{ referral.referrer }}</td>
+            <td>{{ referral.referred }}</td>
+            <td>${{ referral.amount }}</td>
 	  </tr>
           {% endfor %}
           {% if (total_pages > 1) %}

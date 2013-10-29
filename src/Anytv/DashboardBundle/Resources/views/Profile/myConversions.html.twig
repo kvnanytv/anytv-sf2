@@ -27,12 +27,12 @@
         <tbody>
           {% for conversion in conversions %}
 	  <tr>
-           <td>{{ conversion.date  }}</td>
+           <td>{{ conversion.getCreatedAtAsString()  }}</td>
            <td>{{ conversion.offer }}</td>
            <td>{{ conversion.status }}</td>
            <td>${{ conversion.payout }}</td>
            <td>{{ conversion.ip }}</td>
-           <td>{{ conversion.ad_id }}</td>
+           <td>{{ conversion.transactionId }}</td>
 	  </tr>
           {% endfor %}
           {% if (total_pages > 1) %}

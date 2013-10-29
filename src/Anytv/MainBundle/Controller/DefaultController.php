@@ -18,6 +18,33 @@ class DefaultController extends Controller
         return $this->render('AnytvMainBundle:Default:index.html.twig');
     }
     
+    public function gamestmAction(Request $request)
+    {
+      return $this->redirect('http://www.games.tm/');     
+    }
+    
+    public function cyaAction(Request $request)
+    {
+      return $this->redirect('http://stefansundin.com/stuff/youtube/youtube-copy-annotations.html');     
+    }
+    
+    public function heartbeatAction(Request $request)
+    {
+      return $this->redirect('http://www.heartbeat.tm/');     
+    }
+    
+    public function uploadAction(Request $request)
+    {
+      $translator = $this->get('translator');
+      
+      return $this->render('AnytvMainBundle:Default:upload.html.twig', array('title'=>$translator->trans('Get paid $5 per video submitted to any.TV!'))); 
+    }
+    
+    public function emotionvfxAction(Request $request)
+    {
+      return $this->render('AnytvMainBundle:Default:emotionvfx.html.twig', array('title'=>'EmotionVFX')); 
+    }
+    
     public function aboutAction(Request $request)
     {
         $repository = $this->getDoctrine()->getRepository('AnytvMainBundle:Page');

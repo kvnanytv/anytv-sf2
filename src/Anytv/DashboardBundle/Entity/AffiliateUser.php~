@@ -119,6 +119,69 @@ class AffiliateUser implements UserInterface, \Serializable
      * @ORM\Column(name="cell_phone", type="string", length=255, nullable=true)
      */
     private $cellPhone;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="skype", type="string", length=255, nullable=true)
+     */
+    private $skype;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="twitter", type="string", length=255, nullable=true)
+     */
+    private $twitter;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="facebook", type="string", length=255, nullable=true)
+     */
+    private $facebook;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="googleplus", type="string", length=255, nullable=true)
+     */
+    private $googleplus;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="youtube", type="text", nullable=true)
+     */
+    private $youtube;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="youtube_network", type="string", length=255, nullable=true)
+     */
+    private $youtubeNetwork;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="youtube_best_video", type="string", length=255, nullable=true)
+     */
+    private $youtubeBestVideo;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="twitch", type="string", length=255, nullable=true)
+     */
+    private $twitch;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="use_twitch_or_live_stream", type="boolean")
+     */
+    private $useTwitchOrLiveStream;
 
     /**
      * @var boolean
@@ -217,6 +280,20 @@ class AffiliateUser implements UserInterface, \Serializable
      * @ORM\Column(name="shoutout", type="string", length=255, nullable=true)
      */
     private $shoutout;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="last_referrals_access", type="datetime", nullable=true)
+     */
+    private $lastReferralsAccess;
+    
+     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="last_conversions_access", type="datetime", nullable=true)
+     */
+    private $lastConversionsAccess;
     
     /**
      * @var string
@@ -377,6 +454,7 @@ class AffiliateUser implements UserInterface, \Serializable
         $this->showPhoto = true;
         $this->isPublic = true;
         $this->wantsAlerts = true;
+        $this->useTwitchOrLiveStream = false;
     }
 
     /**
@@ -1141,5 +1219,189 @@ class AffiliateUser implements UserInterface, \Serializable
     public function getLastChangePassword()
     {
         return $this->lastChangePassword;
+    }
+
+    /**
+     * Set skype
+     *
+     * @param string $skype
+     * @return AffiliateUser
+     */
+    public function setSkype($skype)
+    {
+        $this->skype = $skype;
+    
+        return $this;
+    }
+
+    /**
+     * Get skype
+     *
+     * @return string 
+     */
+    public function getSkype()
+    {
+        return $this->skype;
+    }
+
+    /**
+     * Set twitter
+     *
+     * @param string $twitter
+     * @return AffiliateUser
+     */
+    public function setTwitter($twitter)
+    {
+        $this->twitter = $twitter;
+    
+        return $this;
+    }
+
+    /**
+     * Get twitter
+     *
+     * @return string 
+     */
+    public function getTwitter()
+    {
+        return $this->twitter;
+    }
+
+    /**
+     * Set facebook
+     *
+     * @param string $facebook
+     * @return AffiliateUser
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+    
+        return $this;
+    }
+
+    /**
+     * Get facebook
+     *
+     * @return string 
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * Set googleplus
+     *
+     * @param string $googleplus
+     * @return AffiliateUser
+     */
+    public function setGoogleplus($googleplus)
+    {
+        $this->googleplus = $googleplus;
+    
+        return $this;
+    }
+
+    /**
+     * Get googleplus
+     *
+     * @return string 
+     */
+    public function getGoogleplus()
+    {
+        return $this->googleplus;
+    }
+
+    /**
+     * Set youtube
+     *
+     * @param string $youtube
+     * @return AffiliateUser
+     */
+    public function setYoutube($youtube)
+    {
+        $this->youtube = $youtube;
+    
+        return $this;
+    }
+
+    /**
+     * Get youtube
+     *
+     * @return string 
+     */
+    public function getYoutube()
+    {
+        return $this->youtube;
+    }
+
+    /**
+     * Set twitch
+     *
+     * @param string $twitch
+     * @return AffiliateUser
+     */
+    public function setTwitch($twitch)
+    {
+        $this->twitch = $twitch;
+    
+        return $this;
+    }
+
+    /**
+     * Get twitch
+     *
+     * @return string 
+     */
+    public function getTwitch()
+    {
+        return $this->twitch;
+    }
+
+    /**
+     * Set lastReferralsAccess
+     *
+     * @param \DateTime $lastReferralsAccess
+     * @return AffiliateUser
+     */
+    public function setLastReferralsAccess($lastReferralsAccess)
+    {
+        $this->lastReferralsAccess = $lastReferralsAccess;
+    
+        return $this;
+    }
+
+    /**
+     * Get lastReferralsAccess
+     *
+     * @return \DateTime 
+     */
+    public function getLastReferralsAccess()
+    {
+        return $this->lastReferralsAccess;
+    }
+
+    /**
+     * Set lastConversionsAccess
+     *
+     * @param \DateTime $lastConversionsAccess
+     * @return AffiliateUser
+     */
+    public function setLastConversionsAccess($lastConversionsAccess)
+    {
+        $this->lastConversionsAccess = $lastConversionsAccess;
+    
+        return $this;
+    }
+
+    /**
+     * Get lastConversionsAccess
+     *
+     * @return \DateTime 
+     */
+    public function getLastConversionsAccess()
+    {
+        return $this->lastConversionsAccess;
     }
 }
