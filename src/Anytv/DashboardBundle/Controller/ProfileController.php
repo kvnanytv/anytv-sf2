@@ -12,6 +12,7 @@ use Anytv\DashboardBundle\Entity\AffiliateUser;
 use Anytv\DashboardBundle\Form\Type\CompanyType;
 use Anytv\DashboardBundle\Form\Type\ProfileType;
 use Anytv\DashboardBundle\Entity\TrackingLink;
+use Anytv\DashboardBundle\Entity\Conversion;
 
 class ProfileController extends Controller
 {
@@ -77,10 +78,69 @@ class ProfileController extends Controller
 
           if($tab == 'company')
           {
+            // update hasoffers
+            $affiliate = $form->getData();
+            
+            // update affiliate
+            $country = $affiliate->getCountry() ? $affiliate->getCountry()->getCode() : '';
+            $other = $affiliate->getOther();
+            $region = '';
+            if(in_array($country, array('US', 'CA')))
+            {
+              if($country == 'US')
+              {
+                $region = 'NY';    
+              }
+              elseif($country == 'CA')
+              {
+                $region = 'ON';    
+              }
+            }
+          
+            $data = array('company'=>$affiliate->getCompany(),
+                          'address1'=>$affiliate->getAddress1(),
+                          'address2'=>$affiliate->getAddress2(),
+                          'city'=>$affiliate->getCity(),
+                          'region'=>$region,
+                          'country'=>$country,
+                          'other'=>$other,
+                          'zipcode'=>$affiliate->getZipcode(),
+                          'phone'=>$affiliate->getPhone(),
+                          'fax'=>$affiliate->getFax()
+                         );
+            
+            $hasoffers = $this->get('hasoffers');
+            $affiliate_update_result = $hasoffers->updateAffiliate($affiliate->getAffiliateId(), $data); 
+            
+            // update affiliate's paypal email
+            if($affiliate->getPaypalEmail())
+            {
+              $affiliate_paypal_update_result = $hasoffers->updatePaypalEmail($affiliate->getAffiliateId(), array('email'=>$affiliate->getPaypalEmail())); 
+            }
+            else
+            {
+              $affiliate->setPaypalEmailRequested(false); 
+              $em->flush();
+            }
+            
             return $this->redirect($this->generateUrl('profile_view'));   
           }
           elseif($tab == 'user')
           {
+            // update hasoffers
+            $affiliate_user = $form->getData();
+            
+            // update affiliate user
+            $data = array('title'=>$affiliate_user->getTitle(),
+                          'first_name'=>$affiliate_user->getFirstName(),
+                          'last_name'=>$affiliate_user->getLastName(),
+                          'phone'=>$affiliate_user->getPhone(),
+                          'cell_phone'=>$affiliate_user->getCellPhone()
+                         );
+            
+            $hasoffers = $this->get('hasoffers');
+            $affiliate_user_update_result = $hasoffers->updateAffiliateUser($affiliate_user->getAffiliateUserId(), $data); 
+            
             return $this->redirect($this->generateUrl('profile_view', array('tab'=>'user')));  
           }   
         }
@@ -90,6 +150,28 @@ class ProfileController extends Controller
 
       return $this->render('AnytvDashboardBundle:Profile:view.html.twig', array('title'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'affiliate'=>$affiliate, 'affiliate_user_status'=>$translator->trans($affiliate_user->getStatus()), 'affiliate_status'=>$translator->trans($affiliate->getStatus()), 'tab'=>$tab, 'mode'=>$mode, 'form'=>$form_view));
     }   
+    
+    public function reportsAction(Request $request)
+    {
+      $affiliate_user = $this->getUser();
+      $translator = $this->get('translator');
+      
+      if (!$affiliate_user) {
+        throw $this->createNotFoundException(
+            'No user found'
+        );
+      }
+      
+      $affiliate = $affiliate_user->getAffiliate();
+      
+      if (!$affiliate) {
+        throw $this->createNotFoundException(
+            'No affiliate found'
+        );
+      }
+      
+      return $this->render('AnytvDashboardBundle:Profile:reports.html.twig', array('title'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'affiliate'=>$affiliate, 'tab'=>'referrals'));
+    }
     
     public function companyEditAction(Request $request)
     {
@@ -136,6 +218,11 @@ class ProfileController extends Controller
     {
       return $this->render('AnytvDashboardBundle:Profile:tabbedProfileComponent.html.twig', array('tab'=>$tab, 'mode'=>$mode, 'form'=>$form));
     }
+    
+    public function tabbedReportsComponentAction($affiliate, $affiliate_user)
+    {
+      return $this->render('AnytvDashboardBundle:Profile:tabbedReportsComponent.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user));
+    }
      
     public function myOffersAction(Request $request, $page)
     {
@@ -154,8 +241,6 @@ class ProfileController extends Controller
     
     public function browseOffersAction(Request $request, $page)
     {
-      
-      
       $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
       $offer_category_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:OfferCategory');
       $country_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Country');
@@ -196,6 +281,117 @@ class ProfileController extends Controller
       $countries = $country_repository->findAll();
 
       return $this->render('AnytvDashboardBundle:Profile:browseOffers.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'offers'=>$offers, 'total_offers'=>$total_offers, 'page'=>$page, 'total_pages'=>$total_pages, 'countries'=>$countries, 'offer_categories'=>$offer_categories, 'offer_keyword'=>$session->get('offer_keyword', null), 'selected_offer_category'=>$session->get('offer_category', null), 'selected_offer_country'=>$session->get('offer_country')));
+    }
+    
+    public function myReferralsAction(Request $request, $page)
+    {
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Referral');
+      $affiliate_user = $this->getUser();
+
+      if (!$affiliate_user) {
+        throw $this->createNotFoundException(
+            'No user found'
+        );
+      }
+      
+      $affiliate = $affiliate_user->getAffiliate();
+      
+      //$referred_affiliates = $affiliate->getReferredAffiliates();
+      /*
+      $referred_affiliates = array();
+      
+      $hasoffers = $this->get('hasoffers');
+      $referred_affiliates_response = $hasoffers->getAffiliateCommissions($affiliate->getAffiliateId(), $page);
+      $total_pages = $referred_affiliates_response->pageCount;
+      $referred_affiliates_data = $referred_affiliates_response->data;
+      
+      foreach($referred_affiliates_data as $referred_affiliate_data)
+      {
+        $referred_affiliate_object = $referred_affiliate_data->Stat;
+            
+        $referred_affiliate = array();
+        $referred_affiliate['amount'] = $referred_affiliate_object->amount;
+        
+        if($affiliate = $affiliate_repository->findOneBy(array('affiliateId'=>$referred_affiliate_object->affiliate_id)))
+        {
+          $referred_affiliate['affiliate'] = $affiliate;    
+        }
+        else
+        {
+          $referred_affiliate['affiliate'] = null;
+        }
+              
+        $referred_affiliates[] = $referred_affiliate; 
+      }
+       */
+      
+      $items_per_page = 10;
+      $order_by = 'id';
+      $order = 'DESC';
+        
+      $referrals = $repository->findAllReferrals($page, $items_per_page, $order_by, $order, $affiliate);
+      $total_referrals = $repository->countAllReferrals($affiliate);
+      $total_pages = ceil($total_referrals / $items_per_page);
+
+      return $this->render('AnytvDashboardBundle:Profile:myReferrals.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'referrals'=>$referrals, 'total_pages'=>$total_pages, 'page'=>$page));
+    }
+    
+    public function myConversionsAction(Request $request, $page)
+    {
+      $conversion_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Conversion');
+      $affiliate_user = $this->getUser();
+
+      if (!$affiliate_user) {
+        throw $this->createNotFoundException(
+            'No user found'
+        );
+      }
+      
+      $affiliate = $affiliate_user->getAffiliate();
+      
+      /*
+      $conversions = array();
+      
+      $hasoffers = $this->get('hasoffers');
+      $conversions_response = $hasoffers->getAffiliateConversions($affiliate->getAffiliateId(), $page);
+      $total_pages = $conversions_response->pageCount;
+      $conversions_data = $conversions_response->data;
+      
+      foreach($conversions_data as $conversion_data)
+      {
+        $conversion_object = $conversion_data->Stat;
+            
+        $conversion = array();
+        $conversion['ip'] = $conversion_object->ip;
+        $conversion['ad_id'] = $conversion_object->ad_id;
+        $conversion['status'] = $conversion_object->status;
+        $conversion['payout'] = number_format($conversion_object->payout, 2);
+        $conversion['date'] = date_format(new \DateTime($conversion_object->datetime), 'Y-m-d');
+              
+        if($offer = $offer_repository->findOneBy(array('offerId'=>$conversion_object->offer_id)))
+        {
+          $conversion['offer'] = $offer;    
+        }
+        else
+        {
+          $conversion['offer'] = null;
+        }
+              
+        $conversions[] = $conversion; 
+      }
+      */
+      
+      //$conversions = $affiliate->getConversions();
+      
+      $items_per_page = 10;
+      $order_by = 'createdAt';
+      $order = 'DESC';
+        
+      $conversions = $conversion_repository->findAllConversions($page, $items_per_page, $order_by, $order, $affiliate);
+      $total_conversions = $conversion_repository->countAllConversions($affiliate);
+      $total_pages = ceil($total_conversions / $items_per_page);
+
+      return $this->render('AnytvDashboardBundle:Profile:myConversions.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'conversions'=>$conversions, 'total_pages'=>$total_pages, 'page'=>$page));
     }
     
     public function partnersAction(Request $request, $page)

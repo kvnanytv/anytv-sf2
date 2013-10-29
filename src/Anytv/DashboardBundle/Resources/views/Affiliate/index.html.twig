@@ -42,6 +42,7 @@
          {{ form_widget(form.affiliate_search) }}
          {{ form_widget(form.affiliate_update) }}
          {{ form_widget(form.affiliate_update_paypal) }}
+         {{ form_widget(form.affiliate_update_referrer) }}
        {{ form_end(form) }}
     </div>
 
@@ -56,12 +57,13 @@
          <th>{% trans %}Paypal{% endtrans %}</th>
          <th>{% trans %}Signup IP{% endtrans %}</th>
          <th>{% trans %}Thumbnail{% endtrans %}</th>
+         <th>{% trans %}Referred by{% endtrans %}</th>
        </tr>
        {% for affiliate in affiliates %}
          <tr>
            <td>{{ affiliate.id }}</td>
            <td>{{ affiliate.affiliateId }}</td>
-           <td><a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="Edit">{{ affiliate.company }}</a></td>
+           <td><a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="View">{{ affiliate.company }}</a></td>
            {% if(affiliate.country) %}
              <td><a href="{{ path('country_view', { 'id' : affiliate.country.id }) }}" title="{% trans %}View{% endtrans %}">{{ affiliate.country }}</a></td>
            {% else %}
@@ -72,6 +74,11 @@
            <td>{{ affiliate.signupIp }}</td>
            {% if(affiliate.thumbnail) %}
              <td><img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ affiliate.company }}" /></td>
+           {%  else %}
+             <td>&nbsp;</td>
+           {% endif %}
+           {% if(affiliate.referrer) %}
+             <td><a href="{{ path('affiliate_view', { 'id' : affiliate.referrer.id }) }}" title="View">{{ affiliate.referrer.company }}</a></td>
            {%  else %}
              <td>&nbsp;</td>
            {% endif %}

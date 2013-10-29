@@ -173,6 +173,22 @@ class HasoffersAPI
         return isset($paypal['email']) ? $paypal['email'] : null;
     }
     
+    public function updatePaypalEmail($affiliate_id, $data)
+    {
+        $this->api_params['Target'] = 'Affiliate';
+        $this->api_params['Method'] = 'updatePaymentMethodPaypal';
+        $this->api_params['affiliate_id'] = $affiliate_id;
+        $this->api_params['data'] = $data;
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = (array) json_decode( $result );
+        
+        return $result['response'];
+    }
+    
     public function signup($affiliate_data, $affiliate_user_data)
     {
         $this->api_params['Target'] = 'Affiliate';
@@ -222,5 +238,135 @@ class HasoffersAPI
         $result = (array) json_decode( $result );
         
         return $result['response'];
+    }
+    
+    public function updateAffiliate($affiliate_id, $data, $return_object = true)
+    {
+        $this->api_params['Target'] = 'Affiliate';
+        $this->api_params['Method'] = 'update';
+        $this->api_params['id'] = $affiliate_id;
+        $this->api_params['data'] = $data;
+        $this->api_params['return_object'] = $return_object;
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = (array) json_decode( $result );
+        
+        return $result['response'];
+    }
+    
+    public function updateAffiliateUser($affiliate_user_id, $data, $return_object = true)
+    {
+        $this->api_params['Target'] = 'AffiliateUser';
+        $this->api_params['Method'] = 'update';
+        $this->api_params['id'] = $affiliate_user_id;
+        $this->api_params['data'] = $data;
+        $this->api_params['return_object'] = $return_object;
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = (array) json_decode( $result );
+        
+        return $result['response'];
+    }
+    
+    public function getConversions($max_conversion_id)
+    {
+        $this->api_params['Target'] = 'Report';
+        $this->api_params['Method'] = 'getConversions';
+        if($max_conversion_id)
+        {
+          $this->api_params['filters'] = array('Stat.id' => array('conditional' => 'GREATER_THAN', 'values' => $max_conversion_id));
+        }
+        $this->api_params['fields'] = array('Stat.id', 'Stat.ip', 'Stat.ad_id', 'Stat.status', 'Stat.payout', 'Stat.revenue', 'Stat.sale_amount', 'Stat.is_adjustment', 'Stat.datetime', 'Stat.affiliate_id', 'Stat.offer_id');
+        $this->api_params['limit'] = 5000;
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = (array) json_decode( $result );
+        $response = (array) $result['response'];
+        $data = (array) $response['data'];
+        $data = isset($data['data']) ? (array) $data['data'] : $data;
+        
+        return $data;
+    }
+    
+    public function getAffiliateConversions($affiliate_id, $page)
+    {
+        $this->api_params['Target'] = 'Report';
+        $this->api_params['Method'] = 'getConversions';
+        $this->api_params['filters'] = array('Stat.affiliate_id' => array('conditional' => 'EQUAL_TO', 'values' => $affiliate_id), 'Stat.status' => array('conditional' => 'EQUAL_TO', 'values' => 'approved'));
+        $this->api_params['fields'] = array('Stat.id', 'Stat.ip', 'Stat.ad_id', 'Stat.status', 'Stat.payout', 'Stat.datetime', 'Stat.affiliate_id', 'Stat.offer_id');
+        $this->api_params['sort'] = array('Stat.id' => 'DESC');
+        $this->api_params['limit'] = 10;
+        $this->api_params['page'] = $page;
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = (array) json_decode( $result );
+        $response = (array) $result['response'];
+        $data = $response['data'];
+        
+        return $data;  
+    }
+    
+    public function getReferrals($max_referral_date)
+    {
+        $this->api_params['Target'] = 'Report';
+        $this->api_params['Method'] = 'getAffiliateCommissions';
+        if($max_referral_date)
+        {
+          $this->api_params['filters'] = array('Stat.date' => array('conditional' => 'GREATER_THAN_OR_EQUAL_TO', 'values' => $max_referral_date));
+          //$this->api_params['filters'] = array('Stat.date' => array('conditional' => 'GREATER_THAN_OR_EQUAL_TO', 'values' => $max_referral_date), 'Stat.amount' => array('conditional' => 'GREATER_THAN', 'values' => 0));
+        }
+        else
+        {
+          //$this->api_params['filters'] = array('Stat.amount' => array('conditional' => 'GREATER_THAN', 'values' => 0));    
+        }
+        $this->api_params['fields'] = array('Stat.amount', 'Stat.referral_id', 'Stat.affiliate_id', 'Stat.date');
+        $this->api_params['groups'] = array('Stat.date', 'Stat.referral_id', 'Stat.affiliate_id');
+        $this->api_params['sort'] = array('Stat.date' => 'ASC');
+        $this->api_params['limit'] = 1000;
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = (array) json_decode( $result );
+        $response = (array) $result['response'];
+        $data = (array) $response['data'];
+        $data = (array) $data['data'];
+        
+        return $data;
+    }
+    
+    public function getAffiliateCommissions($affiliate_id, $page)
+    {
+        $this->api_params['Target'] = 'Report';
+        $this->api_params['Method'] = 'getAffiliateCommissions';
+        $this->api_params['filters'] = array('Stat.referral_id' => array('conditional' => 'EQUAL_TO', 'values' => $affiliate_id));
+        $this->api_params['fields'] = array('Stat.amount', 'Stat.referral_id', 'Stat.affiliate_id', 'Stat.date', 'ReferredAffiliate.company');
+        $this->api_params['groups'] = array('Stat.affiliate_id');
+        $this->api_params['sort'] = array('ReferredAffiliate.company' => 'ASC');
+        $this->api_params['limit'] = 10;
+        $this->api_params['page'] = $page;
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = (array) json_decode( $result );
+        $response = (array) $result['response'];
+        $data = $response['data'];
+        
+        return $data;  
     }
 }

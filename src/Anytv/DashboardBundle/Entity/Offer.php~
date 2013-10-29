@@ -208,6 +208,11 @@ class Offer
     private $trafficReferrals;
     
     /**
+     * @ORM\OneToMany(targetEntity="Conversion", mappedBy="offer")
+     */
+    private $conversions;
+    
+    /**
      * @ORM\ManyToMany(targetEntity="Country", inversedBy="offers")
      */
     protected $countries;
@@ -232,6 +237,7 @@ class Offer
         $this->countries = new ArrayCollection();
         $this->countryCount = 0;
         $this->trafficReferrals = new ArrayCollection();
+        $this->conversions = new ArrayCollection();
         $this->offerGroups = new ArrayCollection();
         $this->isFeatured = false;
     }
@@ -1048,5 +1054,38 @@ class Offer
     public function getCountryCount()
     {
         return $this->countryCount;
+    }
+
+    /**
+     * Add conversions
+     *
+     * @param \Anytv\DashboardBundle\Entity\Conversion $conversions
+     * @return Offer
+     */
+    public function addConversion(\Anytv\DashboardBundle\Entity\Conversion $conversions)
+    {
+        $this->conversions[] = $conversions;
+    
+        return $this;
+    }
+
+    /**
+     * Remove conversions
+     *
+     * @param \Anytv\DashboardBundle\Entity\Conversion $conversions
+     */
+    public function removeConversion(\Anytv\DashboardBundle\Entity\Conversion $conversions)
+    {
+        $this->conversions->removeElement($conversions);
+    }
+
+    /**
+     * Get conversions
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getConversions()
+    {
+        return $this->conversions;
     }
 }

@@ -1,0 +1,42 @@
+{% extends 'AnytvDashboardBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title}}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+
+<section id="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        
+    
+    <p>{{ page.title}}</p>
+
+   
+       
+       {{ form_start(form, {'action': path('page_edit', { 'id' : page.id }), 'method': 'POST'}) }}
+          
+         {{ form_errors(form) }}
+       
+         {{ form_row(form.content) }}
+         {{ form_row(form.contentZh) }}
+       
+       {{ form_end(form) }}
+      <div class="cl-20"></div>
+      </div>
+      
+		</div>
+	</div>
+</section>
+
+
+
+    {{ parent() }}
+    
+       
+        
+    
+{% endblock %}

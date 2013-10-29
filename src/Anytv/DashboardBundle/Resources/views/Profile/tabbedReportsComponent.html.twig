@@ -1,0 +1,22 @@
+<div class="tabbable">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="javascript:void(0)" onclick="showTab('{{ path('profile_reports_referrals') }}');" data-toggle="tab">{% trans %}Referrals{% endtrans %}</a></li>
+    <li><a href="javascript:void(0)" onclick="showTab('{{ path('profile_reports_conversions') }}');" data-toggle="tab">{% trans %}Conversions{% endtrans %}</a></li>
+  </ul>
+  <div class="tab-content" id="profile_tab_content">
+    <div id="pane1" class="tab-pane active">
+      <div id="user-content-offers">
+    
+      </div>
+      <div class="cl-20"></div>
+      <div class="progress progress-striped active" id="profile-tabs-progress-bar" style="display:none">
+        <div class="progress-bar"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+      </div>												
+      <div class="table-responsive" id="profile-tab-results">
+        <div class="offer-tbl-wrap">
+        </div>
+      </div>				    	
+    </div>
+  </div>
+</div>	
+

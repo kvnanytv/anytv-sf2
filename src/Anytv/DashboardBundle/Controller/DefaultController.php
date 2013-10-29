@@ -111,16 +111,40 @@ class DefaultController extends Controller
     
     public function termsAction(Request $request)
     {
-        $translator = $this->get('translator');
+      $repository = $this->getDoctrine()->getRepository('AnytvMainBundle:Page');
+      
+      $page = $repository->findOneBy(array('pageKey'=>'terms_and_conditions'));
+
+      if (!$page) {
+        throw $this->createNotFoundException(
+            'No page found '
+        );
+      }
+      
+      $translator = $this->get('translator');
+      
+      $page_content = $page->getContent($request->get('_locale', 'en'));
         
-        return $this->render('AnytvDashboardBundle:Default:terms.html.twig', array('title'=>$translator->trans('Terms & Conditions')));
+      return $this->render('AnytvDashboardBundle:Default:terms.html.twig', array('title'=>$translator->trans($page->getTitle()), 'page'=>$page, 'page_content'=>$page_content));
     }
     
     public function privacyPolicyAction(Request $request)
     {
+        $repository = $this->getDoctrine()->getRepository('AnytvMainBundle:Page');
+      
+      $page = $repository->findOneBy(array('pageKey'=>'privacy_policy'));
+
+      if (!$page) {
+        throw $this->createNotFoundException(
+            'No page found'
+        );
+      }
+      
         $translator = $this->get('translator');
         
-        return $this->render('AnytvDashboardBundle:Default:privacyPolicy.html.twig', array('title'=>$translator->trans('Privacy Policy')));
+        $page_content = $page->getContent($request->get('_locale', 'en'));
+        
+        return $this->render('AnytvDashboardBundle:Default:privacyPolicy.html.twig', array('title'=>$translator->trans($page->getTitle()), 'page'=>$page, 'page_content'=>$page_content));
     }
     
     public function forgotPasswordAction(Request $request)
@@ -196,7 +220,7 @@ class DefaultController extends Controller
           
         }
         
-        return $this->render('AnytvDashboardBundle:Default:forgotPassword.html.twig', array('title'=>$translator->trans('Recover Lost Password '), 'form'=>$form->createView(), 'errors'=>$errors, 'password_reset'=>$password_reset));
+        return $this->render('AnytvDashboardBundle:Default:forgotPassword.html.twig', array('title'=>$translator->trans('Recover Lost Password'), 'form'=>$form->createView(), 'errors'=>$errors, 'password_reset'=>$password_reset));
     }
     
     public function signupAction(Request $request, $id)
@@ -207,6 +231,7 @@ class DefaultController extends Controller
         }
         
         $country_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Country');
+        $affiliate_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Affiliate');
         $affiliate_user_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:AffiliateUser');
         $translator = $this->get('translator');
         
@@ -402,6 +427,12 @@ class DefaultController extends Controller
                $affiliate->setStatus($affiliate_object->status);
                $affiliate->setWantsAlerts($affiliate_object->wants_alerts);
                $affiliate->setReferralId($affiliate_object->referral_id);
+               
+               if($affiliate_object->referral_id && ($referrer = $affiliate_repository->findBy(array('affiliateId'=>$affiliate_object->referral_id))))
+               {
+                  $affiliate->setReferrer($referrer);
+               }
+               $affiliate->setReferrerRequested(true); 
           
                $manager->persist($affiliate); 
                

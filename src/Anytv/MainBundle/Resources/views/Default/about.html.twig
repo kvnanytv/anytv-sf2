@@ -23,39 +23,12 @@
 			<div class="cl-20"></div>
 				<div class="row">
 					<div class="col-lg-12">
-                                            <p class="font-lg">
-                                              any.TV is a new kind of YouTube Network based on recommendation revenue.
-                                            </p>
-                                            <p class="font-lg">
-                                              Currently, any.TV launched in two verticals: any.TV Games and any.TV Music with plans to launch in more verticals like beauty and fitness.
-                                            </p>
-                                            <p class="font-lg">
-                                              Games on any.TV<br><a href="http://www.youtube.com/anyTVgames">www.youtube.com/GamesOnanyTV</a><br>
-                                              Music on any.TV<br><a href="http://www.youtube.com/anyTVmusic">www.youtube.com/MusicOnanyTV</a>
-                                            </p>
-                                            <p class="font-lg">
-                                              any.TV has 6,000 partners using the any.TV dashboard - see <a href="{{ path('anytv_dashboard_homepage') }}">www.any.tv/dashboard</a> - and gains about 1 partner per hour.
-                                            </p>
-                                            <p class="font-lg">
-                                              Why join any.TV?
-                                            </p>
-                                            <p class="font-lg">
-                                              We pay you <b>recommendation revenue</b> in addition to YouTube ad revenue, and we have a fully-functioning dashboard that reports your earnings the moment they happen.
-                                            </p>
-                                            <p class="font-lg">
-                                              Also, we pay you a <i>lifetime</i> 10% bonus for recommending us to your friends!
-                                              The CEO and founder, George Vanous, is the former President of TGN, his previous successful startup that he sold in Oct, 2012.
-                                            </p>
-                                            <iframe width="768" height="432" src="//www.youtube.com/embed/nfK5HHWZb7U?list=PLyI74zGGymu8k7eVhGPcVSh3nKljHfiVX" frameborder="0" allowfullscreen></iframe>
-                                            <p class="font-lg">
-                                              Now let's ask a YouTuber.
-                                              What is any.TV? - by a YouTuber
-                                              Alex, a YouTube Partner, explains "What is any.TV?" in his own words:
-                                            </p>
-                                        
-					
                                             
-                                            <iframe width="768" height="432" src="//www.youtube.com/embed/_npugQ27awQ?list=PLyI74zGGymu8k7eVhGPcVSh3nKljHfiVX" frameborder="0" allowfullscreen></iframe>
+                                            {% if(page_content) %}
+                                              {{ page_content|raw }}
+                                            {% endif %}
+                                            
+                                            
                                         </div>
 				</div>
 			</div>

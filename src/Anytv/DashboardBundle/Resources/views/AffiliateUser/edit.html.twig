@@ -6,14 +6,16 @@
 
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
-    {{ parent() }}
-    <em><a href="{{ path('affiliate_user_view', { 'id' : affiliate_user.id }) }}" title="{% trans %}View{% endtrans %}">{% trans %}view{% endtrans %}</a></em>
+
+<section id="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <em><a href="{{ path('affiliate_user_view', { 'id' : affiliate_user.id }) }}" title="{% trans %}View{% endtrans %}">{% trans %}view{% endtrans %}</a></em>
     
     <p>&nbsp;</p>
 
-    <div class="symfony-blocks-welcome">
-       
-       {{ form_start(form, {'action': path('affiliate_user_edit', { 'id' : affiliate_user.id }), 'method': 'POST'}) }}
+{{ form_start(form, {'action': path('affiliate_user_edit', { 'id' : affiliate_user.id }), 'method': 'POST'}) }}
           
          {{ form_errors(form) }}
         
@@ -26,13 +28,18 @@
          {{ form_row(form.phone) }}
          {{ form_row(form.cellPhone) }}
         
-       {{ form_end(form) }}
+       {{ form_end(form) }}   
        
-        
-    </div>
+       
+      <div class="cl-20"></div>
+      </div>
+      
+		</div>
+	</div>
+</section>
 
-    <div class="symfony-blocks-help">
-        
-       
-    </div>
+    {{ parent() }}
+    
+    
+   
 {% endblock %}

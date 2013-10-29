@@ -4,6 +4,30 @@ anytv_main_homepage:
     requirements:
         _locale:  %anytv.locales%
         
+gamestm:
+    path:      /games
+    defaults:  { _controller: AnytvMainBundle:Default:gamestm }
+    
+cya:
+    path:      /cya
+    defaults:  { _controller: AnytvMainBundle:Default:cya }
+    
+heartbeat:
+    path:      /heartbeat
+    defaults:  { _controller: AnytvMainBundle:Default:heartbeat }
+    
+upload:
+    path:      /upload/{_locale}
+    defaults:  { _controller: AnytvMainBundle:Default:upload, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
+emotionvfx:
+    path:      /emotionvfx/{_locale}
+    defaults:  { _controller: AnytvMainBundle:Default:emotionvfx, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
 about:
     path:      /about/{_locale}
     defaults:  { _controller: AnytvMainBundle:Default:about, _locale: en }

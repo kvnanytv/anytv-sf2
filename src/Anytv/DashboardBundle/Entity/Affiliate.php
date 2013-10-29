@@ -166,6 +166,13 @@ class Affiliate
      * @ORM\JoinColumn(name="referrer_id", referencedColumnName="id")
      */
     private $referrer;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="referrer_requested", type="boolean")
+     */
+    private $referrerRequested;
 
     /**
      * @var \DateTime
@@ -192,17 +199,36 @@ class Affiliate
     private $trafficReferrals;
     
     /**
+     * @ORM\OneToMany(targetEntity="Conversion", mappedBy="affiliate")
+     */
+    private $conversions;
+    
+    /**
      * @ORM\OneToMany(targetEntity="Affiliate", mappedBy="referrer")
      */
     private $referredAffiliates;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Referral", mappedBy="referred")
+     */
+    private $referredReferrals;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Referral", mappedBy="referrer")
+     */
+    private $referrerReferrals;
     
     public function __construct()
     {
         $this->affiliateUsers = new ArrayCollection();
         $this->trafficReferrals = new ArrayCollection();
         $this->referredAffiliates = new ArrayCollection();
+        $this->conversions = new ArrayCollection();
         $this->wantsAlerts = true;
         $this->paypalEmailRequested = false;
+        $this->referrerRequested = false;
+        $this->referredReferrals = new ArrayCollection();
+        $this->referrerReferrals = new ArrayCollection();
     }
     
     /**
@@ -1095,5 +1121,127 @@ class Affiliate
     public function getPhone()
     {
         return $this->phone;
+    }
+
+    /**
+     * Set referrerRequested
+     *
+     * @param boolean $referrerRequested
+     * @return Affiliate
+     */
+    public function setReferrerRequested($referrerRequested)
+    {
+        $this->referrerRequested = $referrerRequested;
+    
+        return $this;
+    }
+
+    /**
+     * Get referrerRequested
+     *
+     * @return boolean 
+     */
+    public function getReferrerRequested()
+    {
+        return $this->referrerRequested;
+    }
+
+    /**
+     * Add conversions
+     *
+     * @param \Anytv\DashboardBundle\Entity\Conversion $conversions
+     * @return Affiliate
+     */
+    public function addConversion(\Anytv\DashboardBundle\Entity\Conversion $conversions)
+    {
+        $this->conversions[] = $conversions;
+    
+        return $this;
+    }
+
+    /**
+     * Remove conversions
+     *
+     * @param \Anytv\DashboardBundle\Entity\Conversion $conversions
+     */
+    public function removeConversion(\Anytv\DashboardBundle\Entity\Conversion $conversions)
+    {
+        $this->conversions->removeElement($conversions);
+    }
+
+    /**
+     * Get conversions
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getConversions()
+    {
+        return $this->conversions;
+    }
+
+    /**
+     * Add referredReferrals
+     *
+     * @param \Anytv\DashboardBundle\Entity\Referral $referredReferrals
+     * @return Affiliate
+     */
+    public function addReferredReferral(\Anytv\DashboardBundle\Entity\Referral $referredReferrals)
+    {
+        $this->referredReferrals[] = $referredReferrals;
+    
+        return $this;
+    }
+
+    /**
+     * Remove referredReferrals
+     *
+     * @param \Anytv\DashboardBundle\Entity\Referral $referredReferrals
+     */
+    public function removeReferredReferral(\Anytv\DashboardBundle\Entity\Referral $referredReferrals)
+    {
+        $this->referredReferrals->removeElement($referredReferrals);
+    }
+
+    /**
+     * Get referredReferrals
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReferredReferrals()
+    {
+        return $this->referredReferrals;
+    }
+
+    /**
+     * Add referrerReferrals
+     *
+     * @param \Anytv\DashboardBundle\Entity\Referral $referrerReferrals
+     * @return Affiliate
+     */
+    public function addReferrerReferral(\Anytv\DashboardBundle\Entity\Referral $referrerReferrals)
+    {
+        $this->referrerReferrals[] = $referrerReferrals;
+    
+        return $this;
+    }
+
+    /**
+     * Remove referrerReferrals
+     *
+     * @param \Anytv\DashboardBundle\Entity\Referral $referrerReferrals
+     */
+    public function removeReferrerReferral(\Anytv\DashboardBundle\Entity\Referral $referrerReferrals)
+    {
+        $this->referrerReferrals->removeElement($referrerReferrals);
+    }
+
+    /**
+     * Get referrerReferrals
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReferrerReferrals()
+    {
+        return $this->referrerReferrals;
     }
 }

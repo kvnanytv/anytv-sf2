@@ -6,12 +6,17 @@
 
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
-    {{ parent() }}
-    <em><a href="{{ path('affiliate_user_edit', { 'id' : affiliate_user.id }) }}" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em>
+
+<section id="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <em><a href="{{ path('affiliate_user_edit', { 'id' : affiliate_user.id }) }}" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em>
+    
     
     <h1 class="title">{{ title }}<p>dashboard.tm user ID: {{ affiliate_user.affiliateUserId }} - ({{ affiliate_status }})</p></h1>
     
-    <div class="symfony-blocks-welcome">
+    
       <ul>
         <li style="display:block">{% trans %}Name{% endtrans %}: {{ affiliate_user.getFullName() }}</li>
         <li style="display:block">{% trans %}Email{% endtrans %}: {{ affiliate_user.email }}</li>
@@ -22,10 +27,24 @@
         <li style="display:block">{% trans %}Admin{% endtrans %}: {{ affiliate_user.isAdmin }}</li>
       </ul>
             
-    </div>
-
-    <div class="symfony-blocks-help">
+    
+   
+      
+      
+      
         
-       
-    </div>
+      
+      <div class="cl-20"></div>
+      </div>
+      
+		</div>
+	</div>
+</section>
+
+    {{ parent() }}
+   
+    
+    
+
+    
 {% endblock %}

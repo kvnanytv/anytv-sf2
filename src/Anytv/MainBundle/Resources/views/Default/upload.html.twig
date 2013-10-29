@@ -1,0 +1,49 @@
+{% extends 'AnytvMainBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title }}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+    
+    
+    
+    	
+     <div id="content">
+		<section class="sec-content-title">
+			<div class="container">
+				<h3>{{ title }}</h3>
+				<p>&nbsp;</p>				
+			</div>
+		</section>
+
+		<section class="sec-content">
+			<div class="container">
+			<div class="cl-20"></div>
+				<div class="row">
+					<div class="col-lg-12">
+                                            
+                                            
+<p><iframe src="https://docs.google.com/presentation/d/1LTMv1-XvO_oArE1STcqdFzgTBhnHAZtH_4CbDWlsvSY/embed?start=false&amp;loop=false&amp;delayms=3000" height="550" width="640" allowfullscreen="true" frameborder="0"></iframe></p>
+<div class="" style="max-width:640px;max-height:1700px;"><div class=""><iframe width="640" height="1700" src="https://docs.google.com/forms/d/1otB0dw2Dl_mIerYtg5KU6Ei_HGwgMxMqdYYuDphWQF8/viewform?embedded=true" marginwidth="0" marginheight="0" frameborder="0"></iframe></div></div>
+
+                                            
+                                            
+                                        </div>
+				</div>
+			</div>
+		</section>
+
+	</div>
+     
+     
+
+      
+
+      {{ parent() }}
+    
+{% endblock %}
+     
+
+

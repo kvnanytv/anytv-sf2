@@ -133,7 +133,7 @@
 'chinese': 中文
 'Preview URL': 預覽網址
 'Offer Groups': 供應組群
-'Photo': Photo
+'Photo': 照片
 'Company / Name: *': '公司 / 姓名: *' 
 'Terms & Conditions': 條件和規則
 'I agree to the': 我同意所有的
@@ -150,3 +150,38 @@
 'First Name is required.': 名字必填
 'Last Name is required.': 姓氏必填
 'Learn More': 了解更多 
+'FAQ Spreadsheet': 問與答表單
+'Reports': 報告
+'George is Back!': George 回來了!
+'As promised.': 如約定的。
+'I am the ex-President and founder of TGN, my old company that I sold to BroadbandTV in 2012. It was time for something new.': '我是TGN的前總裁和創辦人。在2012年我將TGN賣給了BroadbandTV，並開始這新的公司。'
+'Will you <b>help me</b> build any.TV together?': 你想<b>幫我</b>一起建立any.TV嗎?
+'Help George': 幫助George
+'Do Not Unpartner!': 不需要停止合作關係!
+'Really.': 是真的。
+'You do not need to unpartner from your current Network to join any.TV.': 你不需要停止和你現在的平台合作，來加入any.TV。
+'Why?': 為什麼?
+'Because we <b>don’t</b> partner channels.': 因為我們<b>不</b> 和頻道簽約。
+'10% Lifetime Bonus!': 10%的終身獎金!
+'Yes, we mean forever.': 是的! 我們指的是永遠。
+'any.TV pays you a 10% bonus of everything your referrals make, our way of saying “Thank You” for recommending any.TV to your friends and partners!': '只要你推薦any.TV給你的朋友，any.TV將支付你額外10%的獎金。這是我們為了向你表答感謝之意!'
+'This is <b>not</b> a pyramid scheme.': 這<b>不是</b>直銷!
+'Recover Lost Password': 密碼復原
+'To request resetting this account password, please fill out the form below.': 如需重新設定此帳號密碼，煩請填寫以下表格。
+'No user account was found for the address given.': 提供的地址無法找到此使用者帳戶。
+'An error has occurred, please try again.': 發生錯誤，煩請再試一次。
+'Your password has been changed and emailed to the associated email address. Please check your E-mail inbox for further instructions.': '你的密碼已變更成功，請至你的信箱查看。'
+'Hello': 你好
+'Your password has been changed. To login to your account, use the following login credentials:': '你的密碼已變更成功。在登入你的帳號前，請先使用以下的登入憑據:'
+'Sincerely,': '僅致問候，'
+'This e-mail has been sent from an e-mail address that is not monitored.': 這封信是從一個沒有被監控的信箱內寄出的。
+'Please do not reply to this message. We are unable to respond to any replies.': 請不要回覆此信件。謝謝!
+'Referrals': 介紹的朋友
+'Conversions': 成功交易量
+'Amount': 金額
+'Time': 時間
+'Conversion IP': 成功交易 IP
+'Transaction ID': 交易身份
+'Lookup Account': 檢視帳戶
+'Pages': 頁面
+'Paypal email': Paypal 郵件信箱
