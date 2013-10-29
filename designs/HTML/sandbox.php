@@ -1,8 +1,6 @@
 <?php include 'header-top.php' ?>
 
 
-
-
 <?php include 'navigation.php' ?>
 
 <div id="content">
@@ -15,9 +13,10 @@
 
 	<section class="sec-content">
 		<div class="container">
-			<div class="row stickem-container">
-				<div class="cl-20"></div>
+			<div class="row">
+				<!-- <div class="cl-20"></div> -->
 				<!-- Questions -->
+
 				<div class="col-lg-4">
 				<div id="faq-qstn-wrap">
 						<div class="panel-group" id="accordion">
@@ -35,17 +34,17 @@
 										<div class="tabbable">
 											<ul class="faq-ul">
 												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
-												<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
-												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>
+												<li><a href="#tab2" data-toggle="tab">Why did you leave TGN, George?</a></li>
+												<li><a href="#tab3" data-toggle="tab">How do I make my own Network?</a></li>
+												<li><a href="#tab4" data-toggle="tab">Is any.TV a pyramid scheme?</a></li>
+												<li><a href="#tab5" data-toggle="tab">I have more questions!</a></li>
+												<li><a href="#tab6" data-toggle="tab">This is Three</a></li>
 												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
 												<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
 												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>
 												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
 												<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
-												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>
-												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
-												<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
-												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>																																				
+												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>											
 												<li><a href="#tab1" data-toggle="tab">What is any.TV?</a></li>
 												<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
 												<li><a href="#tab1" data-toggle="tab">This is Three</a></li>
@@ -183,25 +182,44 @@
 
 				<!-- Content -->
 
-				<div class="col-lg-8 stickem">
-					<div class="tab-content">
-						<!-- Content 1 -->
-						<div class="tab-pane active" id="tab1">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-							cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-							proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-						</div>
+				<div class="col-lg-8">
+					<div id="getFixed">
+						<div class="tab-content">
+							<!-- Content 1 -->
+							<div class="tab-pane active" id="tab1">
+								<div id="qstn">
+									<h4>What is any.TV?</h4>
+									<p>any.TV is a new kind of YouTube Network that pays recommendation revenue!</p>
+									<p>Highlights:</p>
+									<ul>
+										<li>No contract</li>
+										<li>New revenue stream: recommendation revenue</li>
+										<li>2 partnership at once: stay partnered with your current Network</li>
+										<li>10% lifetime bonus for recommending any.TV to your friends and partners</li>
+									</ul>
+									<hr>
+								</div>
 
-						<!-- Content 2 -->
-						<div class="tab-pane" id="tab2">
-							Test 1
+								<div id="qstn">
+									<h4>Why did you leave TGN, George</h4>
+									<p>any.TV is a new kind of YouTube Network that pays recommendation revenue!</p>
+									<p>Highlights:</p>
+									<ul>
+										<li>No contract</li>
+										<li>New revenue stream: recommendation revenue</li>
+										<li>2 partnership at once: stay partnered with your current Network</li>
+										<li>10% lifetime bonus for recommending any.TV to your friends and partners</li>
+									</ul>
+								</div>
+							</div>
+
+							<!-- Content 2 -->
+							<div class="tab-pane" id="tab2">
+								Test 1
+							</div>
 						</div>
-					</div>							
+					</div>	
 				</div>
-
 
 				<div class="cl-20"></div>
 			</div>
@@ -214,12 +232,22 @@
 
 <?php include 'pagewrap-footer.php'; ?>
 
-<script src="js/stickem/jquery.js"></script>  
-<script src="js/stickem/jquery.stickem.js"></script>  
-	<script>
-		$(document).ready(function() {
-			$('.container').stickem();
-		});
-	</script>
+<script>
+	function fixDiv() {
+
+  var $cache = $('#getFixed'); 
+  if ($(window).scrollTop() > 300)
+    $cache.css({'position': 'fixed', 'top': '0', 'padding-right': '150px'}); 
+  else
+  	$cache.css({'position': 'relative', 'padding-right': '0'});
+
+    
+}
+
+
+
+$(window).scroll(fixDiv);
+fixDiv();
+</script>
 
 <?php include 'footer-base.php'; ?>

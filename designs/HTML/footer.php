@@ -10,9 +10,9 @@
         <li><a href=""><i class="icon-youtube icon-large" title="YouTube Channel"></i></a></li> 
         <li><a href=""><i class="icon-facebook icon-large" title="Facebook"></i></a></li>
         <li><a href=""><i class="icon-twitter icon-large" title="Twitter"></i></a></li>
-     </ul>
-   </div>
- </div>
+      </ul>
+    </div>
+  </div>
 </footer>
 <!-- /footer -->
 
@@ -27,19 +27,23 @@
 <script src="js/zclip/jquery.zclip.js"></script>
 
 <script type="text/javascript">
-    $(window).on('load', function () {
+  $(window).on('load', function () {
 
-        $('.selectpicker').selectpicker({
-            'selectedText': 'Mustard'
-        });
+    $('.selectpicker').selectpicker({
+      'selectedText': 'Mustard'
+    });
 
         // $('.selectpicker').selectpicker('hide');
-    });
+      });
 </script>
 
 <script>
   $(function () {
-    $("#nav").tinyNav();
+    $("#nav").tinyNav({
+      active: 'selected', // String: Set the "active" class
+      header: 'Navigation', // String: Specify text for "header" and show header instead of the active item
+      label: '' // String: Sets the <label> text for the <select> (if not set, no label will be added)
+    });
   });
 </script>
 </html>

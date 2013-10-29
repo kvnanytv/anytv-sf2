@@ -32,6 +32,10 @@
 
 
     <div class="page-wrap">
+      <div class="alert alert-dismissable alert-info any-notif">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <strong><i class="icon-exclamation-sign"></i> New on any.TV?</strong> Sign up now to get free tees!
+      </div>    
       <header>
         <div id="main-nav">    
           <nav class="navbar navbar-default" role="navigation">
@@ -89,7 +93,7 @@
               <nav class="subnav-cllps clr-black">
                 <ul id="nav">
                   <li><a href="page-what.php">What is any.TV?</a></li>
-                  <li><a href="#">Branding Kit</a></li>
+                  <li><a href="page-brandingkit.php">Branding Kit</a></li>
                   <li><a href="http://www.games.tm">Games List</a></li>
                   <li><a href="#">Livestream Handbook</a></li>
                   <li><a href="#">Recruiters Handbook</a></li>
