@@ -65,26 +65,7 @@
               <li class="dropdown mrgn-left">
                   
                 {% block transmenu %}
-                   <a href="{{ path('anytv_main_homepage', { _locale: app.request.get('_locale', 'en') }) }}" class="dropdown-toggle" data-toggle="dropdown">
-                   {% if(app.request.get('_locale', 'en') == 'zh') %}
-                     {% trans %}chinese{% endtrans %}
-                   {% else %}
-                     {% trans %}english{% endtrans %}
-                   {% endif %}
-                   &nbsp;<b class="caret"></b></a>
-                   <ul class="dropdown-menu dd-height">
-                     <li>
-                       <a href="{{ path('anytv_main_homepage', { _locale: 'en' }) }}" title="{% trans %}english{% endtrans %}">
-                         {% trans %}english{% endtrans %}
-                       </a>
-                     </li>
-                     <li>
-                       <a href="{{ path('anytv_main_homepage', { _locale: 'zh' }) }}" title="中文 (chinese)">
-                         中文 (chinese)
-                       </a>
-                     </li>
-                     
-                   </ul>
+                   {{ render(controller('AnytvMainBundle:Default:transMenu', { 'request': app.request })) }}
                  {% endblock %}
                   
                 

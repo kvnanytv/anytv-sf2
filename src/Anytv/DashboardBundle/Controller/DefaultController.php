@@ -230,6 +230,13 @@ class DefaultController extends Controller
           return $this->redirect($this->generateUrl('anytv_dashboard_homepage'));  
         }
         
+        $session = $this->get('session');
+        
+        if(!$session->get('referral_id'))
+        {
+          $session->set('referral_id', $id);
+        }
+        
         $country_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Country');
         $affiliate_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Affiliate');
         $affiliate_user_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:AffiliateUser');
@@ -382,7 +389,7 @@ class DefaultController extends Controller
                                      'zipcode'=>$zipcode,
                                      'phone'=>$phone,
                                      'signup_ip'=>$request->getClientIp(),
-                                     'referral_id'=>$id
+                                     'referral_id'=>$session->get('referral_id', $id)
                                      );
              
              $affiliate_user_data = array('email' => $email,
@@ -455,6 +462,8 @@ class DefaultController extends Controller
                $manager->persist($affiliate_user);  
                
                $manager->flush();
+               
+               $session->set('referral_id', null);
                
                return $this->redirect($this->generateUrl('login_after_register', array('username'=>$email, 'password'=>$password)));
             }

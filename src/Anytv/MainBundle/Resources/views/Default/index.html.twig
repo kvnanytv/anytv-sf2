@@ -69,7 +69,11 @@
                 <p>{% trans %}Why?{% endtrans %}</p>
                 <p>{% trans %}Because we <b>don’t</b> partner channels.{% endtrans %}</p>
                 {% if(app.user == false) %}
-                  <a href="{{ path('signup') }}" class="btn btn-default">{% trans %}Join any.TV{% endtrans %}</a>  
+                  {% if(app.session.get('referral_id')) %}
+                    <a href="{{ path('signup', { 'id': app.session.get('referral_id') }) }}" class="btn btn-default">{% trans %}Join any.TV{% endtrans %}</a>
+                  {% else %}
+                    <a href="{{ path('signup') }}" class="btn btn-default">{% trans %}Join any.TV{% endtrans %}</a>
+                  {% endif %}  
                 {% endif %}
 					</div>	
 				</div>

@@ -1,0 +1,20 @@
+<a href="{{ path(route, route_params) }}" class="dropdown-toggle" data-toggle="dropdown">
+                   {% if(app.request.get('_locale', 'en') == 'zh') %}
+                     {% trans %}chinese{% endtrans %}
+                   {% else %}
+                     {% trans %}english{% endtrans %}
+                   {% endif %}
+                   &nbsp;<b class="caret"></b></a>
+                   <ul class="dropdown-menu dd-height">
+                     <li>
+                       <a href="{{ path(route, route_params_en) }}" title="{% trans %}english{% endtrans %}">
+                         {% trans %}english{% endtrans %}
+                       </a>
+                     </li>
+                     <li>
+                       <a href="{{ path(route, route_params_zh) }}" title="中文 (chinese)">
+                         中文 (chinese)
+                       </a>
+                     </li>
+                     
+                   </ul>

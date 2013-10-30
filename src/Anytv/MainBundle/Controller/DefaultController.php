@@ -4,13 +4,12 @@ namespace Anytv\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Anytv\MainBundle\Entity\FaqCategory;
 
 class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
-        
+        //throw new \Exception('test 500');
         // rendering different formats of same resource
         //$format = $this->getRequest()->getRequestFormat();
         //return $this->render('AnytvMainBundle:Default:index.'.$format.'.twig');
@@ -35,9 +34,21 @@ class DefaultController extends Controller
     
     public function uploadAction(Request $request)
     {
-      $translator = $this->get('translator');
+        $repository = $this->getDoctrine()->getRepository('AnytvMainBundle:Page');
       
-      return $this->render('AnytvMainBundle:Default:upload.html.twig', array('title'=>$translator->trans('Get paid $5 per video submitted to any.TV!'))); 
+      $page = $repository->findOneBy(array('pageKey'=>'upload'));
+
+      if (!$page) {
+        throw $this->createNotFoundException(
+            'No page found'
+        );
+      }
+      
+        $translator = $this->get('translator');
+        
+        $page_content = $page->getContent($request->get('_locale', 'en'));
+        
+        return $this->render('AnytvMainBundle:Default:upload.html.twig', array('title'=>$translator->trans($page->getTitle()), 'page'=>$page, 'page_content'=>$page_content));
     }
     
     public function emotionvfxAction(Request $request)
@@ -216,7 +227,18 @@ class DefaultController extends Controller
         return $this->render('AnytvMainBundle:Default:faqSpreadsheet.html.twig', array('title'=>$translator->trans($page->getTitle()), 'page'=>$page, 'page_content'=>$page_content));
     }
     
-    
+    public function transMenuAction($request)
+    {
+      $route = $request->get('_route'); 
+      $route_params = $request->get('_route_params');
+      
+      $route_params_en = $route_params;
+      $route_params_en['_locale'] = 'en';
+      $route_params_zh = $route_params;
+      $route_params_zh['_locale'] = 'zh';
+        
+      return $this->render('AnytvMainBundle:Default:transMenu.html.twig', array('route'=>$route, 'route_params'=>$route_params, 'route_params_en'=>$route_params_en, 'route_params_zh'=>$route_params_zh));
+    }
     
     
 }

@@ -78,5 +78,66 @@ class ConversionController extends Controller
         return $this->render('AnytvDashboardBundle:Conversion:index.html.twig', array('title'=>$translator->trans('Conversions'), 'conversions'=>$conversions, 'total_conversions'=>$total_conversions, 'page'=>$page, 'total_pages'=>$total_pages, 'form'=>$form->createView()));
     }
     
+    public function updateConversionStatusAction(Request $request, $id)
+    { 
+      if(!$request->isXmlHttpRequest())
+      {
+        throw $this->createNotFoundException(
+            'Invalid request'
+        );
+      }
+      
+      $affiliate_user = $this->getUser();
+
+      if (!$affiliate_user) {
+        throw $this->createNotFoundException(
+            'No user found'
+        );
+      }
+      
+      $affiliate = $affiliate_user->getAffiliate();
+      
+      $conversion_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Conversion');
+      
+      $conversion = $conversion_repository->find($id);
+      
+      if (!$conversion) {
+        throw $this->createNotFoundException(
+            'No conversion found'
+        );
+      }
+      
+      $hasoffers = $this->get('hasoffers');
+      $manager = $this->getDoctrine()->getManager();
+        
+      if($conversion->getStatus() == 'approved')
+      {
+        $new_status = 'rejected';
+      }
+      else
+      {
+        $new_status = 'approved';    
+      }
+          
+      $update_status_result = $hasoffers->updateConversionField($conversion->getConversionId(), 'status', $new_status, false); 
+      
+      $error = '';
+      
+      if(($update_status_result->status == 1) && $update_status_result->data)
+      {
+        $conversion->setStatus($new_status);
+        $manager->flush();          
+      }
+      else
+      {
+        $error = $update_status_result->errors;  
+      }
+      
+      return $this->render('AnytvDashboardBundle:Conversion:status.html.twig', array('conversion'=>$conversion, 'error'=>$error));
+    }
     
+    public function statusAction($conversion)
+    { 
+      return $this->render('AnytvDashboardBundle:Conversion:status.html.twig', array('conversion'=>$conversion, 'error'=>''));    
+    }
 }
