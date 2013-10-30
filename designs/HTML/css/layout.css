@@ -318,7 +318,7 @@ padding: 30px 0 40px 0;
 .video-container {
 	display: none;
 }
-}bra
+}
 
 @media (min-width: 480px) and (max-width: 639px) {
 	.video-container {
@@ -351,6 +351,7 @@ padding: 30px 0 40px 0;
 	padding-top: 30px; 
 	height: 0; 
 	overflow: hidden;
+	background: url('../images/mac-monitor.png') no-repeat top;
 }
 
 .video-container iframe,
