@@ -10,7 +10,7 @@
         {% block favicon %}
           <link rel="shortcut icon" href="{{ asset('faviconanytv.ico') }}" />
         {% endblock %}
-        <title>{% block title %}Any.TV{% endblock %}</title>
+        <title>{% block title %}any.TV{% endblock %}</title>
         {% block stylesheets %}
           <link href="{{ asset('bundles/anytvmain/css/layout.css') }}" rel="stylesheet" />
           <link href="{{ asset('bundles/anytvmain/css/normalize.css') }}" rel="stylesheet" />
@@ -49,8 +49,9 @@
           <div style="padding-top: 5px;" class="collapse navbar-collapse navbar-ex1-collapse atv-sites">        
             <ul class="nav navbar-nav navbar-left">    
               <li><a class="lnk-blue" href="{{ path('anytv_main_homepage') }}">any.TV</a></li>
-              <li><a class="lnk-yellow" href="{{ path('anytv_dashboard_homepage') }}">{% trans %}dashboard{% endtrans %}</a></li>
-              <li><a class="lnk-red" href="http://www.mmo.tm" target="_blank">mmo</a></li>
+              <li><a class="lnk-yellow" href="{{ path('anytv_dashboard_homepage') }}">{% trans %}Dashboard.tm{% endtrans %}</a></li>
+              <li><a class="lnk-red" href="http://www.games.tm" target="_blank">Games.tm</a></li>
+              <li><a class="lnk-red" href="http://www.heartbeat.tm" target="_blank">Heartbeat.tm</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li>
@@ -58,7 +59,7 @@
                 {% if(app.user) %}
                   <p class='navbar-text pull-right'>{% trans %}You're logged in as{% endtrans %} {{ app.user }} | <a href="{{ path('logout') }}" class="navbar-link" title="{% trans %}Logout{% endtrans %}">{% trans %}Logout{% endtrans %}</a></p>
                 {% else %}
-                  <a href="{{ path('login') }}" class="log-btn mrgn-left">{% trans %}Login{% endtrans %}</a>
+                  <a href="{{ path('anytv_dashboard_homepage') }}" class="log-btn mrgn-left">{% trans %}Sign in{% endtrans %}</a>
                 {% endif %}
                 {% endblock %}
               </li> 

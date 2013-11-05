@@ -23,27 +23,19 @@ class TestCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $say = $input->getArgument('say');
-        if ($say) {
-            $text = 'Saying... '.$say;
-        } else {
-            $text = 'Saying...';
-        }
+        
+        $text = 'Testing... ';
+        if ($say) 
+        {
+            $text .= $say;
+        } 
 
         if ($input->getOption('yell')) {
             $text = strtoupper($text);
         }
-
-        $output->writeln($text);
         
-        $mailer = $this->getContainer()->get('mailer');
-        
-        $message = \Swift_Message::newInstance()
-                  //->setContentType('text/html')
-                  ->setSubject('Test email')
-                  ->setFrom('support@any.tv', 'any.TV')
-                  ->setTo('dennis@any.tv')
-                  ->setBody('This is a test email for Dennis.');
-            
-                $mailer->send($message);  
+        $kernel = $this->getApplication()->getKernel();
+                
+        $output->writeln($text.' - '.$kernel->getEnvironment());
     }
 }

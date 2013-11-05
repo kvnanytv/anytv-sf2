@@ -22,30 +22,28 @@
           {% endfor %}
     
     <p>&nbsp;</p>
-    <div style="margin-bottom: 20px;display: none">
+    <div style="margin-bottom: 20px;display:none">
       
-      {{ form_start(form, {'action': path('referrals'), 'method': 'POST'}) }}
+      {{ form_start(form, {'action': path('signup_answers'), 'method': 'POST'}) }}
          {{ form_errors(form) }}
-         {{ form_widget(form.referral_update) }}
+         {{ form_widget(form.signup_answer_update) }}
        {{ form_end(form) }}
     </div>
 
-    {% if(referrals) %}
+    {% if(signup_answers) %}
       <table border="1" cellspacing="15" cellpadding="15">
         <tr>
-            <th>ID</th>
-         <th>{% trans %}Date{% endtrans %}</th>
-         <th>{% trans %}Referring Affiliate{% endtrans %}</th>
-         <th>{% trans %}Referred Affiliate{% endtrans %}</th>
-         <th>{% trans %}Commission{% endtrans %}</th>
+         <th>ID</th>
+         <th>{% trans %}Affiliate{% endtrans %}</th>
+         <th>{% trans %}Question{% endtrans %}</th>
+         <th>{% trans %}Answer{% endtrans %}</th>
        </tr>
-       {% for referral in referrals %}
+       {% for signup_answer in signup_answers %}
          <tr>
-           <td>{{ referral.id }}</td>
-           <td>{{ referral.getDateAsString() }}</td>
-           <td><a href="{{ path('affiliate_view', { 'id' : referral.referrer.id }) }}" title="{{ referral.referrer }}">{{ referral.referrer }}</a></td>
-           <td><a href="{{ path('affiliate_view', { 'id' : referral.referred.id }) }}" title="{{ referral.referred }}">{{ referral.referred }}</a></td>
-           <td>${{ referral.amount }}</td>
+           <td>{{ signup_answer.answerId }}</td>
+           <td><a href="{{ path('affiliate_view', { 'id' : signup_answer.affiliate.id }) }}" title="">{{ signup_answer.affiliate }}</a></td>
+           <td>{{ signup_answer.question }}</a></td>
+           <td>{{ signup_answer.answer }}</td>
          </tr>
        {% endfor %} 
       </table>
@@ -54,17 +52,17 @@
       {% if (total_pages > 1) %}
         <ul class="pagination">
         {% if(page > 1) %}
-          <li><a href="{{ path('referrals', {'page':(page-1)}) }}"  title="{{ (page-1) }}">&laquo;</a></li>
+          <li><a href="{{ path('signup_answers', {'page':(page-1)}) }}"  title="{{ (page-1) }}">&laquo;</a></li>
         {% endif %}
         {% for i in 1..total_pages if((page-i)|abs < 8) %}
           {% if(page == i) %}
             <li class="active"><span>{{ i }}<span class="sr-only">(current)</span></span></li>
           {% else %}
-            <li><a href="{{ path('referrals', {'page':i}) }}" title="{{ i }}">{{ i }}</a></li>
+            <li><a href="{{ path('signup_answers', {'page':i}) }}" title="{{ i }}">{{ i }}</a></li>
           {% endif %}
         {% endfor %}
         {% if(page < total_pages) %}
-          <li><a href="{{ path('referrals', {'page':(page+1)}) }}" title="{{ (page+1) }}">&raquo;</a></li>
+          <li><a href="{{ path('signup_answers', {'page':(page+1)}) }}" title="{{ (page+1) }}">&raquo;</a></li>
         {% endif %}
         </ul>
       {% endif %}

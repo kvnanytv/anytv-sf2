@@ -34,7 +34,7 @@ class AffiliateController extends Controller
         ->add('affiliate_paypal', 'checkbox', array('label'=>$translator->trans('Paypal Email'), 'required'=>false))
         ->add('affiliate_status', 'choice', array('required' => true, 'choices' => array('active'=>'active', 'pending'=>'pending', 'deleted'=>'deleted', 'blocked'=>'blocked', 'rejected'=>'rejected'), 'label'=>$translator->trans('Status')))
         ->add('affiliate_search', 'submit', array('label'=>$translator->trans('search')))
-        ->add('affiliate_update', 'submit', array('label'=>$translator->trans('update')))
+        //->add('affiliate_update', 'submit', array('label'=>$translator->trans('update')))
         ->add('affiliate_update_paypal', 'submit', array('label'=>$translator->trans('update paypal')))
         ->add('affiliate_update_referrer', 'submit', array('label'=>$translator->trans('update referrer')))
         ->getForm();
@@ -160,6 +160,12 @@ class AffiliateController extends Controller
                 
                 //@todo set the referrer on update
                 $affiliate->setReferralId($affiliate_object->referral_id);
+                
+                if($affiliate_object->referral_id && ($referrer = $repository->findOneBy(array('affiliateId'=>$affiliate_object->referral_id))))
+                {
+                  $affiliate->setReferrer($referrer);
+                }
+                $affiliate->setReferrerRequested(true);
                 
                 $affiliate->setAffiliateTierId($affiliate_object->affiliate_tier_id); 
                 

@@ -297,6 +297,19 @@ referrals:
         _locale:  %anytv.locales%
         page:  \d+
         
+signup_questions:
+    path:      /{_locale}/admin/signup_questions
+    defaults:  { _controller: AnytvDashboardBundle:SignupQuestion:index, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
+signup_answers:
+    path:      /{_locale}/admin/signup_answers/{page}
+    defaults:  { _controller: AnytvDashboardBundle:SignupAnswer:index, _locale: en, page: 1 }
+    requirements:
+        _locale:  %anytv.locales%
+        page:  \d+
+        
 faqs:
     path:      /{_locale}/admin/faq/{page}
     defaults:  { _controller: AnytvDashboardBundle:Faq:index, _locale: en, page: 1 }

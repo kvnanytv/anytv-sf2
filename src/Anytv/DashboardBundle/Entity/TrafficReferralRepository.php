@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class TrafficReferralRepository extends EntityRepository
 {
-    public function findAllTrafficReferrals($page, $items_per_page, $order_by, $order, $stat_date)
+    public function findAllTrafficReferrals($page, $items_per_page, $order_by, $order, $stat_date = null)
     {
         $first_result = ($items_per_page * ($page-1));
         
@@ -21,8 +21,8 @@ class TrafficReferralRepository extends EntityRepository
           ->from('Anytv\DashboardBundle\Entity\TrafficReferral', 'tr')
           ->leftJoin('tr.affiliate', 'a')
           ->leftJoin('tr.offer', 'o')
-          ->where("tr.statDate = :stat_date")
-          ->setParameter('stat_date', $stat_date)
+          //->where("tr.statDate = :stat_date")
+          //->setParameter('stat_date', $stat_date)
           ->setFirstResult($first_result)
           ->setMaxResults($items_per_page)
           ->orderBy('tr.'.$order_by, $order)
@@ -31,12 +31,12 @@ class TrafficReferralRepository extends EntityRepository
         return $query->getResult();
     }
     
-    public function countAllTrafficReferrals($stat_date)
+    public function countAllTrafficReferrals($stat_date = null)
     {    
         $query = $this->createQueryBuilder('tr')
           ->select('count(tr.id)')
-          ->where("tr.statDate = :stat_date")
-          ->setParameter('stat_date', $stat_date)
+          //->where("tr.statDate = :stat_date")
+          //->setParameter('stat_date', $stat_date)
           ->getQuery();
         
         return $query->getSingleScalarResult();
@@ -57,5 +57,14 @@ class TrafficReferralRepository extends EntityRepository
           ->getQuery();
         
         return $query->getResult();
+    }
+    
+    public function getMaxTrafficReferralDate()
+    {    
+        $query = $this->createQueryBuilder('tr')
+                      ->select('max(tr.statDate)')
+                      ->getQuery();
+        
+        return $query->getSingleScalarResult();
     }
 }

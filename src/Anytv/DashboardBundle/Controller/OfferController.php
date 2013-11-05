@@ -22,7 +22,7 @@ class OfferController extends Controller
          ->add('offer_keyword', 'text', array('required'=>false))
          ->add('offer_status', 'choice', array('required' => true, 'choices' => array('active'=>'active', 'paused'=>'paused', 'pending'=>'pending', 'expired'=>'expired', 'deleted'=>'deleted')))
          ->add('offer_search', 'submit', array('label'=>$translator->trans('search')))
-         ->add('offer_update', 'submit', array('label'=>$translator->trans('update')))
+         //->add('offer_update', 'submit', array('label'=>$translator->trans('update')))
          ->getForm();
         
         $form->handleRequest($request);

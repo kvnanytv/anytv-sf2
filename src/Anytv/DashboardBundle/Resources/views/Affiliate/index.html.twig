@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-lg-12">
         
-          <h1 class="title">{{ title|upper }}</h1><span>last affiliate id = {{ max_affiliate_id }}</span>
+          <h1 class="title">{{ title|upper }}</h1><span style="display: none">last affiliate id = {{ max_affiliate_id }}</span>
           
           {% for flashMessage in app.session.flashbag.get('flash_message') %}
             <div class="alert alert-danger alert-dismissable">
@@ -40,7 +40,7 @@
          {{ form_errors(form.affiliate_status) }}
          {{ form_widget(form.affiliate_status, {'attr': {'class': 'affiliate_status_field'}}) }}
          {{ form_widget(form.affiliate_search) }}
-         {{ form_widget(form.affiliate_update) }}
+         
          {{ form_widget(form.affiliate_update_paypal) }}
          {{ form_widget(form.affiliate_update_referrer) }}
        {{ form_end(form) }}

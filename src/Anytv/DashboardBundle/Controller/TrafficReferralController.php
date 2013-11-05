@@ -97,13 +97,13 @@ class TrafficReferralController extends Controller
         
       $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:TrafficReferral');
             
-      $traffic_referral_date = $session->get('traffic_referral_date', new \DateTime(date('Y-m-d')));
+      //$traffic_referral_date = $session->get('traffic_referral_date', new \DateTime(date('Y-m-d')));
       $items_per_page = 30;
-      $order_by = 'clicks';
+      $order_by = 'id';
       $order = 'DESC';
         
-      $traffic_referrals = $repository->findAllTrafficReferrals($page, $items_per_page, $order_by, $order, $traffic_referral_date);
-      $total_traffic_referrals = $repository->countAllTrafficReferrals($traffic_referral_date);
+      $traffic_referrals = $repository->findAllTrafficReferrals($page, $items_per_page, $order_by, $order);
+      $total_traffic_referrals = $repository->countAllTrafficReferrals();
       $total_pages = ceil($total_traffic_referrals / $items_per_page);
         
       return $this->render('AnytvDashboardBundle:TrafficReferral:index.html.twig', array('title'=>$translator->trans('Traffic Referrals'), 'traffic_referrals'=>$traffic_referrals, 'total_traffic_referrals'=>$total_traffic_referrals, 'page'=>$page, 'total_pages'=>$total_pages, 'form'=>$form->createView()));

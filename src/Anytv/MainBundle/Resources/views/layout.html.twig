@@ -1,7 +1,5 @@
 {% extends '::base.html.twig' %}
 
-{% block title 'Any.TV' %}
-
 {% block submenu %}
 <div id="sub-nav">
 <div class="container">              
@@ -13,6 +11,7 @@
 </ul>
 {% else %}
 <ul id="nav">
+  <li><a href="{{ path('faq') }}" title="{% trans %}FAQ{% endtrans %}">{% trans %}FAQ{% endtrans %}</a></li>
   <li><a href="{{ path('about') }}" title="{% trans %}What is any.TV?{% endtrans %}">{% trans %}What is any.TV?{% endtrans %}</a></li>
   <li><a href="{{ path('branding_kit') }}" title="{% trans %}Branding Kit{% endtrans %}">{% trans %}Branding Kit{% endtrans %}</a></li>
   <li><a href="http://www.games.tm" target="_blank" title="{% trans %}Games List{% endtrans %}">{% trans %}Games List{% endtrans %}</a></li>
@@ -20,7 +19,6 @@
   <li><a href="{{ path('recruiter_handbook') }}" title="{% trans %}Recruiter Handbook{% endtrans %}">{% trans %}Recruiter Handbook{% endtrans %}</a></li>
   <li><a href="{{ path('join_our_twitch_team') }}" title="{% trans %}Join our Twitch Team!{% endtrans %}">{% trans %}Join our Twitch Team!{% endtrans %}</a></li>
   <li><a href="{{ path('staff') }}" title="{% trans %}Staff{% endtrans %}">{% trans %}Staff{% endtrans %}</a></li>
-  <li><a href="{{ path('faq') }}" title="{% trans %}FAQ{% endtrans %}">{% trans %}FAQ{% endtrans %}</a></li>
 </ul>
 {% endif %}
 </nav>

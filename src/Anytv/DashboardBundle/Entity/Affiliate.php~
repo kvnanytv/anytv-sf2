@@ -153,6 +153,13 @@ class Affiliate
      * @ORM\Column(name="paypal_email_modified", type="datetime", nullable=true)
      */
     private $paypalEmailModified;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="signup_answers_requested", type="boolean")
+     */
+    private $signupAnswersRequested;
 
     /**
      * @var integer
@@ -214,6 +221,11 @@ class Affiliate
     private $referredReferrals;
     
     /**
+     * @ORM\OneToMany(targetEntity="SignupAnswer", mappedBy="affiliate")
+     */
+    private $signupAnswers;
+    
+    /**
      * @ORM\OneToMany(targetEntity="Referral", mappedBy="referrer")
      */
     private $referrerReferrals;
@@ -227,8 +239,10 @@ class Affiliate
         $this->wantsAlerts = true;
         $this->paypalEmailRequested = false;
         $this->referrerRequested = false;
+        $this->signupAnswersRequested = false;
         $this->referredReferrals = new ArrayCollection();
         $this->referrerReferrals = new ArrayCollection();
+        $this->signupAnswers = new ArrayCollection();
     }
     
     /**
@@ -689,29 +703,6 @@ class Affiliate
     public function getPaymentTerms()
     {
         return $this->paymentTerms;
-    }
-
-    /**
-     * Set w9Filed
-     *
-     * @param boolean $w9Filed
-     * @return Affiliate
-     */
-    public function setW9Filed($w9Filed)
-    {
-        $this->w9Filed = $w9Filed;
-    
-        return $this;
-    }
-
-    /**
-     * Get w9Filed
-     *
-     * @return boolean 
-     */
-    public function getW9Filed()
-    {
-        return $this->w9Filed;
     }
 
     /**
@@ -1243,5 +1234,61 @@ class Affiliate
     public function getReferrerReferrals()
     {
         return $this->referrerReferrals;
+    }
+
+    /**
+     * Set signupAnswersRequested
+     *
+     * @param boolean $signupAnswersRequested
+     * @return Affiliate
+     */
+    public function setSignupAnswersRequested($signupAnswersRequested)
+    {
+        $this->signupAnswersRequested = $signupAnswersRequested;
+    
+        return $this;
+    }
+
+    /**
+     * Get signupAnswersRequested
+     *
+     * @return boolean 
+     */
+    public function getSignupAnswersRequested()
+    {
+        return $this->signupAnswersRequested;
+    }
+
+    /**
+     * Add signupAnswers
+     *
+     * @param \Anytv\DashboardBundle\Entity\SignupAnswer $signupAnswers
+     * @return Affiliate
+     */
+    public function addSignupAnswer(\Anytv\DashboardBundle\Entity\SignupAnswer $signupAnswers)
+    {
+        $this->signupAnswers[] = $signupAnswers;
+    
+        return $this;
+    }
+
+    /**
+     * Remove signupAnswers
+     *
+     * @param \Anytv\DashboardBundle\Entity\SignupAnswer $signupAnswers
+     */
+    public function removeSignupAnswer(\Anytv\DashboardBundle\Entity\SignupAnswer $signupAnswers)
+    {
+        $this->signupAnswers->removeElement($signupAnswers);
+    }
+
+    /**
+     * Get signupAnswers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSignupAnswers()
+    {
+        return $this->signupAnswers;
     }
 }

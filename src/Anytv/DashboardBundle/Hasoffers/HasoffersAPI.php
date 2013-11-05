@@ -91,15 +91,20 @@ class HasoffersAPI
         return $result['response'];
     }
     
-    public function getTrafficReferrals($date)
+    public function getTrafficReferrals($max_traffic_referral_date)
     {
         $this->api_params['Target'] = 'Report';
         $this->api_params['Method'] = 'getReferrals';
+        
+        if($max_traffic_referral_date)
+        {
+          $this->api_params['filters'] = array('Stat.date' => array('conditional' => 'GREATER_THAN_OR_EQUAL_TO', 'values' => $max_traffic_referral_date));    
+        }
+        
         $this->api_params['fields'] = array('Stat.url', 'Stat.affiliate_id', 'Stat.offer_id', 'Stat.clicks', 'Stat.conversions', 'Stat.count', 'Stat.date');
         $this->api_params['groups'] = array('Stat.url', 'Stat.affiliate_id', 'Stat.offer_id');
-        $this->api_params['filters'] = array('Stat.date' => array('conditional' => 'EQUAL_TO', 'values' => $date));
-        $this->api_params['sort'] = array('Stat.clicks' => 'DESC');
-        $this->api_params['limit'] = 1000000;
+        $this->api_params['sort'] = array('Stat.date' => 'ASC');
+        $this->api_params['limit'] = 1000;
         
         $url = $this->api_url . http_build_query( $this->api_params );
  
@@ -402,5 +407,54 @@ class HasoffersAPI
         $data = $response['data'];
         
         return $data;  
+    }
+    
+    public function getSignupQuestions()
+    {
+        $this->api_params['Target'] = 'Affiliate';
+        $this->api_params['Method'] = 'getSignupQuestions';
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = (array) json_decode( $result );
+        $response = (array) $result['response'];
+        $data = (array) $response['data'];
+        
+        return $data;
+    }
+    
+    public function createSignupQuestionAnswer($affiliate_id, $signup_question_id, $answer)
+    {
+        $this->api_params['Target'] = 'Affiliate';
+        $this->api_params['Method'] = 'createSignupQuestionAnswer';
+        $this->api_params['id'] = $affiliate_id;
+        $this->api_params['data'] = array('question_id'=>$signup_question_id, 'answer'=>$answer);
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = (array) json_decode( $result );
+        $response = (array) $result['response'];
+        
+        return $response;
+    }
+    
+    public function getSignupAnswers($affiliate_id)
+    {
+        $this->api_params['Target'] = 'Affiliate';
+        $this->api_params['Method'] = 'getSignupAnswers';
+        $this->api_params['id'] = $affiliate_id;
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = (array) json_decode( $result );
+        $response = $result['response'];
+        
+        return $response;
     }
 }
