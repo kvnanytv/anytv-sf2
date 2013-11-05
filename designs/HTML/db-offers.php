@@ -58,10 +58,14 @@
 										</a>
 									</li>
 									<li><a href="db-profile.php">My Profile</a></li>
-									<li class="active"><a href="#">Offers</a></li>
-									<li><a href="#">Reports</a></li>						  
+									<li class="active"><a href="#">Offers</a></li>									
 								</ul>
+
 							</div>
+
+						</div>
+						<div class="db-old-btn">
+							<a href="#" class="btn btn-default btn-lg">Old Dashboard</a>
 						</div>
 					</div>
 					<div class="cl-20"></div>

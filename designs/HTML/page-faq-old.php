@@ -151,7 +151,7 @@
 		</div>
 	</div>
 	
-<?php include 'pagewrap-footer.php'; ?>
+<?php include 'footer-pagewrap.php'; ?>
 
 <script>
 	function fixDiv() {
