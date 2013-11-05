@@ -97,7 +97,12 @@ class TrafficReferral
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updatedAt;
-
+    
+    public function __construct()
+    {
+        $this->likes = 0;
+        $this->dislikes = 0;
+    }
 
     /**
      * Get id

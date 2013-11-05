@@ -20,7 +20,7 @@ class OfferGroupController extends Controller
         ->add('offer_group_keyword', 'text', array('required'=>false))
         ->add('offer_group_status', 'choice', array('required' => true, 'choices' => array('active'=>'active', 'deleted'=>'deleted')))
         ->add('offer_group_search', 'submit', array('label'=>$translator->trans('search')))
-        ->add('offer_group_update', 'submit', array('label'=>$translator->trans('update')))
+        //->add('offer_group_update', 'submit', array('label'=>$translator->trans('update')))
         ->getForm();
         
       $form->handleRequest($request);

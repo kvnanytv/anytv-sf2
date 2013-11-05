@@ -83,12 +83,14 @@
 "You're logged in as": Je bent aangemeld als
 'Logout': Afmelden
 'Login': Aanmelden
+'Sign in': Aanmelden
 'FAQ': FAQ
 'A new kind of YouTube Network': Een nieuw soort YouTube netwerk
 'Don’t unpartner from your YouTube Network': On-partner niet van je huidige YouTube netwerk
 'Join any.TV': Sluit je aan bij any.TV
 'All': All
 'Dashboard': Dashboard
+'Dashboard.tm': Dashboard.tm
 'dashboard': dashboard
 'Password': Wachtwoord
 'Password: *': 'Wachtwoord: *'
@@ -130,7 +132,7 @@
 'Copy Link': Link kopiëren
 'close': sluiten
 'My Videos': Mijn videos
-'chinese': Chinees
+'Chinese': Chinees
 'Preview URL': Voorproef URL
 'Offer Groups': Offer Groups
 'Photo': Photo
@@ -185,4 +187,12 @@
 'Lookup Account': Lookup Account
 'Pages': Pages
 'Paypal email': Paypal email
+'Get paid $5 per video submitted to any.TV!': Get paid $5 per video submitted to any.TV!
+'Yes': Ja
+'No': Nee
+"Your YouTube Channels (one on each line, write None if you don't have one): *": 'Jouw YouTube kanalen (typ "none" als je er geen hebt): *'
+'YouTube Network (who are you partnered with on YouTube, write None if not partnered): *': 'YouTube netwerk (met wie je een contract hebt getekend. Typ "none" als je er geen hebt): *'
+'Do you use Twitch or live stream?: *': 'Gebruik je Twitch of stream je eens?: *'
+'Link to your best video? (write None if you never made a video): *': 'Link naat je beste video? (Typ "none" als je er geen hebt): *'
+'Skype Name (write None if you do not use Skype): *': 'Skype gebruikersnaam (typ "none" als je er geen hebt): *'
 

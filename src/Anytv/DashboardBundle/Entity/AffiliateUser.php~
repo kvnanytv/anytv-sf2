@@ -438,6 +438,13 @@ class AffiliateUser implements UserInterface, \Serializable
     /**
      * @var boolean
      *
+     * @ORM\Column(name="is_editor", type="boolean")
+     */
+    private $isEditor;
+    
+    /**
+     * @var boolean
+     *
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
@@ -445,6 +452,7 @@ class AffiliateUser implements UserInterface, \Serializable
     public function __construct()
     {
         $this->isAdmin = false;
+        $this->isEditor = false;
         $this->isActive = true;
         $this->salt = md5(uniqid(null, true));
         $this->secret_code = md5(uniqid(null, true));
@@ -913,6 +921,11 @@ class AffiliateUser implements UserInterface, \Serializable
         if($this->isAdmin)
         {
           $roles[] = 'ROLE_ADMIN';   
+        }
+        
+        if($this->isEditor)
+        {
+          $roles[] = 'ROLE_EDITOR';   
         }
         
         return $roles;
@@ -1403,5 +1416,97 @@ class AffiliateUser implements UserInterface, \Serializable
     public function getLastConversionsAccess()
     {
         return $this->lastConversionsAccess;
+    }
+
+    /**
+     * Set youtubeNetwork
+     *
+     * @param string $youtubeNetwork
+     * @return AffiliateUser
+     */
+    public function setYoutubeNetwork($youtubeNetwork)
+    {
+        $this->youtubeNetwork = $youtubeNetwork;
+    
+        return $this;
+    }
+
+    /**
+     * Get youtubeNetwork
+     *
+     * @return string 
+     */
+    public function getYoutubeNetwork()
+    {
+        return $this->youtubeNetwork;
+    }
+
+    /**
+     * Set youtubeBestVideo
+     *
+     * @param string $youtubeBestVideo
+     * @return AffiliateUser
+     */
+    public function setYoutubeBestVideo($youtubeBestVideo)
+    {
+        $this->youtubeBestVideo = $youtubeBestVideo;
+    
+        return $this;
+    }
+
+    /**
+     * Get youtubeBestVideo
+     *
+     * @return string 
+     */
+    public function getYoutubeBestVideo()
+    {
+        return $this->youtubeBestVideo;
+    }
+
+    /**
+     * Set useTwitchOrLiveStream
+     *
+     * @param boolean $useTwitchOrLiveStream
+     * @return AffiliateUser
+     */
+    public function setUseTwitchOrLiveStream($useTwitchOrLiveStream)
+    {
+        $this->useTwitchOrLiveStream = $useTwitchOrLiveStream;
+    
+        return $this;
+    }
+
+    /**
+     * Get useTwitchOrLiveStream
+     *
+     * @return boolean 
+     */
+    public function getUseTwitchOrLiveStream()
+    {
+        return $this->useTwitchOrLiveStream;
+    }
+
+    /**
+     * Set isEditor
+     *
+     * @param boolean $isEditor
+     * @return AffiliateUser
+     */
+    public function setIsEditor($isEditor)
+    {
+        $this->isEditor = $isEditor;
+    
+        return $this;
+    }
+
+    /**
+     * Get isEditor
+     *
+     * @return boolean 
+     */
+    public function getIsEditor()
+    {
+        return $this->isEditor;
     }
 }

@@ -438,6 +438,13 @@ class AffiliateUser implements UserInterface, \Serializable
     /**
      * @var boolean
      *
+     * @ORM\Column(name="is_editor", type="boolean")
+     */
+    private $isEditor;
+    
+    /**
+     * @var boolean
+     *
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
@@ -445,6 +452,7 @@ class AffiliateUser implements UserInterface, \Serializable
     public function __construct()
     {
         $this->isAdmin = false;
+        $this->isEditor = false;
         $this->isActive = true;
         $this->salt = md5(uniqid(null, true));
         $this->secret_code = md5(uniqid(null, true));
@@ -913,6 +921,11 @@ class AffiliateUser implements UserInterface, \Serializable
         if($this->isAdmin)
         {
           $roles[] = 'ROLE_ADMIN';   
+        }
+        
+        if($this->isEditor)
+        {
+          $roles[] = 'ROLE_EDITOR';   
         }
         
         return $roles;
@@ -1472,5 +1485,28 @@ class AffiliateUser implements UserInterface, \Serializable
     public function getUseTwitchOrLiveStream()
     {
         return $this->useTwitchOrLiveStream;
+    }
+
+    /**
+     * Set isEditor
+     *
+     * @param boolean $isEditor
+     * @return AffiliateUser
+     */
+    public function setIsEditor($isEditor)
+    {
+        $this->isEditor = $isEditor;
+    
+        return $this;
+    }
+
+    /**
+     * Get isEditor
+     *
+     * @return boolean 
+     */
+    public function getIsEditor()
+    {
+        return $this->isEditor;
     }
 }

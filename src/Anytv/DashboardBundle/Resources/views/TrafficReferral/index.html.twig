@@ -16,7 +16,7 @@
           <h1 class="title">{{ title|upper }}</h1>
     
     <p>&nbsp;</p>
-    <div style="margin-bottom: 20px">
+    <div style="margin-bottom: 20px;display:none">
       {{ form_start(form, {'action': path('traffic_referrals'), 'method': 'POST'}) }}
          {{ form_errors(form) }}
          {{ form_errors(form.traffic_referral_date) }}

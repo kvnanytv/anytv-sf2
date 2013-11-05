@@ -18,7 +18,7 @@ privacy_policy:
         
 signup:
     path:      /signup/{id}/{_locale}
-    defaults:  { _controller: AnytvDashboardBundle:Default:signup, _locale: en, id: 1000 }
+    defaults:  { _controller: AnytvDashboardBundle:Default:signup, _locale: en, id: 0 }
     requirements:
         _locale:  %anytv.locales%
         id:  \d+
@@ -179,14 +179,21 @@ offer_view:
     defaults:  { _controller: AnytvDashboardBundle:Offer:view, _locale: en }
     requirements:
         _locale:  %anytv.locales%
-        page:  \d+
+        id:  \d+
        
 offer_edit:
     path:      /{_locale}/admin/offers/edit/{id}
     defaults:  { _controller: AnytvDashboardBundle:Offer:edit, _locale: en }
     requirements:
         _locale:  %anytv.locales%
-        page:  \d+
+        id:  \d+
+        
+offer_hasoffer_update:
+    path:      /{_locale}/admin/offers/update/{id}
+    defaults:  { _controller: AnytvDashboardBundle:Offer:updateFromHasoffers, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        id:  \d+
         
 traffic_referrals:
     path:      /{_locale}/admin/traffic_referrals/{page}
@@ -276,9 +283,29 @@ conversions:
         _locale:  %anytv.locales%
         page:  \d+
         
+conversion_change_status:
+    path:      /{_locale}/admin/conversions/changeStatus/{id}
+    defaults:  { _controller: AnytvDashboardBundle:Conversion:updateConversionStatus, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        id:  \d+
+        
 referrals:
     path:      /{_locale}/admin/referrals/{page}
     defaults:  { _controller: AnytvDashboardBundle:Referral:index, _locale: en, page: 1 }
+    requirements:
+        _locale:  %anytv.locales%
+        page:  \d+
+        
+signup_questions:
+    path:      /{_locale}/admin/signup_questions
+    defaults:  { _controller: AnytvDashboardBundle:SignupQuestion:index, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
+signup_answers:
+    path:      /{_locale}/admin/signup_answers/{page}
+    defaults:  { _controller: AnytvDashboardBundle:SignupAnswer:index, _locale: en, page: 1 }
     requirements:
         _locale:  %anytv.locales%
         page:  \d+

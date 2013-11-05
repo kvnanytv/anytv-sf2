@@ -16,8 +16,7 @@
       <table class="table table-striped">							
         <thead>
           <tr>
-            <th>{% trans %}Date{% endtrans %}</th>
-            <th>{% trans %}Referrer{% endtrans %}</th>
+            <th>{% trans %}Time{% endtrans %}</th>
             <th>{% trans %}Affiliate{% endtrans %}</th>
 	    <th>{% trans %}Amount{% endtrans %}</th>
           </tr>
@@ -26,7 +25,6 @@
           {% for referral in referrals %}
 	  <tr>
             <td>{{ referral.getDateAsString() }}</td>
-            <td>{{ referral.referrer }}</td>
             <td>{{ referral.referred }}</td>
             <td>${{ referral.amount }}</td>
 	  </tr>

@@ -230,9 +230,17 @@ class DefaultController extends Controller
           return $this->redirect($this->generateUrl('anytv_dashboard_homepage'));  
         }
         
+        $session = $this->get('session');
+        
+        if(!$session->get('referral_id'))
+        {
+          $session->set('referral_id', $id);
+        }
+        
         $country_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Country');
         $affiliate_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Affiliate');
         $affiliate_user_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:AffiliateUser');
+        $signup_question_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:SignupQuestion');
         $translator = $this->get('translator');
         
         $countries_choices = array();
@@ -243,9 +251,9 @@ class DefaultController extends Controller
         }
         $countries_choices['other'] = $translator->trans('Not Listed');
         
-        $defaultData = array('country' => 'HK');
+        $defaultData = array('country' => 'HK', 'use_twitch_or_livestream'=>'none');
         
-        $form = $this->createFormBuilder($defaultData)    
+        $form_builder = $this->createFormBuilder($defaultData)    
           ->add('company', 'text', array('label'=>$translator->trans('Company / Name: *')))
           ->add('address1', 'text', array('label'=>$translator->trans('Address 1: *')))
           ->add('address2', 'text', array('label'=>$translator->trans('Address 2:'), 'required'=>false))
@@ -259,10 +267,38 @@ class DefaultController extends Controller
           ->add('confirm_password', 'password', array('label'=>$translator->trans('Confirm Password: *')))
           ->add('first_name', 'text', array('label'=>$translator->trans('First name: *')))
           ->add('last_name', 'text', array('label'=>$translator->trans('Last name: *')))
-          ->add('title', 'text', array('label'=>$translator->trans('Title:'), 'required'=>false))
-          ->add('terms', 'checkbox')
-          ->add('signup', 'submit', array('label'=>$translator->trans('CREATE AN ACCOUNT')))
-          ->getForm();
+          ->add('title', 'text', array('label'=>$translator->trans('Title:'), 'required'=>false));
+                
+        $signup_questions = $signup_question_repository->findAll();
+                
+        foreach($signup_questions as $signup_question)
+        {
+          switch($signup_question->getQuestionId())
+          {
+            case 2:
+                $form_builder->add('youtube_channels', 'textarea', array('label'=>$translator->trans('Your YouTube Channels (one on each line, write None if you don\'t have one): *')));
+                break;
+            case 4:
+                $form_builder->add('youtube_network', 'textarea', array('label'=>$translator->trans('YouTube Network (who are you partnered with on YouTube, write None if not partnered): *')));
+                break;
+            case 6:
+                $form_builder->add('use_twitch_or_livestream', 'choice', array('choices' => array('none'=>'---', 'Yes'=>'Yes', 'No'=>'No'), 'label'=>$translator->trans('Do you use Twitch or live stream?: *')));
+                break;
+            case 8:
+                $form_builder->add('youtube_best_video', 'textarea', array('label'=>$translator->trans('Link to your best video? (write None if you never made a video): *')));
+                break;
+            case 10:
+                $form_builder->add('skype_name', 'textarea', array('label'=>$translator->trans('Skype Name (write None if you do not use Skype): *')));
+                break;
+            default:
+          
+          }
+        }
+                
+        $form_builder->add('terms', 'checkbox')
+                     ->add('signup', 'submit', array('label'=>$translator->trans('CREATE AN ACCOUNT')));
+        
+        $form = $form_builder->getForm();
 
         $form->handleRequest($request);
 
@@ -351,6 +387,41 @@ class DefaultController extends Controller
             $errors[] = $translator->trans('Last Name is required.');    
           }
           
+          $youtube_channels = $data['youtube_channels'];
+          
+          if($youtube_channels == '')
+          {
+            $errors[] = $translator->trans('Your YouTube Channels (one on each line, write None if you don\'t have one): *');    
+          }
+          
+          $youtube_network = $data['youtube_network'];
+          
+          if($youtube_network == '')
+          {
+            $errors[] = $translator->trans('YouTube Network (who are you partnered with on YouTube, write None if not partnered): *');    
+          }
+          
+          $use_twitch_or_livestream = $data['use_twitch_or_livestream'];
+          
+          if($use_twitch_or_livestream == 'none')
+          {
+            $errors[] = $translator->trans('Do you use Twitch or live stream?: *');    
+          }
+          
+          $youtube_best_video = $data['youtube_best_video'];
+          
+          if($youtube_best_video == '')
+          {
+            $errors[] = $translator->trans('Link to your best video? (write None if you never made a video): *');    
+          }
+          
+          $skype_name = $data['skype_name'];
+          
+          if($skype_name == '')
+          {
+            $errors[] = $translator->trans('Skype Name (write None if you do not use Skype): *');    
+          }
+          
           $title = $data['title'];
           
           $email = $data['email'];
@@ -382,7 +453,7 @@ class DefaultController extends Controller
                                      'zipcode'=>$zipcode,
                                      'phone'=>$phone,
                                      'signup_ip'=>$request->getClientIp(),
-                                     'referral_id'=>$id
+                                     'referral_id'=>$session->get('referral_id', $id)
                                      );
              
              $affiliate_user_data = array('email' => $email,
@@ -428,7 +499,7 @@ class DefaultController extends Controller
                $affiliate->setWantsAlerts($affiliate_object->wants_alerts);
                $affiliate->setReferralId($affiliate_object->referral_id);
                
-               if($affiliate_object->referral_id && ($referrer = $affiliate_repository->findBy(array('affiliateId'=>$affiliate_object->referral_id))))
+               if($affiliate_object->referral_id && ($referrer = $affiliate_repository->findOneBy(array('affiliateId'=>$affiliate_object->referral_id))))
                {
                   $affiliate->setReferrer($referrer);
                }
@@ -455,6 +526,34 @@ class DefaultController extends Controller
                $manager->persist($affiliate_user);  
                
                $manager->flush();
+               
+               $session->set('referral_id', null);
+               
+               // send signup answers to hasoffers
+               if($youtube_channels)
+               {
+                 $signup_answer_response = $hasoffers->createSignupQuestionAnswer($affiliate_object->id, 2, $youtube_channels);
+               }
+               
+               if($youtube_network)
+               {
+                 $signup_answer_response = $hasoffers->createSignupQuestionAnswer($affiliate_object->id, 4, $youtube_network);
+               }
+               
+               if($use_twitch_or_livestream != 'none')
+               {
+                 $signup_answer_response = $hasoffers->createSignupQuestionAnswer($affiliate_object->id, 6, $use_twitch_or_livestream);
+               }
+          
+               if($youtube_best_video)
+               {
+                 $signup_answer_response = $hasoffers->createSignupQuestionAnswer($affiliate_object->id, 8, $youtube_best_video);
+               }
+          
+               if($skype_name)
+               {
+                 $signup_answer_response = $hasoffers->createSignupQuestionAnswer($affiliate_object->id, 10, $skype_name);
+               }
                
                return $this->redirect($this->generateUrl('login_after_register', array('username'=>$email, 'password'=>$password)));
             }

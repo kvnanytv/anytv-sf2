@@ -1,6 +1,6 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}Any.TV - {% trans %}Dashboard{% endtrans %}{% endblock %}
+{% block title %}{{ parent() }} - {% trans %}Dashboard{% endtrans %}{% endblock %}
 
 {% block stylesheets %}
   {{ parent() }}
@@ -25,34 +25,6 @@
     <img src="{{ asset('bundles/anytvdashboard/images/anytv-dashboard-logo.png') }}" alt="Any.TV Dashboard" />
   </a>
 {% endblock %}
-      
-{% block authentication %}
-  {% if(app.user) %}
-    <p class='navbar-text pull-right'>{% trans %}You're logged in as{% endtrans %} {{ app.user }} | <a href="{{ path('logout') }}" class="navbar-link" title="{% trans %}Logout{% endtrans %}">{% trans %}Logout{% endtrans %}</a></p>
-  {% endif %}
-{% endblock %}
-  
-{% block transmenu %}
-<a href="{{ path('anytv_dashboard_homepage', { _locale: app.request.get('_locale', 'en') }) }}" class="dropdown-toggle" data-toggle="dropdown">
-{% if(app.request.get('_locale', 'en') == 'zh') %}
-  {% trans %}chinese{% endtrans %}
-{% else %}
-  {% trans %}english{% endtrans %}
-{% endif %}
-&nbsp;<b class="caret"></b></a>
-<ul class="dropdown-menu dd-height">
-  <li>
-    <a href="{{ path('anytv_dashboard_homepage', { _locale: 'en' }) }}" title="{% trans %}english{% endtrans %}">
-      {% trans %}english{% endtrans %}
-    </a>
-  </li>
-  <li>
-    <a href="{{ path('anytv_dashboard_homepage', { _locale: 'zh' }) }}" title="中文 (chinese)">
-      中文 (chinese)
-    </a>
-  </li>
-</ul>
-{% endblock %}
   
 {% block submenu %}
 <div id="sub-nav" class="dashbrd">
@@ -64,19 +36,26 @@
   {% if(app.user) %}
     <li><a href="{{ path('profile_view') }}" title="{% trans %}My Profile{% endtrans %}">{% trans %}My Profile{% endtrans %}</a></li>
   {% else %}
-    <li><a href="{{ path('signup') }}" title="{% trans %}Affiliate Sign Up{% endtrans %}">{% trans %}Affiliate Sign Up{% endtrans %}</a></li>
+    <li>
+    {% if(app.session.get('referral_id')) %}
+      <a href="{{ path('signup', { 'id': app.session.get('referral_id') }) }}" title="{% trans %}Affiliate Sign Up{% endtrans %}">{% trans %}Affiliate Sign Up{% endtrans %}</a>
+    {% else %}
+      <a href="{{ path('signup') }}" title="{% trans %}Affiliate Sign Up{% endtrans %}">{% trans %}Affiliate Sign Up{% endtrans %}</a>
+    {% endif %}
+    </li>
   {% endif %}
   </ul>
 </nav>
 </div>
 </div>
   
-{% if(app.user and is_granted('ROLE_ADMIN')) %}
+{% if(app.user and (is_granted('ROLE_ADMIN') or is_granted('ROLE_EDITOR'))) %}
 <br>
 <div id="sub-nav" class="dashbrd">
 <div class="container">
 <nav class="subnav-cllps db-lnks">
   <ul id="nav">
+    {% if(is_granted('ROLE_ADMIN')) %}
     <li><a href="{{ path('advertisers') }}" title="{% trans %}Advertisers{% endtrans %}">{% trans %}Advertisers{% endtrans %}</a></li>
     <li><a href="{{ path('offer_groups') }}" title="{% trans %}Offer Groups{% endtrans %}">{% trans %}Offer Groups{% endtrans %}</a></li>
     <li><a href="{{ path('offers') }}" title="{% trans %}Offers{% endtrans %}">{% trans %}Offers{% endtrans %}</a></li>
@@ -85,8 +64,12 @@
     <li><a href="{{ path('countries') }}" title="{% trans %}Countries{% endtrans %}">{% trans %}Countries{% endtrans %}</a></li>
     <li><a href="{{ path('referrals') }}" title="{% trans %}Referrals{% endtrans %}">{% trans %}Referrals{% endtrans %}</a></li>
     <li><a href="{{ path('conversions') }}" title="{% trans %}Conversions{% endtrans %}">{% trans %}Conversions{% endtrans %}</a></li>
+    <li><a href="{{ path('signup_answers') }}" title="{% trans %}Signup Answers{% endtrans %}">{% trans %}Signup Answers{% endtrans %}</a></li>
+    {% endif %}
+    {% if(is_granted('ROLE_EDITOR')) %}
     <li><a href="{{ path('faqs') }}" title="{% trans %}FAQ{% endtrans %}">{% trans %}FAQ{% endtrans %}</a></li>
     <li><a href="{{ path('pages') }}" title="{% trans %}Pages{% endtrans %}">{% trans %}Pages{% endtrans %}</a></li>
+    {% endif %}
   </ul>
 </nav>
 </div>

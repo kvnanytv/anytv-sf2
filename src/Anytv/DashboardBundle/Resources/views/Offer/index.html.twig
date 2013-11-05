@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-lg-12">
         
-          <h1 class="title">{{ title|upper }}</h1><span>last offer id = {{ max_offer_id }}</span>
+          <h1 class="title">{{ title|upper }}</h1><span style="display: none">last offer id = {{ max_offer_id }}</span>
     
     <p>&nbsp;</p>
               
@@ -29,7 +29,7 @@
          {{ form_errors(form.offer_status) }}
          {{ form_widget(form.offer_status, {'attr': {'class': 'offer_status_field'}}) }}
          {{ form_widget(form.offer_search) }}
-         {{ form_widget(form.offer_update) }}
+         
        {{ form_end(form) }}
     </div>
                     

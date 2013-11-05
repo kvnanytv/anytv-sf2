@@ -22,7 +22,7 @@
           {% endfor %}
     
     <p>&nbsp;</p>
-    <div style="margin-bottom: 20px">
+    <div style="margin-bottom: 20px; display: none">
       
       {{ form_start(form, {'action': path('conversions'), 'method': 'POST'}) }}
          {{ form_errors(form) }}
@@ -48,7 +48,7 @@
            <td><a href="{{ path('offer_view', { 'id' : conversion.offer.id }) }}" title="{{ conversion.offer }}">{{ conversion.offer }}</a></td>
            <td><a href="{{ path('affiliate_view', { 'id' : conversion.affiliate.id }) }}" title="{{ conversion.affiliate }}">{{ conversion.affiliate }}</a></td>
            <td>{{ conversion.getCreatedAtAsString() }}</td>
-           <td>{{ conversion.status }}</td>
+           <td id="conversion_{{ conversion.id }}">{{ render(controller('AnytvDashboardBundle:Conversion:status', { 'conversion': conversion })) }}</td>
            <td>${{ conversion.payout }}</td>
            <td>${{ conversion.revenue }}</td>
            <td>${{ conversion.saleAmount }}</td>
@@ -91,4 +91,10 @@
     
 
     
+{% endblock %}
+
+
+{% block javascripts %}
+  {{ parent() }}
+  <script src="{{ asset('bundles/anytvdashboard/js/conversion.js') }}"></script>
 {% endblock %}
