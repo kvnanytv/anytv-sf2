@@ -104,7 +104,7 @@ class HasoffersAPI
         $this->api_params['fields'] = array('Stat.url', 'Stat.affiliate_id', 'Stat.offer_id', 'Stat.clicks', 'Stat.conversions', 'Stat.count', 'Stat.date');
         $this->api_params['groups'] = array('Stat.url', 'Stat.affiliate_id', 'Stat.offer_id');
         $this->api_params['sort'] = array('Stat.date' => 'ASC');
-        $this->api_params['limit'] = 1000;
+        $this->api_params['limit'] = 2000;
         
         $url = $this->api_url . http_build_query( $this->api_params );
  

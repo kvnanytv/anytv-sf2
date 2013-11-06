@@ -104,4 +104,38 @@ class AffiliateRepository extends EntityRepository
         
         return $query->getSingleScalarResult();
     }
+    
+    public function findAllAffiliatesByReferrer($referrer, $page, $items_per_page, $order_by, $order)
+    {
+        $first_result = ($items_per_page * ($page-1));
+        
+        $query = $this->createQueryBuilder('a');
+        
+        $where = "a.status = :status AND a.referrer = :referrer";
+        $params = array('status'=>'active', 'referrer'=>$referrer);
+        
+        $query = $query->where($where)
+                       ->setParameters($params)
+                       ->setFirstResult($first_result)
+                       ->setMaxResults($items_per_page)
+                       ->orderBy('a.'.$order_by, $order)
+                       ->getQuery();
+          
+        return $query->getResult();
+    }
+    
+    public function countAllAffiliatesByReferrer($referrer)
+    {    
+        $query = $this->createQueryBuilder('a')
+                      ->select('count(a.id)');
+        
+        $where = "a.status = :status AND a.referrer = :referrer";
+        $params = array('status'=>'active', 'referrer'=>$referrer);
+        
+        $query = $query->where($where)
+                       ->setParameters($params)
+                       ->getQuery(); 
+          
+        return $query->getSingleScalarResult();
+    }
 }

@@ -296,35 +296,6 @@ class ProfileController extends Controller
       
       $affiliate = $affiliate_user->getAffiliate();
       
-      //$referred_affiliates = $affiliate->getReferredAffiliates();
-      /*
-      $referred_affiliates = array();
-      
-      $hasoffers = $this->get('hasoffers');
-      $referred_affiliates_response = $hasoffers->getAffiliateCommissions($affiliate->getAffiliateId(), $page);
-      $total_pages = $referred_affiliates_response->pageCount;
-      $referred_affiliates_data = $referred_affiliates_response->data;
-      
-      foreach($referred_affiliates_data as $referred_affiliate_data)
-      {
-        $referred_affiliate_object = $referred_affiliate_data->Stat;
-            
-        $referred_affiliate = array();
-        $referred_affiliate['amount'] = $referred_affiliate_object->amount;
-        
-        if($affiliate = $affiliate_repository->findOneBy(array('affiliateId'=>$referred_affiliate_object->affiliate_id)))
-        {
-          $referred_affiliate['affiliate'] = $affiliate;    
-        }
-        else
-        {
-          $referred_affiliate['affiliate'] = null;
-        }
-              
-        $referred_affiliates[] = $referred_affiliate; 
-      }
-       */
-      
       $items_per_page = 10;
       $order_by = 'id';
       $order = 'DESC';
@@ -334,6 +305,30 @@ class ProfileController extends Controller
       $total_pages = ceil($total_referrals / $items_per_page);
 
       return $this->render('AnytvDashboardBundle:Profile:myReferrals.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'referrals'=>$referrals, 'total_pages'=>$total_pages, 'page'=>$page));
+    }
+    
+    public function myReferralListAction($page)
+    {
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Affiliate');
+      $affiliate_user = $this->getUser();
+
+      if (!$affiliate_user) {
+        throw $this->createNotFoundException(
+            'No user found'
+        );
+      }
+      
+      $affiliate = $affiliate_user->getAffiliate();
+      
+      $items_per_page = 10;
+      $order_by = 'company';
+      $order = 'ASC';
+      
+      $referred_affiliates = $repository->findAllAffiliatesByReferrer($affiliate, $page, $items_per_page, $order_by, $order);
+      $total_referred_affiliates = $repository->countAllAffiliatesByReferrer($affiliate);
+      $total_pages = ceil($total_referred_affiliates / $items_per_page);
+
+      return $this->render('AnytvDashboardBundle:Profile:myReferralList.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'referred_affiliates'=>$referred_affiliates, 'total_pages'=>$total_pages, 'page'=>$page));
     }
     
     public function myConversionsAction(Request $request, $page)

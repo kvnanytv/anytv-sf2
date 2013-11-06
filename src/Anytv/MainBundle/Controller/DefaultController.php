@@ -184,11 +184,14 @@ class DefaultController extends Controller
         return $this->render('AnytvMainBundle:Default:faq.html.twig', array('title'=>$translator->trans('FAQ'), 'faq_categories'=>$faq_categories));
     }
     
-    public function faqCategoryAction($id = null)
+    public function faqCategoryAction(Request $request, $id = null)
     {
         $faq_category_repository = $this->getDoctrine()->getRepository('AnytvMainBundle:FaqCategory');
         $faq_repository = $this->getDoctrine()->getRepository('AnytvMainBundle:Faq');
         
+        $route_params = $request->get('_route_params');
+        $locale = $route_params['_locale'];
+      
         $selected_faq_category = null;
         if($id)
         {
@@ -197,11 +200,25 @@ class DefaultController extends Controller
   
         if ($selected_faq_category) 
         {
-          $faqs = $selected_faq_category->getFaqs();
+          $faqs = $selected_faq_category->getFaqsByLocale($locale);
         }
         else
         {
-          $faqs = $faq_repository->findAll();
+          switch($locale)
+          {
+            case 'en':
+              $faqs = $faq_repository->findBy(array('isActive'=>true, 'isVisibleEn'=>true));
+              break;
+            case 'zh':
+              $faqs = $faq_repository->findBy(array('isActive'=>true, 'isVisibleZh'=>true));
+              break;
+            case 'nl':
+              $faqs = $faq_repository->findBy(array('isActive'=>true, 'isVisibleNl'=>true));
+              break;
+            case 'de':
+              $faqs = $faq_repository->findBy(array('isActive'=>true, 'isVisibleDe'=>true));
+              break;
+          }
         }
         
        

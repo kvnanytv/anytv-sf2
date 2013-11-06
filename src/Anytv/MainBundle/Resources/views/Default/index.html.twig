@@ -22,11 +22,13 @@
                   
                 </div>
                 <div class="col-lg-7">
-                
-            			<div class="video-container">
-								         <iframe src="http://www.youtube.com/embed/UCqJAZuvUS0?wmode=transparent" frameborder="0" width="560" height="315"></iframe>
-								</div>	
-                
+                  <div class="video-container">
+                    {% if(app.request.get('_locale') == 'zh') %}
+                      <iframe width="560" height="315" src="http://www.youtube.com/embed/cKwRYDu2Uic?list=PLvn_mUScn81D6-lz_CdrfCEfnT8y89USd" frameborder="0"></iframe>		
+                    {% else %}
+                      <iframe width="560" height="315" src="http://www.youtube.com/embed/UCqJAZuvUS0?wmode=transparent" frameborder="0"></iframe>	
+                    {% endif %}
+                  </div>
                 </div>
           		</div>
             </div>
