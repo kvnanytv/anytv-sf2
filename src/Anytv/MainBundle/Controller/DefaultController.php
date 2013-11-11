@@ -253,8 +253,12 @@ class DefaultController extends Controller
       $route_params_en['_locale'] = 'en';
       $route_params_zh = $route_params;
       $route_params_zh['_locale'] = 'zh';
+      $route_params_nl = $route_params;
+      $route_params_nl['_locale'] = 'nl';
+      $route_params_de = $route_params;
+      $route_params_de['_locale'] = 'de';
         
-      return $this->render('AnytvMainBundle:Default:transMenu.html.twig', array('route'=>$route, 'route_params'=>$route_params, 'route_params_en'=>$route_params_en, 'route_params_zh'=>$route_params_zh));
+      return $this->render('AnytvMainBundle:Default:transMenu.html.twig', array('route'=>$route, 'route_params'=>$route_params, 'route_params_en'=>$route_params_en, 'route_params_zh'=>$route_params_zh, 'route_params_nl'=>$route_params_nl, 'route_params_de'=>$route_params_de));
     }
     
     

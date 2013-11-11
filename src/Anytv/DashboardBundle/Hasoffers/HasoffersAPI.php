@@ -118,6 +118,28 @@ class HasoffersAPI
         return $data;
     }
     
+    public function getTrafficReferralsByDate($traffic_referral_date)
+    {
+        $this->api_params['Target'] = 'Report';
+        $this->api_params['Method'] = 'getReferrals';
+        $this->api_params['filters'] = array('Stat.date' => array('conditional' => 'EQUAL_TO', 'values' => $traffic_referral_date));    
+        $this->api_params['fields'] = array('Stat.url', 'Stat.affiliate_id', 'Stat.offer_id', 'Stat.clicks', 'Stat.conversions', 'Stat.count', 'Stat.date');
+        $this->api_params['groups'] = array('Stat.url', 'Stat.affiliate_id', 'Stat.offer_id');
+        $this->api_params['sort'] = array('Stat.date' => 'ASC');
+        $this->api_params['limit'] = 100000;
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = (array) json_decode( $result );
+        $response = (array) $result['response'];
+        $data = (array) $response['data'];
+        $data = (array) $data['data'];
+        
+        return $data;
+    }
+    
     public function getAffiliates($max_affiliate_id)
     {
         $this->api_params['Target'] = 'Affiliate';

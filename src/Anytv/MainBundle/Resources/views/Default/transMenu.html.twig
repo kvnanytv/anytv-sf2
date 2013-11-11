@@ -1,6 +1,10 @@
 <a href="{{ path(route, route_params) }}" class="dropdown-toggle" data-toggle="dropdown">
                    {% if(app.request.get('_locale', 'en') == 'zh') %}
                      {% trans %}Chinese{% endtrans %}
+                   {% elseif(app.request.get('_locale', 'en') == 'nl') %}
+                     {% trans %}Dutch{% endtrans %}
+                   {% elseif(app.request.get('_locale', 'en') == 'de') %}
+                     {% trans %}German{% endtrans %}
                    {% else %}
                      {% trans %}English{% endtrans %}
                    {% endif %}
@@ -16,5 +20,14 @@
                          中文 (Chinese)
                        </a>
                      </li>
-                     
+                     <li>
+                       <a href="{{ path(route, route_params_nl) }}" title="{% trans %}Dutch{% endtrans %}">
+                         {% trans %}Dutch{% endtrans %}
+                       </a>
+                     </li>
+                     <li>
+                       <a href="{{ path(route, route_params_de) }}" title="{% trans %}German{% endtrans %}">
+                         {% trans %}German{% endtrans %}
+                       </a>
+                     </li>
                    </ul>
