@@ -73,8 +73,8 @@ swiftmailer:
 # Any TV Custom settings and values
 parameters:
     anytv.formats: html|rss|json
-    anytv.cultures: en|zh|nl 
-    anytv.locales: en|zh|nl
+    anytv.cultures: en|zh|nl|de 
+    anytv.locales: en|zh|nl|de
     
 avalanche_imagine:
     filters:

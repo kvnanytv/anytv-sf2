@@ -1,8 +1,3 @@
-{% if(error) %}
-  {{ dump(error) }}
-  <hr />
-{% endif %}
-
 {{ conversion.status }}
 
 <a href="javascript:void(0)" onclick="changeConversionStatus('{{ path('conversion_change_status', { 'id': conversion.id }) }}', {{ conversion.id }});">

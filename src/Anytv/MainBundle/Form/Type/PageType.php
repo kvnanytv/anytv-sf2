@@ -12,6 +12,8 @@ class PageType extends AbstractType
     {
         $builder->add('content')
                 ->add('contentZh')
+                ->add('contentNl')
+                ->add('contentDe')
                 ->add('save', 'submit');
     }
 

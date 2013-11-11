@@ -27,8 +27,8 @@
        {% for faq in faqs %}
          <tr>
            <td>{{ faq.id }}</td>
-           <td><a href="{{ path('faq_edit', { 'id' : faq.id }) }}" title="{% trans %}Edit{% endtrans %}">{{ faq.question }}</a></td>
-           <td>{{ faq.answer }}</td>
+           <td><a href="{{ path('faq_edit', { 'id' : faq.id }) }}" title="{% trans %}Edit{% endtrans %}">{{ faq.question|raw }}</a></td>
+           <td>{{ faq.answer|raw }}</td>
          </tr>
        {% endfor %} 
       </table>

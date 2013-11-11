@@ -9,14 +9,16 @@
           {% endfor %}																
 	</ul>
       </div>
-      <div class="col-lg-9">				
-        <div class="tab-content">
+      <div class="col-lg-9">
+        <div id="getFixed">
+        <div class="tab-content pdd-0">
           {% for faq in faqs %}
 	    <div class="tab-pane active" id="faq_answer_{{ faq.id }}" style="display:none">
 	      {{ faq.getAnswer(app.request.get('_locale', 'en'))|raw }}
 	    </div>
           {% endfor %}	
 	</div>
+        </div>
       </div>
     </div>
   </div>

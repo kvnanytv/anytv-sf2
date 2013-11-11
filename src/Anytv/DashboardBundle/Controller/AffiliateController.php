@@ -35,8 +35,8 @@ class AffiliateController extends Controller
         ->add('affiliate_status', 'choice', array('required' => true, 'choices' => array('active'=>'active', 'pending'=>'pending', 'deleted'=>'deleted', 'blocked'=>'blocked', 'rejected'=>'rejected'), 'label'=>$translator->trans('Status')))
         ->add('affiliate_search', 'submit', array('label'=>$translator->trans('search')))
         //->add('affiliate_update', 'submit', array('label'=>$translator->trans('update')))
-        ->add('affiliate_update_paypal', 'submit', array('label'=>$translator->trans('update paypal')))
-        ->add('affiliate_update_referrer', 'submit', array('label'=>$translator->trans('update referrer')))
+        //->add('affiliate_update_paypal', 'submit', array('label'=>$translator->trans('update paypal')))
+        //->add('affiliate_update_referrer', 'submit', array('label'=>$translator->trans('update referrer')))
         ->getForm();
         
         $form->handleRequest($request);
@@ -156,7 +156,7 @@ class AffiliateController extends Controller
                 $affiliate->setWantsAlerts($affiliate_object->wants_alerts);
                 $affiliate->setPaymentMethod($affiliate_object->payment_method);
                 $affiliate->setPaymentTerms($affiliate_object->payment_terms);
-                $affiliate->setW9Filed($affiliate_object->w9_filed);
+                
                 
                 //@todo set the referrer on update
                 $affiliate->setReferralId($affiliate_object->referral_id);
@@ -253,7 +253,7 @@ class AffiliateController extends Controller
                 $affiliate->setWantsAlerts($affiliate_object->wants_alerts);
                 $affiliate->setPaymentMethod($affiliate_object->payment_method);
                 $affiliate->setPaymentTerms($affiliate_object->payment_terms);
-                $affiliate->setW9Filed($affiliate_object->w9_filed);
+               
                 $affiliate->setReferralId($affiliate_object->referral_id);
                 $affiliate->setAffiliateTierId($affiliate_object->affiliate_tier_id);
           

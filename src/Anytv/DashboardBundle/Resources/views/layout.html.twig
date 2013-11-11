@@ -31,6 +31,7 @@
 <div class="container">
 <nav class="subnav-cllps db-lnks">
   <ul id="nav">
+    <li style="float:right;color:#fff">{% trans %}Miss the old dashboard? Click{% endtrans %} <a href="http://www.dashboard.tm" title="{% trans %}Old Dashboard{% endtrans %}" target="_blank">{% trans %}here{% endtrans %}</a>.</li> 
     <li><a href="{{ path('terms') }}" title="{% trans %}Terms & Conditions{% endtrans %}">{% trans %}Terms & Conditions{% endtrans %}</a></li> 
     <li><a href="{{ path('privacy_policy') }}" title="{% trans %}Privacy Policy{% endtrans %}">{% trans %}Privacy Policy{% endtrans %}</a></li> 
   {% if(app.user) %}

@@ -85,6 +85,34 @@ class Faq
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_visible_en", type="boolean")
+     */
+    private $isVisibleEn;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_visible_zh", type="boolean")
+     */
+    private $isVisibleZh;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_visible_nl", type="boolean")
+     */
+    private $isVisibleNl;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_visible_de", type="boolean")
+     */
+    private $isVisibleDe;
 
     /**
      * @var integer
@@ -116,6 +144,10 @@ class Faq
     {
         $this->categories = new ArrayCollection();
         $this->isActive = true;
+        $this->isVisibleEn = true;
+        $this->isVisibleZh = true;
+        $this->isVisibleNl = true;
+        $this->isVisibleDe = true;
     }
 
     /**
@@ -515,5 +547,97 @@ class Faq
     public function __toString() 
     {
       return $this->getQuestion();
+    }
+
+    /**
+     * Set isVisibleEn
+     *
+     * @param boolean $isVisibleEn
+     * @return Faq
+     */
+    public function setIsVisibleEn($isVisibleEn)
+    {
+        $this->isVisibleEn = $isVisibleEn;
+    
+        return $this;
+    }
+
+    /**
+     * Get isVisibleEn
+     *
+     * @return boolean 
+     */
+    public function getIsVisibleEn()
+    {
+        return $this->isVisibleEn;
+    }
+
+    /**
+     * Set isVisibleZh
+     *
+     * @param boolean $isVisibleZh
+     * @return Faq
+     */
+    public function setIsVisibleZh($isVisibleZh)
+    {
+        $this->isVisibleZh = $isVisibleZh;
+    
+        return $this;
+    }
+
+    /**
+     * Get isVisibleZh
+     *
+     * @return boolean 
+     */
+    public function getIsVisibleZh()
+    {
+        return $this->isVisibleZh;
+    }
+
+    /**
+     * Set isVisibleNl
+     *
+     * @param boolean $isVisibleNl
+     * @return Faq
+     */
+    public function setIsVisibleNl($isVisibleNl)
+    {
+        $this->isVisibleNl = $isVisibleNl;
+    
+        return $this;
+    }
+
+    /**
+     * Get isVisibleNl
+     *
+     * @return boolean 
+     */
+    public function getIsVisibleNl()
+    {
+        return $this->isVisibleNl;
+    }
+
+    /**
+     * Set isVisibleDe
+     *
+     * @param boolean $isVisibleDe
+     * @return Faq
+     */
+    public function setIsVisibleDe($isVisibleDe)
+    {
+        $this->isVisibleDe = $isVisibleDe;
+    
+        return $this;
+    }
+
+    /**
+     * Get isVisibleDe
+     *
+     * @return boolean 
+     */
+    public function getIsVisibleDe()
+    {
+        return $this->isVisibleDe;
     }
 }

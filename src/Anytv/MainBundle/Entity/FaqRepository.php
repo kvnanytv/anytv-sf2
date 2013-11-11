@@ -33,4 +33,19 @@ class FaqRepository extends EntityRepository
         
         return $query->getSingleScalarResult();
     }
+    
+    // doesn't work yet, i made a workaround temporarily
+    public function getFaqsByCategory($category)
+    {   
+        $where = ":category IN ( f.categories )";
+        $params = array('category'=>$category);
+        
+        $query = $this->createQueryBuilder('f')
+                      ->leftJoin('f.categories', 'c')
+                      ->where($where)
+                      ->setParameters($params)
+                      ->getQuery();
+        
+        return $query->getResult();
+    }
 }

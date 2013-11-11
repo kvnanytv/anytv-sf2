@@ -62,7 +62,6 @@ class UpdateAffiliatesCommand extends ContainerAwareCommand
           $affiliate->setWantsAlerts($affiliate_object->wants_alerts);
           $affiliate->setPaymentMethod($affiliate_object->payment_method);
           $affiliate->setPaymentTerms($affiliate_object->payment_terms);
-          $affiliate->setW9Filed($affiliate_object->w9_filed);
           $affiliate->setReferralId($affiliate_object->referral_id);
           
           if($affiliate_object->referral_id && ($referrer = $repository->findOneBy(array('affiliateId'=>$affiliate_object->referral_id))))
