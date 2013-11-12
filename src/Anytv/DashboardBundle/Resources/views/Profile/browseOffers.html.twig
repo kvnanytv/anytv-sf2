@@ -63,7 +63,14 @@
             <td>{{ offer }}</td>
 	    <td><a href="{{ offer.previewUrl }}" target=_blank">{% trans %}preview{% endtrans %}</a></td>
 	    <td>${{ offer.defaultPayout }}</td>
-	    <td><a data-toggle="modal" href="#myModal" onclick="showOffer('{{ path('profile_offer_view', {'id':offer.id}) }}');" class="btn btn-default">{% trans %}Get play now link{% endtrans %}</a></td>
+	    <td>
+              <form method="post" name="form_{{ app.user.id }}" action="http://www.games.tm/login.php" method="POST" target="_blank">
+                <input type="hidden" name='email' value='{{ app.user.email }}' >
+                <input type="hidden" name='password' value='{{ app.user.getPasswordDecoded() }}'>
+                <input type="hidden" name='game' value="{{ offer.getNameForUrl() }}">
+                <input type="submit" value ='{% trans %}Get play now link{% endtrans %}' class="btn btn-default btn-glink">
+              </form>
+            </td>
 	  </tr>
           {% endfor %}
           {% if (total_pages > 1) %}

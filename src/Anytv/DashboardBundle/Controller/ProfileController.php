@@ -272,8 +272,8 @@ class ProfileController extends Controller
       $order_by = 'name';
       $order = 'ASC';
         
-      $offers = $repository->findAllOffers($page, $items_per_page, $order_by, $order, $session->get('offer_keyword', null), 'active', $session->get('offer_category', null), $session->get('offer_country', null));
-      $total_offers = $repository->countAllOffers($session->get('offer_keyword', null), 'active', $session->get('offer_category', null), $session->get('offer_country', null));
+      $offers = $repository->findAllOffers($page, $items_per_page, $order_by, $order, $session->get('offer_keyword', null), 'active', $session->get('offer_category', null), $session->get('offer_country', null), true);
+      $total_offers = $repository->countAllOffers($session->get('offer_keyword', null), 'active', $session->get('offer_category', null), $session->get('offer_country', null), true);
       $total_pages = ceil($total_offers / $items_per_page);
       
       $offer_categories = $offer_category_repository->findAll();

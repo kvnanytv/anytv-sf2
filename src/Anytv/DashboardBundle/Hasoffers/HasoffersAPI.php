@@ -326,7 +326,7 @@ class HasoffersAPI
           $this->api_params['filters'] = array('Stat.id' => array('conditional' => 'GREATER_THAN', 'values' => $max_conversion_id));
         }
         $this->api_params['fields'] = array('Stat.id', 'Stat.ip', 'Stat.ad_id', 'Stat.status', 'Stat.payout', 'Stat.revenue', 'Stat.sale_amount', 'Stat.is_adjustment', 'Stat.datetime', 'Stat.affiliate_id', 'Stat.offer_id');
-        $this->api_params['limit'] = 5000;
+        $this->api_params['limit'] = 500;
         
         $url = $this->api_url . http_build_query( $this->api_params );
  
@@ -386,16 +386,33 @@ class HasoffersAPI
         if($max_referral_date)
         {
           $this->api_params['filters'] = array('Stat.date' => array('conditional' => 'GREATER_THAN_OR_EQUAL_TO', 'values' => $max_referral_date));
-          //$this->api_params['filters'] = array('Stat.date' => array('conditional' => 'GREATER_THAN_OR_EQUAL_TO', 'values' => $max_referral_date), 'Stat.amount' => array('conditional' => 'GREATER_THAN', 'values' => 0));
-        }
-        else
-        {
-          //$this->api_params['filters'] = array('Stat.amount' => array('conditional' => 'GREATER_THAN', 'values' => 0));    
         }
         $this->api_params['fields'] = array('Stat.amount', 'Stat.referral_id', 'Stat.affiliate_id', 'Stat.date');
         $this->api_params['groups'] = array('Stat.date', 'Stat.referral_id', 'Stat.affiliate_id');
         $this->api_params['sort'] = array('Stat.date' => 'ASC');
         $this->api_params['limit'] = 1000;
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = (array) json_decode( $result );
+        $response = (array) $result['response'];
+        $data = (array) $response['data'];
+        $data = (array) $data['data'];
+        
+        return $data;
+    }
+    
+    public function getReferralsByDate($referral_date)
+    {
+        $this->api_params['Target'] = 'Report';
+        $this->api_params['Method'] = 'getAffiliateCommissions';
+        $this->api_params['filters'] = array('Stat.date' => array('conditional' => 'EQUAL_TO', 'values' => $referral_date));
+        $this->api_params['fields'] = array('Stat.amount', 'Stat.referral_id', 'Stat.affiliate_id', 'Stat.date');
+        $this->api_params['groups'] = array('Stat.date', 'Stat.referral_id', 'Stat.affiliate_id');
+        $this->api_params['sort'] = array('Stat.date' => 'ASC');
+        $this->api_params['limit'] = 10000;
         
         $url = $this->api_url . http_build_query( $this->api_params );
  

@@ -151,23 +151,9 @@ class AffiliateUser implements UserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="youtube", type="text", nullable=true)
+     * @ORM\Column(name="youtube", type="string", length=255, nullable=true)
      */
     private $youtube;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="youtube_network", type="string", length=255, nullable=true)
-     */
-    private $youtubeNetwork;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="youtube_best_video", type="string", length=255, nullable=true)
-     */
-    private $youtubeBestVideo;
     
     /**
      * @var string
@@ -175,13 +161,6 @@ class AffiliateUser implements UserInterface, \Serializable
      * @ORM\Column(name="twitch", type="string", length=255, nullable=true)
      */
     private $twitch;
-    
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="use_twitch_or_live_stream", type="boolean")
-     */
-    private $useTwitchOrLiveStream;
 
     /**
      * @var boolean
@@ -280,20 +259,6 @@ class AffiliateUser implements UserInterface, \Serializable
      * @ORM\Column(name="shoutout", type="string", length=255, nullable=true)
      */
     private $shoutout;
-    
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="last_referrals_access", type="datetime", nullable=true)
-     */
-    private $lastReferralsAccess;
-    
-     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="last_conversions_access", type="datetime", nullable=true)
-     */
-    private $lastConversionsAccess;
     
     /**
      * @var string
@@ -1370,121 +1335,6 @@ class AffiliateUser implements UserInterface, \Serializable
     public function getTwitch()
     {
         return $this->twitch;
-    }
-
-    /**
-     * Set lastReferralsAccess
-     *
-     * @param \DateTime $lastReferralsAccess
-     * @return AffiliateUser
-     */
-    public function setLastReferralsAccess($lastReferralsAccess)
-    {
-        $this->lastReferralsAccess = $lastReferralsAccess;
-    
-        return $this;
-    }
-
-    /**
-     * Get lastReferralsAccess
-     *
-     * @return \DateTime 
-     */
-    public function getLastReferralsAccess()
-    {
-        return $this->lastReferralsAccess;
-    }
-
-    /**
-     * Set lastConversionsAccess
-     *
-     * @param \DateTime $lastConversionsAccess
-     * @return AffiliateUser
-     */
-    public function setLastConversionsAccess($lastConversionsAccess)
-    {
-        $this->lastConversionsAccess = $lastConversionsAccess;
-    
-        return $this;
-    }
-
-    /**
-     * Get lastConversionsAccess
-     *
-     * @return \DateTime 
-     */
-    public function getLastConversionsAccess()
-    {
-        return $this->lastConversionsAccess;
-    }
-
-    /**
-     * Set youtubeNetwork
-     *
-     * @param string $youtubeNetwork
-     * @return AffiliateUser
-     */
-    public function setYoutubeNetwork($youtubeNetwork)
-    {
-        $this->youtubeNetwork = $youtubeNetwork;
-    
-        return $this;
-    }
-
-    /**
-     * Get youtubeNetwork
-     *
-     * @return string 
-     */
-    public function getYoutubeNetwork()
-    {
-        return $this->youtubeNetwork;
-    }
-
-    /**
-     * Set youtubeBestVideo
-     *
-     * @param string $youtubeBestVideo
-     * @return AffiliateUser
-     */
-    public function setYoutubeBestVideo($youtubeBestVideo)
-    {
-        $this->youtubeBestVideo = $youtubeBestVideo;
-    
-        return $this;
-    }
-
-    /**
-     * Get youtubeBestVideo
-     *
-     * @return string 
-     */
-    public function getYoutubeBestVideo()
-    {
-        return $this->youtubeBestVideo;
-    }
-
-    /**
-     * Set useTwitchOrLiveStream
-     *
-     * @param boolean $useTwitchOrLiveStream
-     * @return AffiliateUser
-     */
-    public function setUseTwitchOrLiveStream($useTwitchOrLiveStream)
-    {
-        $this->useTwitchOrLiveStream = $useTwitchOrLiveStream;
-    
-        return $this;
-    }
-
-    /**
-     * Get useTwitchOrLiveStream
-     *
-     * @return boolean 
-     */
-    public function getUseTwitchOrLiveStream()
-    {
-        return $this->useTwitchOrLiveStream;
     }
 
     /**

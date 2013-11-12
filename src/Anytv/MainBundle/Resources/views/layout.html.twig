@@ -11,14 +11,17 @@
 </ul>
 {% else %}
 <ul id="nav">
+  <li><a href="{{ path('staff') }}" title="{% trans %}Join our staff!{% endtrans %}" style="font-weight:normal">{% trans %}Join our staff!{% endtrans %}</a></li>
   <li><a href="{{ path('faq') }}" title="{% trans %}FAQ{% endtrans %}">{% trans %}FAQ{% endtrans %}</a></li>
   <li><a href="{{ path('about') }}" title="{% trans %}What is any.TV?{% endtrans %}" style="font-weight:normal">{% trans %}What is any.TV?{% endtrans %}</a></li>
   <li><a href="{{ path('branding_kit') }}" title="{% trans %}Branding Kit{% endtrans %}" style="font-weight:normal">{% trans %}Branding Kit{% endtrans %}</a></li>
   <li><a href="http://www.games.tm" target="_blank" title="{% trans %}Games List{% endtrans %}" style="font-weight:normal">{% trans %}Games List{% endtrans %}</a></li>
+  {% if(false) %}
   <li><a href="{{ path('live_stream_handbook') }}" title="{% trans %}Live Stream Handbook{% endtrans %}" style="font-weight:normal">{% trans %}Live Stream Handbook{% endtrans %}</a></li>
   <li><a href="{{ path('recruiter_handbook') }}" title="{% trans %}Recruiter Handbook{% endtrans %}" style="font-weight:normal">{% trans %}Recruiter Handbook{% endtrans %}</a></li>
+  {% endif %}
   <li><a href="{{ path('join_our_twitch_team') }}" title="{% trans %}Join our Twitch Team!{% endtrans %}" style="font-weight:normal">{% trans %}Join our Twitch Team!{% endtrans %}</a></li>
-  <li><a href="{{ path('staff') }}" title="{% trans %}Staff{% endtrans %}" style="font-weight:normal">{% trans %}Staff{% endtrans %}</a></li>
+  <li><a href="{{ path('upload') }}" title="{% trans %}Submit your videos!{% endtrans %}" style="font-weight:normal">{% trans %}Submit your videos!{% endtrans %}</a></li>
 </ul>
 {% endif %}
 </nav>

@@ -106,6 +106,42 @@ class FaqCategory
         return $this->faqs;
     }
     
+    /**
+     * Get faqs filtered
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFaqsByLocale($locale)
+    {
+        $faqs = $this->faqs;
+        
+        $faqs_filtered = array();
+        
+        foreach($faqs as $faq)
+        {
+          if($faq->getIsActive())
+          {
+            switch($locale)
+            {
+              case 'en':
+                if($faq->getIsVisibleEn()) $faqs_filtered[] = $faq;
+                break;
+              case 'zh':
+                if($faq->getIsVisibleZh()) $faqs_filtered[] = $faq;
+                break;
+              case 'nl':
+                if($faq->getIsVisibleNl()) $faqs_filtered[] = $faq;
+                break;
+              case 'de':
+                if($faq->getIsVisibleDe()) $faqs_filtered[] = $faq;
+                break;
+            }
+          }
+        }
+        
+        return $faqs_filtered;
+    }
+    
     public function __toString() 
     {
       return $this->getName();    
