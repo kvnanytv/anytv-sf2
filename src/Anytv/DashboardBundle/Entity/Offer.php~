@@ -905,17 +905,6 @@ class Offer
       $this->created_at = new \DateTime();
     }
     
-    /**
-     * @ORM\PreUpdate
-     */
-    public function setUpdatedAtValue()
-    {
-      if(!$this->updated_at)
-      {
-        $this->updated_at = new \DateTime();
-      }
-    }
-    
     /*
      
     preRemove

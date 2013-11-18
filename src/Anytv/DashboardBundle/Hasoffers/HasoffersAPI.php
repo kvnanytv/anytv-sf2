@@ -20,6 +20,22 @@ class HasoffersAPI
         );
     }
     
+    public function getCountries()
+    {
+        $this->api_params['Target'] = 'Application';
+        $this->api_params['Method'] = 'findAllCountries';
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = (array) json_decode( $result );
+        $response = (array) $result['response'];
+        $data = (array) $response['data'];
+        
+        return $data;
+    }
+    
     public function getAdvertisers()
     {
         $this->api_params['Target'] = 'Advertiser';
@@ -59,6 +75,30 @@ class HasoffersAPI
         if($max_offer_id)
         {
           $this->api_params['filters'] = array('id' => array('GREATER_THAN' => $max_offer_id));
+        }
+        $this->api_params['contain'] = array('OfferCategory', 'Country', 'OfferGroup');
+        $this->api_params['limit'] = 1000000;
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = (array) json_decode( $result );
+        $response = (array) $result['response'];
+        $data = (array) $response['data'];
+        $data = (array) $data['data'];
+        
+        return $data;
+    }
+    
+    public function getUpdatedOffers($max_updated_at)
+    {
+        $this->api_params['Target'] = 'Offer';
+        $this->api_params['Method'] = 'findAll';
+        if($max_updated_at)
+        {
+          //$this->api_params['filters'] = array('modified' => array('conditional' => 'GREATER_THAN_OR_EQUAL_TO', 'values' => $max_updated_at));    
+          $this->api_params['filters'] = array('modified' => array('GREATER_THAN' => $max_updated_at));
         }
         $this->api_params['contain'] = array('OfferCategory', 'Country', 'OfferGroup');
         $this->api_params['limit'] = 1000000;

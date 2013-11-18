@@ -97,6 +97,20 @@ class ProfileController extends Controller
               }
             }
           
+            $phone = $affiliate->getPhone();
+            
+            if(substr($phone, 0, 1) == '+')
+            {
+              $phone = substr_replace($phone, '011', 0, 1);
+            }
+            
+            $fax = $affiliate->getFax();
+            
+            if(substr($fax, 0, 1) == '+')
+            {
+              $fax = substr_replace($fax, '011', 0, 1);
+            }
+            
             $data = array('company'=>$affiliate->getCompany(),
                           'address1'=>$affiliate->getAddress1(),
                           'address2'=>$affiliate->getAddress2(),
@@ -105,8 +119,8 @@ class ProfileController extends Controller
                           'country'=>$country,
                           'other'=>$other,
                           'zipcode'=>$affiliate->getZipcode(),
-                          'phone'=>$affiliate->getPhone(),
-                          'fax'=>$affiliate->getFax()
+                          'phone'=>$phone,
+                          'fax'=>$fax
                          );
             
             $hasoffers = $this->get('hasoffers');
@@ -131,11 +145,26 @@ class ProfileController extends Controller
             $affiliate_user = $form->getData();
             
             // update affiliate user
+            
+            $phone = $affiliate_user->getPhone();
+            
+            if(substr($phone, 0, 1) == '+')
+            {
+              $phone = substr_replace($phone, '011', 0, 1);
+            }
+            
+            $cell_phone = $affiliate_user->getCellPhone();
+            
+            if(substr($cell_phone, 0, 1) == '+')
+            {
+              $cell_phone = substr_replace($cell_phone, '011', 0, 1);
+            }
+            
             $data = array('title'=>$affiliate_user->getTitle(),
                           'first_name'=>$affiliate_user->getFirstName(),
                           'last_name'=>$affiliate_user->getLastName(),
-                          'phone'=>$affiliate_user->getPhone(),
-                          'cell_phone'=>$affiliate_user->getCellPhone()
+                          'phone'=>$phone,
+                          'cell_phone'=>$cell_phone
                          );
             
             $hasoffers = $this->get('hasoffers');

@@ -80,6 +80,7 @@ class UpdateOffersCommand extends ContainerAwareCommand
           $offer->setRequireApproval($offer_object->require_approval);
           $offer->setRequireTermsAndConditions($offer_object->require_terms_and_conditions);
           $offer->setTermsAndConditions($offer_object->terms_and_conditions);
+          $offer->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s', $offer_object->modified)));
                 
           foreach($offer_category_array as $offer_category_object)
           {

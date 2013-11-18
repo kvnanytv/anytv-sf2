@@ -121,4 +121,31 @@ class OfferRepository extends EntityRepository
         
         return $query->getSingleScalarResult();
     }
+    
+    public function findNotUpdatedOffers()
+    {
+        $query = $this->createQueryBuilder('o');
+        
+        //$where = "o.status = :status AND (o.updated_at IS NULL OR o.updated_at < :yesterday)";
+        //$params = array('status'=>'active', 'yesterday'=>'DATE_SUB(NOW(), INTERVAL 1 DAY)');
+        
+        $where = "o.updated_at IS NULL";
+        
+        
+        $query = $query->where($where)
+                       
+                       ->setMaxResults(50)
+                       ->getQuery();    
+        
+        return $query->getResult();
+    }
+    
+    public function getMaxUpdatedAt()
+    {    
+        $query = $this->createQueryBuilder('o')
+                      ->select('max(o.updated_at)')
+                      ->getQuery();
+        
+        return $query->getSingleScalarResult();
+    }
 }

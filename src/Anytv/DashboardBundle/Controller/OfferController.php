@@ -274,6 +274,7 @@ class OfferController extends Controller
       $offer_category_repository = $manager->getRepository('AnytvDashboardBundle:OfferCategory');
       $offer_group_repository = $manager->getRepository('AnytvDashboardBundle:OfferGroup');
       $country_repository = $manager->getRepository('AnytvDashboardBundle:Country');
+      $countries = $country_repository->findAll();
             
       $hasoffers = $this->get('hasoffers');
       
@@ -387,7 +388,7 @@ class OfferController extends Controller
       $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
       $country_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Country');
       
-      $items_per_page = 10;
+      $items_per_page = 5;
       $order_by = 'name';
       $order = 'ASC';
         

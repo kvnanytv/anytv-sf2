@@ -31,17 +31,19 @@
 <div class="container">
 <nav class="subnav-cllps db-lnks">
   <ul id="nav">
-    <li style="color:#fff">{% trans %}Miss the old dashboard? Click{% endtrans %} <a href="http://www.dashboard.tm" title="{% trans %}Old Dashboard{% endtrans %}" target="_blank">{% trans %}here{% endtrans %}</a>.</li> 
+    <li style="color:#fff"><a href="http://v1.dashboard.tm" title="{% trans %}Old Dashboard{% endtrans %}" target="_blank">{% trans %}Miss the old dashboard? Click here.{% endtrans %}</a></li> 
     <li style="float:right"><a href="{{ path('terms') }}" title="{% trans %}Terms & Conditions{% endtrans %}">{% trans %}Terms & Conditions{% endtrans %}</a></li> 
     <li style="float:right"><a href="{{ path('privacy_policy') }}" title="{% trans %}Privacy Policy{% endtrans %}">{% trans %}Privacy Policy{% endtrans %}</a></li> 
   {% if(app.user) %}
+    <li style="float:right"><a href="{{ path('profile_reports') }}" title="{% trans %}Reports{% endtrans %}">{% trans %}Reports{% endtrans %}</a></li>
+    <li style="float:right"><a href="{{ path('anytv_dashboard_homepage') }}" title="{% trans %}Offers{% endtrans %}">{% trans %}Offers{% endtrans %}</a></li>
     <li style="float:right"><a href="{{ path('profile_view') }}" title="{% trans %}My Profile{% endtrans %}">{% trans %}My Profile{% endtrans %}</a></li>
   {% else %}
     <li style="float:right">
     {% if(app.session.get('referral_id')) %}
-      <a href="{{ path('signup', { 'id': app.session.get('referral_id') }) }}" title="{% trans %}Affiliate Sign Up{% endtrans %}">{% trans %}Affiliate Sign Up{% endtrans %}</a>
+      <a href="{{ path('signup', { 'id': app.session.get('referral_id') }) }}" title="{% trans %}Create Account{% endtrans %}">{% trans %}Create Account{% endtrans %}</a>
     {% else %}
-      <a href="{{ path('signup') }}" title="{% trans %}Affiliate Sign Up{% endtrans %}">{% trans %}Affiliate Sign Up{% endtrans %}</a>
+      <a href="{{ path('signup') }}" title="{% trans %}Create Account{% endtrans %}">{% trans %}Create Account{% endtrans %}</a>
     {% endif %}
     </li>
   {% endif %}
