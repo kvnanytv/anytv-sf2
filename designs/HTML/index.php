@@ -20,10 +20,12 @@
 					<div class="row-fluid">
 						<div class="cta-home">
 							<div class="col-lg-5">
-								<h3>A new kind of YouTube Network</h3>
-								<p>No need to unpartner from your YouTube Network</p>
-								<div class="cta-btns">
-									<a class="btn btn-primary btn-lg btn-join">Join Us!</a>
+								<div class="cta-home-lft">
+									<h3>A new kind of YouTube Network</h3>
+									<p>No need to unpartner from your YouTube Network</p>
+									<div class="cta-btns">
+										<a class="btn btn-primary btn-lg btn-join">Join Us!</a>
+									</div>
 								</div>
 							</div>
 							<div class="col-lg-7">			
