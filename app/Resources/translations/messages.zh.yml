@@ -116,6 +116,7 @@
 'Play Now Link': play now 連結網址
 'Get play now link': 取得play now 連結網址
 'CREATE AN ACCOUNT': 建立一個新帳號
+'Create Account': 建立一個新帳號
 'Logging you in securely': 登入中
 'My Offers': 我們的供應
 'Browse Offers': 瀏覽供應
@@ -191,11 +192,18 @@
 'No': 不是。
 "Your YouTube Channels (one on each line, write None if you don't have one): *": '你的YouTube頻道 (請分別把你的頻道放在各行列中，如果沒有頻道請註明: None): *'
 'YouTube Network (who are you partnered with on YouTube, write None if not partnered): *': 'YouTub群網 (你目前和那間YouTube公司合作，如: YouTube, Machinima, Maker... 如果沒有合作的對像，請註明: None): *'
+'YouTube Network (who are you partnered with on YouTube): *': 'YouTub群網 (你目前和那間YouTube公司合作，如: YouTube, Machinima, Maker...): *'
+'YouTube Network (other) write None if not partnered: *': 'YouTub群網 (如果沒有合作的對像，請註明: None): *'
 'Do you use Twitch or live stream?: *': '你使用Twitch或其他實況的平台嗎?: *'
 'Link to your best video? (write None if you never made a video): *': '請分享你最好的影片連結 (如果你沒有自已的影片，請註明: None): *'
 'Skype Name (write None if you do not use Skype): *': 'Skype的帳戶名(如果沒有，請註明: None): *'
 'Miss the old dashboard? Click': '想念舊的資訊介面板嗎? 請按'
 'here': 這裡
+'Miss the old dashboard? Click here.': '想念舊的資訊介面板嗎? 請按這裡.'
+'Miss the previous any.TV website? Click here.': '小姐以前的any.TV网站？点击这里。'
 'Old Dashboard': 舊版資訊介面板
+'previous any.TV website': '以前any.TV网站'
 'Referral List': 介紹朋友清單
 'Signup Answers': 登入答案
+'Join our staff!': 加入我們的團隊!
+'Submit your videos!': 提供你的影片!

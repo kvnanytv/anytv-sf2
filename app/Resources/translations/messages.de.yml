@@ -116,6 +116,7 @@
 'Play Now Link': Play Now Link
 'Get play now link': Bekomme den play now Link
 'CREATE AN ACCOUNT': ERSTELLE EIN KONTO
+'Create Account': Erstelle Ein Konto
 'Logging you in securely': Sicheres einloggen
 'My Offers': Mein Angebot
 'Browse Offers': Angebote durchsuchen
@@ -191,12 +192,19 @@
 'No': Nein
 "Your YouTube Channels (one on each line, write None if you don't have one): *": 'Ihr YouTube-Kanäle (einer in jede Zeile, schreiben Sie Keinen, wenn Sie noch keinen Kanal haben): *'
 'YouTube Network (who are you partnered with on YouTube, write None if not partnered): *': 'YouTube Netzwerk (bei dem sie Partner sind, schreiben sie "keines" wen sie in keinem Netzwerk sind): *'
+'YouTube Network (who are you partnered with on YouTube): *': 'YouTube Netzwerk (bei dem sie Partner sind): *'
+'YouTube Network (other) write None if not partnered: *': 'YouTube Netzwerk (schreiben sie "keines" wen sie in keinem Netzwerk sind): *'
 'Do you use Twitch or live stream?: *': 'Verwenden Sie Twitch oder Live-Stream´s?: *'
 'Link to your best video? (write None if you never made a video): *': 'Link zu ihrem besten Video (schreiben sie "keines" wen sie noch kein Video gemacht haben): *'
 'Skype Name (write None if you do not use Skype): *': 'Skype Name (schreiben sie "nein, wenn sie Skype nicht verwenden): *'
 'Miss the old dashboard? Click': 'Sie wollwn das alte Dashboard? klicken'
 'here': hier
+'Miss the old dashboard? Click here.': 'Sie wollwn das alte Dashboard? klicken hier.'
+'Miss the previous any.TV website? Click here.': 'Miss die vorherige any.TV Website? Klicken Sie hier.'
 'Old Dashboard': Altes Dashboard
+'previous any.TV website': 'vorherige any.TV Website'
 'Referral List': Referral-Liste
 'Signup Answers': Registrierungs Antworten
+'Join our staff!': Werde anyTV Mitarbeiter
+'Submit your videos!': Reiche dein Video ein!
 

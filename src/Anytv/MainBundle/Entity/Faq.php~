@@ -548,4 +548,96 @@ class Faq
     {
       return $this->getQuestion();
     }
+
+    /**
+     * Set isVisibleEn
+     *
+     * @param boolean $isVisibleEn
+     * @return Faq
+     */
+    public function setIsVisibleEn($isVisibleEn)
+    {
+        $this->isVisibleEn = $isVisibleEn;
+    
+        return $this;
+    }
+
+    /**
+     * Get isVisibleEn
+     *
+     * @return boolean 
+     */
+    public function getIsVisibleEn()
+    {
+        return $this->isVisibleEn;
+    }
+
+    /**
+     * Set isVisibleZh
+     *
+     * @param boolean $isVisibleZh
+     * @return Faq
+     */
+    public function setIsVisibleZh($isVisibleZh)
+    {
+        $this->isVisibleZh = $isVisibleZh;
+    
+        return $this;
+    }
+
+    /**
+     * Get isVisibleZh
+     *
+     * @return boolean 
+     */
+    public function getIsVisibleZh()
+    {
+        return $this->isVisibleZh;
+    }
+
+    /**
+     * Set isVisibleNl
+     *
+     * @param boolean $isVisibleNl
+     * @return Faq
+     */
+    public function setIsVisibleNl($isVisibleNl)
+    {
+        $this->isVisibleNl = $isVisibleNl;
+    
+        return $this;
+    }
+
+    /**
+     * Get isVisibleNl
+     *
+     * @return boolean 
+     */
+    public function getIsVisibleNl()
+    {
+        return $this->isVisibleNl;
+    }
+
+    /**
+     * Set isVisibleDe
+     *
+     * @param boolean $isVisibleDe
+     * @return Faq
+     */
+    public function setIsVisibleDe($isVisibleDe)
+    {
+        $this->isVisibleDe = $isVisibleDe;
+    
+        return $this;
+    }
+
+    /**
+     * Get isVisibleDe
+     *
+     * @return boolean 
+     */
+    public function getIsVisibleDe()
+    {
+        return $this->isVisibleDe;
+    }
 }

@@ -35,7 +35,7 @@ about:
         _locale:  %anytv.locales%
         
 branding_kit:
-    path:      /branding_kit/{_locale}
+    path:      /branding/{_locale}
     defaults:  { _controller: AnytvMainBundle:Default:brandingKit, _locale: en }
     requirements:
         _locale:  %anytv.locales%

@@ -251,14 +251,14 @@ class DefaultController extends Controller
         }
         $countries_choices['other'] = $translator->trans('Not Listed');
         
-        $defaultData = array('country' => 'HK', 'use_twitch_or_livestream'=>'none');
+        $defaultData = array('use_twitch_or_livestream'=>'none');
         
         $form_builder = $this->createFormBuilder($defaultData)    
           ->add('company', 'text', array('label'=>$translator->trans('Company / Name: *')))
           ->add('address1', 'text', array('label'=>$translator->trans('Address 1: *')))
           ->add('address2', 'text', array('label'=>$translator->trans('Address 2:'), 'required'=>false))
           ->add('city', 'text', array('label'=>$translator->trans('City: *')))
-          ->add('country', 'choice', array('choices' => $countries_choices, 'empty_value' => '', 'label'=>$translator->trans('Country: *')))
+          ->add('country', 'choice', array('choices' => $countries_choices, 'empty_value' => '---', 'label'=>$translator->trans('Country: *'), 'required'=>false))
           ->add('country_other', 'text', array('label'=>$translator->trans('Country (other): *'), 'required'=>false))
           ->add('zipcode', 'text', array('label'=>$translator->trans('Zipcode: *')))
           ->add('phone', 'text', array('label'=>$translator->trans('Phone: *')))
@@ -269,6 +269,7 @@ class DefaultController extends Controller
           ->add('last_name', 'text', array('label'=>$translator->trans('Last name: *')))
           ->add('title', 'text', array('label'=>$translator->trans('Title:'), 'required'=>false));
                 
+        $youtube_network_choices = array('Acifin', 'AwesomenessTV', 'BBTV', 'Bent Pixels', 'Curse (Union for Gamers)', 'Fullscreen', 'Machinima', 'Maker', 'N4Gtv', 'RPM', 'Social Blade', 'TGN', 'VISO', 'Vultra', 'Yeousch', 'YouTube AdSense', 'ZoominTV', 'Not Listed');  
         $signup_questions = $signup_question_repository->findAll();
                 
         foreach($signup_questions as $signup_question)
@@ -279,7 +280,8 @@ class DefaultController extends Controller
                 $form_builder->add('youtube_channels', 'textarea', array('label'=>$translator->trans('Your YouTube Channels (one on each line, write None if you don\'t have one): *')));
                 break;
             case 4:
-                $form_builder->add('youtube_network', 'textarea', array('label'=>$translator->trans('YouTube Network (who are you partnered with on YouTube, write None if not partnered): *')));
+                $form_builder->add('youtube_network_choice', 'choice', array('choices'=>$youtube_network_choices, 'empty_value' => '---', 'label'=>$translator->trans('YouTube Network (who are you partnered with on YouTube): *'), 'required'=>false));
+                $form_builder->add('youtube_network', 'textarea', array('label'=>$translator->trans('YouTube Network (other) write None if not partnered: *'), 'required'=>false));
                 break;
             case 6:
                 $form_builder->add('use_twitch_or_livestream', 'choice', array('choices' => array('none'=>'---', 'Yes'=>'Yes', 'No'=>'No'), 'label'=>$translator->trans('Do you use Twitch or live stream?: *')));
@@ -304,38 +306,42 @@ class DefaultController extends Controller
 
         $errors = array();
         $country_is_listed = true;
+        $youtube_network_is_selected = false;
+        $form_is_posted = false;
         
         if ($form->isValid()) {
+            
+          $form_is_posted = true;
           
           $data = $form->getData();
           
-          $company = $data['company'];
+          $company = strip_tags($data['company']);
           
           if($company == '')
           {
             $errors[] = $translator->trans('Company / Name is required.');    
           }
           
-          $address1 = $data['address1'];
+          $address1 = strip_tags($data['address1']);
           
           if($address1 == '')
           {
             $errors[] = $translator->trans('Address 1 is required.');    
           }
           
-          $address2 = $data['address2'];
+          $address2 = strip_tags($data['address2']);
           
-          $city = $data['city'];
+          $city = strip_tags($data['city']);
           
           if($city == '')
           {
             $errors[] = $translator->trans('City is required.');    
           }
           
-          $country = $data['country'];
-          $country_other = $data['country_other'];
+          $country = strip_tags($data['country']);
+          $country_other = strip_tags($data['country_other']);
           
-          if(($country == 'other') && ($country_other == ''))
+          if((($country == 'other') || is_null($country)) && ($country_other == ''))
           {
             $errors[] = $translator->trans('Country is required.');   
           }
@@ -359,72 +365,79 @@ class DefaultController extends Controller
             }
           }
           
-          $zipcode = $data['zipcode'];
+          $zipcode = strip_tags($data['zipcode']);
           
           if($zipcode == '')
           {
             $errors[] = $translator->trans('Zipcode is required.');    
           }
           
-          $phone = $data['phone'];
+          $phone = strip_tags(trim($data['phone']));
           
           if($phone == '')
           {
             $errors[] = $translator->trans('Phone is required.');    
           }
           
-          $first_name = $data['first_name'];
+          $first_name = strip_tags($data['first_name']);
           
           if($first_name == '')
           {
             $errors[] = $translator->trans('First Name is required.');    
           }
           
-          $last_name = $data['last_name'];
+          $last_name = strip_tags($data['last_name']);
           
           if($last_name == '')
           {
             $errors[] = $translator->trans('Last Name is required.');    
           }
           
-          $youtube_channels = $data['youtube_channels'];
+          $youtube_channels = strip_tags($data['youtube_channels']);
           
           if($youtube_channels == '')
           {
             $errors[] = $translator->trans('Your YouTube Channels (one on each line, write None if you don\'t have one): *');    
           }
           
-          $youtube_network = $data['youtube_network'];
+          $youtube_network_choice = $data['youtube_network_choice'];
+          $youtube_network = strip_tags($data['youtube_network']);
           
-          if($youtube_network == '')
+          if((is_null($youtube_network_choice) || ($youtube_network_choice == 17)) && ($youtube_network == ''))
           {
             $errors[] = $translator->trans('YouTube Network (who are you partnered with on YouTube, write None if not partnered): *');    
           }
           
-          $use_twitch_or_livestream = $data['use_twitch_or_livestream'];
+          if(in_array($youtube_network_choice, range(0, 16)))
+          {  
+            $youtube_network_is_selected = true;
+          }
+          
+          $use_twitch_or_livestream = strip_tags($data['use_twitch_or_livestream']);
           
           if($use_twitch_or_livestream == 'none')
           {
             $errors[] = $translator->trans('Do you use Twitch or live stream?: *');    
           }
           
-          $youtube_best_video = $data['youtube_best_video'];
+          $youtube_best_video = strip_tags($data['youtube_best_video']);
           
           if($youtube_best_video == '')
           {
             $errors[] = $translator->trans('Link to your best video? (write None if you never made a video): *');    
           }
           
-          $skype_name = $data['skype_name'];
+          $skype_name = strip_tags($data['skype_name']);
           
           if($skype_name == '')
           {
             $errors[] = $translator->trans('Skype Name (write None if you do not use Skype): *');    
           }
           
-          $title = $data['title'];
+          $title = strip_tags($data['title']);
           
-          $email = $data['email'];
+          $email = strip_tags($data['email']);
+          $email = trim($email);
           
           $affiliate_user = $affiliate_user_repository->findOneBy(array('email'=>$email));
           
@@ -433,8 +446,8 @@ class DefaultController extends Controller
             $errors[] = $translator->trans('E-mail Address already exists.');
           }
           
-          $password = $data['password'];
-          $confirm_password = $data['confirm_password'];
+          $password = strip_tags($data['password']);
+          $confirm_password = strip_tags($data['confirm_password']);
           
           if($password != $confirm_password)
           {
@@ -443,6 +456,11 @@ class DefaultController extends Controller
           
           if(!$errors)
           {
+             if(substr($phone, 0, 1) == '+')
+             {
+               $phone = substr_replace($phone, '011', 0, 1);
+             }
+             
              $affiliate_data = array('company'=>$company,
                                      'address1'=>$address1,
                                      'address2'=>$address2,
@@ -535,7 +553,12 @@ class DefaultController extends Controller
                  $signup_answer_response = $hasoffers->createSignupQuestionAnswer($affiliate_object->id, 2, $youtube_channels);
                }
                
-               if($youtube_network)
+               if($youtube_network_is_selected)
+               {
+                 $youtube_network = $youtube_network_choices[$youtube_network_choice];
+                 $signup_answer_response = $hasoffers->createSignupQuestionAnswer($affiliate_object->id, 4, $youtube_network);
+               }
+               elseif($youtube_network)
                {
                  $signup_answer_response = $hasoffers->createSignupQuestionAnswer($affiliate_object->id, 4, $youtube_network);
                }
@@ -565,6 +588,6 @@ class DefaultController extends Controller
           }
         }
         
-        return $this->render('AnytvDashboardBundle:Default:signup.html.twig', array('title'=>$translator->trans('CREATE AN ACCOUNT'), 'form'=>$form->createView(), 'id'=>$id, 'errors'=>$errors, 'country_is_listed'=>$country_is_listed));
+        return $this->render('AnytvDashboardBundle:Default:signup.html.twig', array('title'=>$translator->trans('CREATE AN ACCOUNT'), 'form'=>$form->createView(), 'id'=>$id, 'errors'=>$errors, 'country_is_listed'=>$country_is_listed, 'youtube_network_is_selected'=>$youtube_network_is_selected, 'form_is_posted'=>$form_is_posted));
     }
 }

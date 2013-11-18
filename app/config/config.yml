@@ -75,6 +75,8 @@ parameters:
     anytv.formats: html|rss|json
     anytv.cultures: en|zh|nl|de 
     anytv.locales: en|zh|nl|de
+    hasoffers.api_network_id: mmotm
+    hasoffers.api_network_token: NETjE4MoLg7NarETCDruHecVmgLHbN
     
 avalanche_imagine:
     filters:

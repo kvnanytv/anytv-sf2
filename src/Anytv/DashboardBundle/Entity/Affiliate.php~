@@ -1111,7 +1111,14 @@ class Affiliate
      */
     public function getPhone()
     {
-        return $this->phone;
+        $phone = $this->phone;
+        
+        if(substr($phone, 0, 3) == '011')
+        {
+          $phone = substr_replace($phone, '+', 0, 3);
+        }
+        
+        return $phone;
     }
 
     /**

@@ -297,6 +297,23 @@ class Offer
     {
         return $this->name;
     }
+    
+    /**
+     * Get name for URL
+     *
+     * @return string 
+     */
+    public function getNameForUrl()
+    {
+        if($this->name)
+        {
+          $alias = preg_replace("/[^a-zA-Z0-9]+/", "", strtolower($this->name));
+          
+          return $alias;
+        }
+        
+        return '';
+    }
 
     /**
      * Set description
@@ -886,17 +903,6 @@ class Offer
     public function setCreatedAtValue()
     {
       $this->created_at = new \DateTime();
-    }
-    
-    /**
-     * @ORM\PreUpdate
-     */
-    public function setUpdatedAtValue()
-    {
-      if(!$this->updated_at)
-      {
-        $this->updated_at = new \DateTime();
-      }
     }
     
     /*

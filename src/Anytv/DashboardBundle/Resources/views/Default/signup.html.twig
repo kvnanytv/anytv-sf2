@@ -4,6 +4,27 @@
      
 {% block content_header '' %}
 
+{% block submenu %}
+
+<div id="sub-nav" class="dashbrd">
+<div class="container">
+<nav class="subnav-cllps db-lnks">
+  <ul id="nav">
+    
+    <li><a href="{{ path('faq') }}" title="{% trans %}FAQ{% endtrans %}">{% trans %}FAQ{% endtrans %}</a></li>
+    <li><a href="{{ path('about') }}" title="{% trans %}What is any.TV?{% endtrans %}" style="font-weight:normal">{% trans %}What is any.TV?{% endtrans %}</a></li>
+  
+    <li style="float:right"><a href="{{ path('terms') }}" title="{% trans %}Terms & Conditions{% endtrans %}">{% trans %}Terms & Conditions{% endtrans %}</a></li> 
+    <li style="float:right"><a href="{{ path('privacy_policy') }}" title="{% trans %}Privacy Policy{% endtrans %}">{% trans %}Privacy Policy{% endtrans %}</a></li> 
+  
+  </ul>
+</nav>
+</div>
+</div>
+
+{% endblock %}
+
+
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
 
@@ -64,7 +85,13 @@
       <div class="cl-20"></div>
       {{ form_row(form.youtube_channels, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
       <div class="cl-20"></div>
-      {{ form_row(form.youtube_network, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
+      {{ form_row(form.youtube_network_choice, {'attr': {'class': 'selectpicker', 'data-width': '100%', 'onchange': 'if(this.selectedIndex==18){$("#youtube_network_other").show("slow");}else{$("#youtube_network_other").hide("slow");};' }}) }}
+      <div class="cl-20"></div>
+      <div class="form_row" {% if((form_is_posted == false) or (form_is_posted and youtube_network_is_selected)) %}style="display:none"{% endif %} id="youtube_network_other">
+        {{ form_label(form.youtube_network) }}
+        {{ form_errors(form.youtube_network) }}
+        {{ form_widget(form.youtube_network, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
+      </div>
       <div class="cl-20"></div>
       {{ form_row(form.use_twitch_or_livestream, {'attr': {'class': 'selectpicker', 'data-width': '100%'}}) }}
       <div class="cl-20"></div>

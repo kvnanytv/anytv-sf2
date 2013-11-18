@@ -5,10 +5,11 @@
 /app/logs/*
 !app/cache/.gitkeep
 !app/logs/.gitkeep
-/src/Anytv/DashboardBundle/DataFixtures/ORM
+/src/Anytv/DashboardBundle/DataFixtures
 /build/
 /vendor/
 /bin/
 /nbproject/private/
 /web/uploads/*
 /web/media/*
+/web/thumbs/*

@@ -34,7 +34,6 @@ class UpdateTrafficReferralsByDateCommand extends ContainerAwareCommand
         $today = date('Y-m-d');
         $yesterday = date('Y-m-d', strtotime($today.' -1 day'));
         
-        //if($max_traffic_referral_date == '2013-11-06') 
         if($max_traffic_referral_date == $yesterday) 
         {
           exit();  
@@ -48,14 +47,10 @@ class UpdateTrafficReferralsByDateCommand extends ContainerAwareCommand
         {
           $traffic_referral_date = new \DateTime(date('Y-m-d', strtotime('2013-01-10')));   
         }
-        
-        //$traffic_referral_date = new \DateTime(date('Y-m-d', strtotime('today')));
-        //$traffic_referral_date = new \DateTime(date('Y-m-d', strtotime('yesterday')));
           
         $hasoffers = $container->get('hasoffers');
         $traffic_referrals_data = $hasoffers->getTrafficReferralsByDate($traffic_referral_date);
         
-        $updated_traffic_referrals = 0;
         $new_traffic_referrals = 0;
         foreach($traffic_referrals_data as $traffic_referral_data)
         {
@@ -73,34 +68,11 @@ class UpdateTrafficReferralsByDateCommand extends ContainerAwareCommand
             $offer = $offer_repository->findOneByOfferId($traffic_referral_stat_object->offer_id);    
           }
           
-          $traffic_referral = null;
           if($affiliate && $offer)
           {
-            $traffic_referral = $repository->findOneBy(array('affiliate'=>$affiliate, 'offer'=>$offer, 'url'=>$traffic_referral_stat_object->url, 'statDate'=>new \DateTime($traffic_referral_stat_object->date)));
-          }
-          
-          if($traffic_referral)
-          {
-            $traffic_referral->setCount($traffic_referral_stat_object->count);
-            $traffic_referral->setClicks($traffic_referral_stat_object->clicks);
-            $traffic_referral->setConversions($traffic_referral_stat_object->conversions);
-            
-            $updated_traffic_referrals++;
-          }
-          else
-          {
             $traffic_referral = new TrafficReferral();
-          
-            if($affiliate)
-            {
-              $traffic_referral->setAffiliate($affiliate);      
-            }
-          
-            if($offer)
-            {
-              $traffic_referral->setOffer($offer);      
-            }
-          
+            $traffic_referral->setAffiliate($affiliate);      
+            $traffic_referral->setOffer($offer);      
             $traffic_referral->setUrl($traffic_referral_stat_object->url);
             $traffic_referral->setClicks($traffic_referral_stat_object->clicks);
             $traffic_referral->setConversions($traffic_referral_stat_object->conversions);
@@ -109,14 +81,13 @@ class UpdateTrafficReferralsByDateCommand extends ContainerAwareCommand
 
             $manager->persist($traffic_referral); 
             
-            $new_traffic_referrals++;
+            $new_traffic_referrals++;  
           }
         }
 
         $manager->flush();
                 
-        $output->writeln($text);
-        $output->writeln($updated_traffic_referrals.' updated TrafficReferrals.');
+        $output->writeln($text.' '.date_format($traffic_referral_date, 'Y-m-d'));
         $output->writeln($new_traffic_referrals.' new TrafficReferrals added.');
     }
 }
