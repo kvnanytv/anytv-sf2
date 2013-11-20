@@ -7,68 +7,64 @@
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
 
-    <section id="content">
+<div id="content">
+  <div id="dboard-wrap">   
+    <section class="sec-content-title">
+      <div class="container">
+        <div style="float: left;"><h3>{{ title|upper }}</h3></div>
+	<div style="float: right;">&nbsp;</div>
+      </div>
+    </section>
+        
+    <section class="db-slide-1">
       <div class="container">
         <div class="row">
-          <div class="col-lg-12">
-            	
-              <h1 class="title">{{ title|upper }}</h1>
-    
-    <p>&nbsp;</p>
-    <div style="margin-bottom: 20px;display: none">
-      {{ form_start(form, {'action': path('advertisers'), 'method': 'POST'}) }}
-         {{ form_errors(form) }}
-         {{ form_widget(form.advertisers_update) }}
-       {{ form_end(form) }}
-    </div>
-
-    
-      <table border="1" cellspacing="15" cellpadding="15">
-        <tr>
-         <th>Id</th>
-         <th>{% trans %}Advertiser{% endtrans %} Id</th>
-         <th>{% trans %}Company{% endtrans %}</th>
-         <th>{% trans %}Address{% endtrans %}</th>
-         <th>{% trans %}City{% endtrans %}</th>
-         <th>{% trans %}Region{% endtrans %}</th>
-         <th>{% trans %}Country{% endtrans %}</th>
-         <th>{% trans %}Status{% endtrans %}</th>
-         <th>{% trans %}Date Added{% endtrans %}</th>
-         <th>{% trans %}Date Modified{% endtrans %}</th>
-       </tr>
-       {% for advertiser in advertisers %}
-         <tr>
-           <td>{{ advertiser.id }}</td>
-           <td>{{ advertiser.advertiserId }}</td>
-           <td><a href="{{ path('advertiser_view', { 'id' : advertiser.id }) }}" title="Edit">{{ advertiser.company }}</a></td>
-           <td>{{ advertiser.address1 }}{{ advertiser.address2 }}</td>
-           <td>{{ advertiser.city }}</td>
-           <td>{{ advertiser.region }}</td>
-           {% if(advertiser.country) %}
-             <td><a href="{{ path('country_view', { 'id' : advertiser.country.id }) }}" title="{% trans %}View{% endtrans %}">{{ advertiser.country }}</a></td>
-           {% else %}
-             <td>&nbsp;</td>
-           {% endif %}
-           <td>{{ advertiser.status }}</td>
-           <td>{{ advertiser.getDateAddedAsString }}</td>
-           <td>{{ advertiser.getDateModifiedAsString() }}</td>
-         </tr>
-       {% endfor %} 
-      </table>
-       
-     
-        
-    
-              
-              
-            <div class="cl-20"></div>
+          <div class="cl-20"></div>
+	  <hr>
+          <div class="table-responsive">
+	    <div class="offer-tbl-wrap">
+	      <table class="table table-striped">                                                                        
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>{% trans %}Advertiser{% endtrans %} Id</th>
+                    <th>{% trans %}Company{% endtrans %}</th>
+                    <th>{% trans %}Address{% endtrans %}</th>
+                    <th>{% trans %}City{% endtrans %}</th>
+                    <th>{% trans %}Region{% endtrans %}</th>
+                    <th>{% trans %}Country{% endtrans %}</th>
+                    <th>{% trans %}Status{% endtrans %}</th>
+                    <th>{% trans %}Date Added{% endtrans %}</th>
+                    <th>{% trans %}Date Modified{% endtrans %}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for advertiser in advertisers %}
+                    <tr>
+                      <td>{{ advertiser.id }}</td>
+                      <td>{{ advertiser.advertiserId }}</td>
+                      <td><a href="{{ path('advertiser_view', { 'id' : advertiser.id }) }}" title="Edit">{{ advertiser.company }}</a></td>
+                      <td>{{ advertiser.address1 }}{{ advertiser.address2 }}</td>
+                      <td>{{ advertiser.city }}</td>
+                      <td>{{ advertiser.region }}</td>
+                      {% if(advertiser.country) %}
+                        <td><a href="{{ path('country_view', { 'id' : advertiser.country.id }) }}" title="{% trans %}View{% endtrans %}">{{ advertiser.country }}</a></td>
+                      {% else %}
+                        <td>&nbsp;</td>
+                      {% endif %}
+                      <td>{{ advertiser.status }}</td>
+                      <td>{{ advertiser.getDateAddedAsString }}</td>
+                      <td>{{ advertiser.getDateModifiedAsString() }}</td>
+                    </tr>
+                  {% endfor %} 
+                </tbody>                                                        
+              </table>
+            </div>
           </div>
 	</div>
       </div>
     </section>
-
-    {{ parent() }}
-    
-
-    
+  </div>
+</div>
+{{ parent() }}    
 {% endblock %}

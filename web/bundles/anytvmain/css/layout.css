@@ -108,13 +108,13 @@ padding: 0 5px 0 20px;
 margin-bottom: 0 !important;
 border-radius: 0 !important;
 border: 0 !important;
-background-color: #dc2127 !important;
-color: #fff !important;
+background-color: /*#dc21278*/ #ffea89 !important;
+color: #333333 !important;
 text-align: center;
 }
 
 .any-notif .close {
-color: #fff !important;
+color: #333333 !important;
 }
 
 .any-notif .close:focus {
@@ -142,10 +142,10 @@ text-shadow: none;
 }
 
 #main-nav .navbar {
-border-radius: 0 !important;
-margin: 0 !important;
-background: transparent !important;
-border: none !impofrtant;
+border-radius: 0;
+margin: 0;
+background: transparent;
+border: none;
 }
 
 #main-nav .navbar-fixed-top {
@@ -327,20 +327,44 @@ padding: 30px 0 40px 0;
 }
 
 @media (min-width: 640px) and (max-width: 767px) {
-	.video-container {
-		display: none;
+	.cta-home-lft {
+		margin-bottom: 20px;
+	}
+
+	.cta-home-lft h3, .cta-home-lft p {
+		text-align: center !important;
+	}
+
+	.cta-btns {
+		text-align: center !important;
 	}
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-	.video-container {
-		display: none;
+	.cta-home-lft {
+		margin-bottom: 20px;
+	}
+
+	.cta-home-lft h3, .cta-home-lft p {
+		text-align: center !important;
+	}
+
+	.cta-btns {
+		text-align: center !important;
 	}
 }
 
 @media (min-width: 1024px) and (max-width: 1279px) {
-	.video-container {
-		display: none;
+	.cta-home-lft {
+		margin-bottom: 20px;
+	}
+
+	.cta-home-lft h3, .cta-home-lft p {
+		text-align: center !important;
+	}
+
+	.cta-btns {
+		text-align: center !important;
 	}
 }
 
@@ -351,7 +375,8 @@ padding: 30px 0 40px 0;
 	padding-top: 30px; 
 	height: 0; 
 	overflow: hidden;
-	background: url('../images/mac-monitor.png') no-repeat top;
+	/*background: url('../images/mac-monitor.png') no-repeat top;*/
+	border: 1px solid transparent;
 }
 
 .video-container iframe,
@@ -368,6 +393,8 @@ padding: 30px 0 40px 0;
 	text-align: center;
 	/*padding: 70px 0 20px 0;*/
 }
+
+
 
 .cta-home h3, .cta-home p {
 	margin: 0;
@@ -417,10 +444,12 @@ padding: 30px 0 40px 0;
 }
 
 .cta-btns {
-	float: left;
 	text-align: left;
 	width: 100%;
+}
 
+.cta-btns .btn:hover {
+	background-color: #ca221f !important;
 }
 
 .btn-join {

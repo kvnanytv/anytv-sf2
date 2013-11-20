@@ -7,91 +7,179 @@
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
 
-
-
-<section id="content">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <em><a href="{{ path('affiliate_edit', { 'id' : affiliate.id }) }}" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em>
-    
-    <h1 class="title">{{ title }}<p>dashboard.tm ID: {{ affiliate.affiliateId }} - ({{ affiliate_status }})</p></h1>
+<div id="content">
+  <div id="dboard-wrap">   
+    <section class="sec-content-title">
+      <div class="container">
+        <div style="float: left;"><h3>{{ title }}</h3></div>
+	<div style="float: right;">&nbsp;</div>
+      </div>
+    </section>
+      
+    <section class="db-slide-1">
+      <div class="container">
+        <div class="row">
+            
+            <div class="cl-20"></div>                                                                     
+      <hr>
     
     {% if(affiliate.thumbnail) %}
       <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ affiliate.company }}" />
     {% endif %}
     
-   
-      <ul>
-        <li style="display:block">{% trans %}Address{% endtrans %}: {{ affiliate.getFullAddress() }}</li>
-        <li style="display:block">{% trans %}Country{% endtrans %}: {% if(affiliate.country) %}<a href="{{ path('country_view', { 'id' : affiliate.country.id }) }}" title="{% trans %}View{% endtrans %}">{{ affiliate.country.name }}</a>{% else %}&nbsp;{% endif %}</li>
+   <div id="user-prof-name">
+        <label>{% trans %}Address{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ affiliate.getFullAddress() }}" disabled>
+	<div class="cl-20"></div>
+	<label>{% trans %}Country{% endtrans %}</label>					 										    
+	{% if(affiliate.country) %}<a href="{{ path('country_view', { 'id' : affiliate.country.id }) }}" title="{% trans %}View{% endtrans %}">{{ affiliate.country.name }}</a>{% else %}&nbsp;{% endif %}
+        <div class="cl-20"></div>
         {% if(affiliate.other) %}
-          <li style="display:block">{% trans %}Other{% endtrans %}: {{ affiliate.other }}</li>
+          <label>{% trans %}Other{% endtrans %}</label>
+	  <input type="text" class="form-control input-lg" value="{{ affiliate.other }}" disabled>
+          <div class="cl-20"></div>
         {% endif %}
-        <li style="display:block">{% trans %}Phone{% endtrans %}: {{ affiliate.phone }}</li>
-        <li style="display:block">{% trans %}Fax{% endtrans %}: {{ affiliate.fax }}</li>
-        <li style="display:block">{% trans %}Paypal Email{% endtrans %}: {{ affiliate.paypalEmail }}</li>
-        <li style="display:block">{% trans %}Signup IP{% endtrans %}: {{ affiliate.signupIp }}</li>
-        <li style="display:block">{% trans %}Referred by{% endtrans %}: 
-          {% if(affiliate.referrer) %}
-            <a href="{{ path('affiliate_view', { 'id' : affiliate.referrer.id }) }}" title="View">{{ affiliate.referrer }}</a>
-          {% else %}
-            &nbsp;
-          {% endif %}
-        </li>
-      </ul>
+        <label>{% trans %}Phone{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ affiliate.phone }}" disabled>
+        <div class="cl-20"></div>
+        <label>{% trans %}Fax{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ affiliate.fax }}" disabled>
+        <div class="cl-20"></div>
+        <label>{% trans %}Paypal Email{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ affiliate.paypalEmail }}" disabled>
+        <div class="cl-20"></div>
+        <label>{% trans %}Signup IP{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ affiliate.signupIp }}" disabled>
+        <div class="cl-20"></div>
+        <label>{% trans %}Referred by{% endtrans %}</label>
+	{% if(affiliate.referrer) %}
+          <a href="{{ path('affiliate_view', { 'id' : affiliate.referrer.id }) }}" title="View">{{ affiliate.referrer }}</a>
+        {% else %}
+          &nbsp;
+        {% endif %}
+        <div class="cl-20"></div>
+        <label>{% trans %}Join Date{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ affiliate.getDateAddedAsString() }}" disabled>
+      </div>
+      
+      
             
       {% if(affiliate_users) %}
+      <div class="cl-20"></div>
+      <hr>
         <h2>Users:</h2>
-        <ul>
+        
+        
+	  
+          <div class="table-responsive">
+	    <div class="offer-tbl-wrap">
+	      <table class="table table-striped">                                                                        
+                <thead>
+        <tr>
+         <th>{% trans %}Name{% endtrans %}</th>
+         <th>{% trans %}Email{% endtrans %}</th>
+         <th>{% trans %}Status{% endtrans %}</th>
+         
+       </tr>
+        </thead>
+        <tbody>
+        
+        
           {% for affiliate_user in affiliate_users %}
-            <li style="display:block">
+            <tr>
+              <td>
               {% if(affiliate_user.getFullName()) %}
                 <a href="{{ path('affiliate_user_view', { 'id' : affiliate_user.id }) }}" title="View">{{ affiliate_user.getFullName() }}</a>
               {% else %}
                 <a href="{{ path('affiliate_user_view', { 'id' : affiliate_user.id }) }}" title="View">{{ affiliate_user.email }}</a>
               {% endif %}
-              ({{ affiliate_user.email }})
+                  </td>
+              <td>
+              {{ affiliate_user.email }}
+              </td>
+              <td>{{ affiliate_user.status }}</td>
               
-              - {{ affiliate_user.status }} - is creator = {{ affiliate_user.isCreator }}
-            </li> 
+              
+            </tr>
           {% endfor %}
-        </ul>
+            
+            </tbody>
+        </table>
+                </div>
+              </div>
       {% endif %}
         
       {% if(referred_affiliates|length) %}
-        <h2>Referred Affiliates:</h2>
-        <ul>
-          {% for affiliate in referred_affiliates %}
-            <li style="display:block">
-              <a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="View">{{ affiliate }}</a>
-            </li> 
+      <div class="cl-20"></div>
+      <hr>
+        <h2>Referred Affiliates ({{ referred_affiliates|length }}):</h2>
+        
+          <div class="table-responsive">
+	    <div class="offer-tbl-wrap">
+	      <table class="table table-striped">                                                                        
+                <thead>
+        <tr>
+         <th>{% trans %}Name{% endtrans %}</th>
+       </tr>
+        </thead>
+        <tbody>
+        
+        {% for affiliate in referred_affiliates %}
+            <tr>
+                <td><a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="View">{{ affiliate }}</a></td>
+            </tr>
           {% endfor %}
-        </ul>
+            
+            </tbody>
+        </table>
+                </div>
+              </div>
       {% endif %}
         
       {% if(traffic_referrals|length) %}
-        <h2>Traffic Referrals: ({{ traffic_referrals|length }})</h2>
-        <ul>
-          {% for traffic_referral in traffic_referrals %}
-            <li style="display:block">
-              <a href="{{ path('offer_view', { 'id' : traffic_referral.offer.id }) }}" title="{{ traffic_referral.offer }}">{{ traffic_referral.offer }}</a> - 
-              <a href="{{ traffic_referral.url }}" target="_blank" title="{{ traffic_referral.url }}">{{ traffic_referral.url|slice(0, 60) }}</a> -
-              {{ traffic_referral.getStatDateAsString() }}
-            </li> 
+      <div class="cl-20"></div>
+      <hr>
+        <h2>Traffic Referrals ({{ traffic_referrals|length }}):</h2>
+        
+          <div class="table-responsive">
+	    <div class="offer-tbl-wrap">
+	      <table class="table table-striped">                                                                        
+                <thead>
+        <tr>
+         <th>{% trans %}Offer{% endtrans %}</th>
+         <th>{% trans %}URL{% endtrans %}</th>
+         <th>{% trans %}Date{% endtrans %}</th>
+       </tr>
+        </thead>
+        <tbody>
+        
+        {% for traffic_referral in traffic_referrals %}
+            <tr>
+                <td><a href="{{ path('offer_view', { 'id' : traffic_referral.offer.id }) }}" title="{{ traffic_referral.offer }}">{{ traffic_referral.offer }}</a></td>
+                <td><a href="{{ traffic_referral.url }}" target="_blank" title="{{ traffic_referral.url }}">{{ traffic_referral.url|slice(0, 60) }}</a></td>
+                <td>{{ traffic_referral.getStatDateAsString() }}</td>
+            </tr>
           {% endfor %}
-        </ul>
+            
+            </tbody>
+        </table>
+                </div>
+              </div>
       {% endif %}
+        
+      
       <div class="cl-20"></div>
       </div>
       
 		</div>
+
+			</section>
+
+		</div>
 	</div>
-</section>
-
-
 
     {{ parent() }}
     
+        
     
 {% endblock %}

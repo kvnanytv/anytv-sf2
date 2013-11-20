@@ -91,7 +91,7 @@ class SignupAnswerController extends Controller
         }
         
         $items_per_page = 30;
-        $order_by = 'id';
+        $order_by = 'answerId';
         $order = 'DESC';
         
         $signup_answers = $repository->findAllSignupAnswers($page, $items_per_page, $order_by, $order);

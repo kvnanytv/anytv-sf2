@@ -7,13 +7,20 @@
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
 
-<section id="content">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        
+<div id="content">
+  <div id="dboard-wrap">   
+    <section class="sec-content-title">
+      <div class="container">
+        <div style="float: left;"><h3>{{ page.title}}</h3></div>
+	<div style="float: right;">&nbsp;</div>
+      </div>
+    </section>
+      
+    <section class="db-slide-1">
+      <div class="container">
+        <div class="row">
     
-    <p>{{ page.title}}</p>
+    
 
    
        
@@ -21,22 +28,27 @@
           
          {{ form_errors(form) }}
        
-         {{ form_row(form.content) }}
-         {{ form_row(form.contentZh) }}
+         {{ form_row(form.content, {'attr': {'class': 'form-control input-lg'}}) }}
+         <div class="cl-20"></div>
+         {{ form_row(form.contentZh, {'attr': {'class': 'form-control input-lg'}}) }}
+         <div class="cl-20"></div>
+         {{ form_row(form.contentNl, {'attr': {'class': 'form-control input-lg'}}) }}
+         <div class="cl-20"></div>
+         {{ form_row(form.contentDe, {'attr': {'class': 'form-control input-lg'}}) }}
+         <div class="cl-20"></div>
+      {{ form_row(form.save, {'attr': {'class': 'btn btn-default btn-lg'}}) }}
        
        {{ form_end(form) }}
-      <div class="cl-20"></div>
       </div>
-      
+				</div>
+
+			</section>
+
 		</div>
 	</div>
-</section>
-
-
 
     {{ parent() }}
     
-       
         
     
 {% endblock %}

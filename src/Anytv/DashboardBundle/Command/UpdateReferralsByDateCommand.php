@@ -59,6 +59,7 @@ class UpdateReferralsByDateCommand extends ContainerAwareCommand
           $referred = $affiliate_repository->findOneBy(array('affiliateId'=>$referral_object->affiliate_id));
           $date = new \DateTime($referral_object->date);
           $amount = $referral_object->amount;
+          $total = $referral_object->var_total;
               
           if($referrer && $referred)
           {
@@ -66,6 +67,7 @@ class UpdateReferralsByDateCommand extends ContainerAwareCommand
             $referral->setReferrer($referrer);
             $referral->setReferred($referred);
             $referral->setAmount($amount);
+            $referral->setTotal($total);
             $referral->setDate($date);
                   
             $manager->persist($referral);

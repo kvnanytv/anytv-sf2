@@ -27,6 +27,13 @@ class Referral
      * @ORM\Column(name="amount", type="float")
      */
     private $amount;
+    
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="total", type="float", nullable=true)
+     */
+    private $total;
 
     /**
      * @var \DateTime
@@ -157,5 +164,28 @@ class Referral
     public function getDateAsString()
     {
         return date_format($this->date, 'Y-m-d');
+    }
+
+    /**
+     * Set total
+     *
+     * @param float $total
+     * @return Referral
+     */
+    public function setTotal($total)
+    {
+        $this->total = $total;
+    
+        return $this;
+    }
+
+    /**
+     * Get total
+     *
+     * @return float 
+     */
+    public function getTotal()
+    {
+        return $this->total;
     }
 }

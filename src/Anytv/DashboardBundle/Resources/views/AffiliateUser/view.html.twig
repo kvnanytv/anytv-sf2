@@ -7,25 +7,42 @@
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
 
-<section id="content">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <em><a href="{{ path('affiliate_user_edit', { 'id' : affiliate_user.id }) }}" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em>
+<div id="content">
+  <div id="dboard-wrap">   
+    <section class="sec-content-title">
+      <div class="container">
+        <div style="float: left;"><h3>{{ title }}</h3></div>
+	<div style="float: right;">&nbsp;</div>
+      </div>
+    </section>
+      
+    <section class="db-slide-1">
+      <div class="container">
+        <div class="row">
+            
+            <div class="cl-20"></div>                                                                     
+      <hr>
+      
+      <div id="user-prof-name">
+        <label>{% trans %}Email{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ affiliate_user.email }}" disabled>
+        <div class="cl-20"></div>
+        <label>{% trans %}Affiliate{% endtrans %}</label>
+	<a href="{{ path('affiliate_view', { 'id' : affiliate.getId() }) }}" title="{{ affiliate.company }}">{{ affiliate.company }}</a>
+        <div class="cl-20"></div>
+        <label>{% trans %}Phone{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ affiliate_user.phone }}" disabled>
+        <div class="cl-20"></div>
+        <label>{% trans %}Mobile{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ affiliate_user.cellPhone }}" disabled>
+        <div class="cl-20"></div>
+        <label>{% trans %}Date Joined{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ affiliate_user.getDateJoinedAsString() }}" disabled>
+        
+      </div>
     
     
-    <h1 class="title">{{ title }}<p>dashboard.tm user ID: {{ affiliate_user.affiliateUserId }} - ({{ affiliate_status }})</p></h1>
-    
-    
-      <ul>
-        <li style="display:block">{% trans %}Name{% endtrans %}: {{ affiliate_user.getFullName() }}</li>
-        <li style="display:block">{% trans %}Email{% endtrans %}: {{ affiliate_user.email }}</li>
-        <li style="display:block">{% trans %}Affiliate{% endtrans %}: <a href="{{ path('affiliate_view', { 'id' : affiliate.getId() }) }}" title="{{ affiliate.company }}">{{ affiliate.company }}</a></li>
-        <li style="display:block">{% trans %}Phone{% endtrans %}: {{ affiliate_user.phone }}</li>
-        <li style="display:block">{% trans %}Mobile{% endtrans %}: {{ affiliate_user.cellPhone }}</li>
-        <li style="display:block">{% trans %}Date Joined{% endtrans %}: {{ affiliate_user.getDateJoinedAsString() }}</li>
-        <li style="display:block">{% trans %}Admin{% endtrans %}: {{ affiliate_user.isAdmin }}</li>
-      </ul>
+      
             
     
    
@@ -38,13 +55,14 @@
       </div>
       
 		</div>
+
+			</section>
+
+		</div>
 	</div>
-</section>
 
     {{ parent() }}
-   
     
-    
-
+        
     
 {% endblock %}

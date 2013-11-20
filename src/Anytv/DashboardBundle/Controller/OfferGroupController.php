@@ -18,8 +18,8 @@ class OfferGroupController extends Controller
       
       $form = $this->createFormBuilder(array('offer_group_keyword'=>$session->get('offer_group_keyword'), 'offer_group_status'=>$session->get('offer_group_status', 'active')))
         ->add('offer_group_keyword', 'text', array('required'=>false))
-        ->add('offer_group_status', 'choice', array('required' => true, 'choices' => array('active'=>'active', 'deleted'=>'deleted')))
-        ->add('offer_group_search', 'submit', array('label'=>$translator->trans('search')))
+        ->add('offer_group_status', 'choice', array('required' => true, 'label'=>$translator->trans('Status'), 'choices' => array('active'=>'active', 'deleted'=>'deleted')))
+        ->add('offer_group_search', 'submit', array('label'=>' '))
         //->add('offer_group_update', 'submit', array('label'=>$translator->trans('update')))
         ->getForm();
         

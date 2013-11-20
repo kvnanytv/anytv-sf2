@@ -7,48 +7,58 @@
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
 
-<section id="content">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        
-          <h1 class="title">{{ title|upper }}</h1><span style="display: none">last affiliate id = {{ max_affiliate_id }}</span>
-          
-          {% for flashMessage in app.session.flashbag.get('flash_message') %}
-            <div class="alert alert-danger alert-dismissable">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              <strong>{{ flashMessage }}</strong>
-            </div>
-          {% endfor %}
-    
-    <p>&nbsp;</p>
-    <div style="margin-bottom: 20px">
+<div id="content">
+  <div id="dboard-wrap">   
+    <section class="sec-content-title">
+      <div class="container">
+        <div style="float: left;"><h3>{{ title|upper }}</h3></div>
+	<div style="float: right;">&nbsp;</div>
+      </div>
+    </section>
+      
+    <section class="db-slide-1">
+      <div class="container">
+        <div class="row">
+            
       {% if(app.session.get('affiliate_keyword') or app.session.get('affiliate_country')) %}
         <a href="{{ path('affiliates_reset') }}">reset</a>
       {% endif %}
-      {{ form_start(form, {'action': path('affiliates'), 'method': 'POST'}) }}
-         {{ form_errors(form) }}
-         {{ form_errors(form.affiliate_keyword) }}
-         {{ form_widget(form.affiliate_keyword, {'attr': {'class': 'affiliate_keyword_field'}}) }}
-         {{ form_label(form.affiliate_country) }}
-         {{ form_errors(form.affiliate_country) }}
-         {{ form_widget(form.affiliate_country, {'attr': {'class': 'affiliate_country_field'}}) }}
-         {{ form_label(form.affiliate_paypal) }}
-         {{ form_errors(form.affiliate_paypal) }}
-         {{ form_widget(form.affiliate_paypal, {'attr': {'class': ''}}) }}
-         {{ form_label(form.affiliate_status) }}
-         {{ form_errors(form.affiliate_status) }}
-         {{ form_widget(form.affiliate_status, {'attr': {'class': 'affiliate_status_field'}}) }}
-         {{ form_widget(form.affiliate_search) }}
-         
+      {{ form_start(form, {'action': path('affiliates'), 'method': 'POST', 'attr': {'class':'form-inline', 'role':'form'}}) }}
+        
+        <div class="input-group input-group-lg">
+          {{ form_widget(form.affiliate_keyword, {'attr': {'class': 'form-control input-lg', 'placeholder':'Search Affiliates'}}) }}
+          <span class="input-group-btn">
+            {{ form_widget(form.affiliate_search, {'attr': {'class': 'btn btn-default btn-srch icon-search'}}) }}
+	  </span>
+        </div>
+        
+         <div class="f-lft">
+	  <div class="form-group">					
+	    {{ form_label(form.affiliate_status) }}
+            {{ form_widget(form.affiliate_status, {'attr': {'class': 'selectpicker'}}) }}
+	  </div>
+          <div class="form-group">					
+	    {{ form_label(form.affiliate_country) }}
+            {{ form_widget(form.affiliate_country, {'attr': {'class': 'selectpicker'}}) }}
+	  </div>       
+          <div class="form-group">
+            <div class="checkbox">
+	    {{ form_label(form.affiliate_paypal) }}
+            {{ form_widget(form.affiliate_paypal, {'attr': {'class': 'lbl-h'}}) }}
+            </div>
+	  </div> 
+	</div>
+        
+   
          
        {{ form_end(form) }}
-    </div>
-
-    
-      <table border="1" cellspacing="15" cellpadding="15">
+    <div class="cl-20"></div>
+	  <hr>
+          <div class="table-responsive">
+	    <div class="offer-tbl-wrap">
+	      <table class="table table-striped">                                                                        
+                <thead>
         <tr>
-         <th>Id</th>
          <th>{% trans %}Affiliate{% endtrans %} Id</th>
          <th>{% trans %}Company{% endtrans %}</th>
          <th>{% trans %}Country{% endtrans %}</th>
@@ -58,9 +68,10 @@
          <th>{% trans %}Thumbnail{% endtrans %}</th>
          <th>{% trans %}Referred by{% endtrans %}</th>
        </tr>
+        </thead>
+       <tbody>
        {% for affiliate in affiliates %}
          <tr>
-           <td>{{ affiliate.id }}</td>
            <td>{{ affiliate.affiliateId }}</td>
            <td><a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="View">{{ affiliate.company }}</a></td>
            {% if(affiliate.country) %}
@@ -83,12 +94,14 @@
            {% endif %}
          </tr>
        {% endfor %} 
-      </table>
-       
-     
-      {% if (total_pages > 1) %}
-        <ul class="pagination">
-        {% if(page > 1) %}
+         </tbody>
+         
+         {% if (total_pages > 1) %}
+        <tfoot>
+	  <tr>
+	    <td class="al-cntr" colspan="8">
+	      <ul class="pagination">
+                  {% if(page > 1) %}
           <li><a href="{{ path('affiliates', {'page':(page-1)}) }}"  title="{{ (page-1) }}">&laquo;</a></li>
         {% endif %}
         {% for i in 1..total_pages if((page-i)|abs < 8) %}
@@ -102,20 +115,42 @@
           <li><a href="{{ path('affiliates', {'page':(page+1)}) }}" title="{{ (page+1) }}">&raquo;</a></li>
         {% endif %}
         </ul>
+        </td>
+        </tr>
+      </tfoot>
       {% endif %}
-          
-          
-      <div class="cl-20"></div>
-      </div>
+         
+      </table>
+       
+     
       
+          
+          
+      </div>
+						</div>
+					</div>
+				</div>
+
+			</section>
+
 		</div>
 	</div>
-</section>
 
     {{ parent() }}
     
         
     
+{% endblock %}
 
-    
+{% block javascripts %}
+  {{ parent() }}
+  <script type="text/javascript">
+    $(window).on('load', function () {
+
+        $('.selectpicker').selectpicker({
+            'selectedText': ''
+        });
+
+    });
+</script>
 {% endblock %}
