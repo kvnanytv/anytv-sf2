@@ -7,8 +7,6 @@
 !app/logs/.gitkeep
 /src/Anytv/DashboardBundle/DataFixtures
 /build/
-/vendor/
-/bin/
 /nbproject/
 /designs/
 /web/.htaccess
