@@ -9,7 +9,9 @@
 /build/
 /vendor/
 /bin/
-/nbproject/private/
+/nbproject/
+/designs/
+/web/.htaccess
 /web/uploads/*
 /web/media/*
 /web/thumbs/*
