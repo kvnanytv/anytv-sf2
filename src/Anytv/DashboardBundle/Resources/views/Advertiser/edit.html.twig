@@ -1,0 +1,52 @@
+{% extends 'AnytvDashboardBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title}}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+
+    <section id="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <em><a href="{{ path('advertiser_view', { 'id' : advertiser.id }) }}" title="{% trans %}View{% endtrans %}">{% trans %}view{% endtrans %}</a></em>
+    
+    <h1 class="title">{{ title }} - {{ advertiser }}</h1>
+    
+    <p>&nbsp;</p>
+
+    
+       
+       {{ form_start(form, {'action': path('advertiser_edit', { 'id' : advertiser.id }), 'method': 'POST'}) }}
+          
+         {{ form_errors(form) }}
+        
+         {{ form_row(form.company) }}
+         {{ form_row(form.address1) }}
+         {{ form_row(form.address2) }}
+         {{ form_row(form.city) }}
+         {{ form_row(form.region) }}
+         {{ form_row(form.country) }}
+         {{ form_row(form.other) }}
+         {{ form_row(form.zipcode) }}
+         {{ form_row(form.phone) }}
+         {{ form_row(form.fax) }}
+         {{ form_row(form.website) }}
+         {{ form_row(form.status) }}
+          
+       {{ form_end(form) }}
+      <div class="cl-20"></div>
+      </div>
+      
+		</div>
+	</div>
+</section>
+
+    {{ parent() }}
+    
+       
+        
+    
+{% endblock %}

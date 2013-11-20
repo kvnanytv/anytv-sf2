@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * OfferCategory
  *
- * @ORM\Table()
+ * @ORM\Table(name="OfferCategory")
  * @ORM\Entity(repositoryClass="Anytv\DashboardBundle\Entity\OfferCategoryRepository")
  * @ORM\HasLifecycleCallbacks()
  */
@@ -274,5 +274,10 @@ class OfferCategory
       {
         $this->updated_at = new \DateTime();
       }
+    }
+    
+    public function __toString() 
+    {
+      return $this->getName();    
     }
 }

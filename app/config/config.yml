@@ -5,7 +5,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: %locale% }
+    translator:      { fallback: %locale% }
     secret:          %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -15,7 +15,7 @@ framework:
     validation:      { enable_annotations: true }
     templating:
         engines: ['twig']
-        hinclude_default_template: AnytvDashboardBundle::hinclude.html.twig
+        hinclude_default_template: AnytvMainBundle::hinclude.html.twig
         #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trusted_proxies: ~
@@ -73,7 +73,25 @@ swiftmailer:
 # Any TV Custom settings and values
 parameters:
     anytv.formats: html|rss|json
-    anytv.cultures: en|fr|de 
-    anytv.locales: en|fr|de
+    anytv.cultures: en|zh|nl|de 
+    anytv.locales: en|zh|nl|de
+    hasoffers.api_network_id: mmotm
+    hasoffers.api_network_token: NETjE4MoLg7NarETCDruHecVmgLHbN
+    
+avalanche_imagine:
+    filters:
+        profile_thumbnail:
+            type:    thumbnail
+            options: { size: [55, 55], mode: outbound }
+        profile_detail:
+            type:    thumbnail
+            options: { size: [250, 250], mode: outbound }
+        featured_offer:
+            type:    thumbnail
+            options: { size: [635, 314], mode: outbound }
+        offer_group_thumbnail:
+            type:    thumbnail
+            options: { size: [55, 55], mode: outbound }
+    
     
     

@@ -1,7 +1,3 @@
-anytv_community:
-    resource: "@AnytvCommunityBundle/Resources/config/routing.yml"
-    prefix:   /community
-
 anytv_main:
     resource: "@AnytvMainBundle/Resources/config/routing.yml"
     prefix:   /
@@ -9,4 +5,48 @@ anytv_main:
 anytv_dashboard:
     resource: "@AnytvDashboardBundle/Resources/config/routing.yml"
     prefix:   /dashboard
+    
+login_hasoffers:
+    path:  /login/hasoffers/{_locale}
+    defaults: { _controller: AnytvDashboardBundle:Security:loginHasoffers, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
+login_after_register:
+    path:  /login/after_register/{user_type}/{username}/{password}/{_locale}
+    defaults: { _controller: AnytvDashboardBundle:Security:loginAfterRegister, _locale: en, user_type: affiliate_user }
+    requirements:
+        _locale:  %anytv.locales%
+    
+login:
+    path:  /login/{user_type}/{_locale}
+    defaults: { _controller: AnytvDashboardBundle:Security:login, _locale: en, user_type: affiliate_user }
+    requirements:
+        _locale:  %anytv.locales%
+        
+login_check:
+    path:  /login_check/{_locale}
+    requirements:
+        _locale:  %anytv.locales%
+    
+logout:
+    path:   /logout
+    
+offers_embed:
+    path:      /{_locale}/embed/offers/{page}
+    defaults:  { _controller: AnytvDashboardBundle:Offer:embed, _locale: en, page: 1 }
+    requirements:
+        _locale:  %anytv.locales%
+        page:  \d+
+        
+offer_play_now_link:
+    path:      /{_locale}/embed/offers/play_now_link/{id}
+    defaults:  { _controller: AnytvDashboardBundle:Offer:playNowLink, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        id:  \d+
+        
+_imagine:
+    resource: .
+    type:     imagine
 

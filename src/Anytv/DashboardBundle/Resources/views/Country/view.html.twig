@@ -1,0 +1,244 @@
+{% extends 'AnytvDashboardBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title}}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+
+<div id="content">
+  <div id="dboard-wrap">   
+    <section class="sec-content-title">
+      <div class="container">
+        <div style="float: left;"><h3>{{ title }}</h3></div>
+	<div style="float: right;">&nbsp;</div>
+      </div>
+    </section>
+      
+    <section class="db-slide-1">
+      <div class="container">
+        <div class="row">
+            
+            <div class="cl-20"></div>                                                                     
+      <hr>
+      
+      <div id="user-prof-name">
+        
+        <label>{% trans %}Code{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ country.code }}" disabled>
+    </div>
+      
+         {% if(advertisers|length) %}
+      <div class="cl-20"></div>
+      <hr>
+        <h2>Advertisers ({{advertisers|length}}):</h2>
+          <div class="table-responsive">
+	    <div class="offer-tbl-wrap">
+	      <table class="table table-striped">                                                                        
+                <thead>
+        <tr>
+         <th>{% trans %}Name{% endtrans %}</th>
+         
+       </tr>
+        </thead>
+        <tbody>
+        
+        {% for advertiser in advertisers %}
+            <tr>
+                <td><a href="{{ path('advertiser_view', { 'id' : advertiser.id }) }}" title="{% trans %}Edit{% endtrans %}">{{ advertiser.company }}</a></td>
+                
+            </tr>
+          {% endfor %}
+            
+            </tbody>
+        </table>
+                </div>
+              </div>
+      {% endif %}
+        
+       {% if(active_affiliates|length) %}
+      <div class="cl-20"></div>
+      <hr>
+        <h2>Active Affiliates ({{active_affiliates|length}}):</h2>
+          <div class="table-responsive">
+	    <div class="offer-tbl-wrap">
+	      <table class="table table-striped">                                                                        
+                <thead>
+        <tr>
+         <th>{% trans %}Name{% endtrans %}</th>
+         
+       </tr>
+        </thead>
+        <tbody>
+        
+        {% for affiliate in active_affiliates %}
+            <tr>
+                <td><a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="{% trans %}View{% endtrans %}">{{ affiliate.company }}</a></td>
+                
+            </tr>
+          {% endfor %}
+            
+            </tbody>
+        </table>
+                </div>
+              </div>
+      {% endif %}
+        
+         {% if(pending_affiliates|length) %}
+      <div class="cl-20"></div>
+      <hr>
+        <h2>Pending Affiliates ({{pending_affiliates|length}}):</h2>
+          <div class="table-responsive">
+	    <div class="offer-tbl-wrap">
+	      <table class="table table-striped">                                                                        
+                <thead>
+        <tr>
+         <th>{% trans %}Name{% endtrans %}</th>
+         
+       </tr>
+        </thead>
+        <tbody>
+        
+        {% for affiliate in pending_affiliates %}
+            <tr>
+                <td><a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="{% trans %}View{% endtrans %}">{{ affiliate.company }}</a></td>
+                
+            </tr>
+          {% endfor %}
+            
+            </tbody>
+        </table>
+                </div>
+              </div>
+      {% endif %}
+        
+      {% if(deleted_affiliates|length) %}
+      <div class="cl-20"></div>
+      <hr>
+        <h2>Deleted Affiliates ({{deleted_affiliates|length}}):</h2>
+          <div class="table-responsive">
+	    <div class="offer-tbl-wrap">
+	      <table class="table table-striped">                                                                        
+                <thead>
+        <tr>
+         <th>{% trans %}Name{% endtrans %}</th>
+         
+       </tr>
+        </thead>
+        <tbody>
+        
+        {% for affiliate in deleted_affiliates %}
+            <tr>
+                <td><a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="{% trans %}View{% endtrans %}">{{ affiliate.company }}</a></td>
+                
+            </tr>
+          {% endfor %}
+            
+            </tbody>
+        </table>
+                </div>
+              </div>
+      {% endif %}
+        
+      {% if(blocked_affiliates|length) %}
+      <div class="cl-20"></div>
+      <hr>
+        <h2>Blocked Affiliates ({{blocked_affiliates|length}}):</h2>
+          <div class="table-responsive">
+	    <div class="offer-tbl-wrap">
+	      <table class="table table-striped">                                                                        
+                <thead>
+        <tr>
+         <th>{% trans %}Name{% endtrans %}</th>
+         
+       </tr>
+        </thead>
+        <tbody>
+        
+        {% for affiliate in blocked_affiliates %}
+            <tr>
+                <td><a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="{% trans %}View{% endtrans %}">{{ affiliate.company }}</a></td>
+                
+            </tr>
+          {% endfor %}
+            
+            </tbody>
+        </table>
+                </div>
+              </div>
+      {% endif %}
+        
+      {% if(rejected_affiliates|length) %}
+      <div class="cl-20"></div>
+      <hr>
+        <h2>Rejected Affiliates ({{rejected_affiliates|length}}):</h2>
+          <div class="table-responsive">
+	    <div class="offer-tbl-wrap">
+	      <table class="table table-striped">                                                                        
+                <thead>
+        <tr>
+         <th>{% trans %}Name{% endtrans %}</th>
+         
+       </tr>
+        </thead>
+        <tbody>
+        
+        {% for affiliate in rejected_affiliates %}
+            <tr>
+                <td><a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="{% trans %}View{% endtrans %}">{{ affiliate.company }}</a></td>
+                
+            </tr>
+          {% endfor %}
+            
+            </tbody>
+        </table>
+                </div>
+              </div>
+      {% endif %}
+        
+      
+      {% if(offers|length) %}
+      <div class="cl-20"></div>
+      <hr>
+        <h2>Offers ({{offers|length}}):</h2>
+          <div class="table-responsive">
+	    <div class="offer-tbl-wrap">
+	      <table class="table table-striped">                                                                        
+                <thead>
+        <tr>
+         <th>{% trans %}Name{% endtrans %}</th>
+         <th>{% trans %}Status{% endtrans %}</th>
+       </tr>
+        </thead>
+        <tbody>
+        
+        {% for offer in offers %}
+            <tr>
+                <td><a href="{{ path('offer_view', { 'id' : offer.id }) }}" title="{{ offer }}">{{ offer }}</a></td>
+                <td>{{ offer.status }}</td>
+            </tr>
+          {% endfor %}
+            
+            </tbody>
+        </table>
+                </div>
+              </div>
+      {% endif %}
+      
+        
+         <div class="cl-20"></div>
+      </div>
+      
+		</div>
+
+			</section>
+
+		</div>
+	</div>
+
+    {{ parent() }}
+    
+        
+    
+{% endblock %}

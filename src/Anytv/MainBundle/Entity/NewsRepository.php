@@ -20,7 +20,7 @@ class NewsRepository extends EntityRepository
           ->select(array('n', 'nc'))
           ->from('Anytv\MainBundle\Entity\News', 'n')
           ->leftJoin('n.category', 'nc')
-          ->where("n.title LIKE :keyword OR n.excerpt LIKE :keyword OR n.body LIKE :keyword OR nc.name LIKE :keyword")
+          ->where("n.title LIKE :keyword OR n.excerpt LIKE :keyword OR n.body LIKE :keyword")
           ->setParameter('keyword', "%$keyword%")
           ->setFirstResult($first_result)
           ->setMaxResults($items_per_page)
@@ -30,10 +30,12 @@ class NewsRepository extends EntityRepository
         return $query->getResult();
     }
     
-    public function countAllNews()
+    public function countAllNews($keyword)
     {    
         $query = $this->createQueryBuilder('n')
           ->select('count(n.id)')
+          ->where("n.title LIKE :keyword OR n.excerpt LIKE :keyword OR n.body LIKE :keyword")
+          ->setParameter('keyword', "%$keyword%")
           ->getQuery();
         
         return $query->getSingleScalarResult();

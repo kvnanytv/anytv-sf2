@@ -1,0 +1,64 @@
+
+
+
+
+
+<div class="row">
+  <div class="col-lg-12">
+							<div id="game-det-title">
+								<h3 class="modal-title">{{ offer }}</h3>								
+							</div>
+							<div id="game-det-banner">
+{% if(offer_group and offer_group.thumbnail) %}
+  <img src="{{ asset(offer_group.getWebPath()) }}" alt="{{ offer_group }}"  />
+{% else %}
+  <img src="{{ asset('bundles/anytvdashboard/images/default-game-img.jpg') }}">
+{% endif %}
+								
+                                                                
+							</div>							
+							<div class="pdd-20">
+								<div id="game-det-prev">
+									<div class="row">
+										<div class="col-lg-6"><a href="{{ offer.previewUrl }}" target="_blank">{% trans %}Preview URL{% endtrans %}</a></div>
+										
+									</div>
+								</div>
+								<div class="cl-20"></div>							
+								<div id="game-det-desc">
+										{{ offer.description }}
+								</div>
+								<div class="cl-20"></div>
+								<div id="game-det-lnk">
+									<input id="ref-lnk1" type="text" class="form-control input-lg" value="{{ tracking_link.clickUrl }}" disabled>								
+									<a id="cpy-ref-btn1" class="btn btn-default btn-lg" onmouseover="hoverCopy()">{% trans %}Copy Link{% endtrans %}</a>
+								</div>
+							</div>
+						</div>					
+					</div>
+
+<script>
+     var ini = 0;
+    function hoverCopy(){
+     //alert('bind');
+      if(ini == 0){
+        ini = 1;
+        $("a#cpy-ref-btn1").zclip({
+          path:'/bundles/anytvmain/js/zclip/ZeroClipboard.swf',
+          copy:$('#ref-lnk1').val(),
+          beforeCopy:function(){
+              $('#ref-lnk1').css('background','#2dc575');
+              $('#ref-lnk1').css('color','white');
+          // $(this).css('color','orange');
+          },
+          afterCopy:function(){
+  $('#ref-link').css('background','green');
+// $(this).css('color','purple');
+$(this).next('.check').show();
+}
+        });
+     
+
+      }
+    }
+    </script>

@@ -4,11 +4,12 @@ namespace Anytv\DashboardBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Advertiser
  *
- * @ORM\Table()
+ * @ORM\Table(name="Advertiser")
  * @ORM\Entity(repositoryClass="Anytv\DashboardBundle\Entity\AdvertiserRepository")
  * @ORM\HasLifecycleCallbacks()
  */
@@ -66,9 +67,8 @@ class Advertiser
     private $region;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="country", type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Country", inversedBy="advertisers")
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      */
     private $country;
 
@@ -159,7 +159,16 @@ class Advertiser
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updated_at;
-
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Offer", mappedBy="advertiser")
+     */
+    private $offers;
+    
+    public function __construct()
+    {
+        $this->offers = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -307,29 +316,6 @@ class Advertiser
     public function getRegion()
     {
         return $this->region;
-    }
-
-    /**
-     * Set country
-     *
-     * @param string $country
-     * @return Advertiser
-     */
-    public function setCountry($country)
-    {
-        $this->country = $country;
-    
-        return $this;
-    }
-
-    /**
-     * Get country
-     *
-     * @return string 
-     */
-    public function getCountry()
-    {
-        return $this->country;
     }
 
     /**
@@ -628,5 +614,86 @@ class Advertiser
       {
         $this->updated_at = new \DateTime();
       }
+    }
+
+    /**
+     * Add offers
+     *
+     * @param \Anytv\DashboardBundle\Entity\Offer $offers
+     * @return Advertiser
+     */
+    public function addOffer(\Anytv\DashboardBundle\Entity\Offer $offers)
+    {
+        $this->offers[] = $offers;
+    
+        return $this;
+    }
+
+    /**
+     * Remove offers
+     *
+     * @param \Anytv\DashboardBundle\Entity\Offer $offers
+     */
+    public function removeOffer(\Anytv\DashboardBundle\Entity\Offer $offers)
+    {
+        $this->offers->removeElement($offers);
+    }
+
+    /**
+     * Get offers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOffers()
+    {
+        return $this->offers;
+    }
+
+    /**
+     * Set country
+     *
+     * @param \Anytv\DashboardBundle\Entity\Country $country
+     * @return Advertiser
+     */
+    public function setCountry(\Anytv\DashboardBundle\Entity\Country $country = null)
+    {
+        $this->country = $country;
+    
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return \Anytv\DashboardBundle\Entity\Country 
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+    
+    /**
+     * Echo dateAdded string
+     *
+     * @return \DateTime string 
+     */
+    public function getDateAddedAsString()
+    {
+        return date_format($this->created_at, 'Y-m-d');
+    }
+    
+     /**
+     * Echo modified string
+     *
+     * @return \DateTime string 
+     */
+    public function getDateModifiedAsString()
+    {
+        return date_format($this->updated_at, 'Y-m-d');
+    }
+    
+    public function __toString() 
+    {
+      return $this->getCompany();    
     }
 }

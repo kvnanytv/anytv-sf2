@@ -1,0 +1,68 @@
+{% extends 'AnytvDashboardBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title}}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+
+<section id="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        {{ render(controller('AnytvDashboardBundle:Profile:idCard', {'affiliate': affiliate, 'affiliate_user': affiliate_user, 'page':'profile'})) }}	
+      <div class="cl-20"></div>
+      </div>
+      <div class="col-lg-9">
+          {{ render(controller('AnytvDashboardBundle:Profile:tabbedProfileComponent', { 'tab': tab, 'mode': mode, 'form': form })) }}
+								
+
+			</div> 
+		</div>
+	</div>
+</section>
+
+
+  
+    
+        
+                
+      
+                
+               
+             
+      
+
+    {{ parent() }}
+
+    
+    
+    
+    
+    
+      
+   
+      
+    
+    
+    
+      
+            
+    
+
+    
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script type="text/javascript">
+    $(window).on('load', function () {
+
+        $('.selectpicker').selectpicker({
+            'selectedText': ''
+        });
+
+    });
+</script>
+{% endblock %}

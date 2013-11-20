@@ -1,0 +1,13 @@
+<div class="tabbable">
+  <ul class="nav nav-tabs"> 
+    <li {% if(tab == 'company') %}class="active"{% endif %}><a href="{{ path('profile_view') }}">{% trans %}Company Details{% endtrans %}</a></li>
+    <li {% if(tab == 'user') %}class="active"{% endif %}><a href="{{ path('profile_view', { 'tab': 'user' }) }}">{% trans %}User Details{% endtrans %}</a></li>
+  </ul>
+  <div class="tab-content" id="profile_tab_content">
+    {% if(tab == 'company') %}
+      {{ render(controller('AnytvDashboardBundle:Profile:company', { 'mode': mode, 'form': form })) }}
+    {% elseif(tab == 'user') %}
+      {{ render(controller('AnytvDashboardBundle:Profile:user', { 'mode': mode, 'form': form })) }}
+    {% endif %}
+  </div>						
+</div>

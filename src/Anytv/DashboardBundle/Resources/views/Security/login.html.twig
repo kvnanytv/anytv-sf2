@@ -1,0 +1,107 @@
+{% extends 'AnytvDashboardBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {% trans %}Login{% endtrans %}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block authentication '' %}
+                  
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+    
+{% if(form_action == 'login_hasoffers') %}
+  <section id="content">
+    <div class="container">
+      <div id="con-body" class="row">
+        <div class="col-lg-5">
+            <div class="panel panel-default lgin-panel initial-login">
+              <div class="panel-heading">
+                <h3 class="panel-title"><strong>{% trans %}Dashboard{% endtrans %} {% trans %}Login{% endtrans %}</strong></h3>
+              </div>
+              <div class="panel-body">
+                {% for flashMessage in app.session.flashbag.get('login_error') %}
+                  <div class="alert alert-danger alert-dismissable">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>{{ flashMessage }}</strong>
+                  </div>
+                {% endfor %}
+                <form action="{{ path(form_action) }}" method="post" class="form-signin" id="login_form" onsubmit="$('.initial-login').hide();$('#auth-message').show();">
+                    <input type="hidden" name="user_type" value="{{ user_type }}">
+                    <p><strong>{% trans %}Email{% endtrans %}</strong></p>
+                    <input type="email" id="username" name="_username" value="{{ username }}" class="form-control brdrrad-0" required="required" autofocus>
+                    <div class="cl-20"></div>
+                    <p style="float: left"><strong>{% trans %}Password{% endtrans %}</strong></p><span class="fld-lnk-sm"><a href="{{ path('forgot_password')}}" tabindex="5">{% trans %}Forgot Password?{% endtrans %}</a></span>
+                    <input type="password" id="password" name="_password" value="{{ password }}" class="form-control brdrrad-0" required="required">
+                    <div class="cl-20"></div>
+                    <button type="submit" class="btn btn-lg btn-primary btn-block"><strong>{% trans %}Login{% endtrans %}</strong></button>       
+                </form>
+                
+                <div class="brdr-h"></div>
+		<p align="center">{% trans %}Don't have an account yet?{% endtrans %}</p>
+		<a class="btn btn-lg btn-primary btn-block btn-create" href="{{ path('signup') }}"><strong>{% trans %}CREATE AN ACCOUNT{% endtrans %}</strong></a>
+              </div>
+            </div>
+            <p class="txt-default initial-login">{% trans %}View our{% endtrans %} <a href="{{ path('privacy_policy') }}">{% trans %}Privacy Policy{% endtrans %}</a></p> 
+            <div class="panel panel-default lgin-panel" id="auth-message" style="display:none">
+              <div class="panel-body">
+                <p class="txt-default" style="font-weight:bold">{% trans %}Authenticating{% endtrans %}...</p> 
+              </div>
+            </div>
+        </div>
+          <div class="col-lg-7 ft-game">
+          {% if(featured_offer) %}
+          {% if(offer_group and offer_group.thumbnail) %}
+            <img src="{{ asset(offer_group.getWebPath()) | apply_filter('featured_offer') }}" alt="{{ featured_offer }}" />
+          {% endif %}
+          <p><strong>{{ featured_offer }}</strong> {% trans %}Countries{% endtrans %}: {{ featured_offer.countryCount }}</p>
+          <p style="font-size: 13px !important; font-family: Arial, Helvetica, sans-serif;">{{ featured_offer.description }}</p> 
+          {% endif %}
+          </div>
+        </div>
+      </div>
+ </section>   
+{% else %}
+  <section id="content">
+    <div class="container">
+      <div id="con-body" class="row">
+        <div class="col-lg-5">
+            <div class="panel panel-default lgin-panel" style="display:none">  
+              <div class="panel-body">
+                <form action="{{ path(form_action) }}" method="post" class="form-signin" id="login_form">
+                  <input type="hidden" id="username" name="_username" value="{{ username }}">
+                  <input type="hidden" id="password" name="_password" value="{{ password }}">             
+                </form>
+              </div>
+            </div>
+            <div class="panel panel-default lgin-panel">
+              <div class="panel-body">
+                <p class="txt-default" style="font-weight:bold">{% trans %}Logging you in securely{% endtrans %}...</p> 
+              </div>
+            </div>
+        </div>
+          <div class="col-lg-7 ft-game">
+              {% if(featured_offer) %}
+          {% if(offer_group and offer_group.thumbnail) %}
+            <img src="{{ asset(offer_group.getWebPath()) | apply_filter('featured_offer') }}" alt="{{ featured_offer }}" />
+          {% endif %}
+          <p><strong>{{ featured_offer }}</strong> {% trans %}Countries{% endtrans %}: {{ featured_offer.countryCount }}</p>
+          <p style="font-size: 13px !important; font-family: Arial, Helvetica, sans-serif;">{{ featured_offer.description }}</p> 
+          {% endif %}
+          </div>
+        </div>
+      </div>
+ </section>   
+{% endif %}
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  {% if(form_action == 'login_check') %}   
+  <script>
+    $(function () 
+    {
+      $("#login_form").submit();
+    });
+  </script>
+  {% endif %}
+{% endblock %}

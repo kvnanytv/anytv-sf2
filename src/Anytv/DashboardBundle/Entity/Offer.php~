@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Offer
  *
- * @ORM\Table()
+ * @ORM\Table(name="Offer")
  * @ORM\Entity(repositoryClass="Anytv\DashboardBundle\Entity\OfferRepository")
  * @ORM\HasLifecycleCallbacks()
  */
@@ -46,13 +46,12 @@ class Offer
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
     private $description;
-
+    
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="advertiser_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Advertiser", inversedBy="offers")
+     * @ORM\JoinColumn(name="advertiser_id", referencedColumnName="id")
      */
-    private $advertiserId;
+    private $advertiser;
 
     /**
      * @var string
@@ -173,9 +172,9 @@ class Offer
     private $require_terms_and_conditions;
     
     /**
-     * @var string
+     * @var text
      *
-     * @ORM\Column(name="terms_and_conditions", type="string", length=255, nullable=true)
+     * @ORM\Column(name="terms_and_conditions", type="text", nullable=true)
      */
     private $terms_and_conditions;
     
@@ -192,6 +191,11 @@ class Offer
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updated_at;
+     
+    /**
+     * @ORM\ManyToMany(targetEntity="OfferGroup", inversedBy="offers")
+     */
+    protected $offerGroups;
     
     /**
      * @ORM\ManyToMany(targetEntity="OfferCategory", inversedBy="offers")
@@ -199,14 +203,43 @@ class Offer
     protected $offerCategories;
     
     /**
+     * @ORM\OneToMany(targetEntity="TrafficReferral", mappedBy="offer")
+     */
+    private $trafficReferrals;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Conversion", mappedBy="offer")
+     */
+    private $conversions;
+    
+    /**
      * @ORM\ManyToMany(targetEntity="Country", inversedBy="offers")
      */
     protected $countries;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="country_count", type="integer")
+     */
+    private $countryCount;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_featured", type="boolean")
+     */
+    private $isFeatured;
     
     public function __construct()
     {
         $this->offerCategories = new ArrayCollection();
         $this->countries = new ArrayCollection();
+        $this->countryCount = 0;
+        $this->trafficReferrals = new ArrayCollection();
+        $this->conversions = new ArrayCollection();
+        $this->offerGroups = new ArrayCollection();
+        $this->isFeatured = false;
     }
     
     /**
@@ -264,6 +297,23 @@ class Offer
     {
         return $this->name;
     }
+    
+    /**
+     * Get name for URL
+     *
+     * @return string 
+     */
+    public function getNameForUrl()
+    {
+        if($this->name)
+        {
+          $alias = preg_replace("/[^a-zA-Z0-9]+/", "", strtolower($this->name));
+          
+          return $alias;
+        }
+        
+        return '';
+    }
 
     /**
      * Set description
@@ -286,29 +336,6 @@ class Offer
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set advertiserId
-     *
-     * @param integer $advertiserId
-     * @return Offer
-     */
-    public function setAdvertiserId($advertiserId)
-    {
-        $this->advertiserId = $advertiserId;
-    
-        return $this;
-    }
-
-    /**
-     * Get advertiserId
-     *
-     * @return integer 
-     */
-    public function getAdvertiserId()
-    {
-        return $this->advertiserId;
     }
 
     /**
@@ -424,6 +451,16 @@ class Offer
     public function getExpirationDate()
     {
         return $this->expirationDate;
+    }
+    
+    /**
+     * Echo expirationDate string
+     *
+     * @return \DateTime string 
+     */
+    public function getExpirationDateAsString()
+    {
+        return date_format($this->expirationDate, 'Y-m-d');
     }
 
     /**
@@ -782,15 +819,22 @@ class Offer
         return $this->countries;
     }
     
-    public function getCountriesNames()
+    public function getCountriesNames($count = null)
     {
         $countries = $this->getCountries();
         
         $countriesNames = array();
         
+        $counter = 0;
         foreach($countries as $country)
         {
           $countriesNames[] = $country->getName(); 
+          $counter++;
+          
+          if($count && ($counter==$count))
+          {
+            break;
+          }
         }
         
         return implode(', ', $countriesNames);
@@ -861,17 +905,6 @@ class Offer
       $this->created_at = new \DateTime();
     }
     
-    /**
-     * @ORM\PreUpdate
-     */
-    public function setUpdatedAtValue()
-    {
-      if(!$this->updated_at)
-      {
-        $this->updated_at = new \DateTime();
-      }
-    }
-    
     /*
      
     preRemove
@@ -888,4 +921,177 @@ class Offer
     
 
     
+
+    /**
+     * Set advertiser
+     *
+     * @param \Anytv\DashboardBundle\Entity\Advertiser $advertiser
+     * @return Offer
+     */
+    public function setAdvertiser(\Anytv\DashboardBundle\Entity\Advertiser $advertiser = null)
+    {
+        $this->advertiser = $advertiser;
+    
+        return $this;
+    }
+
+    /**
+     * Get advertiser
+     *
+     * @return \Anytv\DashboardBundle\Entity\Advertiser 
+     */
+    public function getAdvertiser()
+    {
+        return $this->advertiser;
+    }
+    
+    public function __toString() 
+    {
+      return $this->getName();    
+    }
+
+    /**
+     * Add trafficReferrals
+     *
+     * @param \Anytv\DashboardBundle\Entity\TrafficReferral $trafficReferrals
+     * @return Offer
+     */
+    public function addTrafficReferral(\Anytv\DashboardBundle\Entity\TrafficReferral $trafficReferrals)
+    {
+        $this->trafficReferrals[] = $trafficReferrals;
+    
+        return $this;
+    }
+
+    /**
+     * Remove trafficReferrals
+     *
+     * @param \Anytv\DashboardBundle\Entity\TrafficReferral $trafficReferrals
+     */
+    public function removeTrafficReferral(\Anytv\DashboardBundle\Entity\TrafficReferral $trafficReferrals)
+    {
+        $this->trafficReferrals->removeElement($trafficReferrals);
+    }
+
+    /**
+     * Get trafficReferrals
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTrafficReferrals()
+    {
+        return $this->trafficReferrals;
+    }
+
+    /**
+     * Add offerGroups
+     *
+     * @param \Anytv\DashboardBundle\Entity\OfferGroup $offerGroups
+     * @return Offer
+     */
+    public function addOfferGroup(\Anytv\DashboardBundle\Entity\OfferGroup $offerGroups)
+    {
+        $this->offerGroups[] = $offerGroups;
+    
+        return $this;
+    }
+
+    /**
+     * Remove offerGroups
+     *
+     * @param \Anytv\DashboardBundle\Entity\OfferGroup $offerGroups
+     */
+    public function removeOfferGroup(\Anytv\DashboardBundle\Entity\OfferGroup $offerGroups)
+    {
+        $this->offerGroups->removeElement($offerGroups);
+    }
+
+    /**
+     * Get offerGroups
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOfferGroups()
+    {
+        return $this->offerGroups;
+    }
+
+    /**
+     * Set isFeatured
+     *
+     * @param boolean $isFeatured
+     * @return Offer
+     */
+    public function setIsFeatured($isFeatured)
+    {
+        $this->isFeatured = $isFeatured;
+    
+        return $this;
+    }
+
+    /**
+     * Get isFeatured
+     *
+     * @return boolean 
+     */
+    public function getIsFeatured()
+    {
+        return $this->isFeatured;
+    }
+
+    /**
+     * Set countryCount
+     *
+     * @param integer $countryCount
+     * @return Offer
+     */
+    public function setCountryCount($countryCount)
+    {
+        $this->countryCount = $countryCount;
+    
+        return $this;
+    }
+
+    /**
+     * Get countryCount
+     *
+     * @return integer 
+     */
+    public function getCountryCount()
+    {
+        return $this->countryCount;
+    }
+
+    /**
+     * Add conversions
+     *
+     * @param \Anytv\DashboardBundle\Entity\Conversion $conversions
+     * @return Offer
+     */
+    public function addConversion(\Anytv\DashboardBundle\Entity\Conversion $conversions)
+    {
+        $this->conversions[] = $conversions;
+    
+        return $this;
+    }
+
+    /**
+     * Remove conversions
+     *
+     * @param \Anytv\DashboardBundle\Entity\Conversion $conversions
+     */
+    public function removeConversion(\Anytv\DashboardBundle\Entity\Conversion $conversions)
+    {
+        $this->conversions->removeElement($conversions);
+    }
+
+    /**
+     * Get conversions
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getConversions()
+    {
+        return $this->conversions;
+    }
 }

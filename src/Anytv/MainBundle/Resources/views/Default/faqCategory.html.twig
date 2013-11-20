@@ -1,0 +1,27 @@
+{% if(faqs) %}
+<div id="all-pane" class="tab-pane active">
+  <div id="sidebar" class="tabbable">
+    <div style="row">
+      <div class="col-lg-3">
+        <ul id="sidenav" class="nav nav-pills nav-stacked">
+          {% for faq in faqs %}
+	    <li><a href="javascript:void(0)" onclick="showFaq({{ faq.id }});" title="{{ faq.question|raw }}" data-toggle="tab"><strong>{{ faq.getQuestion(app.request.get('_locale', 'en'))|raw }}</strong></a></li>
+          {% endfor %}																
+	</ul>
+      </div>
+      <div class="col-lg-9">
+        <div id="getFixed">
+        <div class="tab-content pdd-0">
+          {% for faq in faqs %}
+	    <div class="tab-pane active" id="faq_answer_{{ faq.id }}" style="display:none">
+	      {{ faq.getAnswer(app.request.get('_locale', 'en'))|raw }}
+	    </div>
+          {% endfor %}	
+	</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+

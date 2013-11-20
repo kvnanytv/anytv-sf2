@@ -8,7 +8,7 @@ use Anytv\DashboardBundle\Entity\Offer;
 /**
  * TrafficReferral
  *
- * @ORM\Table()
+ * @ORM\Table(name="TrafficReferral")
  * @ORM\Entity(repositoryClass="Anytv\DashboardBundle\Entity\TrafficReferralRepository")
  * @ORM\HasLifecycleCallbacks()
  */
@@ -24,18 +24,16 @@ class TrafficReferral
     private $id;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="affiliate_id", type="integer")
+     * @ORM\ManyToOne(targetEntity="Affiliate", inversedBy="trafficReferrals")
+     * @ORM\JoinColumn(name="affiliate_id", referencedColumnName="id")
      */
-    private $affiliateId;
+    private $affiliate;
     
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="offer_id", type="integer")
+     /**
+     * @ORM\ManyToOne(targetEntity="Offer", inversedBy="trafficReferrals")
+     * @ORM\JoinColumn(name="offer_id", referencedColumnName="id")
      */
-    private $offerId;
+    private $offer;
 
     /**
      * @var string
@@ -78,6 +76,13 @@ class TrafficReferral
      * @ORM\Column(name="count", type="integer")
      */
     private $count;
+    
+    /**
+     * @var \Date
+     *
+     * @ORM\Column(name="stat_date", type="date")
+     */
+    private $statDate;
 
     /**
      * @var \DateTime
@@ -92,7 +97,12 @@ class TrafficReferral
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updatedAt;
-
+    
+    public function __construct()
+    {
+        $this->likes = 0;
+        $this->dislikes = 0;
+    }
 
     /**
      * Get id
@@ -102,29 +112,6 @@ class TrafficReferral
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set affiliateId
-     *
-     * @param integer $affiliateId
-     * @return TrafficReferral
-     */
-    public function setAffiliateId($affiliateId)
-    {
-        $this->affiliateId = $affiliateId;
-    
-        return $this;
-    }
-
-    /**
-     * Get affiliateId
-     *
-     * @return integer 
-     */
-    public function getAffiliateId()
-    {
-        return $this->affiliateId;
     }
 
     /**
@@ -305,29 +292,6 @@ class TrafficReferral
     }
 
     /**
-     * Set offerId
-     *
-     * @param integer $offerId
-     * @return TrafficReferral
-     */
-    public function setOfferId($offerId)
-    {
-        $this->offerId = $offerId;
-    
-        return $this;
-    }
-
-    /**
-     * Get offerId
-     *
-     * @return integer 
-     */
-    public function getOfferId()
-    {
-        return $this->offerId;
-    }
-
-    /**
      * Set count
      *
      * @param integer $count
@@ -348,5 +312,84 @@ class TrafficReferral
     public function getCount()
     {
         return $this->count;
+    }
+
+    /**
+     * Set statDate
+     *
+     * @param \DateTime $statDate
+     * @return TrafficReferral
+     */
+    public function setStatDate($statDate)
+    {
+        $this->statDate = $statDate;
+    
+        return $this;
+    }
+
+    /**
+     * Get statDate
+     *
+     * @return \DateTime 
+     */
+    public function getStatDate()
+    {
+        return $this->statDate;
+    }
+    
+    /**
+     * Echo statDate
+     *
+     * @return \DateTime string 
+     */
+    public function getStatDateAsString()
+    {
+        return date_format($this->statDate, 'Y-m-d');
+    }
+
+    /**
+     * Set affiliate
+     *
+     * @param \Anytv\DashboardBundle\Entity\Affiliate $affiliate
+     * @return TrafficReferral
+     */
+    public function setAffiliate(\Anytv\DashboardBundle\Entity\Affiliate $affiliate = null)
+    {
+        $this->affiliate = $affiliate;
+    
+        return $this;
+    }
+
+    /**
+     * Get affiliate
+     *
+     * @return \Anytv\DashboardBundle\Entity\Affiliate 
+     */
+    public function getAffiliate()
+    {
+        return $this->affiliate;
+    }
+
+    /**
+     * Set offer
+     *
+     * @param \Anytv\DashboardBundle\Entity\Offer $offer
+     * @return TrafficReferral
+     */
+    public function setOffer(\Anytv\DashboardBundle\Entity\Offer $offer = null)
+    {
+        $this->offer = $offer;
+    
+        return $this;
+    }
+
+    /**
+     * Get offer
+     *
+     * @return \Anytv\DashboardBundle\Entity\Offer 
+     */
+    public function getOffer()
+    {
+        return $this->offer;
     }
 }

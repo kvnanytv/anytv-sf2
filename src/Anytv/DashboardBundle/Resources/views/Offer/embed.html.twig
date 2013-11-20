@@ -1,0 +1,96 @@
+{% if(offers) %}
+<section id="games-lists">
+  <div class="container">
+    <div class="games-list-wrap">
+      <h3>any.TV <strong>{% trans %}Games List{% endtrans %}</strong></h3>
+        <div class="row">  
+          <div class="col-lg-12">
+						<div class="input-group input-group-lg" style="display:none">
+						<input id="in-pl" type="search" class="form-control input-lg" role="search" placeholder="Search Games...">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="button"><i class="icon-search icon-large"></i></button>
+						</span>
+						</div>                   
+					</div>
+                
+					<div class="cl-20"></div>
+					<div class="col-lg-12">
+					<div id="offer_progress-bar" style="display:none" class="progress progress-striped active">
+					  <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">							    
+					  </div>
+					</div>	
+              
+          <div id="gl-tbl" class="table-responsive mrgn-top">
+          <table class="table">	       
+                    
+          <thead>
+            <tr>
+              <th>{% trans %}Games{% endtrans %}</th>
+              <th>{% trans %}Payout{% endtrans %}</th>
+              <th>{% trans %}Countries{% endtrans %}</th>
+              <th>{% trans %}Play Now Link{% endtrans %}</th>        
+            </tr>
+          </thead> 
+                                       
+          <tbody>
+          {% for offer in offers %}
+          <tr>
+            <td>{{ offer }}</td>
+            <td>${{ offer.defaultPayout }}</td>
+            <td>{{ offer.countryCount }}</td>
+            <td id="play_now_link_{{ offer.offerId }}">
+              
+              {% if(app.user) %}
+                <form method="post" name="form_{{ app.user.id }}" action="http://www.games.tm/login.php" method="POST" target="_blank">
+                  <input type="hidden" name='email' value='{{ app.user.email }}' >
+                  <input type="hidden" name='password' value='{{ app.user.getPasswordDecoded() }}'>
+                  <input type="hidden" name='game' value="{{ offer.getNameForUrl() }}">
+                  <input type="submit" value ='{% trans %}Get play now link{% endtrans %}' class="btn btn-default btn-glink">
+                </form>
+              {% else %}
+                <a href="http://www.games.tm/#/game/{{ offer.getNameForUrl() }}" class="btn btn-default btn-glink" target="_blank">{% trans %}Get play now link{% endtrans %}</a>
+              {% endif %}
+              
+            </td>
+          </tr>
+          {% endfor %} 
+          
+          {% if (total_pages > 1) %}
+            <tfoot>
+            <tr>
+	    <td class="al-cntr" colspan="4">
+	    <ul class="pagination">
+            {% if(page > 1) %}
+              <li><a href="javascript:void(0)" onclick="offerLink('{{ path('offers_embed', {'page':(page-1)}) }}');" title="{{ (page-1) }}">&laquo;</a></li>
+            {% endif %}
+            {% for i in 1..total_pages if((page-i)|abs < 8) %}
+              {% if(page == i) %}
+                <li class="active"><span>{{ i }}<span class="sr-only">(current)</span></span></li>
+              {% else %}
+                <li><a href="javascript:void(0)" onclick="offerLink('{{ path('offers_embed', {'page':i}) }}');" title="{{ i }}">{{ i }}</a></li>
+              {% endif %}
+            {% endfor %}
+            {% if(page < total_pages) %}
+              <li><a href="javascript:void(0)" onclick="offerLink('{{ path('offers_embed', {'page':(page+1)}) }}');" title="{{ (page+1) }}">&raquo;</a></li>
+            {% endif %}
+            </ul>
+            </ul>
+            </td>                                               
+            </tr>
+            </tfoot>    
+          {% endif %}
+          
+          </tbody> 
+          
+          
+
+           </table>
+            </div>
+              </div>
+            </div>
+ 
+            </div>      		
+          </div>
+      
+    	</section>
+{% endif %}

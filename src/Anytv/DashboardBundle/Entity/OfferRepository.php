@@ -3,6 +3,7 @@
 namespace Anytv\DashboardBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+//use Doctrine\ORM\Query\Expr;
 
 /**
  * OfferRepository
@@ -12,46 +13,139 @@ use Doctrine\ORM\EntityRepository;
  */
 class OfferRepository extends EntityRepository
 {
-    public function findAllOffers($page, $items_per_page, $status, $order_by, $order, $keyword)
+    public function findAllOffers($page, $items_per_page, $order_by, $order, $keyword, $status, $category = null, $country = null, $non_zero_payout = false)
     {
         $first_result = ($items_per_page * ($page-1));
+        
+        $query = $this->createQueryBuilder('o');
+        
+        $where = "o.status = :status AND o.name LIKE :keyword";
+        $params = array('status'=>$status, 'keyword'=>"%$keyword%");
                 
-        $query = $this->createQueryBuilder('o')
-          ->where("o.name LIKE :keyword OR o.status LIKE :keyword")
-          ->setParameter('keyword', "%$keyword%")
-          ->setFirstResult($first_result)
-          ->setMaxResults($items_per_page)
-          ->orderBy('o.'.$order_by, $order)
-          ->getQuery();
+        if($category)
+        {
+          $query = $query->join('o.offerCategories', 'oc');
+          $where .= " AND oc.id = :category";
+          $params['category'] = $category;
+        }
+        
+        if($country)
+        {
+          $query = $query->join('o.countries', 'c');
+          $where .= " AND c.id = :country";
+          $params['country'] = $country;
+        }
+        
+        if($non_zero_payout)
+        {
+          $where .= " AND o.default_payout > :default_payout";
+          $params['default_payout'] = 0;
+        }
+        
+        if($non_zero_payout)
+        {
+          $query = $query->where($where)
+                         ->setParameters($params)
+                         ->setFirstResult($first_result)
+                         ->setMaxResults($items_per_page)
+                         ->groupBy('o.name')
+                         ->addOrderBy('o.'.$order_by, $order)
+                         ->addOrderBy('o.default_payout', 'DESC')
+                         ->getQuery();
+        }
+        else
+        {
+          $query = $query->where($where)
+                         ->setParameters($params)
+                         ->setFirstResult($first_result)
+                         ->setMaxResults($items_per_page)
+                         ->orderBy('o.'.$order_by, $order)
+                         ->getQuery();    
+        }
         
         return $query->getResult();
     }
     
-    public function countAllOffers($status, $keyword)
+    public function countAllOffers($keyword, $status, $category = null, $country = null, $non_zero_payout = false)
     {    
         $query = $this->createQueryBuilder('o')
-          ->select('count(o.id)')
-          ->where("o.name LIKE :keyword OR o.status LIKE :keyword")
-          ->setParameter('keyword', "%$keyword%")
-          ->getQuery();
+                      ->select('count(o.id)');
+        
+        $where = "o.status = :status AND o.name LIKE :keyword";
+        $params = array('status'=>$status, 'keyword'=>"%$keyword%");
+        
+        if($category)
+        {
+          $query = $query->join('o.offerCategories', 'oc');
+          $where .= " AND oc.id = :category";
+          $params['category'] = $category;
+        }
+        
+        if($country)
+        {
+          $query = $query->join('o.countries', 'c');
+          $where .= " AND c.id = :country";
+          $params['country'] = $country;
+        }
+        
+        if($non_zero_payout)
+        {
+          $where .= " AND o.default_payout > :default_payout";
+          $params['default_payout'] = 0;
+        }
+        
+        if($non_zero_payout)
+        {
+          $query = $query->where($where)
+                       ->setParameters($params)
+                       ->groupBy('o.name')
+                       ->getQuery();   
+          
+          return count($query->getResult());
+        }
+        else
+        {
+          $query = $query->where($where)
+                       ->setParameters($params)
+                       ->getQuery(); 
+          
+          return $query->getSingleScalarResult();
+        }
+    }
+    
+    public function getMaxOfferId()
+    {    
+        $query = $this->createQueryBuilder('o')
+                      ->select('max(o.offerId)')
+                      ->getQuery();
         
         return $query->getSingleScalarResult();
     }
     
-    public function findOneByIdJoinedToCategory($id)
-   {
-      // edit this sample
-      $query = $this->getEntityManager()
-        ->createQuery('
-            SELECT p, c FROM AcmeStoreBundle:Product p
-            JOIN p.category c
-            WHERE p.id = :id'
-        )->setParameter('id', $id);
-
-      try {
-        return $query->getSingleResult();
-      } catch (\Doctrine\ORM\NoResultException $e) {
-        return null;
-      }
+    public function findNotUpdatedOffers()
+    {
+        $query = $this->createQueryBuilder('o');
+        
+        //$where = "o.status = :status AND (o.updated_at IS NULL OR o.updated_at < :yesterday)";
+        //$params = array('status'=>'active', 'yesterday'=>'DATE_SUB(NOW(), INTERVAL 1 DAY)');
+        
+        $where = "o.updated_at IS NULL";
+        
+        
+        $query = $query->where($where)
+                       
+                       ->setMaxResults(50)
+                       ->getQuery();    
+        
+        return $query->getResult();
+    }
+    
+    public function getMaxUpdatedAt()
+    {    
+        $query = $this->createQueryBuilder('o')
+                      ->select('max(o.updated_at)')
+                      ->getQuery();
+        
+        return $query->getSingleScalarResult();
     }
 }

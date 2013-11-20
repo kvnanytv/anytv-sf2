@@ -1,0 +1,41 @@
+{% extends 'AnytvMainBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title }}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+    
+    <div id="content">
+		<section class="sec-content-title">
+			<div class="container">
+				<h3>{{ title }}</h3>
+				<p>&nbsp;</p>				
+			</div>
+		</section>
+
+		<section id="first-slide">
+			<div class="container">
+				<div class="wat-wrap">
+					<div class="row">
+						<div class="col-lg-6">							
+							
+							{% if(page_content) %}
+                                              {{ page_content|raw }}
+                                            {% endif %}
+							
+						</div>
+						
+					</div>
+				</div>
+		</section>
+
+	</div>
+
+      {{ parent() }}
+    
+{% endblock %}
+     
+
+

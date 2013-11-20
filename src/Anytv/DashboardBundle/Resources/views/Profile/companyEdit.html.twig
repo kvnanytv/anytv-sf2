@@ -1,0 +1,92 @@
+{% extends 'AnytvDashboardBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title}}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+    
+                
+<section id="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        {{ render(controller('AnytvDashboardBundle:Profile:idCard', {'affiliate': affiliate, 'affiliate_user': affiliate_user})) }}	
+      <div class="cl-20"></div>
+      </div>
+      <div class="col-lg-9">
+				<div class="tabbable">
+					
+					<div class="tab-content">
+						
+						<div class="panel panel-default user-panel">
+      <div class="panel-body">
+           
+          
+           
+                 
+
+          <em><a href="{{ path('profile_view') }}" title="{% trans %}View{% endtrans %}">{% trans %}view{% endtrans %}</a></em>
+                
+                {{ form_start(form, {'action': path('profile_company_edit', { 'id' : affiliate.id }), 'method': 'POST'}) }}
+          
+         {{ form_errors(form) }}
+        
+         {{ form_row(form.company) }}
+         {{ form_row(form.address1) }}
+         {{ form_row(form.address2) }}
+         {{ form_row(form.city) }}
+         {{ form_row(form.region) }}
+         {{ form_row(form.country) }}
+         {{ form_row(form.other) }}
+         {{ form_row(form.zipcode) }}
+         
+          {% if(affiliate.thumbnail) %}
+           <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ affiliate.company }}" />
+         {% endif %}
+          
+         {{ form_row(form.file) }}
+         {{ form_row(form.phone) }}
+         {{ form_row(form.fax) }}
+         
+       
+       {{ form_end(form) }}
+             
+                
+                  
+                  
+                  
+                
+                
+             
+            
+            
+
+      </div>
+    </div>
+                                            
+					</div>
+				</div>				
+
+			</div> 
+		</div>
+	</div>
+
+</div>
+</section>
+
+                
+               
+              
+    
+    {{ parent() }}
+    
+    
+    
+       
+       
+       
+        
+    
+{% endblock %}

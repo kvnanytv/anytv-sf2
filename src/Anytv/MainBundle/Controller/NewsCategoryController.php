@@ -13,6 +13,7 @@ class NewsCategoryController extends Controller
     public function indexAction($page)
     {
        $repository = $this->getDoctrine()->getRepository('AnytvMainBundle:NewsCategory');
+       $translator = $this->get('translator');
         
        $items_per_page = 10;
        $order_by = 'id';
@@ -22,11 +23,13 @@ class NewsCategoryController extends Controller
        $total_news_categories = $repository->countAllNewsCategories();
        $total_pages = ceil($total_news_categories / $items_per_page);
        
-       return $this->render('AnytvMainBundle:NewsCategory:index.html.twig', array('title'=>'News Categories', 'news_categories'=>$news_categories, 'total_news_categories'=>$total_news_categories, 'page'=>$page, 'total_pages'=>$total_pages));
+       return $this->render('AnytvMainBundle:NewsCategory:index.html.twig', array('title'=>$translator->trans('News Categories'), 'news_categories'=>$news_categories, 'total_news_categories'=>$total_news_categories, 'page'=>$page, 'total_pages'=>$total_pages));
     }
     
     public function addAction(Request $request)
     {
+      $translator = $this->get('translator');
+      
       $news_category = new NewsCategory();
 
       $form = $this->createForm(new NewsCategoryType(), $news_category);
@@ -44,10 +47,40 @@ class NewsCategoryController extends Controller
         return $this->redirect($this->generateUrl('news_category'));
       }
       
-      return $this->render('AnytvMainBundle:NewsCategory:add.html.twig', array('title'=>'Add a news category', 'form'=>$form->createView()));
+      return $this->render('AnytvMainBundle:NewsCategory:add.html.twig', array('title'=>$translator->trans('Add News Category'), 'form'=>$form->createView()));
     }
     
-    
+    public function editAction(Request $request, $id)
+    {
+      $translator = $this->get('translator');
+      $repository = $this->getDoctrine()->getRepository('AnytvMainBundle:NewsCategory');
+      
+      $news_category = $repository->find($id);
+
+      if (!$news_category) {
+        throw $this->createNotFoundException(
+            'No news category  found for id '.$id
+        );
+      }
+
+      $form = $this->createForm(new NewsCategoryType(), $news_category);
+
+      $form->handleRequest($request);
+
+      if ($form->isValid()) {
+        
+        $news_category = $form->getData();
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $em->persist($news_category);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('news_category'));
+      }
+
+      return $this->render('AnytvMainBundle:NewsCategory:edit.html.twig', array('title'=>$translator->trans('Edit News Category'), 'form'=>$form->createView(), 'news_category'=>$news_category));
+    }
     
     
 }
