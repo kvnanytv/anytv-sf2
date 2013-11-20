@@ -140,6 +140,9 @@ RewriteCond %{HTTP_HOST} ^www\.any\.tv$
 RewriteRule ^game/disney-ghosts-of-mistwood/?$ http://www.playdom.com/games/mistwood [R=302,L]
 
 RewriteCond %{HTTP_HOST} ^www\.any\.tv$
+RewriteRule ^game/dragon-nest/?$ http://dragonnest.nexon.net/ [R=302,L]
+
+RewriteCond %{HTTP_HOST} ^www\.any\.tv$
 RewriteRule ^game/dragons-of-atlantis/?$ http://www.dragonsofatlantis.com/ [R=302,L]
 
 RewriteCond %{HTTP_HOST} ^www\.any\.tv$
@@ -307,6 +310,9 @@ RewriteRule ^game/pirate-storm/?$ http://www.piratestorm.com/ [R=302,L]
 
 RewriteCond %{HTTP_HOST} ^www\.any\.tv$
 RewriteRule ^game/planetside-2/?$ http://www.planetside2.com/ [R=302,L]
+
+RewriteCond %{HTTP_HOST} ^www\.any\.tv$
+RewriteRule ^game/prime-world/?$ http://en.playpw.com/ [R=302,L]
 
 RewriteCond %{HTTP_HOST} ^www\.any\.tv$
 RewriteRule ^game/raiderz/?$ http://raiderz.perfectworld.com/ [R=302,L]

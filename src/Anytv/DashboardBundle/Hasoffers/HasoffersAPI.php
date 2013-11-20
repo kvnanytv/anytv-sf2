@@ -449,9 +449,9 @@ class HasoffersAPI
         $this->api_params['Target'] = 'Report';
         $this->api_params['Method'] = 'getAffiliateCommissions';
         $this->api_params['filters'] = array('Stat.date' => array('conditional' => 'EQUAL_TO', 'values' => $referral_date));
-        $this->api_params['fields'] = array('Stat.amount', 'Stat.referral_id', 'Stat.affiliate_id', 'Stat.date');
+        $this->api_params['fields'] = array('Stat.amount', 'Stat.referral_id', 'Stat.affiliate_id', 'Stat.date', 'Stat.var_total');
         $this->api_params['groups'] = array('Stat.date', 'Stat.referral_id', 'Stat.affiliate_id');
-        $this->api_params['sort'] = array('Stat.date' => 'ASC');
+        $this->api_params['sort'] = array('Stat.affiliate_id' => 'DESC');
         $this->api_params['limit'] = 10000;
         
         $url = $this->api_url . http_build_query( $this->api_params );

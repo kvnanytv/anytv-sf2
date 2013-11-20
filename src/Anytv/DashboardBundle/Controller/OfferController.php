@@ -20,8 +20,8 @@ class OfferController extends Controller
         
         $form = $this->createFormBuilder(array('offer_keyword'=>$session->get('offer_keyword'), 'offer_status'=>$session->get('offer_status', 'active')))
          ->add('offer_keyword', 'text', array('required'=>false))
-         ->add('offer_status', 'choice', array('required' => true, 'choices' => array('active'=>'active', 'paused'=>'paused', 'pending'=>'pending', 'expired'=>'expired', 'deleted'=>'deleted')))
-         ->add('offer_search', 'submit', array('label'=>$translator->trans('search')))
+         ->add('offer_status', 'choice', array('required' => true, 'label'=>$translator->trans('Status'), 'choices' => array('active'=>'active', 'paused'=>'paused', 'pending'=>'pending', 'expired'=>'expired', 'deleted'=>'deleted')))
+         ->add('offer_search', 'submit', array('label'=>' '))
          //->add('offer_update', 'submit', array('label'=>$translator->trans('update')))
          ->getForm();
         

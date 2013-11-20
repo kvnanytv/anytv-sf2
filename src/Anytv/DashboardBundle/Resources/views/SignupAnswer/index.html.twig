@@ -7,51 +7,53 @@
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
 
-<section id="content">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        
-          <h1 class="title">{{ title|upper }}</h1>
-          
-          {% for flashMessage in app.session.flashbag.get('flash_message') %}
-            <div class="alert alert-danger alert-dismissable">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              <strong>{{ flashMessage }}</strong>
-            </div>
-          {% endfor %}
-    
-    <p>&nbsp;</p>
-    <div style="margin-bottom: 20px;display:none">
+<div id="content">
+  <div id="dboard-wrap">   
+    <section class="sec-content-title">
+      <div class="container">
+        <div style="float: left;"><h3>{{ title|upper }}</h3></div>
+	<div style="float: right;">&nbsp;</div>
+      </div>
+    </section>
       
-      {{ form_start(form, {'action': path('signup_answers'), 'method': 'POST'}) }}
-         {{ form_errors(form) }}
-         {{ form_widget(form.signup_answer_update) }}
-       {{ form_end(form) }}
-    </div>
+    <section class="db-slide-1">
+      <div class="container">
+        <div class="row">
+    
+      <div class="cl-20"></div>
+	  <hr>
+          <div class="table-responsive">
+	    <div class="offer-tbl-wrap">
 
     {% if(signup_answers) %}
-      <table border="1" cellspacing="15" cellpadding="15">
+      <table class="table table-striped">                                                                        
+                <thead>
         <tr>
-         <th>ID</th>
          <th>{% trans %}Affiliate{% endtrans %}</th>
          <th>{% trans %}Question{% endtrans %}</th>
          <th>{% trans %}Answer{% endtrans %}</th>
        </tr>
+       </thead>
+                <tbody>
        {% for signup_answer in signup_answers %}
          <tr>
-           <td>{{ signup_answer.answerId }}</td>
-           <td><a href="{{ path('affiliate_view', { 'id' : signup_answer.affiliate.id }) }}" title="">{{ signup_answer.affiliate }}</a></td>
+           {% if(signup_answer.affiliate.company) %}
+             <td><a href="{{ path('affiliate_view', { 'id' : signup_answer.affiliate.id }) }}" title="">{{ signup_answer.affiliate }}</a></td>
+           {% else %}
+             <td><a href="{{ path('affiliate_view', { 'id' : signup_answer.affiliate.id }) }}" title="">---</a></td>
+           {% endif %}
            <td>{{ signup_answer.question }}</a></td>
            <td>{{ signup_answer.answer }}</td>
          </tr>
        {% endfor %} 
-      </table>
-       
-     
-      {% if (total_pages > 1) %}
-        <ul class="pagination">
-        {% if(page > 1) %}
+         </tbody>
+                    
+                    {% if (total_pages > 1) %}
+        <tfoot>
+	  <tr>
+	    <td class="al-cntr" colspan="8">
+	      <ul class="pagination">
+                  {% if(page > 1) %}
           <li><a href="{{ path('signup_answers', {'page':(page-1)}) }}"  title="{{ (page-1) }}">&laquo;</a></li>
         {% endif %}
         {% for i in 1..total_pages if((page-i)|abs < 8) %}
@@ -65,20 +67,29 @@
           <li><a href="{{ path('signup_answers', {'page':(page+1)}) }}" title="{{ (page+1) }}">&raquo;</a></li>
         {% endif %}
         </ul>
+        </td>
+        </tr>
+      </tfoot>
       {% endif %}
+      </table>
+       
+     
+      
           
    {% endif %}       
-      <div class="cl-20"></div>
-      </div>
-      
+     </div>
+						</div>
+					</div>
+				</div>
+
+			</section>
+
 		</div>
 	</div>
-</section>
 
     {{ parent() }}
     
         
     
-
-    
 {% endblock %}
+

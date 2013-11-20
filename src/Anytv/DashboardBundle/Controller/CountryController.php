@@ -17,7 +17,7 @@ class CountryController extends Controller
         
         $form = $this->createFormBuilder(array('country_keyword'=>$session->get('country_keyword')))
         ->add('country_keyword')
-        ->add('search', 'submit', array('label'=>$translator->trans('search')))
+        ->add('search', 'submit', array('label'=>' '))
         ->getForm();
         
         $form->handleRequest($request);

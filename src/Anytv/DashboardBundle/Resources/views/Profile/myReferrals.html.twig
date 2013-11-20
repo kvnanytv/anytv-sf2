@@ -18,7 +18,8 @@
           <tr>
             <th>{% trans %}Time{% endtrans %}</th>
             <th>{% trans %}Affiliate{% endtrans %}</th>
-	    <th>{% trans %}Amount{% endtrans %}</th>
+	    <th>{% trans %}Your commission{% endtrans %}</th>
+            <th>{% trans %}Their earnings{% endtrans %}</th>
           </tr>
 	</thead>								
         <tbody>
@@ -27,6 +28,7 @@
             <td>{{ referral.getDateAsString() }}</td>
             <td>{{ referral.referred }}</td>
             <td>${{ referral.amount }}</td>
+            <td>${{ referral.total }}</td>
 	  </tr>
           {% endfor %}
           {% if (total_pages > 1) %}

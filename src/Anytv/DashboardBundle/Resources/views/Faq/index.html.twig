@@ -7,35 +7,48 @@
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
 
-<section id="content">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        
-          <h1 class="title">{{ title|upper }}</h1>
+<div id="content">
+  <div id="dboard-wrap">   
+    <section class="sec-content-title">
+      <div class="container">
+        <div style="float: left;"><h3>{{ title|upper }}</h3></div>
+	<div style="float: right;">&nbsp;</div>
+      </div>
+    </section>
+      
+    <section class="db-slide-1">
+      <div class="container">
+        <div class="row">
     
-    <p>&nbsp;</p>
+      <div class="cl-20"></div>
+	  <hr>
+          <div class="table-responsive">
+	    <div class="offer-tbl-wrap">
     
 
     
-      <table border="1" cellspacing="15" cellpadding="15">
+      <table class="table table-striped">                                                                        
+                <thead>
         <tr>
-         <th>ID</th>
          <th>{% trans %}Question{% endtrans %}</th>
          <th>{% trans %}Answer{% endtrans %}</th>
        </tr>
+       </thead>
+                <tbody>
        {% for faq in faqs %}
          <tr>
-           <td>{{ faq.id }}</td>
            <td><a href="{{ path('faq_edit', { 'id' : faq.id }) }}" title="{% trans %}Edit{% endtrans %}">{{ faq.question|raw }}</a></td>
            <td>{{ faq.answer|raw }}</td>
          </tr>
        {% endfor %} 
-      </table>
-       
-      {% if (total_pages > 1) %}
-        <ul class="pagination">
-        {% if(page > 1) %}
+         </tbody>
+         
+         {% if (total_pages > 1) %}
+        <tfoot>
+	  <tr>
+	    <td class="al-cntr" colspan="8">
+	      <ul class="pagination">
+                  {% if(page > 1) %}
           <li><a href="{{ path('faqs', {'page':(page-1)}) }}"  title="{{ (page-1) }}">&laquo;</a></li>
         {% endif %}
         {% for i in 1..total_pages if((page-i)|abs < 8) %}
@@ -49,18 +62,27 @@
           <li><a href="{{ path('faqs', {'page':(page+1)}) }}" title="{{ (page+1) }}">&raquo;</a></li>
         {% endif %}
         </ul>
+        </td>
+        </tr>
+      </tfoot>
       {% endif %}
-          
-          
-      <div class="cl-20"></div>
-      </div>
+         
+      </table>
+       
       
+          
+       </div>
+						</div>
+					</div>
+				</div>
+
+			</section>
+
 		</div>
 	</div>
-</section>
 
     {{ parent() }}
     
         
-   
+    
 {% endblock %}
