@@ -58,6 +58,7 @@ class ProfileController extends Controller
       
       $form = null;
       $form_view = null;
+      $errors = array();
       
       if($mode == 'edit')
       {
@@ -68,7 +69,15 @@ class ProfileController extends Controller
         elseif($tab == 'user')
         {
           $form = $this->createForm(new ProfileType(), $affiliate_user);  
-        }   
+        }  
+        elseif($tab == 'password')
+        {
+          $form = $this->createFormBuilder()    
+          ->add('new_password', 'password', array('label'=>$translator->trans('New Password')))
+          ->add('confirm_password', 'password', array('label'=>$translator->trans('Confirm Password')))
+          ->add('change', 'submit', array('label'=>$translator->trans('Save')))
+          ->getForm();
+        }  
         
         $form->handleRequest($request);
         
@@ -171,13 +180,51 @@ class ProfileController extends Controller
             $affiliate_user_update_result = $hasoffers->updateAffiliateUser($affiliate_user->getAffiliateUserId(), $data); 
             
             return $this->redirect($this->generateUrl('profile_view', array('tab'=>'user')));  
-          }   
+          }  
+          elseif($tab == 'password')
+          {
+            $data = $form->getData();
+            
+            $new_password = $data['new_password'];
+            $confirm_password = $data['confirm_password'];
+            
+            if((($new_password == '') && ($confirm_password = '')) || ($new_password != $confirm_password))
+            {
+              $errors[] = $translator->trans('Passwords do not match.');   
+            }
+            
+            if(!$errors)
+            {
+              $new_password = trim($new_password);
+              $hasoffers = $this->get('hasoffers');
+              $change_password_response = $hasoffers->updateAffiliateUserField($affiliate_user->getAffiliateUserId(), 'password', $new_password, false); 
+              $hasoffer_errors = $change_password_response->errors;
+              
+              if(($change_password_response->status == 1) && $change_password_response->data)
+              {
+                $factory = $this->get('security.encoder_factory');
+                $affiliate_user->setPasswordDecoded($new_password); 
+                $encoder = $factory->getEncoder($affiliate_user);
+                $hashed_password = $encoder->encodePassword($new_password, $affiliate_user->getSalt());
+                $affiliate_user->setPassword($hashed_password);
+                $affiliate_user->setLastChangePassword(new \DateTime());
+               
+                $em->flush();
+                
+                return $this->redirect($this->generateUrl('profile_view', array('tab'=>'password', 'errors'=>$errors))); 
+              }
+              else
+              {
+                $errors[] = $translator->trans($hasoffer_errors[0]->err_msg);    
+              }  
+            }
+          }
         }
         
         $form_view = $form->createView();
       }
 
-      return $this->render('AnytvDashboardBundle:Profile:view.html.twig', array('title'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'affiliate'=>$affiliate, 'affiliate_user_status'=>$translator->trans($affiliate_user->getStatus()), 'affiliate_status'=>$translator->trans($affiliate->getStatus()), 'tab'=>$tab, 'mode'=>$mode, 'form'=>$form_view));
+      return $this->render('AnytvDashboardBundle:Profile:view.html.twig', array('title'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'affiliate'=>$affiliate, 'affiliate_user_status'=>$translator->trans($affiliate_user->getStatus()), 'affiliate_status'=>$translator->trans($affiliate->getStatus()), 'tab'=>$tab, 'mode'=>$mode, 'form'=>$form_view, 'errors'=>$errors));
     }   
     
     public function reportsAction(Request $request)
@@ -243,9 +290,9 @@ class ProfileController extends Controller
       return $this->render('AnytvDashboardBundle:Profile:tabbedComponent.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user));
     }
     
-    public function tabbedProfileComponentAction($tab, $mode, $form)
+    public function tabbedProfileComponentAction($tab, $mode, $form, $errors)
     {
-      return $this->render('AnytvDashboardBundle:Profile:tabbedProfileComponent.html.twig', array('tab'=>$tab, 'mode'=>$mode, 'form'=>$form));
+      return $this->render('AnytvDashboardBundle:Profile:tabbedProfileComponent.html.twig', array('tab'=>$tab, 'mode'=>$mode, 'form'=>$form, 'errors'=>$errors));
     }
     
     public function tabbedReportsComponentAction($affiliate, $affiliate_user)
@@ -559,6 +606,22 @@ class ProfileController extends Controller
       $affiliate = $affiliate_user->getAffiliate();
       
       return $this->render('AnytvDashboardBundle:Profile:user.html.twig', array('title'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'affiliate'=>$affiliate, 'affiliate_user_status'=>$translator->trans($affiliate_user->getStatus()), 'affiliate_status'=>$translator->trans($affiliate->getStatus()), 'mode'=>$mode, 'form'=>$form));
+    }
+    
+    public function passwordAction(Request $request, $mode, $form, $errors)
+    {
+      $translator = $this->get('translator');
+      $affiliate_user = $this->getUser();
+
+      if (!$affiliate_user) {
+        throw $this->createNotFoundException(
+            'No user found'
+        );
+      }
+      
+      $affiliate = $affiliate_user->getAffiliate();
+      
+      return $this->render('AnytvDashboardBundle:Profile:password.html.twig', array('title'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'affiliate'=>$affiliate, 'affiliate_user_status'=>$translator->trans($affiliate_user->getStatus()), 'affiliate_status'=>$translator->trans($affiliate->getStatus()), 'mode'=>$mode, 'form'=>$form, 'errors'=>$errors));
     }
     
     public function offerViewPopupAction()

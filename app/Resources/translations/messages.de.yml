@@ -93,8 +93,11 @@
 'dashboard': dashboard
 'Password': Passwort
 'Password: *': 'Passwort: *'
+'Confirm Password': 'Passwort bestätigen'
+'New Password': Neues Passwort
 'Confirm Password: *': 'Passwort bestätigen: *'
 'Forgot Password?': Passwort vergessen?
+'Password successfully changed.': Kennwort erfolgreich geändert.
 'part of the anyTV family': Teil der anyTV Familie
 "Don't have an account yet?": Sie haben noch kein Konto?
 'Copyright 2013 any.TV Limited | All Rights Reserved': Urheberrecht 2013 any.TV Limited | Alle Rechte vorbehalten

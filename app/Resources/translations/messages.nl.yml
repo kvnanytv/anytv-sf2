@@ -93,8 +93,11 @@
 'dashboard': dashboard
 'Password': Wachtwoord
 'Password: *': 'Wachtwoord: *'
+'Confirm Password': 'Bevestig je wachtwoord'
+'New Password': Nieuw wachtwoord
 'Confirm Password: *': 'Bevestig je wachtwoord: *'
 'Forgot Password?': Wachtwoord vergeten?
+'Password successfully changed.': Wachtwoord succesvol gewijzigd.
 'part of the anyTV family': Onderdeel van de anyTV familie
 "Don't have an account yet?": Heb je nog geen account?
 'Copyright 2013 any.TV Limited | All Rights Reserved': Copyright 2013 any.TV | Alle rechten voorbehouden

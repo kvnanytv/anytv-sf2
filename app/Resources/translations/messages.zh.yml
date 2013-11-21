@@ -93,8 +93,11 @@
 'dashboard': 資訊介面板
 'Password': 密碼
 'Password: *': '密碼: *'
+'Confirm Password': '確認密碼'
+'New Password': 新密码
 'Confirm Password: *': '確認密碼: *'
 'Forgot Password?': 忘記密碼?
+'Password successfully changed.': 成功更改密码。
 'part of the anyTV family': any.TV 家族成員之一
 "Don't have an account yet?": 還沒有帳號嗎?
 'Copyright 2013 any.TV Limited | All Rights Reserved': 2013年any.TV有限公司版權所有
