@@ -22,7 +22,7 @@
             
             <div class="cl-20"></div>                                                                     
       <hr>
-      <em style="display:none"><a href="{{ path('offer_hasoffer_update', { 'id' : offer.id }) }}" title="{% trans %}Update from Hasoffers{% endtrans %}">{% trans %}Update from Hasoffers{% endtrans %}</a></em>
+      <div style="margin-bottom:20px"><a href="{{ path('offer_hasoffer_update', { 'id' : offer.id }) }}" title="{% trans %}Update from Hasoffers{% endtrans %}">{% trans %}Update from Hasoffers{% endtrans %}</a></div>
     <div id="user-prof-name">
         <label>{% trans %}Description{% endtrans %}</label>
 	<input type="text" class="form-control input-lg" value="{{ offer.description }}" disabled>

@@ -57,7 +57,7 @@
               <li>
                 {% block authentication %}
                 {% if(app.user) %}
-                  <p class='navbar-text pull-right'>{% trans %}You're logged in as{% endtrans %} {{ app.user }} | <a href="{{ path('logout') }}" class="navbar-link" title="{% trans %}Logout{% endtrans %}">{% trans %}Logout{% endtrans %}</a></p>
+                  <p class='navbar-text pull-right'>{% trans %}You are signed in as{% endtrans %} {{ app.user }} | <a href="{{ path('logout') }}" class="navbar-link" title="{% trans %}Sign out{% endtrans %}">{% trans %}Sign out{% endtrans %}</a></p>
                 {% else %}
                   <a href="{{ path('anytv_dashboard_homepage') }}" class="log-btn mrgn-left">{% trans %}Sign in{% endtrans %}</a>
                 {% endif %}
