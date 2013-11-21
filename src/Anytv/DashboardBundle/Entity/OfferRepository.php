@@ -38,7 +38,7 @@ class OfferRepository extends EntityRepository
         
         if($non_zero_payout)
         {
-          $where .= " AND o.default_payout > :default_payout";
+          $where .= " AND o.default_payout > :default_payout AND o.default_payout = (SELECT MAX(o2.default_payout) FROM AnytvDashboardBundle:Offer AS o2 WHERE o2.id = o.id GROUP BY o2.name)";
           $params['default_payout'] = 0;
         }
         
@@ -48,10 +48,13 @@ class OfferRepository extends EntityRepository
                          ->setParameters($params)
                          ->setFirstResult($first_result)
                          ->setMaxResults($items_per_page)
-                         ->groupBy('o.name')
+                         //->groupBy('o.name')
                          ->addOrderBy('o.'.$order_by, $order)
                          ->addOrderBy('o.default_payout', 'DESC')
+                         //->groupBy('o.name')
                          ->getQuery();
+          
+          //$query = $query->groupBy('o.name');
         }
         else
         {
@@ -94,7 +97,7 @@ class OfferRepository extends EntityRepository
           $params['default_payout'] = 0;
         }
         
-        if($non_zero_payout)
+        if(false && $non_zero_payout)
         {
           $query = $query->where($where)
                        ->setParameters($params)
