@@ -67,6 +67,23 @@ class HasoffersAPI
         
         return $data;
     }
+    
+    public function getOfferCategories()
+    {
+        $this->api_params['Target'] = 'Application';
+        $this->api_params['Method'] = 'findAllOfferCategories';
+        $this->api_params['filters'] = array('status'=>'active');
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = (array) json_decode( $result );
+        $response = (array) $result['response'];
+        $data = (array) $response['data'];
+        
+        return $data;
+    }
 
     public function getOffers($max_offer_id)
     {
