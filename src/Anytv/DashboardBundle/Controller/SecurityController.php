@@ -109,7 +109,7 @@ class SecurityController extends Controller
            
            if(($data_user_type == $user_type) && $user_id && ($user_status == 'active') && ($account_status == 'active'))
            {
-             if(($affiliate_user = $repository->findOneByaffiliateUserId($user_id)) && $affiliate_user->getIsActive())
+             if(($affiliate_user = $repository->findOneByAffiliateUserId($user_id)) && $affiliate_user->getIsActive())
              {
                $factory = $this->get('security.encoder_factory');
                $manager = $this->getDoctrine()->getManager();
