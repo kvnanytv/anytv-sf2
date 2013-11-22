@@ -36,7 +36,7 @@
           {% for offer in offers %}
           <tr>
             <td>{{ offer }}</td>
-            <td>${{ offer.defaultPayout }}</td>
+            <td>${{ offer.getMaxOfferDefaultPayout() }}</td>
             <td>{{ offer.countryCount }}</td>
             <td id="play_now_link_{{ offer.offerId }}">
               
