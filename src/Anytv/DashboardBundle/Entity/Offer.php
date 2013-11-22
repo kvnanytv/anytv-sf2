@@ -1015,6 +1015,39 @@ class Offer
     {
         return $this->offerGroups;
     }
+    
+    /**
+     * Get max offer default payout
+     *
+     * @return float 
+     */
+    public function getMaxOfferDefaultPayout()
+    {
+        if($this->offerGroups)
+        {
+          if(isset($this->offerGroups[0]))
+          {
+            $offer_group = $this->offerGroups[0];  
+            if($offers = $offer_group->getOffers())
+            {
+              $max_default_payout = 0;
+              foreach($offers as $offer)
+              {
+                if($offer->getDefaultPayout() > $max_default_payout)
+                {
+                  $max_default_payout = $offer->getDefaultPayout(); 
+                }
+              }
+              
+              return $max_default_payout;
+            }
+          }
+          
+          
+        }
+        
+        return 0;
+    }
 
     /**
      * Set isFeatured

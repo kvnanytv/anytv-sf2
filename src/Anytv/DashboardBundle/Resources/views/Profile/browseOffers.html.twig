@@ -62,7 +62,7 @@
 	  <tr>
             <td>{{ offer }}</td>
 	    <td><a href="{{ offer.previewUrl }}" target=_blank">{% trans %}preview{% endtrans %}</a></td>
-	    <td>${{ offer.defaultPayout }}</td>
+	    <td>${{ offer.getMaxOfferDefaultPayout() }}</td>
 	    <td>
               <form method="post" name="form_{{ app.user.id }}" action="http://www.games.tm/login.php" method="POST" target="_blank">
                 <input type="hidden" name='email' value='{{ app.user.email }}' >

@@ -48,13 +48,10 @@ class OfferRepository extends EntityRepository
                          ->setParameters($params)
                          ->setFirstResult($first_result)
                          ->setMaxResults($items_per_page)
-                         //->groupBy('o.name')
-                         ->addOrderBy('o.'.$order_by, $order)
-                         ->addOrderBy('o.default_payout', 'DESC')
-                         //->groupBy('o.name')
+                         ->groupBy('o.name')
+                         ->orderBy('o.'.$order_by, $order)
+                         //->addOrderBy('o.default_payout', 'DESC')
                          ->getQuery();
-          
-          //$query = $query->groupBy('o.name');
         }
         else
         {
@@ -97,7 +94,7 @@ class OfferRepository extends EntityRepository
           $params['default_payout'] = 0;
         }
         
-        if(false && $non_zero_payout)
+        if($non_zero_payout)
         {
           $query = $query->where($where)
                        ->setParameters($params)
