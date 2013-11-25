@@ -148,4 +148,40 @@ class OfferRepository extends EntityRepository
         
         return $query->getSingleScalarResult();
     }
+    
+    public function findAllOffersByCountry($page, $items_per_page, $order_by, $order, $country)
+    {
+      $first_result = ($items_per_page * ($page-1));
+        
+      $query = $this->createQueryBuilder('o');
+        
+      $query = $query->join('o.countries', 'c');
+      $where = "c.id = :country";
+      $params = array('country'=>$country);  
+        
+      $query = $query->where($where)
+                     ->setParameters($params)
+                     ->setFirstResult($first_result)
+                     ->setMaxResults($items_per_page)
+                     ->orderBy('o.'.$order_by, $order)
+                     ->getQuery();
+          
+      return $query->getResult();
+    }
+    
+    public function countAllOffersByCountry($country)
+    {    
+        $query = $this->createQueryBuilder('o')
+                      ->select('count(o.id)');
+        
+        $query = $query->join('o.countries', 'c');
+        $where = "c.id = :country";
+        $params = array('country'=>$country);  
+        
+        $query = $query->where($where)
+                       ->setParameters($params)
+                       ->getQuery(); 
+          
+        return $query->getSingleScalarResult();
+    }
 }

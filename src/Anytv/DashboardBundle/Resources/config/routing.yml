@@ -208,6 +208,14 @@ offer_hasoffer_update:
         _locale:  %anytv.locales%
         id:  \d+
         
+offers_by_country:
+    path:      /{_locale}/admin/offers/country/{country_id}/{page}
+    defaults:  { _controller: AnytvDashboardBundle:Offer:listByCountry, _locale: en, page: 1 }
+    requirements:
+        _locale:  %anytv.locales%
+        page:  \d+
+        country_id: \d+
+        
 traffic_referrals:
     path:      /{_locale}/admin/traffic_referrals/{page}
     defaults:  { _controller: AnytvDashboardBundle:TrafficReferral:index, _locale: en, page: 1 }
@@ -255,6 +263,14 @@ affiliate_edit:
     requirements:
         _locale:  %anytv.locales%
         id:  \d+
+        
+affiliates_by_country:
+    path:      /{_locale}/admin/affiliates/country/{country_id}/{status}/{page}
+    defaults:  { _controller: AnytvDashboardBundle:Affiliate:listByCountry, _locale: en, page: 1 }
+    requirements:
+        _locale:  %anytv.locales%
+        page:  \d+
+        country_id: \d+
         
 affiliate_users_reset:
     path:      /{_locale}/admin/affiliate_users/reset

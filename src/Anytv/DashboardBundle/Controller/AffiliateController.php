@@ -399,28 +399,27 @@ class AffiliateController extends Controller
       //$traffic_referrals = $affiliate->getTrafficReferrals();
       $traffic_referrals = $traffic_referral_repository->findTrafficReferralsByAffiliate($affiliate);
       $referred_affiliates = $affiliate->getReferredAffiliates();
+      
+      $title = $affiliate->getCompany() ? $affiliate->getCompany() : '---';
 
-      return $this->render('AnytvDashboardBundle:Affiliate:view.html.twig', array('title'=>$affiliate, 'affiliate'=>$affiliate, 'affiliate_status'=>$translator->trans($affiliate->getStatus()), 'affiliate_users'=>$affiliate_users, 'traffic_referrals'=>$traffic_referrals, 'referred_affiliates'=>$referred_affiliates));
+      return $this->render('AnytvDashboardBundle:Affiliate:view.html.twig', array('title'=>$title, 'affiliate'=>$affiliate, 'affiliate_status'=>$translator->trans($affiliate->getStatus()), 'affiliate_users'=>$affiliate_users, 'traffic_referrals'=>$traffic_referrals, 'referred_affiliates'=>$referred_affiliates));
     }
     
-    
-    /*
-    public function deleteAction($id)
-    {
-      $em = $this->getDoctrine()->getManager();
-      $offer = $em->getRepository('AnytvDashboardBundle:Offer')->find($id);
-
-      if (!$offer) {
-        throw $this->createNotFoundException(
-            'No offer found for id '.$id
-        );
-      }
-
-      $em->remove($offer);
-      $em->flush();
-
-      return $this->redirect($this->generateUrl('offers'));
+    public function listByCountryAction($country_id, $status, $page)
+    { 
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Affiliate');
+      $country_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Country');
+      
+      $items_per_page = 10;
+      $order_by = 'company';
+      $order = 'ASC';
+      $country = $country_repository->find($country_id);
+        
+      $affiliates = $repository->findAllAffiliatesByCountry($page, $items_per_page, $order_by, $order, $country, $status);
+      $total_affiliates = $repository->countAllAffiliatesByCountry($country, $status);
+      $total_pages = ceil($total_affiliates / $items_per_page);
+      
+      return $this->render('AnytvDashboardBundle:Affiliate:listByCountry.html.twig', array('affiliates'=>$affiliates, 'status'=>$status, 'total_affiliates'=>$total_affiliates, 'page'=>$page, 'total_pages'=>$total_pages, 'country_id'=>$country_id, 'status'=>$status));
     }
-    */ 
     
 }

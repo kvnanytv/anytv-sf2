@@ -505,4 +505,21 @@ class OfferController extends Controller
 
       return $this->render('AnytvDashboardBundle:Offer:profileOfferView.html.twig', array('title'=>$offer, 'offer'=>$offer, 'offer_categories'=>$offer_categories, 'offer_groups'=>$offer_groups, 'countries'=>$countries, 'countries_total'=>$countries_total, 'tracking_link'=>$tracking_link));
     }
+    
+    public function listByCountryAction($country_id, $page)
+    { 
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
+      $country_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Country');
+      
+      $items_per_page = 10;
+      $order_by = 'name';
+      $order = 'ASC';
+      $country = $country_repository->find($country_id);
+        
+      $offers = $repository->findAllOffersByCountry($page, $items_per_page, $order_by, $order, $country);
+      $total_offers = $repository->countAllOffersByCountry($country);
+      $total_pages = ceil($total_offers / $items_per_page);
+      
+      return $this->render('AnytvDashboardBundle:Offer:listByCountry.html.twig', array('offers'=>$offers, 'total_offers'=>$total_offers, 'page'=>$page, 'total_pages'=>$total_pages, 'country_id'=>$country_id));
+    }
 }
