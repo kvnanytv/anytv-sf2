@@ -82,18 +82,41 @@ class AffiliateRepository extends EntityRepository
         return $query->getSingleScalarResult();
     }
     
-    public function findAllAffiliatesByCountry($country_id, $status)
+    public function findAllAffiliatesByCountry($page, $items_per_page, $order_by, $order, $country, $status)
     {
-      $query = $this->getEntityManager()->createQueryBuilder()
-          ->select(array('a', 'c'))
-          ->from('Anytv\DashboardBundle\Entity\Affiliate', 'a')
-          ->leftJoin('a.country', 'c')
-          ->where("a.status = :status AND c.id = :country_id")
-          ->setParameters(array('country_id' => $country_id, 'status' => $status))
-          ->orderBy('a.company', 'ASC')
-          ->getQuery();   
-      
+      $first_result = ($items_per_page * ($page-1));
+        
+      $query = $this->createQueryBuilder('a');
+        
+      $where = "a.status = :status";
+      $params = array('status'=>$status);  
+        
+      $where .= " AND a.country = :country";
+      $params['country'] = $country;   
+        
+      $query = $query->where($where)
+                     ->setParameters($params)
+                     ->setFirstResult($first_result)
+                     ->setMaxResults($items_per_page)
+                     ->orderBy('a.'.$order_by, $order)
+                     ->getQuery();
+          
       return $query->getResult();
+    }
+    
+    public function countAllAffiliatesByCountry($country, $status)
+    {    
+        $query = $this->createQueryBuilder('a')
+                      ->select('count(a.id)');
+        
+        $where = "a.status = :status AND a.country = :country";
+        $params = array('status'=>$status, 'country'=>$country);
+        
+        $query = $query->where($where)
+                       ->setParameters($params)
+                       ->getQuery(); 
+          
+        return $query->getSingleScalarResult();
     }
     
     public function getMaxAffiliateId()

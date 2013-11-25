@@ -57,174 +57,32 @@
               </div>
       {% endif %}
         
-       {% if(active_affiliates|length) %}
-      <div class="cl-20"></div>
-      <hr>
-        <h2>Active Affiliates ({{active_affiliates|length}}):</h2>
-          <div class="table-responsive">
-	    <div class="offer-tbl-wrap">
-	      <table class="table table-striped">                                                                        
-                <thead>
-        <tr>
-         <th>{% trans %}Name{% endtrans %}</th>
-         
-       </tr>
-        </thead>
-        <tbody>
-        
-        {% for affiliate in active_affiliates %}
-            <tr>
-                <td><a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="{% trans %}View{% endtrans %}">{{ affiliate.company }}</a></td>
-                
-            </tr>
-          {% endfor %}
-            
-            </tbody>
-        </table>
-                </div>
-              </div>
-      {% endif %}
-        
-         {% if(pending_affiliates|length) %}
-      <div class="cl-20"></div>
-      <hr>
-        <h2>Pending Affiliates ({{pending_affiliates|length}}):</h2>
-          <div class="table-responsive">
-	    <div class="offer-tbl-wrap">
-	      <table class="table table-striped">                                                                        
-                <thead>
-        <tr>
-         <th>{% trans %}Name{% endtrans %}</th>
-         
-       </tr>
-        </thead>
-        <tbody>
-        
-        {% for affiliate in pending_affiliates %}
-            <tr>
-                <td><a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="{% trans %}View{% endtrans %}">{{ affiliate.company }}</a></td>
-                
-            </tr>
-          {% endfor %}
-            
-            </tbody>
-        </table>
-                </div>
-              </div>
-      {% endif %}
-        
-      {% if(deleted_affiliates|length) %}
-      <div class="cl-20"></div>
-      <hr>
-        <h2>Deleted Affiliates ({{deleted_affiliates|length}}):</h2>
-          <div class="table-responsive">
-	    <div class="offer-tbl-wrap">
-	      <table class="table table-striped">                                                                        
-                <thead>
-        <tr>
-         <th>{% trans %}Name{% endtrans %}</th>
-         
-       </tr>
-        </thead>
-        <tbody>
-        
-        {% for affiliate in deleted_affiliates %}
-            <tr>
-                <td><a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="{% trans %}View{% endtrans %}">{{ affiliate.company }}</a></td>
-                
-            </tr>
-          {% endfor %}
-            
-            </tbody>
-        </table>
-                </div>
-              </div>
-      {% endif %}
-        
-      {% if(blocked_affiliates|length) %}
-      <div class="cl-20"></div>
-      <hr>
-        <h2>Blocked Affiliates ({{blocked_affiliates|length}}):</h2>
-          <div class="table-responsive">
-	    <div class="offer-tbl-wrap">
-	      <table class="table table-striped">                                                                        
-                <thead>
-        <tr>
-         <th>{% trans %}Name{% endtrans %}</th>
-         
-       </tr>
-        </thead>
-        <tbody>
-        
-        {% for affiliate in blocked_affiliates %}
-            <tr>
-                <td><a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="{% trans %}View{% endtrans %}">{{ affiliate.company }}</a></td>
-                
-            </tr>
-          {% endfor %}
-            
-            </tbody>
-        </table>
-                </div>
-              </div>
-      {% endif %}
-        
-      {% if(rejected_affiliates|length) %}
-      <div class="cl-20"></div>
-      <hr>
-        <h2>Rejected Affiliates ({{rejected_affiliates|length}}):</h2>
-          <div class="table-responsive">
-	    <div class="offer-tbl-wrap">
-	      <table class="table table-striped">                                                                        
-                <thead>
-        <tr>
-         <th>{% trans %}Name{% endtrans %}</th>
-         
-       </tr>
-        </thead>
-        <tbody>
-        
-        {% for affiliate in rejected_affiliates %}
-            <tr>
-                <td><a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="{% trans %}View{% endtrans %}">{{ affiliate.company }}</a></td>
-                
-            </tr>
-          {% endfor %}
-            
-            </tbody>
-        </table>
-                </div>
-              </div>
-      {% endif %}
-        
       
-      {% if(offers|length) %}
-      <div class="cl-20"></div>
-      <hr>
-        <h2>Offers ({{offers|length}}):</h2>
-          <div class="table-responsive">
-	    <div class="offer-tbl-wrap">
-	      <table class="table table-striped">                                                                        
-                <thead>
-        <tr>
-         <th>{% trans %}Name{% endtrans %}</th>
-         <th>{% trans %}Status{% endtrans %}</th>
-       </tr>
-        </thead>
-        <tbody>
+      <div id="country-active-affiliates-block">
+        {{ render(controller('AnytvDashboardBundle:Affiliate:listByCountry', {'country_id': country.id, 'status': 'active',  'page': 1})) }}
+      </div>
+      
+      <div id="country-pending-affiliates-block">
+        {{ render(controller('AnytvDashboardBundle:Affiliate:listByCountry', {'country_id': country.id, 'status': 'pending',  'page': 1})) }}
+      </div>
         
-        {% for offer in offers %}
-            <tr>
-                <td><a href="{{ path('offer_view', { 'id' : offer.id }) }}" title="{{ offer }}">{{ offer }}</a></td>
-                <td>{{ offer.status }}</td>
-            </tr>
-          {% endfor %}
-            
-            </tbody>
-        </table>
-                </div>
-              </div>
-      {% endif %}
+      <div id="country-deleted-affiliates-block">
+        {{ render(controller('AnytvDashboardBundle:Affiliate:listByCountry', {'country_id': country.id, 'status': 'deleted',  'page': 1})) }}
+      </div>
+      
+      <div id="country-blocked-affiliates-block">
+        {{ render(controller('AnytvDashboardBundle:Affiliate:listByCountry', {'country_id': country.id, 'status': 'blocked',  'page': 1})) }}
+      </div>  
+         
+      <div id="country-rejected-affiliates-block">
+        {{ render(controller('AnytvDashboardBundle:Affiliate:listByCountry', {'country_id': country.id, 'status': 'rejected',  'page': 1})) }}
+      </div> 
+        
+      <div id="gameslist-block">
+        {{ render(controller('AnytvDashboardBundle:Offer:listByCountry', {'country_id': country.id,  'page': 1})) }}
+      </div> 
+      
+      
       
         
          <div class="cl-20"></div>
@@ -241,4 +99,10 @@
     
         
     
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script src="{{ asset('bundles/anytvdashboard/js/affiliates.js') }}"></script>
+  <script src="{{ asset('bundles/anytvdashboard/js/offers.js') }}"></script>
 {% endblock %}

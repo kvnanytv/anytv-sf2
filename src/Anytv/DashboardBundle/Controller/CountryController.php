@@ -53,8 +53,6 @@ class CountryController extends Controller
     public function viewAction($id)
     {
       $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Country');
-      $affiliate_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Affiliate');
-      $translator = $this->get('translator');
       
       $country = $repository->find($id);
 
@@ -65,15 +63,8 @@ class CountryController extends Controller
       }
       
       $advertisers = $country->getAdvertisers();
-      //$regions = $country->getRegions();
-      $active_affiliates = $affiliate_repository->findAllAffiliatesByCountry($id, 'active');
-      $pending_affiliates = $affiliate_repository->findAllAffiliatesByCountry($id, 'pending');
-      $deleted_affiliates = $affiliate_repository->findAllAffiliatesByCountry($id, 'deleted');
-      $blocked_affiliates = $affiliate_repository->findAllAffiliatesByCountry($id, 'blocked');
-      $rejected_affiliates = $affiliate_repository->findAllAffiliatesByCountry($id, 'rejected');
-      
       $offers = $country->getOffers();
 
-      return $this->render('AnytvDashboardBundle:Country:view.html.twig', array('title'=>$country, 'country'=>$country, 'advertisers'=>$advertisers, 'active_affiliates'=>$active_affiliates, 'pending_affiliates'=>$pending_affiliates, 'deleted_affiliates'=>$deleted_affiliates, 'blocked_affiliates'=>$blocked_affiliates, 'rejected_affiliates'=>$rejected_affiliates,  'offers'=>$offers));
+      return $this->render('AnytvDashboardBundle:Country:view.html.twig', array('title'=>$country, 'country'=>$country, 'advertisers'=>$advertisers,  'offers'=>$offers));
     }   
 }

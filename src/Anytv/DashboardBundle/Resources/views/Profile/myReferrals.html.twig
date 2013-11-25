@@ -1,12 +1,21 @@
 <div id="pane1" class="tab-pane active">
   <div id="user-content-offers">
+    <a href="{{ path('profile_reports_referrals_export_csv') }}"  class="btn btn-default btn-lg" style="float:right" title="{% trans %}Export To CSV{% endtrans %}">{% trans %}Export To CSV{% endtrans %}</a>
     {{ form_start(form, {'action': path('profile_reports_referrals'), 'method': 'POST' }) }}
-      {{ form_row(form.referral_hide_zeros, {'attr': {'class': 'lbl-h', 'onclick':"submitForm(this.form, this.form.action)" }}) }}
-      {{ form_row(form.referral_start_date, {'attr': {'onchange':"submitForm(this.form, this.form.action)" }, 'style':'width:20%' }) }}
-      {{ form_row(form.referral_end_date, {'attr': {'onchange':"submitForm(this.form, this.form.action)" }}) }}
+      <div class="form-group">
+        <label>
+          {{ form_widget(form.referral_hide_zeros, {'attr': { 'onclick':"submitForm(this.form, this.form.action)" }}) }}
+          {{ form_label(form.referral_hide_zeros) }}
+        </label>
+        <div class="cl-20"></div>
+        {{ form_label(form.referral_start_date) }}
+        {{ form_widget(form.referral_start_date, { 'attr': { 'style': 'width:20%', 'onchange':"submitForm(this.form, this.form.action)" }}) }}
+         {{ form_label(form.referral_end_date) }}
+        {{ form_widget(form.referral_end_date, { 'attr': { 'style': 'width:20%', 'onchange':"submitForm(this.form, this.form.action)" }}) }}
+      </div>
     {{ form_end(form) }}
       
-      <a href="{{ path('profile_reports_referrals_export_csv') }}" class="btn btn-default btn-lg" title="{% trans %}Export CSV{% endtrans %}">{% trans %}Export CSV{% endtrans %}</a>
+      
       
       <script type="text/javascript">
         $(document).ready(function() {
@@ -21,7 +30,10 @@
 	  
 	
          <div class="rfrsh-wrap">
-      <a href="javascript:void(0)" onclick="showTab('{{ path('profile_reports_referrals') }}');" class="btn btn-default btn-lg"><i class="icon-refresh"></i></a>
+      {% if(false) %}
+        <a href="javascript:void(0)" onclick="showTab('{{ path('profile_reports_referrals') }}');" class="btn btn-default btn-lg"><i class="icon-refresh"></i></a>
+      {% endif %}
+            
     </div>
       														
     </div>
