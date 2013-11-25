@@ -151,6 +151,11 @@ class DefaultController extends Controller
         return $this->render('AnytvMainBundle:Default:joinOurTwitchTeam.html.twig', array('title'=>$translator->trans($page->getTitle()), 'page'=>$page, 'page_content'=>$page_content));
     }
     
+    public function joinOurTwitchTeam2Action(Request $request)
+    {
+      return $this->redirect($this->generateUrl('join_our_twitch_team', array('_locale'=>$request->get('_locale', 'en'))));       
+    }
+    
     public function staffAction(Request $request)
     {
         $repository = $this->getDoctrine()->getRepository('AnytvMainBundle:Page');
