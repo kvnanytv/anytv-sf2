@@ -1,10 +1,35 @@
 <div id="pane1" class="tab-pane active">
   <div id="user-content-offers">
+    {{ form_start(form, {'action': path('profile_reports_referrals'), 'method': 'POST' }) }}
+      {{ form_row(form.referral_hide_zeros, {'attr': {'class': 'lbl-h', 'onclick':"submitForm(this.form, this.form.action)" }}) }}
+      {{ form_row(form.referral_start_date, {'attr': {'onchange':"submitForm(this.form, this.form.action)" }, 'style':'width:20%' }) }}
+      {{ form_row(form.referral_end_date, {'attr': {'onchange':"submitForm(this.form, this.form.action)" }}) }}
+    {{ form_end(form) }}
+      
+      <a href="{{ path('profile_reports_referrals_export_csv') }}" class="btn btn-default btn-lg" title="{% trans %}Export CSV{% endtrans %}">{% trans %}Export CSV{% endtrans %}</a>
+      
+      <script type="text/javascript">
+        $(document).ready(function() {
+          $('.date').datepicker({ dateFormat: 'yy-mm-dd' })
+        });
+      </script>
+      
     <div class="search-btns">				
+      
+        
+      
+	  
+	
          <div class="rfrsh-wrap">
       <a href="javascript:void(0)" onclick="showTab('{{ path('profile_reports_referrals') }}');" class="btn btn-default btn-lg"><i class="icon-refresh"></i></a>
-    </div>														
     </div>
+      														
+    </div>
+    
+    
+    
+          
+    
   </div>
   <div class="cl-20"></div>
   <div class="progress progress-striped active" id="profile-tabs-progress-bar" style="display:none">

@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class ReferralRepository extends EntityRepository
 {
-    public function findAllReferrals($page, $items_per_page, $order_by, $order, $referrer = null)
+    public function findAllReferrals($page, $items_per_page, $order_by, $order, $referrer = null, $referral_hide_zeros = false, $start_date = null, $end_date = null)
     {
         $first_result = ($items_per_page * ($page-1));
         
@@ -20,8 +20,29 @@ class ReferralRepository extends EntityRepository
         
         if($referrer)
         {
-          $query = $query->where("r.referrer = :referrer")
-                         ->setParameters(array('referrer'=>$referrer))
+          $where = "r.referrer = :referrer";
+          $params = array('referrer'=>$referrer);
+          
+          if($referral_hide_zeros)
+          {
+            $where .= " AND r.amount > :min_amount";
+            $params['min_amount'] = 0;
+          }
+          
+          if($start_date)
+          {
+            $where .= " AND r.date >= :start_date";
+            $params['start_date'] = $start_date;    
+          }
+          
+          if($end_date)
+          {
+            $where .= " AND r.date <= :end_date";
+            $params['end_date'] = $end_date;    
+          }
+        
+          $query = $query->where($where)
+                         ->setParameters($params)
                          ->setFirstResult($first_result)
                          ->setMaxResults($items_per_page)
                          ->orderBy('r.'.$order_by, $order)
@@ -38,15 +59,36 @@ class ReferralRepository extends EntityRepository
         return $query->getResult();
     }
     
-    public function countAllReferrals($referrer = null)
+    public function countAllReferrals($referrer = null, $referral_hide_zeros = false, $start_date = null, $end_date = null)
     {    
         $query = $this->createQueryBuilder('r')
                       ->select('count(r.id)');
         
         if($referrer)
         {
-          $query = $query->where("r.referrer = :referrer")
-                         ->setParameters(array('referrer'=>$referrer))
+          $where = "r.referrer = :referrer";
+          $params = array('referrer'=>$referrer);
+          
+          if($referral_hide_zeros)
+          {
+            $where .= " AND r.amount > :min_amount";
+            $params['min_amount'] = 0;
+          }
+          
+          if($start_date)
+          {
+            $where .= " AND r.date >= :start_date";
+            $params['start_date'] = $start_date;    
+          }
+          
+          if($end_date)
+          {
+            $where .= " AND r.date <= :end_date";
+            $params['end_date'] = $end_date;    
+          }
+          
+          $query = $query->where($where)
+                         ->setParameters($params)
                          ->getQuery();
         }
         else
@@ -64,5 +106,32 @@ class ReferralRepository extends EntityRepository
                       ->getQuery();
         
         return $query->getSingleScalarResult();
+    }
+    
+    public function findAllAffiliateReferrals($order_by, $order, $referrer, $referral_hide_zeros = false, $start_date = null, $end_date = null)
+    {
+        $query = $this->createQueryBuilder('r');
+        
+        $where = "r.referrer = :referrer";
+        $params = array('referrer'=>$referrer);
+          
+        if($referral_hide_zeros)
+        {
+          $where .= " AND r.amount > :min_amount";
+          $params['min_amount'] = 0;
+        }
+          
+        $where .= " AND r.date >= :start_date";
+        $params['start_date'] = $start_date;      
+        
+        $where .= " AND r.date <= :end_date";
+        $params['end_date'] = $end_date;    
+        
+        $query = $query->where($where)
+                       ->setParameters($params)
+                       ->orderBy('r.'.$order_by, $order)
+                       ->getQuery();  
+        
+        return $query->getResult();
     }
 }

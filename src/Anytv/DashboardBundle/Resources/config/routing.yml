@@ -50,6 +50,12 @@ profile_reports_referrals:
         _locale:  %anytv.locales%
         page:  \d+
         
+profile_reports_referrals_export_csv:
+    path:      /{_locale}/profile/reports/referrals/export
+    defaults:  { _controller: AnytvDashboardBundle:Profile:MyReferralsExportCsv, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
 profile_reports_conversions:
     path:      /{_locale}/profile/reports/conversions/{page}
     defaults:  { _controller: AnytvDashboardBundle:Profile:MyConversions, _locale: en, page: 1 }

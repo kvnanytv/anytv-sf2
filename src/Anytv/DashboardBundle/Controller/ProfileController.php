@@ -4,6 +4,7 @@ namespace Anytv\DashboardBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\View\ChoiceView;
 use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceList;
 
@@ -362,6 +363,8 @@ class ProfileController extends Controller
     public function myReferralsAction(Request $request, $page)
     {
       $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Referral');
+      $translator = $this->get('translator');
+      $session = $this->get('session');
       $affiliate_user = $this->getUser();
 
       if (!$affiliate_user) {
@@ -372,15 +375,86 @@ class ProfileController extends Controller
       
       $affiliate = $affiliate_user->getAffiliate();
       
+      
+      
+      $form = $this->createFormBuilder(array('referral_hide_zeros'=>$session->get('referral_hide_zeros', false), 'referral_start_date'=>$session->get('referral_start_date', new \DateTime(date('Y-m-d', strtotime('2013-02-11')))), 'referral_end_date'=>$session->get('referral_end_date', new \DateTime(date('Y-m-d')))))
+        ->add('referral_hide_zeros', 'checkbox', array('label'=>$translator->trans('Hide $0 earnings'), 'required'=>false))
+        ->add('referral_start_date', 'date', array('label'=>$translator->trans('From'), 'required'=>false, 'widget' => 'single_text', 'format'=>'yyyy-MM-dd', 'attr' => array('class' => 'date form-control input')))
+        ->add('referral_end_date', 'date', array('label'=>$translator->trans('To'), 'required'=>false, 'widget' => 'single_text', 'format'=>'yyyy-MM-dd', 'attr' => array('class' => 'date form-control input')))
+        ->getForm();
+        
+      $form->handleRequest($request);
+        
+      if($form->isValid()) 
+      {
+        $data = $form->getData();
+        $session->set('referral_hide_zeros', $data['referral_hide_zeros']); 
+        $session->set('referral_start_date', $data['referral_start_date']); 
+        $session->set('referral_end_date', $data['referral_end_date']); 
+      }
+      
       $items_per_page = 10;
       $order_by = 'id';
       $order = 'DESC';
         
-      $referrals = $repository->findAllReferrals($page, $items_per_page, $order_by, $order, $affiliate);
-      $total_referrals = $repository->countAllReferrals($affiliate);
+      $referrals = $repository->findAllReferrals($page, $items_per_page, $order_by, $order, $affiliate, $session->get('referral_hide_zeros', 0), $session->get('referral_start_date', new \DateTime(date('Y-m-d', strtotime('2013-02-11')))), $session->get('referral_end_date', new \DateTime(date('Y-m-d'))));
+      $total_referrals = $repository->countAllReferrals($affiliate, $session->get('referral_hide_zeros', 0), $session->get('referral_start_date', new \DateTime(date('Y-m-d', strtotime('2013-02-11')))), $session->get('referral_end_date', new \DateTime(date('Y-m-d'))));
       $total_pages = ceil($total_referrals / $items_per_page);
 
-      return $this->render('AnytvDashboardBundle:Profile:myReferrals.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'referrals'=>$referrals, 'total_pages'=>$total_pages, 'page'=>$page));
+      return $this->render('AnytvDashboardBundle:Profile:myReferrals.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'referrals'=>$referrals, 'total_pages'=>$total_pages, 'page'=>$page, 'form'=>$form->createView()));
+    }
+    
+    public function myReferralsExportCsvAction(Request $request)
+    {
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Referral');
+      $translator = $this->get('translator');
+      $session = $this->get('session');
+      $affiliate_user = $this->getUser();
+
+      if (!$affiliate_user) {
+        throw $this->createNotFoundException(
+            'No user found'
+        );
+      }
+      
+      $affiliate = $affiliate_user->getAffiliate();
+      
+      $referral_hide_zeros = $session->get('referral_hide_zeros', false);
+      $start_date = $session->get('referral_start_date', new \DateTime(date('Y-m-d', strtotime('2013-02-11'))));
+      $end_date = $session->get('referral_end_date', new \DateTime(date('Y-m-d')));
+      $order_by = 'id';
+      $order = 'DESC';
+      
+      $referrals = $repository->findAllAffiliateReferrals($order_by, $order, $affiliate, $referral_hide_zeros, $start_date, $end_date);
+      
+      ob_start();
+      
+      $filename = $translator->trans('Referrals').'-'.$start_date->format('Y-m-d').'-'.$end_date->format('Y-m-d');
+      $response = new Response();
+      $response->headers->set('Content-Type', 'text/csv');
+      $response->headers->set('Content-Disposition', 'attachment; filename='.$filename.'.csv');
+        
+      $response->sendHeaders();
+      	
+      $output = fopen('php://output', 'w');
+      
+      fputcsv($output, array($translator->trans('Time'), 
+                             $translator->trans('Affiliate'),
+                             $translator->trans('Your commission'),
+                             $translator->trans('Their earnings')
+              ));
+      
+      if($referrals)
+      {
+        foreach($referrals as $referral)
+        {
+          fputcsv($output, array($referral->getDateAsString(), $referral->getReferred(), '$'.$referral->getAmount(), '$'.$referral->getTotal()));
+        }
+      }
+      
+      fclose($output);
+
+      return $response;
     }
     
     public function myReferralListAction($page)

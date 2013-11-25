@@ -53,8 +53,14 @@ recruiter_handbook:
         _locale:  %anytv.locales%
         
 join_our_twitch_team:
-    path:      /join_our_twitch_team/{_locale}
+    path:      /twitch/{_locale}
     defaults:  { _controller: AnytvMainBundle:Default:joinOurTwitchTeam, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
+join_our_twitch_team2:
+    path:      /join_our_twitch_team/{_locale}
+    defaults:  { _controller: AnytvMainBundle:Default:joinOurTwitchTeam2, _locale: en }
     requirements:
         _locale:  %anytv.locales%
         
