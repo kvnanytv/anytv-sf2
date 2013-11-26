@@ -26,8 +26,7 @@
 	      <table class="table table-striped">                                                                        
                 <thead>
                   <tr>
-                    <th>Id</th>
-                    <th>{% trans %}Advertiser{% endtrans %} Id</th>
+                    <th>{% trans %}ID{% endtrans %}</th>
                     <th>{% trans %}Company{% endtrans %}</th>
                     <th>{% trans %}Address{% endtrans %}</th>
                     <th>{% trans %}City{% endtrans %}</th>
@@ -41,7 +40,6 @@
                 <tbody>
                   {% for advertiser in advertisers %}
                     <tr>
-                      <td>{{ advertiser.id }}</td>
                       <td>{{ advertiser.advertiserId }}</td>
                       <td><a href="{{ path('advertiser_view', { 'id' : advertiser.id }) }}" title="Edit">{{ advertiser.company }}</a></td>
                       <td>{{ advertiser.address1 }}{{ advertiser.address2 }}</td>

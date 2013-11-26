@@ -1,0 +1,54 @@
+{% if(traffic_referrals|length) %}
+<div class="cl-20"></div>
+<hr>
+<h2>Youtube Videos ({{ total_traffic_referrals }}):</h2>
+<div class="table-responsive">
+  <div class="offer-tbl-wrap">
+    <div id="affiliate-youtube-videos_progress-bar" style="display:none" class="progress progress-striped active">
+      <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">							    
+      </div>	
+    </div>	
+    <table class="table table-striped">                                                                        
+      <thead>
+        <tr>
+          <th>{% trans %}Offer{% endtrans %}</th>
+          <th>{% trans %}Video{% endtrans %}</th>
+          <th>{% trans %}Date{% endtrans %}</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for traffic_referral in traffic_referrals %}
+        <tr>
+          <td><a href="{{ path('offer_view', { 'id' : traffic_referral.offer.id }) }}" title="{{ traffic_referral.offer }}">{{ traffic_referral.offer }}</a></td>
+          <td><a href="{{ traffic_referral.url }}" target="_blank" title="{{ traffic_referral.url }}">{{ traffic_referral.url|slice(0, 60) }}</a></td>
+          <td>{{ traffic_referral.getStatDateAsString() }}</td>
+        </tr>
+      {% endfor %}
+      {% if (total_pages > 1) %}
+      <tfoot>
+        <tr>
+	  <td class="al-cntr" colspan="4">
+	  <ul class="pagination">
+          {% if(page > 1) %}
+            <li><a href="javascript:void(0)" onclick="trafficReferralYoutubeVideosLink('{{ path('traffic_referrals_youtube_by_affiliate', { 'page':(page-1), 'affiliate_id': affiliate_id }) }}');" title="{{ (page-1) }}">&laquo;</a></li>
+          {% endif %}
+          {% for i in 1..total_pages if((page-i)|abs < 8) %}
+            {% if(page == i) %}
+              <li class="active"><span>{{ i }}<span class="sr-only">(current)</span></span></li>
+            {% else %}
+              <li><a href="javascript:void(0)" onclick="trafficReferralYoutubeVideosLink('{{ path('traffic_referrals_youtube_by_affiliate', { 'page':i, 'affiliate_id': affiliate_id }) }}');" title="{{ i }}">{{ i }}</a></li>
+            {% endif %}
+          {% endfor %}
+          {% if(page < total_pages) %}
+            <li><a href="javascript:void(0)" onclick="trafficReferralYoutubeVideosLink('{{ path('traffic_referrals_youtube_by_affiliate', { 'page':(page+1), 'affiliate_id': affiliate_id }) }}');" title="{{ (page+1) }}">&raquo;</a></li>
+          {% endif %}
+          </ul>
+          </td>                                               
+        </tr>
+      </tfoot>    
+      {% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endif %}

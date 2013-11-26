@@ -1,13 +1,14 @@
 <div id="pane1" class="tab-pane active">
   <div id="user-content-offers">
-    <a href="{{ path('profile_reports_referrals_export_csv') }}"  class="btn btn-default btn-lg" style="float:right" title="{% trans %}Export To CSV{% endtrans %}">{% trans %}Export To CSV{% endtrans %}</a>
+    <h4 style="float:right">{% trans %}Your commission rate{% endtrans %}: {{ commission_rate_percent }}%</h4>
+    <a href="{{ path('profile_reports_referrals_export_csv') }}"  class="btn btn-default btn-lg" style="float:right;clear:both" title="{% trans %}Export To CSV{% endtrans %}">{% trans %}Export To CSV{% endtrans %}</a>
     {{ form_start(form, {'action': path('profile_reports_referrals'), 'method': 'POST' }) }}
       <div class="form-group">
         <label>
           {{ form_widget(form.referral_hide_zeros, {'attr': { 'onclick':"submitForm(this.form, this.form.action)" }}) }}
           {{ form_label(form.referral_hide_zeros) }}
         </label>
-        <div class="cl-20"></div>
+        <br />
         {{ form_label(form.referral_start_date) }}
         {{ form_widget(form.referral_start_date, { 'attr': { 'style': 'width:20%', 'onchange':"submitForm(this.form, this.form.action)" }}) }}
          {{ form_label(form.referral_end_date) }}

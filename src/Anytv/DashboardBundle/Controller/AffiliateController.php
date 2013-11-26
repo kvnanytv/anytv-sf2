@@ -397,12 +397,12 @@ class AffiliateController extends Controller
       
       $affiliate_users = $affiliate->getAffiliateUsers();
       //$traffic_referrals = $affiliate->getTrafficReferrals();
-      $traffic_referrals = $traffic_referral_repository->findTrafficReferralsByAffiliate($affiliate);
+      //$traffic_referrals = $traffic_referral_repository->findTrafficReferralsByAffiliate($affiliate);
       $referred_affiliates = $affiliate->getReferredAffiliates();
       
       $title = $affiliate->getCompany() ? $affiliate->getCompany() : '---';
 
-      return $this->render('AnytvDashboardBundle:Affiliate:view.html.twig', array('title'=>$title, 'affiliate'=>$affiliate, 'affiliate_status'=>$translator->trans($affiliate->getStatus()), 'affiliate_users'=>$affiliate_users, 'traffic_referrals'=>$traffic_referrals, 'referred_affiliates'=>$referred_affiliates));
+      return $this->render('AnytvDashboardBundle:Affiliate:view.html.twig', array('title'=>$title, 'affiliate'=>$affiliate, 'affiliate_status'=>$translator->trans($affiliate->getStatus()), 'affiliate_users'=>$affiliate_users, 'referred_affiliates'=>$referred_affiliates));
     }
     
     public function listByCountryAction($country_id, $status, $page)

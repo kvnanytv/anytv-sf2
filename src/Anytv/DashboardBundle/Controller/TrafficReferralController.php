@@ -157,4 +157,38 @@ class TrafficReferralController extends Controller
 
       return $this->redirect($this->generateUrl('offers'));
     }
+    
+    public function listByAffiliateAction($affiliate_id, $page)
+    { 
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:TrafficReferral');
+      $affiliate_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Affiliate');
+      
+      $items_per_page = 10;
+      $order_by = 'statDate';
+      $order = 'DESC';
+      $affiliate = $affiliate_repository->find($affiliate_id);
+        
+      $traffic_referrals = $repository->findAllTrafficReferralsByAffiliate($page, $items_per_page, $order_by, $order, $affiliate);
+      $total_traffic_referrals = $repository->countAllTrafficReferralsByAffiliate($affiliate);
+      $total_pages = ceil($total_traffic_referrals / $items_per_page);
+      
+      return $this->render('AnytvDashboardBundle:TrafficReferral:listByAffiliate.html.twig', array('traffic_referrals'=>$traffic_referrals, 'total_traffic_referrals'=>$total_traffic_referrals, 'page'=>$page, 'total_pages'=>$total_pages, 'affiliate_id'=>$affiliate_id));
+    }
+    
+    public function listYoutubeVideosByAffiliateAction($affiliate_id, $page)
+    { 
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:TrafficReferral');
+      $affiliate_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Affiliate');
+      
+      $items_per_page = 10;
+      $order_by = 'statDate';
+      $order = 'DESC';
+      $affiliate = $affiliate_repository->find($affiliate_id);
+        
+      $traffic_referrals = $repository->findAllTrafficReferralsByAffiliate($page, $items_per_page, $order_by, $order, $affiliate, true);
+      $total_traffic_referrals = $repository->countAllTrafficReferralsByAffiliate($affiliate, true);
+      $total_pages = ceil($total_traffic_referrals / $items_per_page);
+      
+      return $this->render('AnytvDashboardBundle:TrafficReferral:listYoutubeVideosByAffiliate.html.twig', array('traffic_referrals'=>$traffic_referrals, 'total_traffic_referrals'=>$total_traffic_referrals, 'page'=>$page, 'total_pages'=>$total_pages, 'affiliate_id'=>$affiliate_id));
+    }
 }
