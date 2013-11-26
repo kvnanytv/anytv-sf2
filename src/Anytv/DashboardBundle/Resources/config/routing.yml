@@ -223,6 +223,22 @@ traffic_referrals:
         _locale:  %anytv.locales%
         page:  \d+
         
+traffic_referrals_youtube_by_affiliate:
+    path:      /{_locale}/admin/traffic_referrals/affiliate/youtube/{affiliate_id}/{page}
+    defaults:  { _controller: AnytvDashboardBundle:TrafficReferral:listYoutubeVideosByAffiliate, _locale: en, page: 1 }
+    requirements:
+        _locale:  %anytv.locales%
+        page:  \d+
+        affiliate_id: \d+
+        
+traffic_referrals_by_affiliate:
+    path:      /{_locale}/admin/traffic_referrals/affiliate/{affiliate_id}/{page}
+    defaults:  { _controller: AnytvDashboardBundle:TrafficReferral:listByAffiliate, _locale: en, page: 1 }
+    requirements:
+        _locale:  %anytv.locales%
+        page:  \d+
+        affiliate_id: \d+
+        
 affiliates_reset:
     path:      /{_locale}/admin/affiliates/reset
     defaults:  { _controller: AnytvDashboardBundle:Affiliate:reset, _locale: en }

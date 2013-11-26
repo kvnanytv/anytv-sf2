@@ -1,0 +1,184 @@
+<?php
+
+namespace Anytv\DashboardBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * AffiliateReferralCommission
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Anytv\DashboardBundle\Entity\AffiliateReferralCommissionRepository")
+ */
+class AffiliateReferralCommission
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="affiliateId", type="integer")
+     */
+    private $affiliateId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="rateType", type="string", length=255, nullable=true)
+     */
+    private $rateType;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="field", type="string", length=255, nullable=true)
+     */
+    private $field;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="rate", type="float", nullable=true)
+     */
+    private $rate;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="minCommission", type="float", nullable=true)
+     */
+    private $minCommission;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set affiliateId
+     *
+     * @param integer $affiliateId
+     * @return AffiliateReferralCommission
+     */
+    public function setAffiliateId($affiliateId)
+    {
+        $this->affiliateId = $affiliateId;
+    
+        return $this;
+    }
+
+    /**
+     * Get affiliateId
+     *
+     * @return integer 
+     */
+    public function getAffiliateId()
+    {
+        return $this->affiliateId;
+    }
+
+    /**
+     * Set rateType
+     *
+     * @param string $rateType
+     * @return AffiliateReferralCommission
+     */
+    public function setRateType($rateType)
+    {
+        $this->rateType = $rateType;
+    
+        return $this;
+    }
+
+    /**
+     * Get rateType
+     *
+     * @return string 
+     */
+    public function getRateType()
+    {
+        return $this->rateType;
+    }
+
+    /**
+     * Set field
+     *
+     * @param string $field
+     * @return AffiliateReferralCommission
+     */
+    public function setField($field)
+    {
+        $this->field = $field;
+    
+        return $this;
+    }
+
+    /**
+     * Get field
+     *
+     * @return string 
+     */
+    public function getField()
+    {
+        return $this->field;
+    }
+
+    /**
+     * Set rate
+     *
+     * @param float $rate
+     * @return AffiliateReferralCommission
+     */
+    public function setRate($rate)
+    {
+        $this->rate = $rate;
+    
+        return $this;
+    }
+
+    /**
+     * Get rate
+     *
+     * @return float 
+     */
+    public function getRate()
+    {
+        return $this->rate;
+    }
+
+    /**
+     * Set minCommission
+     *
+     * @param float $minCommission
+     * @return AffiliateReferralCommission
+     */
+    public function setMinCommission($minCommission)
+    {
+        $this->minCommission = $minCommission;
+    
+        return $this;
+    }
+
+    /**
+     * Get minCommission
+     *
+     * @return float 
+     */
+    public function getMinCommission()
+    {
+        return $this->minCommission;
+    }
+}

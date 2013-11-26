@@ -553,4 +553,19 @@ class HasoffersAPI
         
         return $response;
     }
+    
+    public function getReferralCommission($affiliate_id)
+    {
+        $this->api_params['Target'] = 'Affiliate';
+        $this->api_params['Method'] = 'getReferralCommission';
+        $this->api_params['id'] = $affiliate_id;
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = json_decode($result);
+        
+        return $result->response;
+    }
 }

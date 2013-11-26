@@ -136,37 +136,13 @@
               </div>
       {% endif %}
         
-      {% if(traffic_referrals|length) %}
-      <div class="cl-20"></div>
-      <hr>
-        <h2>Traffic Referrals ({{ traffic_referrals|length }}):</h2>
+      <div id="affiliate-traffic-referrals-block">
+        {{ render(controller('AnytvDashboardBundle:TrafficReferral:listByAffiliate', {'affiliate_id': affiliate.id, 'page': 1})) }}
+      </div>
         
-          <div class="table-responsive">
-	    <div class="offer-tbl-wrap">
-	      <table class="table table-striped">                                                                        
-                <thead>
-        <tr>
-         <th>{% trans %}Offer{% endtrans %}</th>
-         <th>{% trans %}URL{% endtrans %}</th>
-         <th>{% trans %}Date{% endtrans %}</th>
-       </tr>
-        </thead>
-        <tbody>
-        
-        {% for traffic_referral in traffic_referrals %}
-            <tr>
-                <td><a href="{{ path('offer_view', { 'id' : traffic_referral.offer.id }) }}" title="{{ traffic_referral.offer }}">{{ traffic_referral.offer }}</a></td>
-                <td><a href="{{ traffic_referral.url }}" target="_blank" title="{{ traffic_referral.url }}">{{ traffic_referral.url|slice(0, 60) }}</a></td>
-                <td>{{ traffic_referral.getStatDateAsString() }}</td>
-            </tr>
-          {% endfor %}
-            
-            </tbody>
-        </table>
-                </div>
-              </div>
-      {% endif %}
-        
+      <div id="affiliate-youtube-videos-block">
+        {{ render(controller('AnytvDashboardBundle:TrafficReferral:listYoutubeVideosByAffiliate', {'affiliate_id': affiliate.id, 'page': 1})) }}
+      </div>
       
       <div class="cl-20"></div>
       </div>
@@ -182,4 +158,9 @@
     
         
     
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script src="{{ asset('bundles/anytvdashboard/js/traffic_referrals.js') }}"></script>
 {% endblock %}

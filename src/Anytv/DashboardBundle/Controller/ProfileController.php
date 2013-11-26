@@ -14,6 +14,7 @@ use Anytv\DashboardBundle\Form\Type\CompanyType;
 use Anytv\DashboardBundle\Form\Type\ProfileType;
 use Anytv\DashboardBundle\Entity\TrackingLink;
 use Anytv\DashboardBundle\Entity\Conversion;
+use Anytv\DashboardBundle\Entity\AffiliateReferralCommission;
 
 class ProfileController extends Controller
 {
@@ -363,6 +364,7 @@ class ProfileController extends Controller
     public function myReferralsAction(Request $request, $page)
     {
       $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Referral');
+      $commission_rate_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:AffiliateReferralCommission');
       $translator = $this->get('translator');
       $session = $this->get('session');
       $affiliate_user = $this->getUser();
@@ -374,8 +376,6 @@ class ProfileController extends Controller
       }
       
       $affiliate = $affiliate_user->getAffiliate();
-      
-      
       
       $form = $this->createFormBuilder(array('referral_hide_zeros'=>$session->get('referral_hide_zeros', false), 'referral_start_date'=>$session->get('referral_start_date', new \DateTime(date('Y-m-d', strtotime('2013-02-11')))), 'referral_end_date'=>$session->get('referral_end_date', new \DateTime(date('Y-m-d')))))
         ->add('referral_hide_zeros', 'checkbox', array('label'=>$translator->trans('Hide $0 earnings'), 'required'=>false))
@@ -400,8 +400,40 @@ class ProfileController extends Controller
       $referrals = $repository->findAllReferrals($page, $items_per_page, $order_by, $order, $affiliate, $session->get('referral_hide_zeros', 0), $session->get('referral_start_date', new \DateTime(date('Y-m-d', strtotime('2013-02-11')))), $session->get('referral_end_date', new \DateTime(date('Y-m-d'))));
       $total_referrals = $repository->countAllReferrals($affiliate, $session->get('referral_hide_zeros', 0), $session->get('referral_start_date', new \DateTime(date('Y-m-d', strtotime('2013-02-11')))), $session->get('referral_end_date', new \DateTime(date('Y-m-d'))));
       $total_pages = ceil($total_referrals / $items_per_page);
+      
+      $commission_rate = $commission_rate_repository->findOneBy(array('affiliateId'=>$affiliate->getAffiliateId()));
+      
+      if($commission_rate)
+      {
+        $commission_rate_percent = $commission_rate->getRate();    
+      }
+      else
+      {
+        $commission_rate_percent = null;
+        $hasoffers = $this->get('hasoffers');
+        $commission_rate_response = $hasoffers->getReferralCommission($affiliate->getAffiliateId());     
+              
+        if(($commission_rate_response->status == 1) && $commission_rate_response->data)
+        {
+          $em = $this->getDoctrine()->getManager();
+          
+          $commission_rate_object = $commission_rate_response->data->AffiliateReferralCommission;
+          
+          $commission_rate_percent = $commission_rate_object->rate;
+          
+          $affiliate_referral_commission = new AffiliateReferralCommission();
+          $affiliate_referral_commission->setAffiliateId($commission_rate_object->affiliate_id);
+          $affiliate_referral_commission->setField($commission_rate_object->field);
+          $affiliate_referral_commission->setRateType($commission_rate_object->rate_type);
+          $affiliate_referral_commission->setRate($commission_rate_object->rate);
+          //$affiliate_referral_commission->setMinCommission($commission_rate_object->min_commission);
+          
+          $em->persist($affiliate_referral_commission);
+          $em->flush();
+        }    
+      }
 
-      return $this->render('AnytvDashboardBundle:Profile:myReferrals.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'referrals'=>$referrals, 'total_pages'=>$total_pages, 'page'=>$page, 'form'=>$form->createView()));
+      return $this->render('AnytvDashboardBundle:Profile:myReferrals.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'referrals'=>$referrals, 'total_pages'=>$total_pages, 'page'=>$page, 'form'=>$form->createView(), 'commission_rate_percent'=>$commission_rate_percent));
     }
     
     public function myReferralsExportCsvAction(Request $request)
@@ -429,10 +461,10 @@ class ProfileController extends Controller
       
       ob_start();
       
-      $filename = $translator->trans('Referrals').'-'.$start_date->format('Y-m-d').'-'.$end_date->format('Y-m-d');
+      $filename = $translator->trans('Referrals').'-'.$start_date->format('Y-m-d').'-'.$end_date->format('Y-m-d').'.csv';
       $response = new Response();
       $response->headers->set('Content-Type', 'text/csv');
-      $response->headers->set('Content-Disposition', 'attachment; filename='.$filename.'.csv');
+      $response->headers->set('Content-Disposition', 'attachment; filename="'.$filename.'"');
         
       $response->sendHeaders();
       	

@@ -53,7 +53,7 @@ class TrafficReferralRepository extends EntityRepository
           ->setParameter('affiliate', $affiliate)
           ->addGroupBy("tr.offer")
           ->addGroupBy("tr.url")
-          ->orderBy('tr.offer', 'ASC')
+          ->orderBy('tr.statDate', 'DESC')
           ->getQuery();
         
         return $query->getResult();
@@ -65,6 +65,52 @@ class TrafficReferralRepository extends EntityRepository
                       ->select('max(tr.statDate)')
                       ->getQuery();
         
+        return $query->getSingleScalarResult();
+    }
+    
+    public function findAllTrafficReferralsByAffiliate($page, $items_per_page, $order_by, $order, $affiliate, $youtube = false)
+    {
+      $first_result = ($items_per_page * ($page-1));
+        
+      $query = $this->createQueryBuilder('tr');
+        
+      $where = "tr.affiliate = :affiliate";
+      $params = array('affiliate'=>$affiliate); 
+      
+      if($youtube)
+      {
+        $where .= " AND tr.url LIKE :youtube";
+        $params['youtube'] = '%youtube.com/watch?v=%';        
+      }
+        
+      $query = $query->where($where)
+                     ->setParameters($params)
+                     ->setFirstResult($first_result)
+                     ->setMaxResults($items_per_page)
+                     ->orderBy('tr.'.$order_by, $order)
+                     ->getQuery();
+          
+      return $query->getResult();
+    }
+    
+    public function countAllTrafficReferralsByAffiliate($affiliate, $youtube = false)
+    {    
+        $query = $this->createQueryBuilder('tr')
+                      ->select('count(tr.id)');
+        
+        $where = "tr.affiliate = :affiliate";
+        $params = array('affiliate'=>$affiliate); 
+        
+        if($youtube)
+        {
+          $where .= " AND tr.url LIKE :youtube";
+          $params['youtube'] = '%youtube.com/watch?v=%';     
+        }
+        
+        $query = $query->where($where)
+                       ->setParameters($params)
+                       ->getQuery(); 
+          
         return $query->getSingleScalarResult();
     }
 }

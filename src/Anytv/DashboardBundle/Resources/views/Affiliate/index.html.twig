@@ -59,13 +59,13 @@
 	      <table class="table table-striped">                                                                        
                 <thead>
         <tr>
-         <th>{% trans %}Affiliate{% endtrans %} Id</th>
+         <th>{% trans %}ID{% endtrans %}</th>
          <th>{% trans %}Company{% endtrans %}</th>
          <th>{% trans %}Country{% endtrans %}</th>
          <th>{% trans %}Date Added{% endtrans %}</th>
          <th>{% trans %}Paypal{% endtrans %}</th>
          <th>{% trans %}Signup IP{% endtrans %}</th>
-         <th>{% trans %}Thumbnail{% endtrans %}</th>
+         <th>{% trans %}Photo{% endtrans %}</th>
          <th>{% trans %}Referred by{% endtrans %}</th>
        </tr>
         </thead>
@@ -85,7 +85,7 @@
            {% if(affiliate.thumbnail) %}
              <td><img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ affiliate.company }}" /></td>
            {%  else %}
-             <td>&nbsp;</td>
+             <td><img src="{{ asset('bundles/anytvdashboard/images/default-user-photo.png') }}"></td>
            {% endif %}
            {% if(affiliate.referrer) %}
              <td><a href="{{ path('affiliate_view', { 'id' : affiliate.referrer.id }) }}" title="View">{{ affiliate.referrer.company }}</a></td>
