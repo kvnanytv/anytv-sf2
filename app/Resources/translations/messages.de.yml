@@ -117,7 +117,9 @@
 'Payments': Vezahlung
 'Partners': Partner
 'Play Now Link': Play Now Link
-'Get play now link': Bekomme den play now Link
+'PlayNow Link': PlayNow Link
+'Get play now link': Bekomme den PlayNow link
+'Get PlayNow link': Bekomme den PlayNow link
 'CREATE AN ACCOUNT': ERSTELLE EIN KONTO
 'Create Account': Erstelle Ein Konto
 'Logging you in securely': Sicheres einloggen
@@ -136,6 +138,7 @@
 'close': schließen
 'My Videos': Meine Videos
 'Chinese': Chinesisch
+'URL': URL
 'Preview URL': Vorschau URL
 'Offer Groups': Offer Gruppen
 'Photo': Foto
@@ -217,4 +220,6 @@
 'To': Zu
 'Export To CSV': Export nach CSV
 'Your commission rate': Ihre Provision
+'Clicks': Klicks
+'My Traffic': Mein Traffic
 

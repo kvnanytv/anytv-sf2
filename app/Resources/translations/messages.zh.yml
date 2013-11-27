@@ -116,8 +116,10 @@
 'Partnership': 合作關係
 'Payments': 付款
 'Partners': 合作伙伴
-'Play Now Link': play now 連結網址
-'Get play now link': 取得play now 連結網址
+'Play Now Link': PlayNow 連結網址
+'PlayNow Link': PlayNow 連結網址
+'Get play now link': 取得PlayNow 連結網址
+'Get PlayNow link': 取得PlayNow 連結網址
 'CREATE AN ACCOUNT': 建立一個新帳號
 'Create Account': 建立一個新帳號
 'Logging you in securely': 登入中
@@ -136,6 +138,7 @@
 'close': 關閉
 'My Videos': 我的影片
 'Chinese': 中文
+'URL': 預覽網址
 'Preview URL': 預覽網址
 'Offer Groups': 供應組群
 'Photo': 照片
@@ -217,3 +220,5 @@
 'To': 至
 'Export To CSV': 导出到CSV
 'Your commission rate': 您的佣金率
+'Clicks': 点击
+'My Traffic': 我的流量

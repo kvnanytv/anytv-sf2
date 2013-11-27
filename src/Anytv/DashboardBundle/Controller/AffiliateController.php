@@ -396,13 +396,10 @@ class AffiliateController extends Controller
       }
       
       $affiliate_users = $affiliate->getAffiliateUsers();
-      //$traffic_referrals = $affiliate->getTrafficReferrals();
-      //$traffic_referrals = $traffic_referral_repository->findTrafficReferralsByAffiliate($affiliate);
-      $referred_affiliates = $affiliate->getReferredAffiliates();
       
       $title = $affiliate->getCompany() ? $affiliate->getCompany() : '---';
 
-      return $this->render('AnytvDashboardBundle:Affiliate:view.html.twig', array('title'=>$title, 'affiliate'=>$affiliate, 'affiliate_status'=>$translator->trans($affiliate->getStatus()), 'affiliate_users'=>$affiliate_users, 'referred_affiliates'=>$referred_affiliates));
+      return $this->render('AnytvDashboardBundle:Affiliate:view.html.twig', array('title'=>$title, 'affiliate'=>$affiliate, 'affiliate_status'=>$translator->trans($affiliate->getStatus()), 'affiliate_users'=>$affiliate_users));
     }
     
     public function listByCountryAction($country_id, $status, $page)
@@ -422,4 +419,19 @@ class AffiliateController extends Controller
       return $this->render('AnytvDashboardBundle:Affiliate:listByCountry.html.twig', array('affiliates'=>$affiliates, 'status'=>$status, 'total_affiliates'=>$total_affiliates, 'page'=>$page, 'total_pages'=>$total_pages, 'country_id'=>$country_id, 'status'=>$status));
     }
     
+    public function listReferredByAffiliateAction($affiliate_id, $page)
+    { 
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Affiliate');
+      
+      $items_per_page = 10;
+      $order_by = 'company';
+      $order = 'ASC';
+      $affiliate = $repository->find($affiliate_id);
+        
+      $referred_affiliates = $repository->findAllAffiliatesByReferrer($affiliate, $page, $items_per_page, $order_by, $order);
+      $total_referred_affiliates = $repository->countAllAffiliatesByReferrer($affiliate);
+      $total_pages = ceil($total_referred_affiliates / $items_per_page);
+      
+      return $this->render('AnytvDashboardBundle:Affiliate:listReferredByAffiliate.html.twig', array('referred_affiliates'=>$referred_affiliates, 'total_referred_affiliates'=>$total_referred_affiliates, 'page'=>$page, 'total_pages'=>$total_pages, 'affiliate_id'=>$affiliate_id));
+    }
 }

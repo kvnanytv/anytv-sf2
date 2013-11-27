@@ -134,8 +134,8 @@ class AffiliateRepository extends EntityRepository
         
         $query = $this->createQueryBuilder('a');
         
-        $where = "a.status = :status AND a.referrer = :referrer";
-        $params = array('status'=>'active', 'referrer'=>$referrer);
+        $where = "a.referrer = :referrer";
+        $params = array('referrer'=>$referrer);
         
         $query = $query->where($where)
                        ->setParameters($params)
@@ -152,8 +152,8 @@ class AffiliateRepository extends EntityRepository
         $query = $this->createQueryBuilder('a')
                       ->select('count(a.id)');
         
-        $where = "a.status = :status AND a.referrer = :referrer";
-        $params = array('status'=>'active', 'referrer'=>$referrer);
+        $where = "a.referrer = :referrer";
+        $params = array('referrer'=>$referrer);
         
         $query = $query->where($where)
                        ->setParameters($params)

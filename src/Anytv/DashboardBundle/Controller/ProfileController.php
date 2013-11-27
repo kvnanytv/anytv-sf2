@@ -734,4 +734,75 @@ class ProfileController extends Controller
     {
       return $this->render('AnytvDashboardBundle:Profile:offerViewPopup.html.twig');
     }
+    
+    public function trafficAction(Request $request)
+    {
+      $affiliate_user = $this->getUser();
+      $translator = $this->get('translator');
+      
+      if (!$affiliate_user) {
+        throw $this->createNotFoundException(
+            'No user found'
+        );
+      }
+      
+      $affiliate = $affiliate_user->getAffiliate();
+      
+      if (!$affiliate) {
+        throw $this->createNotFoundException(
+            'No affiliate found'
+        );
+      }
+      
+      return $this->render('AnytvDashboardBundle:Profile:traffic.html.twig', array('title'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'affiliate'=>$affiliate, 'tab'=>'traffic'));
+    }
+    
+    public function tabbedTrafficComponentAction($affiliate, $affiliate_user)
+    {
+      return $this->render('AnytvDashboardBundle:Profile:tabbedTrafficComponent.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user));
+    }
+    
+    public function trafficReferralsAction(Request $request, $page)
+    {
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:TrafficReferral');
+      $translator = $this->get('translator');
+      $session = $this->get('session');
+      $affiliate_user = $this->getUser();
+
+      if (!$affiliate_user) {
+        throw $this->createNotFoundException(
+            'No user found'
+        );
+      }
+      
+      $affiliate = $affiliate_user->getAffiliate();
+      
+      $form = $this->createFormBuilder(array('traffic_referral_category'=>$session->get('traffic_referral_category', null),'traffic_referral_start_date'=>$session->get('traffic_referral_start_date', new \DateTime(date('Y-m-d', strtotime('2013-01-10')))), 'traffic_referral_end_date'=>$session->get('traffic_referral_end_date', new \DateTime(date('Y-m-d')))))
+        ->add('traffic_referral_start_date', 'date', array('label'=>$translator->trans('From'), 'required'=>false, 'widget' => 'single_text', 'format'=>'yyyy-MM-dd', 'attr' => array('class' => 'date form-control input')))
+        ->add('traffic_referral_end_date', 'date', array('label'=>$translator->trans('To'), 'required'=>false, 'widget' => 'single_text', 'format'=>'yyyy-MM-dd', 'attr' => array('class' => 'date form-control input')))
+        ->add('traffic_referral_category', 'choice', array('required' => false, 'choices' => array('youtube'=>'Youtube', 'twitch'=>'Twitch', 'websites'=>'Websites'), 'label'=>$translator->trans('Category')))
+        ->getForm();
+        
+      $form->handleRequest($request);
+        
+      if($form->isValid()) 
+      {
+        $data = $form->getData();
+        $session->set('traffic_referral_category', $data['traffic_referral_category']); 
+        $session->set('traffic_referral_start_date', $data['traffic_referral_start_date']); 
+        $session->set('traffic_referral_end_date', $data['traffic_referral_end_date']); 
+      }
+      
+      $items_per_page = 10;
+      $order_by = 'statDate';
+      $order = 'DESC';
+        
+      $traffic_referrals = $repository->findAllTrafficReferralsByAffiliate($page, $items_per_page, $order_by, $order, $affiliate, false, $session->get('traffic_referral_start_date', new \DateTime(date('Y-m-d', strtotime('2013-01-10')))), $session->get('traffic_referral_end_date', new \DateTime(date('Y-m-d'))), $session->get('traffic_referral_category', null));
+      $total_traffic_referrals = $repository->countAllTrafficReferralsByAffiliate($affiliate, false, $session->get('traffic_referral_start_date', new \DateTime(date('Y-m-d', strtotime('2013-01-10')))), $session->get('traffic_referral_end_date', new \DateTime(date('Y-m-d'))), $session->get('traffic_referral_category', null));
+      $total_pages = ceil($total_traffic_referrals / $items_per_page);
+      
+      
+
+      return $this->render('AnytvDashboardBundle:Profile:trafficReferrals.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'traffic_referrals'=>$traffic_referrals, 'total_pages'=>$total_pages, 'page'=>$page, 'form'=>$form->createView(), 'selected_traffic_referral_category'=>$session->get('selected_traffic_referral_category', null)));
+    }
 }

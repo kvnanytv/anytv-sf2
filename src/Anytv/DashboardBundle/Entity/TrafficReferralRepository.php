@@ -68,7 +68,7 @@ class TrafficReferralRepository extends EntityRepository
         return $query->getSingleScalarResult();
     }
     
-    public function findAllTrafficReferralsByAffiliate($page, $items_per_page, $order_by, $order, $affiliate, $youtube = false)
+    public function findAllTrafficReferralsByAffiliate($page, $items_per_page, $order_by, $order, $affiliate, $youtube = false, $start_date = null, $end_date = null, $category = null)
     {
       $first_result = ($items_per_page * ($page-1));
         
@@ -80,7 +80,38 @@ class TrafficReferralRepository extends EntityRepository
       if($youtube)
       {
         $where .= " AND tr.url LIKE :youtube";
-        $params['youtube'] = '%youtube.com/watch?v=%';        
+        $params['youtube'] = '%youtube.com%';        
+      }
+      
+      if($start_date)
+      {
+        $where .= " AND tr.statDate >= :start_date";
+        $params['start_date'] = $start_date;    
+      }
+          
+      if($end_date)
+      {
+        $where .= " AND tr.statDate <= :end_date";
+        $params['end_date'] = $end_date;    
+      }
+      
+      if($category)
+      {
+        switch($category)
+        {
+          case 'youtube':
+            $where .= " AND tr.url LIKE :youtube";
+            $params['youtube'] = '%youtube.com%';
+            break;
+          case 'twitch':
+            $where .= " AND tr.url LIKE :twitch";
+            $params['twitch'] = '%twitch.tv%';
+            break;
+          default:
+            $where .= " AND tr.url NOT LIKE :youtube AND tr.url NOT LIKE :twitch";
+            $params['youtube'] = '%youtube.com%';
+            $params['twitch'] = '%twitch.tv%';
+        }
       }
         
       $query = $query->where($where)
@@ -93,7 +124,7 @@ class TrafficReferralRepository extends EntityRepository
       return $query->getResult();
     }
     
-    public function countAllTrafficReferralsByAffiliate($affiliate, $youtube = false)
+    public function countAllTrafficReferralsByAffiliate($affiliate, $youtube = false, $start_date = null, $end_date = null, $category = null)
     {    
         $query = $this->createQueryBuilder('tr')
                       ->select('count(tr.id)');
@@ -104,7 +135,38 @@ class TrafficReferralRepository extends EntityRepository
         if($youtube)
         {
           $where .= " AND tr.url LIKE :youtube";
-          $params['youtube'] = '%youtube.com/watch?v=%';     
+          $params['youtube'] = '%youtube.com%';     
+        }
+        
+        if($start_date)
+        {
+          $where .= " AND tr.statDate >= :start_date";
+          $params['start_date'] = $start_date;    
+        }
+          
+        if($end_date)
+        {
+          $where .= " AND tr.statDate <= :end_date";
+          $params['end_date'] = $end_date;    
+        }
+        
+        if($category)
+        {
+          switch($category)
+          {
+            case 'youtube':
+              $where .= " AND tr.url LIKE :youtube";
+              $params['youtube'] = '%youtube.com%';
+              break;
+            case 'twitch':
+              $where .= " AND tr.url LIKE :twitch";
+              $params['twitch'] = '%twitch.tv%';
+              break;
+            default:
+              $where .= " AND tr.url NOT LIKE :youtube AND tr.url NOT LIKE :twitch";
+              $params['youtube'] = '%youtube.com%';
+              $params['twitch'] = '%twitch.tv%';
+          }
         }
         
         $query = $query->where($where)
