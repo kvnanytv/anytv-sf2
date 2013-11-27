@@ -109,32 +109,9 @@
               </div>
       {% endif %}
         
-      {% if(referred_affiliates|length) %}
-      <div class="cl-20"></div>
-      <hr>
-        <h2>Referred Affiliates ({{ referred_affiliates|length }}):</h2>
-        
-          <div class="table-responsive">
-	    <div class="offer-tbl-wrap">
-	      <table class="table table-striped">                                                                        
-                <thead>
-        <tr>
-         <th>{% trans %}Name{% endtrans %}</th>
-       </tr>
-        </thead>
-        <tbody>
-        
-        {% for affiliate in referred_affiliates %}
-            <tr>
-                <td><a href="{{ path('affiliate_view', { 'id' : affiliate.id }) }}" title="View">{{ affiliate }}</a></td>
-            </tr>
-          {% endfor %}
-            
-            </tbody>
-        </table>
-                </div>
-              </div>
-      {% endif %}
+      <div id="affiliate-referrals-block">
+        {{ render(controller('AnytvDashboardBundle:Affiliate:listReferredByAffiliate', {'affiliate_id': affiliate.id, 'page': 1})) }}
+      </div>
         
       <div id="affiliate-traffic-referrals-block">
         {{ render(controller('AnytvDashboardBundle:TrafficReferral:listByAffiliate', {'affiliate_id': affiliate.id, 'page': 1})) }}
@@ -162,5 +139,6 @@
 
 {% block javascripts %}
   {{ parent() }}
+  <script src="{{ asset('bundles/anytvdashboard/js/affiliates.js') }}"></script>
   <script src="{{ asset('bundles/anytvdashboard/js/traffic_referrals.js') }}"></script>
 {% endblock %}

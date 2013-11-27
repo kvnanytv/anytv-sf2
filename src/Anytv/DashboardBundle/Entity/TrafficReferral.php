@@ -392,4 +392,14 @@ class TrafficReferral
     {
         return $this->offer;
     }
+    
+    /**
+     * Echo date string
+     *
+     * @return \DateTime string 
+     */
+    public function getDateAsString()
+    {
+        return date_format($this->statDate, 'Y-m-d');
+    }
 }

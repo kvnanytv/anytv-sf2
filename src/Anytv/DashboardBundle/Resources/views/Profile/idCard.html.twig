@@ -20,9 +20,10 @@
     
     <div id="user-menus">
       <ul class="nav nav-pills nav-stacked">
-	<li {% if(page == 'profile') %}class="active"{% endif %}><a href="{{ path('profile_view') }}">{% trans %}My Profile{% endtrans %}</a></li>
-	<li {% if(page == 'home') %}class="active"{% endif %}><a href="{{ path('anytv_dashboard_homepage') }}">{% trans %}Offers{% endtrans %}</a></li>
-        <li {% if(page == 'reports') %}class="active"{% endif %}><a href="{{ path('profile_reports') }}">{% trans %}Reports{% endtrans %}</a></li>
+	<li {% if(page == 'profile') %}class="active"{% endif %}><a href="{{ path('profile_view') }}" title="{% trans %}My Profile{% endtrans %}">{% trans %}My Profile{% endtrans %}</a></li>
+	<li {% if(page == 'home') %}class="active"{% endif %}><a href="{{ path('anytv_dashboard_homepage') }}" title="{% trans %}Offers{% endtrans %}">{% trans %}Offers{% endtrans %}</a></li>
+        <li {% if(page == 'reports') %}class="active"{% endif %}><a href="{{ path('profile_reports') }}" title="{% trans %}Reports{% endtrans %}">{% trans %}Reports{% endtrans %}</a></li>
+        <li {% if(page == 'traffic') %}class="active"{% endif %}><a href="{{ path('profile_traffic') }}" title="{% trans %}My Traffic{% endtrans %}">{% trans %}My Traffic{% endtrans %}</a></li>
       </ul>
     </div>
   </div> 

@@ -117,7 +117,9 @@
 'Payments': Betalingen
 'Partners': Partner
 'Play Now Link': Play Now Link
-'Get play now link': Zoek een play now link
+'PlayNow Link': PlayNow Link
+'Get play now link': Zoek een PlayNow link
+'Get PlayNow link': Zoek een PlayNow link
 'CREATE AN ACCOUNT': MAAK EEN ACCOUNT AAN
 'Create Account': Maak Een Account Aan
 'Logging you in securely': Veilig aan het inloggen
@@ -136,6 +138,7 @@
 'close': sluiten
 'My Videos': Mijn videos
 'Chinese': Chinees
+'URL': URL
 'Preview URL': Voorproef URL
 'Offer Groups': Offer Groups
 'Photo': Foto
@@ -217,4 +220,5 @@
 'To': Aan
 'Export To CSV': Exporteren naar CSV
 'Your commission rate': Uw provisie
-
+'Clicks': Clicks
+'My Traffic': Mijn Traffic
