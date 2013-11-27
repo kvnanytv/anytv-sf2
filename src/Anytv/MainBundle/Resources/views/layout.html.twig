@@ -4,14 +4,11 @@
 <div id="sub-nav">
 <div class="container">              
 <nav class="subnav-cllps clr-black">       
-{% if(false and is_granted('ROLE_ADMIN')) %}
-<ul id="nav">
-  <li><a href="{{ path('news') }}" title="{% trans %}News{% endtrans %}">{% trans %}News{% endtrans %}</a></li>
-  <li><a href="{{ path('news_category') }}" title="{% trans %}News Categories{% endtrans %}">{% trans %}News Categories{% endtrans %}</a></li>
-</ul>
-{% else %}
-<ul id="nav">
+
+<ul id="nav" class="nav_menu">
+  {% if(false) %}
   <li style="float:right;color:#fff;display:none"><a href="http://v2.any.tv" title="{% trans %}previous any.TV website{% endtrans %}" target="_blank">{% trans %}Miss the previous any.TV website? Click here.{% endtrans %}</a></li> 
+  {% endif %}
   <li><a href="{{ path('staff') }}" title="{% trans %}Join our staff!{% endtrans %}" style="font-weight:normal">{% trans %}Join our staff!{% endtrans %}</a></li>
   <li><a href="{{ path('faq') }}" title="{% trans %}FAQ{% endtrans %}">{% trans %}FAQ{% endtrans %}</a></li>
   <li><a href="{{ path('about') }}" title="{% trans %}What is any.TV?{% endtrans %}" style="font-weight:normal">{% trans %}What is any.TV?{% endtrans %}</a></li>
@@ -24,7 +21,7 @@
   <li><a href="{{ path('join_our_twitch_team') }}" title="{% trans %}Join our Twitch Team!{% endtrans %}" style="font-weight:normal">{% trans %}Join our Twitch Team!{% endtrans %}</a></li>
   <li><a href="{{ path('upload') }}" title="{% trans %}Submit your videos!{% endtrans %}" style="font-weight:normal">{% trans %}Submit your videos!{% endtrans %}</a></li>
 </ul>
-{% endif %}
+
 </nav>
 </div>
 </div>
