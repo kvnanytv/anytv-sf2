@@ -197,12 +197,17 @@
 'Get paid $5 per video submitted to any.TV!': 只要提交你的影片給any.TV，將可賺取每片5美金的酬勞!
 'Yes': 是。
 'No': 不是。
+"Your YouTube Channels (one on each line, write None if you don't have one)": '你的YouTube頻道 (請分別把你的頻道放在各行列中，如果沒有頻道請註明: None)'
 "Your YouTube Channels (one on each line, write None if you don't have one): *": '你的YouTube頻道 (請分別把你的頻道放在各行列中，如果沒有頻道請註明: None): *'
+'YouTube Network (who are you partnered with on YouTube, write None if not partnered)': 'YouTub群網 (你目前和那間YouTube公司合作，如: YouTube, Machinima, Maker... 如果沒有合作的對像，請註明: None)'
 'YouTube Network (who are you partnered with on YouTube, write None if not partnered): *': 'YouTub群網 (你目前和那間YouTube公司合作，如: YouTube, Machinima, Maker... 如果沒有合作的對像，請註明: None): *'
 'YouTube Network (who are you partnered with on YouTube): *': 'YouTub群網 (你目前和那間YouTube公司合作，如: YouTube, Machinima, Maker...): *'
 'YouTube Network (other) write None if not partnered: *': 'YouTub群網 (如果沒有合作的對像，請註明: None): *'
+'Do you use Twitch or live stream?': '你使用Twitch或其他實況的平台嗎?'
 'Do you use Twitch or live stream?: *': '你使用Twitch或其他實況的平台嗎?: *'
+'Link to your best video? (write None if you never made a video)': '請分享你最好的影片連結 (如果你沒有自已的影片，請註明: None)'
 'Link to your best video? (write None if you never made a video): *': '請分享你最好的影片連結 (如果你沒有自已的影片，請註明: None): *'
+'Skype Name (write None if you do not use Skype)': 'Skype的帳戶名(如果沒有，請註明: None)'
 'Skype Name (write None if you do not use Skype): *': 'Skype的帳戶名(如果沒有，請註明: None): *'
 'Miss the old dashboard? Click': '想念舊的資訊介面板嗎? 請按'
 'here': 這裡
@@ -223,3 +228,5 @@
 'Your commission rate': 您的佣金率
 'Clicks': 点击
 'My Traffic': 我的流量
+'Search Games': 搜尋遊戲
+'No matches found.': 未找到匹配结果。 

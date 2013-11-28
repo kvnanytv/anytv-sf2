@@ -5,6 +5,22 @@ function offerLink(url){
     .done(function( data ) { $('#gameslist-block').html(data); });
 }
 
+function submitForm(form, url){
+    $('#offer_progress-bar').show();
+    //$('#gl-tbl').hide();
+    $.ajax({
+           type: "POST",
+           url: url,
+           data: $(form).serialize(), 
+           success: function(data)
+           {
+               $('#gameslist-block').html(data);
+           }
+         });
+
+    return false; 
+}
+
 function playNowLink(url, id){
     $('#play_now_link_'+id).html('');
     $.get(url)

@@ -1,0 +1,85 @@
+<div id="pane1" class="tab-pane active">
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="f-lft v-mid">
+        <h3>{% trans %}Signup Answers{% endtrans %}</h3>
+      </div>
+            
+      {% if(mode == 'view') %}
+        <div class="f-rght mtop-10">
+          <a href="{{ path('profile_view', { 'tab': 'signup_answers', 'mode': 'edit' }) }}" title="{% trans %}edit{% endtrans %}" style="float: right" class="btn btn-default">{% trans %}edit{% endtrans %}</a>
+        </div>
+      {% endif %}
+      	
+      <div class="cl-20"></div>                                                                     
+      <hr>
+      
+      {% for error in errors %}
+        <div class="alert alert-danger alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <strong>{{ error }}</strong>
+        </div>
+      {% endfor %}
+      
+      {% if(mode == 'view') %}
+      
+      {% for signup_answer in signup_answers %}
+        <div id="user-prof-name">
+        <label>{{ signup_answer.questionTranslated }}</label>
+        {% if(signup_answer.question.class=='textarea') %}
+          <textarea class="form-control input-lg" disabled>{{ signup_answer.answer }}</textarea>
+        {% else %}
+	  <input type="text" class="form-control input-lg" value="{{ signup_answer.answer }}" disabled>	
+        {% endif %}
+        </div>
+        <div class="cl-20"></div> 
+      {% endfor %}
+      
+      {% elseif(mode == 'edit') %}
+      
+      <div id="form-row-style">
+          
+      {{ form_start(form, {'action': path('profile_view', { 'tab': 'signup_answers', 'mode' : 'edit' }), 'method': 'POST'}) }}    
+      {{ form_errors(form) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.youtube_channels, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.youtube_network_choice, {'attr': {'class': 'selectpicker', 'data-width': '100%', 'onchange': 'if(this.selectedIndex==18){$("#youtube_network_other").show("slow");}else{$("#youtube_network_other").hide("slow");};' }}) }}
+      <div class="cl-20"></div>
+      <div class="form_row" {% if(youtube_network_is_selected) %}style="display:none"{% endif %} id="youtube_network_other">
+        {{ form_label(form.youtube_network) }}
+        {{ form_errors(form.youtube_network) }}
+        {{ form_widget(form.youtube_network, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
+      </div>
+      <div class="cl-20"></div>
+      {{ form_row(form.use_twitch_or_livestream, {'attr': {'class': 'selectpicker', 'data-width': '100%'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.youtube_best_video, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.skype_name, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.change, {'attr': {'class': 'btn btn-default btn-lg'}}) }}
+         
+      {{ form_end(form) }}
+      </div>
+      
+      {% endif %}
+      
+    </div>
+    <div class="col-lg-4">
+      <div id="user-prof-img">
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+
+            
+            
+                
+                
+      
+                 
+      
+                
