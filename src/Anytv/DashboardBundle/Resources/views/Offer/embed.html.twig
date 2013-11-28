@@ -1,17 +1,21 @@
-{% if(offers) %}
+
 <section id="games-lists">
   <div class="container">
     <div class="games-list-wrap">
-      <h3>any.TV <strong>{% trans %}Games List{% endtrans %}</strong></h3>
+      <h3>any.TV <span>{% trans %}Games List{% endtrans %}</span></h3>
         <div class="row">  
           <div class="col-lg-12">
-						<div class="input-group input-group-lg" style="display:none">
-						<input id="in-pl" type="search" class="form-control input-lg" role="search" placeholder="Search Games...">
-						<span class="input-group-btn">
-							<button class="btn btn-default" type="button"><i class="icon-search icon-large"></i></button>
-						</span>
-						</div>                   
-					</div>
+            <form action="{{ path('offers_embed') }}" onsubmit="submitForm(this, '{{ path('offers_embed') }}'); return false;">
+            <input type="hidden" name="offer_form_submitted" value="1">
+            <div class="input-group input-group-lg">
+	        <input id="in-pl" type="search" name="offer_keyword" class="form-control input-lg" value="{{ offer_keyword }}" role="search" placeholder="{% trans %}Search Games{% endtrans %}...">
+		<span class="input-group-btn">
+                  <button class="btn btn-default" type="submit"><i class="icon-search icon-large"></i></button>
+		</span>
+              
+	    </div> 
+                </form>
+	  </div>
                 
 					<div class="cl-20"></div>
 					<div class="col-lg-12">
@@ -19,7 +23,7 @@
 					  <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">							    
 					  </div>
 					</div>	
-              
+          {% if(offers) %}  
           <div id="gl-tbl" class="table-responsive mrgn-top">
           <table class="table">	       
                     
@@ -85,6 +89,9 @@
 
            </table>
             </div>
+          {% else %}
+            <h3>{% trans %}No matches found.{% endtrans %}</h3>                                      
+          {% endif %}
               </div>
             </div>
  
@@ -92,4 +99,3 @@
           </div>
       
     	</section>
-{% endif %}

@@ -388,15 +388,24 @@ class OfferController extends Controller
       $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
       $country_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Country');
       
+      $session = $this->get('session');
+      
+      $keyword = $request->get('offer_keyword', null);
+      
+      if($request->request->has('offer_form_submitted'))
+      {
+        $session->set('offer_keyword', $keyword);
+      }
+      
       $items_per_page = 5;
       $order_by = 'name';
       $order = 'ASC';
         
-      $offers = $repository->findAllOffers($page, $items_per_page, $order_by, $order, null, 'active', null, null, true);
-      $total_offers = $repository->countAllOffers(null, 'active', null, null, true);
+      $offers = $repository->findAllOffers($page, $items_per_page, $order_by, $order, $session->get('offer_keyword', null), 'active', null, null, true);
+      $total_offers = $repository->countAllOffers($session->get('offer_keyword', null), 'active', null, null, true);
       $total_pages = ceil($total_offers / $items_per_page);
       
-      return $this->render('AnytvDashboardBundle:Offer:embed.html.twig', array('offers'=>$offers, 'total_offers'=>$total_offers, 'page'=>$page, 'total_pages'=>$total_pages, 'country_repository'=>$country_repository));
+      return $this->render('AnytvDashboardBundle:Offer:embed.html.twig', array('offers'=>$offers, 'total_offers'=>$total_offers, 'page'=>$page, 'total_pages'=>$total_pages, 'country_repository'=>$country_repository, 'offer_keyword'=>$session->get('offer_keyword', null)));
     }
     
     public function playNowLinkAction(Request $request, $id)
