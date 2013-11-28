@@ -15,6 +15,7 @@ use Anytv\DashboardBundle\Form\Type\ProfileType;
 use Anytv\DashboardBundle\Entity\TrackingLink;
 use Anytv\DashboardBundle\Entity\Conversion;
 use Anytv\DashboardBundle\Entity\AffiliateReferralCommission;
+use Anytv\DashboardBundle\Entity\SignupAnswer;
 
 class ProfileController extends Controller
 {
@@ -23,8 +24,8 @@ class ProfileController extends Controller
       $affiliate_user = $this->getUser();
       $translator = $this->get('translator');
       $em = $this->getDoctrine()->getManager();
+      $hasoffers = $this->get('hasoffers');
       
-   
       if (!$affiliate_user) {
         throw $this->createNotFoundException(
             'No user found'
@@ -43,7 +44,7 @@ class ProfileController extends Controller
       
       if($affiliate->getPaypalEmailRequested() === false)
       {
-        $hasoffers = $this->get('hasoffers');
+        
         
         if($paypal_email = $hasoffers->getPaypalEmail($affiliate->getAffiliateId()))
         {
@@ -61,6 +62,9 @@ class ProfileController extends Controller
       $form = null;
       $form_view = null;
       $errors = array();
+      $form_is_posted = false;
+      $country_is_listed = true;
+      $youtube_network_is_selected = false;
       
       if($mode == 'edit')
       {
@@ -80,11 +84,101 @@ class ProfileController extends Controller
           ->add('change', 'submit', array('label'=>$translator->trans('Save')))
           ->getForm();
         }  
+        elseif($tab == 'signup_answers')
+        {
+          if(!$affiliate->getSignupAnswersRequested())
+          {
+            throw $this->createNotFoundException(
+              'An error occurred'
+            );
+          }
+          //$signup_question_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:SignupQuestion');
+          
+          //$signup_questions = $signup_question_repository->findAll();
+           
+          $youtube_networks = array('Acifin', 'AwesomenessTV', 'BBTV', 'Bent Pixels', 'Curse (Union for Gamers)', 'Fullscreen', 'Machinima', 'Maker', 'N4Gtv', 'RPM', 'Social Blade', 'TGN', 'VISO', 'Vultra', 'Yeousch', 'YouTube AdSense', 'ZoominTV');  
+          $youtube_network_choices = array_merge($youtube_networks, array('Not Listed'));  
+          
+          $signup_answers = $affiliate->getSignupAnswers();   
+          
+          $defaultData = array();
+          
+          foreach($signup_answers as $signup_answer)
+          {
+            switch($signup_answer->getQuestion()->getQuestionId())
+            {
+              case 2:
+                $defaultData['youtube_channels'] = $signup_answer->getAnswer();
+                break;
+              case 4:
+                if(in_array($signup_answer->getAnswer(), $youtube_networks))
+                {
+                  foreach($youtube_networks as $key => $youtube_network)
+                  {
+                    if($youtube_network == $signup_answer->getAnswer())
+                    {
+                      $defaultData['youtube_network_choice'] = $key;
+                      $youtube_network_is_selected = true;
+                      break;
+                    }
+                  }
+                }
+                else
+                {
+                  $defaultData['youtube_network_choice'] = 17;
+                  $defaultData['youtube_network'] = $signup_answer->getAnswer();  
+                }
+                break;
+              case 6:
+                $defaultData['use_twitch_or_livestream'] = $signup_answer->getAnswer(); 
+                break;
+              case 8:
+                $defaultData['youtube_best_video'] = $signup_answer->getAnswer(); 
+                break;
+              case 10:
+                $defaultData['skype_name'] = $signup_answer->getAnswer();
+                break;
+              default:
+            }
+          }
+          
+          $form_builder = $this->createFormBuilder($defaultData);
+                
+          foreach($signup_answers as $signup_answer)
+          {
+            switch($signup_answer->getQuestion()->getQuestionId())
+            {
+              case 2:
+                $form_builder->add('youtube_channels', 'textarea', array('label'=>$translator->trans('Your YouTube Channels (one on each line, write None if you don\'t have one): *')));
+                break;
+              case 4:
+                $form_builder->add('youtube_network_choice', 'choice', array('choices'=>$youtube_network_choices, 'empty_value' => '---', 'label'=>$translator->trans('YouTube Network (who are you partnered with on YouTube): *'), 'required'=>false));
+                $form_builder->add('youtube_network', 'textarea', array('label'=>$translator->trans('YouTube Network (other) write None if not partnered: *'), 'required'=>false));
+                break;
+              case 6:
+                $form_builder->add('use_twitch_or_livestream', 'choice', array('choices' => array('none'=>'---', 'Yes'=>'Yes', 'No'=>'No'), 'label'=>$translator->trans('Do you use Twitch or live stream?: *')));
+                break;
+              case 8:
+                $form_builder->add('youtube_best_video', 'textarea', array('label'=>$translator->trans('Link to your best video? (write None if you never made a video): *')));
+                break;
+              case 10:
+                $form_builder->add('skype_name', 'textarea', array('label'=>$translator->trans('Skype Name (write None if you do not use Skype): *')));
+                break;
+              default:
+            }
+          }
+          
+          $form_builder->add('change', 'submit', array('label'=>$translator->trans('Save')));
+          
+          $form = $form_builder->getForm();
+        }  
         
         $form->handleRequest($request);
         
         if ($form->isValid()) {
             
+          $form_is_posted = true;
+          
           $em->flush();
 
           if($tab == 'company')
@@ -134,7 +228,7 @@ class ProfileController extends Controller
                           'fax'=>$fax
                          );
             
-            $hasoffers = $this->get('hasoffers');
+            
             $affiliate_update_result = $hasoffers->updateAffiliate($affiliate->getAffiliateId(), $data); 
             
             // update affiliate's paypal email
@@ -178,7 +272,7 @@ class ProfileController extends Controller
                           'cell_phone'=>$cell_phone
                          );
             
-            $hasoffers = $this->get('hasoffers');
+            
             $affiliate_user_update_result = $hasoffers->updateAffiliateUser($affiliate_user->getAffiliateUserId(), $data); 
             
             return $this->redirect($this->generateUrl('profile_view', array('tab'=>'user')));  
@@ -198,7 +292,7 @@ class ProfileController extends Controller
             if(!$errors)
             {
               $new_password = trim($new_password);
-              $hasoffers = $this->get('hasoffers');
+              
               $change_password_response = $hasoffers->updateAffiliateUserField($affiliate_user->getAffiliateUserId(), 'password', $new_password, false); 
               $hasoffer_errors = $change_password_response->errors;
               
@@ -221,12 +315,111 @@ class ProfileController extends Controller
               }  
             }
           }
+          elseif($tab == 'signup_answers')
+          {
+            $data = $form->getData();
+            
+            $youtube_channels = strip_tags($data['youtube_channels']);
+          
+            if($youtube_channels == '')
+            {
+              $errors[] = $translator->trans('Your YouTube Channels (one on each line, write None if you don\'t have one): *');    
+            }
+          
+            $youtube_network_choice = $data['youtube_network_choice'];
+            $youtube_network = strip_tags($data['youtube_network']);
+          
+            if((is_null($youtube_network_choice) || ($youtube_network_choice == 17)) && ($youtube_network == ''))
+            {
+              $errors[] = $translator->trans('YouTube Network (who are you partnered with on YouTube, write None if not partnered): *');    
+            }
+          
+            $youtube_network_is_selected = in_array($youtube_network_choice, range(0, 16));
+          
+            $use_twitch_or_livestream = strip_tags($data['use_twitch_or_livestream']);
+          
+            if($use_twitch_or_livestream == 'none')
+            {
+              $errors[] = $translator->trans('Do you use Twitch or live stream?: *');    
+            }
+          
+            $youtube_best_video = strip_tags($data['youtube_best_video']);
+          
+            if($youtube_best_video == '')
+            {
+              $errors[] = $translator->trans('Link to your best video? (write None if you never made a video): *');    
+            }
+          
+            $skype_name = strip_tags($data['skype_name']);
+          
+            if($skype_name == '')
+            {
+              $errors[] = $translator->trans('Skype Name (write None if you do not use Skype): *');    
+            }
+            
+            if(!$errors)
+            {
+              // send signup answers to hasoffers
+              foreach($signup_answers as $signup_answer)
+              {
+                switch($signup_answer->getQuestion()->getQuestionId())
+                {
+                  case 2:
+                    if($youtube_channels)
+                    {
+                      $signup_answer_response = $hasoffers->updateSignupQuestionAnswer($signup_answer->getAnswerId(), $youtube_channels);
+                      $signup_answer->setAnswer($youtube_channels);
+                    }
+                    break;
+                  case 4:
+                    if($youtube_network_is_selected)
+                    {
+                      $youtube_network = $youtube_network_choices[$youtube_network_choice];
+                      $signup_answer_response = $hasoffers->updateSignupQuestionAnswer($signup_answer->getAnswerId(), $youtube_network);
+                      $signup_answer->setAnswer($youtube_network);
+                    }
+                    elseif($youtube_network)
+                    {
+                      $signup_answer_response = $hasoffers->updateSignupQuestionAnswer($signup_answer->getAnswerId(), $youtube_network);
+                      $signup_answer->setAnswer($youtube_network);
+                    }
+                    break;
+                  case 6:
+                    if($use_twitch_or_livestream != 'none')
+                    {
+                      $signup_answer_response = $hasoffers->updateSignupQuestionAnswer($signup_answer->getAnswerId(), $use_twitch_or_livestream);
+                      $signup_answer->setAnswer($use_twitch_or_livestream);
+                    } 
+                    break;
+                  case 8:
+                    if($youtube_best_video)
+                    {
+                      $signup_answer_response = $hasoffers->updateSignupQuestionAnswer($signup_answer->getAnswerId(), $youtube_best_video);
+                      $signup_answer->setAnswer($youtube_best_video);
+                    }
+                    break;
+                  case 10:
+                    if($skype_name)
+                    {
+                      $signup_answer_response = $hasoffers->updateSignupQuestionAnswer($signup_answer->getAnswerId(), $skype_name);
+                      $signup_answer->setAnswer($skype_name);
+                    }
+                    break;
+                  default:
+                }
+              }  
+              
+              $em->flush();
+               
+              return $this->redirect($this->generateUrl('profile_view', array('tab'=>'signup_answers'))); 
+            }
+          }
         }
         
         $form_view = $form->createView();
       }
 
-      return $this->render('AnytvDashboardBundle:Profile:view.html.twig', array('title'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'affiliate'=>$affiliate, 'affiliate_user_status'=>$translator->trans($affiliate_user->getStatus()), 'affiliate_status'=>$translator->trans($affiliate->getStatus()), 'tab'=>$tab, 'mode'=>$mode, 'form'=>$form_view, 'errors'=>$errors));
+      return $this->render('AnytvDashboardBundle:Profile:view.html.twig', array('title'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'affiliate'=>$affiliate, 'affiliate_user_status'=>$translator->trans($affiliate_user->getStatus()), 'affiliate_status'=>$translator->trans($affiliate->getStatus()), 'tab'=>$tab, 'mode'=>$mode, 'form'=>$form_view, 'errors'=>$errors, 'form_is_posted'=>$form_is_posted, 'country_is_listed'=>$country_is_listed, 'youtube_network_is_selected'=>$youtube_network_is_selected));
     }   
     
     public function reportsAction(Request $request)
@@ -292,9 +485,9 @@ class ProfileController extends Controller
       return $this->render('AnytvDashboardBundle:Profile:tabbedComponent.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user));
     }
     
-    public function tabbedProfileComponentAction($tab, $mode, $form, $errors)
+    public function tabbedProfileComponentAction($tab, $mode, $form, $errors, $affiliate, $form_is_posted, $youtube_network_is_selected)
     {
-      return $this->render('AnytvDashboardBundle:Profile:tabbedProfileComponent.html.twig', array('tab'=>$tab, 'mode'=>$mode, 'form'=>$form, 'errors'=>$errors));
+      return $this->render('AnytvDashboardBundle:Profile:tabbedProfileComponent.html.twig', array('tab'=>$tab, 'mode'=>$mode, 'form'=>$form, 'errors'=>$errors, 'affiliate'=>$affiliate, 'form_is_posted'=>$form_is_posted, 'youtube_network_is_selected'=>$youtube_network_is_selected));
     }
     
     public function tabbedReportsComponentAction($affiliate, $affiliate_user)
@@ -804,5 +997,73 @@ class ProfileController extends Controller
       
 
       return $this->render('AnytvDashboardBundle:Profile:trafficReferrals.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'traffic_referrals'=>$traffic_referrals, 'total_pages'=>$total_pages, 'page'=>$page, 'form'=>$form->createView(), 'selected_traffic_referral_category'=>$session->get('selected_traffic_referral_category', null)));
+    }
+    
+    public function signupAnswersAction(Request $request, $mode, $form, $errors, $form_is_posted, $youtube_network_is_selected)
+    {
+      $signup_question_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:SignupQuestion');
+      $signup_answer_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:SignupAnswer');
+      $translator = $this->get('translator');
+      $affiliate_user = $this->getUser();
+
+      if (!$affiliate_user) {
+        throw $this->createNotFoundException(
+            'No user found'
+        );
+      }
+      
+      $affiliate = $affiliate_user->getAffiliate();
+      
+      //$signup_questions = $signup_question_repository->findAll();
+      
+      if(!$affiliate->getSignupAnswersRequested())
+      {
+        $hasoffers = $this->get('hasoffers');
+        $signup_question_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:SignupQuestion');
+        $signup_answers_response = $hasoffers->getSignupAnswers($affiliate->getAffiliateId());
+        $manager = $this->getDoctrine()->getManager();
+        
+        if(($signup_answers_response->status == 1) && $signup_answers_response->data)
+        {
+          $signup_answers_data = (array) $signup_answers_response->data;
+                  
+          if($signup_answers_data)
+          {
+            foreach($signup_answers_data as $signup_answer_data)
+            {
+              $signup_answer_object = $signup_answer_data->SignupAnswer;
+                      
+              $signup_answer = new SignupAnswer();
+              $signup_answer->setAnswerId($signup_answer_object->id);
+              $signup_answer->setAnswer($signup_answer_object->answer);
+                      
+              if($question = $signup_question_repository->findOneByQuestionId($signup_answer_object->question_id))
+              {
+                $signup_answer->setQuestion($question);  
+              } 
+                      
+              if($affiliate->getAffiliateId() == $signup_answer_object->responder_id)
+              {
+                $signup_answer->setAffiliate($affiliate);
+              } 
+                      
+              $manager->persist($signup_answer);   
+            }
+            
+            $affiliate->setSignupAnswersRequested(true);  
+            
+            $manager->flush(); 
+          }
+        }
+      }
+      
+      $signup_answers = $affiliate->getSignupAnswers();
+      
+      foreach($signup_answers as $signup_answer)
+      {
+        $signup_answer->setQuestionTranslated($translator->trans($signup_answer->getQuestion()->getQuestion()));
+      }
+      
+      return $this->render('AnytvDashboardBundle:Profile:signupAnswers.html.twig', array('affiliate'=>$affiliate, 'mode'=>$mode, 'form'=>$form, 'signup_answers'=>$signup_answers, 'errors'=>$errors, 'form_is_posted'=>$form_is_posted, 'youtube_network_is_selected'=>$youtube_network_is_selected));
     }
 }

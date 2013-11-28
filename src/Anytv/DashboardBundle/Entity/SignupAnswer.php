@@ -33,6 +33,8 @@ class SignupAnswer
      * @ORM\JoinColumn(name="question_id", referencedColumnName="id")
      */
     private $question;
+    
+    private $questionTranslated;
 
     /**
      * @var string
@@ -170,5 +172,28 @@ class SignupAnswer
     public function getAffiliate()
     {
         return $this->affiliate;
+    }
+    
+    /**
+     * Set questionTranslated
+     *
+     * @param string $question
+     * @return string
+     */
+    public function setQuestionTranslated($question)
+    {
+        $this->questionTranslated = $question;
+    
+        return $this;
+    }
+
+    /**
+     * Get questionTranslated
+     *
+     * @return string 
+     */
+    public function getQuestionTranslated()
+    {
+        return $this->questionTranslated;
     }
 }

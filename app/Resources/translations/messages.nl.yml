@@ -197,12 +197,17 @@
 'Get paid $5 per video submitted to any.TV!': Krijg $5 betaald voor het verzenden van je video naar any.TV!
 'Yes': Ja
 'No': Nee
-"Your YouTube Channels (one on each line, write None if you don't have one): *": 'Jouw YouTube kanalen (typ "none" als je er geen hebt): *'
+"Your YouTube Channels (one on each line, write None if you don't have one)": 'Jouw YouTube kanalen (typ "none" als je er geen hebt)'
+"Your YouTube Channels (one on each line, write None if you don't have one): *": 'Jouw YouTube kanalen (typ "none" als je er geen hebt)'
+'YouTube Network (who are you partnered with on YouTube, write None if not partnered)': 'YouTube netwerk (met wie je een contract hebt getekend. Typ "none" als je er geen hebt): *'
 'YouTube Network (who are you partnered with on YouTube, write None if not partnered): *': 'YouTube netwerk (met wie je een contract hebt getekend. Typ "none" als je er geen hebt): *'
 'YouTube Network (who are you partnered with on YouTube): *': 'YouTube netwerk (met wie je een contract hebt getekend): *'
 'YouTube Network (other) write None if not partnered: *': 'YouTube netwerk (Typ "none" als je er geen hebt): *'
+'Do you use Twitch or live stream?': 'Gebruik je Twitch of stream je eens?'
 'Do you use Twitch or live stream?: *': 'Gebruik je Twitch of stream je eens?: *'
+'Link to your best video? (write None if you never made a video)': 'Link naat je beste video? (Typ "none" als je er geen hebt)'
 'Link to your best video? (write None if you never made a video): *': 'Link naat je beste video? (Typ "none" als je er geen hebt): *'
+'Skype Name (write None if you do not use Skype)': 'Skype gebruikersnaam (typ "none" als je er geen hebt)'
 'Skype Name (write None if you do not use Skype): *': 'Skype gebruikersnaam (typ "none" als je er geen hebt): *'
 'Miss the old dashboard? Click': 'Mis je het oude dashboard? Klik'
 'here': hier

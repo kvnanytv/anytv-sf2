@@ -3,6 +3,9 @@
     <li {% if(tab == 'company') %}class="active"{% endif %}><a href="{{ path('profile_view') }}">{% trans %}Company Details{% endtrans %}</a></li>
     <li {% if(tab == 'user') %}class="active"{% endif %}><a href="{{ path('profile_view', { 'tab': 'user' }) }}">{% trans %}User Details{% endtrans %}</a></li>
     <li {% if(tab == 'password') %}class="active"{% endif %}><a href="{{ path('profile_view', { 'tab': 'password', 'mode': 'edit' }) }}">{% trans %}Password{% endtrans %}</a></li>
+    {% if(affiliate.signupAnswersRequested) %}
+      <li {% if(tab == 'signup_answers') %}class="active"{% endif %}><a href="{{ path('profile_view', { 'tab': 'signup_answers' }) }}">{% trans %}Signup Answers{% endtrans %}</a></li>
+    {% endif %}
   </ul>
   <div class="tab-content" id="profile_tab_content">
     {% if(tab == 'company') %}
@@ -11,6 +14,8 @@
       {{ render(controller('AnytvDashboardBundle:Profile:user', { 'mode': mode, 'form': form, 'errors': errors })) }}
     {% elseif(tab == 'password') %}
       {{ render(controller('AnytvDashboardBundle:Profile:password', { 'mode': mode, 'form': form, 'errors': errors })) }}
+    {% elseif(tab == 'signup_answers') %}
+      {{ render(controller('AnytvDashboardBundle:Profile:signupAnswers', { 'mode': mode, 'form': form, 'errors': errors, 'form_is_posted': form_is_posted, 'youtube_network_is_selected': youtube_network_is_selected })) }}
     {% endif %}
   </div>						
 </div>

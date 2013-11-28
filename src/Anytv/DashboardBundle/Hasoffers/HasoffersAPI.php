@@ -538,6 +538,23 @@ class HasoffersAPI
         return $response;
     }
     
+    public function updateSignupQuestionAnswer($answer_id, $answer)
+    {
+        $this->api_params['Target'] = 'Affiliate';
+        $this->api_params['Method'] = 'updateSignupQuestionAnswer';
+        $this->api_params['answer_id'] = $answer_id;
+        $this->api_params['data'] = array('answer'=>$answer);
+        
+        $url = $this->api_url . http_build_query( $this->api_params );
+ 
+        $result = file_get_contents( $url );
+        
+        $result = (array) json_decode( $result );
+        $response = (array) $result['response'];
+        
+        return $response;
+    }
+    
     public function getSignupAnswers($affiliate_id)
     {
         $this->api_params['Target'] = 'Affiliate';
