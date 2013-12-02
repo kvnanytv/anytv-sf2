@@ -570,7 +570,10 @@ class ProfileController extends Controller
       
       $affiliate = $affiliate_user->getAffiliate();
       
-      $form = $this->createFormBuilder(array('referral_hide_zeros'=>$session->get('referral_hide_zeros', false), 'referral_start_date'=>$session->get('referral_start_date', new \DateTime(date('Y-m-d', strtotime('2013-02-11')))), 'referral_end_date'=>$session->get('referral_end_date', new \DateTime(date('Y-m-d')))))
+      $start_date = $session->get('referral_start_date', new \DateTime(date('Y-m-d', strtotime('2013-02-11'))));
+      $end_date = $session->get('referral_end_date', new \DateTime(date('Y-m-d')));
+      
+      $form = $this->createFormBuilder(array('referral_hide_zeros'=>$session->get('referral_hide_zeros', false), 'referral_start_date'=>$start_date, 'referral_end_date'=>$end_date))
         ->add('referral_hide_zeros', 'checkbox', array('label'=>$translator->trans('Hide $0 earnings'), 'required'=>false))
         ->add('referral_start_date', 'date', array('label'=>$translator->trans('From'), 'required'=>false, 'widget' => 'single_text', 'format'=>'yyyy-MM-dd', 'attr' => array('class' => 'date form-control input')))
         ->add('referral_end_date', 'date', array('label'=>$translator->trans('To'), 'required'=>false, 'widget' => 'single_text', 'format'=>'yyyy-MM-dd', 'attr' => array('class' => 'date form-control input')))
@@ -584,11 +587,15 @@ class ProfileController extends Controller
         $session->set('referral_hide_zeros', $data['referral_hide_zeros']); 
         $session->set('referral_start_date', $data['referral_start_date']); 
         $session->set('referral_end_date', $data['referral_end_date']); 
+        
+        $start_date = $session->get('referral_start_date', new \DateTime(date('Y-m-d', strtotime('2013-02-11'))));
+        $end_date = $session->get('referral_end_date', new \DateTime(date('Y-m-d')));
       }
       
       $items_per_page = 10;
       $order_by = 'id';
       $order = 'DESC';
+      $graph_order = 'ASC';
         
       $referrals = $repository->findAllReferrals($page, $items_per_page, $order_by, $order, $affiliate, $session->get('referral_hide_zeros', 0), $session->get('referral_start_date', new \DateTime(date('Y-m-d', strtotime('2013-02-11')))), $session->get('referral_end_date', new \DateTime(date('Y-m-d'))));
       $total_referrals = $repository->countAllReferrals($affiliate, $session->get('referral_hide_zeros', 0), $session->get('referral_start_date', new \DateTime(date('Y-m-d', strtotime('2013-02-11')))), $session->get('referral_end_date', new \DateTime(date('Y-m-d'))));
@@ -625,8 +632,39 @@ class ProfileController extends Controller
           $em->flush();
         }    
       }
+      
+      $graph_referrals = $repository->findAllReferralsForGraph($order_by, $graph_order, $affiliate, $session->get('referral_hide_zeros', 0), $start_date, $end_date);
+      
+      $strDateFrom = date_format($start_date, 'Y-m-d');
+      $strDateTo = date_format($end_date, 'Y-m-d');
+      
+      $aryRange = array();
 
-      return $this->render('AnytvDashboardBundle:Profile:myReferrals.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'referrals'=>$referrals, 'total_pages'=>$total_pages, 'page'=>$page, 'form'=>$form->createView(), 'commission_rate_percent'=>$commission_rate_percent));
+      $iDateFrom = mktime(1, 0, 0, substr($strDateFrom,5,2), substr($strDateFrom,8,2),substr($strDateFrom,0,4));
+      $iDateTo = mktime(1, 0, 0, substr($strDateTo,5,2), substr($strDateTo,8,2),substr($strDateTo,0,4));
+
+      if ($iDateTo >= $iDateFrom)
+      {
+        $aryRange[date('Y-m-d', $iDateFrom)] = 0;
+        while ($iDateFrom < $iDateTo)
+        {
+            $iDateFrom += 86400;
+            $aryRange[date('Y-m-d', $iDateFrom)] = 0;
+        }
+      }
+      
+      $max_amount = 0;
+      foreach($graph_referrals as $graph_referral)
+      {
+        $aryRange[$graph_referral->getDateAsString()] += $graph_referral->getAmount(); 
+        
+        if($aryRange[$graph_referral->getDateAsString()] > $max_amount)
+        {
+          $max_amount = $aryRange[$graph_referral->getDateAsString()];        
+        }
+      }
+
+      return $this->render('AnytvDashboardBundle:Profile:myReferrals.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'referrals'=>$referrals, 'total_pages'=>$total_pages, 'page'=>$page, 'form'=>$form->createView(), 'commission_rate_percent'=>$commission_rate_percent, 'max_amount'=>$max_amount, 'aryRange'=>$aryRange));
     }
     
     public function myReferralsExportCsvAction(Request $request)
@@ -696,18 +734,53 @@ class ProfileController extends Controller
       $affiliate = $affiliate_user->getAffiliate();
       
       $items_per_page = 10;
-      $order_by = 'company';
-      $order = 'ASC';
+      $order_by = 'dateAdded';
+      $order = 'DESC';
+      $graph_order_by = 'dateAdded';
+      $graph_order = 'ASC';
       
       $referred_affiliates = $repository->findAllAffiliatesByReferrer($affiliate, $page, $items_per_page, $order_by, $order);
       $total_referred_affiliates = $repository->countAllAffiliatesByReferrer($affiliate);
       $total_pages = ceil($total_referred_affiliates / $items_per_page);
+      
+      $graph_referred_affiliates = $repository->findAllReferredAffiliatesForGraph($graph_order_by, $graph_order, $affiliate);
+      
+      $strDateFrom = date_format(new \DateTime(date('Y-m-d', strtotime('2013-01-10'))), 'Y-m-d');
+      $strDateTo = date_format(new \DateTime(date('Y-m-d')), 'Y-m-d');
+      
+      $aryRange = array();
 
-      return $this->render('AnytvDashboardBundle:Profile:myReferralList.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'referred_affiliates'=>$referred_affiliates, 'total_pages'=>$total_pages, 'page'=>$page));
+      $iDateFrom = mktime(1, 0, 0, substr($strDateFrom,5,2), substr($strDateFrom,8,2),substr($strDateFrom,0,4));
+      $iDateTo = mktime(1, 0, 0, substr($strDateTo,5,2), substr($strDateTo,8,2),substr($strDateTo,0,4));
+
+      if ($iDateTo >= $iDateFrom)
+      {
+        $aryRange[date('Y-m-d', $iDateFrom)] = 0;
+        while ($iDateFrom < $iDateTo)
+        {
+            $iDateFrom += 86400;
+            $aryRange[date('Y-m-d', $iDateFrom)] = 0;
+        }
+      }
+      
+      $max_referrals = 0;
+      foreach($graph_referred_affiliates as $graph_referred_affiliate)
+      {
+        $aryRange[$graph_referred_affiliate->getDateAddedAsString()]++; 
+        
+        if($aryRange[$graph_referred_affiliate->getDateAddedAsString()] > $max_referrals)
+        {
+          $max_referrals = $aryRange[$graph_referred_affiliate->getDateAddedAsString()];        
+        }
+      }
+
+      return $this->render('AnytvDashboardBundle:Profile:myReferralList.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'referred_affiliates'=>$referred_affiliates, 'total_pages'=>$total_pages, 'page'=>$page, 'max_referrals'=>$max_referrals, 'aryRange'=>$aryRange));
     }
     
     public function myConversionsAction(Request $request, $page)
     {
+      $translator = $this->get('translator');
+      $session = $this->get('session');
       $conversion_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Conversion');
       $affiliate_user = $this->getUser();
 
@@ -719,49 +792,121 @@ class ProfileController extends Controller
       
       $affiliate = $affiliate_user->getAffiliate();
       
-      /*
-      $conversions = array();
+      $start_date = $session->get('conversion_start_date', new \DateTime(date('Y-m-d', strtotime('2013-01-20'))));
+      $end_date = $session->get('conversion_end_date', new \DateTime(date('Y-m-d')));
       
-      $hasoffers = $this->get('hasoffers');
-      $conversions_response = $hasoffers->getAffiliateConversions($affiliate->getAffiliateId(), $page);
-      $total_pages = $conversions_response->pageCount;
-      $conversions_data = $conversions_response->data;
-      
-      foreach($conversions_data as $conversion_data)
+      $form = $this->createFormBuilder(array('conversion_start_date'=>$start_date, 'conversion_end_date'=>$end_date))
+        ->add('conversion_start_date', 'date', array('label'=>$translator->trans('From'), 'required'=>false, 'widget' => 'single_text', 'format'=>'yyyy-MM-dd', 'attr' => array('class' => 'date form-control input')))
+        ->add('conversion_end_date', 'date', array('label'=>$translator->trans('To'), 'required'=>false, 'widget' => 'single_text', 'format'=>'yyyy-MM-dd', 'attr' => array('class' => 'date form-control input')))
+        ->getForm();
+        
+      $form->handleRequest($request);
+        
+      if($form->isValid()) 
       {
-        $conversion_object = $conversion_data->Stat;
-            
-        $conversion = array();
-        $conversion['ip'] = $conversion_object->ip;
-        $conversion['ad_id'] = $conversion_object->ad_id;
-        $conversion['status'] = $conversion_object->status;
-        $conversion['payout'] = number_format($conversion_object->payout, 2);
-        $conversion['date'] = date_format(new \DateTime($conversion_object->datetime), 'Y-m-d');
-              
-        if($offer = $offer_repository->findOneBy(array('offerId'=>$conversion_object->offer_id)))
-        {
-          $conversion['offer'] = $offer;    
-        }
-        else
-        {
-          $conversion['offer'] = null;
-        }
-              
-        $conversions[] = $conversion; 
+        $data = $form->getData();
+        $session->set('conversion_start_date', $data['conversion_start_date']); 
+        $session->set('conversion_end_date', $data['conversion_end_date']); 
+        
+        $start_date = $session->get('conversion_start_date', new \DateTime(date('Y-m-d', strtotime('2013-01-20'))));
+        $end_date = $session->get('conversion_end_date', new \DateTime(date('Y-m-d')));
       }
-      */
-      
-      //$conversions = $affiliate->getConversions();
       
       $items_per_page = 10;
       $order_by = 'createdAt';
       $order = 'DESC';
+      $graph_order = 'ASC';
         
-      $conversions = $conversion_repository->findAllConversions($page, $items_per_page, $order_by, $order, $affiliate);
-      $total_conversions = $conversion_repository->countAllConversions($affiliate);
+      $conversions = $conversion_repository->findAllConversions($page, $items_per_page, $order_by, $order, $affiliate, $start_date, $end_date);
+      $total_conversions = $conversion_repository->countAllConversions($affiliate, $start_date, $end_date);
       $total_pages = ceil($total_conversions / $items_per_page);
+      
+      $graph_conversions = $conversion_repository->findAllConversionsForGraph($order_by, $graph_order, $affiliate, $start_date, $end_date);
+      
+      $strDateFrom = date_format($start_date, 'Y-m-d');
+      $strDateTo = date_format($end_date, 'Y-m-d');
+      
+      $aryRange = array();
 
-      return $this->render('AnytvDashboardBundle:Profile:myConversions.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'conversions'=>$conversions, 'total_pages'=>$total_pages, 'page'=>$page));
+      $iDateFrom = mktime(1, 0, 0, substr($strDateFrom,5,2), substr($strDateFrom,8,2),substr($strDateFrom,0,4));
+      $iDateTo = mktime(1, 0, 0, substr($strDateTo,5,2), substr($strDateTo,8,2),substr($strDateTo,0,4));
+
+      if ($iDateTo >= $iDateFrom)
+      {
+        $aryRange[date('Y-m-d', $iDateFrom)] = 0;
+        while ($iDateFrom < $iDateTo)
+        {
+            $iDateFrom += 86400;
+            $aryRange[date('Y-m-d', $iDateFrom)] = 0;
+        }
+      }
+      
+      $max_payout = 0;
+      foreach($graph_conversions as $graph_conversion)
+      {
+        $aryRange[$graph_conversion->getCreatedAtAsString()] += $graph_conversion->getPayout(); 
+        
+        if($aryRange[$graph_conversion->getCreatedAtAsString()] > $max_payout)
+        {
+          $max_payout = $aryRange[$graph_conversion->getCreatedAtAsString()];        
+        }
+      }
+
+      return $this->render('AnytvDashboardBundle:Profile:myConversions.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'conversions'=>$conversions, 'total_pages'=>$total_pages, 'page'=>$page, 'form'=>$form->createView(), 'aryRange'=>$aryRange, 'max_payout'=>$max_payout));
+    }
+    
+    public function myConversionsExportCsvAction(Request $request)
+    {
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Conversion');
+      $translator = $this->get('translator');
+      $session = $this->get('session');
+      $affiliate_user = $this->getUser();
+
+      if (!$affiliate_user) {
+        throw $this->createNotFoundException(
+            'No user found'
+        );
+      }
+      
+      $affiliate = $affiliate_user->getAffiliate();
+      
+      $start_date = $session->get('conversion_start_date', new \DateTime(date('Y-m-d', strtotime('2013-01-20'))));
+      $end_date = $session->get('conversion_end_date', new \DateTime(date('Y-m-d')));
+      $order_by = 'createdAt';
+      $order = 'DESC';
+      
+      $conversions = $repository->findAllAffiliateConversions($order_by, $order, $affiliate, $start_date, $end_date);
+      
+      ob_start();
+      
+      $filename = $translator->trans('Conversions').'-'.$start_date->format('Y-m-d').'-'.$end_date->format('Y-m-d').'.csv';
+      $response = new Response();
+      $response->headers->set('Content-Type', 'text/csv');
+      $response->headers->set('Content-Disposition', 'attachment; filename="'.$filename.'"');
+      
+      $response->sendHeaders();
+      	
+      $output = fopen('php://output', 'w');
+      
+      fputcsv($output, array($translator->trans('Time'), 
+                             $translator->trans('Offer'),
+                             $translator->trans('Status'),
+                             $translator->trans('Payout'),
+                             $translator->trans('Conversion IP'),
+                             $translator->trans('Transaction ID')
+              ));
+      
+      if($conversions)
+      {
+        foreach($conversions as $conversion)
+        {
+          fputcsv($output, array($conversion->getCreatedAtAsString(), $conversion->getOffer(), $conversion->getStatus(), '$'.$conversion->getPayout(), $conversion->getIp(), $conversion->getTransactionId()));
+        }
+      }
+      
+      fclose($output);
+
+      return $response;
     }
     
     public function partnersAction(Request $request, $page)
@@ -970,7 +1115,10 @@ class ProfileController extends Controller
       
       $affiliate = $affiliate_user->getAffiliate();
       
-      $form = $this->createFormBuilder(array('traffic_referral_category'=>$session->get('traffic_referral_category', null),'traffic_referral_start_date'=>$session->get('traffic_referral_start_date', new \DateTime(date('Y-m-d', strtotime('2013-01-10')))), 'traffic_referral_end_date'=>$session->get('traffic_referral_end_date', new \DateTime(date('Y-m-d')))))
+      $start_date = $session->get('traffic_referral_start_date', new \DateTime(date('Y-m-d', strtotime('2013-01-10'))));
+      $end_date = $session->get('traffic_referral_end_date', new \DateTime(date('Y-m-d')));
+      
+      $form = $this->createFormBuilder(array('traffic_referral_category'=>$session->get('traffic_referral_category', null),'traffic_referral_start_date'=>$start_date, 'traffic_referral_end_date'=>$end_date))
         ->add('traffic_referral_start_date', 'date', array('label'=>$translator->trans('From'), 'required'=>false, 'widget' => 'single_text', 'format'=>'yyyy-MM-dd', 'attr' => array('class' => 'date form-control input')))
         ->add('traffic_referral_end_date', 'date', array('label'=>$translator->trans('To'), 'required'=>false, 'widget' => 'single_text', 'format'=>'yyyy-MM-dd', 'attr' => array('class' => 'date form-control input')))
         ->add('traffic_referral_category', 'choice', array('required' => false, 'choices' => array('youtube'=>'Youtube', 'twitch'=>'Twitch', 'websites'=>'Websites'), 'label'=>$translator->trans('Category')))
@@ -984,19 +1132,105 @@ class ProfileController extends Controller
         $session->set('traffic_referral_category', $data['traffic_referral_category']); 
         $session->set('traffic_referral_start_date', $data['traffic_referral_start_date']); 
         $session->set('traffic_referral_end_date', $data['traffic_referral_end_date']); 
+        
+        $start_date = $session->get('traffic_referral_start_date', new \DateTime(date('Y-m-d', strtotime('2013-01-10'))));
+        $end_date = $session->get('traffic_referral_end_date', new \DateTime(date('Y-m-d')));
       }
       
       $items_per_page = 10;
       $order_by = 'statDate';
       $order = 'DESC';
+      $graph_order = 'ASC';
         
-      $traffic_referrals = $repository->findAllTrafficReferralsByAffiliate($page, $items_per_page, $order_by, $order, $affiliate, false, $session->get('traffic_referral_start_date', new \DateTime(date('Y-m-d', strtotime('2013-01-10')))), $session->get('traffic_referral_end_date', new \DateTime(date('Y-m-d'))), $session->get('traffic_referral_category', null));
-      $total_traffic_referrals = $repository->countAllTrafficReferralsByAffiliate($affiliate, false, $session->get('traffic_referral_start_date', new \DateTime(date('Y-m-d', strtotime('2013-01-10')))), $session->get('traffic_referral_end_date', new \DateTime(date('Y-m-d'))), $session->get('traffic_referral_category', null));
+      $traffic_referrals = $repository->findAllTrafficReferralsByAffiliate($page, $items_per_page, $order_by, $order, $affiliate, false, $start_date, $end_date, $session->get('traffic_referral_category', null));
+      $total_traffic_referrals = $repository->countAllTrafficReferralsByAffiliate($affiliate, false, $start_date, $end_date, $session->get('traffic_referral_category', null));
       $total_pages = ceil($total_traffic_referrals / $items_per_page);
       
+      $graph_traffic_referrals = $repository->findAlltrafficReferralsForGraph($order_by, $graph_order, $affiliate, false, $start_date, $end_date, $session->get('traffic_referral_category', null));
       
+      $strDateFrom = date_format($start_date, 'Y-m-d');
+      $strDateTo = date_format($end_date, 'Y-m-d');
+      
+      $aryRange = array();
 
-      return $this->render('AnytvDashboardBundle:Profile:trafficReferrals.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'traffic_referrals'=>$traffic_referrals, 'total_pages'=>$total_pages, 'page'=>$page, 'form'=>$form->createView(), 'selected_traffic_referral_category'=>$session->get('selected_traffic_referral_category', null)));
+      $iDateFrom = mktime(1, 0, 0, substr($strDateFrom,5,2), substr($strDateFrom,8,2),substr($strDateFrom,0,4));
+      $iDateTo = mktime(1, 0, 0, substr($strDateTo,5,2), substr($strDateTo,8,2),substr($strDateTo,0,4));
+
+      if ($iDateTo >= $iDateFrom)
+      {
+        $aryRange[date('Y-m-d', $iDateFrom)] = 0;
+        while ($iDateFrom < $iDateTo)
+        {
+            $iDateFrom += 86400;
+            $aryRange[date('Y-m-d', $iDateFrom)] = 0;
+        }
+      }
+      
+      $max_clicks = 0;
+      foreach($graph_traffic_referrals as $graph_traffic_referral)
+      {
+        $aryRange[$graph_traffic_referral->getStatDateAsString()] += $graph_traffic_referral->getClicks(); 
+        
+        if($aryRange[$graph_traffic_referral->getStatDateAsString()] > $max_clicks)
+        {
+          $max_clicks = $aryRange[$graph_traffic_referral->getStatDateAsString()];        
+        }
+      }
+
+      return $this->render('AnytvDashboardBundle:Profile:trafficReferrals.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'traffic_referrals'=>$traffic_referrals, 'total_pages'=>$total_pages, 'page'=>$page, 'form'=>$form->createView(), 'selected_traffic_referral_category'=>$session->get('selected_traffic_referral_category', null), 'max_clicks'=>$max_clicks, 'aryRange'=>$aryRange));
+    }
+    
+    public function trafficReferralsExportCsvAction(Request $request)
+    {
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:TrafficReferral');
+      $translator = $this->get('translator');
+      $session = $this->get('session');
+      $affiliate_user = $this->getUser();
+
+      if (!$affiliate_user) {
+        throw $this->createNotFoundException(
+            'No user found'
+        );
+      }
+      
+      $affiliate = $affiliate_user->getAffiliate();
+      
+      $start_date = $session->get('traffic_referral_start_date', new \DateTime(date('Y-m-d', strtotime('2013-01-10'))));
+      $end_date = $session->get('traffic_referral_end_date', new \DateTime(date('Y-m-d')));
+      $order_by = 'statDate';
+      $order = 'DESC';
+      
+      $traffic_referrals = $repository->findAllAffiliateTrafficReferrals($order_by, $order, $affiliate, $start_date, $end_date, $session->get('traffic_referral_category', null));
+      
+      ob_start();
+      
+      $filename = $translator->trans('Traffic_Referrals').'-'.$start_date->format('Y-m-d').'-'.$end_date->format('Y-m-d').'.csv';
+      $response = new Response();
+      $response->headers->set('Content-Type', 'text/csv');
+      $response->headers->set('Content-Disposition', 'attachment; filename="'.$filename.'"');
+      
+      $response->sendHeaders();
+      	
+      $output = fopen('php://output', 'w');
+      
+      fputcsv($output, array($translator->trans('Time'), 
+                             $translator->trans('Offer'),
+                             $translator->trans('URL'),
+                             $translator->trans('Clicks'),
+                             $translator->trans('Conversions')
+              ));
+      
+      if($traffic_referrals)
+      {
+        foreach($traffic_referrals as $traffic_referral)
+        {
+          fputcsv($output, array($traffic_referral->getStatDateAsString(), $traffic_referral->getOffer(), $traffic_referral->getUrl(), $traffic_referral->getClicks(), $traffic_referral->getConversions()));
+        }
+      }
+      
+      fclose($output);
+
+      return $response;
     }
     
     public function signupAnswersAction(Request $request, $mode, $form, $errors, $form_is_posted, $youtube_network_is_selected)

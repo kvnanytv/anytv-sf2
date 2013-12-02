@@ -63,6 +63,12 @@ profile_reports_conversions:
         _locale:  %anytv.locales%
         page:  \d+
         
+profile_reports_conversions_export_csv:
+    path:      /{_locale}/profile/reports/conversions/export
+    defaults:  { _controller: AnytvDashboardBundle:Profile:MyConversionsExportCsv, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
 profile_reports_referral_list:
     path:      /{_locale}/profile/reports/referral_list/{page}
     defaults:  { _controller: AnytvDashboardBundle:Profile:MyReferralList, _locale: en, page: 1 }
@@ -82,6 +88,12 @@ profile_traffic_referrals:
     requirements:
         _locale:  %anytv.locales%
         page:  \d+
+        
+profile_traffic_referrals_export_csv:
+    path:      /{_locale}/profile/traffic/referrals/export
+    defaults:  { _controller: AnytvDashboardBundle:Profile:TrafficReferralsExportCsv, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
         
 profile_tab:
     path:      /{_locale}/profile/tab/{type}

@@ -175,4 +175,102 @@ class TrafficReferralRepository extends EntityRepository
           
         return $query->getSingleScalarResult();
     }
+    
+    public function findAllTrafficReferralsForGraph($order_by, $order, $affiliate, $youtube = false, $start_date = null, $end_date = null, $category = null)
+    {
+      $query = $this->createQueryBuilder('tr');
+        
+      $where = "tr.affiliate = :affiliate";
+      $params = array('affiliate'=>$affiliate); 
+      
+      if($youtube)
+      {
+        $where .= " AND tr.url LIKE :youtube";
+        $params['youtube'] = '%youtube.com%';        
+      }
+      
+      if($start_date)
+      {
+        $where .= " AND tr.statDate >= :start_date";
+        $params['start_date'] = $start_date;    
+      }
+          
+      if($end_date)
+      {
+        $where .= " AND tr.statDate <= :end_date";
+        $params['end_date'] = $end_date;    
+      }
+      
+      if($category)
+      {
+        switch($category)
+        {
+          case 'youtube':
+            $where .= " AND tr.url LIKE :youtube";
+            $params['youtube'] = '%youtube.com%';
+            break;
+          case 'twitch':
+            $where .= " AND tr.url LIKE :twitch";
+            $params['twitch'] = '%twitch.tv%';
+            break;
+          default:
+            $where .= " AND tr.url NOT LIKE :youtube AND tr.url NOT LIKE :twitch";
+            $params['youtube'] = '%youtube.com%';
+            $params['twitch'] = '%twitch.tv%';
+        }
+      }
+        
+      $query = $query->where($where)
+                     ->setParameters($params)
+                     ->orderBy('tr.'.$order_by, $order)
+                     ->getQuery();
+          
+      return $query->getResult();
+    }
+    
+    public function findAllAffiliateTrafficReferrals($order_by, $order, $affiliate, $start_date = null, $end_date = null, $category = null)
+    {
+      $query = $this->createQueryBuilder('tr');
+        
+      $where = "tr.affiliate = :affiliate";
+      $params = array('affiliate'=>$affiliate); 
+      
+      if($start_date)
+      {
+        $where .= " AND tr.statDate >= :start_date";
+        $params['start_date'] = $start_date;    
+      }
+          
+      if($end_date)
+      {
+        $where .= " AND tr.statDate <= :end_date";
+        $params['end_date'] = $end_date;    
+      }
+      
+      if($category)
+      {
+        switch($category)
+        {
+          case 'youtube':
+            $where .= " AND tr.url LIKE :youtube";
+            $params['youtube'] = '%youtube.com%';
+            break;
+          case 'twitch':
+            $where .= " AND tr.url LIKE :twitch";
+            $params['twitch'] = '%twitch.tv%';
+            break;
+          default:
+            $where .= " AND tr.url NOT LIKE :youtube AND tr.url NOT LIKE :twitch";
+            $params['youtube'] = '%youtube.com%';
+            $params['twitch'] = '%twitch.tv%';
+        }
+      }
+        
+      $query = $query->where($where)
+                     ->setParameters($params)
+                     ->orderBy('tr.'.$order_by, $order)
+                     ->getQuery();
+          
+      return $query->getResult();    
+    }
 }

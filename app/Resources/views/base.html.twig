@@ -21,6 +21,9 @@
           <link href="{{ asset('bundles/anytvmain/css/bootstrap.css') }}" rel="stylesheet" />
           <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" />
         {% endblock %}
+        {% block head_javascripts %}
+          
+        {% endblock %}
     </head>
     
     {% block body %}
@@ -60,7 +63,7 @@
                 {% if(app.user) %}
                   <p class='navbar-text pull-right'>{% trans %}You are signed in as{% endtrans %} {{ app.user }} | <a href="{{ path('logout') }}" class="navbar-link" title="{% trans %}Sign out{% endtrans %}">{% trans %}Sign out{% endtrans %}</a></p>
                 {% else %}
-                  <a href="{{ path('anytv_dashboard_homepage') }}" class="log-btn mrgn-left">{% trans %}Sign in{% endtrans %}</a>
+                  <a href="{{ path('login') }}" class="log-btn mrgn-left">{% trans %}Sign in{% endtrans %}</a>
                 {% endif %}
                 {% endblock %}
               </li> 

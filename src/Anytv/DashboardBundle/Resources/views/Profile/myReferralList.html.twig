@@ -1,8 +1,29 @@
+{% if(aryRange|length) %}
+<script type="text/javascript">
+  var data = new google.visualization.DataTable();
+  data.addColumn('string','{%trans%}Time{%endtrans%}');
+  data.addColumn('number','{% trans %}Referrals{% endtrans %}');
+</script>
+{% for referrals in aryRange %}
+  <script type="text/javascript">
+    data.addRows([
+      ['', {{ referrals }}]
+    ]);
+  </script>
+{% endfor %}
+{% endif %}
 <div id="pane1" class="tab-pane active">
   <div id="user-content-offers">
+      
+      {% if(aryRange|length) %}
+        <div id="chart_div" style="width:100%;height:auto"></div>
+      {% endif %}
+        
     <div class="search-btns">				
          <div class="rfrsh-wrap">
+             {% if(false) %}
       <a href="javascript:void(0)" onclick="showTab('{{ path('profile_reports_referral_list') }}');" class="btn btn-default btn-lg"><i class="icon-refresh"></i></a>
+      {% endif %}
     </div>														
     </div>
   </div>
@@ -66,7 +87,16 @@
   </div>				    	
 </div>
 
-
+{% if(aryRange|length) %}
+<script type="text/javascript">
+  $(document).ready(
+    function()
+    { 
+      drawChart('', '{% trans %}Referrals{% endtrans %}', '{%trans%}Time{%endtrans%}', data, {{ max_referrals }});    
+    }
+  );    
+</script>
+{% endif %}
 
 
 			

@@ -134,4 +134,31 @@ class ReferralRepository extends EntityRepository
         
         return $query->getResult();
     }
+    
+    public function findAllReferralsForGraph($order_by, $order, $referrer = null, $referral_hide_zeros = false, $start_date = null, $end_date = null)
+    {
+        $query = $this->createQueryBuilder('r');
+        
+        $where = "r.referrer = :referrer";
+        $params = array('referrer'=>$referrer);
+          
+        if($referral_hide_zeros)
+        {
+          $where .= " AND r.amount > :min_amount";
+          $params['min_amount'] = 0;
+        }
+          
+        $where .= " AND r.date >= :start_date";
+        $params['start_date'] = $start_date;      
+        
+        $where .= " AND r.date <= :end_date";
+        $params['end_date'] = $end_date;    
+        
+        $query = $query->where($where)
+                       ->setParameters($params)
+                       ->orderBy('r.'.$order_by, $order)
+                       ->getQuery();  
+        
+        return $query->getResult();
+    }
 }
