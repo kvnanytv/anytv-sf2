@@ -85,8 +85,8 @@ class SecurityController extends Controller
         $offer_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Offer');
         $translator = $this->get('translator');
         
-        $username = strip_tags($request->get('_username'));
-        $password = strip_tags($request->get('_password'));
+        $username = strip_tags(trim($request->get('_username')));
+        $password = strip_tags(trim($request->get('_password')));
         $user_type = $request->get('user_type');
         
         $hasoffers = $this->get('hasoffers');

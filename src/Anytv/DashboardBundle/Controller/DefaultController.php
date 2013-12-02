@@ -194,14 +194,14 @@ class DefaultController extends Controller
                
                 $manager->flush();
                 
-                $dashboard_url = $this->generateUrl('anytv_dashboard_homepage', array(), true);
+                $login_url = $this->generateUrl('login', array(), true);
               
                 $message = \Swift_Message::newInstance()
                   ->setContentType('text/html')
-                  ->setSubject($translator->trans('Recover Lost Password‏'))
-                  ->setFrom('support@any.tv', 'any.TV')
+                  ->setSubject($translator->trans('Recover Lost Password'))
+                  ->setFrom('anytv@support.tm', 'anytv@support.tm')
                   ->setTo($email)
-                  ->setBody($this->renderView('AnytvDashboardBundle:Default:forgotPasswordEmail.html.twig', array('affiliate_user' => $affiliate_user, 'new_password'=>$reset_password_result->data, 'dashboard_url'=>$dashboard_url)));
+                  ->setBody($this->renderView('AnytvDashboardBundle:Default:forgotPasswordEmail.html.twig', array('affiliate_user' => $affiliate_user, 'new_password'=>$reset_password_result->data, 'login_url'=>$login_url)));
             
                 $this->get('mailer')->send($message);    
               }

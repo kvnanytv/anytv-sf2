@@ -1,8 +1,44 @@
+{% if(aryRange|length) %}
+<script type="text/javascript">
+  var data = new google.visualization.DataTable();
+  data.addColumn('string','{%trans%}Time{%endtrans%}');
+  data.addColumn('number','{% trans %}Payout{% endtrans %}');
+</script>
+{% for payout in aryRange %}
+  <script type="text/javascript">
+    data.addRows([
+      ['', {{ payout }}]
+    ]);
+  </script>
+{% endfor %}
+{% endif %}
 <div id="pane1" class="tab-pane active">
   <div id="user-content-offers">
+    <a href="{{ path('profile_reports_conversions_export_csv') }}"  class="btn btn-default btn-lg" style="float:right;clear:both" title="{% trans %}Export To CSV{% endtrans %}">{% trans %}Export To CSV{% endtrans %}</a>
+    {{ form_start(form, {'action': path('profile_reports_conversions'), 'method': 'POST' }) }}
+      <div class="form-group">
+        {{ form_label(form.conversion_start_date) }}
+        {{ form_widget(form.conversion_start_date, { 'attr': { 'style': 'width:20%', 'onchange':"submitForm(this.form, this.form.action)" }}) }}
+         {{ form_label(form.conversion_end_date) }}
+        {{ form_widget(form.conversion_end_date, { 'attr': { 'style': 'width:20%', 'onchange':"submitForm(this.form, this.form.action)" }}) }}
+      </div>
+    {{ form_end(form) }}
+      
+      <script type="text/javascript">
+        $(document).ready(function() {
+          $('.date').datepicker({ dateFormat: 'yy-mm-dd' })
+        });
+      </script>  
+      
+      {% if(aryRange|length) %}
+        <div id="chart_div" style="width:100%;height:auto"></div>
+      {% endif %}
+      
     <div class="search-btns">				
-         <div class="rfrsh-wrap">
-      <a href="javascript:void(0)" onclick="showTab('{{ path('profile_reports_conversions') }}');" class="btn btn-default btn-lg"><i class="icon-refresh"></i></a>
+      <div class="rfrsh-wrap">
+      {% if(false) %}   
+        <a href="javascript:void(0)" onclick="showTab('{{ path('profile_reports_conversions') }}');" class="btn btn-default btn-lg"><i class="icon-refresh"></i></a>
+      {% endif %}
     </div>														
     </div>
   </div>
@@ -13,6 +49,7 @@
   <div class="table-responsive" id="profile-tab-results">
     <div class="offer-tbl-wrap">
       {% if(conversions) %}
+            
       <table class="table table-striped">							
         <thead>
           <tr>
@@ -27,7 +64,7 @@
         <tbody>
           {% for conversion in conversions %}
 	  <tr>
-           <td>{{ conversion.getCreatedAtAsString()  }}</td>
+           <td>{{ conversion.getCreatedAtAsString() }}</td>
            <td>{{ conversion.offer }}</td>
            <td>{{ conversion.status }}</td>
            <td>${{ conversion.payout }}</td>
@@ -61,13 +98,26 @@
           {% endif %}
 	</tbody>
       </table>
+            
+      
+      
+      
+      
+      
       {% endif %}
     </div>
   </div>				    	
 </div>
-
-
-
+{% if(aryRange|length) %}
+<script type="text/javascript">
+  $(document).ready(
+    function()
+    { 
+      drawChart('', '{% trans %}Payout{% endtrans %}', '{%trans%}Time{%endtrans%}', data, {{ max_payout }});    
+    }
+  );    
+</script>
+{% endif %}
 
 			
 			

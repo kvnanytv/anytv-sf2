@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class ConversionRepository extends EntityRepository
 {
-    public function findAllConversions($page, $items_per_page, $order_by, $order, $affiliate = null)
+    public function findAllConversions($page, $items_per_page, $order_by, $order, $affiliate = null, $start_date = null, $end_date = null)
     {
         $first_result = ($items_per_page * ($page-1));
         
@@ -20,8 +20,23 @@ class ConversionRepository extends EntityRepository
         
         if($affiliate)
         {
-          $query = $query->where("c.affiliate = :affiliate AND c.status = :status")
-                         ->setParameters(array('affiliate'=>$affiliate, 'status'=>'approved'))
+          $where = "c.affiliate = :affiliate AND c.status = :status";
+          $params = array('affiliate'=>$affiliate, 'status'=>'approved');
+          
+          if($start_date)
+          {
+            $where .= " AND c.createdAt >= :start_date";
+            $params['start_date'] = $start_date;    
+          }
+          
+          if($end_date)
+          {
+            $where .= " AND c.createdAt <= :end_date";
+            $params['end_date'] = $end_date;    
+          }
+          
+          $query = $query->where($where)
+                         ->setParameters($params)
                          ->setFirstResult($first_result)
                          ->setMaxResults($items_per_page)
                          ->orderBy('c.'.$order_by, $order)
@@ -38,15 +53,65 @@ class ConversionRepository extends EntityRepository
         return $query->getResult();
     }
     
-    public function countAllConversions($affiliate = null)
+    public function findAllAffiliateConversions($order_by, $order, $affiliate = null, $start_date = null, $end_date = null)
+    {
+        $query = $this->createQueryBuilder('c');
+        
+        if($affiliate)
+        {
+          $where = "c.affiliate = :affiliate AND c.status = :status";
+          $params = array('affiliate'=>$affiliate, 'status'=>'approved');
+          
+          if($start_date)
+          {
+            $where .= " AND c.createdAt >= :start_date";
+            $params['start_date'] = $start_date;    
+          }
+          
+          if($end_date)
+          {
+            $where .= " AND c.createdAt <= :end_date";
+            $params['end_date'] = $end_date;    
+          }
+          
+          $query = $query->where($where)
+                         ->setParameters($params)
+                         ->orderBy('c.'.$order_by, $order)
+                         ->getQuery();  
+        }
+        else
+        {
+          $query = $query->orderBy('c.'.$order_by, $order)
+                         ->getQuery();  
+        }
+          
+        return $query->getResult();
+    }
+    
+    public function countAllConversions($affiliate = null, $start_date = null, $end_date = null)
     {    
         $query = $this->createQueryBuilder('c')
                       ->select('count(c.id)');
         
         if($affiliate)
         {
-          $query = $query->where("c.affiliate = :affiliate AND c.status = :status")
-                         ->setParameters(array('affiliate'=>$affiliate, 'status'=>'approved'))
+          $where = "c.affiliate = :affiliate AND c.status = :status";
+          $params = array('affiliate'=>$affiliate, 'status'=>'approved');
+          
+          if($start_date)
+          {
+            $where .= " AND c.createdAt >= :start_date";
+            $params['start_date'] = $start_date;    
+          }
+          
+          if($end_date)
+          {
+            $where .= " AND c.createdAt <= :end_date";
+            $params['end_date'] = $end_date;    
+          }
+          
+          $query = $query->where($where)
+                         ->setParameters($params)
                          ->getQuery();
         }
         else
@@ -64,5 +129,32 @@ class ConversionRepository extends EntityRepository
                       ->getQuery();
         
         return $query->getSingleScalarResult();
+    }
+    
+    public function findAllConversionsForGraph($order_by, $order, $affiliate = null, $start_date = null, $end_date = null)
+    {
+        $query = $this->createQueryBuilder('c');
+        
+        $where = "c.affiliate = :affiliate AND c.status = :status";
+        $params = array('affiliate'=>$affiliate, 'status'=>'approved');
+          
+        if($start_date)
+        {
+          $where .= " AND c.createdAt >= :start_date";
+          $params['start_date'] = $start_date;    
+        }
+          
+        if($end_date)
+        {
+          $where .= " AND c.createdAt <= :end_date";
+          $params['end_date'] = $end_date;    
+        }
+          
+        $query = $query->where($where)
+                       ->setParameters($params)
+                       ->orderBy('c.'.$order_by, $order)
+                       ->getQuery();  
+        
+        return $query->getResult();
     }
 }

@@ -1,3 +1,17 @@
+{% if(aryRange|length) %}
+<script type="text/javascript">
+  var data = new google.visualization.DataTable();
+  data.addColumn('string','{%trans%}Time{%endtrans%}');
+  data.addColumn('number','{% trans %}Your commission{% endtrans %}');
+</script>
+{% for amount in aryRange %}
+  <script type="text/javascript">
+    data.addRows([
+      ['', {{ amount }}]
+    ]);
+  </script>
+{% endfor %}
+{% endif %}
 <div id="pane1" class="tab-pane active">
   <div id="user-content-offers">
     <h4 style="float:right">{% trans %}Your commission rate{% endtrans %}: {{ commission_rate_percent }}%</h4>
@@ -23,6 +37,10 @@
           $('.date').datepicker({ dateFormat: 'yy-mm-dd' })
         });
       </script>
+      
+      {% if(aryRange|length) %}
+        <div id="chart_div" style="width:100%;height:auto"></div>
+      {% endif %}
       
     <div class="search-btns">				
       
@@ -99,7 +117,16 @@
     </div>
   </div>				    	
 </div>
-
+{% if(aryRange|length) %}
+<script type="text/javascript">
+  $(document).ready(
+    function()
+    { 
+      drawChart('', '{% trans %}Your commission{% endtrans %}', '{%trans%}Time{%endtrans%}', data, {{ max_amount }});    
+    }
+  );    
+</script>
+{% endif %}
 
 
 

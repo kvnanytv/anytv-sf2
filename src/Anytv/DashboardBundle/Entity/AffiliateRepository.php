@@ -161,4 +161,19 @@ class AffiliateRepository extends EntityRepository
           
         return $query->getSingleScalarResult();
     }
+    
+    public function findAllReferredAffiliatesForGraph($order_by, $order, $affiliate)
+    {
+        $query = $this->createQueryBuilder('a');
+        
+        $where = "a.referrer = :referrer";
+        $params = array('referrer'=>$affiliate);
+        
+        $query = $query->where($where)
+                       ->setParameters($params)
+                       ->orderBy('a.'.$order_by, $order)
+                       ->getQuery();
+          
+        return $query->getResult();   
+    }
 }
