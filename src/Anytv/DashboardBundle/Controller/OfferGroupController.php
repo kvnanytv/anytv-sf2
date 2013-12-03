@@ -140,6 +140,6 @@ class OfferGroupController extends Controller
         return $this->redirect($this->generateUrl('offer_group_view', array('id'=>$offer_group->getId())));
       }
 
-      return $this->render('AnytvDashboardBundle:OfferGroup:edit.html.twig', array('title'=>$translator->trans('Edit Offer Group'), 'form'=>$form->createView(), 'offer_group'=>$offer_group));
+      return $this->render('AnytvDashboardBundle:OfferGroup:edit.html.twig', array('title'=>$offer_group, 'form'=>$form->createView(), 'offer_group'=>$offer_group, 'offer_group_status'=>$translator->trans($offer_group->getStatus())));
     }
 }

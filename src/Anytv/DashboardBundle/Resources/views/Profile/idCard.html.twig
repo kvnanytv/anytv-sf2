@@ -12,9 +12,10 @@
     <div class="panel-body">
       <h3><span>{{ affiliate_user }}</span></h3>
       <div class="user-det">
-        <p>{% trans %}Refer-a-Friend link{% endtrans %}:</p>
+        <p>{% trans %}Your Refer-a-Friend link{% endtrans %}:</p>
         <input id="ref-lnk" type="text" class="form-control" value="{{ url('signup', { 'id': affiliate.affiliateId }) }}" title="{{ url('signup', { 'id': affiliate.affiliateId }) }}" disabled>								
 	<a id="cpy-ref-btn" class="btn btn-default">{% trans %}Copy Link{% endtrans %}</a>
+        <h4>{% trans %}Your commission rate{% endtrans %}: {{ commission_rate_percent }}%</h4>
       </div>
     </div>
     

@@ -10,9 +10,9 @@ class OfferGroupType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')
-            ->add('status', 'choice', array('choices' => array('active' => 'active', 'deleted' => 'deleted')))
-            ->add('file')
+        //$builder->add('name')
+            //->add('status', 'choice', array('choices' => array('active' => 'active', 'deleted' => 'deleted')))
+            $builder->add('file')
             ->add('save', 'submit');
     }
 
