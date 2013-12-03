@@ -7,7 +7,7 @@ function offerLink(url){
 
 function submitForm(form, url){
     $('#offer_progress-bar').show();
-    //$('#profile-tab-results').hide();cd
+    //$('#gl-tbl').hide();
     $.ajax({
            type: "POST",
            url: url,

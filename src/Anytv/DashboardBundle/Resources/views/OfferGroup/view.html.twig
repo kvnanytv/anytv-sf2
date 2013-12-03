@@ -12,7 +12,7 @@
     <section class="sec-content-title">
       <div class="container">
         <div style="float: left;"><h3>{{ title }} ({{ offer_group.offerGroupId }}) - {{ offer_group_status }}</h3></div>
-	<div style="float: right;">&nbsp;</div>
+	<div style="float: right;"><em><a href="{{ path('offer_group_edit', { 'id' : offer_group.id }) }}" class="btn btn-default" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em></div>
       </div>
     </section>
       

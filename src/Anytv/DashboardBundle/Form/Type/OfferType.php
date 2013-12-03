@@ -10,14 +10,15 @@ class OfferType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')
-            ->add('description')
-            ->add('advertiser')
-            ->add('offerUrl')
-            ->add('previewUrl')
-            ->add('status', 'choice', array('choices' => array('active' => 'active', 'paused' => 'paused', 'pending' => 'pending', 'expired' => 'expired', 'deleted' => 'deleted')))
-            ->add('expirationDate')
-            ->add('isFeatured')
+        //$builder->add('name')
+    $builder->add('description')
+            //->add('advertiser')
+            //->add('offerUrl')
+            //->add('previewUrl')
+            //->add('status', 'choice', array('choices' => array('active' => 'active', 'paused' => 'paused', 'pending' => 'pending', 'expired' => 'expired', 'deleted' => 'deleted')))
+            //->add('expirationDate')
+           
+            ->add('isFeatured', 'choice', array('choices' => array(0 => 'no', 1 => 'yes')))
             ->add('save', 'submit');
     }
 

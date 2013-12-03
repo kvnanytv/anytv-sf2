@@ -477,7 +477,41 @@ class ProfileController extends Controller
     
     public function idCardAction($affiliate, $affiliate_user, $page)
     {
-      return $this->render('AnytvDashboardBundle:Profile:idCard.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'page'=>$page));
+      $commission_rate_repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:AffiliateReferralCommission');
+      
+      $commission_rate = $commission_rate_repository->findOneBy(array('affiliateId'=>$affiliate->getAffiliateId()));
+      
+      if($commission_rate)
+      {
+        $commission_rate_percent = $commission_rate->getRate();    
+      }
+      else
+      {
+        $commission_rate_percent = null;
+        $hasoffers = $this->get('hasoffers');
+        $commission_rate_response = $hasoffers->getReferralCommission($affiliate->getAffiliateId());     
+              
+        if(($commission_rate_response->status == 1) && $commission_rate_response->data)
+        {
+          $em = $this->getDoctrine()->getManager();
+          
+          $commission_rate_object = $commission_rate_response->data->AffiliateReferralCommission;
+          
+          $commission_rate_percent = $commission_rate_object->rate;
+          
+          $affiliate_referral_commission = new AffiliateReferralCommission();
+          $affiliate_referral_commission->setAffiliateId($commission_rate_object->affiliate_id);
+          $affiliate_referral_commission->setField($commission_rate_object->field);
+          $affiliate_referral_commission->setRateType($commission_rate_object->rate_type);
+          $affiliate_referral_commission->setRate($commission_rate_object->rate);
+          //$affiliate_referral_commission->setMinCommission($commission_rate_object->min_commission);
+          
+          $em->persist($affiliate_referral_commission);
+          $em->flush();
+        }    
+      }
+      
+      return $this->render('AnytvDashboardBundle:Profile:idCard.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'page'=>$page, 'commission_rate_percent'=>$commission_rate_percent));
     }
     
     public function tabbedComponentAction($affiliate, $affiliate_user)

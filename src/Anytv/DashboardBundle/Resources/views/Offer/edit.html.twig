@@ -7,41 +7,57 @@
 {% block content %}
     {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
 
-
- <section id="content">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <em><a href="{{ path('offer_view', { 'id' : offer.id }) }}" title="{% trans %}View{% endtrans %}">{% trans %}view{% endtrans %}</a></em>
-    
-    <h1 class="title">{{ title }} - {{ offer }}</h1>
-    
-    <p>&nbsp;</p>
-
+<div id="content">
+  <div id="dboard-wrap">   
+    <section class="sec-content-title">
+      <div class="container">
+        <div style="float: left;"><h3>{{ title }} - {{ offer }}</h3></div>
+	<div style="float: right;"><em><a href="{{ path('offer_view', { 'id' : offer.id }) }}" class="btn btn-default" title="{% trans %}View{% endtrans %}">{% trans %}view{% endtrans %}</a></em></div>
+      </div>
+    </section>
+      
+    <section class="db-slide-1">
+      <div class="container">
+        <div class="row">
     
        
        {{ form_start(form, {'action': path('offer_edit', { 'id' : offer.id }), 'method': 'POST'}) }}
           
          {{ form_errors(form) }}
         
-         {{ form_row(form.name) }}
-         {{ form_row(form.description) }}
-         {{ form_row(form.advertiser) }}
-         {{ form_row(form.offerUrl) }}
-         {{ form_row(form.previewUrl) }}
-         {{ form_row(form.status) }}
-         {{ form_row(form.expirationDate) }}
+         
+         {{ form_row(form.description, {'attr': {'class': 'form-control input-lg'}}) }}
+         <div class="cl-20"></div>
+         {{ form_row(form.isFeatured, {'attr': {'class': 'selectpicker'}}) }}
+         <div class="cl-20"></div>
+         {{ form_row(form.save, {'attr': {'class': 'btn btn-default btn-lg'}}) }}
        {{ form_end(form) }}
        
       <div class="cl-20"></div>
       </div>
       
 		</div>
+
+			</section>
+
+		</div>
 	</div>
-</section>
 
     {{ parent() }}
     
         
     
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script type="text/javascript">
+    $(window).on('load', function () {
+
+        $('.selectpicker').selectpicker({
+            'selectedText': ''
+        });
+
+    });
+</script>
 {% endblock %}

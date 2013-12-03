@@ -1042,7 +1042,10 @@ class Offer
               return $max_default_payout;
             }
           }
-          
+          else
+          {
+            return $this->getDefaultPayout();    
+          }
           
         }
         

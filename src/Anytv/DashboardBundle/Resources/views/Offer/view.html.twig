@@ -12,7 +12,7 @@
     <section class="sec-content-title">
       <div class="container">
         <div style="float: left;"><h3>{{ title }} ({{ offer.offerId }}) - {{ offer_status }}</h3></div>
-	<div style="float: right;">&nbsp;</div>
+	<div style="float: right;"><em><a href="{{ path('offer_edit', { 'id' : offer.id }) }}" class="btn btn-default" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em></div>
       </div>
     </section>
       
@@ -21,8 +21,8 @@
         <div class="row">
             
             <div class="cl-20"></div>                                                                     
-      <hr>
-      <div style="margin-bottom:20px"><a href="{{ path('offer_hasoffer_update', { 'id' : offer.id }) }}" title="{% trans %}Update from Hasoffers{% endtrans %}">{% trans %}Update from Hasoffers{% endtrans %}</a></div>
+      
+      <div style="margin-bottom:20px"><a href="{{ path('offer_hasoffer_update', { 'id' : offer.id }) }}" class="btn btn-default" title="{% trans %}Update from Hasoffers{% endtrans %}">{% trans %}Update from Hasoffers{% endtrans %}</a></div>
     <div id="user-prof-name">
         <label>{% trans %}Description{% endtrans %}</label>
 	<input type="text" class="form-control input-lg" value="{{ offer.description }}" disabled>
