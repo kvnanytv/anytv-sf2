@@ -24,9 +24,9 @@
       <hr>
     
     {% if(affiliate.thumbnail) %}
-      <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ affiliate.company }}" />
+      <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_detail') }}" alt="{{ affiliate.company }}" />
     {% endif %}
-    
+    <hr>
    <div id="user-prof-name">
         <label>{% trans %}Address{% endtrans %}</label>
 	<input type="text" class="form-control input-lg" value="{{ affiliate.getFullAddress() }}" disabled>

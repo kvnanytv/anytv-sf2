@@ -230,6 +230,11 @@ class Affiliate
      */
     private $referrerReferrals;
     
+    /**
+     * @ORM\OneToMany(targetEntity="YoutubeVideo", mappedBy="affiliate")
+     */
+    private $youtubeVideos;
+    
     public function __construct()
     {
         $this->affiliateUsers = new ArrayCollection();
@@ -243,6 +248,7 @@ class Affiliate
         $this->referredReferrals = new ArrayCollection();
         $this->referrerReferrals = new ArrayCollection();
         $this->signupAnswers = new ArrayCollection();
+        $this->youtubeVideos = new ArrayCollection();
     }
     
     /**

@@ -95,6 +95,26 @@ profile_traffic_referrals_export_csv:
     requirements:
         _locale:  %anytv.locales%
         
+profile_videos:
+    path:      /{_locale}/profile/videos
+    defaults:  { _controller: AnytvDashboardBundle:Profile:Videos, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
+profile_top_videos:
+    path:      /{_locale}/profile/videos/top_videos/{page}
+    defaults:  { _controller: AnytvDashboardBundle:Profile:TopVideos, _locale: en, page: 1 }
+    requirements:
+        _locale:  %anytv.locales%
+        page:  \d+
+        
+profile_video_view:
+    path:      /{_locale}/profile/videos/view/{id}
+    defaults:  { _controller: AnytvDashboardBundle:Profile:videoView, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        id:  \d+
+        
 profile_tab:
     path:      /{_locale}/profile/tab/{type}
     defaults:  { _controller: AnytvDashboardBundle:Profile:tab, _locale: en, type: 1 }
