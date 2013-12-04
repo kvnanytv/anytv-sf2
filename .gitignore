@@ -3,6 +3,7 @@
 /app/config/security.yml
 /app/cache/*
 /app/logs/*
+/app/DoctrineMigrations/
 !app/cache/.gitkeep
 !app/logs/.gitkeep
 /src/Anytv/DashboardBundle/DataFixtures/

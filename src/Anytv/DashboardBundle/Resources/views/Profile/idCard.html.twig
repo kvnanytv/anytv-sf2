@@ -25,7 +25,9 @@
 	<li {% if(page == 'home') %}class="active"{% endif %}><a href="{{ path('anytv_dashboard_homepage') }}" title="{% trans %}Offers{% endtrans %}">{% trans %}Offers{% endtrans %}</a></li>
         <li {% if(page == 'reports') %}class="active"{% endif %}><a href="{{ path('profile_reports') }}" title="{% trans %}Reports{% endtrans %}">{% trans %}Reports{% endtrans %}</a></li>
         <li {% if(page == 'traffic') %}class="active"{% endif %}><a href="{{ path('profile_traffic') }}" title="{% trans %}My Traffic{% endtrans %}">{% trans %}My Traffic{% endtrans %}</a></li>
+        {% if(false) %}
         <li {% if(page == 'videos') %}class="active"{% endif %}><a href="{{ path('profile_videos') }}" title="{% trans %}Videos{% endtrans %}">{% trans %}Videos{% endtrans %}</a></li>
+        {% endif %}
       </ul>
     </div>
   </div> 
