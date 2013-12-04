@@ -36,7 +36,7 @@ class YoutubeVideo
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=255)
+     * @ORM\Column(name="url", type="string", length=510)
      */
     private $url;
 
@@ -337,5 +337,97 @@ class YoutubeVideo
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set thumbnail
+     *
+     * @param string $thumbnail
+     * @return YoutubeVideo
+     */
+    public function setThumbnail($thumbnail)
+    {
+        $this->thumbnail = $thumbnail;
+    
+        return $this;
+    }
+
+    /**
+     * Get thumbnail
+     *
+     * @return string 
+     */
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
+    }
+
+    /**
+     * Set lastStatDate
+     *
+     * @param \DateTime $lastStatDate
+     * @return YoutubeVideo
+     */
+    public function setLastStatDate($lastStatDate)
+    {
+        $this->lastStatDate = $lastStatDate;
+    
+        return $this;
+    }
+
+    /**
+     * Get lastStatDate
+     *
+     * @return \DateTime 
+     */
+    public function getLastStatDate()
+    {
+        return $this->lastStatDate;
+    }
+
+    /**
+     * Set affiliate
+     *
+     * @param \Anytv\DashboardBundle\Entity\Affiliate $affiliate
+     * @return YoutubeVideo
+     */
+    public function setAffiliate(\Anytv\DashboardBundle\Entity\Affiliate $affiliate = null)
+    {
+        $this->affiliate = $affiliate;
+    
+        return $this;
+    }
+
+    /**
+     * Get affiliate
+     *
+     * @return \Anytv\DashboardBundle\Entity\Affiliate 
+     */
+    public function getAffiliate()
+    {
+        return $this->affiliate;
+    }
+
+    /**
+     * Set offer
+     *
+     * @param \Anytv\DashboardBundle\Entity\Offer $offer
+     * @return YoutubeVideo
+     */
+    public function setOffer(\Anytv\DashboardBundle\Entity\Offer $offer = null)
+    {
+        $this->offer = $offer;
+    
+        return $this;
+    }
+
+    /**
+     * Get offer
+     *
+     * @return \Anytv\DashboardBundle\Entity\Offer 
+     */
+    public function getOffer()
+    {
+        return $this->offer;
     }
 }

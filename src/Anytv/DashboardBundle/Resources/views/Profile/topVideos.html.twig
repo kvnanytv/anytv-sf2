@@ -29,7 +29,7 @@
   </div>												
   <div class="table-responsive" id="profile-tab-results">
     <div class="offer-tbl-wrap">
-      {% if(traffic_referrals) %}
+      {% if(youtube_videos) %}
       <table class="table table-striped">							
         <thead>
           <tr>
@@ -37,19 +37,15 @@
             <th>{% trans %}Affiliate{% endtrans %}</th>
             <th>{% trans %}Offer{% endtrans %}</th>
 	    <th>{% trans %}Video{% endtrans %}</th>
-            <th>{% trans %}URL{% endtrans %}</th>
-            <th>{% trans %}Clicks{% endtrans %}</th>
           </tr>
 	</thead>								
         <tbody>
-          {% for key, traffic_referral in traffic_referrals %}
+          {% for key, youtube_video in youtube_videos %}
 	  <tr>
             <td>{{ (key+1+offset) }}</td>
-            <td>{{ traffic_referral.affiliate }}</td>
-            <td>{{ traffic_referral.offer }}</td>
-            <td><a data-toggle="modal" href="#myModal" onclick="showOffer('{{ path('profile_video_view', {'id':traffic_referral.id}) }}');"><img src="{{ asset('bundles/anytvdashboard/images/youtubeicon.png') }}"></a></td>
-            <td>{{ traffic_referral.url }}</td>
-            <td>{{ traffic_referral.clicks }}</td>
+            <td>{{ youtube_video.affiliate }}</td>
+            <td>{{ youtube_video.offer }}</td>
+            <td><a data-toggle="modal" href="#myModal" onclick="showOffer('{{ path('profile_video_view', {'id':youtube_video.id}) }}');"><img src="{{ asset('bundles/anytvdashboard/images/youtubeicon.png') }}"></a></td>
 	  </tr>
           {% endfor %}
           {% if (total_pages > 1) %}
@@ -60,7 +56,7 @@
             {% if(page > 1) %}
               <li><a href="javascript:void(0)" onclick="showTab('{{ path('profile_top_videos', {'page':(page-1)}) }}');" title="{{ (page-1) }}">&laquo;</a></li>
             {% endif %}
-            {% for i in 1..total_pages if((page-i)|abs < 8) %}
+            {% for i in 1..total_pages if((page-i)|abs < 6) %}
               {% if(page == i) %}
                 <li class="active"><span>{{ i }}<span class="sr-only">(current)</span></span></li>
               {% else %}

@@ -98,10 +98,18 @@ class TrafficReferral
      */
     private $updatedAt;
     
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="youtube_video_requested", type="boolean")
+     */
+    private $youtubeVideoRequested;
+    
     public function __construct()
     {
         $this->likes = 0;
         $this->dislikes = 0;
+        $this->youtubeVideoRequested = false;
     }
 
     /**
@@ -401,5 +409,28 @@ class TrafficReferral
     public function getDateAsString()
     {
         return date_format($this->statDate, 'Y-m-d');
+    }
+
+    /**
+     * Set youtubeVideoRequested
+     *
+     * @param boolean $youtubeVideoRequested
+     * @return TrafficReferral
+     */
+    public function setYoutubeVideoRequested($youtubeVideoRequested)
+    {
+        $this->youtubeVideoRequested = $youtubeVideoRequested;
+    
+        return $this;
+    }
+
+    /**
+     * Get youtubeVideoRequested
+     *
+     * @return boolean 
+     */
+    public function getYoutubeVideoRequested()
+    {
+        return $this->youtubeVideoRequested;
     }
 }

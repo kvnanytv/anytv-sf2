@@ -36,7 +36,7 @@ class YoutubeVideo
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=255)
+     * @ORM\Column(name="url", type="string", length=510)
      */
     private $url;
 

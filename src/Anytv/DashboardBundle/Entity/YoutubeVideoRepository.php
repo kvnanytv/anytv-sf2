@@ -12,4 +12,39 @@ use Doctrine\ORM\EntityRepository;
  */
 class YoutubeVideoRepository extends EntityRepository
 {
+    public function getMaxYoutubeVideoDate()
+    {    
+        $query = $this->createQueryBuilder('yv')
+                      ->select('max(yv.lastStatDate)')
+                      ->getQuery();
+        
+        return $query->getSingleScalarResult();
+    }
+   
+    public function findAllYoutubeVideosFiltered($page, $items_per_page, $order_by, $order_by_2, $order)
+    {
+      $first_result = ($items_per_page * ($page-1));
+        
+      $query = $this->createQueryBuilder('tr');
+      
+        $query = $query->setFirstResult($first_result)
+                       ->setMaxResults($items_per_page)
+                       ->addOrderBy('tr.'.$order_by, $order)
+                       ->addOrderBy('tr.'.$order_by_2, $order)
+                       ->getQuery();
+          
+      return $query->getResult();
+    }
+    
+    public function countAllYoutubeVideosFiltered()
+    {    
+        $query = $this->createQueryBuilder('tr')
+                      ->select('count(tr.id)');
+        
+        
+        
+        $query = $query->getQuery(); 
+          
+        return $query->getSingleScalarResult();
+    }
 }

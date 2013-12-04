@@ -1364,7 +1364,7 @@ class ProfileController extends Controller
     
     public function topVideosAction(Request $request, $page)
     {
-      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:TrafficReferral');
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:YoutubeVideo');
       $translator = $this->get('translator');
       $session = $this->get('session');
       $affiliate_user = $this->getUser();
@@ -1379,15 +1379,16 @@ class ProfileController extends Controller
       
       $items_per_page = 10;
       $order_by = 'clicks';
+      $order_by_2 = 'conversions';
       $order = 'DESC';
         
-      $traffic_referrals = $repository->findAllTrafficReferralsFiltered($page, $items_per_page, $order_by, $order, null, null, 'youtube');
-      $total_traffic_referrals = $repository->countAllTrafficReferralsFiltered();
-      $total_pages = ceil($total_traffic_referrals / $items_per_page);
+      $youtube_videos = $repository->findAllYoutubeVideosFiltered($page, $items_per_page, $order_by, $order_by_2, $order);
+      $total_youtube_videos = $repository->countAllYoutubeVideosFiltered();
+      $total_pages = ceil($total_youtube_videos / $items_per_page);
       
       $offset = ($items_per_page * ($page-1));
 
-      return $this->render('AnytvDashboardBundle:Profile:topVideos.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'traffic_referrals'=>$traffic_referrals, 'total_pages'=>$total_pages, 'page'=>$page, 'offset'=>$offset));
+      return $this->render('AnytvDashboardBundle:Profile:topVideos.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'youtube_videos'=>$youtube_videos, 'total_pages'=>$total_pages, 'page'=>$page, 'offset'=>$offset));
     }
     
     public function videoViewPopupAction()
@@ -1404,7 +1405,7 @@ class ProfileController extends Controller
         );
       }
       
-      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:TrafficReferral');
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:YoutubeVideo');
       
       $video = $repository->find($id);
 
