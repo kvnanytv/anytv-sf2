@@ -35,7 +35,9 @@
     <li style="float:right"><a href="{{ path('terms') }}" title="{% trans %}Terms & Conditions{% endtrans %}">{% trans %}Terms & Conditions{% endtrans %}</a></li> 
     <li style="float:right"><a href="{{ path('privacy_policy') }}" title="{% trans %}Privacy Policy{% endtrans %}">{% trans %}Privacy Policy{% endtrans %}</a></li> 
   {% if(app.user) %}
+    {% if(false) %}
     <li style="float:right"><a href="{{ path('profile_videos') }}" title="{% trans %}Videos{% endtrans %}">{% trans %}Videos{% endtrans %}</a></li>
+    {% endif %}
     <li style="float:right"><a href="{{ path('profile_traffic') }}" title="{% trans %}My Traffic{% endtrans %}">{% trans %}My Traffic{% endtrans %}</a></li>
     <li style="float:right"><a href="{{ path('profile_reports') }}" title="{% trans %}Reports{% endtrans %}">{% trans %}Reports{% endtrans %}</a></li>
     <li style="float:right"><a href="{{ path('anytv_dashboard_homepage') }}" title="{% trans %}Offers{% endtrans %}">{% trans %}Offers{% endtrans %}</a></li>
