@@ -3,16 +3,14 @@
 namespace Anytv\DashboardBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Anytv\DashboardBundle\Entity\Offer;
 
 /**
- * TrafficReferral
+ * YoutubeVideo
  *
- * @ORM\Table(name="TrafficReferral")
- * @ORM\Entity(repositoryClass="Anytv\DashboardBundle\Entity\TrafficReferralRepository")
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Anytv\DashboardBundle\Entity\YoutubeVideoRepository")
  */
-class TrafficReferral
+class YoutubeVideo
 {
     /**
      * @var integer
@@ -22,15 +20,15 @@ class TrafficReferral
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
+    
     /**
-     * @ORM\ManyToOne(targetEntity="Affiliate", inversedBy="trafficReferrals")
+     * @ORM\ManyToOne(targetEntity="Affiliate", inversedBy="youtubeVideos")
      * @ORM\JoinColumn(name="affiliate_id", referencedColumnName="id")
      */
     private $affiliate;
     
      /**
-     * @ORM\ManyToOne(targetEntity="Offer", inversedBy="trafficReferrals")
+     * @ORM\ManyToOne(targetEntity="Offer", inversedBy="youtubeVideos")
      * @ORM\JoinColumn(name="offer_id", referencedColumnName="id")
      */
     private $offer;
@@ -38,7 +36,7 @@ class TrafficReferral
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=510)
+     * @ORM\Column(name="url", type="string", length=255)
      */
     private $url;
 
@@ -69,40 +67,60 @@ class TrafficReferral
      * @ORM\Column(name="dislikes", type="integer")
      */
     private $dislikes;
-    
+
     /**
      * @var integer
      *
      * @ORM\Column(name="count", type="integer")
      */
     private $count;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="views", type="integer")
+     */
+    private $views;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=255)
+     */
+    private $status;
+    
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="thumbnail", type="string", length=255, nullable=true)
+     */
+    private $thumbnail;
     
     /**
      * @var \Date
      *
-     * @ORM\Column(name="stat_date", type="date")
+     * @ORM\Column(name="last_stat_date", type="date")
      */
-    private $statDate;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="created_at", type="datetime")
-     */
-    private $createdAt;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
-     */
-    private $updatedAt;
+    private $lastStatDate;
     
     public function __construct()
     {
+        $this->clicks = 0;
+        $this->conversions = 0;
         $this->likes = 0;
         $this->dislikes = 0;
+        $this->count = 0;
+        $this->views = 0;
+        $this->status = 'active';
     }
+
 
     /**
      * Get id
@@ -118,7 +136,7 @@ class TrafficReferral
      * Set url
      *
      * @param string $url
-     * @return TrafficReferral
+     * @return YoutubeVideo
      */
     public function setUrl($url)
     {
@@ -141,7 +159,7 @@ class TrafficReferral
      * Set clicks
      *
      * @param integer $clicks
-     * @return TrafficReferral
+     * @return YoutubeVideo
      */
     public function setClicks($clicks)
     {
@@ -164,7 +182,7 @@ class TrafficReferral
      * Set conversions
      *
      * @param integer $conversions
-     * @return TrafficReferral
+     * @return YoutubeVideo
      */
     public function setConversions($conversions)
     {
@@ -187,7 +205,7 @@ class TrafficReferral
      * Set likes
      *
      * @param integer $likes
-     * @return TrafficReferral
+     * @return YoutubeVideo
      */
     public function setLikes($likes)
     {
@@ -210,7 +228,7 @@ class TrafficReferral
      * Set dislikes
      *
      * @param integer $dislikes
-     * @return TrafficReferral
+     * @return YoutubeVideo
      */
     public function setDislikes($dislikes)
     {
@@ -230,72 +248,10 @@ class TrafficReferral
     }
 
     /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     * @return TrafficReferral
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-    
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime 
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     * @return TrafficReferral
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-    
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime 
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-    
-    /**
-     * @ORM\PrePersist
-     */
-    public function setCreatedAtValue()
-    {
-      $this->createdAt = new \DateTime();
-    }
-    
-    /**
-     * @ORM\PreUpdate
-     */
-    public function setUpdatedAtValue()
-    {
-      $this->updatedAt = new \DateTime();
-    }
-
-    /**
      * Set count
      *
      * @param integer $count
-     * @return TrafficReferral
+     * @return YoutubeVideo
      */
     public function setCount($count)
     {
@@ -315,43 +271,125 @@ class TrafficReferral
     }
 
     /**
-     * Set statDate
+     * Set description
      *
-     * @param \DateTime $statDate
-     * @return TrafficReferral
+     * @param string $description
+     * @return YoutubeVideo
      */
-    public function setStatDate($statDate)
+    public function setDescription($description)
     {
-        $this->statDate = $statDate;
+        $this->description = $description;
     
         return $this;
     }
 
     /**
-     * Get statDate
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set views
+     *
+     * @param integer $views
+     * @return YoutubeVideo
+     */
+    public function setViews($views)
+    {
+        $this->views = $views;
+    
+        return $this;
+    }
+
+    /**
+     * Get views
+     *
+     * @return integer 
+     */
+    public function getViews()
+    {
+        return $this->views;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return YoutubeVideo
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set thumbnail
+     *
+     * @param string $thumbnail
+     * @return YoutubeVideo
+     */
+    public function setThumbnail($thumbnail)
+    {
+        $this->thumbnail = $thumbnail;
+    
+        return $this;
+    }
+
+    /**
+     * Get thumbnail
+     *
+     * @return string 
+     */
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
+    }
+
+    /**
+     * Set lastStatDate
+     *
+     * @param \DateTime $lastStatDate
+     * @return YoutubeVideo
+     */
+    public function setLastStatDate($lastStatDate)
+    {
+        $this->lastStatDate = $lastStatDate;
+    
+        return $this;
+    }
+
+    /**
+     * Get lastStatDate
      *
      * @return \DateTime 
      */
-    public function getStatDate()
+    public function getLastStatDate()
     {
-        return $this->statDate;
-    }
-    
-    /**
-     * Echo statDate
-     *
-     * @return \DateTime string 
-     */
-    public function getStatDateAsString()
-    {
-        return date_format($this->statDate, 'Y-m-d');
+        return $this->lastStatDate;
     }
 
     /**
      * Set affiliate
      *
      * @param \Anytv\DashboardBundle\Entity\Affiliate $affiliate
-     * @return TrafficReferral
+     * @return YoutubeVideo
      */
     public function setAffiliate(\Anytv\DashboardBundle\Entity\Affiliate $affiliate = null)
     {
@@ -374,7 +412,7 @@ class TrafficReferral
      * Set offer
      *
      * @param \Anytv\DashboardBundle\Entity\Offer $offer
-     * @return TrafficReferral
+     * @return YoutubeVideo
      */
     public function setOffer(\Anytv\DashboardBundle\Entity\Offer $offer = null)
     {
@@ -391,15 +429,5 @@ class TrafficReferral
     public function getOffer()
     {
         return $this->offer;
-    }
-    
-    /**
-     * Echo date string
-     *
-     * @return \DateTime string 
-     */
-    public function getDateAsString()
-    {
-        return date_format($this->statDate, 'Y-m-d');
     }
 }

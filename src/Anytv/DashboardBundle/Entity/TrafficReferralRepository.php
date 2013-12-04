@@ -273,4 +273,108 @@ class TrafficReferralRepository extends EntityRepository
           
       return $query->getResult();    
     }
+    
+    public function findAllTrafficReferralsFiltered($page, $items_per_page, $order_by, $order, $start_date = null, $end_date = null, $category = null)
+    {
+      $first_result = ($items_per_page * ($page-1));
+        
+      $query = $this->createQueryBuilder('tr');
+        
+      $where = array();
+      $params = array(); 
+      
+      if($start_date)
+      {
+        $where[] = "tr.statDate >= :start_date";
+        $params['start_date'] = $start_date;    
+      }
+          
+      if($end_date)
+      {        
+        $where[] = "tr.statDate <= :end_date";
+        $params['end_date'] = $end_date;    
+      }
+      
+      if($category)
+      {
+        switch($category)
+        {
+          case 'youtube':
+            $where[] = "tr.url LIKE :youtube";
+            $params['youtube'] = '%youtube.com/watch?v=%';
+            break;
+          case 'twitch':
+            $where[] = "tr.url LIKE :twitch";
+            $params['twitch'] = '%twitch.tv%';
+            break;
+          default:
+            $where[] = "tr.url NOT LIKE :youtube AND tr.url NOT LIKE :twitch";
+            $params['youtube'] = '%youtube.com/watch?v=%';
+            $params['twitch'] = '%twitch.tv%';
+        }
+      }
+        
+      if($where)
+      {
+        $query = $query->where(implode(" AND ", $where))
+                       ->setParameters($params);  
+      }
+      
+        $query = $query->setFirstResult($first_result)
+                       ->setMaxResults($items_per_page)
+                       ->addOrderBy('tr.'.$order_by, $order)
+                       ->getQuery();
+          
+      return $query->getResult();
+    }
+    
+    public function countAllTrafficReferralsFiltered($start_date = null, $end_date = null, $category = null)
+    {    
+        $query = $this->createQueryBuilder('tr')
+                      ->select('count(tr.id)');
+        
+        $where = array();
+      $params = array(); 
+      
+      if($start_date)
+      {
+        $where[] = "tr.statDate >= :start_date";
+        $params['start_date'] = $start_date;    
+      }
+          
+      if($end_date)
+      {        
+        $where[] = "tr.statDate <= :end_date";
+        $params['end_date'] = $end_date;    
+      }
+      
+      if($category)
+      {
+        switch($category)
+        {
+          case 'youtube':
+            $where[] = "tr.url LIKE :youtube";
+            $params['youtube'] = '%youtube.com/watch?v=%';
+            break;
+          case 'twitch':
+            $where[] = "tr.url LIKE :twitch";
+            $params['twitch'] = '%twitch.tv%';
+            break;
+          default:
+            $where[] = "tr.url NOT LIKE :youtube AND tr.url NOT LIKE :twitch";
+            $params['youtube'] = '%youtube.com/watch?v=%';
+            $params['twitch'] = '%twitch.tv%';
+        }
+      }
+      
+      if($where)
+      {
+        $query = $query->where(implode(" AND ", $where))
+                       ->setParameters($params);  
+      }
+        
+        $query = $query->getQuery(); 
+          
+        return $query->getSingleScalarResult();
+    }
 }

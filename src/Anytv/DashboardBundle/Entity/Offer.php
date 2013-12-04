@@ -218,6 +218,11 @@ class Offer
     protected $countries;
     
     /**
+     * @ORM\OneToMany(targetEntity="YoutubeVideo", mappedBy="offer")
+     */
+    private $youtubeVideos;
+    
+    /**
      * @var integer
      *
      * @ORM\Column(name="country_count", type="integer")
@@ -240,6 +245,7 @@ class Offer
         $this->conversions = new ArrayCollection();
         $this->offerGroups = new ArrayCollection();
         $this->isFeatured = false;
+        $this->youtubeVideos = new ArrayCollection();
     }
     
     /**
@@ -1129,5 +1135,38 @@ class Offer
     public function getConversions()
     {
         return $this->conversions;
+    }
+
+    /**
+     * Add youtubeVideos
+     *
+     * @param \Anytv\DashboardBundle\Entity\YoutubeVideo $youtubeVideos
+     * @return Offer
+     */
+    public function addYoutubeVideo(\Anytv\DashboardBundle\Entity\YoutubeVideo $youtubeVideos)
+    {
+        $this->youtubeVideos[] = $youtubeVideos;
+    
+        return $this;
+    }
+
+    /**
+     * Remove youtubeVideos
+     *
+     * @param \Anytv\DashboardBundle\Entity\YoutubeVideo $youtubeVideos
+     */
+    public function removeYoutubeVideo(\Anytv\DashboardBundle\Entity\YoutubeVideo $youtubeVideos)
+    {
+        $this->youtubeVideos->removeElement($youtubeVideos);
+    }
+
+    /**
+     * Get youtubeVideos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getYoutubeVideos()
+    {
+        return $this->youtubeVideos;
     }
 }

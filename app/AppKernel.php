@@ -16,10 +16,10 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Anytv\DashboardBundle\AnytvDashboardBundle(),
             new Anytv\MainBundle\AnytvMainBundle(),
-            //new Anytv\CommunityBundle\AnytvCommunityBundle(),
             new Avalanche\Bundle\ImagineBundle\AvalancheImagineBundle(),
             //new Eko\GoogleTranslateBundle\EkoGoogleTranslateBundle()
         );

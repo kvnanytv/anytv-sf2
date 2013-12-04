@@ -1334,4 +1334,104 @@ class ProfileController extends Controller
       
       return $this->render('AnytvDashboardBundle:Profile:signupAnswers.html.twig', array('affiliate'=>$affiliate, 'mode'=>$mode, 'form'=>$form, 'signup_answers'=>$signup_answers, 'errors'=>$errors, 'form_is_posted'=>$form_is_posted, 'youtube_network_is_selected'=>$youtube_network_is_selected));
     }
+    
+    public function videosAction(Request $request)
+    {
+      $affiliate_user = $this->getUser();
+      $translator = $this->get('translator');
+      
+      if (!$affiliate_user) {
+        throw $this->createNotFoundException(
+            'No user found'
+        );
+      }
+      
+      $affiliate = $affiliate_user->getAffiliate();
+      
+      if (!$affiliate) {
+        throw $this->createNotFoundException(
+            'No affiliate found'
+        );
+      }
+      
+      return $this->render('AnytvDashboardBundle:Profile:videos.html.twig', array('title'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'affiliate'=>$affiliate, 'tab'=>'videos'));
+    }
+    
+    public function tabbedVideosComponentAction($affiliate, $affiliate_user)
+    {
+      return $this->render('AnytvDashboardBundle:Profile:tabbedVideosComponent.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user));
+    }
+    
+    public function topVideosAction(Request $request, $page)
+    {
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:TrafficReferral');
+      $translator = $this->get('translator');
+      $session = $this->get('session');
+      $affiliate_user = $this->getUser();
+
+      if (!$affiliate_user) {
+        throw $this->createNotFoundException(
+            'No user found'
+        );
+      }
+      
+      $affiliate = $affiliate_user->getAffiliate();
+      
+      $items_per_page = 10;
+      $order_by = 'clicks';
+      $order = 'DESC';
+        
+      $traffic_referrals = $repository->findAllTrafficReferralsFiltered($page, $items_per_page, $order_by, $order, null, null, 'youtube');
+      $total_traffic_referrals = $repository->countAllTrafficReferralsFiltered();
+      $total_pages = ceil($total_traffic_referrals / $items_per_page);
+      
+      $offset = ($items_per_page * ($page-1));
+
+      return $this->render('AnytvDashboardBundle:Profile:topVideos.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'traffic_referrals'=>$traffic_referrals, 'total_pages'=>$total_pages, 'page'=>$page, 'offset'=>$offset));
+    }
+    
+    public function videoViewPopupAction()
+    {
+      return $this->render('AnytvDashboardBundle:Profile:videoViewPopup.html.twig');
+    }
+    
+    public function videoViewAction(Request $request, $id)
+    {
+      if(!$request->isXmlHttpRequest())
+      {
+        throw $this->createNotFoundException(
+            'Invalid request'
+        );
+      }
+      
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:TrafficReferral');
+      
+      $video = $repository->find($id);
+
+      if (!$video) {
+        throw $this->createNotFoundException(
+            'No video found for id '.$id
+        );
+      }
+      
+      $affiliate_user = $this->getUser();
+   
+      if (!$affiliate_user) {
+        throw $this->createNotFoundException(
+            'No user found'
+        );
+      }
+      
+      $affiliate = $affiliate_user->getAffiliate();
+      
+      if (!$affiliate) {
+        throw $this->createNotFoundException(
+            'No affiliate found'
+        );
+      }
+
+      $video_id = substr($video->getUrl(), strpos($video->getUrl(), 'youtube.com/watch?v=')+20, 11);
+      
+      return $this->render('AnytvDashboardBundle:Profile:videoView.html.twig', array('video'=>$video, 'video_id'=>$video_id));
+    }
 }

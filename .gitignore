@@ -5,7 +5,7 @@
 /app/logs/*
 !app/cache/.gitkeep
 !app/logs/.gitkeep
-/src/Anytv/DashboardBundle/DataFixtures
+/src/Anytv/DashboardBundle/DataFixtures/
 /build/
 /nbproject/
 /designs/
@@ -13,3 +13,4 @@
 /web/uploads/*
 /web/media/*
 /web/thumbs/*
+/vendor/

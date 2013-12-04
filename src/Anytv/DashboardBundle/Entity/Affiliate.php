@@ -230,6 +230,11 @@ class Affiliate
      */
     private $referrerReferrals;
     
+    /**
+     * @ORM\OneToMany(targetEntity="YoutubeVideo", mappedBy="affiliate")
+     */
+    private $youtubeVideos;
+    
     public function __construct()
     {
         $this->affiliateUsers = new ArrayCollection();
@@ -243,6 +248,7 @@ class Affiliate
         $this->referredReferrals = new ArrayCollection();
         $this->referrerReferrals = new ArrayCollection();
         $this->signupAnswers = new ArrayCollection();
+        $this->youtubeVideos = new ArrayCollection();
     }
     
     /**
@@ -1297,5 +1303,38 @@ class Affiliate
     public function getSignupAnswers()
     {
         return $this->signupAnswers;
+    }
+
+    /**
+     * Add youtubeVideos
+     *
+     * @param \Anytv\DashboardBundle\Entity\YoutubeVideo $youtubeVideos
+     * @return Affiliate
+     */
+    public function addYoutubeVideo(\Anytv\DashboardBundle\Entity\YoutubeVideo $youtubeVideos)
+    {
+        $this->youtubeVideos[] = $youtubeVideos;
+    
+        return $this;
+    }
+
+    /**
+     * Remove youtubeVideos
+     *
+     * @param \Anytv\DashboardBundle\Entity\YoutubeVideo $youtubeVideos
+     */
+    public function removeYoutubeVideo(\Anytv\DashboardBundle\Entity\YoutubeVideo $youtubeVideos)
+    {
+        $this->youtubeVideos->removeElement($youtubeVideos);
+    }
+
+    /**
+     * Get youtubeVideos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getYoutubeVideos()
+    {
+        return $this->youtubeVideos;
     }
 }

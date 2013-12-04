@@ -218,6 +218,11 @@ class Offer
     protected $countries;
     
     /**
+     * @ORM\OneToMany(targetEntity="YoutubeVideo", mappedBy="offer")
+     */
+    private $youtubeVideos;
+    
+    /**
      * @var integer
      *
      * @ORM\Column(name="country_count", type="integer")
@@ -240,6 +245,7 @@ class Offer
         $this->conversions = new ArrayCollection();
         $this->offerGroups = new ArrayCollection();
         $this->isFeatured = false;
+        $this->youtubeVideos = new ArrayCollection();
     }
     
     /**
@@ -1042,7 +1048,10 @@ class Offer
               return $max_default_payout;
             }
           }
-          
+          else
+          {
+            return $this->getDefaultPayout();    
+          }
           
         }
         
