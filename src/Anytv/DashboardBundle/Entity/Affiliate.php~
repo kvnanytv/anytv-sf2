@@ -1304,4 +1304,37 @@ class Affiliate
     {
         return $this->signupAnswers;
     }
+
+    /**
+     * Add youtubeVideos
+     *
+     * @param \Anytv\DashboardBundle\Entity\YoutubeVideo $youtubeVideos
+     * @return Affiliate
+     */
+    public function addYoutubeVideo(\Anytv\DashboardBundle\Entity\YoutubeVideo $youtubeVideos)
+    {
+        $this->youtubeVideos[] = $youtubeVideos;
+    
+        return $this;
+    }
+
+    /**
+     * Remove youtubeVideos
+     *
+     * @param \Anytv\DashboardBundle\Entity\YoutubeVideo $youtubeVideos
+     */
+    public function removeYoutubeVideo(\Anytv\DashboardBundle\Entity\YoutubeVideo $youtubeVideos)
+    {
+        $this->youtubeVideos->removeElement($youtubeVideos);
+    }
+
+    /**
+     * Get youtubeVideos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getYoutubeVideos()
+    {
+        return $this->youtubeVideos;
+    }
 }

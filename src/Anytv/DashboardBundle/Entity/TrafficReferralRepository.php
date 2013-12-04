@@ -68,6 +68,41 @@ class TrafficReferralRepository extends EntityRepository
         return $query->getSingleScalarResult();
     }
     
+    public function findTrafficReferralsByDate($date)
+    {
+      $query = $this->createQueryBuilder('tr');
+        
+      $where = "tr.statDate = :date";
+      $params = array('date'=>$date);
+      
+      $where .= " AND tr.url LIKE :youtube";
+      $params['youtube'] = '%youtube.com/watch?v=%';
+        
+      $query = $query->where($where)
+                     ->setParameters($params)
+                     ->getQuery();
+          
+      return $query->getResult();
+    }
+    
+    public function findTrafficReferralsForYoutube($limit)
+    {
+      $query = $this->createQueryBuilder('tr');
+        
+      $where = "tr.youtubeVideoRequested = :youtube_video_requested";
+      $params = array('youtube_video_requested'=>false);
+      
+      $where .= " AND tr.url LIKE :youtube";
+      $params['youtube'] = '%youtube.com/watch?v=%';
+        
+      $query = $query->where($where)
+                     ->setParameters($params)
+                     ->setMaxResults($limit)
+                     ->getQuery();
+          
+      return $query->getResult();
+    }
+    
     public function findAllTrafficReferralsByAffiliate($page, $items_per_page, $order_by, $order, $affiliate, $youtube = false, $start_date = null, $end_date = null, $category = null)
     {
       $first_result = ($items_per_page * ($page-1));
