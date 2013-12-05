@@ -40,6 +40,7 @@ class UpdateAffiliateReferrerCommand extends ContainerAwareCommand
             if($affiliate->getReferralId() && ($referrer = $repository->findOneBy(array('affiliateId'=>$affiliate->getReferralId()))))
             {
               $affiliate->setReferrer($referrer);
+              $referrer->setReferralCount($referrer->getReferralCount() + 1);
               $referrer_count++;
             }
                 

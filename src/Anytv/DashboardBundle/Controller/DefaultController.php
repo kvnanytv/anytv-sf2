@@ -517,11 +517,15 @@ class DefaultController extends Controller
                $affiliate->setWantsAlerts($affiliate_object->wants_alerts);
                $affiliate->setReferralId($affiliate_object->referral_id);
                
+               /*
                if($affiliate_object->referral_id && ($referrer = $affiliate_repository->findOneBy(array('affiliateId'=>$affiliate_object->referral_id))))
                {
                   $affiliate->setReferrer($referrer);
+                  $referrer->setReferralCount($referrer->getReferralCount() + 1);
                }
                $affiliate->setReferrerRequested(true); 
+               */
+               // let the cron job do the task above
           
                $manager->persist($affiliate); 
                

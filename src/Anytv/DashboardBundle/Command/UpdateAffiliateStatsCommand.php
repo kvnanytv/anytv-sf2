@@ -29,7 +29,7 @@ class UpdateAffiliateStatsCommand extends ContainerAwareCommand
         $traffic_referral_repository = $doctrine->getRepository('AnytvDashboardBundle:TrafficReferral');
         $manager = $doctrine->getManager();
           
-        $traffic_referrals = $traffic_referral_repository->findBy(array('affiliateStatsRequested'=>false), null, 10000);
+        $traffic_referrals = $traffic_referral_repository->findBy(array('affiliateStatsRequested'=>false), null, 5000);
         
         $updated_affiliate_stats = 0;
         foreach($traffic_referrals as $traffic_referral)
