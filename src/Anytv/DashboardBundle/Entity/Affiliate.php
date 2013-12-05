@@ -235,6 +235,55 @@ class Affiliate
      */
     private $youtubeVideos;
     
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="clicks", type="integer")
+     */
+    private $clicks;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="conversion_count", type="integer")
+     */
+    private $conversionCount;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="likes", type="integer")
+     */
+    private $likes;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="dislikes", type="integer")
+     */
+    private $dislikes;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="views", type="integer")
+     */
+    private $views;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="video_views", type="integer")
+     */
+    private $videoViews;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="referral_count", type="integer")
+     */
+    private $referralCount;
+    
     public function __construct()
     {
         $this->affiliateUsers = new ArrayCollection();
@@ -249,6 +298,13 @@ class Affiliate
         $this->referrerReferrals = new ArrayCollection();
         $this->signupAnswers = new ArrayCollection();
         $this->youtubeVideos = new ArrayCollection();
+        $this->clicks = 0;
+        $this->conversionCount = 0;
+        $this->likes = 0;
+        $this->dislikes = 0;
+        $this->views = 0;
+        $this->videoViews = 0;
+        $this->referralCount = 0;
     }
     
     /**
@@ -880,7 +936,7 @@ class Affiliate
     
     public function __toString() 
     {
-      return $this->getCompany(); 
+      return strip_tags($this->getCompany()); 
     }
 
     /**
@@ -1336,5 +1392,166 @@ class Affiliate
     public function getYoutubeVideos()
     {
         return $this->youtubeVideos;
+    }
+
+    /**
+     * Set clicks
+     *
+     * @param integer $clicks
+     * @return Affiliate
+     */
+    public function setClicks($clicks)
+    {
+        $this->clicks = $clicks;
+    
+        return $this;
+    }
+
+    /**
+     * Get clicks
+     *
+     * @return integer 
+     */
+    public function getClicks()
+    {
+        return $this->clicks;
+    }
+
+    /**
+     * Set conversionCount
+     *
+     * @param integer $conversionCount
+     * @return Affiliate
+     */
+    public function setConversionCount($conversionCount)
+    {
+        $this->conversionCount = $conversionCount;
+    
+        return $this;
+    }
+
+    /**
+     * Get conversionCount
+     *
+     * @return integer 
+     */
+    public function getConversionCount()
+    {
+        return $this->conversionCount;
+    }
+
+    /**
+     * Set likes
+     *
+     * @param integer $likes
+     * @return Affiliate
+     */
+    public function setLikes($likes)
+    {
+        $this->likes = $likes;
+    
+        return $this;
+    }
+
+    /**
+     * Get likes
+     *
+     * @return integer 
+     */
+    public function getLikes()
+    {
+        return $this->likes;
+    }
+
+    /**
+     * Set dislikes
+     *
+     * @param integer $dislikes
+     * @return Affiliate
+     */
+    public function setDislikes($dislikes)
+    {
+        $this->dislikes = $dislikes;
+    
+        return $this;
+    }
+
+    /**
+     * Get dislikes
+     *
+     * @return integer 
+     */
+    public function getDislikes()
+    {
+        return $this->dislikes;
+    }
+
+    /**
+     * Set views
+     *
+     * @param integer $views
+     * @return Affiliate
+     */
+    public function setViews($views)
+    {
+        $this->views = $views;
+    
+        return $this;
+    }
+
+    /**
+     * Get views
+     *
+     * @return integer 
+     */
+    public function getViews()
+    {
+        return $this->views;
+    }
+
+    /**
+     * Set videoViews
+     *
+     * @param integer $videoViews
+     * @return Affiliate
+     */
+    public function setVideoViews($videoViews)
+    {
+        $this->videoViews = $videoViews;
+    
+        return $this;
+    }
+
+    /**
+     * Get videoViews
+     *
+     * @return integer 
+     */
+    public function getVideoViews()
+    {
+        return $this->videoViews;
+    }
+
+    /**
+     * Set referralCount
+     *
+     * @param integer $referralCount
+     * @return Affiliate
+     */
+    public function setReferralCount($referralCount)
+    {
+        $this->referralCount = $referralCount;
+    
+        return $this;
+    }
+
+    /**
+     * Get referralCount
+     *
+     * @return integer 
+     */
+    public function getReferralCount()
+    {
+        return $this->referralCount;
     }
 }

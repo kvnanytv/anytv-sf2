@@ -11,11 +11,11 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-3">
-        {{ render(controller('AnytvDashboardBundle:Profile:idCard', {'affiliate': affiliate, 'affiliate_user': affiliate_user, 'page':'videos'})) }}	
+        {{ render(controller('AnytvDashboardBundle:Profile:idCard', {'affiliate': affiliate, 'affiliate_user': affiliate_user, 'page':'affiliates'})) }}	
       <div class="cl-20"></div>
       </div>
       <div class="col-lg-9">
-          {{ render(controller('AnytvDashboardBundle:Profile:tabbedVideosComponent', { 'affiliate': affiliate, 'affiliate_user': affiliate_user })) }}
+          {{ render(controller('AnytvDashboardBundle:Profile:tabbedAffiliatesComponent', { 'affiliate': affiliate, 'affiliate_user': affiliate_user })) }}
 								
 
 			</div> 
@@ -60,7 +60,7 @@
     $(document).ready(
       function()
       {
-        showTab('{{ path('profile_top_videos') }}');     
+        showTab('{{ path('profile_top_affiliates') }}');     
       }
     );
   </script>

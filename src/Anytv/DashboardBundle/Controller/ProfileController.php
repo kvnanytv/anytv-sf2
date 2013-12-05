@@ -1377,6 +1377,20 @@ class ProfileController extends Controller
       
       $affiliate = $affiliate_user->getAffiliate();
       
+      /*
+      $form = $this->createFormBuilder(array('order_by'=>$session->get('order_by_videos', 'clicks')))
+        ->add('order_by_videos', 'choice', array('choices'=>array('clicks'=>'Clicks', 'conversions'=>'Conversions'), 'expanded' => false, 'label'=>$translator->trans('Order by')))
+        ->getForm();
+        
+      $form->handleRequest($request);
+        
+      if($form->isValid()) 
+      {
+        $data = $form->getData();
+        $session->set('order_by_videos', $data['order_by_videos']); 
+      }
+       */
+      
       $items_per_page = 10;
       $order_by = 'clicks';
       $order_by_2 = 'conversions';
@@ -1430,9 +1444,87 @@ class ProfileController extends Controller
             'No affiliate found'
         );
       }
+      
+      $em = $this->getDoctrine()->getManager();
+      
+      $video->setViews($video->getViews() + 1);
+      $video_affiliate = $video->getAffiliate();
+      $video_affiliate->setVideoViews($video_affiliate->getVideoViews() + 1);
+      
+      $em->flush();
 
       $video_id = substr($video->getUrl(), strpos($video->getUrl(), 'youtube.com/watch?v=')+20, 11);
       
       return $this->render('AnytvDashboardBundle:Profile:videoView.html.twig', array('video'=>$video, 'video_id'=>$video_id));
+    }
+    
+    public function affiliatesAction(Request $request)
+    {
+      $affiliate_user = $this->getUser();
+      $translator = $this->get('translator');
+      
+      if (!$affiliate_user) {
+        throw $this->createNotFoundException(
+            'No user found'
+        );
+      }
+      
+      $affiliate = $affiliate_user->getAffiliate();
+      
+      if (!$affiliate) {
+        throw $this->createNotFoundException(
+            'No affiliate found'
+        );
+      }
+      
+      return $this->render('AnytvDashboardBundle:Profile:affiliates.html.twig', array('title'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'affiliate'=>$affiliate, 'tab'=>'affiliates'));
+    }
+    
+    public function tabbedAffiliatesComponentAction($affiliate, $affiliate_user)
+    {
+      return $this->render('AnytvDashboardBundle:Profile:tabbedAffiliatesComponent.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user));
+    }
+    
+    public function topAffiliatesAction(Request $request, $page)
+    {
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Affiliate');
+      $translator = $this->get('translator');
+      $session = $this->get('session');
+      $affiliate_user = $this->getUser();
+
+      if (!$affiliate_user) {
+        throw $this->createNotFoundException(
+            'No user found'
+        );
+      }
+      
+      $affiliate = $affiliate_user->getAffiliate();
+      
+      /*
+      $form = $this->createFormBuilder(array('order_by'=>$session->get('order_by', 'clicks')))
+        ->add('order_by', 'choice', array('choices'=>array('clicks'=>'Clicks', 'conversionCount'=>'Conversions'), 'expanded' => false, 'label'=>$translator->trans('Order by')))
+        ->getForm();
+        
+      $form->handleRequest($request);
+        
+      if($form->isValid()) 
+      {
+        $data = $form->getData();
+        $session->set('order_by', $data['order_by']); 
+      }
+      */
+      
+      $items_per_page = 10;
+      $order_by = 'clicks';
+      $order_by_2 = 'conversionCount';
+      $order = 'DESC';
+        
+      $affiliates = $repository->findAllAffiliatesFiltered($page, $items_per_page, $order_by, $order_by_2, $order);
+      $total_affiliates = $repository->countAllAffiliatesFiltered();
+      $total_pages = ceil($total_affiliates / $items_per_page);
+      
+      $offset = ($items_per_page * ($page-1));
+
+      return $this->render('AnytvDashboardBundle:Profile:topAffiliates.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'affiliates'=>$affiliates, 'total_pages'=>$total_pages, 'page'=>$page, 'offset'=>$offset));
     }
 }
