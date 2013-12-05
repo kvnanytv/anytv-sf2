@@ -50,7 +50,14 @@
           {% for key, affiliate in affiliates %}
 	  <tr>
             <td>{{ (key+1+offset) }}</td>
-            <td>{{ affiliate|raw }}</td>
+            <td>
+              {% if(affiliate.thumbnail) %}
+                <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ affiliate.company }}" />
+              {%  else %}
+                <img src="{{ asset('bundles/anytvdashboard/images/default-user-photo.png') }}">
+              {% endif %}
+              {{ affiliate|raw }}
+            </td>
             <td>{{ affiliate.clicks }}</td>
 	  </tr>
           {% endfor %}
