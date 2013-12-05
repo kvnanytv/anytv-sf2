@@ -128,6 +128,13 @@ profile_top_affiliates:
         _locale:  %anytv.locales%
         page:  \d+
         
+profile_top_referrers:
+    path:      /{_locale}/profile/affiliates/top_referrers/{page}
+    defaults:  { _controller: AnytvDashboardBundle:Profile:TopReferrers, _locale: en, page: 1 }
+    requirements:
+        _locale:  %anytv.locales%
+        page:  \d+
+        
 profile_tab:
     path:      /{_locale}/profile/tab/{type}
     defaults:  { _controller: AnytvDashboardBundle:Profile:tab, _locale: en, type: 1 }

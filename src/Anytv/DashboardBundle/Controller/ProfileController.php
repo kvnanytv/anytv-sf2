@@ -1527,4 +1527,33 @@ class ProfileController extends Controller
 
       return $this->render('AnytvDashboardBundle:Profile:topAffiliates.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'affiliates'=>$affiliates, 'total_pages'=>$total_pages, 'page'=>$page, 'offset'=>$offset));
     }
+    
+    public function topReferrersAction(Request $request, $page)
+    {
+      $repository = $this->getDoctrine()->getRepository('AnytvDashboardBundle:Affiliate');
+      $translator = $this->get('translator');
+      $session = $this->get('session');
+      $affiliate_user = $this->getUser();
+
+      if (!$affiliate_user) {
+        throw $this->createNotFoundException(
+            'No user found'
+        );
+      }
+      
+      $affiliate = $affiliate_user->getAffiliate();
+      
+      $items_per_page = 10;
+      $order_by = 'referralCount';
+      $order_by_2 = 'clicks';
+      $order = 'DESC';
+        
+      $affiliates = $repository->findAllAffiliatesFiltered($page, $items_per_page, $order_by, $order_by_2, $order);
+      $total_affiliates = $repository->countAllAffiliatesFiltered();
+      $total_pages = ceil($total_affiliates / $items_per_page);
+      
+      $offset = ($items_per_page * ($page-1));
+
+      return $this->render('AnytvDashboardBundle:Profile:topReferrers.html.twig', array('affiliate'=>$affiliate, 'affiliate_user'=>$affiliate_user, 'affiliates'=>$affiliates, 'total_pages'=>$total_pages, 'page'=>$page, 'offset'=>$offset));
+    }
 }
