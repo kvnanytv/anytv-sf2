@@ -176,4 +176,31 @@ class AffiliateRepository extends EntityRepository
           
         return $query->getResult();   
     }
+    
+    public function findAllAffiliatesFiltered($page, $items_per_page, $order_by, $order_by_2, $order)
+    {
+      $first_result = ($items_per_page * ($page-1));
+        
+      $query = $this->createQueryBuilder('a');
+      
+        $query = $query->setFirstResult($first_result)
+                       ->setMaxResults($items_per_page)
+                       ->addOrderBy('a.'.$order_by, $order)
+                       ->addOrderBy('a.'.$order_by_2, $order)
+                       ->getQuery();
+          
+      return $query->getResult();
+    }
+    
+    public function countAllAffiliatesFiltered()
+    {    
+        $query = $this->createQueryBuilder('a')
+                      ->select('count(a.id)');
+        
+        
+        
+        $query = $query->getQuery(); 
+          
+        return $query->getSingleScalarResult();
+    }
 }

@@ -115,6 +115,19 @@ profile_video_view:
         _locale:  %anytv.locales%
         id:  \d+
         
+profile_affiliates:
+    path:      /{_locale}/profile/affiliates
+    defaults:  { _controller: AnytvDashboardBundle:Profile:Affiliates, _locale: en }
+    requirements:
+        _locale:  %anytv.locales%
+        
+profile_top_affiliates:
+    path:      /{_locale}/profile/affiliates/top_affiliates/{page}
+    defaults:  { _controller: AnytvDashboardBundle:Profile:TopAffiliates, _locale: en, page: 1 }
+    requirements:
+        _locale:  %anytv.locales%
+        page:  \d+
+        
 profile_tab:
     path:      /{_locale}/profile/tab/{type}
     defaults:  { _controller: AnytvDashboardBundle:Profile:tab, _locale: en, type: 1 }

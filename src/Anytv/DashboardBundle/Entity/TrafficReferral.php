@@ -105,11 +105,19 @@ class TrafficReferral
      */
     private $youtubeVideoRequested;
     
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="affiliate_stats_requested", type="boolean")
+     */
+    private $affiliateStatsRequested;
+    
     public function __construct()
     {
         $this->likes = 0;
         $this->dislikes = 0;
         $this->youtubeVideoRequested = false;
+        $this->affiliateStatsRequested = false;
     }
 
     /**
@@ -432,5 +440,28 @@ class TrafficReferral
     public function getYoutubeVideoRequested()
     {
         return $this->youtubeVideoRequested;
+    }
+
+    /**
+     * Set affiliateStatsRequested
+     *
+     * @param boolean $affiliateStatsRequested
+     * @return TrafficReferral
+     */
+    public function setAffiliateStatsRequested($affiliateStatsRequested)
+    {
+        $this->affiliateStatsRequested = $affiliateStatsRequested;
+    
+        return $this;
+    }
+
+    /**
+     * Get affiliateStatsRequested
+     *
+     * @return boolean 
+     */
+    public function getAffiliateStatsRequested()
+    {
+        return $this->affiliateStatsRequested;
     }
 }
