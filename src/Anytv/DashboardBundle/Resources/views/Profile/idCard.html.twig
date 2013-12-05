@@ -26,9 +26,7 @@
         <li {% if(page == 'reports') %}class="active"{% endif %}><a href="{{ path('profile_reports') }}" title="{% trans %}Reports{% endtrans %}">{% trans %}Reports{% endtrans %}</a></li>
         <li {% if(page == 'traffic') %}class="active"{% endif %}><a href="{{ path('profile_traffic') }}" title="{% trans %}My Traffic{% endtrans %}">{% trans %}My Traffic{% endtrans %}</a></li>
         <li {% if(page == 'videos') %}class="active"{% endif %}><a href="{{ path('profile_videos') }}" title="{% trans %}Videos{% endtrans %}">{% trans %}Videos{% endtrans %}</a></li>
-        {% if(is_granted('ROLE_ADMIN')) %}
         <li {% if(page == 'affiliates') %}class="active"{% endif %}><a href="{{ path('profile_affiliates') }}" title="{% trans %}Affiliates{% endtrans %}">{% trans %}Affiliates{% endtrans %}</a></li>
-        {% endif %}
       </ul>
     </div>
   </div> 

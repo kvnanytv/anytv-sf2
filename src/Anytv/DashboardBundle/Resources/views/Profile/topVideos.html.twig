@@ -52,7 +52,14 @@
           {% for key, youtube_video in youtube_videos %}
 	  <tr>
             <td>{{ (key+1+offset) }}</td>
-            <td>{{ youtube_video.affiliate|raw }}</td>
+            <td>
+              {% if(youtube_video.affiliate.thumbnail) %}
+                <img src="{{ asset(youtube_video.affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ youtube_video.affiliate.company }}" />
+              {%  else %}
+                <img src="{{ asset('bundles/anytvdashboard/images/default-user-photo.png') }}">
+              {% endif %}
+              {{ youtube_video.affiliate|raw }}
+            </td>
             <td>{{ youtube_video.offer }}</td>
             <td>{{ youtube_video.clicks }}</td>
             <td><a data-toggle="modal" href="#myModal" onclick="showOffer('{{ path('profile_video_view', {'id':youtube_video.id}) }}');"><img src="{{ asset('bundles/anytvdashboard/images/youtubeicon.png') }}"></a></td>
