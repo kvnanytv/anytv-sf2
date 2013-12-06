@@ -93,32 +93,12 @@
                 </div>
               </div>
       {% endif %}
-      
-      {% if(offer.countryCount) %}
-      <div class="cl-20"></div>
-      <hr>
-        <h2>Countries ({{ offer.countryCount }} / {{ countries_total }}):</h2>
-          <div class="table-responsive">
-	    <div class="offer-tbl-wrap">
-	      <table class="table table-striped">                                                                        
-                <thead>
-        <tr>
-         <th>{% trans %}Name{% endtrans %}</th>
-       </tr>
-        </thead>
-        <tbody>
         
-        {% for country in countries %}
-            <tr>
-                <td><a href="{{ path('country_view', { 'id' : country.id }) }}" title="{% trans %}View{% endtrans %}">{{ country.name }} {{ country.code }}</a></td>
-            </tr>
-          {% endfor %}
-            
-            </tbody>
-        </table>
-                </div>
-              </div>
-      {% endif %}
+      <div id="offer-countries-block">
+        {{ render(controller('AnytvDashboardBundle:Country:listByOffer', {'offer_id': offer.id, 'page': 1})) }}
+      </div>
+      
+      
         
       
      <div class="cl-20"></div>
@@ -135,4 +115,9 @@
     
         
     
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script src="{{ asset('bundles/anytvdashboard/js/offers.js') }}"></script>
 {% endblock %}

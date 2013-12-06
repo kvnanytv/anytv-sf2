@@ -9,3 +9,4 @@ function referrerLink(url){
     $.get(url)
     .done(function( data ) { $('#affiliate-referrals-block').html(data); });
 }
+

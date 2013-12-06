@@ -377,10 +377,8 @@ class OfferController extends Controller
       
       $offer_categories = $offer->getOfferCategories();
       $offer_groups = $offer->getOfferGroups();
-      $countries = $offer->getCountries();
-      $countries_total = $country_repository->countAllCountries(null);
 
-      return $this->render('AnytvDashboardBundle:Offer:view.html.twig', array('title'=>$offer, 'offer'=>$offer, 'offer_status'=>$translator->trans($offer->getStatus()), 'offer_categories'=>$offer_categories, 'offer_groups'=>$offer_groups, 'countries'=>$countries, 'countries_total'=>$countries_total));
+      return $this->render('AnytvDashboardBundle:Offer:view.html.twig', array('title'=>$offer, 'offer'=>$offer, 'offer_status'=>$translator->trans($offer->getStatus()), 'offer_categories'=>$offer_categories, 'offer_groups'=>$offer_groups));
     }
     
     public function embedAction(Request $request, $page)

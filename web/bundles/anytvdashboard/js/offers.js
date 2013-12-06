@@ -37,3 +37,9 @@ function showOffer(url){
     $.get(url)
     .done(function( data ) { $('#profile_offer_content').html(data); $('.modal-content').removeClass('preloader');; });
 }
+
+function countryLink(url){
+    $('#affiliate-country_progress-bar').show();
+    $.get(url)
+    .done(function( data ) { $('#offer-countries-block').html(data); });
+}

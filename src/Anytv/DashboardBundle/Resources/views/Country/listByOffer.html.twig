@@ -1,0 +1,52 @@
+{% if(countries|length) %}
+<div class="cl-20"></div>
+<hr>
+<h2>Countries ({{ total_countries }}):</h2>
+<div class="table-responsive">
+  <div class="offer-tbl-wrap">
+    <div id="affiliate-country_progress-bar" style="display:none" class="progress progress-striped active">
+      <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">							    
+      </div>	
+    </div>	
+    <table class="table table-striped">                                                                        
+      <thead>
+        <tr>
+          <th>{% trans %}Name{% endtrans %}</th>
+          <th>{% trans %}Code{% endtrans %}</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for country in countries %}
+        <tr>
+          <td><a href="{{ path('country_view', { 'id' : country.id }) }}" title="{{ country }}">{{ country }}</a></td>
+          <td>{{ country.code }}</td>
+        </tr>
+      {% endfor %}
+      {% if (total_pages > 1) %}
+      <tfoot>
+        <tr>
+	  <td class="al-cntr" colspan="4">
+	  <ul class="pagination">
+          {% if(page > 1) %}
+            <li><a href="javascript:void(0)" onclick="countryLink('{{ path('countries_by_offer', { 'page':(page-1), 'offer_id': offer_id }) }}');" title="{{ (page-1) }}">&laquo;</a></li>
+          {% endif %}
+          {% for i in 1..total_pages if((page-i)|abs < 8) %}
+            {% if(page == i) %}
+              <li class="active"><span>{{ i }}<span class="sr-only">(current)</span></span></li>
+            {% else %}
+              <li><a href="javascript:void(0)" onclick="countryLink('{{ path('countries_by_offer', { 'page':i, 'offer_id': offer_id }) }}');" title="{{ i }}">{{ i }}</a></li>
+            {% endif %}
+          {% endfor %}
+          {% if(page < total_pages) %}
+            <li><a href="javascript:void(0)" onclick="countryLink('{{ path('countries_by_offer', { 'page':(page+1), 'offer_id': offer_id }) }}');" title="{{ (page+1) }}">&raquo;</a></li>
+          {% endif %}
+          </ul>
+          </td>                                               
+        </tr>
+      </tfoot>    
+      {% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endif %}

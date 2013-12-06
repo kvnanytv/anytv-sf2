@@ -236,6 +236,27 @@ class Offer
      */
     private $isFeatured;
     
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="conversion_count", type="integer")
+     */
+    private $conversionCount;
+    
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="payout", type="float")
+     */
+    private $payout;
+    
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="revenue", type="float")
+     */
+    private $revenue;
+    
     public function __construct()
     {
         $this->offerCategories = new ArrayCollection();
@@ -246,6 +267,9 @@ class Offer
         $this->offerGroups = new ArrayCollection();
         $this->isFeatured = false;
         $this->youtubeVideos = new ArrayCollection();
+        $this->conversionCount = 0;
+        $this->payout = 0;
+        $this->revenue = 0;
     }
     
     /**
@@ -1168,5 +1192,74 @@ class Offer
     public function getYoutubeVideos()
     {
         return $this->youtubeVideos;
+    }
+
+    /**
+     * Set conversionCount
+     *
+     * @param integer $conversionCount
+     * @return Offer
+     */
+    public function setConversionCount($conversionCount)
+    {
+        $this->conversionCount = $conversionCount;
+    
+        return $this;
+    }
+
+    /**
+     * Get conversionCount
+     *
+     * @return integer 
+     */
+    public function getConversionCount()
+    {
+        return $this->conversionCount;
+    }
+
+    /**
+     * Set payout
+     *
+     * @param float $payout
+     * @return Offer
+     */
+    public function setPayout($payout)
+    {
+        $this->payout = $payout;
+    
+        return $this;
+    }
+
+    /**
+     * Get payout
+     *
+     * @return float 
+     */
+    public function getPayout()
+    {
+        return $this->payout;
+    }
+
+    /**
+     * Set revenue
+     *
+     * @param float $revenue
+     * @return Offer
+     */
+    public function setRevenue($revenue)
+    {
+        $this->revenue = $revenue;
+    
+        return $this;
+    }
+
+    /**
+     * Get revenue
+     *
+     * @return float 
+     */
+    public function getRevenue()
+    {
+        return $this->revenue;
     }
 }

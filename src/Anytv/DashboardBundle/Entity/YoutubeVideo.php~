@@ -430,4 +430,14 @@ class YoutubeVideo
     {
         return $this->offer;
     }
+    
+    /**
+     * Echo lastStatDate
+     *
+     * @return \DateTime string 
+     */
+    public function getLastStatDateAsString()
+    {
+        return date_format($this->lastStatDate, 'Y-m-d');
+    }
 }

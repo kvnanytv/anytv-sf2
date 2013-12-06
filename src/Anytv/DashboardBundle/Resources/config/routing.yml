@@ -288,9 +288,9 @@ traffic_referrals:
         _locale:  %anytv.locales%
         page:  \d+
         
-traffic_referrals_youtube_by_affiliate:
-    path:      /{_locale}/admin/traffic_referrals/affiliate/youtube/{affiliate_id}/{page}
-    defaults:  { _controller: AnytvDashboardBundle:TrafficReferral:listYoutubeVideosByAffiliate, _locale: en, page: 1 }
+youtube_by_affiliate:
+    path:      /{_locale}/admin/youtube_video/affiliate/{affiliate_id}/{page}
+    defaults:  { _controller: AnytvDashboardBundle:YoutubeVideo:listYoutubeVideosByAffiliate, _locale: en, page: 1 }
     requirements:
         _locale:  %anytv.locales%
         page:  \d+
@@ -393,6 +393,14 @@ country_view:
     requirements:
         _locale:  %anytv.locales%
         id:  \d+
+        
+countries_by_offer:
+    path:      /{_locale}/admin/countries/offer/{offer_id}/{page}
+    defaults:  { _controller: AnytvDashboardBundle:Country:listByOffer, _locale: en, page: 1 }
+    requirements:
+        _locale:  %anytv.locales%
+        page:  \d+
+        offer_id: \d+
         
 conversions:
     path:      /{_locale}/admin/conversions/{page}

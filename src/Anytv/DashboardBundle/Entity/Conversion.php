@@ -95,6 +95,39 @@ class Conversion
      * @ORM\JoinColumn(name="offer_id", referencedColumnName="id")
      */
     private $offer;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="source", type="string", length=510, nullable=true)
+     */
+    private $source;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="refer", type="string", length=510, nullable=true)
+     */
+    private $refer;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pixel_refer", type="string", length=510, nullable=true)
+     */
+    private $pixelRefer;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="stats_requested", type="boolean")
+     */
+    private $statsRequested;
+    
+    public function __construct()
+    {
+        $this->statsRequested = false;
+    }
 
 
     /**
@@ -369,5 +402,97 @@ class Conversion
     public function getOffer()
     {
         return $this->offer;
+    }
+
+    /**
+     * Set refer
+     *
+     * @param string $refer
+     * @return Conversion
+     */
+    public function setRefer($refer)
+    {
+        $this->refer = $refer;
+    
+        return $this;
+    }
+
+    /**
+     * Get refer
+     *
+     * @return string 
+     */
+    public function getRefer()
+    {
+        return $this->refer;
+    }
+
+    /**
+     * Set statsRequested
+     *
+     * @param boolean $statsRequested
+     * @return Conversion
+     */
+    public function setStatsRequested($statsRequested)
+    {
+        $this->statsRequested = $statsRequested;
+    
+        return $this;
+    }
+
+    /**
+     * Get statsRequested
+     *
+     * @return boolean 
+     */
+    public function getStatsRequested()
+    {
+        return $this->statsRequested;
+    }
+
+    /**
+     * Set source
+     *
+     * @param string $source
+     * @return Conversion
+     */
+    public function setSource($source)
+    {
+        $this->source = $source;
+    
+        return $this;
+    }
+
+    /**
+     * Get source
+     *
+     * @return string 
+     */
+    public function getSource()
+    {
+        return $this->source;
+    }
+
+    /**
+     * Set pixelRefer
+     *
+     * @param string $pixelRefer
+     * @return Conversion
+     */
+    public function setPixelRefer($pixelRefer)
+    {
+        $this->pixelRefer = $pixelRefer;
+    
+        return $this;
+    }
+
+    /**
+     * Get pixelRefer
+     *
+     * @return string 
+     */
+    public function getPixelRefer()
+    {
+        return $this->pixelRefer;
     }
 }

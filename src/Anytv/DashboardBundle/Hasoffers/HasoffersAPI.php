@@ -382,8 +382,8 @@ class HasoffersAPI
         {
           $this->api_params['filters'] = array('Stat.id' => array('conditional' => 'GREATER_THAN', 'values' => $max_conversion_id));
         }
-        $this->api_params['fields'] = array('Stat.id', 'Stat.ip', 'Stat.ad_id', 'Stat.status', 'Stat.payout', 'Stat.revenue', 'Stat.sale_amount', 'Stat.is_adjustment', 'Stat.datetime', 'Stat.affiliate_id', 'Stat.offer_id');
-        $this->api_params['limit'] = 500;
+        $this->api_params['fields'] = array('Stat.id', 'Stat.ip', 'Stat.ad_id', 'Stat.status', 'Stat.payout', 'Stat.revenue', 'Stat.sale_amount', 'Stat.is_adjustment', 'Stat.datetime', 'Stat.affiliate_id', 'Stat.offer_id', 'Stat.source', 'Stat.refer', 'Stat.pixel_refer');
+        $this->api_params['limit'] = 2500;
         
         $url = $this->api_url . http_build_query( $this->api_params );
  

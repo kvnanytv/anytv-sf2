@@ -248,6 +248,20 @@ class Affiliate
      * @ORM\Column(name="conversion_count", type="integer")
      */
     private $conversionCount;
+    
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="payout", type="float")
+     */
+    private $payout;
+    
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="revenue", type="float")
+     */
+    private $revenue;
 
     /**
      * @var integer
@@ -305,6 +319,8 @@ class Affiliate
         $this->views = 0;
         $this->videoViews = 0;
         $this->referralCount = 0;
+        $this->payout = 0;
+        $this->revenue = 0;
     }
     
     /**
@@ -1553,5 +1569,82 @@ class Affiliate
     public function getReferralCount()
     {
         return $this->referralCount;
+    }
+    
+    /**
+     * Echo last login as string
+     *
+     * @return \DateTime string 
+     */
+    public function getLastLoginAsString()
+    {
+        $max_last_login = null;
+        $affiliate_users = $this->getAffiliateUsers();
+        
+        foreach($affiliate_users as $affiliate_user)
+        {
+          if($affiliate_user->getIsActive() && ($last_login = $affiliate_user->getLastLogin()))
+          {
+            if($max_last_login)
+            {
+              if($last_login > $max_last_login)
+              {
+                $max_last_login = $last_login;
+              }
+            }
+            else
+            {
+              $max_last_login = $last_login;    
+            }
+          }
+        }
+        
+        return date_format($max_last_login, 'Y-m-d');
+    }
+
+    /**
+     * Set payout
+     *
+     * @param float $payout
+     * @return Affiliate
+     */
+    public function setPayout($payout)
+    {
+        $this->payout = $payout;
+    
+        return $this;
+    }
+
+    /**
+     * Get payout
+     *
+     * @return float 
+     */
+    public function getPayout()
+    {
+        return $this->payout;
+    }
+
+    /**
+     * Set revenue
+     *
+     * @param float $revenue
+     * @return Affiliate
+     */
+    public function setRevenue($revenue)
+    {
+        $this->revenue = $revenue;
+    
+        return $this;
+    }
+
+    /**
+     * Get revenue
+     *
+     * @return float 
+     */
+    public function getRevenue()
+    {
+        return $this->revenue;
     }
 }

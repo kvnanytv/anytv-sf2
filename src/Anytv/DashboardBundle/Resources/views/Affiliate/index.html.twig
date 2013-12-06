@@ -63,6 +63,7 @@
          <th>{% trans %}Company{% endtrans %}</th>
          <th>{% trans %}Country{% endtrans %}</th>
          <th>{% trans %}Date Added{% endtrans %}</th>
+         <th>{% trans %}Last Login{% endtrans %}</th>
          <th>{% trans %}Paypal{% endtrans %}</th>
          <th>{% trans %}Signup IP{% endtrans %}</th>
          <th>{% trans %}Photo{% endtrans %}</th>
@@ -80,6 +81,7 @@
              <td>&nbsp;</td>
            {% endif %}
            <td>{{ affiliate.getDateAddedAsString() }}</td>
+           <td>{{ affiliate.getLastLoginAsString() }}</td>
            <td>{{ affiliate.paypalEmail }}</td>
            <td>{{ affiliate.signupIp }}</td>
            {% if(affiliate.thumbnail) %}
