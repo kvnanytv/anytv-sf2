@@ -441,4 +441,27 @@ class TrafficReferral
     {
         return $this->youtubeVideoRequested;
     }
+
+    /**
+     * Set affiliateStatsRequested
+     *
+     * @param boolean $affiliateStatsRequested
+     * @return TrafficReferral
+     */
+    public function setAffiliateStatsRequested($affiliateStatsRequested)
+    {
+        $this->affiliateStatsRequested = $affiliateStatsRequested;
+    
+        return $this;
+    }
+
+    /**
+     * Get affiliateStatsRequested
+     *
+     * @return boolean 
+     */
+    public function getAffiliateStatsRequested()
+    {
+        return $this->affiliateStatsRequested;
+    }
 }

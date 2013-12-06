@@ -60,6 +60,9 @@
         <div class="cl-20"></div>
         <label>{% trans %}Join Date{% endtrans %}</label>
 	<input type="text" class="form-control input-lg" value="{{ affiliate.getDateAddedAsString() }}" disabled>
+        <div class="cl-20"></div>
+        <label>{% trans %}Last Login{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ affiliate.getLastLoginAsString() }}" disabled>
       </div>
       
       
@@ -118,7 +121,7 @@
       </div>
         
       <div id="affiliate-youtube-videos-block">
-        {{ render(controller('AnytvDashboardBundle:TrafficReferral:listYoutubeVideosByAffiliate', {'affiliate_id': affiliate.id, 'page': 1})) }}
+        {{ render(controller('AnytvDashboardBundle:YoutubeVideo:listYoutubeVideosByAffiliate', {'affiliate_id': affiliate.id, 'page': 1})) }}
       </div>
       
       <div class="cl-20"></div>

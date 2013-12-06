@@ -38,31 +38,41 @@ class UpdateConversionsCommand extends ContainerAwareCommand
         foreach($conversions_data as $conversion_data)
         {
           $conversion_object = $conversion_data->Stat;
-              
-          $conversion = new Conversion();
-          $conversion->setConversionId($conversion_object->id);
-          $conversion->setIp($conversion_object->ip);
-          $conversion->setTransactionId($conversion_object->ad_id);
-          $conversion->setStatus($conversion_object->status);
-          $conversion->setPayout($conversion_object->payout);
-          $conversion->setRevenue($conversion_object->revenue);
-          $conversion->setSaleAmount($conversion_object->sale_amount);
-          $conversion->setIsAdjustment($conversion_object->is_adjustment);
-          $conversion->setCreatedAt(new \DateTime($conversion_object->datetime));
-              
-          if($affiliate = $affiliate_repository->findOneBy(array('affiliateId'=>$conversion_object->affiliate_id)))
-          {
-            $conversion->setAffiliate($affiliate);    
-          }
-              
-          if($offer = $offer_repository->findOneBy(array('offerId'=>$conversion_object->offer_id)))
-          {
-            $conversion->setOffer($offer);    
-          }
-             
-          $manager->persist($conversion);
           
-          $new_conversions++;
+          $affiliate = $affiliate_repository->findOneBy(array('affiliateId'=>$conversion_object->affiliate_id));
+          $offer = $offer_repository->findOneBy(array('offerId'=>$conversion_object->offer_id));
+          
+          if($affiliate && $offer)
+          {   
+            $conversion = new Conversion();
+            $conversion->setConversionId($conversion_object->id);
+            $conversion->setIp($conversion_object->ip);
+            $conversion->setTransactionId($conversion_object->ad_id);
+            $conversion->setStatus($conversion_object->status);
+            $conversion->setPayout($conversion_object->payout);
+            $conversion->setRevenue($conversion_object->revenue);
+            if($conversion_object->source)
+            {
+              $conversion->setSource($conversion_object->source);
+            }
+            if($conversion_object->refer)
+            {
+              $conversion->setRefer($conversion_object->refer);
+            }
+            if($conversion_object->pixel_refer)
+            {
+              $conversion->setPixelRefer($conversion_object->pixel_refer);
+            }
+            $conversion->setSaleAmount($conversion_object->sale_amount);
+            $conversion->setIsAdjustment($conversion_object->is_adjustment);
+            $conversion->setCreatedAt(new \DateTime($conversion_object->datetime));
+            $conversion->setAffiliate($affiliate);    
+            $conversion->setOffer($offer);
+            
+            $manager->persist($conversion);
+          
+            $new_conversions++;
+          }
         }
 
         $manager->flush();
