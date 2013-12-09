@@ -106,7 +106,14 @@ class YoutubeVideo
     /**
      * @var \Date
      *
-     * @ORM\Column(name="last_stat_date", type="date")
+     * @ORM\Column(name="first_stat_date", type="date", nullable=true)
+     */
+    private $firstStatDate;
+    
+    /**
+     * @var \Date
+     *
+     * @ORM\Column(name="last_stat_date", type="date", nullable=true)
      */
     private $lastStatDate;
     
@@ -439,5 +446,28 @@ class YoutubeVideo
     public function getLastStatDateAsString()
     {
         return date_format($this->lastStatDate, 'Y-m-d');
+    }
+
+    /**
+     * Set firstStatDate
+     *
+     * @param \DateTime $firstStatDate
+     * @return YoutubeVideo
+     */
+    public function setFirstStatDate($firstStatDate)
+    {
+        $this->firstStatDate = $firstStatDate;
+    
+        return $this;
+    }
+
+    /**
+     * Get firstStatDate
+     *
+     * @return \DateTime 
+     */
+    public function getFirstStatDate()
+    {
+        return $this->firstStatDate;
     }
 }

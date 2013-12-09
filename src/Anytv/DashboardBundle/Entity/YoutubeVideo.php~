@@ -106,7 +106,14 @@ class YoutubeVideo
     /**
      * @var \Date
      *
-     * @ORM\Column(name="last_stat_date", type="date")
+     * @ORM\Column(name="first_stat_date", type="date", nullable=true)
+     */
+    private $firstStatDate;
+    
+    /**
+     * @var \Date
+     *
+     * @ORM\Column(name="last_stat_date", type="date", nullable=true)
      */
     private $lastStatDate;
     
