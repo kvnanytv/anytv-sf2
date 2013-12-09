@@ -1,16 +1,7 @@
 <div id="pane1" class="tab-pane active">
   <div id="user-content-offers">
     
-      {% if(false) %}
-      {{ form_start(form, {'action': path('profile_top_videos'), 'method': 'POST' }) }}
-      <div class="form-group">
-        <label>
-          {{ form_label(form.order_by_videos) }}
-          {{ form_widget(form.order_by_videos, {'attr': { 'onchange':"submitForm(this.form, this.form.action)" }}) }}
-        </label>
-      </div>
-    {{ form_end(form) }}
-      {% endif %}
+      
       
       
     <div class="search-btns">				
@@ -37,32 +28,28 @@
   </div>												
   <div class="table-responsive" id="profile-tab-results">
     <div class="offer-tbl-wrap">
-      {% if(youtube_videos) %}
+      {% if(affiliates) %}
       <table class="table table-striped">							
         <thead>
           <tr>
             <th>&nbsp;</th>
             <th>{% trans %}Affiliate{% endtrans %}</th>
-            <th>{% trans %}Offer{% endtrans %}</th>
-            <th>{% trans %}Clicks{% endtrans %}</th>
-	    <th>{% trans %}Video{% endtrans %}</th>
+            <th>{% trans %}Conversions{% endtrans %}</th>
           </tr>
 	</thead>								
         <tbody>
-          {% for key, youtube_video in youtube_videos %}
+          {% for key, affiliate in affiliates %}
 	  <tr>
             <td>{{ (key+1+offset) }}</td>
             <td>
-              {% if(youtube_video.affiliate.thumbnail) %}
-                <img src="{{ asset(youtube_video.affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ youtube_video.affiliate.company }}" />
+              {% if(affiliate.thumbnail) %}
+                <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ affiliate.company }}" />
               {%  else %}
                 <img src="{{ asset('bundles/anytvdashboard/images/default-user-photo.png') }}">
               {% endif %}
-              {{ youtube_video.affiliate|raw }}
+              {{ affiliate|raw }}
             </td>
-            <td>{{ youtube_video.offer }}</td>
-            <td>{{ youtube_video.clicks }}</td>
-            <td><a data-toggle="modal" href="#myModal" onclick="showOffer('{{ path('profile_video_view', {'id':youtube_video.id}) }}');"><img src="{{ asset('bundles/anytvdashboard/images/youtubeicon.png') }}"></a></td>
+            <td>{{ affiliate.conversionCount }}</td>
 	  </tr>
           {% endfor %}
           {% if (total_pages > 1) %}
@@ -71,17 +58,17 @@
 	    <td class="al-cntr" colspan="6">
 	    <ul class="pagination">
             {% if(page > 1) %}
-              <li><a href="javascript:void(0)" onclick="showTab('{{ path('profile_top_videos', {'page':(page-1)}) }}');" title="{{ (page-1) }}">&laquo;</a></li>
+              <li><a href="javascript:void(0)" onclick="showTab('{{ path('profile_top_conversions', {'page':(page-1)}) }}');" title="{{ (page-1) }}">&laquo;</a></li>
             {% endif %}
             {% for i in 1..total_pages if((page-i)|abs < 6) %}
               {% if(page == i) %}
                 <li class="active"><span>{{ i }}<span class="sr-only">(current)</span></span></li>
               {% else %}
-                <li><a href="javascript:void(0)" onclick="showTab('{{ path('profile_top_videos', {'page':i}) }}');" title="{{ i }}">{{ i }}</a></li>
+                <li><a href="javascript:void(0)" onclick="showTab('{{ path('profile_top_conversions', {'page':i}) }}');" title="{{ i }}">{{ i }}</a></li>
               {% endif %}
             {% endfor %}
             {% if(page < total_pages) %}
-              <li><a href="javascript:void(0)" onclick="showTab('{{ path('profile_top_videos', {'page':(page+1)}) }}');" title="{{ (page+1) }}">&raquo;</a></li>
+              <li><a href="javascript:void(0)" onclick="showTab('{{ path('profile_top_conversions', {'page':(page+1)}) }}');" title="{{ (page+1) }}">&raquo;</a></li>
             {% endif %}
             </ul>
             </ul>
@@ -96,7 +83,7 @@
   </div>				    	
 </div>
 
-{{ render(controller('AnytvDashboardBundle:Profile:videoViewPopup')) }}
+
 
 
 

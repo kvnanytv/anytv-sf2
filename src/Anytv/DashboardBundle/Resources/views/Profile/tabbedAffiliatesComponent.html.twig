@@ -2,6 +2,10 @@
   <ul class="nav nav-tabs">
     <li class="active"><a href="javascript:void(0)" onclick="showTab('{{ path('profile_top_affiliates') }}');" data-toggle="tab">{% trans %}Top Affiliates{% endtrans %}</a></li>
     <li><a href="javascript:void(0)" onclick="showTab('{{ path('profile_top_referrers') }}');" data-toggle="tab">{% trans %}Top Referrers{% endtrans %}</a></li>
+    {% if(is_granted('ROLE_ADMIN')) %}
+      <li><a href="javascript:void(0)" onclick="showTab('{{ path('profile_top_conversions') }}');" data-toggle="tab">{% trans %}Top Conversions{% endtrans %}</a></li>
+      <li><a href="javascript:void(0)" onclick="showTab('{{ path('profile_top_payouts') }}');" data-toggle="tab">{% trans %}Top Payouts{% endtrans %}</a></li>
+    {% endif %}
   </ul>
   <div class="tab-content" id="profile_tab_content">
     <div id="pane1" class="tab-pane active">
