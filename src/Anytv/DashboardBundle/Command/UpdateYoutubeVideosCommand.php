@@ -29,7 +29,7 @@ class UpdateYoutubeVideosCommand extends ContainerAwareCommand
         $traffic_referral_repository = $doctrine->getRepository('AnytvDashboardBundle:TrafficReferral');
         $manager = $doctrine->getManager();
           
-        $traffic_referrals = $traffic_referral_repository->findBy(array('youtubeVideoRequested'=>false), null, 2500);
+        $traffic_referrals = $traffic_referral_repository->findBy(array('youtubeVideoRequested'=>false), null, 10000);
         
         $new_youtube_videos = 0;
         $updated_youtube_videos = 0;
@@ -62,7 +62,7 @@ class UpdateYoutubeVideosCommand extends ContainerAwareCommand
                 $youtube_video->setUrl($traffic_referral->getUrl());
                 $youtube_video->setClicks($traffic_referral->getClicks());
                 $youtube_video->setConversions($traffic_referral->getConversions());
-                $youtube_video->setLastStatDate($traffic_referral->getStatDate());
+                $youtube_video->setFirstStatDate($traffic_referral->getStatDate());
 
                 $manager->persist($youtube_video); 
             

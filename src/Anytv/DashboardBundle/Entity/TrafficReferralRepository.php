@@ -412,4 +412,41 @@ class TrafficReferralRepository extends EntityRepository
           
         return $query->getSingleScalarResult();
     }
+    
+    public function findAllTrafficReferralsForVideoGraph($order_by, $order, $affiliate, $offer, $url)
+    {
+      $query = $this->createQueryBuilder('tr');
+      
+      $where = array();
+      $params = array(); 
+        
+      if($affiliate)
+      {
+        $where[] = "tr.affiliate = :affiliate";
+        $params['affiliate'] = $affiliate; 
+      }
+      
+      if($offer)
+      {
+        $where[] = "tr.offer = :offer";
+        $params['offer'] = $offer;      
+      }
+      
+      if($url)
+      {
+        $where[] = "tr.url = :url";
+        $params['url'] = $url;     
+      }
+      
+      if($where)
+      {
+        $query = $query->where(implode(' AND ', $where))
+                       ->setParameters($params);  
+      }
+        
+      $query = $query->orderBy('tr.'.$order_by, $order)
+                     ->getQuery();
+          
+      return $query->getResult();
+    }
 }
