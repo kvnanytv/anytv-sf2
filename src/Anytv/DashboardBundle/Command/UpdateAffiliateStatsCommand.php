@@ -39,7 +39,6 @@ class UpdateAffiliateStatsCommand extends ContainerAwareCommand
           if($affiliate)
           {
             $affiliate->setClicks($affiliate->getClicks() + $traffic_referral->getClicks());
-            $affiliate->setConversionCount($affiliate->getConversionCount() + $traffic_referral->getConversions());
     
             $updated_affiliate_stats++;  
               

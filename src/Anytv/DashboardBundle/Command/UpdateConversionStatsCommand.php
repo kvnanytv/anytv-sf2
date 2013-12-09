@@ -34,26 +34,34 @@ class UpdateConversionStatsCommand extends ContainerAwareCommand
         $conversions = $repository->findBy(array('statsRequested'=>false), null, 500);
         
         $updated_affiliate_stats = 0;
-        $updated_youtube_video_stats = 0;
+        $updated_offer_stats = 0;
         foreach($conversions as $conversion)
         {   
-          $affiliate = $traffic_referral->getAffiliate();
-          
-          if($affiliate)
+          if($conversion->getStatus() == 'approved')
           {
-            $affiliate->setClicks($affiliate->getClicks() + $traffic_referral->getClicks());
-            $affiliate->setConversionCount($affiliate->getConversionCount() + $traffic_referral->getConversions());
-    
-            $updated_affiliate_stats++;  
-              
+            if($affiliate = $conversion->getAffiliate())
+            {
+              $affiliate->setConversionCount($affiliate->getConversionCount() + 1);
+              $affiliate->setPayout($affiliate->getPayout() + $conversion->getPayout());
+              $affiliate->setRevenue($affiliate->getRevenue() + $conversion->getRevenue());
+              $updated_affiliate_stats++;  
+            }
+            if($offer = $conversion->getOffer())
+            {
+              $offer->setConversionCount($offer->getConversionCount() + 1);
+              $offer->setPayout($offer->getPayout() + $conversion->getPayout());
+              $offer->setRevenue($offer->getRevenue() + $conversion->getRevenue());
+              $updated_offer_stats++;  
+            }
           }
           
-          $traffic_referral->setAffiliateStatsRequested(true);
+          $conversion->setStatsRequested(true);
         }
         
         $manager->flush();
                 
         $output->writeln($text);
-        $output->writeln($updated_affiliate_stats.' Affiliates updated.');
+        $output->writeln($updated_affiliate_stats.' Affiliate Conversions updated.');
+        $output->writeln($updated_offer_stats.' Offer Conversions updated.');
     }
 }
