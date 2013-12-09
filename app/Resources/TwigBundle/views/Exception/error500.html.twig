@@ -1,0 +1,24 @@
+{% extends 'AnytvMainBundle::layout.html.twig' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+    
+    
+    
+    	
+     <div id="content">
+	<div class="container">
+		<section id="er-404">
+			<h1>500</h1>
+			<p>{% trans %}An error occurred.{% endtrans %}</p>
+		</section>
+	</div>
+</div>
+     
+     
+
+      
+
+      {{ parent() }}
+    
+{% endblock %}

@@ -1,0 +1,197 @@
+<?php
+
+namespace Anytv\DashboardBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * Region
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Anytv\DashboardBundle\Entity\RegionRepository")
+ */
+class Region
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="region_id", type="integer")
+     */
+    private $regionId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="code", type="string", length=10)
+     */
+    private $code;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Country", inversedBy="regions")
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+     */
+    private $country;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Affiliate", mappedBy="region")
+     */
+    private $affiliates;
+    
+    public function __construct()
+    {
+      $this->affiliates = new ArrayCollection();
+    }
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set regionId
+     *
+     * @param integer $regionId
+     * @return Region
+     */
+    public function setRegionId($regionId)
+    {
+        $this->regionId = $regionId;
+    
+        return $this;
+    }
+
+    /**
+     * Get regionId
+     *
+     * @return integer 
+     */
+    public function getRegionId()
+    {
+        return $this->regionId;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Region
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set code
+     *
+     * @param string $code
+     * @return Region
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+    
+        return $this;
+    }
+
+    /**
+     * Get code
+     *
+     * @return string 
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
+     * Set country
+     *
+     * @param \Anytv\DashboardBundle\Entity\Country $country
+     * @return Region
+     */
+    public function setCountry(\Anytv\DashboardBundle\Entity\Country $country = null)
+    {
+        $this->country = $country;
+    
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return \Anytv\DashboardBundle\Entity\Country 
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Add affiliates
+     *
+     * @param \Anytv\DashboardBundle\Entity\Affiliate $affiliates
+     * @return Region
+     */
+    public function addAffiliate(\Anytv\DashboardBundle\Entity\Affiliate $affiliates)
+    {
+        $this->affiliates[] = $affiliates;
+    
+        return $this;
+    }
+
+    /**
+     * Remove affiliates
+     *
+     * @param \Anytv\DashboardBundle\Entity\Affiliate $affiliates
+     */
+    public function removeAffiliate(\Anytv\DashboardBundle\Entity\Affiliate $affiliates)
+    {
+        $this->affiliates->removeElement($affiliates);
+    }
+
+    /**
+     * Get affiliates
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAffiliates()
+    {
+        return $this->affiliates;
+    }
+}

@@ -14,10 +14,11 @@ class NewsController extends Controller
     {
        $repository = $this->getDoctrine()->getRepository('AnytvMainBundle:News');
        $session = $this->get('session');
+       $translator = $this->get('translator');
        
-       $form = $this->createFormBuilder()
-        ->add('keyword')
-        ->add('search', 'submit')
+       $form = $this->createFormBuilder(array('news_keyword'=>$session->get('news_keyword')))
+        ->add('news_keyword')
+        ->add('search', 'submit', array('label'=>$translator->trans('search')))
         ->getForm();
 
        $form->handleRequest($request);
@@ -27,23 +28,32 @@ class NewsController extends Controller
        if($form->isValid()) 
        {
          $data = $form->getData();
-         $keyword = $data['keyword'];
-         $session->set('keyword', $keyword);
+         $keyword = $data['news_keyword'];
+         $session->set('news_keyword', $keyword);
        }
         
        $items_per_page = 10;
        $order_by = 'id';
        $order = 'DESC';
         
-       $news = $repository->findAllNews($page, $items_per_page, $order_by, $order, $session->get('keyword'));
-       $total_news = $repository->countAllNews();
+       $news = $repository->findAllNews($page, $items_per_page, $order_by, $order, $session->get('news_keyword'));
+       $total_news = $repository->countAllNews($session->get('news_keyword'));
        $total_pages = ceil($total_news / $items_per_page);
        
-       return $this->render('AnytvMainBundle:News:index.html.twig', array('title'=>'News', 'news'=>$news, 'total_news'=>$total_news, 'page'=>$page, 'total_pages'=>$total_pages, 'form'=>$form->createView()));
+       return $this->render('AnytvMainBundle:News:index.html.twig', array('title'=>$translator->trans('News'), 'news'=>$news, 'total_news'=>$total_news, 'page'=>$page, 'total_pages'=>$total_pages, 'form'=>$form->createView()));
+    }
+    
+    public function resetAction()
+    {
+        $session = $this->get('session');
+        $session->set('news_keyword', null);
+        
+        return $this->redirect($this->generateUrl('news'));
     }
     
     public function addAction(Request $request)
     {
+      $translator = $this->get('translator');
       $news = new News();
       //$news->setTitle('Title here');
 
@@ -85,11 +95,12 @@ class NewsController extends Controller
       // novalidate attribute to the form tag or formnovalidate to the submit tag - to bypass html5 validation
       
       
-      return $this->render('AnytvMainBundle:News:add.html.twig', array('title'=>'Add News', 'form'=>$form->createView()));
+      return $this->render('AnytvMainBundle:News:add.html.twig', array('title'=>$translator->trans('Add News'), 'form'=>$form->createView()));
     }
     
     public function editAction(Request $request, $id)
     {
+      $translator = $this->get('translator');
       $repository = $this->getDoctrine()->getRepository('AnytvMainBundle:News');
       
       $news = $repository->find($id);
@@ -116,7 +127,7 @@ class NewsController extends Controller
         return $this->redirect($this->generateUrl('news'));
       }
 
-      return $this->render('AnytvMainBundle:News:edit.html.twig', array('title'=>'Edit News', 'form'=>$form->createView(), 'news'=>$news));
+      return $this->render('AnytvMainBundle:News:edit.html.twig', array('title'=>$translator->trans('Edit News'), 'form'=>$form->createView(), 'news'=>$news));
     }
     
     public function viewAction(Request $request, $id)

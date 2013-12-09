@@ -1,0 +1,141 @@
+<div id="pane1" class="tab-pane active">
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="f-lft v-mid">
+        <h3>{% trans %}Company Details{% endtrans %}</h3>
+      </div>
+            
+      {% if(mode == 'view') %}
+        <div class="f-rght mtop-10">
+          <a href="{{ path('profile_view', { 'tab': 'company', 'mode': 'edit' }) }}" title="{% trans %}edit{% endtrans %}" style="float: right" class="btn btn-default">{% trans %}edit{% endtrans %}</a>
+        </div>
+      {% endif %}
+      	
+      <div class="cl-20"></div>                                                                     
+      <hr>
+      
+      {% if(mode == 'view') %}
+      
+      <div id="user-prof-name">
+        <label>{% trans %}Name{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ affiliate }}" disabled>
+	<div class="cl-20"></div>
+	<label>{% trans %}Address{% endtrans %}</label>					 										    
+	<input type="text" class="form-control input-lg" value="{{ affiliate.getFullAddress() }}" disabled>									
+      </div>
+      <div class="cl-20"></div> 										    									    							
+      <div id="user-prof-phone">
+        <label>
+          {% trans %}Phone{% endtrans %} 
+          <div class="input-group input-group-lg">										    
+	    <input type="text" class="form-control" value="{{ affiliate.phone }}" disabled>
+          </div>
+	</label>
+      </div> 
+      <div class="cl-20"></div>
+      <div id="user-prof-phone">
+        <label>
+          {% trans %}Fax{% endtrans %} 
+          <div class="input-group input-group-lg">										    
+	    <input type="text" class="form-control" value="{{ affiliate.fax }}" disabled>
+          </div>
+	</label>
+      </div> 
+      <div class="cl-20"></div>
+      {% if(affiliate.country) %}
+      <div id="user-prof-phone">
+      <label>
+        {% trans %}Country{% endtrans %} 
+        <div class="input-group input-group-lg">										    
+	  <input type="text" class="form-control" value="{{ affiliate.country }}" disabled>
+        </div>
+      </label>
+      </div> 
+      {% elseif(affiliate.other) %}
+      <div id="user-prof-phone">
+      <label>
+        {% trans %}Country{% endtrans %} 
+        <div class="input-group input-group-lg">										    
+	  <input type="text" class="form-control" value="{{ affiliate.other }}" disabled>
+        </div>
+      </label>
+      </div> 
+      {% endif %}
+      <div class="cl-20"></div>
+      <div id="user-prof-name">
+        <label>Paypal {% trans %}Email{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ affiliate.paypalEmail }}" disabled>
+	<div class="cl-20"></div>									
+      </div>
+      
+      {% elseif(mode == 'edit') %}
+      
+      <div id="form-row-style">
+          
+      {{ form_start(form, {'action': path('profile_view', { 'mode' : 'edit' }), 'method': 'POST'}) }}    
+      {{ form_errors(form) }}
+      {% if(affiliate.thumbnail) %}
+        <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_thumbnail') }}" alt="{{ affiliate.company }}" />
+      {% else %}
+        <img src="{{ asset('bundles/anytvdashboard/images/default-user-photo.png') }}">
+      {% endif %}
+       <div class="cl-20"></div>
+      {{ form_row(form.file, {'label': 'Photo'}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.company, {'attr': {'class': 'form-control input-lg'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.address1, {'attr': {'class': 'form-control input-lg'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.address2, {'attr': {'class': 'form-control input-lg'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.city, {'attr': {'class': 'form-control input-lg'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.country, {'attr': {'class': 'selectpicker', 'data-width': '100%' }}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.other, {'attr': {'class': 'form-control input-lg'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.zipcode, {'attr': {'class': 'form-control input-lg'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.phone, {'attr': {'class': 'form-control input-lg'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.fax, {'attr': {'class': 'form-control input-lg'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.paypalEmail, {'attr': {'class': 'form-control input-lg'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.save, {'attr': {'class': 'btn btn-default btn-lg'}}) }}
+         
+      {{ form_end(form) }}
+      </div>
+      
+      {% endif %}
+      
+    </div>
+    <div class="col-lg-4">
+      <div id="user-prof-img">
+        {% if(affiliate.thumbnail) %}
+          <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_detail') }}" alt="{{ affiliate }}" />
+        {% else %}
+          <img src="{{ asset('bundles/anytvdashboard/images/profile-default-lg.svg') }}">
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if(false) %}
+  
+  <h3>{{ affiliate }}<p>{% trans %}dashboard.tm ID{% endtrans %}: {{ affiliate.affiliateId }}</p></h3>
+  
+  
+  
+  
+{% endif %}
+                  
+            
+            
+                
+                
+      
+                 
+      
+                

@@ -1,0 +1,72 @@
+/* nav */
+.subnav-cllps {
+	position: relative;		
+	z-index: 99;
+	margin-top: 10px;
+}
+
+.subnav-cllps ul {
+	margin: 0;
+	padding: 0;
+}
+
+.subnav-cllps li {
+	margin: 0 5px 10px 0;
+	padding-right: 20px;
+	list-style: none;
+	display: inline-block;
+	border-left: 1px solid #LIGHTERCOLOR;
+    border-right: 1px solid #DARKERCOLOR;
+}
+
+.subnav-cllps a {
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #fff !important;
+	text-decoration: none;
+	text-shadow: 0px -1px 0px rgba(13, 63, 135, 1);	
+}
+
+.subnav-cllps a:hover {
+	border-radius: 0 !important;
+	background: none;
+	color: #fff !important;
+	text-decoration: underline;
+}
+
+.subnav-cllps .current a {
+	background: #999;
+	color: #fff;
+	border-radius: 5px;
+}
+
+/* right nav */
+.subnav-cllps.right ul {
+	text-align: right;
+}
+
+/* center nav */
+.subnav-cllps.center ul {
+	text-align: center;
+}
+
+/* TINY NAV*/
+
+/* styles for desktop */
+.tinynav { display: none }
+
+/* styles for mobile */
+@media screen and (max-width: 1024px) {
+    .tinynav { display: block }
+    #nav { display: none }
+}
+
+
+/********************** Section 2: Games Lists *******************/
+
+.db-lnks a {
+	text-shadow: 0px -1px 0px rgba(206, 88, 0, 1);	
+}
+
+

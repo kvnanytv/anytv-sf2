@@ -1,0 +1,88 @@
+{% extends 'AnytvDashboardBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title}}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+
+<div id="content">
+  <div id="dboard-wrap">   
+    <section class="sec-content-title">
+      <div class="container">
+        <div style="float: left;"><h3>{{ title|upper }}</h3></div>
+	<div style="float: right;">&nbsp;</div>
+      </div>
+    </section>
+      
+    <section class="db-slide-1">
+      <div class="container">
+        <div class="row">
+    
+      <div class="cl-20"></div>
+	  <hr>
+          <div class="table-responsive">
+	    <div class="offer-tbl-wrap">
+    
+
+    
+      <table class="table table-striped">                                                                        
+                <thead>
+        <tr>
+         <th>{% trans %}Question{% endtrans %}</th>
+         <th>{% trans %}Answer{% endtrans %}</th>
+       </tr>
+       </thead>
+                <tbody>
+       {% for faq in faqs %}
+         <tr>
+           <td><a href="{{ path('faq_edit', { 'id' : faq.id }) }}" title="{% trans %}Edit{% endtrans %}">{{ faq.question|raw }}</a></td>
+           <td>{{ faq.answer|raw }}</td>
+         </tr>
+       {% endfor %} 
+         </tbody>
+         
+         {% if (total_pages > 1) %}
+        <tfoot>
+	  <tr>
+	    <td class="al-cntr" colspan="8">
+	      <ul class="pagination">
+                  {% if(page > 1) %}
+          <li><a href="{{ path('faqs', {'page':(page-1)}) }}"  title="{{ (page-1) }}">&laquo;</a></li>
+        {% endif %}
+        {% for i in 1..total_pages if((page-i)|abs < 8) %}
+          {% if(page == i) %}
+            <li class="active"><span>{{ i }}<span class="sr-only">(current)</span></span></li>
+          {% else %}
+            <li><a href="{{ path('faqs', {'page':i}) }}" title="{{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if(page < total_pages) %}
+          <li><a href="{{ path('faqs', {'page':(page+1)}) }}" title="{{ (page+1) }}">&raquo;</a></li>
+        {% endif %}
+        </ul>
+        </td>
+        </tr>
+      </tfoot>
+      {% endif %}
+         
+      </table>
+       
+      
+          
+       </div>
+						</div>
+					</div>
+				</div>
+
+			</section>
+
+		</div>
+	</div>
+
+    {{ parent() }}
+    
+        
+    
+{% endblock %}

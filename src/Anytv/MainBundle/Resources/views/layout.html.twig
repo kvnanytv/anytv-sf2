@@ -1,14 +1,35 @@
 {% extends '::base.html.twig' %}
 
-{% block title 'Any.TV' %}
-
+{% block header_tag %}
+  <div class="alert alert-dismissable alert-info any-notif">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <strong><a href="http://v2.any.tv" title="{% trans %}previous any.TV website{% endtrans %}" target="_blank">{% trans %}Miss the previous any.TV website? Click here.{% endtrans %}</a></strong>
+  </div> 
+  <header>
+{% endblock %}
+                    
 {% block submenu %}
-<div id="sub_menu">
-  <ul>
-    <li><a href="{{ path('news') }}" title="News">News</a></li>
-    <li><a href="{{ path('news_category') }}" title="News Categories">News Categories</a></li>
-  </ul>
-</div>    
+<div id="sub-nav">
+<div class="container">              
+<nav class="subnav-cllps clr-black">       
+
+<ul id="nav" class="nav_menu">
+  <li><a href="{{ path('staff') }}" title="{% trans %}Join our staff!{% endtrans %}" style="font-weight:normal">{% trans %}Join our staff!{% endtrans %}</a></li>
+  <li><a href="{{ path('faq') }}" title="{% trans %}FAQ{% endtrans %}">{% trans %}FAQ{% endtrans %}</a></li>
+  <li><a href="{{ path('about') }}" title="{% trans %}What is any.TV?{% endtrans %}" style="font-weight:normal">{% trans %}What is any.TV?{% endtrans %}</a></li>
+  <li><a href="{{ path('branding_kit') }}" title="{% trans %}Branding Kit{% endtrans %}" style="font-weight:normal">{% trans %}Branding Kit{% endtrans %}</a></li>
+  <li><a href="http://www.games.tm" target="_blank" title="{% trans %}Games List{% endtrans %}" style="font-weight:normal">{% trans %}Games List{% endtrans %}</a></li>
+  {% if(false) %}
+  <li><a href="{{ path('live_stream_handbook') }}" title="{% trans %}Live Stream Handbook{% endtrans %}" style="font-weight:normal">{% trans %}Live Stream Handbook{% endtrans %}</a></li>
+  <li><a href="{{ path('recruiter_handbook') }}" title="{% trans %}Recruiter Handbook{% endtrans %}" style="font-weight:normal">{% trans %}Recruiter Handbook{% endtrans %}</a></li>
+  {% endif %}
+  <li><a href="{{ path('join_our_twitch_team') }}" title="{% trans %}Join our Twitch Team!{% endtrans %}" style="font-weight:normal">{% trans %}Join our Twitch Team!{% endtrans %}</a></li>
+  <li><a href="{{ path('upload') }}" title="{% trans %}Submit your videos!{% endtrans %}" style="font-weight:normal">{% trans %}Submit your videos!{% endtrans %}</a></li>
+</ul>
+
+</nav>
+</div>
+</div>
 {% endblock %}
 
 

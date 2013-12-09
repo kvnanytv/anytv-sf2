@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div id="game-det-title">
+      <h3 class="modal-title">{{ video.affiliate|raw }} - {{ video.offer }}</h3>								
+    </div>
+    <div style="padding-left:10px">
+      <iframe width="560" height="315" src="//www.youtube.com/embed/{{ video_id }}?rel=0&html5=1&autoplay=1" frameborder="0" allowfullscreen></iframe>	       
+    </div>							
+    <div class="pdd-20">
+      <div id="game-det-prev">
+        <div class="row">
+	  <div class="col-lg-20" style="padding-left:10px">
+            {% if(false) %}
+              <a href="{{ video.url }}" target="_blank">{{ video.url }}</a>
+            {% else %}
+              <div id="youtube-video-stats-graph-block">
+               {{ render(controller('AnytvDashboardBundle:YoutubeVideo:videoGraph', {'id': video.id})) }}
+              </div>
+            {% endif %}
+          </div>		
+	</div>
+      </div>
+      <div class="cl-20"></div>							
+      <div id="game-det-desc">
+      </div>
+      <div class="cl-20"></div>	
+    </div>
+  </div>					
+</div>
+

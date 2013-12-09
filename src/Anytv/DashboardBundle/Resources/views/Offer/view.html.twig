@@ -1,0 +1,123 @@
+{% extends 'AnytvDashboardBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title}}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+ 
+<div id="content">
+  <div id="dboard-wrap">   
+    <section class="sec-content-title">
+      <div class="container">
+        <div style="float: left;"><h3>{{ title }} ({{ offer.offerId }}) - {{ offer_status }}</h3></div>
+	<div style="float: right;"><em><a href="{{ path('offer_edit', { 'id' : offer.id }) }}" class="btn btn-default" title="{% trans %}Edit{% endtrans %}">{% trans %}edit{% endtrans %}</a></em></div>
+      </div>
+    </section>
+      
+    <section class="db-slide-1">
+      <div class="container">
+        <div class="row">
+            
+            <div class="cl-20"></div>                                                                     
+      
+      <div style="margin-bottom:20px"><a href="{{ path('offer_hasoffer_update', { 'id' : offer.id }) }}" class="btn btn-default" title="{% trans %}Update from Hasoffers{% endtrans %}">{% trans %}Update from Hasoffers{% endtrans %}</a></div>
+    <div id="user-prof-name">
+        <label>{% trans %}Description{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ offer.description }}" disabled>
+	<div class="cl-20"></div>
+	{% if(offer.advertiser) %}
+          <label>{% trans %}Advertiser{% endtrans %}</label>
+          <a href="{{ path('advertiser_view', { 'id' : offer.advertiser.id }) }}" title="{{ offer.advertiser.company }}">{{ offer.advertiser.company }}</a>
+          <div class="cl-20"></div>
+        {% endif %}
+        <label>{% trans %}Offer URL{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ offer.offerUrl }}" disabled>
+	<div class="cl-20"></div>
+        <label>{% trans %}Preview URL{% endtrans %}</label>
+	<a href="{{ offer.previewUrl }}" target="_blank">{{ offer.previewUrl }}</a>
+	<div class="cl-20"></div>
+        <label>{% trans %}Expiration date{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ offer.getExpirationDateAsString() }}" disabled>
+    </div>
+    
+     {% if(offer_groups|length) %}
+      <div class="cl-20"></div>
+      <hr>
+        <h2>Offer Groups:</h2>
+          <div class="table-responsive">
+	    <div class="offer-tbl-wrap">
+	      <table class="table table-striped">                                                                        
+                <thead>
+        <tr>
+         <th>{% trans %}Name{% endtrans %}</th>
+       </tr>
+        </thead>
+        <tbody>
+        
+        {% for offer_group in offer_groups %}
+            <tr>
+                <td><a href="{{ path('offer_group_view', { 'id' : offer_group.id }) }}" title="{{ offer_group }}">{{ offer_group }}</a></td>
+            </tr>
+          {% endfor %}
+            
+            </tbody>
+        </table>
+                </div>
+              </div>
+      {% endif %}
+ 
+      {% if(offer_categories|length) %}
+      <div class="cl-20"></div>
+      <hr>
+        <h2>Categories:</h2>
+          <div class="table-responsive">
+	    <div class="offer-tbl-wrap">
+	      <table class="table table-striped">                                                                        
+                <thead>
+        <tr>
+         <th>{% trans %}Name{% endtrans %}</th>
+       </tr>
+        </thead>
+        <tbody>
+        
+        {% for offer_category in offer_categories %}
+            <tr>
+                <td>{{ offer_category.name }}</td>
+            </tr>
+          {% endfor %}
+            
+            </tbody>
+        </table>
+                </div>
+              </div>
+      {% endif %}
+        
+      <div id="offer-countries-block">
+        {{ render(controller('AnytvDashboardBundle:Country:listByOffer', {'offer_id': offer.id, 'page': 1})) }}
+      </div>
+      
+      
+        
+      
+     <div class="cl-20"></div>
+      </div>
+      
+		</div>
+
+			</section>
+
+		</div>
+	</div>
+
+    {{ parent() }}
+    
+        
+    
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script src="{{ asset('bundles/anytvdashboard/js/offers.js') }}"></script>
+{% endblock %}

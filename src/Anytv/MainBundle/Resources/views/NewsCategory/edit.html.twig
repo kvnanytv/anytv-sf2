@@ -1,0 +1,32 @@
+{% extends 'AnytvMainBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title}}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+    {{ parent() }}
+    <h1 class="title">{{ title }} - {{ news_category.name }}</h1>
+    
+    <p>&nbsp;</p>
+
+    <div class="symfony-blocks-welcome">
+       
+       {{ form_start(form, {'action': path('news_category_edit', { 'id' : news_category.id }), 'method': 'POST'}) }}
+          
+         {{ form_errors(form) }}
+        
+         {{ form_row(form.name) }}
+         {{ form_row(form.description) }}
+         
+       {{ form_end(form) }}
+       
+        
+    </div>
+
+    <div class="symfony-blocks-help">
+        
+       
+    </div>
+{% endblock %}

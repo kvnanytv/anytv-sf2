@@ -1,0 +1,142 @@
+{% if(aryRange|length) %}
+<script type="text/javascript">
+  var data = new google.visualization.DataTable();
+  data.addColumn('string','{%trans%}Time{%endtrans%}');
+  data.addColumn('number','{% trans %}Clicks{% endtrans %}');
+</script>
+{% for clicks in aryRange %}
+  <script type="text/javascript">
+    data.addRows([
+      ['', {{ clicks }}]
+    ]);
+  </script>
+{% endfor %}
+{% endif %}
+<div id="pane1" class="tab-pane active">
+  <div id="user-content-offers">
+    <a href="{{ path('profile_traffic_referrals_export_csv') }}"  class="btn btn-default btn-lg" style="float:right;clear:both" title="{% trans %}Export To CSV{% endtrans %}">{% trans %}Export To CSV{% endtrans %}</a>
+    {{ form_start(form, {'action': path('profile_traffic_referrals'), 'method': 'POST' }) }}
+      <div class="form-group">
+        {{ form_label(form.traffic_referral_category) }}
+        {{ form_widget(form.traffic_referral_category, {'attr': {'class': 'selectpicker', 'onchange':"submitForm(this.form, this.form.action)"}}) }}
+      </div>
+      <div class="form-group">    
+        {{ form_label(form.traffic_referral_start_date) }}
+        {{ form_widget(form.traffic_referral_start_date, { 'attr': { 'style': 'width:20%', 'onchange':"submitForm(this.form, this.form.action)" }}) }}
+        {{ form_label(form.traffic_referral_end_date) }}
+        {{ form_widget(form.traffic_referral_end_date, { 'attr': { 'style': 'width:20%', 'onchange':"submitForm(this.form, this.form.action)" }}) }}
+        
+      </div>
+    {{ form_end(form) }}
+      
+      
+      
+      <script type="text/javascript">
+        $(document).ready(function() {
+          $('.date').datepicker({ dateFormat: 'yy-mm-dd' })
+        });
+      </script>
+      
+      {% if(aryRange|length) %}
+        <div id="chart_div" style="width:100%;height:auto"></div>
+      {% endif %}
+      
+    <div class="search-btns">				
+      
+        
+      
+	  
+	
+         <div class="rfrsh-wrap">
+     
+            
+    </div>
+      														
+    </div>
+    
+    
+    
+          
+    
+  </div>
+  <div class="cl-20"></div>
+  <div class="progress progress-striped active" id="profile-tabs-progress-bar" style="display:none">
+    <div class="progress-bar"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+  </div>												
+  <div class="table-responsive" id="profile-tab-results">
+    <div class="offer-tbl-wrap">
+      {% if(traffic_referrals) %}
+      <table class="table table-striped">							
+        <thead>
+          <tr>
+            <th>{% trans %}Time{% endtrans %}</th>
+            <th>{% trans %}Offer{% endtrans %}</th>
+	    <th>{% trans %}URL{% endtrans %}</th>
+            <th>{% trans %}Clicks{% endtrans %}</th>
+            <th>{% trans %}Conversions{% endtrans %}</th>
+          </tr>
+	</thead>								
+        <tbody>
+          {% for traffic_referral in traffic_referrals %}
+	  <tr>
+            <td>{{ traffic_referral.getDateAsString() }}</td>
+            <td>{{ traffic_referral.offer }}</td>
+            <td><a href="{{ traffic_referral.url }}" target="_blank" title="{{ traffic_referral.url }}">{{ traffic_referral.url|slice(0, 30) }}...</a></td>
+            <td>{{ traffic_referral.clicks }}</td>
+            <td>{{ traffic_referral.conversions }}</td>
+	  </tr>
+          {% endfor %}
+          {% if (total_pages > 1) %}
+            <tfoot>
+            <tr>
+	    <td class="al-cntr" colspan="6">
+	    <ul class="pagination">
+            {% if(page > 1) %}
+              <li><a href="javascript:void(0)" onclick="showTab('{{ path('profile_traffic_referrals', {'page':(page-1)}) }}');" title="{{ (page-1) }}">&laquo;</a></li>
+            {% endif %}
+            {% for i in 1..total_pages if((page-i)|abs < 8) %}
+              {% if(page == i) %}
+                <li class="active"><span>{{ i }}<span class="sr-only">(current)</span></span></li>
+              {% else %}
+                <li><a href="javascript:void(0)" onclick="showTab('{{ path('profile_traffic_referrals', {'page':i}) }}');" title="{{ i }}">{{ i }}</a></li>
+              {% endif %}
+            {% endfor %}
+            {% if(page < total_pages) %}
+              <li><a href="javascript:void(0)" onclick="showTab('{{ path('profile_traffic_referrals', {'page':(page+1)}) }}');" title="{{ (page+1) }}">&raquo;</a></li>
+            {% endif %}
+            </ul>
+            </ul>
+            </td>                                               
+            </tr>
+            </tfoot>    
+          {% endif %}
+	</tbody>
+      </table>
+      {% endif %}
+    </div>
+  </div>				    	
+</div>
+
+{% if(aryRange|length) %}
+<script type="text/javascript">
+  $(document).ready(
+    function()
+    { 
+      drawChart('', '{% trans %}Clicks{% endtrans %}', '{%trans%}Time{%endtrans%}', data, {{ max_clicks }});    
+    }
+  );    
+</script>
+{% endif %}
+
+			
+
+
+			
+			
+		
+		
+
+		
+		
+						
+					

@@ -12,9 +12,6 @@ parameters:
     hasoffers.api_format: json
     hasoffers.api_service: HasOffers
     hasoffers.api_version: 2
-    hasoffers.api_network_id: mmotm
-    hasoffers.api_network_token: NETjE4MoLg7NarETCDruHecVmgLHbN
-    
 
 services:
     hasoffers:

@@ -1,0 +1,29 @@
+{% if(aryRange|length) %}
+<script type="text/javascript">
+  var data = new google.visualization.DataTable();
+  data.addColumn('string','{%trans%}Time{%endtrans%}');
+  data.addColumn('number','{% trans %}Clicks{% endtrans %}');
+</script>
+{% for clicks in aryRange %}
+  <script type="text/javascript">
+    data.addRows([
+      ['', {{ clicks }}]
+    ]);
+  </script>
+{% endfor %}
+{% endif %}
+
+{% if(aryRange|length) %}
+  <div id="chart_div" style="width:100%;height:auto"></div>
+{% endif %}
+  
+  {% if(aryRange|length) %}
+<script type="text/javascript">
+  $(document).ready(
+    function()
+    {
+      drawChart('', '{% trans %}Clicks{% endtrans %}', '{%trans%}Time{%endtrans%}', data, {{ max_clicks }});    
+    }
+  );    
+</script>
+{% endif %}

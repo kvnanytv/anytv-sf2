@@ -1,0 +1,239 @@
+'Hi %name%': 你好 %name%
+'Home': 首頁
+'News': 最新消息
+'Add News': 新增 最新消息
+'Category': 分類
+'News Categories': 最新消息 分類
+'Add News Category': 新增 最新消息 分類
+'Edit News Category': 編輯 最新消息 分類
+'search': 搜尋
+'Believe in you': 相信自已
+'Title': 職稱
+'Title:': '職稱:'
+'Save': 儲存
+'Edit News': 編輯 最新消息
+'Name': 姓名
+'Advertiser': 廣告商
+'Advertisers': 廣告商
+'Edit Advertiser': 編輯 廣告商
+'Offer': 供應選項
+'Offers': 供應選項
+'Edit Offer': 編輯 供應
+'Affiliate': 用戶
+'Affiliates': 用戶
+'Traffic Referrals': 介紹流量
+'Company': 公司
+'Address': 地址
+'Address1': 地址1
+'Address2': 地址2
+'Address 1: *': '地址1: *'
+'Address 2:': '地址2:'
+'City': 城市
+'City: *': '城市: *'
+'Region': 行政區
+'Country': 國家
+'Country: *': '國家: *'
+'Country (other): *': '國家 (其它): *'
+'Countries': 國家
+'Affiliate country': 國家
+'Status': 感情狀態
+'Date Added': 新增日期
+'Date Modified': 修改日期
+'Date Joined': 註冊日期
+'Other': 其它
+'Zipcode': 郵遞區號
+'Zipcode: *': '郵遞區號: *'
+'Phone': 電話號碼
+'Phone: *': '電話號碼: *'
+'Fax': 傳真
+'Website': 網站
+'active': 供應中
+'paused': 暫停
+'pending': 回覆中
+'expired': 過期
+'deleted': 刪除的
+'blocked': 封鎖的
+'rejected': 拒絕的
+'Email': 郵件信箱
+'Email: *': '郵件信箱: *'
+'Mobile': 手機
+'edit': 編輯
+'Edit': 編輯
+'First name': 名字
+'First name: *': '名字: *'
+'Last name': 姓
+'Last name: *': '姓: *'
+'File': 檔案
+'Cell phone': 手機
+'Browse': 搜尋
+'view': 觀看次數
+'View': 觀看次數
+'preview': 預覽
+'Preview': 預覽
+'Description': 簡要
+'Excerpt': 節選片段
+'Body': 內文
+'Views': 觀看次數
+'Comments': 評論
+'Thumbnail': 縮圖
+'Add': 新增
+'All': 全部
+'dashboard.tm ID': 資訊介面板 身分
+'My Profile': 我的檔案
+"You are signed in as": 已登入你的帳號
+'Sign out': 登出
+'Login': 登入
+'Sign in': 登入
+'FAQ': 問與答
+'A new kind of YouTube Network': 一個全新的YouTube社群網
+'Don’t unpartner from your YouTube Network': 可同時和其他的YouTube平台合作
+'Join any.TV': 加入any.TV
+'Dashboard': 資訊介面板
+'Dashboard.tm': 資訊介面板.tm
+'dashboard': 資訊介面板
+'Password': 密碼
+'Password: *': '密碼: *'
+'Confirm Password': '確認密碼'
+'New Password': 新密码
+'Confirm Password: *': '確認密碼: *'
+'Forgot Password?': 忘記密碼?
+'Password successfully changed.': 成功更改密码。
+'part of the anyTV family': any.TV 家族成員之一
+"Don't have an account yet?": 還沒有帳號嗎?
+'Copyright 2013 any.TV Limited | All Rights Reserved': 2013年any.TV有限公司版權所有
+'What is any.TV?': 什麼是any.TV?
+'Branding Kit': any.TV品牌套組
+'Games List': 遊戲清單
+'Live Stream Handbook': 實況手冊
+'Recruiter Handbook': 招募手冊
+'Join our Twitch Team!': 加入我們的Twitch圑隊
+'Staff': any.TV員工
+'Games': 遊戲
+'Payout': 支付
+'Privacy Policy': 穩私權
+'View our': 查看公司
+'Marketing': 行銷
+'Partnership': 合作關係
+'Payments': 付款
+'Partners': 合作伙伴
+'Play Now Link': PlayNow 連結網址
+'PlayNow Link': PlayNow 連結網址
+'Get play now link': 取得PlayNow 連結網址
+'Get PlayNow link': 取得PlayNow 連結網址
+'Get your PlayNow link': 取得PlayNow 連結網址
+'CREATE AN ACCOUNT': 建立一個新帳號
+'Create Account': 建立一個新帳號
+'Logging you in securely': 登入中
+'My Offers': 我們的供應
+'Browse Offers': 瀏覽供應
+'Search Offers': 搜尋供應
+'Go!': Go!
+'Company Details': 公司詳情
+'User Details': 用戶資訊
+'Affiliate Sign Up': 用戶註冊
+'Authenticating': 驗證中
+'Invalid Authorization': 驗證無效
+'Account is not active.': 帳號無法使用
+'Refer-a-Friend link': '"介紹朋友"連結網址'
+'Your Refer-a-Friend link': '"介紹朋友"連結網址'
+'Copy Link': 複製連結
+'close': 關閉
+'My Videos': 我的影片
+'Chinese': 中文
+'URL': 預覽網址
+'Preview URL': 預覽網址
+'Offer Groups': 供應組群
+'Photo': 照片
+'Company / Name: *': '公司 / 姓名: *' 
+'Terms & Conditions': 條件和規則
+'I agree to the': 我同意所有的
+'Not Listed': 沒有在選單中
+'Password should be between 4 and 16 characters.': 密碼請設定在4到16個字數內。
+'E-mail Address already exists.': 此信箱已存在
+'Country is required.': 國家必填
+'Passwords do not match.': 密碼不正確
+'City is required.': 城市必填
+'Address 1 is required.': 地址1必填
+'Company / Name is required.': 公司/名字 必填
+'Zipcode is required.': 郵地區號必填
+'Phone is required.': 電話必填
+'First Name is required.': 名字必填
+'Last Name is required.': 姓氏必填
+'Learn More': 了解更多 
+'FAQ Spreadsheet': 問與答表單
+'Reports': 報告
+'George is Back!': George 回來了!
+'As promised.': 如約定的。
+'I am the ex-President and founder of TGN, my old company that I sold to BroadbandTV in 2012. It was time for something new.': '我是TGN的前總裁和創辦人。在2012年我將TGN賣給了BroadbandTV，並開始這新的公司。'
+'Will you <b>help me</b> build any.TV together?': 你想<b>幫我</b>一起建立any.TV嗎?
+'Help George': 幫助George
+'Do Not Unpartner!': 不需要停止合作關係!
+'Really.': 是真的。
+'You do not need to unpartner from your current Network to join any.TV.': 不需要和你正在合作的公司(所有YouTube上的平台)停止關係，現在就可以加入any.TV!
+'Why?': 為什麼?
+'Because we <b>don’t</b> partner channels.': 因為我們<b>不</b> 和頻道簽約。
+'10% Lifetime Bonus!': 10%的終身獎金!
+'Yes, we mean forever.': 是的! 我們指的是永遠。
+'any.TV pays you a 10% bonus of everything your referrals make, our way of saying “Thank You” for recommending any.TV to your friends and partners!': '只要你推薦any.TV給你的朋友，any.TV將支付你額外10%的獎金。這是我們為了向你表答感謝之意!'
+'This is <b>not</b> a pyramid scheme.': 這<b>不是</b>直銷!
+'Recover Lost Password': 密碼復原
+'To request resetting this account password, please fill out the form below.': 如需重新設定此帳號密碼，煩請填寫以下表格。
+'No user account was found for the address given.': 提供的地址無法找到此使用者帳戶。
+'An error has occurred, please try again.': 發生錯誤，煩請再試一次。
+'Your password has been changed and emailed to the associated email address. Please check your E-mail inbox for further instructions.': '你的密碼已變更成功，請至你的信箱查看。'
+'Hello': 你好
+'Your password has been changed. To login to your account, use the following login credentials:': '你的密碼已變更成功。在登入你的帳號前，請先使用以下的登入憑據:'
+'Sincerely,': '僅致問候，'
+'This e-mail has been sent from an e-mail address that is not monitored.': 這封信是從一個沒有被監控的信箱內寄出的。
+'Please do not reply to this message. We are unable to respond to any replies.': 請不要回覆此信件。謝謝!
+'Referrals': 介紹的朋友
+'Conversions': 成功交易量
+'Amount': 金額
+'Time': 時間
+'Conversion IP': 成功交易IP地址
+'Transaction ID': 交易身份
+'Lookup Account': 檢視帳戶
+'Pages': 頁面
+'Paypal email': Paypal 郵件信箱
+'Get paid $5 per video submitted to any.TV!': 只要提交你的影片給any.TV，將可賺取每片5美金的酬勞!
+'Yes': 是。
+'No': 不是。
+"Your YouTube Channels (one on each line, write None if you don't have one)": '你的YouTube頻道 (請分別把你的頻道放在各行列中，如果沒有頻道請註明: None)'
+"Your YouTube Channels (one on each line, write None if you don't have one): *": '你的YouTube頻道 (請分別把你的頻道放在各行列中，如果沒有頻道請註明: None): *'
+'YouTube Network (who are you partnered with on YouTube, write None if not partnered)': 'YouTub群網 (你目前和那間YouTube公司合作，如: YouTube, Machinima, Maker... 如果沒有合作的對像，請註明: None)'
+'YouTube Network (who are you partnered with on YouTube, write None if not partnered): *': 'YouTub群網 (你目前和那間YouTube公司合作，如: YouTube, Machinima, Maker... 如果沒有合作的對像，請註明: None): *'
+'YouTube Network (who are you partnered with on YouTube): *': 'YouTub群網 (你目前和那間YouTube公司合作，如: YouTube, Machinima, Maker...): *'
+'YouTube Network (other) write None if not partnered: *': 'YouTub群網 (如果沒有合作的對像，請註明: None): *'
+'Do you use Twitch or live stream?': '你使用Twitch或其他實況的平台嗎?'
+'Do you use Twitch or live stream?: *': '你使用Twitch或其他實況的平台嗎?: *'
+'Link to your best video? (write None if you never made a video)': '請分享你最好的影片連結 (如果你沒有自已的影片，請註明: None)'
+'Link to your best video? (write None if you never made a video): *': '請分享你最好的影片連結 (如果你沒有自已的影片，請註明: None): *'
+'Skype Name (write None if you do not use Skype)': 'Skype的帳戶名(如果沒有，請註明: None)'
+'Skype Name (write None if you do not use Skype): *': 'Skype的帳戶名(如果沒有，請註明: None): *'
+'Miss the old dashboard? Click': '想念舊的資訊介面板嗎? 請按'
+'here': 這裡
+'Miss the old dashboard? Click here.': '想念舊的資訊介面板嗎? 請按這裡.'
+'Miss the previous any.TV website? Click here.': '小姐以前的any.TV网站？点击这里。'
+'Old Dashboard': 舊版資訊介面板
+'previous any.TV website': '以前any.TV网站'
+'Referral List': 介紹朋友清單
+'Signup Answers': 登入答案
+'Join our staff!': 加入我們的團隊!
+'Submit your videos!': 提供你的影片!
+'Your commission': 您的佣金
+'Their earnings': 他们的收入
+'Hide $0 earnings': 隐藏0美元盈利
+'From': 从
+'To': 至
+'Export To CSV': 导出到CSV
+'Your commission rate': 您的佣金率
+'Clicks': 点击
+'My Traffic': 我的流量
+'Search Games': 搜尋遊戲
+'No matches found.': 未找到匹配结果。 
+'Top Youtube Videos': 热门Youtube视频
+'Video': 视频
+'Videos': 视频
+'Top Affiliates': 热门伙伴
+'Top Referrers': 顶级推荐
+'Referral Count': 复诊次数

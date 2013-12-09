@@ -1,0 +1,124 @@
+{% extends 'AnytvDashboardBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title}}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+
+ <div id="content">
+  <div id="dboard-wrap">   
+    <section class="sec-content-title">
+      <div class="container">
+        <div style="float: left;"><h3>{{ title|upper }}</h3></div>
+	<div style="float: right;">&nbsp;</div>
+      </div>
+    </section>
+      
+    <section class="db-slide-1">
+      <div class="container">
+        <div class="row">
+    
+      {% if(app.session.get('offer_group_keyword')) %}
+        <a href="{{ path('offer_groups_reset') }}">reset</a>
+      {% endif %}
+      {{ form_start(form, {'action': path('offer_groups'), 'method': 'POST', 'class':'form-inline', 'role':'form'}) }}
+        <div class="input-group input-group-lg">
+          {{ form_widget(form.offer_group_keyword, {'attr': {'class': 'form-control input-lg', 'placeholder':'Search Offer Groups'}}) }}
+          <span class="input-group-btn">
+            {{ form_widget(form.offer_group_search, {'attr': {'class': 'btn btn-default btn-srch icon-search'}}) }}
+	  </span>
+        </div>
+        
+        <div class="f-lft">
+	  <div class="form-group">
+            					
+	  {{ form_label(form.offer_group_status) }}
+            
+          {{ form_widget(form.offer_group_status, {'attr': {'class': 'selectpicker'}}) }}
+	  </div>						
+	</div>
+            
+       {{ form_end(form) }}
+    
+
+    <div class="cl-20"></div>
+	  <hr>
+          <div class="table-responsive">
+	    <div class="offer-tbl-wrap">
+	      <table class="table table-striped">                                                                        
+                <thead>
+        <tr>
+         <th>{% trans %}ID{% endtrans %}</th>
+         <th>{% trans %}Name{% endtrans %}</th>
+         <th>{% trans %}Status{% endtrans %}</th>
+         <th>{% trans %}Offer Count{% endtrans %}</th>
+         <th>{% trans %}Image{% endtrans %}</th>
+       </tr>
+                </thead>
+       <tbody>
+       {% for offer_group in offer_groups %}
+         <tr>
+           <td>{{ offer_group.offerGroupId }}</td>
+           <td><a href="{{ path('offer_group_view', { 'id' : offer_group.id }) }}" title="{{ offer_group }}">{{ offer_group }}</a></td>
+           <td>{{ offer_group.status }}</a></td>
+           <td>{{ offer_group.offerCount }}</a></td>
+           <td>
+           {% if(offer_group.thumbnail) %}
+             <img src="{{ asset(offer_group.getWebPath()) | apply_filter('offer_group_thumbnail') }}" alt="{{ offer_group }}"/>
+           {% else %}
+             &nbsp;
+           {% endif %}
+           </td>
+         </tr>
+       {% endfor %} 
+         </tbody>
+         
+      {% if (total_pages > 1) %}
+        <tfoot>
+	  <tr>
+	    <td class="al-cntr" colspan="8">
+	      <ul class="pagination">
+        {% for i in 1..total_pages %}
+          {% if(page == i) %}
+            <li class="active"><span>{{ i }}<span class="sr-only">(current)</span></span></li>
+          {% else %}
+            <li><a href="{{ path('offer_groups', {'page':i}) }}" title="{{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        </ul>
+        </td>
+        </tr>
+      </tfoot>
+      {% endif %}
+      </table>
+              
+            </div>
+						</div>
+					</div>
+				</div>
+
+			</section>
+
+		</div>
+	</div>
+
+    {{ parent() }}
+    
+        
+    
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script type="text/javascript">
+    $(window).on('load', function () {
+
+        $('.selectpicker').selectpicker({
+            'selectedText': ''
+        });
+
+    });
+</script>
+{% endblock %}

@@ -1,26 +1,104 @@
 {% extends '::base.html.twig' %}
 
-{% block title 'Any.TV Dashboard' %}
+{% block title %}{{ parent() }} - {% trans %}Dashboard{% endtrans %}{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link href="{{ asset('bundles/anytvdashboard/css/dashboard-menu.css') }}" rel="stylesheet" />
+  <link href="{{ asset('bundles/anytvdashboard/css/bootstrap-select.css') }}" rel="stylesheet" />
+{% endblock %}
         
 {% block favicon %}
   <link rel="icon" type="image/x-icon" href="{{ asset('favicondash.ico') }}" />
 {% endblock %}
   
+{% block body %}
+  <body class="dashbrd-bg">
+{% endblock %}
+          
+{% block header_tag %}
+  <header id="top-navigation">
+{% endblock %}
+  
 {% block header %}
-<a href="{{ path('anytv_dashboard_homepage') }}" title="Any.TV Dashboard">
-  <img src="{{ asset('bundles/anytvdashboard/images/logo.png') }}" alt="Any.TV Dashboard" />
-</a>
+  <a href="{{ path('anytv_dashboard_homepage') }}" title="Any.TV Dashboard" class="navbar-brand">
+    <img src="{{ asset('bundles/anytvdashboard/images/anytv-dashboard-logo.png') }}" alt="Any.TV Dashboard" />
+  </a>
 {% endblock %}
   
 {% block submenu %}
-<div id="sub_menu">
-  <ul>
-    <li><a href="{{ path('offers') }}" title="Offers">Offers</a></li>
-    <li><a href="{{ path('traffic_referrals') }}" title="Offers">Traffic Referrals</a></li>
+<div id="sub-nav" class="dashbrd">
+<div class="container">
+<nav class="subnav-cllps db-lnks">
+  <ul id="nav" class="nav_menu">
+    <li style="color:#fff"><a href="http://v1.dashboard.tm" title="{% trans %}Old Dashboard{% endtrans %}" target="_blank">{% trans %}Miss the old dashboard? Click here.{% endtrans %}</a></li> 
+    <li style="float:right"><a href="{{ path('terms') }}" title="{% trans %}Terms & Conditions{% endtrans %}">{% trans %}Terms & Conditions{% endtrans %}</a></li> 
+    <li style="float:right"><a href="{{ path('privacy_policy') }}" title="{% trans %}Privacy Policy{% endtrans %}">{% trans %}Privacy Policy{% endtrans %}</a></li> 
+  {% if(app.user) %}
+    <li style="float:right"><a href="{{ path('profile_affiliates') }}" title="{% trans %}Affiliates{% endtrans %}">{% trans %}Affiliates{% endtrans %}</a></li>
+    <li style="float:right"><a href="{{ path('profile_videos') }}" title="{% trans %}Videos{% endtrans %}">{% trans %}Videos{% endtrans %}</a></li>
+    <li style="float:right"><a href="{{ path('profile_traffic') }}" title="{% trans %}My Traffic{% endtrans %}">{% trans %}My Traffic{% endtrans %}</a></li>
+    <li style="float:right"><a href="{{ path('profile_reports') }}" title="{% trans %}Reports{% endtrans %}">{% trans %}Reports{% endtrans %}</a></li>
+    <li style="float:right"><a href="{{ path('anytv_dashboard_homepage') }}" title="{% trans %}Offers{% endtrans %}">{% trans %}Offers{% endtrans %}</a></li>
+    <li style="float:right"><a href="{{ path('profile_view') }}" title="{% trans %}My Profile{% endtrans %}">{% trans %}My Profile{% endtrans %}</a></li>
+  {% else %}
+    <li style="float:right">
+    {% if(app.session.get('referral_id')) %}
+      <a href="{{ path('signup', { 'id': app.session.get('referral_id') }) }}" title="{% trans %}Create Account{% endtrans %}">{% trans %}Create Account{% endtrans %}</a>
+    {% else %}
+      <a href="{{ path('signup') }}" title="{% trans %}Create Account{% endtrans %}">{% trans %}Create Account{% endtrans %}</a>
+    {% endif %}
+    </li>
+  {% endif %}
   </ul>
-</div>    
+</nav>
+</div>
+</div>
+  
+{% if(app.user and (is_granted('ROLE_ADMIN') or is_granted('ROLE_EDITOR'))) %}
+<br>
+<div id="sub-nav" class="dashbrd">
+<div class="container">
+<nav class="subnav-cllps db-lnks">
+  <ul id="nav" class="nav_menu">
+    {% if(is_granted('ROLE_ADMIN')) %}
+    <li><a href="{{ path('advertisers') }}" title="{% trans %}Advertisers{% endtrans %}">{% trans %}Advertisers{% endtrans %}</a></li>
+    <li><a href="{{ path('offer_groups') }}" title="{% trans %}Offer Groups{% endtrans %}">{% trans %}Offer Groups{% endtrans %}</a></li>
+    <li><a href="{{ path('offers') }}" title="{% trans %}Offers{% endtrans %}">{% trans %}Offers{% endtrans %}</a></li>
+    <li><a href="{{ path('affiliates') }}" title="{% trans %}Affiliates{% endtrans %}">{% trans %}Affiliates{% endtrans %}</a></li>
+    <li><a href="{{ path('traffic_referrals') }}" title="{% trans %}Traffic Referrals{% endtrans %}">{% trans %}Traffic Referrals{% endtrans %}</a></li>
+    <li><a href="{{ path('countries') }}" title="{% trans %}Countries{% endtrans %}">{% trans %}Countries{% endtrans %}</a></li>
+    <li><a href="{{ path('referrals') }}" title="{% trans %}Referrals{% endtrans %}">{% trans %}Referrals{% endtrans %}</a></li>
+    <li><a href="{{ path('conversions') }}" title="{% trans %}Conversions{% endtrans %}">{% trans %}Conversions{% endtrans %}</a></li>
+    <li><a href="{{ path('signup_answers') }}" title="{% trans %}Signup Answers{% endtrans %}">{% trans %}Signup Answers{% endtrans %}</a></li>
+    {% endif %}
+  </ul>
+</nav>
+</div>
+</div>
+<div id="sub-nav" class="dashbrd">
+<div class="container">
+<nav class="subnav-cllps db-lnks">
+  <ul id="nav" class="nav_menu">
+    {% if(is_granted('ROLE_ADMIN')) %}
+    
+    {% endif %}
+    {% if(is_granted('ROLE_EDITOR')) %}
+    <li><a href="{{ path('faqs') }}" title="{% trans %}FAQ{% endtrans %}">{% trans %}FAQ{% endtrans %}</a></li>
+    <li><a href="{{ path('pages') }}" title="{% trans %}Pages{% endtrans %}">{% trans %}Pages{% endtrans %}</a></li>
+    {% endif %}
+  </ul>
+</nav>
+</div>
+</div>
+{% endif %}
 {% endblock %}
  
+{% block javascripts %}
+  {{ parent() }}
+  <script src="{{ asset('bundles/anytvdashboard/js/profile_tabs.js') }}"></script>
+  <script src="{{ asset('bundles/anytvdashboard/js/bootstrap-select.js') }}"></script>
+{% endblock %}
      
     
         

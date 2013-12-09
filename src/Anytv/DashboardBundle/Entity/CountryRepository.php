@@ -12,4 +12,105 @@ use Doctrine\ORM\EntityRepository;
  */
 class CountryRepository extends EntityRepository
 {
+    public function findAllCountries($page, $items_per_page, $order_by, $order, $keyword)
+    {
+        $first_result = ($items_per_page * ($page-1));
+                
+        $query = $this->createQueryBuilder('c')
+          ->where("c.name LIKE :keyword OR c.code LIKE :keyword")
+          ->setParameter('keyword', "%$keyword%")
+          ->setFirstResult($first_result)
+          ->setMaxResults($items_per_page)
+          ->orderBy('c.'.$order_by, $order)
+          ->getQuery();
+        
+        return $query->getResult();
+    }
+    
+    public function countAllCountries($keyword)
+    {    
+        $query = $this->createQueryBuilder('c')
+          ->select('count(c.id)')
+          ->where("c.name LIKE :keyword OR c.code LIKE :keyword")
+          ->setParameter('keyword', "%$keyword%")
+          ->getQuery();
+        
+        return $query->getSingleScalarResult();
+    }
+    
+    public function findCountriesFiltered($page, $items_per_page, $order_by, $order, $offer = null, $affiliate = null)
+    {
+        $first_result = ($items_per_page * ($page-1));
+        
+        $where = array();
+        $params = array();
+        
+        if($offer)
+        {
+          $where[] = "o IN (:offer)";
+          $params['offer'] = $offer;
+        }
+        
+        if($affiliate)
+        {
+          $where[] = ":affiliate IN c.affiliates";
+          $params['affiliate'] = $affiliate;
+        }
+        
+        $query = $this->createQueryBuilder('c');
+        
+        if($offer)
+        {
+          $query = $query->leftJoin('c.offers', 'o');  
+        }
+        
+        if($where)
+        {
+          $query = $query->where(implode(" AND ", $where))
+                         ->setParameters($params);
+        }
+          
+        $query = $query->setFirstResult($first_result)
+                       ->setMaxResults($items_per_page)
+                       ->orderBy('c.'.$order_by, $order)
+                       ->getQuery();
+        
+        return $query->getResult();
+    }
+    
+    public function countCountriesFiltered($offer = null, $affiliate = null)
+    {    
+        $where = array();
+        $params = array();
+        
+        if($offer)
+        {
+          $where[] = "o IN (:offer)";
+          $params['offer'] = $offer;
+        }
+        
+        if($affiliate)
+        {
+          $where[] = ":affiliate IN c.affiliates";
+          $params['affiliate'] = $affiliate;
+        }
+        
+        $query = $this->createQueryBuilder('c')
+                      ->select('count(c.id)');
+        
+        if($offer)
+        {
+          $query = $query->leftJoin('c.offers', 'o');  
+        }
+        
+        if($where)
+        {
+          $query = $query->where(implode(" AND ", $where))
+                         ->setParameters($params);
+        }
+        
+        $query = $query->getQuery();
+        
+        return $query->getSingleScalarResult();
+    }
 }

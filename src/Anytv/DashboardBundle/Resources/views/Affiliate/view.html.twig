@@ -1,0 +1,147 @@
+{% extends 'AnytvDashboardBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title}}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+
+<div id="content">
+  <div id="dboard-wrap">   
+    <section class="sec-content-title">
+      <div class="container">
+        <div style="float: left;"><h3>{{ title }}</h3></div>
+	<div style="float: right;">&nbsp;</div>
+      </div>
+    </section>
+      
+    <section class="db-slide-1">
+      <div class="container">
+        <div class="row">
+            
+            <div class="cl-20"></div>                                                                     
+      <hr>
+    
+    {% if(affiliate.thumbnail) %}
+      <img src="{{ asset(affiliate.getWebPath()) | apply_filter('profile_detail') }}" alt="{{ affiliate.company }}" />
+    {% endif %}
+    <hr>
+   <div id="user-prof-name">
+        <label>{% trans %}Address{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ affiliate.getFullAddress() }}" disabled>
+	<div class="cl-20"></div>
+	<label>{% trans %}Country{% endtrans %}</label>					 										    
+	{% if(affiliate.country) %}<a href="{{ path('country_view', { 'id' : affiliate.country.id }) }}" title="{% trans %}View{% endtrans %}">{{ affiliate.country.name }}</a>{% else %}&nbsp;{% endif %}
+        <div class="cl-20"></div>
+        {% if(affiliate.other) %}
+          <label>{% trans %}Other{% endtrans %}</label>
+	  <input type="text" class="form-control input-lg" value="{{ affiliate.other }}" disabled>
+          <div class="cl-20"></div>
+        {% endif %}
+        <label>{% trans %}Phone{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ affiliate.phone }}" disabled>
+        <div class="cl-20"></div>
+        <label>{% trans %}Fax{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ affiliate.fax }}" disabled>
+        <div class="cl-20"></div>
+        <label>{% trans %}Paypal Email{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ affiliate.paypalEmail }}" disabled>
+        <div class="cl-20"></div>
+        <label>{% trans %}Signup IP{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ affiliate.signupIp }}" disabled>
+        <div class="cl-20"></div>
+        <label>{% trans %}Referred by{% endtrans %}</label>
+	{% if(affiliate.referrer) %}
+          <a href="{{ path('affiliate_view', { 'id' : affiliate.referrer.id }) }}" title="View">{{ affiliate.referrer }}</a>
+        {% else %}
+          &nbsp;
+        {% endif %}
+        <div class="cl-20"></div>
+        <label>{% trans %}Join Date{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ affiliate.getDateAddedAsString() }}" disabled>
+        <div class="cl-20"></div>
+        <label>{% trans %}Last Login{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ affiliate.getLastLoginAsString() }}" disabled>
+      </div>
+      
+      
+            
+      {% if(affiliate_users) %}
+      <div class="cl-20"></div>
+      <hr>
+        <h2>Users:</h2>
+        
+        
+	  
+          <div class="table-responsive">
+	    <div class="offer-tbl-wrap">
+	      <table class="table table-striped">                                                                        
+                <thead>
+        <tr>
+         <th>{% trans %}Name{% endtrans %}</th>
+         <th>{% trans %}Email{% endtrans %}</th>
+         <th>{% trans %}Status{% endtrans %}</th>
+         
+       </tr>
+        </thead>
+        <tbody>
+        
+        
+          {% for affiliate_user in affiliate_users %}
+            <tr>
+              <td>
+              {% if(affiliate_user.getFullName()) %}
+                <a href="{{ path('affiliate_user_view', { 'id' : affiliate_user.id }) }}" title="View">{{ affiliate_user.getFullName() }}</a>
+              {% else %}
+                <a href="{{ path('affiliate_user_view', { 'id' : affiliate_user.id }) }}" title="View">{{ affiliate_user.email }}</a>
+              {% endif %}
+                  </td>
+              <td>
+              {{ affiliate_user.email }}
+              </td>
+              <td>{{ affiliate_user.status }}</td>
+              
+              
+            </tr>
+          {% endfor %}
+            
+            </tbody>
+        </table>
+                </div>
+              </div>
+      {% endif %}
+        
+      <div id="affiliate-referrals-block">
+        {{ render(controller('AnytvDashboardBundle:Affiliate:listReferredByAffiliate', {'affiliate_id': affiliate.id, 'page': 1})) }}
+      </div>
+        
+      <div id="affiliate-traffic-referrals-block">
+        {{ render(controller('AnytvDashboardBundle:TrafficReferral:listByAffiliate', {'affiliate_id': affiliate.id, 'page': 1})) }}
+      </div>
+        
+      <div id="affiliate-youtube-videos-block">
+        {{ render(controller('AnytvDashboardBundle:YoutubeVideo:listYoutubeVideosByAffiliate', {'affiliate_id': affiliate.id, 'page': 1})) }}
+      </div>
+      
+      <div class="cl-20"></div>
+      </div>
+      
+		</div>
+
+			</section>
+
+		</div>
+	</div>
+
+    {{ parent() }}
+    
+        
+    
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script src="{{ asset('bundles/anytvdashboard/js/affiliates.js') }}"></script>
+  <script src="{{ asset('bundles/anytvdashboard/js/traffic_referrals.js') }}"></script>
+{% endblock %}

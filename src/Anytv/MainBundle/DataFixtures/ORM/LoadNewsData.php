@@ -33,6 +33,186 @@ class LoadNewsData extends AbstractFixture implements OrderedFixtureInterface
                         'category'=>'Sports'
                        );
         
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
+        $news[] = array('title'=>'Welcome to Community.TM',
+                        'excerpt'=>'Welcome to the family!',
+                        'body'=>'Get Official News and Announcements here.',
+                        'category'=>'Sports'
+                       );
+        
         foreach($news as $news_element)
         {
           $news_item = new News();
@@ -44,9 +224,6 @@ class LoadNewsData extends AbstractFixture implements OrderedFixtureInterface
           {
             $news_item->setCategory($this->getReference('news_category_'.$news_element['category'])); 
           }
-          
-          $news_item->setViewCount(0);
-          $news_item->setCommentCount(0);
 
           $manager->persist($news_item);
         }

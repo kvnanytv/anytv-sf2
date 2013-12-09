@@ -1,0 +1,151 @@
+{% extends 'AnytvDashboardBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title }}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block submenu %}
+
+<div id="sub-nav" class="dashbrd">
+<div class="container">
+<nav class="subnav-cllps db-lnks">
+  <ul id="nav">
+    
+    <li><a href="{{ path('faq') }}" title="{% trans %}FAQ{% endtrans %}">{% trans %}FAQ{% endtrans %}</a></li>
+    <li><a href="{{ path('about') }}" title="{% trans %}What is any.TV?{% endtrans %}" style="font-weight:normal">{% trans %}What is any.TV?{% endtrans %}</a></li>
+  
+    <li style="float:right"><a href="{{ path('terms') }}" title="{% trans %}Terms & Conditions{% endtrans %}">{% trans %}Terms & Conditions{% endtrans %}</a></li> 
+    <li style="float:right"><a href="{{ path('privacy_policy') }}" title="{% trans %}Privacy Policy{% endtrans %}">{% trans %}Privacy Policy{% endtrans %}</a></li> 
+  
+  </ul>
+</nav>
+</div>
+</div>
+
+{% endblock %}
+
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+
+
+<section id="content">
+    <div class="container">
+      <div id="con-body" class="row">
+        <div class="col-lg-12 al-mid">
+          <h3>{{ title }}</h3>
+          <div class="cl-20"></div>
+        </div>
+        <div class="col-lg-3"> </div>
+        <div class="col-lg-6">        
+          <div class="panel panel-default lgin-panel">
+            <div class="panel-body">
+    
+      {% for error in errors %}
+        <div class="alert alert-danger alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <strong>{{ error }}</strong>
+        </div>
+      {% endfor %}
+          
+      {{ form_start(form, { 'action': path('signup', { 'id': id }), 'method': 'POST', 'class': 'form-signin' }) }}    
+      <div class="well">
+      {{ form_errors(form) }}
+      {{ form_row(form.company, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.address1, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.address2, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.city, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.country, {'attr': {'class': 'selectpicker', 'data-width': '100%', 'onchange': 'if(this.selectedIndex==252){$("#country_other").show("slow");}else{$("#country_other").hide("slow");};' }}) }}
+      <div class="cl-20"></div>
+      <div class="form_row" {% if(country_is_listed) %}style="display:none"{% endif %} id="country_other">
+        {{ form_label(form.country_other) }}
+        {{ form_errors(form.country_other) }}
+        {{ form_widget(form.country_other, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
+      </div>
+      <div class="cl-20"></div>
+      {{ form_row(form.zipcode, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.phone, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.email, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.password, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.confirm_password, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.first_name, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.last_name, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.title, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.youtube_channels, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.youtube_network_choice, {'attr': {'class': 'selectpicker', 'data-width': '100%', 'onchange': 'if(this.selectedIndex==18){$("#youtube_network_other").show("slow");}else{$("#youtube_network_other").hide("slow");};' }}) }}
+      <div class="cl-20"></div>
+      <div class="form_row" {% if((form_is_posted == false) or (form_is_posted and youtube_network_is_selected)) %}style="display:none"{% endif %} id="youtube_network_other">
+        {{ form_label(form.youtube_network) }}
+        {{ form_errors(form.youtube_network) }}
+        {{ form_widget(form.youtube_network, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
+      </div>
+      <div class="cl-20"></div>
+      {{ form_row(form.use_twitch_or_livestream, {'attr': {'class': 'selectpicker', 'data-width': '100%'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.youtube_best_video, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.skype_name, {'attr': {'class': 'form-control input-lg brdrrad-0'}}) }}
+      <hr>                
+      <div class="form_row">
+        <div class="term-con">
+          {{ form_widget(form.terms, {'attr': {'class': ''}}) }}
+          {% trans %}I agree to the{% endtrans %} <a href="{{ path('terms') }}" target="_blank">{% trans %}Terms & Conditions{% endtrans %}.</a>
+        </div>
+      </div>
+                
+      <div class="cl-20"></div>
+      {{ form_row(form.signup, {'attr': {'class': 'btn btn-lg btn-primary btn-block'}}) }}
+         
+      {{ form_end(form) }}
+      </div>
+                                            
+                                        
+					
+                                            
+                                            </div>
+				</div>
+			</div>
+        </div>
+			</div>
+		</section>
+
+
+    
+    	
+     
+     
+
+      
+
+      {{ parent() }}
+    
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script type="text/javascript">
+    $(window).on('load', function () {
+
+        $('.selectpicker').selectpicker({
+            'selectedText': ''
+        });
+
+    });
+</script>
+{% endblock %}
+     
+
+

@@ -1,0 +1,63 @@
+{% extends 'AnytvMainBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title }}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+    
+    
+    
+    	<div id="content">
+		<section class="sec-content-title">
+			<div class="container">
+				<h3>{{ title }}</h3>
+				<p>&nbsp;</p>
+				</div>			
+			</section>
+
+			<section class="sec-content">
+				<div class="container">
+
+					<div class="row">
+						<div class="cl-20"></div>
+						<div class="tabbable">
+                                                  {% if(faq_categories) %}                                
+                                                  <ul class="nav nav-tabs">
+                                                    <li class="active"><a href="javascript:void(0)" onclick="faqCategory('{{ path('faq_category') }}');" title="{% trans %}All{% endtrans %}" data-toggle="tab">{% trans %}All{% endtrans %}</a></li>
+                                                    {% for faq_category in faq_categories %}
+                                                      <li><a href="javascript:void(0)" onclick="faqCategory('{{ path('faq_category', { 'id': faq_category.id }) }}');" title="{{ faq_category }}" data-toggle="tab">{{ faq_category }}</a></li>
+                                                    {% endfor %} 
+                                                  </ul>
+                                                  {% endif %}
+							
+							<div class="tab-content" id="faqlist-block">
+							
+								
+                                                          {{ render(controller('AnytvMainBundle:Default:faqCategory')) }}
+								
+								
+								
+							</div>
+						</div>				
+					</div>
+
+				</div>	
+			</section>		
+
+		</div>
+     
+     
+
+      
+
+      {{ parent() }}
+    
+{% endblock %}
+     
+{% block javascripts %}
+  {{ parent() }}
+  <script src="{{ asset('bundles/anytvmain/js/faq.js') }}"></script>
+{% endblock %}
+

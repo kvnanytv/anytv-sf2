@@ -1,0 +1,85 @@
+{% extends 'AnytvDashboardBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title}}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+
+<div id="content">
+  <div id="dboard-wrap">   
+    <section class="sec-content-title">
+      <div class="container">
+        <div style="float: left;"><h3>{{ title }} - ({{ advertiser_status }})</h3></div>
+	<div style="float: right;">&nbsp;</div>
+      </div>
+    </section>
+      
+    <section class="db-slide-1">
+      <div class="container">
+        <div class="row">
+            
+            <div class="cl-20"></div>                                                                     
+      <hr>
+      
+      <div id="user-prof-name">
+        <label>{% trans %}Address{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ advertiser.address1 }}{{ advertiser.address2 }}" disabled>
+	<div class="cl-20"></div>
+        <label>{% trans %}City{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ advertiser.city }}" disabled>
+	<div class="cl-20"></div>
+        <label>{% trans %}Region{% endtrans %}</label>
+	<input type="text" class="form-control input-lg" value="{{ advertiser.region }}" disabled>
+        <div class="cl-20"></div>
+        {% if(advertiser.country) %}
+        <label>{% trans %}Country{% endtrans %}</label>
+	<a href="{{ path('country_view', { 'id' : advertiser.country.id }) }}" title="{% trans %}View{% endtrans %}">{{ advertiser.country }}</a>
+        {% endif %}
+    </div>
+            
+      
+       {% if(offers|length) %}
+      <div class="cl-20"></div>
+      <hr>
+        <h2>Offers ({{offers|length}}):</h2>
+          <div class="table-responsive">
+	    <div class="offer-tbl-wrap">
+	      <table class="table table-striped">                                                                        
+                <thead>
+        <tr>
+         <th>{% trans %}Name{% endtrans %}</th>
+         <th>{% trans %}Status{% endtrans %}</th>
+       </tr>
+        </thead>
+        <tbody>
+        
+        {% for offer in offers %}
+            <tr>
+                <td><a href="{{ path('offer_view', { 'id' : offer.id }) }}" title="{{ offer }}">{{ offer }}</a></td>
+                <td>{{ offer.status }}</td>
+            </tr>
+          {% endfor %}
+            
+            </tbody>
+        </table>
+                </div>
+              </div>
+      {% endif %}
+        
+       <div class="cl-20"></div>
+      </div>
+      
+		</div>
+
+			</section>
+
+		</div>
+	</div>
+
+    {{ parent() }}
+    
+        
+    
+{% endblock %}

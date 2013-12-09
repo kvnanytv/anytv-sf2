@@ -1,0 +1,55 @@
+{% extends 'AnytvDashboardBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - {{ title}}{% endblock %}
+     
+{% block content_header '' %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+
+<div id="content">
+  <div id="dboard-wrap">   
+    <section class="sec-content-title">
+      <div class="container">
+        <div style="float: left;"><h3>{{ title }} ({{ offer_group.offerGroupId }}) - {{ offer_group_status }}</h3></div>
+	<div style="float: right;"><em><a href="{{ path('offer_group_view', { 'id' : offer_group.id }) }}" class="btn btn-default" title="{% trans %}View{% endtrans %}">{% trans %}view{% endtrans %}</a></em></div>
+      </div>
+    </section>
+      
+    <section class="db-slide-1">
+      <div class="container">
+        <div class="row">
+            
+            
+     
+       {{ form_start(form, {'action': path('offer_group_edit', { 'id' : offer_group.id }), 'method': 'POST'}) }}
+          
+         {{ form_errors(form) }}
+        
+         
+        
+        {% if(offer_group.thumbnail) %}
+      <img src="{{ asset(offer_group.getWebPath()) | apply_filter('featured_offer') }}" alt="{{ offer_group }}" />
+    {% endif %}
+        <div class="cl-20"></div>
+          {{ form_row(form.file, {'label': 'Photo'}) }}
+      <div class="cl-20"></div>
+      {{ form_row(form.save, {'attr': {'class': 'btn btn-default btn-lg'}}) }}
+         
+       {{ form_end(form) }}
+       
+      <div class="cl-20"></div>
+      </div>
+      
+		</div>
+
+			</section>
+
+		</div>
+	</div>
+
+    {{ parent() }}
+    
+        
+    
+{% endblock %}
